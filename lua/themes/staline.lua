@@ -13,7 +13,9 @@ require'staline'.setup{
 	}
 }
 
-require'staline'.tabline_init()
+require'staline'.stabline_init{
+	stab_right = ""
+}
 -- local leftSeparator = ""	-->      
 -- local rightSeparator = ""	-->      
 

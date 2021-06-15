@@ -5,8 +5,9 @@ require 'general.mappings'
 require 'general.functions'
 
 --> THEMES AND STATUSLINE
-require 'themes.tokyonight' --> gruvbox, onedark, sonokai, tokyonight
+-- require 'themes.tokyonight' --> gruvbox, onedark, sonokai, tokyonight
 require 'themes.staline' -- "#ff7a93"
+require 'themes.random'
 
 --> PLUG CONFIGS
 require 'plug_configs.one-liner-configs'

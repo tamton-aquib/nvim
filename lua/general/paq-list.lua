@@ -2,8 +2,8 @@
 require 'paq-nvim' {
 	'savq/paq-nvim',
 
-	'L3MON4D3/LuaSnip',
-	'tamton-aquib/staline.nvim',
+	'RRethy/nvim-base16',
+	{'tamton-aquib/staline.nvim', branch='beta'},
 	'akinsho/nvim-toggleterm.lua',
 	-- 'folke/tokyonight.nvim',
 	'ghifarit53/tokyonight-vim',
@@ -28,6 +28,7 @@ require 'paq-nvim' {
 	'onsails/lspkind-nvim',
 	'kabouzeid/nvim-lspinstall',
 	-- General Purpose
+	'L3MON4D3/LuaSnip',
 	'kyazdani42/nvim-web-devicons',
 	'nvim-treesitter/nvim-treesitter',
 	'nvim-treesitter/playground',
