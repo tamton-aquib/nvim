@@ -1,2 +1,4 @@
 # nvim
-Personal neovim configs
+
+My [neovim](https://neovim.io/) configs
+

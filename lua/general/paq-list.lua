@@ -1,0 +1,36 @@
+
+require 'paq-nvim' {
+
+	'savq/paq-nvim',
+	'L3MON4D3/LuaSnip',
+	'tamton-aquib/staline.nvim',
+	'akinsho/nvim-toggleterm.lua',
+	'eddyekofo94/gruvbox-flat.nvim',
+
+	-- Themes and looks
+	'monsonjeremy/onedark.nvim',
+	'sainnhe/sonokai',
+	'sainnhe/gruvbox-material',
+	'mhinz/vim-startify',
+	'norcalli/nvim-colorizer.lua',
+	'folke/todo-comments.nvim',
+	-- Web dev Utils
+	'iamcco/markdown-preview.nvim',
+	'mattn/emmet-vim',
+	-- Telescope
+	'nvim-lua/popup.nvim',
+	'nvim-lua/plenary.nvim',
+	'nvim-telescope/telescope.nvim',
+	-- LSP
+	'neovim/nvim-lspconfig',
+	'hrsh7th/nvim-compe',
+	'onsails/lspkind-nvim',
+	'kabouzeid/nvim-lspinstall',
+	-- General Purpose
+	'kyazdani42/nvim-web-devicons',
+	'nvim-treesitter/nvim-treesitter',
+	'nvim-treesitter/playground',
+	'tamago324/lir.nvim',
+	'steelsojka/pears.nvim',
+
+}
