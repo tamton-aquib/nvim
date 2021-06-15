@@ -21,7 +21,7 @@ require("toggleterm").setup{
 function exec_cmd(cmd)
 	open_term:new{
 		cmd = cmd,
-		on_exit = function(t) t:close() end
+		on_exit = function(t) t:shutdown() end
 	}:toggle()
 end
 
@@ -34,7 +34,7 @@ local files = {
 
 map(this(), 'n', '<leader>l', ':lua exec_cmd("lazygit")<CR>', noice)
 map(this(), 'n', '<leader>p', ':lua exec_cmd("python")<CR>', noice)
-map(this(), 'n', '<leader>t', ':lua exec_cmd()<CR>', noice)
+map(this(), 'n', '<leader>t', ':lua open_term:new{}:toggle()<CR>', noice)
 
 function run_file()
 	local command = files[vim.bo.filetype]
@@ -42,5 +42,5 @@ function run_file()
 	print("Running: "..command)
 end
 
-map(this(), 'n', '<leader>r', [[:lua run_file()<CR>]], noice)
+map(this(), 'n', '<leader>r', [[:w<CR>:lua run_file()<CR>]], noice)
 

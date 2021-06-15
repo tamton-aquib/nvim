@@ -1,22 +1,23 @@
 
 require 'paq-nvim' {
-
 	'savq/paq-nvim',
+
 	'L3MON4D3/LuaSnip',
 	'tamton-aquib/staline.nvim',
 	'akinsho/nvim-toggleterm.lua',
-	'eddyekofo94/gruvbox-flat.nvim',
+	-- 'folke/tokyonight.nvim',
+	'ghifarit53/tokyonight-vim',
 
 	-- Themes and looks
 	'monsonjeremy/onedark.nvim',
 	'sainnhe/sonokai',
-	'sainnhe/gruvbox-material',
+	'eddyekofo94/gruvbox-flat.nvim',
 	'mhinz/vim-startify',
 	'norcalli/nvim-colorizer.lua',
 	'folke/todo-comments.nvim',
 	-- Web dev Utils
 	'iamcco/markdown-preview.nvim',
-	'mattn/emmet-vim',
+	-- 'mattn/emmet-vim',
 	-- Telescope
 	'nvim-lua/popup.nvim',
 	'nvim-lua/plenary.nvim',

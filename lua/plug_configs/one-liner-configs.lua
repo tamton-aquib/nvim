@@ -11,12 +11,5 @@ require'lspkind'.init({with_text=false})
 require "pears".setup()
 
 --> Emmet configs
-vim.g.user_emmet_leader_key=','
-
-
---> Buferline
--- require("bufferline").setup{
--- 	diagnostics = "nvim_lsp",
--- 	separator_style = "thick"
--- }
+-- vim.g.user_emmet_leader_key=','
 

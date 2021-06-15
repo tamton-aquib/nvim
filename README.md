@@ -1,4 +1,5 @@
-# nvim
 
-My [neovim](https://neovim.io/) configs
+# Neovim config
+
+Lsp setup branch. (unstable)
 
