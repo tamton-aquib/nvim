@@ -101,12 +101,7 @@ woodland
 xcode-dusk
 zenburn
 ]]
-local colors = {}
-for i in string.gmatch(color_schemes, "[^\n]+") do
-	if not string.match(i, "light") then
-		table.insert(colors, i)
-	end
-end
+local colors = vim.split(color_schemes, "\n")
 
 local schemes = {
 	'onedark',
