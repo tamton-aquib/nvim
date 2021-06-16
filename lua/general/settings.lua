@@ -1,67 +1,64 @@
 local cmd = vim.api.nvim_command
 local current = vim.api.nvim_get_current_buf
+local set = vim.opt
 
-cmd('set iskeyword+=-')
 cmd('syntax enable')
 cmd("filetype plugin indent on")
-cmd('set inccommand=split')
 
-vim.go.t_Co = "256"
-vim.opt.more = false
+set.mouse = "a"
+set.encoding = "UTF-8"
+set.fileencoding = "UTF-8"
+set.termguicolors = true
+set.background = "dark"
+set.hidden = true
+set.scrolloff = 8
+set.timeoutlen = 300
+set.updatetime = 500
+set.hlsearch = false
+set.clipboard = "unnamedplus"
+set.smarttab = true
+set.backup = false
+set.writebackup = false
+set.conceallevel = 0
+set.cmdheight = 1
+set.splitright = true
+set.splitbelow = true
+set.pumheight = 10
+set.incsearch = true
+set.showmode = false
+set.showtabline = 2
+set.laststatus = 2
+set.foldenable = false
+set.foldmethod = "expr"
+set.foldexpr = "nvim_treesitter#foldexpr()"
+set.foldlevelstart = 25
 
-vim.opt.mouse = "a"
-vim.opt.encoding = "UTF-8"
-vim.opt.fileencoding = "UTF-8"
-vim.opt.termguicolors = true
-vim.opt.background = "dark"
-vim.opt.hidden = true
-vim.opt.scrolloff = 8
-vim.opt.timeoutlen = 300
-vim.opt.updatetime = 500
-vim.opt.hlsearch = false
-vim.opt.clipboard = "unnamedplus"
-vim.opt.smarttab = true
-vim.opt.backup = false
-vim.opt.writebackup = false
-vim.opt.conceallevel = 0
-vim.opt.cmdheight = 1
-vim.opt.splitright = true
-vim.opt.splitbelow = true
-vim.opt.pumheight = 10
-vim.opt.incsearch = true
-vim.opt.showmode = false
-vim.opt.showtabline = 2
-vim.opt.laststatus = 2
-vim.opt.foldenable = false
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-vim.opt.foldlevelstart = 25
 
-function on_file_enter()
-	vim.opt.expandtab = false
-	vim.opt.copyindent = true
-	vim.opt.shiftwidth = 4
-	vim.opt.tabstop = 4
-	vim.opt.softtabstop = 4
-	vim.opt.autoindent = true
-	vim.opt.smartindent = true
+set.iskeyword:append('-')
+set.inccommand = "split"
+set.number = true
+set.relativenumber = true
+set.wrap = false
+set.cursorline = true
+set.list = true
+set.listchars = 'tab: '
+set.filetype = "on"
 
-	if vim.fn.getpos('"') then 
+function On_file_enter()
+	set.expandtab = false
+	set.copyindent = true
+	set.shiftwidth = 4
+	set.tabstop = 4
+	set.softtabstop = 4
+	set.autoindent = true
+	set.smartindent = true
+	set.fo:remove('c')
+	set.fo:remove('r')
+	set.fo:remove('o')
+
+	if vim.api.nvim_buf_line_count(current()) ~= nil then
 		vim.cmd("norm '\"")
 	end
 
 end
-vim.cmd [[ autocmd FileType * :lua on_file_enter() ]]
-
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.wrap = false
-vim.opt.cursorline = true
-vim.opt.list = true
--- vim.opt.listchars = 'tab:┊ '
-vim.opt.listchars = 'tab: '
-
-vim.opt.filetype = "on"
-
-vim.opt.formatoptions = vim.opt.formatoptions - "cro"
-
+vim.cmd [[ autocmd FileType * :lua On_file_enter() ]]

@@ -23,4 +23,3 @@ require 'plug_configs.lirtree'
 require 'lsp.lspconfig'
 require 'lsp.compe-config'
 require 'lsp.lsps'
-
