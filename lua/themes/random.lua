@@ -34,7 +34,6 @@ chalk
 circus
 classic-dark
 codeschool
-cupcake
 darktooth
 default-dark
 darcula
@@ -43,7 +42,6 @@ eighties
 embers
 flat
 fruit-soda
-github
 google-dark
 grayscale-dark
 gruvbox-dark-hard
@@ -93,7 +91,6 @@ summerfruit-dark
 synth-midnight-dark
 tomorrow-night-eighties
 tomorrow-night
-tomorrow
 tube
 twilight
 unikitty-dark
@@ -114,10 +111,10 @@ function Return_Scheme()
 	math.randomseed(os.clock())
 	local nice = math.random() * #colors
 	local selected = colors[math.floor(nice)+1]
+	if selected == nil then selected = "onedark" end
 	print("ColorScheme: "..selected)
 	vim.cmd('colo base16-'..selected)
 end
 
 vim.api.nvim_set_keymap('n', '<leader>c', ':lua Return_Scheme()<CR>', {noremap=true})
 
-Return_Scheme()

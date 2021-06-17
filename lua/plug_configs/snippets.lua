@@ -37,11 +37,16 @@ function ]]..f_name..[[(${1}) {
 
 export default ]]..f_name
 
+local high = [[
+${1:HighlightGroup} = { fg = "${2}", bg = "${3}" },${0}
+]]
+
 ls.snippets = {
 	all = {		
 		parse({trig="html", wordTrig=true}, html_bp),
 		parse({trig="#!", wordTrig=true}, shebang),
 		parse({trig="rfc", wordTrig=true}, react_rfc),
+		parse({trig="high", wordTrig=true}, high),
 		parse({trig="conso", wordTrig=true}, [[console.log(${0})]])
 	}
 }

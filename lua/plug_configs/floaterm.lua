@@ -38,8 +38,10 @@ map(this(), 'n', '<leader>t', ':lua open_term:new{}:toggle()<CR>', noice)
 
 function run_file()
 	local command = files[vim.bo.filetype]
-	open_term:new{cmd=command}:toggle()
-	print("Running: "..command)
+	if command ~= nil then
+		open_term:new{cmd=command}:toggle()
+		print("Running: "..command)
+	end
 end
 
 map(this(), 'n', '<leader>r', [[:w<CR>:lua run_file()<CR>]], noice)

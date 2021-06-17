@@ -5,8 +5,6 @@ require'staline'.setup{
 		cool_symbol = "  ",
 		left_separator = "",
 		right_separator = "",
--- 		left_separator = " ",
--- 		right_separator = " ",
 	},
 	mode_colors = {
 		n = "#e27d60"
@@ -14,7 +12,7 @@ require'staline'.setup{
 }
 
 require'staline'.stabline_init{
-	stab_right = ""
+	type = "slant"
 }
 -- local leftSeparator = ""	-->      
 -- local rightSeparator = ""	-->      
