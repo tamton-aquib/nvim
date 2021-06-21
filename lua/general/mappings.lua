@@ -12,7 +12,7 @@ map('n', '<leader>\'', 'ciw""<Esc>P', noice)
 map('n', '<C-c>', ':w<CR>:silent !live_server<CR>', noice)
 map('n', '<leader>n', ":lua require'lir.float'.toggle()<CR>", noice)
 map('n', '<leader>h', ':Telescope help_tags<CR>', noice)
-cmd('au Filetype lua nnoremap <silent> <leader>r :luafile %<CR>:echo "Reloaded"<CR>')
+cmd('au Filetype lua nnoremap <silent> <leader>r :echo "Reloading..."<CR>:luafile %<CR>')
 
 --> WINDOW Control
 map('n', '<C-h>','<C-w>h', noice)
@@ -34,3 +34,4 @@ map('n', '<C-q>', ':q<CR>', noice)
 map('v', '<', '<gv', noice)
 map('v', '>', '>gv', noice)
 map('i', '<TAB>', 'pumvisible() ? "\\<C-n>" : "\\<TAB>"', {noremap=true, expr=true})
+

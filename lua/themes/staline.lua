@@ -11,9 +11,10 @@ require'staline'.setup{
 	}
 }
 
-require'staline'.stabline_init{
-	type = "slant"
+require'stabline'.setup {
+	style = "slant",
 }
+
 -- local leftSeparator = ""	-->      
 -- local rightSeparator = ""	-->      
 

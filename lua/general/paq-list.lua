@@ -1,12 +1,10 @@
 
 require 'paq-nvim' {
-	'savq/paq-nvim',
 
-	'RRethy/nvim-base16',
+	--> Temp
 	{'tamton-aquib/staline.nvim', branch='beta'},
-	'akinsho/nvim-toggleterm.lua',
-	-- 'folke/tokyonight.nvim',
 	'ghifarit53/tokyonight-vim',
+	'folke/zen-mode.nvim',
 
 	-- Themes and looks
 	'monsonjeremy/onedark.nvim',
@@ -15,13 +13,6 @@ require 'paq-nvim' {
 	'mhinz/vim-startify',
 	'norcalli/nvim-colorizer.lua',
 	'folke/todo-comments.nvim',
-	-- Web dev Utils
-	'iamcco/markdown-preview.nvim',
-	-- 'mattn/emmet-vim',
-	-- Telescope
-	'nvim-lua/popup.nvim',
-	'nvim-lua/plenary.nvim',
-	'nvim-telescope/telescope.nvim',
 	-- LSP
 	'neovim/nvim-lspconfig',
 	'hrsh7th/nvim-compe',
@@ -34,5 +25,13 @@ require 'paq-nvim' {
 	'nvim-treesitter/playground',
 	'tamago324/lir.nvim',
 	'steelsojka/pears.nvim',
+	'akinsho/nvim-toggleterm.lua',
+	-- Web dev Utils
+	'iamcco/markdown-preview.nvim',
+	-- Telescope
+	'nvim-lua/popup.nvim',
+	'nvim-lua/plenary.nvim',
+	'nvim-telescope/telescope.nvim',
 
+	'savq/paq-nvim',
 }

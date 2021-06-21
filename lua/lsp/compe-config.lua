@@ -1,3 +1,4 @@
+local vim=vim
 vim.o.completeopt = "menuone,noselect"
 local luasnip = require'luasnip'
 

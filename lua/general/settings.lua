@@ -2,8 +2,20 @@ local cmd = vim.api.nvim_command
 local current = vim.api.nvim_get_current_buf
 local set = vim.opt
 
-cmd('syntax enable')
-cmd("filetype plugin indent on")
+vim.g.loaded_gzip = false
+vim.g.loaded_matchit = false
+vim.g.loaded_netrwPlugin = false
+vim.g.loaded_tarPlugin = false
+vim.g.loaded_zipPlugin = false
+vim.g.loaded_man = false
+vim.g.loaded_2html_plugin = false
+vim.g.loaded_remote_plugins = false
+
+vim.cmd [[
+	syntax off
+	filetype off
+	filetype plugin indent off
+]]
 
 set.mouse = "a"
 set.encoding = "UTF-8"
@@ -37,7 +49,7 @@ set.foldlevelstart = 25
 set.iskeyword:append('-')
 set.inccommand = "split"
 set.number = true
-set.relativenumber = true
+-- set.relativenumber = true
 set.wrap = false
 set.cursorline = true
 set.list = true
