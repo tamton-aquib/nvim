@@ -6,4 +6,4 @@ vim.g.monokai_style = 'andromeda'
 vim.g.sonokai_better_performance = 1
 
 cmd('syntax on')
-cmd('colorscheme sonokai')
+vim.g.colors_name = "sonokai"

@@ -7,13 +7,13 @@ require'staline'.setup{
 		right_separator = "",
 	},
 	mode_colors = {
-		n = "#e27d60"
+		n = "#986fec",
+		i = "#e86671",
+		c = "#e27d60"
 	}
 }
 
-require'stabline'.setup {
-	style = "slant",
-}
+require'stabline'.setup {}
 
 -- local leftSeparator = ""	-->      
 -- local rightSeparator = ""	-->      

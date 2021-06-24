@@ -5,9 +5,11 @@ require 'general.mappings'
 require 'general.functions'
 
 --> THEMES AND STATUSLINE
--- require 'themes.gruvbox' --> gruvbox, onedark, sonokai, tokyonight
+-- require 'themes.sonokai' --> gruvbox, onedark, sonokai, tokyonight
 require 'themes.staline'
-vim.cmd [[colo taj_scheme]]
+-- require 'themes.random'
+vim.opt.rtp:append('~/TOOLS/noice_dark')
+vim.g.colors_name = "noice"
 
 --> PLUG CONFIGS
 require 'plug_configs.one-liner-configs'
@@ -26,3 +28,4 @@ vim.cmd("filetype plugin indent on")
 require 'lsp.lspconfig'
 require 'lsp.compe-config'
 require 'lsp.lsps'
+

@@ -1,4 +1,3 @@
-local cmd = vim.api.nvim_command
 local current = vim.api.nvim_get_current_buf
 local set = vim.opt
 
@@ -45,16 +44,16 @@ set.foldmethod = "expr"
 set.foldexpr = "nvim_treesitter#foldexpr()"
 set.foldlevelstart = 25
 
-
 set.iskeyword:append('-')
 set.inccommand = "split"
 set.number = true
--- set.relativenumber = true
+set.relativenumber = true
 set.wrap = false
 set.cursorline = true
 set.list = true
 set.listchars = 'tab: '
 set.filetype = "on"
+-- awieuhwefk
 
 function On_file_enter()
 	set.expandtab = false
@@ -64,9 +63,10 @@ function On_file_enter()
 	set.softtabstop = 4
 	set.autoindent = true
 	set.smartindent = true
-	set.fo:remove('c')
-	set.fo:remove('r')
-	set.fo:remove('o')
+-- 	set.fo:remove('c')
+-- 	set.fo:remove('r')
+-- 	set.fo:remove('o')
+	vim.cmd [[setlocal fo-=c fo-=r fo-=o]]
 
 	if vim.api.nvim_buf_line_count(current()) ~= nil then
 		vim.cmd("norm '\"")

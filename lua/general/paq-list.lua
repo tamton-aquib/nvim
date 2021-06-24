@@ -2,9 +2,12 @@
 require 'paq-nvim' {
 
 	--> Temp
-	{'tamton-aquib/staline.nvim', branch='beta'},
+	{'tamton-aquib/staline.nvim', branch = 'beta'},
+	-- 'tamton-aquib/staline.nvim',
 	'ghifarit53/tokyonight-vim',
+	-- 'folke/tokyonight.nvim',
 	'folke/zen-mode.nvim',
+	'tiagovla/tokyodark.nvim',
 
 	-- Themes and looks
 	'monsonjeremy/onedark.nvim',

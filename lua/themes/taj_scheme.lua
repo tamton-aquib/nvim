@@ -74,16 +74,18 @@ T.Programming = {
 	cssDefinition		= { fg = c.white_one},
 }
 
+local curl = vim.g.noice_underline
+
 T.LspRelated = {
 	LspDiagnosticsSignError = { fg = c.red_one, gui = 'bold' },
 	LspDiagnosticsSignWarning = { fg = c.yellow_three, gui='bold' },
 	LspDiagnosticsSignHint = { fg = c.blue_one, gui = 'bold' },
-	LspDiagnosticsSignInformation = { fg = c.red_one, gui = 'italic' },
+	LspDiagnosticsSignInformation = { fg = c.blue_three, gui = 'italic' },
 
-	LspDiagnosticsUnderlineError = { sp = c.red_one, gui = 'undercurl'},
-	LspDiagnosticsUnderlineWarning = { sp = c.yellow_three, gui = 'undercurl'},
-	LspDiagnosticsUnderlineHint = { sp = c.blue_one, gui = 'undercurl'},
-	LspDiagnosticsUnderlineInformation = { sp = c.red_one, gui = 'undercurl'},
+	LspDiagnosticsUnderlineError = { sp = c.red_one, gui = curl},
+	LspDiagnosticsUnderlineWarning = { sp = c.yellow_three, gui = curl},
+	LspDiagnosticsUnderlineHint = { sp = c.blue_one, gui = curl},
+	LspDiagnosticsUnderlineInformation = { sp = c.blue_three, gui = curl},
 }
 
 T.Telescope = {

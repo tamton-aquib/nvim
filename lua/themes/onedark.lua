@@ -1,6 +1,4 @@
 
-local cmd = vim.api.nvim_command
-
 -- vim.g.onedark_hide_endofbuffer = 1
 -- vim.g.onedark_terminal_italics = 1
 -- vim.g.onedark_termcolors = 256
@@ -9,6 +7,5 @@ local cmd = vim.api.nvim_command
 
 -- vim.g.onedark_transparent = true
 -- vim.g.onedark_dark_float = true
-cmd [[ syntax on ]]
-cmd [[ colo onedark ]]
+vim.g.colors_name = 'onedark'
 
