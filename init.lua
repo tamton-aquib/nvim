@@ -8,8 +8,7 @@ require 'general.functions'
 -- require 'themes.sonokai' --> gruvbox, onedark, sonokai, tokyonight
 require 'themes.staline'
 -- require 'themes.random'
-vim.opt.rtp:append('~/TOOLS/noice_dark')
-vim.g.colors_name = "noice"
+vim.g.colors_name = "tokyonight"
 
 --> PLUG CONFIGS
 require 'plug_configs.one-liner-configs'
