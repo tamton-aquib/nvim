@@ -1,55 +1,56 @@
 local cmd = vim.api.nvim_command
 local mapp = vim.api.nvim_set_keymap
 
-local comment_map = { 
-		c			= '%\\/%\\/',
-		java		= '//',
+local comment_map = {
 		javascript	= '%\\/%\\/',
+		c			= '%\\/%\\/',
+		java		= '%\\/%\\/',
+		rust		= '%\\/%\\/',
 		python		= '#',
 		sh			= '#',
-		vim			= '"',
-		rust		= '%\\/%\\/',
-		lua			= '%-%-',
-		conf		= '#'
+		conf		= '#',
+		lua			= '%-%-'
 }
 
-function toggle_comment()
-	local extension = vim.bo.ft
-	local comment_match = comment_map[extension]
-	local comment_leader = comment_match:gsub("%%", "")
-    local _, starting, _, _ = unpack(vim.fn.getpos("'<"))
-    local _, ending, _, _	= unpack(vim.fn.getpos("'>"))
+function Toggle_comment()
+	local starting = vim.fn.getpos("'<")[2]
+	local ending = vim.fn.getpos("'>")[2]
+
+	local both = comment_map[vim.bo.ft]
+	local backslash = both:gsub("%%", "")
+	local percent = both:gsub([[\]], "")
+	-- local neither = percent:gsub([[\]], "")
 
     local line = vim.api.nvim_get_current_line()
 
-	if starting == 0 and ending == 0 then
+	if starting == ending then
 		starting = "."
 		ending = "."
 	end
 
-	if line:match("^"..comment_match) then
-		local uncomment = starting..','..ending..'s/^'..comment_leader..' //g'
-		cmd(uncomment)
-	else
-		local comment = starting..','..ending..'s/^/'..comment_leader..' /g'
+	if string.match("^"..line, percent) ~= nil then
+		local comment = starting..','..ending..'s/^'..backslash..' //g'
 		cmd(comment)
+	else
+		local uncommand = starting..','..ending..'s/^/'..backslash..' /g'
+		cmd(uncommand)
 	end
 end
 
-mapp('v', '<C-_>', ':lua toggle_comment()<CR>', {noremap=true, silent=true})
-mapp('n', '<C-_>', ':lua toggle_comment()<CR>', {noremap=true})
+mapp('v', '<C-_>', ':lua Toggle_comment()<CR>', {noremap=true, silent=true})
+mapp('n', '<C-_>', ':lua Toggle_comment()<CR>', {noremap=true})
 
-local is_tranparent = 1
-function toggle_transparent()
-	if (is_tranparent == 0)
+local is_tranparent = 0
+function Toggle_transparent()
+	if (is_tranparent == 1)
 		then
         cmd('hi Normal guibg=NONE ctermbg=NONE')
-		is_tranparent = 1
+		is_tranparent = 0
 	else
         vim.o.background = "dark"
-		is_tranparent = 0
+		is_tranparent = 1
 	end
 end
 
-mapp('n', '<C-t>', ':lua toggle_transparent()<CR>', {noremap=true})
+mapp('n', '<C-t>', ':lua Toggle_transparent()<CR>', {noremap=true})
 

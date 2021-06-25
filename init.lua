@@ -6,9 +6,9 @@ require 'general.functions'
 
 --> THEMES AND STATUSLINE
 -- require 'themes.sonokai' --> gruvbox, onedark, sonokai, tokyonight
-require 'themes.staline'
 -- require 'themes.random'
-vim.g.colors_name = "tokyonight"
+require 'themes.staline'
+-- vim.g.colors_name = "noice"
 
 --> PLUG CONFIGS
 require 'plug_configs.one-liner-configs'

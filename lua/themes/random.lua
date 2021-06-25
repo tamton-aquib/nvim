@@ -10,8 +10,8 @@ function Return_Scheme()
 	math.randomseed(os.clock())
 	local nice = math.random() * #colors
 	local selected = colors[math.floor(nice)+1]
-	if selected == nil then selected = "onedark" end
 	print("ColorScheme: "..selected)
+	-- vim.g.colors_name = selected
 	vim.cmd('colo '..selected)
 end
 
