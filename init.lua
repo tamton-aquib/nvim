@@ -8,7 +8,7 @@ require 'general.functions'
 -- require 'themes.sonokai' --> gruvbox, onedark, sonokai, tokyonight
 -- require 'themes.random'
 require 'themes.staline'
--- vim.g.colors_name = "noice"
+vim.g.colors_name = "noice"
 
 --> PLUG CONFIGS
 require 'plug_configs.one-liner-configs'
@@ -20,11 +20,12 @@ require 'plug_configs.treesittter'
 require 'plug_configs.floaterm'
 require 'plug_configs.lirtree'
 
-vim.cmd('syntax enable')
-vim.cmd("filetype plugin indent on")
+vim.cmd("filetype on")
+vim.cmd [[syntax on]]
 
 --> LSP SETTINGS
 require 'lsp.lspconfig'
 require 'lsp.compe-config'
 require 'lsp.lsps'
+require 'lsp.emmet_lsp'
 

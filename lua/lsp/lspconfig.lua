@@ -12,6 +12,5 @@ map('n', 'K', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({border="shadow
 map('n', '<C-n>', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', noice)
 map('n', '<C-p>', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', noice)
 
-cmd('autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)')
-cmd('autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)')
+cmd('autocmd BufWritePre *.js,*.jsx lua vim.lsp.buf.formatting_sync(nil, 100)')
 

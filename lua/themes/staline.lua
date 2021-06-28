@@ -15,10 +15,10 @@
 
 require'staline'.setup{
 	defaults = {
-		cool_symbol = "     ",
+		cool_symbol = "    ",
 		left_separator = "",
 		right_separator = "",
-		fg = "#986fec",
+ 		fg = "#986fec",
 		filename_section = "taj%#Noice#@%#NewSectionTwo#arch"
 	},
 	mode_colors = {
@@ -34,7 +34,7 @@ require'stabline'.setup {
 	fg = "#986fec",
 }
 -- vim.cmd[[hi NewSectionOne guifg=#986fec guibg=none]]
-vim.cmd[[hi NewSectionTwo guifg=none guibg=none]]
+vim.cmd[[hi NewSectionTwo gui=bold guifg=none guibg=none]]
 
 -- local leftSeparator = ""	-->      
 -- local rightSeparator = ""	-->      

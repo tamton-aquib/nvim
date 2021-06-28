@@ -3,12 +3,14 @@ local mapp = vim.api.nvim_set_keymap
 
 local comment_map = {
 		javascript	= '%\\/%\\/',
+		javascriptreact = '%\\/%\\/',
 		c			= '%\\/%\\/',
 		java		= '%\\/%\\/',
 		rust		= '%\\/%\\/',
 		python		= '#',
 		sh			= '#',
 		conf		= '#',
+		yaml		= '#',
 		lua			= '%-%-'
 }
 

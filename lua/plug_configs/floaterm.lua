@@ -3,23 +3,29 @@ local map = vim.api.nvim_buf_set_keymap
 local exp = vim.fn.expand
 local this = vim.api.nvim_get_current_buf
 local noice = {noremap=true, silent=true}
-open_term = require'toggleterm.terminal'.Terminal
+Open_term = require'toggleterm.terminal'.Terminal
 
 require("toggleterm").setup{
 	size = 20,
 	hide_numbers = true,
 	start_in_insert = true,
 	insert_mappings = true,
+	shade_terminals = true,
+	shading_factor = '3',
 	persist_size = true,
 	close_on_exit = false,
 	direction = 'float',
 	float_opts = {
-		border = 'single',
-		winblend = 5,
+		border = 'curved',
+		winblend = 30,
+		highlights = {
+			border = "Normal",
+			background = "NormalFloat"
+		}
 	}
 }
 function Exec_cmd(cmd)
-	open_term:new{
+	Open_term:new{
 		cmd = cmd,
 		on_exit = function(t) t:shutdown() end
 	}:toggle()
@@ -35,12 +41,12 @@ local files = {
 
 map(this(), 'n', '<leader>l', ':lua Exec_cmd("lazygit")<CR>', noice)
 map(this(), 'n', '<leader>p', ':lua Exec_cmd("python")<CR>', noice)
-map(this(), 'n', '<leader>t', ':lua open_term:new{}:toggle()<CR>', noice)
+map(this(), 'n', '<leader>t', ':lua Exec_cmd(nil)<CR>', noice)
 
 function Run_file()
 	local command = files[vim.bo.filetype]
 	if command ~= nil then
-		open_term:new{cmd=command}:toggle()
+		Open_term:new{cmd=command}:toggle()
 		print("Running: "..command)
 	end
 end

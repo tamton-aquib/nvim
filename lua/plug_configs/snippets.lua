@@ -29,7 +29,7 @@ local f_name = vim.fn.expand('%:t:r')
 local react_rfc = [[
 import React from 'react';
 
-function ]]..f_name..[[(${1}) {
+const ]]..f_name..[[ = (${1}) => {
 	return (
 		${0}
 	);

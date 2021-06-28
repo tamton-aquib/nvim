@@ -1,7 +1,8 @@
 local vim=vim
-vim.o.completeopt = "menuone,noselect"
 local luasnip = require'luasnip'
+local map = vim.api.nvim_set_keymap
 
+vim.o.completeopt = "menuone,noselect"
 require'compe'.setup {
   enabled = true;
   autocomplete = true;
@@ -46,6 +47,7 @@ _G.tab_complete = function()
     if luasnip and luasnip.expand_or_jumpable() then
         return t "<Plug>luasnip-expand-or-jump"
 	elseif vim.fn.pumvisible() == 1 then
+        -- vim.fn['compe#confirm']()
         return t "<C-n>"
     elseif check_back_space() then
         return t "<Tab>"
@@ -63,8 +65,9 @@ _G.s_tab_complete = function()
     end
 end
 
-vim.api.nvim_set_keymap("s", "<Tab>",   "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("i", "<Tab>",   "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+map("s", "<Tab>",   "v:lua.tab_complete()", {expr = true})
+map("i", "<Tab>",   "v:lua.tab_complete()", {expr = true})
+map("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+map("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+map('i', ',,', '<cmd>call compe#confirm()<CR>', {silent=true, noremap=true})
 
