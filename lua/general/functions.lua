@@ -2,16 +2,16 @@ local cmd = vim.api.nvim_command
 local mapp = vim.api.nvim_set_keymap
 
 local comment_map = {
-		javascript	= '%\\/%\\/',
+		javascript		= '%\\/%\\/',
 		javascriptreact = '%\\/%\\/',
-		c			= '%\\/%\\/',
-		java		= '%\\/%\\/',
-		rust		= '%\\/%\\/',
-		python		= '#',
-		sh			= '#',
-		conf		= '#',
-		yaml		= '#',
-		lua			= '%-%-'
+		c				= '%\\/%\\/',
+		java			= '%\\/%\\/',
+		rust			= '%\\/%\\/',
+		python			= '#',
+		sh				= '#',
+		conf			= '#',
+		yaml			= '#',
+		lua				= '%-%-'
 }
 
 function Toggle_comment()

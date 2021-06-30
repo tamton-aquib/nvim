@@ -19,8 +19,9 @@ require 'plug_configs.startify'
 require 'plug_configs.treesittter'
 require 'plug_configs.floaterm'
 require 'plug_configs.lirtree'
+require 'plug_configs.neorg'
 
-vim.cmd("filetype on")
+vim.cmd [[filetype on]]
 vim.cmd [[syntax on]]
 
 --> LSP SETTINGS
@@ -28,4 +29,3 @@ require 'lsp.lspconfig'
 require 'lsp.compe-config'
 require 'lsp.lsps'
 require 'lsp.emmet_lsp'
-

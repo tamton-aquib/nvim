@@ -7,7 +7,8 @@ require 'paq-nvim' {
 	'ghifarit53/tokyonight-vim',
 	-- 'folke/tokyonight.nvim',
 	'folke/zen-mode.nvim',
-	'tiagovla/tokyodark.nvim',
+	-- 'tiagovla/tokyodark.nvim',
+	{'vhyrro/neorg', branch =  'unstable'},
 
 	-- Themes and looks
 	'monsonjeremy/onedark.nvim',
