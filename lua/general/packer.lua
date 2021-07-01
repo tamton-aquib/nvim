@@ -39,7 +39,7 @@ packer.startup { function(use)
 	use 'steelsojka/pears.nvim'
 	use 'akinsho/nvim-toggleterm.lua'
 	--> Web dev Utils
-	use 'iamcco/markdown-preview.nvim'
+	use {'iamcco/markdown-preview.nvim', ft={'markdown'}}
 	--> Telescope
 	use 'nvim-lua/popup.nvim'
 	use 'nvim-lua/plenary.nvim'
