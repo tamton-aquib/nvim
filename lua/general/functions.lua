@@ -30,7 +30,7 @@ function Toggle_comment()
 		ending = "."
 	end
 
-	if string.match("^"..line, percent) ~= nil then
+	if string.find("^"..line, percent) ~= nil then
 		local comment = starting..','..ending..'s/^'..backslash..' //g'
 		cmd(comment)
 	else
