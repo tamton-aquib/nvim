@@ -18,7 +18,7 @@ require'staline'.setup{
 		cool_symbol = "    ",
 		left_separator = "",
 		right_separator = "",
- 		fg = "#986fec",
+		fg = "#986fec",
 		filename_section = "taj%#Noice#@%#NewSectionTwo#arch"
 	},
 	mode_colors = {

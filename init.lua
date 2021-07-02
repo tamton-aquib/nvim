@@ -10,8 +10,7 @@ require 'general.packer'
 -- require 'themes.random'
 require 'themes.staline'
 vim.opt.rtp:append('~/TOOLS/noice_dark')
--- vim.g.noice_transparency = "none"
-
+vim.g.noice_transparency = "none"
 vim.g.colors_name = "noice"
 
 -- PLUG CONFIGS

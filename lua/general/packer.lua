@@ -11,7 +11,7 @@ packer.init {
 
 packer.startup { function(use)
 
-	use {'tamton-aquib/staline.nvim', branch = 'beta'}
+	use 'tamton-aquib/staline.nvim'
 	-- use 'ghifarit53/tokyonight-vim'
 	-- 'folke/tokyonight.nvim'
 	use 'folke/zen-mode.nvim'
