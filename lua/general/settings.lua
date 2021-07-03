@@ -10,11 +10,8 @@ vim.g.loaded_man = false
 vim.g.loaded_2html_plugin = false
 vim.g.loaded_remote_plugins = false
 
--- filetype off
-vim.cmd [[
-	filetype plugin indent off
-	set nospell
-]]
+vim.cmd [[ filetype plugin indent off ]]
+vim.opt.spell = false
 vim.g.filetype = 'off'
 vim.g.syntax = false
 
