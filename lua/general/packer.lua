@@ -11,7 +11,8 @@ packer.init {
 
 packer.startup { function(use)
 
-	use 'tamton-aquib/staline.nvim'
+	use 'tjdevries/astronauta.nvim'
+	use {'tamton-aquib/staline.nvim', branch = 'beta'}
 	-- use 'ghifarit53/tokyonight-vim'
 	-- 'folke/tokyonight.nvim'
 	use 'folke/zen-mode.nvim'
@@ -22,7 +23,8 @@ packer.startup { function(use)
 	use 'monsonjeremy/onedark.nvim'
 	use 'sainnhe/sonokai'
 	use 'eddyekofo94/gruvbox-flat.nvim'
-	use 'mhinz/vim-startify'
+	-- use 'mhinz/vim-startify'
+	use 'glepnir/dashboard-nvim'
 	use 'norcalli/nvim-colorizer.lua'
 	use 'folke/todo-comments.nvim'
 	--> LSP
