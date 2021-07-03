@@ -24,8 +24,9 @@ require 'plug_configs.floaterm'
 require 'plug_configs.neorg'
 require 'plug_configs.lirtree'
 
-vim.cmd [[filetype on]]
-vim.cmd [[syntax on]]
+-- vim.cmd [[filetype on]]
+vim.opt.filetype = 'on'
+vim.g.syntax = true
 
 -- LSP SETTINGS
 require 'lsp.lspconfig'

@@ -5,7 +5,7 @@ local cmd = vim.api.nvim_command
 local noice = {noremap=true, silent=true}
 
 --> Custom
-map('n', '<leader>f', [[:lua require('telescope.builtin').find_files(require'telescope.themes'.get_dropdown({previewer=false, width=0.5 }))<CR>]], noice)
+map('n', '<leader>f', [[:lua require('telescope.builtin').find_files(require'telescope.themes'.get_dropdown({previewer=false}))<CR>]], noice)
 map('i', 'jk', '<Esc>', noice)
 map('n', '<leader>a','ggVG',noice)
 map('n', '<leader>\'', 'ciw""<Esc>P', noice)

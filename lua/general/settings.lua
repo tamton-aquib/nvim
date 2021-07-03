@@ -10,12 +10,13 @@ vim.g.loaded_man = false
 vim.g.loaded_2html_plugin = false
 vim.g.loaded_remote_plugins = false
 
+-- filetype off
 vim.cmd [[
-	syntax off
-	filetype off
 	filetype plugin indent off
 	set nospell
 ]]
+vim.g.filetype = 'off'
+vim.g.syntax = false
 
 set.mouse = "a"
 set.encoding = "UTF-8"
