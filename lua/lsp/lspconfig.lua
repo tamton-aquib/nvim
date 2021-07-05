@@ -1,7 +1,6 @@
 local cmd = vim.api.nvim_command
 local map = vim.api.nvim_set_keymap
 local noice = {noremap=true, silent=true}
--- local c = vim.api.nvim_get_current_buf
 
 map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', noice)
 map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', noice)

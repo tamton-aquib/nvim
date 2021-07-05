@@ -11,12 +11,11 @@ packer.init {
 
 packer.startup { function(use)
 
-	use 'tjdevries/astronauta.nvim'
-	use {'tamton-aquib/staline.nvim', branch = 'beta'}
+	use 'glepnir/dashboard-nvim'
+	use 'tamton-aquib/staline.nvim'
 	-- use 'ghifarit53/tokyonight-vim'
-	-- 'folke/tokyonight.nvim'
-	use 'folke/zen-mode.nvim'
-	-- use 'tiagovla/tokyodark.nvim'
+	-- use 'folke/zen-mode.nvim'
+	use 'tiagovla/tokyodark.nvim'
 	use {'vhyrro/neorg', branch =  'unstable'}
 
 	--> Themes and looks
@@ -24,9 +23,8 @@ packer.startup { function(use)
 	use 'sainnhe/sonokai'
 	use 'eddyekofo94/gruvbox-flat.nvim'
 	-- use 'mhinz/vim-startify'
-	use 'glepnir/dashboard-nvim'
 	use 'norcalli/nvim-colorizer.lua'
-	use 'folke/todo-comments.nvim'
+	use {'folke/todo-comments.nvim', config = function() require'todo-comments'.setup{} end}
 	--> LSP
 	use 'neovim/nvim-lspconfig'
 	use 'hrsh7th/nvim-compe'
@@ -38,7 +36,7 @@ packer.startup { function(use)
 	use 'nvim-treesitter/nvim-treesitter'
 	use 'nvim-treesitter/playground'
 	use 'tamago324/lir.nvim'
-	use 'steelsojka/pears.nvim'
+	use {'steelsojka/pears.nvim', config = function() require "pears".setup() end}
 	use 'akinsho/nvim-toggleterm.lua'
 	--> Web dev Utils
 	use {'iamcco/markdown-preview.nvim', ft={'markdown'}}
@@ -48,14 +46,7 @@ packer.startup { function(use)
 	use 'nvim-telescope/telescope.nvim'
 
 	use 'wbthomason/packer.nvim'
-end,
-config = {
-  display = {
-    open_fn = function()
-      return require('packer.util').float({ border = 'single' })
-    end
-  }
-}
+end
 }
 
 

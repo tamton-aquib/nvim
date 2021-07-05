@@ -2,7 +2,6 @@
 require'lspinstall'.setup()
 
 local servers = require'lspinstall'.installed_servers()
-
 for _, server in pairs(servers) do
 	if server ~= 'lua' then
 
