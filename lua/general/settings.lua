@@ -52,7 +52,8 @@ set.relativenumber = true
 set.wrap = false
 set.cursorline = true
 set.list = true
-set.listchars = 'tab: '
+set.listchars = 'tab:▏ '
+-- set.listchars = 'tab: '
 set.filetype = "on"
 
 function On_file_enter()
