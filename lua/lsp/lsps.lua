@@ -21,6 +21,7 @@ require 'lspconfig'.sumneko_lua.setup {
 				-- Get the language server to recognize the `vim` global
 				globals = {'vim'},
 			},
+			telemetry = { enable = false },
 		}
 	}
 }
@@ -30,6 +31,12 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 		virtual_text = false
 	}
 )
+
+local signs = { Error = "", Warning = " ", Hint = "", Information = "", other = "﫠" }
+for type, icon in pairs(signs) do
+	local hl = "LspDiagnosticsSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
 
 -- vim.lsp.protocol.CompletionItemKind ={ " Text", "ƒ Method", " Function", " Constructor", "Field", " Variable", " Class", "ﰮ Interface", " Module", " Property", " Unit", " Value", "了 Enum", " Keyword", "﬌ Snippet", " Color",
 --  " File", "Reference", " Folder", " EnumMember", " Constant",

@@ -5,9 +5,10 @@ require 'general.functions'
 require 'general.packer'
 
 -- THEMES AND STATUSLINE
--- require 'themes.onedark' --> sonokai, tokyonight
+-- require 'themes.sonokai' --> sonokai, tokyonight
 require 'themes.staline'
 vim.opt.rtp:append '~/TOOLS/noice_dark'
+-- vim.g.noice_transparency = "none"
 vim.g.colors_name = "noice"  --> onedark, gruvbox, tokyodark
 
 -- PLUG CONFIGS
@@ -15,15 +16,15 @@ require 'config.one-liner-configs'
 require 'config.snippets'
 require 'config.plug-colorizer'
 require 'config.telescope'
-require 'themes.dashboard'
+-- require 'themes.dashboard'
 -- require 'plug_configs.startify'
 require 'config.treesittter'
 require 'config.floaterm'
 require 'config.neorg'
 require 'config.lirtree'
 
-vim.opt.filetype = 'on'
-vim.g.syntax = true
+-- vim.opt.filetype = 'on'
+-- vim.g.syntax = true
 
 -- LSP SETTINGS
 require 'lsp.lspconfig'

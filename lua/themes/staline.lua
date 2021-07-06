@@ -1,4 +1,8 @@
 --> staline setup
+function Get_lsp_stuff()
+	local errors = vim.lsp.diagnostic.get_count(0, 'Error')
+	return " "..errors
+end
 
 -- require'staline'.setup{
 -- 	defaults = {
@@ -20,6 +24,7 @@ require'staline'.setup{
 		right_separator = "",
 		fg = "#986fec",
 		filename_section = "taj%#Noice#@%#NewSectionTwo#arch"
+		-- filename_section = '%{luaeval("Get_lsp_stuff()")}'
 	},
 	mode_colors = {
 		n = "none",
@@ -30,9 +35,9 @@ require'staline'.setup{
 	}
 }
 
-require'stabline'.setup {
-	fg = "#986fec",
-}
+-- require'stabline'.setup {
+-- 	fg = "#986fec",
+-- }
 -- vim.cmd[[hi NewSectionOne guifg=#986fec guibg=none]]
 vim.cmd[[hi NewSectionTwo gui=bold guifg=none guibg=none]]
 
