@@ -9,14 +9,13 @@ packer.init {
 
 packer.startup { function(use)
 
--- 	use 'glepnir/dashboard-nvim'
-	use 'lukas-reineke/indent-blankline.nvim'
+	use 'glepnir/dashboard-nvim'
 -- 	use 'miffi/boot.nvim'
 -- 	use 'tanvirtin/vgit.nvim'
+-- 	use 'ghifarit53/tokyonight-vim'
+-- 	use 'folke/zen-mode.nvim'
+-- 	use 'mhinz/vim-startify'
 	use 'tamton-aquib/staline.nvim'
-	-- use 'ghifarit53/tokyonight-vim'
-	-- use 'folke/zen-mode.nvim'
-	-- use 'mhinz/vim-startify'
 
 	--> Themes and looks
 	use 'monsonjeremy/onedark.nvim'
@@ -35,8 +34,6 @@ packer.startup { function(use)
 	--> General Purpose
 	use 'L3MON4D3/LuaSnip'
 	use 'kyazdani42/nvim-web-devicons'
-	use 'nvim-treesitter/nvim-treesitter'
-	use 'nvim-treesitter/playground'
 	use 'tamago324/lir.nvim'
 	use {'steelsojka/pears.nvim', config = function() require "pears".setup() end}
 	use 'akinsho/nvim-toggleterm.lua'
@@ -45,7 +42,9 @@ packer.startup { function(use)
 	--> Web dev Utils
 	use {'iamcco/markdown-preview.nvim', ft={'markdown'}}
 
-	--> Telescope
+	--> Telescope and Treesitter
+	use 'nvim-treesitter/nvim-treesitter'
+	use 'nvim-treesitter/playground'
 	use 'nvim-lua/popup.nvim'
 	use 'nvim-lua/plenary.nvim'
 	use 'nvim-telescope/telescope.nvim'
