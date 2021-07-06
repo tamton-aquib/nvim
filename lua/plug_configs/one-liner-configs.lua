@@ -4,7 +4,7 @@ vim.g.mkdp_refresh_slow = 1
 vim.g.python_host_prog = '/usr/bin/python3'
 
 --> TO-DO and lsp-icons
-require'lspkind'.init({with_text=false})
+-- require'lspkind'.init({with_text=false})
 -- require 'zen-mode'.setup{
 -- 	window = {
 -- 		backdrop = 0.5,

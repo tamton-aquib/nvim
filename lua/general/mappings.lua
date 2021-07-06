@@ -4,6 +4,10 @@ local map = vim.api.nvim_set_keymap
 local cmd = vim.api.nvim_command
 local noice = {noremap=true, silent=true}
 
+-- Move selected line / block of text in visual mode
+map("x", "K", ":move '<-2<CR>gv-gv", { noremap = true, silent = true })
+map("x", "J", ":move '>+1<CR>gv-gv", { noremap = true, silent = true })
+
 --> Custom
 map('n', '<leader>f', [[:lua require('telescope.builtin').find_files(require'telescope.themes'.get_dropdown({previewer=false}))<CR>]], noice)
 map('i', 'jk', '<Esc>', noice)

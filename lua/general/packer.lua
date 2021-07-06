@@ -6,8 +6,7 @@ local packer = require 'packer'
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
 if fn.empty(fn.glob(install_path)) > 0 then
-    cmd("!git clone https://github.com/wbthomason/packer.nvim " ..
-                install_path)
+    cmd("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
     cmd "packadd packer.nvim"
 end
 
@@ -20,7 +19,8 @@ packer.init {
 
 packer.startup { function(use)
 
-	use 'glepnir/dashboard-nvim'
+-- 	use 'glepnir/dashboard-nvim'
+	use 'miffi/boot.nvim'
 	use 'tamton-aquib/staline.nvim'
 	-- use 'ghifarit53/tokyonight-vim'
 	-- use 'folke/zen-mode.nvim'
@@ -34,11 +34,13 @@ packer.startup { function(use)
 	-- use 'mhinz/vim-startify'
 	use 'norcalli/nvim-colorizer.lua'
 	use {'folke/todo-comments.nvim', config = function() require'todo-comments'.setup{} end}
+
 	--> LSP
 	use 'neovim/nvim-lspconfig'
 	use 'hrsh7th/nvim-compe'
-	use 'onsails/lspkind-nvim'
+	-- use 'onsails/lspkind-nvim'
 	use 'kabouzeid/nvim-lspinstall'
+
 	--> General Purpose
 	use 'L3MON4D3/LuaSnip'
 	use 'kyazdani42/nvim-web-devicons'
@@ -47,8 +49,10 @@ packer.startup { function(use)
 	use 'tamago324/lir.nvim'
 	use {'steelsojka/pears.nvim', config = function() require "pears".setup() end}
 	use 'akinsho/nvim-toggleterm.lua'
+
 	--> Web dev Utils
 	use {'iamcco/markdown-preview.nvim', ft={'markdown'}}
+
 	--> Telescope
 	use 'nvim-lua/popup.nvim'
 	use 'nvim-lua/plenary.nvim'

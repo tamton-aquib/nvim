@@ -54,7 +54,8 @@ set.cursorline = true
 set.list = true
 set.listchars = 'tab:▏ '
 -- set.listchars = 'tab: '
-set.filetype = "on"
+set.title = true
+set.titlestring = "  Editing %f..."
 
 function On_file_enter()
 	set.expandtab = false

@@ -10,6 +10,7 @@ require 'themes.staline'
 vim.opt.rtp:append('~/TOOLS/noice_dark')
 vim.g.noice_transparency = "none"
 vim.g.colors_name = "noice"
+require'boot'.setup()
 
 -- PLUG CONFIGS
 require 'plug_configs.one-liner-configs'
