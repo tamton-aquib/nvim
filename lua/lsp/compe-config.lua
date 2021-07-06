@@ -69,5 +69,3 @@ map("s", "<Tab>",   "v:lua.tab_complete()", {expr = true})
 map("i", "<Tab>",   "v:lua.tab_complete()", {expr = true})
 map("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 map("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-map('i', ',,', '<cmd>call compe#confirm()<CR>', {silent=true, noremap=true})
-
