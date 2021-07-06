@@ -12,6 +12,7 @@ mapp('n', 'gx', ':lua Go_To_URL()<CR>', opts)
 
 ----Packer Reload----
 function Packer_do_everything()
+	cmd [[w]]
 	cmd [[luafile %]]
 	cmd [[PackerSync]]
 end

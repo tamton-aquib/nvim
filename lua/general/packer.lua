@@ -3,12 +3,12 @@ local cmd = vim.api.nvim_command
 local packer = require 'packer'
 
 
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-
-if fn.empty(fn.glob(install_path)) > 0 then
-    cmd("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
-    cmd "packadd packer.nvim"
-end
+-- local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+--
+-- if fn.empty(fn.glob(install_path)) > 0 then
+--     cmd("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
+--     cmd "packadd packer.nvim"
+-- end
 
 packer.init {
 	display = {
@@ -38,8 +38,8 @@ packer.startup { function(use)
 	--> LSP
 	use 'neovim/nvim-lspconfig'
 	use 'hrsh7th/nvim-compe'
-	-- use 'onsails/lspkind-nvim'
 	use 'kabouzeid/nvim-lspinstall'
+	use {'onsails/lspkind-nvim', config = function() require'lspkind'.init{with_text=false} end}
 
 	--> General Purpose
 	use 'L3MON4D3/LuaSnip'

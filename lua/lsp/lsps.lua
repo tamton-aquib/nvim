@@ -31,31 +31,37 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 	}
 )
 
-vim.lsp.protocol.CompletionItemKind = {
-    "   ",
-    "   ",
-    "   ",
-    "   ",
-    " ﴲ  (Field)",
-    "[] ",
-    "   ",
-    " ﰮ  (Interface)",
-    "   ",
-    " 襁 ",
-    "   ",
-    "   ",
-    " 練 ",
-    "   ",
-    "   ",
-    "   ",
-    "   ",
-    "   ",
-    "   ",
-    "   ",
-    " ﲀ  (Constant)",
-    " ﳤ  (Struct)",
-    "   ",
-    "   ",
-    "   "
-}
+-- vim.lsp.protocol.CompletionItemKind ={ " Text", "ƒ Method", " Function", " Constructor", "Field", " Variable", " Class", "ﰮ Interface", " Module", " Property", " Unit", " Value", "了 Enum", " Keyword", "﬌ Snippet", " Color",
+--  " File", "Reference", " Folder", " EnumMember", " Constant",
+-- " Struct", " Event", " Operator", " TypeParameter" }
+
+-- vim.lsp.protocol.CompletionItemKind = { "", "了", "", "", "", "", "", "", "﬌", "", "", "", "", "", "", "ƒ", "", "", "ﰮ", "", "", "", "" }
+
+-- vim.lsp.protocol.CompletionItemKind = {
+--     [2] = "   ",
+--     [3] = "   ",
+--     [4] = "   ",
+--     [5] = "   ",
+--     [6] = " ﴲ  (Field)",
+--     [7] = "[] ",
+--     [8] = "   ",
+--     [9] = " ﰮ  (Interface)",
+--     [10] = "   ",
+--     [11] = " 襁 ",
+--     [12] = "   ",
+--     [13] = "   ",
+--     [14] = " 練 ",
+--     [15] = "   ",
+--     [16] = "   ",
+--     [17] = "   ",
+--     [18] = "   ",
+--     [19] = "   ",
+--     [20] = "   ",
+--     [21] = "   ",
+--     [22] = " ﲀ  (Constant)",
+--     [23] = " ﳤ  (Struct)",
+--     [24] = "   ",
+--     [25] = "   ",
+--     [26] = "   "
+-- }
 
