@@ -12,7 +12,8 @@ vim.g.noice_transparency = "none"
 vim.g.colors_name = "noice"  --> onedark, gruvbox, tokyodark
 vim.opt.rtp:append '~/TOOLS/boot.nvim'
 require'boot'.setup()
-require 'config.vgit'
+-- require 'config.vgit'
+vim.g.indent_blankline_char = "▏"
 
 -- PLUG CONFIGS
 require 'config.one-liner-configs'

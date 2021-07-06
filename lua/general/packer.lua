@@ -10,8 +10,9 @@ packer.init {
 packer.startup { function(use)
 
 -- 	use 'glepnir/dashboard-nvim'
+	use 'lukas-reineke/indent-blankline.nvim'
 -- 	use 'miffi/boot.nvim'
-	use 'tanvirtin/vgit.nvim'
+-- 	use 'tanvirtin/vgit.nvim'
 	use 'tamton-aquib/staline.nvim'
 	-- use 'ghifarit53/tokyonight-vim'
 	-- use 'folke/zen-mode.nvim'
