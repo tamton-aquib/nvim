@@ -1,14 +1,4 @@
-local fn = vim.fn
-local cmd = vim.api.nvim_command
 local packer = require 'packer'
-
-
--- local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
---
--- if fn.empty(fn.glob(install_path)) > 0 then
---     cmd("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
---     cmd "packadd packer.nvim"
--- end
 
 packer.init {
 	display = {
@@ -20,18 +10,18 @@ packer.init {
 packer.startup { function(use)
 
 -- 	use 'glepnir/dashboard-nvim'
-	use 'miffi/boot.nvim'
+-- 	use 'miffi/boot.nvim'
+	use {'tanvirtin/vgit.nvim', config = function() require'vgit'.setup{} end}
 	use 'tamton-aquib/staline.nvim'
 	-- use 'ghifarit53/tokyonight-vim'
 	-- use 'folke/zen-mode.nvim'
-	use 'tiagovla/tokyodark.nvim'
-	use {'vhyrro/neorg', branch =  'unstable'}
+	-- use 'mhinz/vim-startify'
 
 	--> Themes and looks
 	use 'monsonjeremy/onedark.nvim'
 	use 'sainnhe/sonokai'
+	use 'tiagovla/tokyodark.nvim'
 	use 'eddyekofo94/gruvbox-flat.nvim'
-	-- use 'mhinz/vim-startify'
 	use 'norcalli/nvim-colorizer.lua'
 	use {'folke/todo-comments.nvim', config = function() require'todo-comments'.setup{} end}
 
@@ -49,6 +39,7 @@ packer.startup { function(use)
 	use 'tamago324/lir.nvim'
 	use {'steelsojka/pears.nvim', config = function() require "pears".setup() end}
 	use 'akinsho/nvim-toggleterm.lua'
+	use {'vhyrro/neorg', branch =  'unstable'}
 
 	--> Web dev Utils
 	use {'iamcco/markdown-preview.nvim', ft={'markdown'}}

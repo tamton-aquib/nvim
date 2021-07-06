@@ -7,22 +7,23 @@ require 'general.packer'
 -- THEMES AND STATUSLINE
 -- require 'themes.onedark' --> sonokai, tokyonight
 require 'themes.staline'
-vim.opt.rtp:append('~/TOOLS/noice_dark')
+vim.opt.rtp:append '~/TOOLS/noice_dark'
 vim.g.noice_transparency = "none"
 vim.g.colors_name = "noice"  --> onedark, gruvbox, tokyodark
--- require'boot'.setup()
+vim.opt.rtp:append '~/TOOLS/boot.nvim'
+require'boot'.setup()
 
 -- PLUG CONFIGS
-require 'plug_configs.one-liner-configs'
-require 'plug_configs.snippets'
-require 'plug_configs.plug-colorizer'
-require 'plug_configs.telescope'
+require 'config.one-liner-configs'
+require 'config.snippets'
+require 'config.plug-colorizer'
+require 'config.telescope'
 -- require 'themes.dashboard'
 -- require 'plug_configs.startify'
-require 'plug_configs.treesittter'
-require 'plug_configs.floaterm'
-require 'plug_configs.neorg'
-require 'plug_configs.lirtree'
+require 'config.treesittter'
+require 'config.floaterm'
+require 'config.neorg'
+require 'config.lirtree'
 
 vim.opt.filetype = 'on'
 vim.g.syntax = true
