@@ -17,7 +17,7 @@ packer.startup { function(use)
 -- 	use 'mhinz/vim-startify'
 	use 'tamton-aquib/staline.nvim'
 
-	--> Themes and looks
+	--> Themes and UI
 	use 'monsonjeremy/onedark.nvim'
 	use 'sainnhe/sonokai'
 	use 'tiagovla/tokyodark.nvim'
