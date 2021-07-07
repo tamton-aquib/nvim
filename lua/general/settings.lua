@@ -1,6 +1,6 @@
-local current = vim.api.nvim_get_current_buf
 local set = vim.opt
 
+set.shadafile = "NONE"
 vim.g.loaded_gzip = false
 vim.g.loaded_matchit = false
 vim.g.loaded_netrwPlugin = false
@@ -10,10 +10,10 @@ vim.g.loaded_man = false
 vim.g.loaded_2html_plugin = false
 vim.g.loaded_remote_plugins = false
 
+vim.g.syntax = false
+vim.g.filetype = 'off'
 vim.cmd [[ filetype plugin indent off ]]
 vim.opt.spell = false
-vim.g.filetype = 'off'
-vim.g.syntax = false
 
 set.mouse = "a"
 set.encoding = "UTF-8"
@@ -70,7 +70,7 @@ function On_file_enter()
 	set.fo:remove('o')
 	vim.cmd [[setlocal fo-=c fo-=r fo-=o]]
 
-	if vim.api.nvim_buf_line_count(current()) ~= nil then
+	if vim.api.nvim_buf_line_count(0) ~= nil then
 		vim.cmd("norm '\"")
 	end
 
