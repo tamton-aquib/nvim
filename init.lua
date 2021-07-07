@@ -8,7 +8,7 @@ require 'general.packer'
 -- require 'themes.sonokai' --> sonokai, tokyonight
 require 'themes.staline'
 vim.opt.rtp:append '~/TOOLS/noice_dark'
--- vim.g.noice_transparency = "none"
+vim.g.noice_transparency = "none"
 vim.g.colors_name = "noice"  --> onedark, gruvbox, tokyodark
 
 -- PLUG CONFIGS
@@ -16,8 +16,8 @@ require 'config.one-liner-configs'
 require 'config.snippets'
 require 'config.plug-colorizer'
 require 'config.telescope'
--- require 'themes.dashboard'
--- require 'plug_configs.startify'
+require 'themes.dashboard'
+-- require 'config.startify'
 require 'config.treesittter'
 require 'config.floaterm'
 require 'config.neorg'

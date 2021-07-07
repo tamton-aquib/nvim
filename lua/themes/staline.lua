@@ -35,9 +35,9 @@ require'staline'.setup{
 	}
 }
 
--- require'stabline'.setup {
--- 	fg = "#986fec",
--- }
+require'stabline'.setup {
+	fg = "#986fec",
+}
 -- vim.cmd[[hi NewSectionOne guifg=#986fec guibg=none]]
 vim.cmd[[hi NewSectionTwo gui=bold guifg=none guibg=none]]
 

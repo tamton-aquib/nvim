@@ -9,11 +9,11 @@ packer.init {
 
 packer.startup { function(use)
 
--- 	use 'glepnir/dashboard-nvim'
+	use 'glepnir/dashboard-nvim'
 -- 	use 'miffi/boot.nvim'
 -- 	use 'tanvirtin/vgit.nvim'
 -- 	use 'ghifarit53/tokyonight-vim'
--- 	use 'folke/zen-mode.nvim'
+	use 'folke/zen-mode.nvim'
 -- 	use 'mhinz/vim-startify'
 	use 'tamton-aquib/staline.nvim'
 -- 	use '3lv/femboystatus'
@@ -30,13 +30,13 @@ packer.startup { function(use)
 	use 'neovim/nvim-lspconfig'
 	use 'hrsh7th/nvim-compe'
 	use 'kabouzeid/nvim-lspinstall'
-	use {'onsails/lspkind-nvim', config = function() require'lspkind'.init{with_text=false} end}
+	-- use {'onsails/lspkind-nvim', config = function() require'lspkind'.init{with_text=false} end}
 
 	--> General Purpose
 	use 'L3MON4D3/LuaSnip'
 	use 'kyazdani42/nvim-web-devicons'
 	use 'tamago324/lir.nvim'
-	use {'steelsojka/pears.nvim', config = function() require "pears".setup() end}
+	use 'steelsojka/pears.nvim'
 	use 'akinsho/nvim-toggleterm.lua'
 	use {'vhyrro/neorg', branch =  'unstable'}
 

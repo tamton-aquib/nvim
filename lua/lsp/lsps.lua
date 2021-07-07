@@ -38,37 +38,29 @@ for type, icon in pairs(signs) do
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
--- vim.lsp.protocol.CompletionItemKind ={ " Text", "ƒ Method", " Function", " Constructor", "Field", " Variable", " Class", "ﰮ Interface", " Module", " Property", " Unit", " Value", "了 Enum", " Keyword", "﬌ Snippet", " Color",
---  " File", "Reference", " Folder", " EnumMember", " Constant",
--- " Struct", " Event", " Operator", " TypeParameter" }
-
--- vim.lsp.protocol.CompletionItemKind = { "", "了", "", "", "", "", "", "", "﬌", "", "", "", "", "", "", "ƒ", "", "", "ﰮ", "", "", "", "" }
-
--- vim.lsp.protocol.CompletionItemKind = {
---     [2] = "   ",
---     [3] = "   ",
---     [4] = "   ",
---     [5] = "   ",
---     [6] = " ﴲ  (Field)",
---     [7] = "[] ",
---     [8] = "   ",
---     [9] = " ﰮ  (Interface)",
---     [10] = "   ",
---     [11] = " 襁 ",
---     [12] = "   ",
---     [13] = "   ",
---     [14] = " 練 ",
---     [15] = "   ",
---     [16] = "   ",
---     [17] = "   ",
---     [18] = "   ",
---     [19] = "   ",
---     [20] = "   ",
---     [21] = "   ",
---     [22] = " ﲀ  (Constant)",
---     [23] = " ﳤ  (Struct)",
---     [24] = "   ",
---     [25] = "   ",
---     [26] = "   "
--- }
+vim.lsp.protocol.CompletionItemKind = {
+    '',
+    'ƒ',
+    '',
+    '',
+    '',
+    '',
+    'ﰮ',
+    '',
+    '',
+    '',
+    '',
+    '了',
+    '',
+    '﬌',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    ''
+}
 
