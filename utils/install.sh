@@ -18,8 +18,8 @@ git clone https://github.com/wbthomason/packer.nvim \
   
 echo -e "=> Packer installed!"
 
-echo - "\nCloning the repo...\n"
-git clone https://github.com/tamton-aquib/nvim.git ~/.config/nvim
+echo -e "\nCloning the repo...\n"
+git clone https://github.com/tamton-aquib/nvim.git ~/.config/nvim 2>/dev/null
 echo -e "\nDone Cloning\n"
 
 nvim +PackerSync
