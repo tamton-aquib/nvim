@@ -23,11 +23,9 @@ require 'config.floaterm'
 require 'config.neorg'
 require 'config.lirtree'
 
--- vim.opt.filetype = 'on'
--- vim.g.syntax = true
-
 -- LSP SETTINGS
 require 'lsp.lspconfig'
 require 'lsp.compe-config'
 require 'lsp.lsps'
 require 'lsp.emmet_lsp'
+
