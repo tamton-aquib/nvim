@@ -15,6 +15,12 @@ require 'zen-mode'.setup{
 	}
 }
 
+require'gitsigns'.setup {
+	signs = {
+		 delete = {hl = 'GitSignsDelete', text = '│', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+	}
+}
+
 require "pears".setup(function(conf)
 	conf.on_enter(function(pears_handle)
 		if vim.fn.pumvisible() == 1 and vim.fn.complete_info().selected ~= -1 then

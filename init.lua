@@ -1,5 +1,6 @@
 require 'general.settings'
-require 'themes.dashboard'
+-- require 'themes.dashboard'
+require 'config.startify'
 
 vim.opt.rtp:append '~/TOOLS/noice_dark'
 vim.g.noice_transparency = "none"
@@ -20,7 +21,6 @@ vim.defer_fn(function()
 	require 'config.snippets'
 	require 'config.plug-colorizer'
 	require 'config.telescope'
-	-- require 'config.startify'
 	require 'config.treesittter'
 	require 'config.floaterm'
 	require 'config.neorg'

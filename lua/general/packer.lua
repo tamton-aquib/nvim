@@ -9,14 +9,14 @@ packer.init {
 
 packer.startup { function(use)
 
-	use 'glepnir/dashboard-nvim'
+-- 	use 'glepnir/dashboard-nvim'
 -- 	use 'miffi/boot.nvim'
 -- 	use 'tanvirtin/vgit.nvim'
 -- 	use 'ghifarit53/tokyonight-vim'
+	use {'lewis6991/gitsigns.nvim'}
 	use 'folke/zen-mode.nvim'
--- 	use 'mhinz/vim-startify'
+	use 'mhinz/vim-startify'
 	use 'tamton-aquib/staline.nvim'
--- 	use '3lv/femboystatus'
 
 	--> Themes and UI
 	use 'monsonjeremy/onedark.nvim'
