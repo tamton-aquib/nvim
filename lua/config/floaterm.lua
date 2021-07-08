@@ -16,8 +16,8 @@ require("toggleterm").setup{
 	close_on_exit = false,
 	direction = 'float',
 	float_opts = {
-		border = 'curved',
-		winblend = 30,
+		border = 'single',
+		winblend = 0,
 		highlights = {
 			border = "Normal",
 			background = "NormalFloat"
@@ -36,7 +36,8 @@ local files = {
 	c		   = "gcc -o noice "..exp('%:t').."&& ./noice && rm ./noice",
 	java	   = "javac "..exp('%:t').." && java "..exp('%:t:r').." && rm *.class",
 	rust	   = "cargo run",
-	javascript = "node "..exp('%:t')
+	javascript = "node "..exp('%:t'),
+	lua        = "luafile %"
 }
 
 map(this(), 'n', '<leader>l', ':lua Exec_cmd("lazygit")<CR>', noice)

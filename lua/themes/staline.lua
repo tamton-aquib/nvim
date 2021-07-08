@@ -1,21 +1,4 @@
 --> staline setup
-function Get_lsp_stuff()
-	local errors = vim.lsp.diagnostic.get_count(0, 'Error')
-	return " "..errors
-end
-
--- require'staline'.setup{
--- 	defaults = {
--- 		cool_symbol = "  ",
--- 		left_separator = "",
--- 		right_separator = "",
--- 	},
--- 	mode_colors = {
--- 		n = "#986fec",
--- 		i = "#e86671",
--- 		c = "#e27d60"
--- 	}
--- }
 
 require'staline'.setup{
 	defaults = {
@@ -29,15 +12,13 @@ require'staline'.setup{
 	mode_colors = {
 		n = "none",
 		i = "none",
-		ic= "none",
 		c = "none",
-		v = "none"
+		v = "none",    -- etc...
 	}
 }
 
-require'stabline'.setup {
-	fg = "#986fec",
-}
+require'stabline'.setup{fg = "#986fec"}
+
 -- vim.cmd[[hi NewSectionOne guifg=#986fec guibg=none]]
 vim.cmd[[hi NewSectionTwo gui=bold guifg=none guibg=none]]
 

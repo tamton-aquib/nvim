@@ -11,12 +11,12 @@ packer.startup { function(use)
 
 -- 	use 'glepnir/dashboard-nvim'
 -- 	use 'miffi/boot.nvim'
--- 	use 'tanvirtin/vgit.nvim'
 -- 	use 'ghifarit53/tokyonight-vim'
-	use {'lewis6991/gitsigns.nvim'}
+	use 'tjdevries/astronauta.nvim'
+	use 'lewis6991/gitsigns.nvim'
 	use 'folke/zen-mode.nvim'
 	use 'mhinz/vim-startify'
-	use 'tamton-aquib/staline.nvim'
+-- 	use 'tamton-aquib/staline.nvim'
 
 	--> Themes and UI
 	use 'monsonjeremy/onedark.nvim'
@@ -51,7 +51,13 @@ packer.startup { function(use)
 	use 'nvim-telescope/telescope.nvim'
 
 	use 'wbthomason/packer.nvim'
-end
+end, config = {
+		display = {
+			open_fn = function()
+				return require('packer.util').float{ border = 'single' }
+			end
+		}
+	}
 }
 
 

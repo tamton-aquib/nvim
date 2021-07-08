@@ -1,10 +1,12 @@
 require 'general.settings'
 -- require 'themes.dashboard'
 require 'config.startify'
+-- require 'themes.sonokai' --> sonokai, tokyonight
 
 vim.opt.rtp:append '~/TOOLS/noice_dark'
-vim.g.noice_transparency = "none"
-vim.g.colors_name = "noice"  --> onedark, gruvbox, tokyodark
+vim.g.noice_transparency = true
+vim.g.colors_name = "bruh"  --> onedark, gruvbox, tokyodark
+-- vim.g.colors_name = 'tokyodark'
 
 vim.defer_fn(function()
 	-- GENERAL SETTINGS AND MAPPINGS
@@ -13,8 +15,7 @@ vim.defer_fn(function()
 	require 'general.packer'
 
 	-- THEMES AND STATUSLINE
-	-- require 'themes.sonokai' --> sonokai, tokyonight
-	require 'themes.staline'
+-- 	require 'themes.staline'
 
 	-- PLUG CONFIGS
 	require 'config.one-liner-configs'
