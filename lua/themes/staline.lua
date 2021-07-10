@@ -12,6 +12,7 @@ require'staline'.setup{
 	mode_colors = {
 		n = "none",
 		i = "none",
+		ic= "none",
 		c = "none",
 		v = "none",    -- etc...
 	}

@@ -3,8 +3,8 @@ require'lspinstall'.setup()
 
 local servers = require'lspinstall'.installed_servers()
 for _, server in pairs(servers) do
-	if server ~= 'lua' then
 
+	if server ~= 'lua' then
 		require'lspconfig'[server].setup{}
 	end
 end
@@ -21,56 +21,31 @@ for type, icon in pairs(signs) do
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
--- vim.lsp.protocol.CompletionItemKind = {
---     '',
---     'ƒ',
---     '',
---     '',
---     '',
---     '',
---     'ﰮ',
---     '',
---     '',
---     '',
---     '',
---     '了',
---     '',
---     '﬌',
---     '',
---     '',
---     '',
---     '',
---     '',
---     '',
---     '',
---     '',
---     ''
--- }
-vim.lsp.protocol.CompletionItemKind = {
-  "    ",
-  "   ",
-  "   ",
-  "   ",
-  " ﴲ  ",
-  "[] ",
-  "   ",
-  " ﰮ  ",
-  "   ",
-  " 襁 ",
-  "   ",
-  "   ",
-  " 練 ",
-  "   ",
-  " ﬌  ",
-  "   ",
-  "   ",
-  "   ",
-  "   ",
-  "   ",
-  " ﲀ  ",
-  " ﳤ  ",
-  "   ",
-  "   ",
-  "   "
+local icons = {
+  Class = " ",
+  Color = " ",
+  Constant = " ",
+  Constructor = " ",
+  Enum = "了 ",
+  EnumMember = " ",
+  Field = " ",
+  File = " ",
+  Folder = " ",
+  Function = " ",
+  Interface = "ﰮ ",
+  Keyword = " ",
+  Method = "ƒ ",
+  Module = " ",
+  Property = " ",
+  Snippet = "﬌ ",
+  Struct = " ",
+  Text = " ",
+  Unit = " ",
+  Value = " ",
+  Variable = " ",
 }
+local kinds = vim.lsp.protocol.CompletionItemKind
+for i, kind in ipairs(kinds) do
+	kinds[i] = icons[kind] or kind
+end
 

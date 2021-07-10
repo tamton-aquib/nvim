@@ -1,23 +1,23 @@
 require 'general.settings'
 -- require 'themes.dashboard'
+-- require 'themes.tokyonight' --> sonokai, tokyonight
 require 'config.startify'
--- require 'themes.sonokai' --> sonokai, tokyonight
 
-vim.opt.rtp:append '~/TOOLS/noice_dark'
-vim.g.noice_transparency = true
-vim.g.colors_name = "bruh"  --> onedark, gruvbox, tokyodark
--- vim.g.colors_name = 'tokyodark'
+-- vim.opt.rtp:append '~/TOOLS/noice_dark'
+-- vim.g.noice_transparency = true
+-- vim.g.colors_name = "bruh"  --> onedark, gruvbox, tokyodark
+vim.g.colors_name = "tokyodark"
 
 vim.defer_fn(function()
-	-- GENERAL SETTINGS AND MAPPINGS
+	--> GENERAL SETTINGS AND MAPPINGS
 	require 'general.mappings'
 	require 'general.functions'
 	require 'general.packer'
 
-	-- THEMES AND STATUSLINE
--- 	require 'themes.staline'
+	--> THEMES AND STATUSLINE
+	require 'themes.staline'
 
-	-- PLUG CONFIGS
+	--> PLUG CONFIGS
 	require 'config.one-liner-configs'
 	require 'config.snippets'
 	require 'config.plug-colorizer'
@@ -27,7 +27,7 @@ vim.defer_fn(function()
 	require 'config.neorg'
 	require 'config.lirtree'
 
-	-- LSP SETTINGS
+	--> LSP SETTINGS
 	require 'lsp.lspconfig'
 	require 'lsp.compe-config'
 	require 'lsp.lsps'
@@ -38,6 +38,7 @@ vim.defer_fn(function()
 		vim.cmd [[ 
 			rshada!
 			silent! bufdo e
+			hi Normal guibg=#11121d
 		]]
 	end, 15)
 

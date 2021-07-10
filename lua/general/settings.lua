@@ -1,5 +1,7 @@
 local set = vim.opt
 
+vim.opt.breakindent = true
+
 set.shadafile = "NONE"
 vim.g.loaded_gzip = false
 vim.g.loaded_matchit = false
@@ -52,8 +54,8 @@ set.relativenumber = true
 set.wrap = false
 set.cursorline = true
 set.list = true
-set.listchars = 'tab:▏ '
--- set.listchars = 'tab: '
+-- set.listchars = 'tab:▏ '
+set.listchars = 'tab: '
 set.title = true
 set.titlestring = "  Editing %f..."
 

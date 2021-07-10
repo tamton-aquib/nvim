@@ -15,5 +15,4 @@ require 'lspconfig'.sumneko_lua.setup {
 		}
 	}
 }
-print("Noice")
 
