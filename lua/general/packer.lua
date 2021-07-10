@@ -14,7 +14,7 @@ packer.startup { function(use)
 	use 'tjdevries/astronauta.nvim'
 	use 'lewis6991/gitsigns.nvim'
 	use 'folke/zen-mode.nvim'
-	use 'mhinz/vim-startify'
+-- 	use 'mhinz/vim-startify'
 	use 'tamton-aquib/staline.nvim'
 
 	--> Themes and UI
