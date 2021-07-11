@@ -14,7 +14,9 @@ require'staline'.setup{
 		i = "none",
 		ic= "none",
 		c = "none",
-		v = "none",    -- etc...
+		v = "none",
+		V = "none",
+		t = "none",
 	}
 }
 

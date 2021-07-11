@@ -1,21 +1,18 @@
 require 'general.settings'
--- require 'themes.dashboard'
--- require 'themes.' --> sonokai, tokyonight
--- require 'config.startify'
-
 vim.opt.rtp:append '~/TOOLS/noice_dark'
--- vim.g.noice_transparency = true
+vim.opt.rtp:append '~/TOOLS/noiceboard.nvim'
 -- vim.g.colors_name = "bruh"  --> onedark, gruvbox, tokyodark
--- vim.g.colors_name = "onedark"
 
 vim.defer_fn(function()
 	--> GENERAL SETTINGS AND MAPPINGS
 	require 'general.mappings'
 	require 'general.functions'
 	require 'general.packer'
+	require'noiceboard'.setup()
 
 	--> THEMES AND STATUSLINE
 	require 'themes.staline'
+	-- require 'themes.' --> sonokai, tokyonight
 
 	--> PLUG CONFIGS
 	require 'config.one-liner-configs'
@@ -39,6 +36,7 @@ vim.defer_fn(function()
 			rshada!
 			silent! bufdo e
 			colo bruh
+			hi Normal guibg=#11121d
 		]]
 	end, 15)
 
