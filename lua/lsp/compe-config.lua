@@ -26,6 +26,7 @@ require'compe'.setup {
 		spell = false;
 		tags = true;
 		treesitter = true;
+		neorg = true;
 	};
 }
 

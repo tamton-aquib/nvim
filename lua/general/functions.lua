@@ -13,7 +13,7 @@ mapp('n', 'gx', ':lua Go_To_URL()<CR>', opts)
 ----Packer Reload----
 function Packer_do_everything()
 	cmd [[w]]
-	cmd [[luafile %]]
+	cmd [[luafile ~/.config/nvim/lua/general/packer.lua]]
 	cmd [[PackerSync]]
 	cmd [[PackerCompile]]
 end

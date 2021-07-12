@@ -12,6 +12,7 @@ packer.startup { function(use)
 	use '/home/taj/TOOLS/noice_dark'
 
 	use 'ray-x/lsp_signature.nvim'
+	use 'kyazdani42/nvim-tree.lua'
 
 	use {'vhyrro/neorg', branch =  'unstable'}
 	use 'ghifarit53/tokyonight-vim'
@@ -36,7 +37,7 @@ packer.startup { function(use)
 	--> General Purpose
 	use 'L3MON4D3/LuaSnip'
 	use 'kyazdani42/nvim-web-devicons'
-	use 'tamago324/lir.nvim'
+	-- use 'tamago324/lir.nvim'
 	use 'steelsojka/pears.nvim'
 	use 'akinsho/nvim-toggleterm.lua'
 	use 'tjdevries/astronauta.nvim'

@@ -19,7 +19,7 @@ vim.defer_fn(function()
 	require 'config.treesittter'
 	require 'config.floaterm'
 	require 'config.neorg'
-	require 'config.lirtree'
+	require 'config.nvim_tree'
 
 	--> LSP SETTINGS
 	require 'lsp.lspconfig'
@@ -33,7 +33,6 @@ vim.defer_fn(function()
 			rshada!
 			silent! bufdo e
 			colo bruh
-			filetype plugin indent on
 			hi Normal guibg=#11121d
 		]]
 		require'noiceboard'.setup()

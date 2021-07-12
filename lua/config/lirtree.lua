@@ -31,7 +31,7 @@ require 'lir'.setup {
 	['P'] = clipboard_actions.paste,
 	},
 	float = {
-		winblend = 15
+		winblend = 15,
 	},
 	hide_cursor = false,
 }
