@@ -9,12 +9,8 @@ packer.init {
 
 packer.startup { function(use)
 
--- 	use 'glepnir/dashboard-nvim'
+	use {'vhyrro/neorg', branch =  'unstable'}
 	use 'ghifarit53/tokyonight-vim'
-	use 'tjdevries/astronauta.nvim'
-	use 'lewis6991/gitsigns.nvim'
-	use 'folke/zen-mode.nvim'
--- 	use 'mhinz/vim-startify'
 	use 'tamton-aquib/staline.nvim'
 
 	--> Themes and UI
@@ -24,6 +20,8 @@ packer.startup { function(use)
 	use 'eddyekofo94/gruvbox-flat.nvim'
 	use 'norcalli/nvim-colorizer.lua'
 	use {'folke/todo-comments.nvim', config = function() require'todo-comments'.setup{} end}
+	use 'lewis6991/gitsigns.nvim'
+	use 'folke/zen-mode.nvim'
 
 	--> LSP
 	use 'neovim/nvim-lspconfig'
@@ -37,7 +35,7 @@ packer.startup { function(use)
 	use 'tamago324/lir.nvim'
 	use 'steelsojka/pears.nvim'
 	use 'akinsho/nvim-toggleterm.lua'
-	use {'vhyrro/neorg', branch =  'unstable'}
+	use 'tjdevries/astronauta.nvim'
 
 	--> Web dev Utils
 	use {'iamcco/markdown-preview.nvim', ft={'markdown'}}

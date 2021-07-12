@@ -8,7 +8,6 @@ vim.defer_fn(function()
 	require 'general.mappings'
 	require 'general.functions'
 	require 'general.packer'
-	require'noiceboard'.setup()
 
 	--> THEMES AND STATUSLINE
 	require 'themes.staline'
@@ -36,8 +35,9 @@ vim.defer_fn(function()
 			rshada!
 			silent! bufdo e
 			colo bruh
-			hi Normal guibg=#11121d
 		]]
+			--hi Normal guibg=#11121d
+		require'noiceboard'.setup()
 	end, 15)
 
 end, 0)
