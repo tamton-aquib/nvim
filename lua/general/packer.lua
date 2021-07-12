@@ -8,6 +8,10 @@ packer.init {
 }
 
 packer.startup { function(use)
+	use '/home/taj/TOOLS/noiceboard'
+	use '/home/taj/TOOLS/noice_dark'
+
+	use 'ray-x/lsp_signature.nvim'
 
 	use {'vhyrro/neorg', branch =  'unstable'}
 	use 'ghifarit53/tokyonight-vim'

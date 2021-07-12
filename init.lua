@@ -1,6 +1,4 @@
 require 'general.settings'
-vim.opt.rtp:append '~/TOOLS/noice_dark'
-vim.opt.rtp:append '~/TOOLS/noiceboard.nvim'
 -- vim.g.colors_name = "bruh"  --> onedark, gruvbox, tokyodark
 
 vim.defer_fn(function()
@@ -35,8 +33,9 @@ vim.defer_fn(function()
 			rshada!
 			silent! bufdo e
 			colo bruh
+			filetype plugin indent on
+			hi Normal guibg=#11121d
 		]]
-			--hi Normal guibg=#11121d
 		require'noiceboard'.setup()
 	end, 15)
 
