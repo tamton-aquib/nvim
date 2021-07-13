@@ -16,7 +16,7 @@ packer.startup { function(use)
 
 	use {'vhyrro/neorg', branch =  'unstable'}
 	use 'ghifarit53/tokyonight-vim'
-	use 'tamton-aquib/staline.nvim'
+-- 	use 'tamton-aquib/staline.nvim'
 
 	--> Themes and UI
 	use 'monsonjeremy/onedark.nvim'

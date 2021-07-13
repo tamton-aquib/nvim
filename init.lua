@@ -8,7 +8,7 @@ vim.defer_fn(function()
 	require 'general.packer'
 
 	--> THEMES AND STATUSLINE
-	require 'themes.staline'
+-- 	require 'themes.staline'
 	-- require 'themes.' --> sonokai, tokyonight
 
 	--> PLUG CONFIGS
@@ -19,7 +19,6 @@ vim.defer_fn(function()
 	require 'config.treesittter'
 	require 'config.floaterm'
 	require 'config.neorg'
-	require 'config.nvim_tree'
 
 	--> LSP SETTINGS
 	require 'lsp.lspconfig'
@@ -35,6 +34,7 @@ vim.defer_fn(function()
 			colo bruh
 			hi Normal guibg=#11121d
 		]]
+		require 'config.nvim_tree'
 		require'noiceboard'.setup()
 	end, 15)
 
