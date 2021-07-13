@@ -6,7 +6,7 @@ require 'general.packer'
 
 --> THEMES AND STATUSLINE
 -- require 'themes.sonokai' --> sonokai, tokyonight
-require 'themes.staline'
+-- require 'themes.staline'
 vim.opt.rtp:append '~/TOOLS/noice_dark'
 vim.g.noice_transparency = "none"
 vim.g.colors_name = "noice"  --> onedark, gruvbox, tokyodark
@@ -21,7 +21,7 @@ require 'themes.dashboard'
 require 'config.treesittter'
 require 'config.floaterm'
 require 'config.neorg'
-require 'config.lirtree'
+-- require 'config.lirtree'
 
 --> LSP SETTINGS
 require 'lsp.lspconfig'

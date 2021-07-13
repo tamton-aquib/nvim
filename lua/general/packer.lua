@@ -9,14 +9,10 @@ packer.init {
 
 packer.startup { function(use)
 
-	use 'glepnir/dashboard-nvim'
--- 	use 'miffi/boot.nvim'
--- 	use 'tanvirtin/vgit.nvim'
 -- 	use 'ghifarit53/tokyonight-vim'
 	use 'folke/zen-mode.nvim'
--- 	use 'mhinz/vim-startify'
-	use 'tamton-aquib/staline.nvim'
--- 	use '3lv/femboystatus'
+-- 	use 'tamton-aquib/staline.nvim'
+	use 'kyazdani42/nvim-tree.lua'
 
 	--> Themes and UI
 	use 'monsonjeremy/onedark.nvim'
@@ -35,7 +31,7 @@ packer.startup { function(use)
 	--> General Purpose
 	use 'L3MON4D3/LuaSnip'
 	use 'kyazdani42/nvim-web-devicons'
-	use 'tamago324/lir.nvim'
+-- 	use 'tamago324/lir.nvim'
 	use 'steelsojka/pears.nvim'
 	use 'akinsho/nvim-toggleterm.lua'
 	use {'vhyrro/neorg', branch =  'unstable'}
