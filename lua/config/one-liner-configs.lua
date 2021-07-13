@@ -30,6 +30,7 @@ require "pears".setup(function(conf)
 		end
 	end)
 end)
+require'todo-comments'.setup{}
 
 require'nvim-web-devicons'.setup({
 	override = {

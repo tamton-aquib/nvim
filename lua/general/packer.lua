@@ -8,15 +8,15 @@ packer.init {
 }
 
 packer.startup { function(use)
-	use '/home/taj/TOOLS/noiceboard'
-	use '/home/taj/TOOLS/noice_dark'
+-- 	use '/home/taj/TOOLS/noiceboard'
+-- 	use '/home/taj/TOOLS/noice_dark'
 
 	use 'ray-x/lsp_signature.nvim'
 	use 'kyazdani42/nvim-tree.lua'
 
 	use {'vhyrro/neorg', branch =  'unstable'}
 	use 'ghifarit53/tokyonight-vim'
--- 	use 'tamton-aquib/staline.nvim'
+	use {'tamton-aquib/staline.nvim', branch = 'beta'}
 
 	--> Themes and UI
 	use 'monsonjeremy/onedark.nvim'
@@ -24,7 +24,7 @@ packer.startup { function(use)
 	use 'tiagovla/tokyodark.nvim'
 	use 'eddyekofo94/gruvbox-flat.nvim'
 	use 'norcalli/nvim-colorizer.lua'
-	use {'folke/todo-comments.nvim', config = function() require'todo-comments'.setup{} end}
+	use 'folke/todo-comments.nvim'
 	use 'lewis6991/gitsigns.nvim'
 	use 'folke/zen-mode.nvim'
 
