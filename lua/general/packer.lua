@@ -10,13 +10,14 @@ packer.init {
 packer.startup { function(use)
 -- 	use '/home/taj/TOOLS/noiceboard'
 -- 	use '/home/taj/TOOLS/noice_dark'
+-- 	use '/home/taj/TOOLS/staline.nvim'
 
-	use 'ray-x/lsp_signature.nvim'
 	use 'kyazdani42/nvim-tree.lua'
+-- 	use 'hoob3rt/lualine.nvim'
 
 	use {'vhyrro/neorg', branch =  'unstable'}
 	use 'ghifarit53/tokyonight-vim'
-	use {'tamton-aquib/staline.nvim', branch = 'beta'}
+	use 'tamton-aquib/staline.nvim'
 
 	--> Themes and UI
 	use 'monsonjeremy/onedark.nvim'
@@ -53,7 +54,8 @@ packer.startup { function(use)
 	use 'nvim-telescope/telescope.nvim'
 
 	use 'wbthomason/packer.nvim'
-end, config = {
+end,
+	config = {
 		display = {
 			open_fn = function()
 				return require('packer.util').float{ border = 'single' }

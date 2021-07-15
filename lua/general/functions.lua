@@ -5,9 +5,10 @@ local opts = { noremap = true, silent = true }
 -----Go To URL-------
 function Go_To_URL()
 	local url = vim.fn.expand('<cWORD>')
-	cmd('!xdg-open '..url)
+	cmd(':silent !xdg-open '..url..' 1>/dev/null')
 end
 mapp('n', 'gx', ':lua Go_To_URL()<CR>', opts)
+-- 'https://github.com'
 ---------------------
 
 ----Packer Reload----

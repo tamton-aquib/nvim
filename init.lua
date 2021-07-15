@@ -1,9 +1,10 @@
 require 'general.settings'
 -- vim.g.colors_name = "bruh"  --> onedark, gruvbox, tokyodark
 -- vim.cmd [[au BufEnter Filetype NvimTree setlocal laststatus=0 showtabline=0]]
+vim.cmd [[au CursorHoldI * lua vim.lsp.buf.signature_help()]]
 vim.opt.rtp:append '~/TOOLS/noice_dark'
-vim.opt.rtp:append '~/TOOLS/noiceboard'
-vim.g.colors_name = 'bruh'
+-- vim.opt.rtp:append '~/TOOLS/noiceboard'
+-- vim.g.noice_transparency = false
 
 vim.defer_fn(function()
 	--> GENERAL SETTINGS AND MAPPINGS
@@ -18,11 +19,11 @@ vim.defer_fn(function()
 	--> PLUG CONFIGS
 	require 'config.one-liner-configs'
 	require 'config.snippets'
-	require 'config.plug-colorizer'
 	require 'config.telescope'
 	require 'config.treesittter'
 	require 'config.floaterm'
 	require 'config.neorg'
+	require 'config.plug-colorizer'
 
 	--> LSP SETTINGS
 	require 'lsp.lspconfig'
@@ -34,11 +35,13 @@ vim.defer_fn(function()
 	vim.defer_fn(function()
 		vim.cmd [[ 
 			rshada!
+			colo bruh
 			silent! bufdo e
 		]]
 			-- colo bruh
 		require 'config.nvim_tree'
-		require'noiceboard'.setup()
+		-- require'noiceboard'.setup()
+		vim.cmd [[hi ArchSymbol guifg=#1793d1]]
 	end, 15)
 
 end, 0)

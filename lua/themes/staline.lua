@@ -5,9 +5,9 @@
 
 require'staline'.setup{
 	defaults = {
-		cool_symbol = "    ",
-		left_separator = "",
-		right_separator = "",
+		cool_symbol = " ",
+		left_separator = "",
+		right_separator = "",
 		-- fg = "#986fec",
 		-- filename_section = "taj%#Noice#@%#NewSectionTwo#arch"
 		-- filename_section = "%{luaeval('Get_lsp_stuff()')}"
@@ -28,9 +28,8 @@ require'staline'.setup{
 }
 
 require'stabline'.setup{
-	style = "bubble",
-	bg = "#986fec",
-	fg = "#000000"
+	fg = "#986fec",
+	-- fg = "#000000"
 -- 	stab_right = "",
 -- 	stab_left = ""
 }
