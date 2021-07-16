@@ -11,7 +11,7 @@ packer.startup { function(use)
 
 -- 	use 'ghifarit53/tokyonight-vim'
 	use 'folke/zen-mode.nvim'
--- 	use 'tamton-aquib/staline.nvim'
+	use 'tamton-aquib/staline.nvim'
 	use 'kyazdani42/nvim-tree.lua'
 
 	--> Themes and UI

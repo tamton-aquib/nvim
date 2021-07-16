@@ -16,24 +16,25 @@ end
 -- 		c = "#e27d60"
 -- 	}
 -- }
+require'staline'.setup{}
 
-require'staline'.setup{
-	defaults = {
-		cool_symbol = "    ",
-		left_separator = "",
-		right_separator = "",
-		fg = "#986fec",
-		filename_section = "taj%#Noice#@%#NewSectionTwo#arch"
-		-- filename_section = '%{luaeval("Get_lsp_stuff()")}'
-	},
-	mode_colors = {
-		n = "none",
-		i = "none",
-		ic= "none",
-		c = "none",
-		v = "none"
-	}
-}
+-- require'staline'.setup{
+-- 	defaults = {
+-- 		cool_symbol = "    ",
+-- 		left_separator = "",
+-- 		right_separator = "",
+-- 		fg = "#986fec",
+-- 		filename_section = "taj%#Noice#@%#NewSectionTwo#arch"
+-- 		-- filename_section = '%{luaeval("Get_lsp_stuff()")}'
+-- 	},
+-- 	mode_colors = {
+-- 		n = "none",
+-- 		i = "none",
+-- 		ic= "none",
+-- 		c = "none",
+-- 		v = "none"
+-- 	}
+-- }
 
 require'stabline'.setup {
 	fg = "#986fec",
