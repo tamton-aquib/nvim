@@ -1,10 +1,7 @@
 require 'general.settings'
--- vim.g.colors_name = "bruh"  --> onedark, gruvbox, tokyodark
--- vim.cmd [[au BufEnter Filetype NvimTree setlocal laststatus=0 showtabline=0]]
 vim.cmd [[au CursorHoldI * lua vim.lsp.buf.signature_help()]]
-vim.opt.rtp:append '~/TOOLS/noice_dark'
--- vim.opt.rtp:append '~/TOOLS/noiceboard'
 -- vim.g.noice_transparency = false
+-- vim.g.colors_name = "bruh"  --> onedark, gruvbox, tokyodark
 
 vim.defer_fn(function()
 	--> GENERAL SETTINGS AND MAPPINGS
@@ -40,9 +37,11 @@ vim.defer_fn(function()
 		]]
 			-- colo bruh
 		require 'config.nvim_tree'
-		-- require'noiceboard'.setup()
-		vim.cmd [[hi ArchSymbol guifg=#1793d1]]
+		require'noiceboard'.setup()
+		-- vim.cmd [[hi ArchSymbol guifg=#1793d1]]
 	end, 15)
 
 end, 0)
 
+vim.opt.rtp:append '~/TOOLS/noice_dark'
+vim.opt.rtp:append '~/TOOLS/noiceboard'

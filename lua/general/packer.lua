@@ -10,12 +10,6 @@ packer.init {
 packer.startup { function(use)
 -- 	use '/home/taj/TOOLS/noiceboard'
 -- 	use '/home/taj/TOOLS/noice_dark'
--- 	use '/home/taj/TOOLS/staline.nvim'
-
-	use 'kyazdani42/nvim-tree.lua'
--- 	use 'hoob3rt/lualine.nvim'
-
-	use {'vhyrro/neorg', branch =  'unstable'}
 	use 'ghifarit53/tokyonight-vim'
 	use 'tamton-aquib/staline.nvim'
 
@@ -33,15 +27,15 @@ packer.startup { function(use)
 	use 'neovim/nvim-lspconfig'
 	use 'hrsh7th/nvim-compe'
 	use 'kabouzeid/nvim-lspinstall'
-	-- use {'onsails/lspkind-nvim', config = function() require'lspkind'.init{with_text=false} end}
 
 	--> General Purpose
 	use 'L3MON4D3/LuaSnip'
 	use 'kyazdani42/nvim-web-devicons'
-	-- use 'tamago324/lir.nvim'
 	use 'steelsojka/pears.nvim'
 	use 'akinsho/nvim-toggleterm.lua'
 	use 'tjdevries/astronauta.nvim'
+	use 'kyazdani42/nvim-tree.lua'
+	use {'vhyrro/neorg', branch =  'unstable'}
 
 	--> Web dev Utils
 	use {'iamcco/markdown-preview.nvim', ft={'markdown'}}
@@ -55,13 +49,13 @@ packer.startup { function(use)
 
 	use 'wbthomason/packer.nvim'
 end,
-	config = {
-		display = {
-			open_fn = function()
-				return require('packer.util').float{ border = 'single' }
-			end
-		}
-	}
+-- 	config = {
+-- 		display = {
+-- 			open_fn = function()
+-- 				return require('packer.util').float{ border = 'single' }
+-- 			end
+-- 		}
+-- 	}
 }
 
 
