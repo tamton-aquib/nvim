@@ -1,7 +1,5 @@
 require 'general.settings'
 vim.cmd [[au CursorHoldI * lua vim.lsp.buf.signature_help()]]
-vim.g.noice_transparency = true
--- vim.g.colors_name = "bruh"  --> onedark, gruvbox, tokyodark
 
 vim.defer_fn(function()
 	--> GENERAL SETTINGS AND MAPPINGS
@@ -11,7 +9,8 @@ vim.defer_fn(function()
 
 	--> THEMES AND STATUSLINE
 	require 'themes.staline'
-	-- require 'themes.' --> sonokai, tokyonight
+	require 'themes.colorschemes'.tokyonight(true)
+	require 'custom.noice_rename'.setup()
 
 	--> PLUG CONFIGS
 	require 'config.one-liner-configs'
@@ -28,11 +27,11 @@ vim.defer_fn(function()
 	require 'lsp.lsps'
 	require 'lsp.emmet_lsp'
 
+	vim.opt.shadafile = ""
 	vim.defer_fn(function()
 		vim.cmd [[ 
 			rshada!
 			silent! bufdo e
-			colo bruh
 		]]
 		require 'noiceboard'.setup()
 		require 'config.nvim_tree'
@@ -40,5 +39,5 @@ vim.defer_fn(function()
 
 end, 0)
 
-vim.opt.rtp:append '~/TOOLS/noiceboard'
-vim.opt.rtp:append '~/TOOLS/noice_dark'
+vim.opt.rtp:append '~/TOOLS/custom_plugins/noiceboard'
+vim.opt.rtp:append '~/TOOLS/custom_plugins/noice_dark'

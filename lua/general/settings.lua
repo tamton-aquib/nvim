@@ -2,6 +2,11 @@ local set = vim.opt
 
 vim.opt.breakindent = true
 
+vim.g.syntax = false
+vim.g.filetype = 'off'
+vim.cmd [[ filetype plugin indent off ]]
+vim.opt.spell = false
+
 set.shadafile = "NONE"
 vim.g.loaded_gzip = false
 vim.g.loaded_matchit = false
@@ -11,12 +16,6 @@ vim.g.loaded_zipPlugin = false
 vim.g.loaded_man = false
 vim.g.loaded_2html_plugin = false
 vim.g.loaded_remote_plugins = false
-
-vim.g.syntax = false
-vim.g.filetype = 'off'
-vim.cmd [[ filetype plugin indent off ]]
-vim.opt.spell = false
-vim.opt.shadafile = ""
 
 set.mouse = "a"
 set.encoding = "UTF-8"

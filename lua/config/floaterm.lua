@@ -1,5 +1,5 @@
 
-local map = vim.api.nvim_buf_set_keymap
+local map = vim.api.nvim_set_keymap
 local exp = vim.fn.expand
 local this = vim.api.nvim_get_current_buf
 local noice = {noremap=true, silent=true}
@@ -40,9 +40,9 @@ local files = {
 	lua        = "luafile %"
 }
 
-map(this(), 'n', '<leader>l', ':lua Exec_cmd("lazygit")<CR>', noice)
-map(this(), 'n', '<leader>p', ':lua Exec_cmd("python")<CR>', noice)
-map(this(), 'n', '<leader>t', ':lua Exec_cmd(nil)<CR>', noice)
+map('n', '<leader>l', ':lua Exec_cmd("lazygit")<CR>', noice)
+map('n', '<leader>p', ':lua Exec_cmd("python")<CR>', noice)
+map('n', '<leader>t', ':lua Exec_cmd(nil)<CR>', noice)
 
 function Run_file()
 	local command = files[vim.bo.filetype]
@@ -52,5 +52,5 @@ function Run_file()
 	end
 end
 
-map(this(), 'n', '<leader>r', [[:w<CR>:lua Run_file()<CR>]], noice)
+vim.api.nvim_buf_set_keymap(this(), 'n', '<leader>r', [[:w<CR>:lua Run_file()<CR>]], noice)
 
