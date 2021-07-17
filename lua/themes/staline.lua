@@ -4,19 +4,19 @@ function Get_lsp_stuff()
 	return " "..errors
 end
 
--- require'staline'.setup{
--- 	defaults = {
--- 		cool_symbol = "  ",
--- 		left_separator = "",
--- 		right_separator = "",
--- 	},
--- 	mode_colors = {
--- 		n = "#986fec",
--- 		i = "#e86671",
--- 		c = "#e27d60"
--- 	}
--- }
-require'staline'.setup{}
+require'staline'.setup{
+	defaults = {
+		cool_symbol = "  ",
+		left_separator = "",
+		right_separator = "",
+	},
+	mode_colors = {
+		n = "#986fec",
+		i = "#e86671",
+		ic= "#e86671",
+		c = "#e27d60"
+	}
+}
 
 -- require'staline'.setup{
 -- 	defaults = {
