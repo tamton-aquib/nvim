@@ -1,5 +1,4 @@
 require 'general.settings'
-vim.cmd [[au CursorHoldI * lua vim.lsp.buf.signature_help()]]
 
 vim.defer_fn(function()
 	--> GENERAL SETTINGS AND MAPPINGS
@@ -9,7 +8,7 @@ vim.defer_fn(function()
 
 	--> THEMES AND STATUSLINE
 	require 'themes.staline'
-	require 'themes.colorschemes'.tokyonight(true)
+	require 'themes.colorschemes'.bruh(true)
 	require 'custom.noice_rename'.setup()
 
 	--> PLUG CONFIGS
@@ -29,10 +28,7 @@ vim.defer_fn(function()
 
 	vim.opt.shadafile = ""
 	vim.defer_fn(function()
-		vim.cmd [[ 
-			rshada!
-			silent! bufdo e
-		]]
+		vim.cmd [[ rshada! | silent! bufdo e ]]
 		require 'noiceboard'.setup()
 		require 'config.nvim_tree'
 	end, 15)

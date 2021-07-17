@@ -13,10 +13,10 @@ packer.init {
 packer.startup { function(use)
 -- 	use '/home/taj/TOOLS/noiceboard'
 -- 	use '/home/taj/TOOLS/noice_dark'
-	use 'ghifarit53/tokyonight-vim'
 	use 'tamton-aquib/staline.nvim'
 
 	--> Themes and UI
+	use 'ghifarit53/tokyonight-vim'
 	use 'monsonjeremy/onedark.nvim'
 	use 'sainnhe/sonokai'
 	use 'eddyekofo94/gruvbox-flat.nvim'

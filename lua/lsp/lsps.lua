@@ -1,6 +1,8 @@
 
 require'lspinstall'.setup()
 
+vim.cmd [[au CursorHoldI * lua vim.lsp.buf.signature_help()]]
+
 local servers = require'lspinstall'.installed_servers()
 for _, server in pairs(servers) do
 
