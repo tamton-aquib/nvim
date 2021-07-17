@@ -16,6 +16,7 @@ vim.g.syntax = false
 vim.g.filetype = 'off'
 vim.cmd [[ filetype plugin indent off ]]
 vim.opt.spell = false
+vim.opt.shadafile = ""
 
 set.mouse = "a"
 set.encoding = "UTF-8"
@@ -70,7 +71,7 @@ function On_file_enter()
 	set.fo:remove('c')
 	set.fo:remove('r')
 	set.fo:remove('o')
-	vim.cmd [[setlocal fo-=c fo-=r fo-=o]]
+	-- vim.cmd [[setlocal fo-=c fo-=r fo-=o]]
 
 	if vim.api.nvim_buf_line_count(0) ~= nil then
 		vim.cmd("norm '\"")

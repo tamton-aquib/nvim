@@ -4,6 +4,9 @@ packer.init {
 	display = {
 		done_sym = "✓",
 		error_syn = "×",
+		open_fn = function()
+			return require('packer.util').float{ border = 'single' }
+		end
 	}
 }
 
@@ -16,7 +19,6 @@ packer.startup { function(use)
 	--> Themes and UI
 	use 'monsonjeremy/onedark.nvim'
 	use 'sainnhe/sonokai'
-	use 'tiagovla/tokyodark.nvim'
 	use 'eddyekofo94/gruvbox-flat.nvim'
 	use 'norcalli/nvim-colorizer.lua'
 	use 'folke/todo-comments.nvim'
