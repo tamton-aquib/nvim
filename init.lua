@@ -18,8 +18,8 @@ vim.defer_fn(function()
 	require 'config.snippets'
 	require 'config.telescope'
 	require 'config.treesittter'
-	require 'config.floaterm'
 	require 'config.neorg'
+	require 'config.floaterm'
 	require 'config.plug-colorizer'
 
 	--> LSP SETTINGS

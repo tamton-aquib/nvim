@@ -30,15 +30,6 @@ packer.startup { function(use)
 	use 'hrsh7th/nvim-compe'
 	use 'kabouzeid/nvim-lspinstall'
 
-	--> General Purpose
-	use 'L3MON4D3/LuaSnip'
-	use 'kyazdani42/nvim-web-devicons'
-	use 'steelsojka/pears.nvim'
-	use 'akinsho/nvim-toggleterm.lua'
-	use 'tjdevries/astronauta.nvim'
-	use 'kyazdani42/nvim-tree.lua'
-	use {'vhyrro/neorg', branch =  'unstable'}
-
 	--> Web dev Utils
 	use {'iamcco/markdown-preview.nvim', ft={'markdown'}}
 
@@ -48,6 +39,15 @@ packer.startup { function(use)
 	use 'nvim-lua/popup.nvim'
 	use 'nvim-lua/plenary.nvim'
 	use 'nvim-telescope/telescope.nvim'
+
+	--> General Purpose
+	use 'L3MON4D3/LuaSnip'
+	use 'kyazdani42/nvim-web-devicons'
+	use 'steelsojka/pears.nvim'
+	use 'akinsho/nvim-toggleterm.lua'
+	use 'tjdevries/astronauta.nvim'
+	use 'kyazdani42/nvim-tree.lua'
+	use {'vhyrro/neorg', branch =  'unstable'}
 
 	use 'wbthomason/packer.nvim'
 end,
