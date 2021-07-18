@@ -47,10 +47,10 @@ function Colo.onedark(transparent)
 	vim.cmd [[colo onedark]]
 end
 
-function Colo.bruh(transparent)
+function Colo.noice(transparent)
 	vim.g.noice_transparency = transparent and true or false
 
-	vim.cmd [[colo bruh]]
+	vim.cmd [[colo noice]]
 end
 
 return Colo

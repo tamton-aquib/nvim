@@ -6,9 +6,9 @@ vim.defer_fn(function()
 	require 'general.functions'
 	require 'general.packer'
 
-	--> THEMES AND STATUSLINE
+	--> THEMES, STATUSLINE & CUSTOM
 	require 'themes.staline'
-	require 'themes.colorschemes'.bruh(true)
+	require 'themes.colorschemes'.noice(true)
 	require 'custom.noice_rename'.setup()
 
 	--> PLUG CONFIGS
@@ -36,4 +36,3 @@ vim.defer_fn(function()
 end, 0)
 
 vim.opt.rtp:append '~/TOOLS/custom_plugins/noiceboard'
-vim.opt.rtp:append '~/TOOLS/custom_plugins/noice_dark'
