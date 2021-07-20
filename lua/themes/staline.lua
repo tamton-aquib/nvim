@@ -18,32 +18,39 @@ require'staline'.setup{
 	}
 }
 
+require'staline'.setup{
+	defaults = {
+		cool_symbol = "  ",
+		left_separator = "",
+		right_separator = "",
+	},
+	mode_colors = {
+		n = "#986fec",
+		i = "#e86671",
+		ic= "#e86671",
+		c = "#e27d60"
+	}
+}
+
 -- require'staline'.setup{
 -- 	defaults = {
--- 		cool_symbol = " ",
--- 		left_separator = "",
--- 		right_separator = "",
--- 		-- fg = "#986fec",
--- 		-- filename_section = "taj%#Noice#@%#NewSectionTwo#arch"
--- 		-- filename_section = "%{luaeval('Get_lsp_stuff()')}"
+-- 		cool_symbol = "    ",
+-- 		left_separator = "",
+-- 		right_separator = "",
+-- 		fg = "#986fec",
+-- 		filename_section = "taj%#Noice#@%#NewSectionTwo#arch"
+-- 		-- filename_section = '%{luaeval("Get_lsp_stuff()")}'
 -- 	},
--- -- 	mode_colors = {
--- -- 		n = "#986fec",
--- -- 		i = "#",
 -- 	mode_colors = {
--- 		n = "#986fec",
--- 		i = "#e86671",
--- 		ic= "#e86671",
--- 		c = "#e27d60"
--- 	}
+-- 		n = "none",
+-- 		i = "none",
 -- 		ic= "none",
 -- 		c = "none",
--- 		v = "none",
--- 		V = "none",
--- 		t = "none",
+-- 		v = "none"
+-- 	}
 -- }
 
-require'stabline'.setup{
+require'stabline'.setup {
 	fg = "#986fec",
 	-- fg = "#000000"
 -- 	stab_right = "",
