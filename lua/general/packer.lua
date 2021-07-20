@@ -55,7 +55,12 @@ packer.startup { function(use)
 	use 'akinsho/nvim-toggleterm.lua'
 	use 'tjdevries/astronauta.nvim'
 	use 'kyazdani42/nvim-tree.lua'
-	use {'vhyrro/neorg', branch =  'unstable'}
+
+
+	-- if pcall('nvim-treesitter') then
+		-- print("Noice")
+	use {'vhyrro/neorg', branch =  'unstable', after="nvim-treesitter"}
+	-- end
 
 	use 'wbthomason/packer.nvim'
 end,

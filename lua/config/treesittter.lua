@@ -9,9 +9,9 @@ parser_configs.norg = {
 }
 
 require'nvim-treesitter.configs'.setup {
-	ensure_installed = { "norg"},
+	ensure_installed = {"norg"},
 	highlight = {
-		enable = true,              -- false will disable the whole extension
+		enable = true,
 	},
 	indent = {
 		enable = true
