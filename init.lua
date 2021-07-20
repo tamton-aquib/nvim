@@ -13,17 +13,20 @@ vim.defer_fn(function()
 	require 'themes.colorschemes'.noice(true)
 	require 'boot'.setup{}
 
---> GENERAL SETTINGS AND MAPPINGS
-require 'general.settings'
-require 'general.mappings'
-require 'general.functions'
-require 'general.packer'
+	--> PLUG CONFIGS
+	require 'config.one-liner-configs'
+	require 'config.snippets'
+	require 'config.telescope'
+	require 'config.treesittter'
+	require 'config.neorg'
+	require 'config.floaterm'
+	require 'config.plug-colorizer'
 
---> THEMES, STATUSLINE & CUSTOM
-require 'themes.staline'
-require 'custom.noice_rename'.setup()
-require 'themes.colorschemes'.noice(true)
-require 'noiceboard'.setup()
+	--> LSP SETTINGS
+	require 'lsp.lspconfig'
+	require 'lsp.compe-config'
+	require 'lsp.lsps'
+	require 'lsp.emmet_lsp'
 
 	vim.opt.shadafile = ""
 	vim.defer_fn(function()
@@ -32,9 +35,6 @@ require 'noiceboard'.setup()
 		require 'config.nvim_tree'
 	end, 15)
 
---> LSP SETTINGS
-require 'lsp.lspconfig'
-require 'lsp.compe-config'
-require 'lsp.lsps'
-require 'lsp.emmet_lsp'
+end, 0)
 
+-- vim.opt.rtp:append '~/TOOLS/custom_plugins/noiceboard'

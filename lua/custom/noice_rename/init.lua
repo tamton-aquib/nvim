@@ -8,21 +8,10 @@ function M.post()
 	vim.cmd [[stopinsert!]]
 end
 
-local border = {
-      {"🭽", "FloatBorder"},
-      {"▔", "FloatBorder"},
-      {"🭾", "FloatBorder"},
-      {"▕", "FloatBorder"},
-      {"🭿", "FloatBorder"},
-      {"▁", "FloatBorder"},
-      {"🭼", "FloatBorder"},
-      {"▏", "FloatBorder"},
-}
-
 function M.pre()
 	M.rename_old = vim.fn.expand('<cword>')
 	M.noice_buf = vim.api.nvim_create_buf(false, false)
-	vim.api.nvim_open_win(M.noice_buf, true, {relative='cursor', border=border, row=1, col=1,  width=20, height=1, style='minimal'})
+	vim.api.nvim_open_win(M.noice_buf, true, {relative='cursor', row=1, col=1,  width=10, height=1, style='minimal'})
 	vim.cmd [[startinsert]]
 	vim.api.nvim_buf_set_keymap(M.noice_buf, 'i', '<CR>', '<cmd>lua require"custom.noice_rename".post()<CR>', {noremap=true, silent=true})
 end

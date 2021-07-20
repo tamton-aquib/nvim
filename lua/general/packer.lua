@@ -4,25 +4,16 @@ packer.init {
 	display = {
 		done_sym = "✓",
 		error_syn = "×",
+		open_fn = function()
+			return require('packer.util').float{ border = 'single' }
+		end
 	}
-}
-
-local border = {
-      {"🭽", "FloatBorder"},
-      {"▔", "FloatBorder"},
-      {"🭾", "FloatBorder"},
-      {"▕", "FloatBorder"},
-      {"🭿", "FloatBorder"},
-      {"▁", "FloatBorder"},
-      {"🭼", "FloatBorder"},
-      {"▏", "FloatBorder"},
 }
 
 packer.startup { function(use)
 
-	use {'tamton-aquib/staline.nvim', branch='dev'}
-	-- use 'vhyrro/boot.nvim'
-
+	use 'tamton-aquib/staline.nvim'
+	use 'vhyrro/boot.nvim'
 
 	--> Themes and UI
 	use 'ghifarit53/tokyonight-vim'
@@ -56,18 +47,17 @@ packer.startup { function(use)
 	use 'akinsho/nvim-toggleterm.lua'
 	use 'tjdevries/astronauta.nvim'
 	use 'kyazdani42/nvim-tree.lua'
-
-	use {'vhyrro/neorg'}
+	use {'vhyrro/neorg', branch =  'unstable'}
 
 	use 'wbthomason/packer.nvim'
 end,
-	config = {
-		display = {
-			open_fn = function()
-				return require('packer.util').float{ border = border }
-			end
-		}
-	}
+-- 	config = {
+-- 		display = {
+-- 			open_fn = function()
+-- 				return require('packer.util').float{ border = 'single' }
+-- 			end
+-- 		}
+-- 	}
 }
 
 
