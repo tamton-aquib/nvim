@@ -18,9 +18,6 @@ local on_attach = function(client, bufnr)
 		vim.lsp.handlers.hover, {border = border})
 	vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with(
 		vim.lsp.handlers.signature_help, {border = border})
-	vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-		vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false }
-	)
 end
 
 local servers = require'lspinstall'.installed_servers()
@@ -33,6 +30,9 @@ for _, server in pairs(servers) do
 	end
 end
 
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+	vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false }
+)
 
 local signs = { Error = " ", Warning = " ", Hint = "", Information = "", other = "﫠" }
 for type, icon in pairs(signs) do

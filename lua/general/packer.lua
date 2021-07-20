@@ -4,16 +4,24 @@ packer.init {
 	display = {
 		done_sym = "✓",
 		error_syn = "×",
-		open_fn = function()
-			return require('packer.util').float{ border = 'single' }
-		end
 	}
+}
+
+local border = {
+      {"🭽", "FloatBorder"},
+      {"▔", "FloatBorder"},
+      {"🭾", "FloatBorder"},
+      {"▕", "FloatBorder"},
+      {"🭿", "FloatBorder"},
+      {"▁", "FloatBorder"},
+      {"🭼", "FloatBorder"},
+      {"▏", "FloatBorder"},
 }
 
 packer.startup { function(use)
 -- 	use '/home/taj/TOOLS/noiceboard'
 
-	-- use {'tamton-aquib/staline.nvim', branch='dev'}
+	use {'tamton-aquib/staline.nvim', branch='dev'}
 
 	--> Themes and UI
 	use 'ghifarit53/tokyonight-vim'
@@ -51,13 +59,13 @@ packer.startup { function(use)
 
 	use 'wbthomason/packer.nvim'
 end,
--- 	config = {
--- 		display = {
--- 			open_fn = function()
--- 				return require('packer.util').float{ border = 'single' }
--- 			end
--- 		}
--- 	}
+	config = {
+		display = {
+			open_fn = function()
+				return require('packer.util').float{ border = border }
+			end
+		}
+	}
 }
 
 
