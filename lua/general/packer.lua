@@ -19,9 +19,10 @@ local border = {
 }
 
 packer.startup { function(use)
--- 	use '/home/taj/TOOLS/noiceboard'
 
 	use {'tamton-aquib/staline.nvim', branch='dev'}
+	-- use 'vhyrro/boot.nvim'
+
 
 	--> Themes and UI
 	use 'ghifarit53/tokyonight-vim'
@@ -56,11 +57,7 @@ packer.startup { function(use)
 	use 'tjdevries/astronauta.nvim'
 	use 'kyazdani42/nvim-tree.lua'
 
-
-	-- if pcall('nvim-treesitter') then
-		-- print("Noice")
-	use {'vhyrro/neorg', branch =  'unstable', after="nvim-treesitter"}
-	-- end
+	use {'vhyrro/neorg'}
 
 	use 'wbthomason/packer.nvim'
 end,

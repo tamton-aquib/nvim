@@ -20,6 +20,7 @@ require 'config.treesittter'
 require 'config.floaterm'
 require 'config.plug-colorizer'
 require 'config.nvim_tree'
+require 'config.neorg'
 
 --> LSP SETTINGS
 require 'lsp.lspconfig'
@@ -27,4 +28,3 @@ require 'lsp.compe-config'
 require 'lsp.lsps'
 require 'lsp.emmet_lsp'
 
--- require 'config.neorg'

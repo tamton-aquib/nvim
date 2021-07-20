@@ -1,13 +1,21 @@
 --> staline setup
--- function Get_lsp_stuff()
--- 	return vim.lsp.diagnostic.get_count(0, 'Error')
--- end
 require'staline'.setup{
--- 	sections = {
--- 		left = {'mode', 'left_double_sep', 'branch'},
--- 		mid  = {'filename'},
--- 		right= {'cool_symbol', 'right_double_sep', 'line_column'}
--- 	}
+	sections = {
+		left = {'mode', 'left_double_sep', 'branch'},
+		mid  = {'filename'},
+		right= {'cool_symbol', 'right_double_sep', 'line_column'}
+	},
+	defaults = {
+		cool_symbol = " ",
+		left_separator = "",
+		right_separator = "",
+	},
+	mode_colors = {
+		n = "#986fec",
+		i = "#e86671",
+		ic= "#e86671",
+		c = "#e27d60"
+	}
 }
 
 -- require'staline'.setup{
