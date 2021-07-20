@@ -1,8 +1,14 @@
 --> staline setup
-function Get_lsp_stuff()
-	local errors = vim.lsp.diagnostic.get_count(0, 'Error')
-	return " "..errors
-end
+-- function Get_lsp_stuff()
+-- 	return vim.lsp.diagnostic.get_count(0, 'Error')
+-- end
+require'staline'.setup{
+-- 	sections = {
+-- 		left = {'mode', 'left_double_sep', 'branch'},
+-- 		mid  = {'filename'},
+-- 		right= {'cool_symbol', 'right_double_sep', 'line_column'}
+-- 	}
+}
 
 require'staline'.setup{
 	defaults = {
@@ -38,9 +44,13 @@ require'staline'.setup{
 
 require'stabline'.setup {
 	fg = "#986fec",
+	-- fg = "#000000"
+-- 	stab_right = "",
+-- 	stab_left = ""
 }
+
 -- vim.cmd[[hi NewSectionOne guifg=#986fec guibg=none]]
-vim.cmd[[hi NewSectionTwo gui=bold guifg=none guibg=none]]
+-- vim.cmd[[hi NewSectionTwo gui=bold guifg=none guibg=none]]
 
 -- local leftSeparator = ""	-->      
 -- local rightSeparator = ""	-->      

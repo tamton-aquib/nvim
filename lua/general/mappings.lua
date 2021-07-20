@@ -6,8 +6,6 @@ local noice = {noremap=true, silent=true}
 map('i', 'jk', '<Esc>', noice)
 map('n', '<leader>a','ggVG',noice)
 map('n', '<leader>\'', 'ciw""<Esc>P', noice)
-map('n', '<C-c>', ':w<CR>:silent !live_server<CR>', noice)
-map('n', '<leader>h', ':Telescope help_tags<CR>', noice)
 -- cmd('au BufWritePost Filetype *.lua luafile %')
 
 --> WINDOW Control
