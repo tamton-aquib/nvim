@@ -13,6 +13,7 @@ packer.init {
 packer.startup { function(use)
 
 	use 'tamton-aquib/staline.nvim'
+	use 'vhyrro/boot.nvim'
 
 	--> Themes and UI
 	use 'ghifarit53/tokyonight-vim'
@@ -28,7 +29,6 @@ packer.startup { function(use)
 	use 'neovim/nvim-lspconfig'
 	use 'hrsh7th/nvim-compe'
 	use 'kabouzeid/nvim-lspinstall'
-	-- use {'onsails/lspkind-nvim', config = function() require'lspkind'.init{with_text=false} end}
 
 	--> Web dev Utils
 	use {'iamcco/markdown-preview.nvim', ft={'markdown'}}

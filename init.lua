@@ -11,6 +11,7 @@ vim.defer_fn(function()
 	-- require 'themes.staline'
 	require 'custom.noice_rename'.setup()
 	require 'themes.colorschemes'.noice(true)
+	require 'boot'.setup{}
 
 	--> PLUG CONFIGS
 	require 'config.one-liner-configs'
@@ -30,10 +31,10 @@ vim.defer_fn(function()
 	vim.opt.shadafile = ""
 	vim.defer_fn(function()
 		vim.cmd [[ rshada! | silent! bufdo e ]]
-		require 'noiceboard'.setup()
+		-- require 'noiceboard'.setup()
 		require 'config.nvim_tree'
 	end, 15)
 
 end, 0)
 
-vim.opt.rtp:append '~/TOOLS/custom_plugins/noiceboard'
+-- vim.opt.rtp:append '~/TOOLS/custom_plugins/noiceboard'
