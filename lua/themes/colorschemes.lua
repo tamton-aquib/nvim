@@ -7,12 +7,11 @@ local colors = {
 	'sonokai'
 }
 
-function Colo.return_Scheme()
+function Colo.random()
 	math.randomseed(os.clock())
 	local nice = math.random() * #colors
 	local selected = colors[math.floor(nice)+1]
 	print("ColorScheme: "..selected)
-	-- vim.g.colors_name = selected
 	vim.cmd('colo '..selected)
 end
 

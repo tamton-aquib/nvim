@@ -18,6 +18,7 @@ end
 function M.check_change()
 	if vim.g.colors_name ~= "noice" then
 		print("Color changed")
+		vim.api.nvim_buf_clear_namespace(0, ns, 0, -1)
 	end
 end
 
@@ -42,8 +43,7 @@ load_async = vim.loop.new_async(vim.schedule_wrap( function()
 	for _, tbl in pairs(T.Plugins) do add_highlight_table(tbl) end
 	set_hl_ns(ns)
 	load_async:close()
-end
-))
+end))
 
 function M.noice()
 	init_clear()
@@ -51,8 +51,8 @@ function M.noice()
 	load_sync()
 	load_async:send()
 
-	vim.cmd [[au BufEnter FileType * :lua require"custom.noice_dark".Lang_high(vim.bo.ft)]]
-	vim.cmd [[au Colorscheme * lua require"custom.noice_dark".check_change()]]
+	vim.cmd [[au BufEnter,WinEnter FileType * :lua require"custom.noice_dark".Lang_high(vim.bo.ft)]]
+	vim.cmd [[au Colorscheme,ColorschemePre * lua require"custom.noice_dark".check_change()]]
 end
 
 return M

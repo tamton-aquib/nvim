@@ -12,8 +12,8 @@ packer.init {
 
 packer.startup { function(use)
 -- 	use '/home/taj/TOOLS/noiceboard'
--- 	use '/home/taj/TOOLS/noice_dark'
-	use 'tamton-aquib/staline.nvim'
+
+	-- use {'tamton-aquib/staline.nvim', branch='dev'}
 
 	--> Themes and UI
 	use 'ghifarit53/tokyonight-vim'
