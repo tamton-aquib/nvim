@@ -1,11 +1,4 @@
--- File containing keybinds for Neorg
-
--- This sets the leader for all neorg keybinds. It is separate from the regular <Leader>,
--- And allows you to shove every neorg keybind under one "umbrella".
-
 local neorg_callbacks = require('neorg.callbacks')
-
--- NEORG KEYBINDS
 
 neorg_callbacks.on_event("core.keybinds.events.enable_keybinds", function(_, content)
 
@@ -19,20 +12,20 @@ neorg_callbacks.on_event("core.keybinds.events.enable_keybinds", function(_, con
 end)
 
 require('neorg').setup {
-    load = {
-        ["core.defaults"] = {},
-        ["core.norg.concealer"] = {},
-        ["core.norg.dirman"] = {
-            config = {
-                workspaces = {
-                    my_workspace = "~/neorg",
-                },
-                -- Automatically detect whenever we have entered a subdirectory of a workspace
-            autodetect = true,
-            -- Automatically change the directory to the root of the workspace every time
-            autochdir = true,
-            }
-        }
-    },
+	load = {
+		["core.defaults"] = {},
+		["core.norg.concealer"] = {},
+		["core.norg.dirman"] = {
+			config = {
+				workspaces = {
+					my_workspace = "~/neorg",
+				},
+				-- Automatically detect whenever we have entered a subdirectory of a workspace
+				autodetect = true,
+				-- Automatically change the directory to the root of the workspace every time
+				autochdir = true,
+			}
+		}
+	},
 }
 

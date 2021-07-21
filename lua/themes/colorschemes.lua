@@ -11,7 +11,7 @@ function Colo.random()
 	math.randomseed(os.clock())
 	local nice = math.random() * #colors
 	local selected = colors[math.floor(nice)+1]
-	print("ColorScheme: "..selected)
+	-- print("ColorScheme: "..selected)
 	vim.cmd('colo '..selected)
 end
 

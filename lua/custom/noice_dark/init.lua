@@ -26,8 +26,7 @@ local function init_clear()
 	cmd 'highlight clear'
 	if vim.fn.exists("syntax_on") then cmd'syntax reset' end
 	vim.g.colors_name = "noice"
-	vim.opt.conceallevel = 3
-	cmd("au BufEnter FileType markdown syntax match markdownItalicDelimiter contained '*'")
+	cmd("au BufEnter FileType markdown setlocal conceallevel=3 | syntax match markdownItalicDelimiter contained '*'")
 end
 
 local function load_sync()

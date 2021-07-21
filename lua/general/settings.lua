@@ -60,13 +60,13 @@ set.title = true
 set.titlestring = "  Editing %f..."
 
 function On_file_enter()
-	set.expandtab = false
-	set.copyindent = true
-	set.shiftwidth = 4
 	set.tabstop = 4
 	set.softtabstop = 4
-	set.autoindent = true
+	set.shiftwidth = 4
 	set.smartindent = true
+	set.autoindent = true
+	set.expandtab = false
+	set.copyindent = true
 	set.fo:remove('c')
 	set.fo:remove('r')
 	set.fo:remove('o')

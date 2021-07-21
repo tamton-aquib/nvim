@@ -1,19 +1,29 @@
 local packer = require 'packer'
 
+local border = {
+      {"🭽", "FloatBorder"},
+      {"▔", "FloatBorder"},
+      {"🭾", "FloatBorder"},
+      {"▕", "FloatBorder"},
+      {"🭿", "FloatBorder"},
+      {"▁", "FloatBorder"},
+      {"🭼", "FloatBorder"},
+      {"▏", "FloatBorder"},
+}
+
 packer.init {
 	display = {
 		done_sym = "✓",
 		error_syn = "×",
 		open_fn = function()
-			return require('packer.util').float{ border = 'single' }
+			return require('packer.util').float{ border = border }
 		end
 	}
 }
 
 packer.startup { function(use)
 
-	use 'tamton-aquib/staline.nvim'
-	use 'vhyrro/boot.nvim'
+	use {'tamton-aquib/staline.nvim', branch='beta'}
 
 	--> Themes and UI
 	use 'ghifarit53/tokyonight-vim'
