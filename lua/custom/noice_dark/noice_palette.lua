@@ -46,8 +46,8 @@ end
 T.Usual = {
 	UsualHighlights = {
 		-- Normal		= { fg = c.white_two, bg = back },
-		NormalFloat = { fg = c.green_one, bg = c.background_dark},
-		FlaotBorder = { fg = c.blue_one, bg = c.background_dark},
+		NormalFloat = { fg = c.white_two, bg = c.background_dark},
+		FloatBorder = { fg = c.blue_one, bg = c.background_dark},
 		LineNr		= { fg = c.white_three, bg = nil },
 		SignColumn	= { bg = nil},
 		EndOfbuffer	= { fg = c.background},
