@@ -1,6 +1,4 @@
-local packer = require 'packer'
-
-packer.startup { function(use)
+require 'packer'.startup { function(use)
 	use '~/TOOLS/custom_plugins/noiceboard'
 
 	use {'tamton-aquib/staline.nvim', branch='beta'}
@@ -39,6 +37,7 @@ packer.startup { function(use)
 
 	use 'wbthomason/packer.nvim'
 end,
+
 	config = {
 		done_sym = "✓",
 		error_syn = "×",
