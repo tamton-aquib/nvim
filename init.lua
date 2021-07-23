@@ -35,5 +35,3 @@ vim.defer_fn(function()
 	end, 15)
 
 end, 0)
-
-vim.opt.rtp:append '~/TOOLS/custom_plugins/noiceboard'
