@@ -1,7 +1,7 @@
 require 'packer'.startup { function(use)
 	use '~/TOOLS/custom_plugins/noiceboard'
 
-	use {'tamton-aquib/staline.nvim', branch='beta'}
+	use {'tamton-aquib/staline.nvim', branch='dev'}
 
 	--> Themes and UI
 	use 'ghifarit53/tokyonight-vim'

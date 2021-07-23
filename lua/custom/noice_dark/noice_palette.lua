@@ -164,7 +164,8 @@ T.Plugins = {
 		markdownBlockquote		= { fg = c.violet_two, bold = true },
 		markdownCode			= { fg = c.green_two },
 		markdownCodeDelimiter	= { fg = c.green_two, italic = true},
-		markdownListMarker		= { fg = c.orange_two }
+		markdownListMarker		= { fg = c.orange_two },
+		markdownError           = { fg = c.white_two}
 	}
 }
 

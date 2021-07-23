@@ -1,5 +1,4 @@
 vim.cmd [[au CursorHoldI * lua vim.lsp.buf.signature_help()]]
-vim.cmd [[au CursorHoldI * lua vim.lsp.buf.hover()]]
 
 local border = {
       {"🭽", "FloatBorder"},

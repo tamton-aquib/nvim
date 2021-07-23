@@ -6,6 +6,7 @@ require'nvim-web-devicons'.setup()
 --> Markdown preview
 vim.g.mkdp_refresh_slow = 1
 vim.g.python_host_prog = '/usr/bin/python3'
+vim.g.mkdp_auto_close = 0
 
 require 'zen-mode'.setup{
 	window = {
