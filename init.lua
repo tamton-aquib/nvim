@@ -9,7 +9,7 @@ vim.defer_fn(function()
 	--> THEMES, STATUSLINE & CUSTOM
 	require 'themes.staline'
 	require 'custom.noice_rename'.setup()
-	require 'themes.colorschemes'.gruvbox(false)
+	require 'themes.colorschemes'.noice(true)
 
 	--> PLUG CONFIGS
 	require 'config.one-liner-configs'
@@ -25,6 +25,7 @@ vim.defer_fn(function()
 	require 'lsp.compe-config'
 	require 'lsp.lsps'
 	require 'lsp.emmet_lsp'
+	require 'lsp.lsp_defaults'
 
 	vim.opt.shadafile = ""
 	vim.defer_fn(function()

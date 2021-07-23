@@ -1,13 +1,11 @@
 local set = vim.opt
 
-vim.opt.breakindent = true
-
 vim.g.syntax = false
 vim.g.filetype = 'off'
 vim.cmd [[ filetype plugin indent off ]]
 vim.opt.spell = false
 
-set.shadafile = "NONE"
+vim.opt.shadafile = "NONE"
 vim.g.loaded_gzip = false
 vim.g.loaded_matchit = false
 vim.g.loaded_netrwPlugin = false
@@ -67,6 +65,7 @@ function On_file_enter()
 	set.autoindent = true
 	set.expandtab = false
 	set.copyindent = true
+	set.breakindent = true
 	set.fo:remove('c')
 	set.fo:remove('r')
 	set.fo:remove('o')

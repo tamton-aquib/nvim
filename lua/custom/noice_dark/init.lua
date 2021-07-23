@@ -29,26 +29,15 @@ local function init_clear()
 	cmd("au BufEnter FileType markdown setlocal conceallevel=3 | syntax match markdownItalicDelimiter contained '*'")
 end
 
-local function load_sync()
+function M.noice()
+	init_clear()
+
 	for _, tbl in pairs(T.Usual) do add_highlight_table(tbl) end
+	for _, tbl in pairs(T.Plugins) do add_highlight_table(tbl) end
 
 	local bg = T.back or "none"
 	vim.cmd('hi Normal guibg='..bg..' guifg=#dddddd')
 	set_hl_ns(ns)
-end
-
-local load_async
-load_async = vim.loop.new_async(vim.schedule_wrap( function()
-	for _, tbl in pairs(T.Plugins) do add_highlight_table(tbl) end
-	set_hl_ns(ns)
-	load_async:close()
-end))
-
-function M.noice()
-	init_clear()
-
-	load_sync()
-	load_async:send()
 
 	vim.cmd [[au BufEnter,WinEnter FileType * :lua require"custom.noice_dark".Lang_high(vim.bo.ft)]]
 	vim.cmd [[au Colorscheme,ColorschemePre * lua require"custom.noice_dark".check_change()]]

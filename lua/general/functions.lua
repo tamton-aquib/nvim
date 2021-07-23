@@ -57,8 +57,8 @@ function Toggle_comment()
 		local comment = starting..','..ending..'s/^'..backslash..' //g'
 		cmd(comment)
 	else
-		local uncommand = starting..','..ending..'s/^/'..backslash..' /g'
-		cmd(uncommand)
+		local uncomment = starting..','..ending..'s/^/'..backslash..' /g'
+		cmd(uncomment)
 	end
 end
 

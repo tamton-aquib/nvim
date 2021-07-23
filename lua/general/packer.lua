@@ -1,26 +1,5 @@
 local packer = require 'packer'
 
-local border = {
-      {"🭽", "FloatBorder"},
-      {"▔", "FloatBorder"},
-      {"🭾", "FloatBorder"},
-      {"▕", "FloatBorder"},
-      {"🭿", "FloatBorder"},
-      {"▁", "FloatBorder"},
-      {"🭼", "FloatBorder"},
-      {"▏", "FloatBorder"},
-}
-
-packer.init {
-	display = {
-		done_sym = "✓",
-		error_syn = "×",
-		open_fn = function()
-			return require('packer.util').float{ border = border }
-		end
-	}
-}
-
 packer.startup { function(use)
 
 	use {'tamton-aquib/staline.nvim', branch='beta'}
@@ -40,9 +19,6 @@ packer.startup { function(use)
 	use 'hrsh7th/nvim-compe'
 	use 'kabouzeid/nvim-lspinstall'
 
-	--> Web dev Utils
-	use {'iamcco/markdown-preview.nvim', ft={'markdown'}}
-
 	--> Telescope and Treesitter
 	use 'nvim-treesitter/nvim-treesitter'
 	use 'nvim-treesitter/playground'
@@ -58,16 +34,28 @@ packer.startup { function(use)
 	use 'tjdevries/astronauta.nvim'
 	use 'kyazdani42/nvim-tree.lua'
 	use {'vhyrro/neorg', branch =  'unstable'}
+	use {'iamcco/markdown-preview.nvim', ft={'markdown'}}
 
 	use 'wbthomason/packer.nvim'
 end,
--- 	config = {
--- 		display = {
--- 			open_fn = function()
--- 				return require('packer.util').float{ border = 'single' }
--- 			end
--- 		}
--- 	}
+	config = {
+		done_sym = "✓",
+		error_syn = "×",
+		display = {
+			open_fn = function()
+				return require('packer.util').float{ border = {
+					  {"🭽", "FloatBorder"},
+					  {"▔", "FloatBorder"},
+					  {"🭾", "FloatBorder"},
+					  {"▕", "FloatBorder"},
+					  {"🭿", "FloatBorder"},
+					  {"▁", "FloatBorder"},
+					  {"🭼", "FloatBorder"},
+					  {"▏", "FloatBorder"},
+				}
+			}
+			end
+		}
+	}
 }
-
 

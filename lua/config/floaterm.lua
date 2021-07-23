@@ -48,7 +48,6 @@ local files = {
 	java	   = "javac "..exp('%:t').." && java "..exp('%:t:r').." && rm *.class",
 	rust	   = "cargo run",
 	javascript = "node "..exp('%:t'),
-	lua        = "luafile %"
 }
 
 map('n', '<leader>l', ':lua Exec_cmd("lazygit")<CR>', noice)

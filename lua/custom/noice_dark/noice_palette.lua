@@ -90,7 +90,7 @@ T.Usual = {
 		TSMethod			= { fg = c.blue_two},
 		TSVariable			= { fg = c.white_two },
 		TSFunction			= { fg = c.violet_one },
-		TSVariableBuiltin	= { fg = c.green_one},
+		TSVariableBuiltin	= { fg = c.red_two},
 
 		TSType				= { fg = c.red_one},
 		TSField				= { fg = c.red_two},
