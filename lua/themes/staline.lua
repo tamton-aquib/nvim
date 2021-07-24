@@ -1,4 +1,40 @@
 --> staline setup
+-- #181a23    
+
+require'stabline'.setup {
+	style = 'bubble',
+	fg = "#986fec",
+	bg = "#181a23"
+}
+
+require'staline'.setup{
+	sections = {
+		left = {
+			' ', 'right_sep_double','-mode', 'left_sep_double', ' ',
+			'right_sep', '-filename', 'left_sep', ' ',
+			'right_sep', '-branch', 'left_sep', ' ',},
+		mid  = {'lsp'},
+		right= {
+			'right_sep', '-cool_symbol', 'left_sep', ' ',
+			'right_sep',"- "..vim.bo.fileencoding, '- ', 'left_sep',
+			'right_sep_double', '-line_column', 'left_sep_double', ' ',}
+	},
+	defaults={
+		-- bg="#181a23",
+		fg="#986fec",
+		cool_symbol = "  ",
+		left_separator = "",
+		right_separator = "",
+	},
+	mode_colors = {
+		-- #181a23
+		n = "#181a23",
+		i = "#181a23",
+		ic= "#181a23",
+		c = "#181a23"
+	}
+}
+
 -- local gruvbox = {
 --     n = "#a89985",
 --     i = "#84a598",
@@ -7,38 +43,6 @@
 --     v = "#fc802d",    -- etc...
 -- }
 
-require'staline'.setup{
-	sections = {
-		left = {'-mode', 'left_sep_double', 'filename', '  ', 'branch'},
-		mid  = {'lsp'},
-		right= { 'cool_symbol', '  ', vim.bo.fileencoding, 'right_sep_double', '-line_column'}
-	},
-	defaults = {
-		cool_symbol = "  ",
-		left_separator = "",
-		right_separator = "",
-		bg = "#303030",
-		full_path = true
-	},
-	mode_colors = {
-		n = "#986fec",
-		i = "#e86671",
-		ic= "#e86671",
-		c = "#e27d60"
-	}
-	-- mode_colors = gruvbox
-}
-
-require'stabline'.setup {
-	-- style = "slant",
-	-- fg = "black",
-	fg = "#986fec",
-	-- fg = "#a89985"
-	-- fg = "#000000"
--- 	stab_right = "",
--- 	stab_left = ""
-	-- stab_right = "",
-}
 
 -- local leftSeparator = ""	-->      
 -- local rightSeparator = ""	-->      

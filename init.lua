@@ -9,7 +9,7 @@ vim.defer_fn(function()
 	--> THEMES, STATUSLINE & CUSTOM
 	require 'themes.staline'
 	require 'custom.noice_rename'.setup()
-	require 'themes.colorschemes'.noice(true)
+	require 'themes.colorschemes'.noice(false)
 
 	--> PLUG CONFIGS
 	require 'config.one-liner-configs'
