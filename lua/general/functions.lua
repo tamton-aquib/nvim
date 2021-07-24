@@ -17,7 +17,7 @@ function Packer_do_everything()
 	cmd [[w]]
 	cmd [[luafile ~/.config/nvim/lua/general/packer.lua]]
 	cmd [[PackerSync]]
-	cmd [[PackerCompile]]
+	-- cmd [[PackerCompile]]
 end
 
 mapp('n', '<leader>u', ':lua Packer_do_everything()<CR>', opts)

@@ -1,7 +1,7 @@
 require 'packer'.startup { function(use)
 	use '~/TOOLS/custom_plugins/noiceboard'
 
-	use {'tamton-aquib/staline.nvim', branch='dev'}
+	use {'tamton-aquib/staline.nvim', branch='beta'}
 
 	--> Themes and UI
 	use 'ghifarit53/tokyonight-vim'
@@ -32,8 +32,8 @@ require 'packer'.startup { function(use)
 	use 'akinsho/nvim-toggleterm.lua'
 	use 'tjdevries/astronauta.nvim'
 	use 'kyazdani42/nvim-tree.lua'
-	use {'vhyrro/neorg', branch =  'unstable'}
 	use {'iamcco/markdown-preview.nvim', ft={'markdown'}}
+	use {'vhyrro/neorg', branch =  'unstable'}
 
 	use 'wbthomason/packer.nvim'
 end,
@@ -43,17 +43,9 @@ end,
 		error_syn = "×",
 		display = {
 			open_fn = function()
-				return require('packer.util').float{ border = {
-					  {"🭽", "FloatBorder"},
-					  {"▔", "FloatBorder"},
-					  {"🭾", "FloatBorder"},
-					  {"▕", "FloatBorder"},
-					  {"🭿", "FloatBorder"},
-					  {"▁", "FloatBorder"},
-					  {"🭼", "FloatBorder"},
-					  {"▏", "FloatBorder"},
+				return require('packer.util').float{
+					border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }
 				}
-			}
 			end
 		}
 	}

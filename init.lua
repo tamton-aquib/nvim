@@ -7,7 +7,7 @@ require 'general.packer'
 --> THEMES, STATUSLINE & CUSTOM
 require 'themes.staline'
 require 'custom.noice_rename'.setup()
-require 'themes.colorschemes'.noice(true)
+require 'themes.colorschemes'.onedark(true)
 require 'noiceboard'.setup()
 
 --> PLUG CONFIGS
