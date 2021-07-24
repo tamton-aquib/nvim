@@ -1,6 +1,18 @@
 local cmd = vim.api.nvim_command
 local mapp = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
+local line = vim.fn.line
+
+-----On BufEnter---------
+function On_file_enter()
+	if line([['"]]) > 1 and line([['"]]) <= line("$") then
+		vim.cmd [[norm '"]]
+	end
+	-- print(vim.inspect(vim.fn.getpos([['"]])))
+end
+
+vim.cmd [[au BufEnter * lua On_file_enter()]]
+-------------------------
 
 -----Go To URL-------
 function Go_To_URL()

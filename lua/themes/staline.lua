@@ -12,11 +12,11 @@ require'staline'.setup{
 		left = {
 			' ', 'right_sep_double','-mode', 'left_sep_double', ' ',
 			'right_sep', '-filename', 'left_sep', ' ',
-			'right_sep', '-branch', 'left_sep', ' ',},
+			'right_sep_double', '-branch', 'left_sep_double', ' ',},
 		mid  = {'lsp'},
 		right= {
 			'right_sep', '-cool_symbol', 'left_sep', ' ',
-			'right_sep',"- "..vim.bo.fileencoding, '- ', 'left_sep',
+			'right_sep',"- "..vim.bo.fileencoding:upper(), '- ', 'left_sep',
 			'right_sep_double', '-line_column', 'left_sep_double', ' ',}
 	},
 	defaults={

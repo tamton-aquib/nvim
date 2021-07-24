@@ -1,14 +1,9 @@
 local set = vim.opt
--- vim.cmd [[
--- 	filetype off
--- 	filetype plugin indent off
--- ]]
 
 -- vim.g.syntax = false
 -- vim.g.filetype = 'off'
 vim.cmd [[ filetype plugin indent off ]]
 vim.opt.spell = false
--- 	vim.opt.shadafile = ""
 
 vim.g.loaded_gzip = false
 vim.g.loaded_matchit = false
@@ -61,26 +56,18 @@ set.listchars = 'tab:▏ '
 set.title = true
 set.titlestring = "  Editing %f..."
 
-function On_file_enter()
-	set.tabstop = 4
-	set.softtabstop = 4
-	set.shiftwidth = 4
-	set.smartindent = true
-	set.autoindent = true
-	set.expandtab = false
-	set.copyindent = true
-	set.breakindent = true
--- 	for _,c in pairs({'c', 'r', 'o'}) do
--- 		set.fo:remove(c)
--- 	end
--- 	set.fo:remove('c')
--- 	set.fo:remove('r')
--- 	set.fo:remove('o')
-	-- vim.cmd [[setlocal fo-=c fo-=r fo-=o]]
+set.tabstop = 4
+set.softtabstop = 4
+set.shiftwidth = 4
+set.smartindent = true
+set.autoindent = true
+set.expandtab = false
+set.copyindent = true
+set.breakindent = true
 
-	if vim.api.nvim_buf_line_count(0) ~= nil then
-		vim.cmd("norm '\"")
-	end
-
-end
-vim.cmd [[ autocmd FileType * :lua On_file_enter() ]]
+-- vim.cmd [[setlocal fo-=c fo-=r fo-=o]]
+-- 	print(vim.inspect(vim.fn.getpos([['"]])))
+-- -- 	if vim.api.nvim_buf_line_count(0) ~= nil then
+-- -- 		vim.cmd("norm '\"")
+-- -- 	end
+-- vim.cmd [[ autocmd FileType * :lua On_file_enter() ]]
