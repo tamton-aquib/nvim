@@ -1,12 +1,15 @@
 local set = vim.opt
+-- vim.cmd [[
+-- 	filetype off
+-- 	filetype plugin indent off
+-- ]]
 
-vim.g.syntax = false
-vim.g.filetype = 'off'
+-- vim.g.syntax = false
+-- vim.g.filetype = 'off'
 vim.cmd [[ filetype plugin indent off ]]
 vim.opt.spell = false
 -- 	vim.opt.shadafile = ""
 
--- vim.opt.shadafile = "NONE"
 vim.g.loaded_gzip = false
 vim.g.loaded_matchit = false
 vim.g.loaded_netrwPlugin = false
@@ -67,9 +70,12 @@ function On_file_enter()
 	set.expandtab = false
 	set.copyindent = true
 	set.breakindent = true
-	set.fo:remove('c')
-	set.fo:remove('r')
-	set.fo:remove('o')
+-- 	for _,c in pairs({'c', 'r', 'o'}) do
+-- 		set.fo:remove(c)
+-- 	end
+-- 	set.fo:remove('c')
+-- 	set.fo:remove('r')
+-- 	set.fo:remove('o')
 	-- vim.cmd [[setlocal fo-=c fo-=r fo-=o]]
 
 	if vim.api.nvim_buf_line_count(0) ~= nil then
