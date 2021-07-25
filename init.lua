@@ -35,4 +35,5 @@ vim.defer_fn(function()
 		require 'noiceboard'.setup()
 		require 'config.nvim_tree'
 	end, 15)
+
 end, 0)
