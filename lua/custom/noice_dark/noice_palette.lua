@@ -113,10 +113,10 @@ T.Usual = {
 	},
 
 	LspRelated = {
-		LspDiagnosticsSignError = { fg = c.red_one, bg = nil,bold = true },
-		LspDiagnosticsSignWarning = { fg = c.yellow_three, bg = nil, bold = true },
-		LspDiagnosticsSignHint = { fg = c.blue_one, bg = nil, bold = true },
-		LspDiagnosticsSignInformation = { fg = c.green_three, bg=nil, italic = true },
+		LspDiagnosticsSignError = { fg = c.red_one, bold = true },
+		LspDiagnosticsSignWarning = { fg = c.yellow_three, bold = true },
+		LspDiagnosticsSignHint = { fg = c.blue_one, bold = true },
+		LspDiagnosticsSignInformation = { fg = c.green_three, italic = true },
 
 		LspDiagnosticsUnderlineError = { sp = c.red_one, undercurl = true},
 		LspDiagnosticsUnderlineWarning = { sp = c.yellow_three, undercurl = true},
