@@ -26,8 +26,13 @@ require'staline'.setup{
 		left_separator = "",
 		right_separator = "",
 	},
+-- 	mode_colors = {
+-- 		n = "#986fec",
+-- 		i = "#e86671",
+-- 		ic= "#e86671",
+-- 		c = "#e27d60"
+-- 	}
 	mode_colors = {
-		-- #181a23
 		n = "#181a23",
 		i = "#181a23",
 		ic= "#181a23",

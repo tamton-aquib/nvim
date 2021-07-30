@@ -8,7 +8,6 @@ function On_file_enter()
 	if line([['"]]) > 1 and line([['"]]) <= line("$") then
 		vim.cmd [[norm '"]]
 	end
-	-- print(vim.inspect(vim.fn.getpos([['"]])))
 end
 
 vim.cmd [[au BufEnter * lua On_file_enter()]]

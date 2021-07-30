@@ -1,15 +1,6 @@
 vim.cmd [[au CursorHoldI * lua vim.lsp.buf.signature_help()]]
 
-local border = {
-      {"🭽", "FloatBorder"},
-      {"▔", "FloatBorder"},
-      {"🭾", "FloatBorder"},
-      {"▕", "FloatBorder"},
-      {"🭿", "FloatBorder"},
-      {"▁", "FloatBorder"},
-      {"🭼", "FloatBorder"},
-      {"▏", "FloatBorder"},
-}
+local border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏"}
 
 local on_attach = function(_, _)
 	vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with(
@@ -48,5 +39,13 @@ require 'lspconfig'.sumneko_lua.setup {
 			telemetry = { enable = false },
 		}
 	}
+}
+
+
+local jdtls_root_path = vim.fn.stdpath('data').. "/lspinstall/java"
+require 'lspconfig'.java.setup{
+	cmd = {jdtls_root_path..'/jdtls.sh'},
+	filetypes = {'java'},
+	on_attach = on_attach,
 }
 

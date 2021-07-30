@@ -59,10 +59,10 @@ T.Usual = {
 		VertSplit	= { fg = c.black, bg = T.back, bold = true },
 		Comment     = { fg = c.white_three, italic = true},
 
-		Identifier	= { fg = c.red_one},
+		Identifier	= { fg = c.red_two},
 		Statement	= { fg = c.violet_one},
 		Type		= { fg = c.green_one},
-		Title		= { fg = c.red_one },
+		Title		= { fg = c.red_two },
 		Directory	= { fg = c.blue_one},
 		ErrorMsg	= { fg = c.red_one},
 		Conceal		= { bg = T.back},
@@ -81,18 +81,19 @@ T.Usual = {
 	},
 
 	TSHighlights = {
-		TSKeyword			= { fg = c.red_one },
+		TSKeyword			= { fg = c.red_two },
 		TSKeywordFunction	= { fg = c.violet_one },
 		TSString			= { fg = c.green_two },
 		TSInclude			= { fg = c.violet_one},
 		TSComment			= { fg = c.white_three, italic = true},
 		TSFuncBuiltin		= { fg = c.violet_one},
+		TSTypeBuiltin		= { fg = c.violet_one},
 		TSMethod			= { fg = c.blue_two},
 		TSVariable			= { fg = c.white_two },
 		TSFunction			= { fg = c.violet_one },
 		TSVariableBuiltin	= { fg = c.red_two},
 
-		TSType				= { fg = c.red_one},
+		TSType				= { fg = c.red_two},
 		TSField				= { fg = c.red_two},
 
 		TSOperator			= { fg = c.red_two },
@@ -135,6 +136,11 @@ T.lang = {
 }
 
 T.Plugins = {
+-- 	Neorg = {
+-- 		NeorgHeading1 = { fg = c.red_two},
+-- 		NeorgHeading2 = { fg = c.violet_one},
+-- 		NeorgHeading3 = { fg = c.blue_two}
+-- 	},
 	Telescope = {
 		TelescopeBorder			= { fg = c.blue_two, bg = T.back},
 		TelescopePromptPrefix	= { fg = c.red_two, bg = T.back},

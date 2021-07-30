@@ -7,9 +7,9 @@ vim.defer_fn(function()
 	require 'general.packer'
 
 	--> THEMES, STATUSLINE & CUSTOM
-	require 'themes.staline'
+	-- require 'themes.staline'
 	require 'custom.noice_rename'.setup()
-	require 'themes.colorschemes'.noice(false)
+	require 'themes.colorschemes'.tokyonight(true)
 
 	--> PLUG CONFIGS
 	require 'config.one-liner-configs'
@@ -27,13 +27,14 @@ vim.defer_fn(function()
 	require 'lsp.emmet_lsp'
 	require 'lsp.lsp_defaults'
 
-	vim.opt.shadafile = "NONE"
-	vim.cmd [[ rshada! | doautocmd BufRead ]]
+	-- vim.opt.shadafile = "NONE"
+	-- vim.cmd [[ rshada! | doautocmd BufRead ]]
 
 	vim.defer_fn(function()
-		vim.cmd [[silent! bufdo e]]
+		vim.cmd [[rshada! | silent! bufdo e]]
 		require 'noiceboard'.setup()
 		require 'config.nvim_tree'
 	end, 15)
 
 end, 0)
+

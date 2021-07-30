@@ -1,7 +1,8 @@
 require 'packer'.startup { function(use)
 	use '~/TOOLS/custom_plugins/noiceboard'
 
-	use {'tamton-aquib/staline.nvim', branch='beta'}
+	-- use {'tamton-aquib/staline.nvim', branch='beta'}
+	use 'vhyrro/neorg-telescope'
 
 	--> Themes and UI
 	use 'ghifarit53/tokyonight-vim'
@@ -30,10 +31,9 @@ require 'packer'.startup { function(use)
 	use 'kyazdani42/nvim-web-devicons'
 	use 'steelsojka/pears.nvim'
 	use 'akinsho/nvim-toggleterm.lua'
-	use 'tjdevries/astronauta.nvim'
 	use 'kyazdani42/nvim-tree.lua'
 	use {'iamcco/markdown-preview.nvim', ft={'markdown'}}
-	use {'vhyrro/neorg', branch =  'unstable'}
+	use {'vhyrro/neorg', branch =  'unstable', after = "nvim-treesitter"}
 
 	use 'wbthomason/packer.nvim'
 end,

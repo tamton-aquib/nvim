@@ -22,6 +22,7 @@ function Colo.tokyonight(transparent)
 	vim.g.tokyonight_transparent_background = transparent and 1 or 0
 
 	vim.cmd [[colo tokyonight]]
+	vim.cmd [[hi FloatBorder guibg=#2a2b3d]]
 end
 
 function Colo.gruvbox(transparent)
