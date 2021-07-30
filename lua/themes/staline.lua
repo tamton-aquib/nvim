@@ -10,10 +10,10 @@ require'stabline'.setup {
 require'staline'.setup{
 	sections = {
 		left = {
-			' ', 'right_sep_double','-mode', 'left_sep_double', ' ',
+			' ', 'right_sep_double', '-mode', 'left_sep_double', ' ',
 			'right_sep', '-filename', 'left_sep', ' ',
 			'right_sep_double', '-branch', 'left_sep_double', ' ',},
-		mid  = {'lsp'},
+		mid  = {'-lsp'},
 		right= {
 			'right_sep', '-cool_symbol', 'left_sep', ' ',
 			'right_sep',"- "..vim.bo.fileencoding:upper(), '- ', 'left_sep',

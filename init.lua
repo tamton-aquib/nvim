@@ -5,13 +5,13 @@ require 'general.functions'
 require 'general.packer'
 
 --> THEMES, STATUSLINE & CUSTOM
-require 'themes.staline'
+-- require 'themes.staline'
 require 'custom.noice_rename'.setup()
-require 'themes.colorschemes'.noice(true)
+require 'themes.colorschemes'.noice(false)
 require 'noiceboard'.setup()
 
 --> PLUG CONFIGS
-require 'config.one-liner-configs'
+require 'config.pears'
 require 'config.snippets'
 require 'config.telescope'
 require 'config.treesittter'
