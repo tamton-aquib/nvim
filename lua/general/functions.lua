@@ -3,6 +3,21 @@ local mapp = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 local line = vim.fn.line
 
+-------- twist ----------
+function Swap_bool()
+	local currentline = vim.api.nvim_get_current_line()
+	if string.match(currentline, "true") then
+		local subs = currentline:gsub("true", "false")
+		vim.api.nvim_set_current_line(subs)
+	elseif string.match(currentline, "false") then
+		local subs = currentline:gsub("false", "true")
+		vim.api.nvim_set_current_line(subs)
+	end
+end
+
+mapp('n', '<leader>s', ':lua Swap_bool()<CR>', opts)
+-------------------------
+
 -----On BufEnter---------
 function On_file_enter()
 	if line([['"]]) > 1 and line([['"]]) <= line("$") then

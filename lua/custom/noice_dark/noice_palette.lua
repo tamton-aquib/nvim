@@ -82,11 +82,11 @@ T.Usual = {
 
 	TSHighlights = {
 		TSKeyword			= { fg = c.red_two },
-		TSKeywordFunction	= { fg = c.violet_one },
+		TSKeywordFunction	= { fg = c.red_two },
 		TSString			= { fg = c.green_two },
 		TSInclude			= { fg = c.violet_one},
 		TSComment			= { fg = c.white_three, italic = true},
-		TSFuncBuiltin		= { fg = c.violet_one},
+		TSFuncBuiltin		= { fg = c.blue_two},
 		TSTypeBuiltin		= { fg = c.violet_one},
 		TSMethod			= { fg = c.blue_two},
 		TSVariable			= { fg = c.white_two },

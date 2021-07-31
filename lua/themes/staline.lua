@@ -4,7 +4,8 @@
 require'stabline'.setup {
 	style = 'bubble',
 	fg = "#986fec",
-	bg = "#181a23"
+	bg = "#181a23",
+	stab_bg = "none"
 }
 
 require'staline'.setup{
@@ -13,7 +14,7 @@ require'staline'.setup{
 			' ', 'right_sep_double', '-mode', 'left_sep_double', ' ',
 			'right_sep', '-filename', 'left_sep', ' ',
 			'right_sep_double', '-branch', 'left_sep_double', ' ',},
-		mid  = {'-lsp'},
+		mid  = {'lsp'},
 		right= {
 			'right_sep', '-cool_symbol', 'left_sep', ' ',
 			'right_sep',"- "..vim.bo.fileencoding:upper(), '- ', 'left_sep',
