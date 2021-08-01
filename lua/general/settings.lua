@@ -1,7 +1,5 @@
 local set = vim.opt
 
--- vim.g.syntax = false
--- vim.g.filetype = 'off'
 vim.cmd [[ filetype plugin indent off ]]
 vim.opt.spell = false
 
@@ -59,14 +57,15 @@ set.listchars = 'tab:▏ '
 set.title = true
 set.titlestring = "  Editing %f..."
 
+set.expandtab = false
+set.shiftwidth = 4
 set.tabstop = 4
 set.softtabstop = 4
-set.shiftwidth = 4
-set.smartindent = true
 set.autoindent = true
-set.expandtab = false
+set.smartindent = true
 set.copyindent = true
 set.breakindent = true
+set.preserveindent = true
 
 -- vim.cmd [[setlocal fo-=c fo-=r fo-=o]]
 -- 	print(vim.inspect(vim.fn.getpos([['"]])))

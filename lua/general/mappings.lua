@@ -21,8 +21,11 @@ map('n', '<M-l>', ':vertical resize -2<CR>', noice)
 -- Move selected line / block of text in visual mode
 map("x", "K", ":move '<-2<CR>gv-gv", noice)
 map("x", "J", ":move '>+1<CR>gv-gv", noice)
+map('n', '<C-j>', ':m .+1<CR>==', noice)
+map('n', '<C-k>', ':m .-2<CR>==', noice)
 
 --> OLD
+map('n', 'n', 'nzz', noice)
 map('i', '<C-u>', '<Esc>viwUi', noice)
 map('n', '<C-u>', 'viwU', noice)
 map('n', '<TAB>', ':bnext<CR>', noice)
@@ -31,5 +34,4 @@ map('n', '<C-s>', ':w<CR>', noice)
 map('n', '<C-q>', ':q<CR>', noice)
 map('v', '<', '<gv', noice)
 map('v', '>', '>gv', noice)
--- map('i', '<TAB>', 'pumvisible() ? "\\<C-n>" : "\\<TAB>"', {noremap=true, expr=true})
 

@@ -2,10 +2,10 @@ require 'packer'.startup { function(use)
 	use '~/TOOLS/custom_plugins/noiceboard'
 
 	use {
-		'tamton-aquib/staline.nvim', branch='beta',
+		'tamton-aquib/staline.nvim', branch = 'beta',
 		config = function() require'themes.staline' end
+		-- config = function() require'staline'.setup{} end
 	}
-	-- use {'hoob3rt/lualine.nvim', config=function() require'lualine'.setup{} end}
 	use 'vhyrro/neorg-telescope'
 
 	--> Themes and UI

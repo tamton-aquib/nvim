@@ -7,6 +7,7 @@ require'stabline'.setup {
 	bg = "#181a23",
 	stab_bg = "none"
 }
+--'right_sep', {'LspDiagnosticsSignError', '   '}, 'left_sep', 
 
 require'staline'.setup{
 	sections = {
