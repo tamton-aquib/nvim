@@ -26,4 +26,4 @@ require 'lsp.lsps'
 require 'lsp.emmet_lsp'
 require 'lsp.lsp_defaults'
 -- vim.opt.shadafile = "NONE"
--- vim.cmd [[ rshada! | doautocmd BufRead ]]
+-- vim.cmd [[ rshada! ]]

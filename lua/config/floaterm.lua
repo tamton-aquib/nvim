@@ -7,12 +7,18 @@ Open_term = require'toggleterm.terminal'.Terminal
 
 local border = {
       {"🭽", "FloatBorder"},
+
       {"▔", "FloatBorder"},
       {"🭾", "FloatBorder"},
+
       {"▕", "FloatBorder"},
+
       {"🭿", "FloatBorder"},
+
       {"▁", "FloatBorder"},
+
       {"🭼", "FloatBorder"},
+
       {"▏", "FloatBorder"},
 }
 
@@ -28,7 +34,7 @@ require("toggleterm").setup{
 	direction = 'float',
 	float_opts = {
 		border = border,
-		winblend = 0,
+		winblend = 30,
 		highlights = {
 			border = "Normal",
 			background = "NormalFloat"

@@ -7,7 +7,26 @@ require'stabline'.setup {
 	bg = "#181a23",
 	stab_bg = "none"
 }
---'right_sep', {'LspDiagnosticsSignError', '   '}, 'left_sep', 
+--'right_sep', {'LspDiagnosticsSignError', '   '}, 'left_sep',
+
+-- require 'staline'.setup {
+-- 	sections = {
+-- 		left = {' ', '', '-  ', {'FileNameHighlight', 'filename'}, {'FileNameRightSepHighlight',''}, 'branch' },
+-- 		mid = {'lsp'},
+-- 		right = {'', '-mode', {'FileNameHighlight', ' [%c]'}, {'FileNameRightSepHighlight',''}, '  ' },
+-- 	},
+-- 	mode_icons = {
+-- 		n = "NORMAL"
+-- 	},
+-- 	mode_colors = {
+-- 		n = "#e95678"
+-- 	}
+-- }
+-- 
+-- vim.cmd [[hi FileNameHighlight guifg=white guibg=#393b4d]]
+-- vim.cmd [[hi FileNameRightSepHighlight guifg=#393b4d]]
+-- vim.cmd [[hi BranchGreen guibg=#a3be8c guifg=black]]
+-- ;#a3be8c
 
 require'staline'.setup{
 	sections = {
@@ -15,7 +34,7 @@ require'staline'.setup{
 			' ', 'right_sep_double', '-mode', 'left_sep_double', ' ',
 			'right_sep', '-filename', 'left_sep', ' ',
 			'right_sep_double', '-branch', 'left_sep_double', ' ',},
-		mid  = {'lsp'},
+		mid  = {'lsp', 'client_name'},
 		right= {
 			'right_sep', '-cool_symbol', 'left_sep', ' ',
 			'right_sep',"- "..vim.bo.fileencoding:upper(), '- ', 'left_sep',
@@ -27,13 +46,8 @@ require'staline'.setup{
 		cool_symbol = "  ",
 		left_separator = "",
 		right_separator = "",
+		line_column = "%l:%c [%L]"
 	},
--- 	mode_colors = {
--- 		n = "#986fec",
--- 		i = "#e86671",
--- 		ic= "#e86671",
--- 		c = "#e27d60"
--- 	}
 	mode_colors = {
 		n = "#181a23",
 		i = "#181a23",
@@ -42,15 +56,12 @@ require'staline'.setup{
 	}
 }
 
--- local gruvbox = {
---     n = "#a89985",
---     i = "#84a598",
---     ic= "#84a598",
---     c = "#8fbf7f",
---     v = "#fc802d",    -- etc...
--- }
-
-
+-- 	mode_colors = {
+-- 		n = "#986fec",
+-- 		i = "#e86671",
+-- 		ic= "#e86671",
+-- 		c = "#e27d60"
+-- 	}
 -- local leftSeparator = ""	-->      
 -- local rightSeparator = ""	-->      
 

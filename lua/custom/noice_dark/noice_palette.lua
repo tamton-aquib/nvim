@@ -31,7 +31,6 @@ local c = {
 	white_two        = "#dddddd",
 	white_five       = "#999999",
 	white_three      = "#5c6370",
-	white_four       = "#555555",
 	background       = "#282c34",
 	background_dark  = "#1f1f1f",
 }
@@ -132,6 +131,12 @@ T.lang = {
 		htmlArg				= { fg = c.blue_one},
 		cssTagName			= { fg = c.red_one},
 		cssDefinition		= { fg = c.white_one},
+	},
+	dosini = {
+		dosiniLabel = { fg = c.blue_three },
+		dosiniNumber = { fg = c.green_two},
+		dosiniValue = { fg = c.green_two},
+		dosiniHeader = { fg = c.red_two}
 	}
 }
 

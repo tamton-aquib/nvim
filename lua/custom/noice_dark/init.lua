@@ -12,13 +12,9 @@ local function add_highlight_table(tbl)
 end
 
 function M.Lang_high(ft)
-	add_highlight_table(T.lang[ft] or {})
-end
-
-function M.check_change()
-	if vim.g.colors_name ~= "noice" then
-		print("Color changed")
-		vim.api.nvim_buf_clear_namespace(0, ns, 0, -1)
+	if vim.api.nvim_buf_is_valid(0) and vim.api.nvim_buf_is_loaded(0) then
+		-- print("enetered a buffer with: "..vim.bo.ft)
+		add_highlight_table(T.lang[ft] or {})
 	end
 end
 
@@ -37,10 +33,9 @@ function M.noice()
 
 	local bg = T.back or "none"
 	vim.cmd('hi Normal guibg='..bg..' guifg=#dddddd')
-	set_hl_ns(ns)
 
-	vim.cmd [[au BufEnter,WinEnter FileType * :lua require"custom.noice_dark".Lang_high(vim.bo.ft)]]
-	vim.cmd [[au Colorscheme,ColorschemePre * lua require"custom.noice_dark".check_change()]]
+	vim.cmd [[au BufEnter,FileType * :lua require"custom.noice_dark".Lang_high(vim.bo.ft)]]
+	set_hl_ns(ns)
 end
 
 return M
