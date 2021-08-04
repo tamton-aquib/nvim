@@ -51,37 +51,33 @@ mapp('n', '<leader>u', ':lua Packer_do_everything()<CR>', opts)
 
 ---------Comment----------
 local comment_map = {
-	javascript		= '%\\/%\\/',
-	javascriptreact = '%\\/%\\/',
-	c				= '%\\/%\\/',
-	java			= '%\\/%\\/',
-	rust			= '%\\/%\\/',
+	javascript		= '//',
+	javascriptreact = '//',
+	c				= '//',
+	java			= '//',
+	rust			= '//',
 	python			= '#',
 	sh				= '#',
 	conf			= '#',
 	yaml			= '#',
-	lua				= '%-%-'
+	lua				= '--'
 }
 
-function Toggle_comment(status)
+function Toggle_comment(visual)
 	local starting = vim.fn.getpos("'<")[2]
 	local ending = vim.fn.getpos("'>")[2]
 
-	local both = comment_map[vim.bo.ft]
-	local backslash = both:gsub("%%", "")
-	local percent = both:gsub([[\]], "")
+	local leader = comment_map[vim.bo.ft]
     local current_line = vim.api.nvim_get_current_line()
     local cursor_position = vim.api.nvim_win_get_cursor(0)
-    local noice = status and starting..','..ending or ""
+    local noice = visual and starting..','..ending or ""
 
-	if string.find("^"..current_line, percent) ~= nil then
-		cmd (noice..'norm ^'..('x'):rep(#backslash+1))
-		vim.api.nvim_win_set_cursor(0, cursor_position)
-	else
-		cmd(noice..'norm I'..backslash..' ')
-		vim.api.nvim_win_set_cursor(0, cursor_position)
-	end
-	if status then cmd [[norm gv]] end
+	cmd(current_line:find("%s?"..vim.pesc(leader))
+		and noice..'norm ^'..('x'):rep(#leader+1)
+		or noice..'norm I'..leader..' ')
+
+	vim.api.nvim_win_set_cursor(0, cursor_position)
+	if visual then cmd [[norm gv]] end
 end
 
 mapp('v', '<C-_>', ':lua Toggle_comment("nice")<CR>', opts)
