@@ -152,6 +152,9 @@ T.Plugins = {
 		TelescopeSelectionCaret = { fg = c.red_two, bg = T.back},
 		TelescopeSelection		= { fg = c.red_two, bg = T.back}
 	},
+	IndentBlankLine = {
+		IndentBlankLineChar = { fg = c.white_three}
+	},
 	NvimTree = {
 		NvimTreeRootFolder = { fg = c.red_two, bold = true},
 		NvimTreeFolderIcon = { fg=c.blue_one },

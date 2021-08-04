@@ -12,9 +12,10 @@ vim.g.loaded_man = false
 vim.g.loaded_2html_plugin = false
 vim.g.loaded_remote_plugins = false
 
-set.shell = '/usr/bin/bash'
+-- set.shell = '/usr/bin/bash'
 set.lazyredraw = true
 
+set.conceallevel = 2
 set.mouse = "a"
 set.encoding = "UTF-8"
 set.fileencoding = "UTF-8"

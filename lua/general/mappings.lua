@@ -6,13 +6,14 @@ local noice = {noremap=true, silent=true}
 map('i', 'jk', '<Esc>', noice)
 map('n', '<leader>a','ggVG',noice)
 map('n', '<leader>\'', 'ciw""<Esc>P', noice)
+vim.cmd [[autocmd FileType help nnoremap <buffer> <CR> <C-]>]]
 -- cmd('au BufWritePost Filetype *.lua luafile %')
 
 --> WINDOW Control
-map('n', '<C-h>','<C-w>h', noice)
-map('n', '<C-j>','<C-w>j', noice)
-map('n', '<C-k>','<C-w>k', noice)
-map('n', '<C-l>','<C-w>l', noice)
+-- map('n', '<C-h>','<C-w>h', noice)
+-- map('n', '<C-j>','<C-w>j', noice)
+-- map('n', '<C-k>','<C-w>k', noice)
+-- map('n', '<C-l>','<C-w>l', noice)
 map('n', '<M-h>', ':vertical resize +2<CR>', noice)
 map('n', '<M-j>', ':resize -2<CR>', noice)
 map('n', '<M-k>', ':resize +2<CR>', noice)

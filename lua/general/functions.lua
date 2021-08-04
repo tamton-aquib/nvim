@@ -63,32 +63,28 @@ local comment_map = {
 	lua				= '%-%-'
 }
 
-function Toggle_comment()
+function Toggle_comment(status)
 	local starting = vim.fn.getpos("'<")[2]
 	local ending = vim.fn.getpos("'>")[2]
 
 	local both = comment_map[vim.bo.ft]
 	local backslash = both:gsub("%%", "")
 	local percent = both:gsub([[\]], "")
-	-- local neither = percent:gsub([[\]], "")
+    local current_line = vim.api.nvim_get_current_line()
+    local cursor_position = vim.api.nvim_win_get_cursor(0)
+    local noice = status and starting..','..ending or ""
 
-    local line = vim.api.nvim_get_current_line()
-
-	if starting == ending then
-		starting = "."
-		ending = "."
-	end
-
-	if string.find("^"..line, percent) ~= nil then
-		local comment = starting..','..ending..'s/^'..backslash..' //g'
-		cmd(comment)
+	if string.find("^"..current_line, percent) ~= nil then
+		cmd (noice..'norm ^'..('x'):rep(#backslash+1))
+		vim.api.nvim_win_set_cursor(0, cursor_position)
 	else
-		local uncomment = starting..','..ending..'s/^/'..backslash..' /g'
-		cmd(uncomment)
+		cmd(noice..'norm I'..backslash..' ')
+		vim.api.nvim_win_set_cursor(0, cursor_position)
 	end
+	if status then cmd [[norm gv]] end
 end
 
-mapp('v', '<C-_>', ':lua Toggle_comment()<CR>', opts)
+mapp('v', '<C-_>', ':lua Toggle_comment("nice")<CR>', opts)
 mapp('n', '<C-_>', ':lua Toggle_comment()<CR>', opts)
 ---------------------------------------
 
