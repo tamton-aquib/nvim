@@ -5,15 +5,15 @@ require 'packer'.startup { function(use)
 		-- config = function() require'staline'.setup{defaults={font_active="bold,italic"}} end
 	}
 	use {'rcarriga/nvim-notify',
--- 		config = function() vim.notify = require("notify") end
+		-- config = function() vim.notify = require("notify") end
 	}
 
--- 	use {
--- 		'tamton-aquib/staline.nvim', -- branch = 'beta',
--- 		-- config = function() require'themes.staline' end
--- 		config = function() require'staline'.setup{} end
--- 	}
-	use 'vhyrro/neorg-telescope'
+	-- use {
+		-- 'tamton-aquib/staline.nvim', -- branch = 'beta',
+		-- -- config = function() require'themes.staline' end
+		-- config = function() require'staline'.setup{} end
+	-- }
+	-- use 'vhyrro/neorg-telescope'
 
 	--> Themes and UI
 	use 'ghifarit53/tokyonight-vim'
