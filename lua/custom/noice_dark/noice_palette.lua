@@ -117,6 +117,11 @@ T.Usual = {
 		LspDiagnosticsSignHint = { fg = c.blue_one, bold = true },
 		LspDiagnosticsSignInformation = { fg = c.green_three, italic = true },
 
+		LspDiagnosticsDefaultError = { fg = c.red_one, italic = true, bold=true },
+		LspDiagnosticsDefaultWarning = { fg = c.yellow_three, bold = true , italic=true},
+		LspDiagnosticsDefaultHint = { fg = c.blue_one, bold = true, italic=true},
+		LspDiagnosticsDefaultInformation = { fg = c.green_three, italic = true, bold=true },
+
 		LspDiagnosticsUnderlineError = { sp = c.red_one, undercurl = true},
 		LspDiagnosticsUnderlineWarning = { sp = c.yellow_three, undercurl = true},
 		LspDiagnosticsUnderlineHint = { sp = c.blue_one, undercurl = true},

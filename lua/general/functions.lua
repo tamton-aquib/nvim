@@ -5,14 +5,9 @@ local line = vim.fn.line
 
 -------- twist ----------
 function Swap_bool()
-	local currentline = vim.api.nvim_get_current_line()
-	if string.match(currentline, "true") then
-		local subs = currentline:gsub("true", "false")
-		vim.api.nvim_set_current_line(subs)
-	elseif string.match(currentline, "false") then
-		local subs = currentline:gsub("false", "true")
-		vim.api.nvim_set_current_line(subs)
-	end
+	local c = vim.api.nvim_get_current_line()
+	local subs = c:match("true") and c:gsub("true", "false") or c:gsub("false", "true")
+	vim.api.nvim_set_current_line(subs)
 end
 
 mapp('n', '<leader>s', ':lua Swap_bool()<CR>', opts)
@@ -40,10 +35,11 @@ mapp('n', 'gx', ':lua Go_To_URL()<CR>', opts)
 
 ----Packer Reload----
 function Packer_do_everything()
-	cmd [[w]]
-	cmd [[luafile ~/.config/nvim/lua/general/packer.lua]]
-	cmd [[PackerSync]]
-	-- cmd [[PackerCompile]]
+	cmd [[
+		w
+		luafile ~/.config/nvim/lua/general/packer.lua
+		PackerSync
+	]]
 end
 
 mapp('n', '<leader>u', ':lua Packer_do_everything()<CR>', opts)
@@ -64,8 +60,7 @@ local comment_map = {
 }
 
 function Toggle_comment(visual)
-	local starting = vim.fn.getpos("'<")[2]
-	local ending = vim.fn.getpos("'>")[2]
+	local starting, ending = vim.fn.getpos("'<")[2], vim.fn.getpos("'>")[2]
 
 	local leader = comment_map[vim.bo.ft]
     local current_line = vim.api.nvim_get_current_line()
