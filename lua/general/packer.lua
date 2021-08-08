@@ -11,11 +11,11 @@ require 'packer'.startup { function(use)
 
 	use {
 		'tamton-aquib/staline.nvim', -- branch = 'beta',
-		-- config = function() require'themes.staline' end
-		config = function()
-			require'staline'.setup{}
-			require'stabline'.setup{}
-		end
+		config = function() require'themes.staline' end
+		-- config = function()
+			-- require'staline'.setup{}
+			-- require'stabline'.setup{}
+		-- end
 	}
 
 	use 'vhyrro/neorg-telescope'
