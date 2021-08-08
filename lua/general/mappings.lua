@@ -3,8 +3,7 @@ local map = vim.api.nvim_set_keymap
 local noice = {noremap=true, silent=true}
 
 --> Custom
-map('i', 'jk', '<Esc>', noice)
-map('n', '<leader>a','ggVG',noice)
+map('n', '<leader>p', ':PackerProfile<CR>', noice)
 map('n', '<leader>\'', 'ciw""<Esc>P', noice)
 vim.cmd [[autocmd FileType help nnoremap <buffer> <CR> <C-]>]]
 -- cmd('au BufWritePost Filetype *.lua luafile %')
@@ -26,6 +25,8 @@ map('n', '<C-j>', ':m .+1<CR>==', noice)
 map('n', '<C-k>', ':m .-2<CR>==', noice)
 
 --> OLD
+map('n', '<leader>a','ggVG',noice)
+map('i', 'jk', '<Esc>', noice)
 map('n', 'n', 'nzz', noice)
 map('i', '<C-u>', '<Esc>viwUi', noice)
 map('n', '<C-u>', 'viwU', noice)

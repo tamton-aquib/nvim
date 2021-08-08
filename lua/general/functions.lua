@@ -35,11 +35,9 @@ mapp('n', 'gx', ':lua Go_To_URL()<CR>', opts)
 
 ----Packer Reload----
 function Packer_do_everything()
-	cmd [[
-		w
-		luafile ~/.config/nvim/lua/general/packer.lua
-		PackerSync
-	]]
+	cmd [[w]]
+	cmd [[luafile ~/.config/nvim/lua/general/packer.lua]]
+	cmd [[PackerSync]]
 end
 
 mapp('n', '<leader>u', ':lua Packer_do_everything()<CR>', opts)
@@ -48,6 +46,7 @@ mapp('n', '<leader>u', ':lua Packer_do_everything()<CR>', opts)
 ---------Comment----------
 local comment_map = {
 	javascript		= '//',
+	typescript		= '//',
 	javascriptreact = '//',
 	c				= '//',
 	java			= '//',
@@ -67,12 +66,12 @@ function Toggle_comment(visual)
     local cursor_position = vim.api.nvim_win_get_cursor(0)
     local noice = visual and starting..','..ending or ""
 
-	cmd(current_line:find("%s?"..vim.pesc(leader))
+	cmd(current_line:find("^%s?"..vim.pesc(leader))
 		and noice..'norm ^'..('x'):rep(#leader+1)
 		or noice..'norm I'..leader..' ')
 
 	vim.api.nvim_win_set_cursor(0, cursor_position)
-	if visual then cmd [[norm gv]] end
+	-- if visual then cmd [[norm gv]] end
 end
 
 mapp('v', '<C-_>', ':lua Toggle_comment("nice")<CR>', opts)

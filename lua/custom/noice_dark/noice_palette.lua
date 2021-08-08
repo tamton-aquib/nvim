@@ -142,23 +142,26 @@ T.lang = {
 		dosiniNumber = { fg = c.green_two},
 		dosiniValue = { fg = c.green_two},
 		dosiniHeader = { fg = c.red_two}
+	},
+	help = {
+		helpExample = { fg = c.green_two},
+		helpHyperTextJump = { fg = c.blue_three, italic=true},
+		helpSpecial = {fg = c.red_two},
+		helpHyperTextEntry = {fg = c.blue_one, bold=true}
 	}
 }
 
 T.Plugins = {
--- 	Neorg = {
--- 		NeorgHeading1 = { fg = c.red_two},
--- 		NeorgHeading2 = { fg = c.violet_one},
--- 		NeorgHeading3 = { fg = c.blue_two}
--- 	},
+	Neorg = {
+		NeorgHeading1 = { fg = "#f7768e"},
+		NeorgHeading2 = { fg = "#ad8ee6"},
+		NeorgHeading3 = { fg = c.green_two},
+	},
 	Telescope = {
 		TelescopeBorder			= { fg = c.blue_two, bg = T.back},
 		TelescopePromptPrefix	= { fg = c.red_two, bg = T.back},
 		TelescopeSelectionCaret = { fg = c.red_two, bg = T.back},
 		TelescopeSelection		= { fg = c.red_two, bg = T.back}
-	},
-	IndentBlankLine = {
-		IndentBlankLineChar = { fg = c.white_three}
 	},
 	NvimTree = {
 		NvimTreeRootFolder = { fg = c.red_two, bold = true},

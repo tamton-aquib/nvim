@@ -5,22 +5,7 @@ local this = vim.api.nvim_get_current_buf
 local noice = {noremap=true, silent=true}
 Open_term = require'toggleterm.terminal'.Terminal
 
-local border = {
-      {"🭽", "FloatBorder"},
-
-      {"▔", "FloatBorder"},
-      {"🭾", "FloatBorder"},
-
-      {"▕", "FloatBorder"},
-
-      {"🭿", "FloatBorder"},
-
-      {"▁", "FloatBorder"},
-
-      {"🭼", "FloatBorder"},
-
-      {"▏", "FloatBorder"},
-}
+local border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏"}
 
 require("toggleterm").setup{
 	size = 20,
@@ -54,10 +39,11 @@ local files = {
 	java	   = "javac "..exp('%:t').." && java "..exp('%:t:r').." && rm *.class",
 	rust	   = "cargo run",
 	javascript = "node "..exp('%:t'),
+	typescript = "tsc "..exp('%:t').." && node "..exp('%:t:r')..".js",
 }
 
 map('n', '<leader>l', ':lua Exec_cmd("lazygit")<CR>', noice)
-map('n', '<leader>p', ':lua Exec_cmd("python")<CR>', noice)
+-- map('n', '<leader>p', ':lua Exec_cmd("python")<CR>', noice)
 map('n', '<leader>t', ':lua Exec_cmd(nil)<CR>', noice)
 
 function Run_file()

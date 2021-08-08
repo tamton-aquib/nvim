@@ -1,19 +1,24 @@
 require 'packer'.startup { function(use)
 	use '~/TOOLS/custom_plugins/noiceboard'
-	use {'~/TOOLS/staline.nvim',
+	-- use {'~/TOOLS/staline.nvim',
+		-- config = function() require'themes.staline' end
+		-- -- config = function()
+			-- -- require'staline'.setup{}
+			-- -- require'stabline'.setup{}
+		-- -- end
+	-- }
+	use {'rcarriga/nvim-notify',} -- config = function() vim.notify = require("notify") end } }
+
+	use {
+		'tamton-aquib/staline.nvim', -- branch = 'beta',
 		config = function() require'themes.staline' end
-		-- config = function() require'staline'.setup{defaults={font_active="bold,italic"}} end
-	}
-	use {'rcarriga/nvim-notify',
-		-- config = function() vim.notify = require("notify") end
+		-- config = function()
+			-- require'staline'.setup{}
+			-- require'stabline'.setup{}
+		-- end
 	}
 
-	-- use {
-		-- 'tamton-aquib/staline.nvim', -- branch = 'beta',
-		-- -- config = function() require'themes.staline' end
-		-- config = function() require'staline'.setup{} end
-	-- }
-	-- use 'vhyrro/neorg-telescope'
+	use 'vhyrro/neorg-telescope'
 
 	--> Themes and UI
 	use 'ghifarit53/tokyonight-vim'
@@ -46,7 +51,7 @@ require 'packer'.startup { function(use)
 	use 'L3MON4D3/LuaSnip'
 	use {
 		'kyazdani42/nvim-web-devicons',
-		config = function() require'nvim-web-devicons'.setup() end
+		config = function() require'nvim-web-devicons'.setup{} end
 	}
 	use 'steelsojka/pears.nvim'
 	use 'akinsho/nvim-toggleterm.lua'
@@ -56,7 +61,8 @@ require 'packer'.startup { function(use)
 		config = function()
 			vim.g.mkdp_refresh_slow = 1
 			vim.g.mkdp_auto_close = 0
-		end
+		end,
+		run = "cd app && yarn install",
 	}
 	use {'vhyrro/neorg', branch =  'unstable', after = "nvim-treesitter"}
 
@@ -70,7 +76,8 @@ end,
 		display = {
 			open_fn = function()
 				return require('packer.util').float{
-					border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }
+					-- border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }
+					border = 'shadow'
 				}
 			end
 		}
