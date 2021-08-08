@@ -1,21 +1,10 @@
 require 'packer'.startup { function(use)
 	use '~/TOOLS/custom_plugins/noiceboard'
-	-- use {'~/TOOLS/staline.nvim',
-		-- config = function() require'themes.staline' end
-		-- -- config = function()
-			-- -- require'staline'.setup{}
-			-- -- require'stabline'.setup{}
-		-- -- end
-	-- }
 	use {'rcarriga/nvim-notify',} -- config = function() vim.notify = require("notify") end } }
 
 	use {
 		'tamton-aquib/staline.nvim', -- branch = 'beta',
 		config = function() require'themes.staline' end
-		-- config = function()
-			-- require'staline'.setup{}
-			-- require'stabline'.setup{}
-		-- end
 	}
 
 	use 'vhyrro/neorg-telescope'

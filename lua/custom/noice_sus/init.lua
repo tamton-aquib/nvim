@@ -13,7 +13,7 @@ function M.setup()
 		vim.cmd [[ hi Sus guifg=#f7768e gui=underline ]]
 		-- nice
 		for l, line in ipairs(lines) do
-			if line:match("nice") then
+			if line:match("nice") or line:match("sus") or line:match("noice") then
 				la_place(l)
 			end
 		end

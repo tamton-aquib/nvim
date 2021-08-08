@@ -6,9 +6,9 @@ require 'general.packer'
 
 --> THEMES, STATUSLINE & CUSTOM
 require 'custom.noice_rename'.setup()
-require 'themes.colorschemes'.noice(true)
+require 'themes.colorschemes'.noice(false)
 require 'noiceboard'.setup()
-require 'custom.noice_sus'.setup()
+-- require 'custom.noice_sus'.setup()
 
 --> PLUG CONFIGS
 require 'config.pears'
@@ -26,5 +26,6 @@ require 'lsp.compe-config'
 require 'lsp.lsps'
 require 'lsp.emmet_lsp'
 require 'lsp.lsp_defaults'
+
 -- vim.opt.shadafile = "NONE" -- TODO: do this in ./lua/general/settings.lua later
 -- vim.cmd [[ rshada! ]]
