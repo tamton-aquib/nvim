@@ -11,11 +11,11 @@ require 'packer'.startup { function(use)
 
 	use {
 		'tamton-aquib/staline.nvim', -- branch = 'beta',
-		config = function() require'themes.staline' end
-		-- config = function()
-			-- require'staline'.setup{}
-			-- require'stabline'.setup{}
-		-- end
+		-- config = function() require'themes.staline' end
+		config = function()
+			require'staline'.setup{}
+			require'stabline'.setup{}
+		end
 	}
 
 	use 'vhyrro/neorg-telescope'
@@ -51,7 +51,7 @@ require 'packer'.startup { function(use)
 	use 'L3MON4D3/LuaSnip'
 	use {
 		'kyazdani42/nvim-web-devicons',
-		config = function() require'nvim-web-devicons'.setup{} end
+		-- config = function() require'nvim-web-devicons'.setup{} end
 	}
 	use 'steelsojka/pears.nvim'
 	use 'akinsho/nvim-toggleterm.lua'

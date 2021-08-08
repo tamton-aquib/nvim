@@ -131,11 +131,15 @@ T.Usual = {
 
 T.lang = {
 	html = {
-		htmlTagName			= { fg = c.red_one},
-		htmlTag				= { fg = c.violet_one},
-		htmlArg				= { fg = c.blue_one},
-		cssTagName			= { fg = c.red_one},
-		cssDefinition		= { fg = c.white_one},
+		TSTag = { fg = c.red_two},
+		htmlTSTagAttribute = { fg = c.blue_two},
+		-- htmlTSTag = { fg = c.red_two},
+	},
+	css = {
+		cssTagName			= { fg = c.red_two},
+		Constant = {fg = c.green_three},
+		cssBraces = { fg = c.blue_two},
+		Type   = { fg = c.blue_three}
 	},
 	dosini = {
 		dosiniLabel = { fg = c.blue_three },
