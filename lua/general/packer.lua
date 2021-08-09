@@ -1,3 +1,4 @@
+
 require 'packer'.startup { function(use)
 	use '~/TOOLS/custom_plugins/noiceboard'
 	use {'rcarriga/nvim-notify'} -- config = function() vim.notify = require("notify") end } }
