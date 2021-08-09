@@ -1,6 +1,6 @@
 require 'packer'.startup { function(use)
 	use '~/TOOLS/custom_plugins/noiceboard'
-	use {'rcarriga/nvim-notify',} -- config = function() vim.notify = require("notify") end } }
+	use {'rcarriga/nvim-notify'} -- config = function() vim.notify = require("notify") end } }
 
 	use {
 		'tamton-aquib/staline.nvim', -- branch = 'beta',
@@ -60,8 +60,8 @@ end,
 
 	config = {
 		profile = {enable = true},
-		done_sym = "✓",
-		error_syn = "×",
+		-- done_sym = "✓",
+		-- error_syn = "×",
 		display = {
 			open_fn = function()
 				return require('packer.util').float{

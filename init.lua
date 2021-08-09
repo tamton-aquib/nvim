@@ -8,7 +8,7 @@ require 'general.packer'
 require 'custom.noice_rename'.setup()
 require 'themes.colorschemes'.noice(false)
 require 'noiceboard'.setup()
--- require 'custom.noice_sus'.setup()
+require 'custom.noice_sus'.setup()
 
 --> PLUG CONFIGS
 require 'config.pears'

@@ -1,5 +1,6 @@
 T = {Usual = {}, lang = {}, Plugins = {}}
 T.back = ""
+-- nice
 
 local c = {
 	black            = "#000000",
@@ -25,7 +26,6 @@ local c = {
 
 	red_one          = "#e86671",
 	red_two          = "#f7768e",
-
 
 	white_one        = "#ffffff",
 	white_two        = "#dddddd",

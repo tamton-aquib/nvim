@@ -1,12 +1,13 @@
 --> staline setup
 -- #181a23    
 require'stabline'.setup {
-	style = "slant",
+	style = "bubble",
 	bg = "#181a23",
 	fg = "#986fec",
-	stab_bg = "none",
-	stab_right = "",
-	stab_left = ""
+	stab_bg = "#282c34",
+	-- stab_right = "",
+	-- stab_left = ""
+	-- inactive_bg = "#282c34"
 }
 
 -- require'stabline'.setup {
@@ -23,7 +24,7 @@ require'stabline'.setup {
 	-- -- bg = "#181a23",
 	-- -- bg = "#7741e6",
 -- }
-vim.cmd [[hi BranchGreen guifg=#2bbb4f ]]
+-- vim.cmd [[hi BranchGreen guifg=#2bbb4f ]]
 --'right_sep', {'LspDiagnosti csSignError', '   '}, 'left_sep',
 
 -- require 'staline'.setup {

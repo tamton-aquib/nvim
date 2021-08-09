@@ -3,6 +3,22 @@ local mapp = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 local line = vim.fn.line
 
+------ timing scheme --------
+function Timing_scheme()
+	local hour = tonumber(vim.fn.strftime("%H"))
+	-- local min = vim.fn.strftime("%M")
+	if hour <= 15 then
+		print("tokyonight")
+	elseif hour <= 20 then
+		print("noice")
+	else
+		print("sonokai")
+	end
+end
+
+mapp('n', '<leader>y', ':lua Timing_scheme()<CR>', opts)
+-----------------------------
+
 -------- twist ----------
 function Swap_bool()
 	local c = vim.api.nvim_get_current_line()

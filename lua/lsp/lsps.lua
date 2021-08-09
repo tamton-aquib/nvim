@@ -1,8 +1,6 @@
 
 
--- vim.cmd [[au CursorHoldI * lua vim.lsp.buf.signature_help()]]
-
-
+vim.cmd [[au CursorHoldI * lua vim.lsp.buf.signature_help()]]
 vim.cmd [[au CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics({border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }, focusable=false})]]
 
 local border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏"}
