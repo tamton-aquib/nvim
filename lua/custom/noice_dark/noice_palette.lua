@@ -172,7 +172,7 @@ T.Plugins = {
 		NvimTreeSpecialFile = { fg=c.green_three }
 	},
 	GitSign = {
-		GitSignsAdd = { fg = c.green_one },
+		GitSignsAdd = { fg = c.green_three },
 		GitSignsChange = { fg = c.yellow_one},
 		GitSignsDelete = { fg = c.red_one}
 	},

@@ -52,6 +52,7 @@ require'stabline'.setup {
 -- vim.cmd [[hi FileNameHighlight guifg=white guibg=#393b4d]]
 -- vim.cmd [[hi FileNameRightSepHighlight guifg=#393b4d]]
 -- ;#a3be8c
+
 -- require'staline'.setup{
 	-- sections = {
 		-- left = {'- ', '-mode', 'left_sep_double', 'filename', '  ', 'branch'},
@@ -93,7 +94,8 @@ require'staline'.setup{
 		left_separator = "",
 		right_separator = "",
 		-- line_column = "%l:%c [%L]",
-		true_colors = true
+		true_colors = true,
+		font_active = "bold"
 	},
 	mode_colors = {
 		n = "#181a23",

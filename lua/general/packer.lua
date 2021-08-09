@@ -3,7 +3,7 @@ require 'packer'.startup { function(use)
 	use {'rcarriga/nvim-notify'} -- config = function() vim.notify = require("notify") end } }
 
 	use {
-		'tamton-aquib/staline.nvim', -- branch = 'beta',
+		'~/TOOLS/staline.nvim', -- branch = 'beta',
 		config = function() require'themes.staline' end
 	}
 

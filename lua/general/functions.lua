@@ -7,16 +7,19 @@ local line = vim.fn.line
 function Timing_scheme()
 	local hour = tonumber(vim.fn.strftime("%H"))
 	-- local min = vim.fn.strftime("%M")
+	local colo = ""
 	if hour <= 15 then
-		print("tokyonight")
+		colo = "noice"
 	elseif hour <= 20 then
-		print("noice")
+		colo = "tokyonight"
 	else
-		print("sonokai")
+		colo = "sonokai"
 	end
+	require"themes.colorschemes"[colo](false)
 end
 
-mapp('n', '<leader>y', ':lua Timing_scheme()<CR>', opts)
+-- cmd [[au BufEnter * lua Timing_scheme()]]
+-- mapp('n', '<leader>y', ':lua Timing_scheme()<CR>', opts)
 -----------------------------
 
 -------- twist ----------
@@ -42,7 +45,7 @@ vim.cmd [[au BufEnter * lua On_file_enter()]]
 -----Go To URL-------
 function Go_To_URL()
 	local url = vim.fn.expand('<cWORD>')
-	print(url)
+	require'notify'("Going to "..url, 'info', {title="Noice"})
 	cmd(':silent !xdg-open '..url..' 1>/dev/null')
 end
 mapp('n', 'gx', ':lua Go_To_URL()<CR>', opts)
@@ -54,6 +57,7 @@ function Packer_do_everything()
 	cmd [[w]]
 	cmd [[luafile ~/.config/nvim/lua/general/packer.lua]]
 	cmd [[PackerSync]]
+	require'notify'("Updating Plugins", 'info', {title="Packer"})
 end
 
 mapp('n', '<leader>u', ':lua Packer_do_everything()<CR>', opts)
