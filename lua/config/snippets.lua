@@ -1,4 +1,5 @@
-ls = require'luasnip'
+vim.cmd [[packadd LuaSnip]]
+local ls = require'luasnip'
 local map = vim.api.nvim_set_keymap
 local opts = {noremap = true, expr=true}
 local parse = ls.parser.parse_snippet

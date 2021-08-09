@@ -27,24 +27,40 @@ require 'packer'.startup { function(use)
 
 	--> LSP
 	use 'neovim/nvim-lspconfig'
-	use 'hrsh7th/nvim-compe'
+	use {
+		'hrsh7th/nvim-compe',
+		event = 'InsertEnter',
+		config = function() require"lsp.compe-config" end
+	}
 	use 'kabouzeid/nvim-lspinstall'
 
 	--> Telescope and Treesitter
-	use 'nvim-treesitter/nvim-treesitter'
-	use 'nvim-treesitter/playground'
+	use {
+		'nvim-treesitter/nvim-treesitter',
+		event='BufRead',
+		config = function() require"config.treesittter" end
+	}
+	use {'nvim-treesitter/playground', after="nvim-treesitter"}
 	use 'nvim-lua/popup.nvim'
 	use 'nvim-lua/plenary.nvim'
 	use 'nvim-telescope/telescope.nvim'
 
 	--> General Purpose
-	use 'L3MON4D3/LuaSnip'
+	use {
+		'L3MON4D3/LuaSnip',
+		-- event = "InsertCharPre",
+		-- config = function() require"config.snippets" end
+	}
 	use {
 		'kyazdani42/nvim-web-devicons',
 		-- config = function() require'nvim-web-devicons'.setup{} end
 	}
 	use 'steelsojka/pears.nvim'
-	use 'akinsho/nvim-toggleterm.lua'
+	use {
+		'akinsho/nvim-toggleterm.lua',
+		event = "BufWinEnter",
+		config = function() require"config.floaterm" end
+	}
 	use 'kyazdani42/nvim-tree.lua'
 	use {
 		'iamcco/markdown-preview.nvim', ft={'markdown'},
@@ -61,13 +77,14 @@ end,
 
 	config = {
 		profile = {enable = true},
-		-- done_sym = "✓",
-		-- error_syn = "×",
+		done_sym = "✓",
+		error_sym = "×",
+		working_sym = "",
 		display = {
 			open_fn = function()
 				return require('packer.util').float{
-					-- border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }
-					border = 'shadow'
+					border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }
+					-- border = 'shadow'
 				}
 			end
 		}
