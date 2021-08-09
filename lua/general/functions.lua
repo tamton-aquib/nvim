@@ -1,11 +1,51 @@
 local cmd = vim.api.nvim_command
 local mapp = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
+local line = vim.fn.line
+
+------ timing scheme --------
+function Timing_scheme()
+	local hour = tonumber(vim.fn.strftime("%H"))
+	-- local min = vim.fn.strftime("%M")
+	local colo = ""
+	if hour <= 15 then
+		colo = "noice"
+	elseif hour <= 20 then
+		colo = "tokyonight"
+	else
+		colo = "sonokai"
+	end
+	require"themes.colorschemes"[colo](false)
+end
+
+-- cmd [[au BufEnter * lua Timing_scheme()]]
+-- mapp('n', '<leader>y', ':lua Timing_scheme()<CR>', opts)
+-----------------------------
+
+-------- twist ----------
+function Swap_bool()
+	local c = vim.api.nvim_get_current_line()
+	local subs = c:match("true") and c:gsub("true", "false") or c:gsub("false", "true")
+	vim.api.nvim_set_current_line(subs)
+end
+
+mapp('n', '<leader>s', ':lua Swap_bool()<CR>', opts)
+-------------------------
+
+-----On BufEnter---------
+function On_file_enter()
+	if line([['"]]) > 1 and line([['"]]) <= line("$") then
+		vim.cmd [[norm '"]]
+	end
+end
+
+vim.cmd [[au BufEnter * lua On_file_enter()]]
+-------------------------
 
 -----Go To URL-------
 function Go_To_URL()
 	local url = vim.fn.expand('<cWORD>')
-	print(url)
+	require'notify'("Going to "..url, 'info', {title="Noice"})
 	cmd(':silent !xdg-open '..url..' 1>/dev/null')
 end
 mapp('n', 'gx', ':lua Go_To_URL()<CR>', opts)
@@ -17,7 +57,7 @@ function Packer_do_everything()
 	cmd [[w]]
 	cmd [[luafile ~/.config/nvim/lua/general/packer.lua]]
 	cmd [[PackerSync]]
-	cmd [[PackerCompile]]
+	require'notify'("Updating Plugins", 'info', {title="Packer"})
 end
 
 mapp('n', '<leader>u', ':lua Packer_do_everything()<CR>', opts)
@@ -25,44 +65,36 @@ mapp('n', '<leader>u', ':lua Packer_do_everything()<CR>', opts)
 
 ---------Comment----------
 local comment_map = {
-	javascript		= '%\\/%\\/',
-	javascriptreact = '%\\/%\\/',
-	c				= '%\\/%\\/',
-	java			= '%\\/%\\/',
-	rust			= '%\\/%\\/',
+	javascript		= '//',
+	typescript		= '//',
+	javascriptreact = '//',
+	c				= '//',
+	java			= '//',
+	rust			= '//',
 	python			= '#',
 	sh				= '#',
 	conf			= '#',
 	yaml			= '#',
-	lua				= '%-%-'
+	lua				= '--'
 }
 
-function Toggle_comment()
-	local starting = vim.fn.getpos("'<")[2]
-	local ending = vim.fn.getpos("'>")[2]
+function Toggle_comment(visual)
+	local starting, ending = vim.fn.getpos("'<")[2], vim.fn.getpos("'>")[2]
 
-	local both = comment_map[vim.bo.ft]
-	local backslash = both:gsub("%%", "")
-	local percent = both:gsub([[\]], "")
-	-- local neither = percent:gsub([[\]], "")
+	local leader = comment_map[vim.bo.ft]
+    local current_line = vim.api.nvim_get_current_line()
+    local cursor_position = vim.api.nvim_win_get_cursor(0)
+    local noice = visual and starting..','..ending or ""
 
-    local line = vim.api.nvim_get_current_line()
+	cmd(current_line:find("^%s?"..vim.pesc(leader))
+		and noice..'norm ^'..('x'):rep(#leader+1)
+		or noice..'norm I'..leader..' ')
 
-	if starting == ending then
-		starting = "."
-		ending = "."
-	end
-
-	if string.find("^"..line, percent) ~= nil then
-		local comment = starting..','..ending..'s/^'..backslash..' //g'
-		cmd(comment)
-	else
-		local uncommand = starting..','..ending..'s/^/'..backslash..' /g'
-		cmd(uncommand)
-	end
+	vim.api.nvim_win_set_cursor(0, cursor_position)
+	-- if visual then cmd [[norm gv]] end
 end
 
-mapp('v', '<C-_>', ':lua Toggle_comment()<CR>', opts)
+mapp('v', '<C-_>', ':lua Toggle_comment("nice")<CR>', opts)
 mapp('n', '<C-_>', ':lua Toggle_comment()<CR>', opts)
 ---------------------------------------
 

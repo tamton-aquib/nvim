@@ -12,13 +12,9 @@ local function add_highlight_table(tbl)
 end
 
 function M.Lang_high(ft)
-	add_highlight_table(T.lang[ft] or {})
-end
-
-function M.check_change()
-	if vim.g.colors_name ~= "noice" then
-		print("Color changed")
-		vim.api.nvim_buf_clear_namespace(0, ns, 0, -1)
+	if vim.api.nvim_buf_is_valid(0) and vim.api.nvim_buf_is_loaded(0) then
+		-- print("enetered a buffer with: "..vim.bo.ft)
+		add_highlight_table(T.lang[ft] or {})
 	end
 end
 
@@ -26,33 +22,20 @@ local function init_clear()
 	cmd 'highlight clear'
 	if vim.fn.exists("syntax_on") then cmd'syntax reset' end
 	vim.g.colors_name = "noice"
-	vim.opt.conceallevel = 3
-	cmd("au BufEnter FileType markdown syntax match markdownItalicDelimiter contained '*'")
+	cmd("au BufEnter FileType markdown setlocal conceallevel=3 | syntax match markdownItalicDelimiter contained '*'")
 end
-
-local function load_sync()
-	for _, tbl in pairs(T.Usual) do add_highlight_table(tbl) end
-
-	local bg = T.back or "none"
-	vim.cmd('hi Normal guibg='..bg..' guifg=#dddddd')
-	set_hl_ns(ns)
-end
-
-local load_async
-load_async = vim.loop.new_async(vim.schedule_wrap( function()
-	for _, tbl in pairs(T.Plugins) do add_highlight_table(tbl) end
-	set_hl_ns(ns)
-	load_async:close()
-end))
 
 function M.noice()
 	init_clear()
 
-	load_sync()
-	load_async:send()
+	for _, tbl in pairs(T.Usual) do add_highlight_table(tbl) end
+	for _, tbl in pairs(T.Plugins) do add_highlight_table(tbl) end
 
-	vim.cmd [[au BufEnter,WinEnter FileType * :lua require"custom.noice_dark".Lang_high(vim.bo.ft)]]
-	vim.cmd [[au Colorscheme,ColorschemePre * lua require"custom.noice_dark".check_change()]]
+	local bg = T.back or "none"
+	vim.cmd('hi Normal guibg='..bg..' guifg=#dddddd')
+
+	vim.cmd [[au BufEnter,FileType * :lua require"custom.noice_dark".Lang_high(vim.bo.ft)]]
+	set_hl_ns(ns)
 end
 
 return M

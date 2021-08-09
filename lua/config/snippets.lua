@@ -42,7 +42,7 @@ ${1:HighlightGroup} = { fg = "${2}", bg = "${3}" },${0}
 ]]
 
 ls.snippets = {
-	all = {		
+	all = {
 		parse({trig="html", wordTrig=true}, html_bp),
 		parse({trig="#!", wordTrig=true}, shebang),
 		parse({trig="rfc", wordTrig=true}, react_rfc),

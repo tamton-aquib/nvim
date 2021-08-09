@@ -1,57 +1,116 @@
 --> staline setup
--- function Get_lsp_stuff()
--- 	return vim.lsp.diagnostic.get_count(0, 'Error')
--- end
-require'staline'.setup{
--- 	sections = {
--- 		left = {'mode', 'left_double_sep', 'branch'},
--- 		mid  = {'filename'},
--- 		right= {'cool_symbol', 'right_double_sep', 'line_column'}
--- 	}
+-- #181a23    
+require'stabline'.setup {
+	style = "bubble",
+	bg = "#181a23",
+	fg = "#986fec",
+	stab_bg = "#282c34",
+	-- stab_right = "",
+	-- stab_left = ""
+	-- inactive_bg = "#282c34"
 }
 
+-- require'stabline'.setup {
+	-- style = 'bar',
+	-- font_active = "bold,italic",
+	-- font_inactive = "italic",
+	-- -- bg = "#ff6077",
+	-- -- fg = "#414550",
+	-- fg = "#986fec",
+	-- -- stab_bg = "none",
+	-- start = "%#BranchGreen#    ",
+	-- -- stab_right = ""
+	-- -- inactive_bg = "none"
+	-- -- bg = "#181a23",
+	-- -- bg = "#7741e6",
+-- }
+-- vim.cmd [[hi BranchGreen guifg=#2bbb4f ]]
+--'right_sep', {'LspDiagnosti csSignError', '   '}, 'left_sep',
+
+-- require 'staline'.setup {
+	-- sections = {
+		-- left = {' ', '', '-   ', {'FileNameHighlight', 'filename'}, {'FileNameRightSepHighlight',''}, 'branch' },
+		-- mid = {'-lsp'},
+		-- right = {'', '-mode', {'FileNameHighlight', 'line_column'}, {'FileNameRightSepHighlight',''}, '  ' },
+	-- },
+	-- defaults = {
+		-- font_active = "bold,italic",
+		-- branch_symbol = " ",
+		-- true_colors = true,
+	-- },
+	-- mode_icons = {
+		-- n = "NORMAL"
+	-- },
+	-- mode_colors = {
+		-- -- n = "#e95678",
+		-- n = "#986fec",
+		-- i = "#9ece6a",
+		-- ic= "#9ece6a"
+	-- }
+-- }
+--
+-- vim.cmd [[hi FileNameHighlight guifg=white guibg=#393b4d]]
+-- vim.cmd [[hi FileNameRightSepHighlight guifg=#393b4d]]
+-- ;#a3be8c
+
+-- require'staline'.setup{
+	-- sections = {
+		-- left = {'- ', '-mode', 'left_sep_double', 'filename', '  ', 'branch'},
+		-- mid  = {'lsp'},
+		-- right= { 'cool_symbol', '  ', vim.bo.fileencoding, 'right_sep_double', '-line_column'}
+	-- },
+	-- defaults = {
+		-- cool_symbol = "  ",
+		-- left_separator = "",
+		-- right_separator = "",
+		-- bg = "#303030",
+		-- full_path = false,
+		-- branch_symbol = " "
+	-- },
+	-- mode_colors = {
+		-- n = "#986fec",
+		-- i = "#e86671",
+		-- ic= "#e86671",
+		-- c = "#e27d60"
+	-- }
+-- }
+
 require'staline'.setup{
-	defaults = {
+	sections = {
+		left = {
+			' ', 'right_sep_double', '-mode', 'left_sep_double', ' ',
+			'right_sep', '-filename', 'left_sep', ' ',
+			'right_sep_double', '-branch', 'left_sep_double', ' ',},
+		mid  = {'lsp'},
+		right= {
+			'right_sep', '-cool_symbol', 'left_sep', ' ',
+			'right_sep', '-  ', '-lsp_name', '- ', 'left_sep',
+			'right_sep_double', '-line_column', 'left_sep_double', ' ',}
+	},
+	defaults={
+		-- bg="#181a23",
+		fg="#986fec",
 		cool_symbol = "  ",
-		left_separator = "",
-		right_separator = "",
+		left_separator = "",
+		right_separator = "",
+		-- line_column = "%l:%c [%L]",
+		true_colors = true,
+		font_active = "bold"
 	},
 	mode_colors = {
-		n = "#986fec",
-		i = "#e86671",
-		ic= "#e86671",
-		c = "#e27d60"
+		n = "#181a23",
+		i = "#181a23",
+		ic= "#181a23",
+		c = "#181a23"
 	}
 }
 
--- require'staline'.setup{
--- 	defaults = {
--- 		cool_symbol = "    ",
--- 		left_separator = "",
--- 		right_separator = "",
--- 		fg = "#986fec",
--- 		filename_section = "taj%#Noice#@%#NewSectionTwo#arch"
--- 		-- filename_section = '%{luaeval("Get_lsp_stuff()")}'
--- 	},
 -- 	mode_colors = {
--- 		n = "none",
--- 		i = "none",
--- 		ic= "none",
--- 		c = "none",
--- 		v = "none"
+-- 		n = "#986fec",
+-- 		i = "#e86671",
+-- 		ic= "#e86671",
+-- 		c = "#e27d60"
 -- 	}
--- }
-
-require'stabline'.setup {
-	fg = "#986fec",
-	-- fg = "#000000"
--- 	stab_right = "",
--- 	stab_left = ""
-}
-
--- vim.cmd[[hi NewSectionOne guifg=#986fec guibg=none]]
--- vim.cmd[[hi NewSectionTwo gui=bold guifg=none guibg=none]]
-
 -- local leftSeparator = ""	-->      
 -- local rightSeparator = ""	-->      
 

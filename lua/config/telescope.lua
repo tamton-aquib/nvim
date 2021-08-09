@@ -1,27 +1,6 @@
--- borderchars = { '═', '║', '═', '║', '╔', '╗', '╝', '╚' },
--- require('telescope').setup{
--- 	defaults = {
--- 		prompt_prefix = "   ",
--- 		selection_caret = "❱ ",
--- 		entry_prefix = "  ",
--- 		sorting_strategy = "ascending",
--- 		layout_strategy = "vertical",
--- 		layout_config = {
--- 			horizontal = {
--- 				mirror = false,
--- 			},
--- 			vertical = {
--- 				mirror = true,
--- 			},
--- 		},
--- 		file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
--- 		grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
--- 		qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
--- 
--- 		-- Developer configurations: Not meant for general override
--- 		buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
--- 	}
--- }
+
+local border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }
+
 require('telescope').setup{
 	defaults = {
 		vimgrep_arguments = {
@@ -49,11 +28,13 @@ require('telescope').setup{
 			},
 		},
 		file_sorter =  require'telescope.sorters'.get_fuzzy_file,
-		file_ignore_patterns = {},
+		file_ignore_patterns = {'__pycache__', 'node_modules'},
 		generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
-		winblend = 0,
+		winblend = 30,
 		border = {},
 		borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+
+		-- borderchars = { "▔", "▕", "▁", "▏", "🭽", "🭾", "🭿", "🭼" },
 		color_devicons = true,
 		use_less = true,
 		path_display = {},
@@ -71,6 +52,12 @@ vim.api.nvim_set_keymap(
 	'n',
 	'<leader>f',
 	[[:lua require('telescope.builtin').find_files(require'telescope.themes'.get_cursor({previewer=false}))<CR>]]
+	, {noremap = true, silent = true}
+)
+vim.api.nvim_set_keymap(
+	'n',
+	'<leader>g',
+	[[:lua require('telescope.builtin').live_grep(require'telescope.themes'.get_cursor({previewer=false}))<CR>]]
 	, {noremap = true, silent = true}
 )
 vim.api.nvim_set_keymap('n', '<leader>h', ':Telescope help_tags<CR>', {noremap=true, silent=true})
