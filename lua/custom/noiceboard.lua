@@ -147,8 +147,9 @@ function M.noiceboard()
 			set_keymaps_and_options()
 			-- if #vim.api.nvim_list_bufs() >= 3 then
 			if number_of_bufs() > 2 then
-				vim.cmd [[au BufEnter * setlocal nu rnu]]
-				vim.cmd [[au BufEnter * lua require'custom.noiceboard'.delete_noice_screen()]]
+			    print("Abort")
+			    vim.cmd [[au BufEnter * setlocal nu rnu]]
+			    vim.cmd [[au BufEnter * lua require'custom.noiceboard'.delete_noice_screen()]]
 			end
 			-- TODO: clean this part
 			vim.api.nvim_win_set_cursor(0, {vim.g.section_length, 0})
