@@ -1,4 +1,4 @@
-vim.cmd [[packadd nvim-treesitter]]
+-- vim.cmd [[packadd nvim-treesitter]]
 local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
 
 parser_configs.norg = {

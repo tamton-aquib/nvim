@@ -4,11 +4,12 @@ require 'packer'.startup { function(use)
 	use {'rcarriga/nvim-notify'} -- config = function() vim.notify = require("notify") end } }
 
 	use {
-		'~/TOOLS/staline.nvim', -- branch = 'beta',
-		config = function() require'themes.staline' end
+		'tamton-aquib/staline.nvim', -- branch = 'beta',
+		-- config = function() require'themes.staline' end
+		config = function() require"themes.staline" end
 	}
 
-	use 'vhyrro/neorg-telescope'
+
 
 	--> Themes and UI
 	use 'ghifarit53/tokyonight-vim'
@@ -25,6 +26,7 @@ require 'packer'.startup { function(use)
 		config = function() require'gitsigns'.setup{} end
 	}
 
+
 	--> LSP
 	use 'neovim/nvim-lspconfig'
 	use {
@@ -33,6 +35,7 @@ require 'packer'.startup { function(use)
 		config = function() require"lsp.compe-config" end
 	}
 	use 'kabouzeid/nvim-lspinstall'
+
 
 	--> Telescope and Treesitter
 	use {
@@ -70,7 +73,13 @@ require 'packer'.startup { function(use)
 		end,
 		run = "cd app && yarn install",
 	}
-	use {'vhyrro/neorg', branch =  'unstable', after = "nvim-treesitter"}
+	use {
+		'vhyrro/neorg',
+		branch='unstable',
+		ft = {"norg"},
+		after="nvim-treesitter"
+	}
+	-- use {'vhyrro/neorg-telescope', after="neorg"}
 
 	use 'wbthomason/packer.nvim'
 end,

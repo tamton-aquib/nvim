@@ -20,7 +20,6 @@ require 'config.nvim_tree'
 
 --> LSP SETTINGS
 require 'lsp.lspconfig'
--- require 'lsp.compe-config'
 require 'lsp.lsps'
 require 'lsp.emmet_lsp'
 require 'lsp.lsp_defaults'
