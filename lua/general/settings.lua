@@ -58,8 +58,8 @@ set.listchars = 'tab:▏ '
 set.title = true
 set.titlestring = "  Editing %f..."
 
-set.tabstop = 4
-set.softtabstop = 4
+-- set.tabstop = 4
+-- set.softtabstop = 4
 set.shiftwidth = 4
 set.expandtab = false
 set.smartindent = true

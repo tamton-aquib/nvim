@@ -3,10 +3,14 @@ require 'packer'.startup { function(use)
 	use '~/TOOLS/custom_plugins/noiceboard'
 	use {'rcarriga/nvim-notify'} -- config = function() vim.notify = require("notify") end } }
 
+	-- use {'tamton-aquib/staline.nvim', config =
+	    -- function() require"staline".setup{} end
+	-- }
+
 	use {
-		'tamton-aquib/staline.nvim', -- branch = 'beta',
-		-- config = function() require'themes.staline' end
-		config = function() require"themes.staline" end
+	    'tamton-aquib/staline.nvim', -- branch = 'beta',
+	    -- config = function() require'themes.staline' end
+	    config = function() require"themes.staline" end
 	}
 
 

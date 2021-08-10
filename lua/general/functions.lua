@@ -9,11 +9,11 @@ function Timing_scheme()
 	-- local min = vim.fn.strftime("%M")
 	local colo = ""
 	if hour <= 15 then
-		colo = "noice"
+	    colo = "noice"
 	elseif hour <= 20 then
-		colo = "tokyonight"
+	    colo = "tokyonight"
 	else
-		colo = "sonokai"
+	    colo = "sonokai"
 	end
 	require"themes.colorschemes"[colo](false)
 end
