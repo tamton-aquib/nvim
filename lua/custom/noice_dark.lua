@@ -154,6 +154,9 @@ local lang = {
 }
 
 local Plugins = {
+    IndentBlankLine = {
+	IndentBlanklineChar = { fg=c.white_three }
+    },
     Neorg = {
 	    NeorgHeading1 = { fg = "#f7768e"},
 	    NeorgHeading2 = { fg = "#ad8ee6"},
@@ -175,7 +178,6 @@ local Plugins = {
 	GitSignsChange = { fg = c.yellow_one},
 	GitSignsDelete = { fg = c.red_one}
     },
-
     MarkdownHighlights = {
 	markdownH1	= { fg = c.red_one, bold = true },
 	markdownH2	= { fg = c.red_one, bold = true },

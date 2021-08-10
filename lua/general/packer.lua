@@ -2,7 +2,15 @@
 require 'packer'.startup { function(use)
     -- use '~/TOOLS/custom_plugins/noiceboard'
     use {'rcarriga/nvim-notify'} -- config = function() vim.notify = require("notify") end } }
-	use {'lukas-reineke/indent-blankline.nvim', event="BufReadPost"}
+    use {'lukas-reineke/indent-blankline.nvim', event="BufReadPost",
+	config = function()
+	    vim.g.indentLine_enabled = 1
+	    vim.g.indent_blankline_char = "▏"
+
+	    vim.g.indent_blankline_filetype_exclude = {"help", "terminal", "dashboard", "packer"}
+	    vim.g.indent_blankline_buftype_exclude = {"terminal"}
+	end
+    }
 
     -- use {'tamton-aquib/staline.nvim', config =
     -- function() require"staline".setup{} end

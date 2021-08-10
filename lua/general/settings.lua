@@ -52,13 +52,13 @@ set.inccommand = "split"
 set.number = true
 set.relativenumber = true
 set.wrap = false
-set.list = true
-set.listchars = 'tab:▏ '
+-- set.list = true
+-- set.listchars = 'tab:▏ '
 -- set.listchars = 'tab: '
 set.title = true
 set.titlestring = "  Editing %f..."
 
-set.tabstop = 4
+-- set.tabstop = 4
 -- set.softtabstop = 4
 set.shiftwidth = 4
 set.expandtab = false
