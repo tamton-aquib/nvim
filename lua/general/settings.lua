@@ -15,6 +15,7 @@ vim.g.loaded_remote_plugins = false
 -- set.shell = '/usr/bin/bash'
 set.lazyredraw = true
 
+-- set.cursorline = true
 set.conceallevel = 2
 set.mouse = "a"
 set.encoding = "UTF-8"
@@ -51,15 +52,14 @@ set.inccommand = "split"
 set.number = true
 set.relativenumber = true
 set.wrap = false
--- set.cursorline = true
-set.list = true
-set.listchars = 'tab:▏ '
+-- set.list = true
+-- set.listchars = 'tab:▏ '
 -- set.listchars = 'tab: '
 set.title = true
 set.titlestring = "  Editing %f..."
 
-set.tabstop = 4
-set.softtabstop = 4
+-- set.tabstop = 4
+-- set.softtabstop = 4
 set.shiftwidth = 4
 set.expandtab = false
 set.smartindent = true
@@ -67,10 +67,3 @@ set.smartindent = true
 -- set.copyindent = true
 -- set.breakindent = true
 -- set.preserveindent = true
-
--- vim.cmd [[setlocal fo-=c fo-=r fo-=o]]
--- 	print(vim.inspect(vim.fn.getpos([['"]])))
--- -- 	if vim.api.nvim_buf_line_count(0) ~= nil then
--- -- 		vim.cmd("norm '\"")
--- -- 	end
--- vim.cmd [[ autocmd FileType * :lua On_file_enter() ]]
