@@ -8,7 +8,7 @@ require'stabline'.setup {
 	-- font_active = "none"
 	-- stab_right = "",
 	-- stab_left = ""
-	--inactive_bg = "#282c34"
+	-- inactive_bg = "#282c34"
 }
 
 -- require'stabline'.setup {
