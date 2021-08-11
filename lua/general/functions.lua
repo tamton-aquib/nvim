@@ -5,9 +5,7 @@ local line = vim.fn.line
 
 ------ Timing scheme --------
 function Timing_scheme()
-    -- local hour = tonumber(vim.fn.strftime("%H"))
     local hour = tonumber(os.date("%H"))
-    -- local min = vim.fn.strftime("%M")
     local colo = ""
     if hour <= 15 then
 	colo = "noice"
