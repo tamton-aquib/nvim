@@ -17,7 +17,7 @@ function Timing_scheme()
     require"themes.colorschemes"[colo](false)
 end
 
-cmd [[au BufEnter * lua Timing_scheme()]]
+-- cmd [[au BufEnter * lua Timing_scheme()]]
 -----------------------------
 
 -------- twist ----------
@@ -33,7 +33,7 @@ mapp('n', '<leader>s', ':lua Swap_bool()<CR>', opts)
 -----On BufEnter---------
 function On_file_enter()
     if line([['"]]) > 1 and line([['"]]) <= line("$") then
-	vim.cmd [[norm '"]]
+		vim.cmd [[norm '"]]
     end
 end
 

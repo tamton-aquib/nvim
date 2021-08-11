@@ -14,6 +14,7 @@ vim.g.loaded_remote_plugins = false
 
 -- set.shell = '/usr/bin/bash'
 set.lazyredraw = true
+set.ruler = false
 
 -- set.cursorline = true
 set.conceallevel = 2
@@ -32,7 +33,7 @@ set.smarttab = true
 set.backup = false
 set.writebackup = false
 set.conceallevel = 0
-set.cmdheight = 1
+set.cmdheight = 2
 set.splitright = true
 set.splitbelow = true
 set.pumheight = 10
@@ -58,8 +59,8 @@ set.wrap = false
 set.title = true
 set.titlestring = "  Editing %f..."
 
--- set.tabstop = 4
--- set.softtabstop = 4
+set.tabstop = 4
+set.softtabstop = 4
 set.shiftwidth = 4
 set.expandtab = false
 set.smartindent = true

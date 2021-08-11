@@ -8,7 +8,7 @@ require 'general.packer'
 require 'custom.noice_rename'.setup()
 require 'custom.noiceboard'.setup()
 require 'custom.noice_sus'.setup()
--- require 'custom.noice_dark'.noice()
+require 'themes.colorschemes'.noice(false)
 
 --> PLUG CONFIGS
 require 'config.pears'
@@ -23,3 +23,5 @@ require 'lsp.lspconfig'
 require 'lsp.lsps'
 require 'lsp.emmet_lsp'
 require 'lsp.lsp_defaults'
+
+vim.cmd [[hi ArchSymbol guifg=#1793d1 guibg=#303030]]
