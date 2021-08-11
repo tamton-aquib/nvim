@@ -7,7 +7,7 @@ local line = vim.fn.line
 function Timing_scheme()
     local hour = tonumber(os.date("%H"))
     local colo = ""
-    if hour <= 15 then
+    if hour <= 12 then
 	colo = "noice"
     elseif hour <= 20 then
 	colo = "tokyonight"
@@ -17,7 +17,7 @@ function Timing_scheme()
     require"themes.colorschemes"[colo](false)
 end
 
--- cmd [[au BufEnter * lua Timing_scheme()]]
+cmd [[au BufEnter * lua Timing_scheme()]]
 -----------------------------
 
 -------- twist ----------

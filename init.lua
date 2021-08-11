@@ -4,11 +4,11 @@ require 'general.mappings'
 require 'general.functions'
 require 'general.packer'
 
---> THEMES, STATUSLINE & CUSTOM
+--> THEMES and CUSTOM
 require 'custom.noice_rename'.setup()
 require 'custom.noiceboard'.setup()
 require 'custom.noice_sus'.setup()
-require 'themes.colorschemes'.noice(false)
+-- require 'custom.noice_dark'.noice()
 
 --> PLUG CONFIGS
 require 'config.pears'
