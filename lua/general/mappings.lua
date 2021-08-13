@@ -6,7 +6,7 @@ local noice = {noremap=true, silent=true}
 map('n', '<CR>', ':PackerProfile<CR>', noice)
 -- map('n', '<leader>\'', 'ciw""<Esc>P', noice)
 vim.cmd [[autocmd FileType help nnoremap <buffer> <CR> <C-]>]]
-map('n', '<C-h>', ':lua vim.cmd("h "..vim.fn.expand("<cword>"))<CR>', noice)
+map('n', '<C-h>', ':lua vim.cmd(":vert :h "..vim.fn.expand("<cword>"))<CR>', noice)
 -- cmd('au BufWritePost Filetype *.lua luafile %')
 
 --> WINDOW Control

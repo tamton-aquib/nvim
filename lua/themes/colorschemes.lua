@@ -4,7 +4,8 @@ local colors = {
 	'onedark',
 	'gruvbox-flat',
 	'tokyonight',
-	'sonokai'
+	'sonokai',
+	'noice'
 }
 
 function Colo.random()
@@ -45,7 +46,7 @@ function Colo.onedark(transparent)
 	vim.g.onedark_italic_functions = true
 	vim.g.onedark_transparent = transparent and true or false
 
-	vim.cmd [[colo onedark]]
+	require "onedark".setup()
 end
 
 function Colo.noice(transparent)

@@ -24,4 +24,6 @@ require 'lsp.lsps'
 require 'lsp.emmet_lsp'
 require 'lsp.lsp_defaults'
 
-vim.cmd [[hi ArchSymbol guifg=#1793d1 guibg=#303030]]
+-- #6600CC
+-- #986fec
+
