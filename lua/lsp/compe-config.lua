@@ -1,5 +1,6 @@
 local luasnip = require'luasnip'
 local map = vim.api.nvim_set_keymap
+local border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏"}
 
 vim.o.completeopt = "menuone,noselect"
 require'compe'.setup {
@@ -14,7 +15,10 @@ require'compe'.setup {
 	max_abbr_width = 100;
 	max_kind_width = 100;
 	max_menu_width = 100;
-	documentation = false;
+	documentation = {
+		border=border,
+		winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+	};
 
 	source = {
 		path = true;
