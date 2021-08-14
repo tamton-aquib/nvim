@@ -8,7 +8,6 @@ Open_term = require'toggleterm.terminal'.Terminal
 local border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏"}
 
 require("toggleterm").setup{
-	-- size = 20,
 	hide_numbers = true,
 	start_in_insert = true,
 	insert_mappings = true,
@@ -18,7 +17,7 @@ require("toggleterm").setup{
 	close_on_exit = false,
 	direction = 'float',
 	float_opts = {
-		border = border,
+		border = 'shadow',
 		winblend = 30,
 		highlights = {
 			border = "Normal",
@@ -43,7 +42,6 @@ function Run_file()
 	local command = files[vim.bo.filetype]
 	if command ~= nil then
 		Open_term:new{ cmd=command, close_on_exit = false, }:toggle()
-		-- vim.cmd [[resize -6]]
 		print("Running: "..command)
 	end
 end

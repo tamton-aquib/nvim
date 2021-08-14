@@ -11,12 +11,13 @@ require 'custom.noice_sus'.setup()
 require 'themes.colorschemes'.noice(false)
 
 --> PLUG CONFIGS
-require 'plugins.pears'
+-- require 'plugins.pears'
 require 'plugins.telescope'
-require 'plugins.neorg'
+-- require 'plugins.neorg'
 require 'plugins.snippets'
 require 'plugins.plug-colorizer'
-require 'plugins.nvim_tree'
+require 'plugins.lir'
+-- require 'plugins.nvim_tree'
 
 --> LSP SETTINGS
 require 'lsp.lspconfig'

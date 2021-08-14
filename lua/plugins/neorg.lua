@@ -19,11 +19,11 @@ require('neorg').setup {
 	["core.norg.concealer"] = {},
 	["core.norg.tangle"] = {},
 	["core.integrations.telescope"] = {},
-	-- 		["core.integrations.treesitter"] =  {
-	-- 			config = {
-	-- 				dim = {}
-	-- 			}
-	-- 		},
+	["core.integrations.treesitter"] =  {
+		config = {
+			dim = {}
+		}
+	},
 	["core.norg.dirman"] = {
 	    config = {
 		workspaces = {

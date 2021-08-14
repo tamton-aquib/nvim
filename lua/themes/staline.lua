@@ -16,7 +16,7 @@ require"staline".setup {
 		left = {
 			'▊', ' ', { 'Evil', ' ' }, ' ',         -- The mode and evil sign
 			'file_size', ' ',                      -- Filesize
-			{ 'StalineFile', 'filename' }, ' '       -- Filename in different highlight
+			{ 'StalineFile', 'file_name' }, ' '       -- Filename in different highlight
 		},
 		mid = { ' ', 'lsp_name' },                  -- "lsp_name" is still a little buggy
 		right = {
