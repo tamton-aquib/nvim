@@ -7,3 +7,6 @@ My neovim config
 ---
 
 * neovim version: 0.5
+* Statusline and bufferline : [staline and stabline](https://github.com/tamton-aquib/staline.nvim)
+* Colorscheme: [custom](https://github.com/tamton-aquib/nvim/blob/main/lua/custom/noice_dark.lua)
+* LSP: builtin. (inside lua/lsp/)

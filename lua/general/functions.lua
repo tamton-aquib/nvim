@@ -17,7 +17,7 @@ function Timing_scheme()
     require"themes.colorschemes"[colo](false)
 end
 
-cmd [[au BufEnter * lua Timing_scheme()]]
+-- cmd [[au BufEnter * lua Timing_scheme()]]
 -----------------------------
 
 -------- twist ----------
@@ -33,7 +33,7 @@ mapp('n', '<leader>s', ':lua Swap_bool()<CR>', opts)
 -----On BufEnter---------
 function On_file_enter()
     if line([['"]]) > 1 and line([['"]]) <= line("$") then
-	vim.cmd [[norm '"]]
+		vim.cmd [[norm '"]]
     end
 end
 
@@ -41,12 +41,14 @@ vim.cmd [[au BufEnter * lua On_file_enter()]]
 -------------------------
 
 -----Go To URL-------
-function Go_To_URL()
+function Go_To_URL(nice)
     local url = vim.fn.expand('<cWORD>')
+	url = nice and "https://github.com/"..url or url
     require'notify'("Going to "..url, 'info', {title="Noice"})
     cmd(':silent !xdg-open '..url..' 1>/dev/null')
 end
-mapp('n', 'gx', ':lua Go_To_URL()<CR>', opts)
+mapp('n', 'gxx', ':lua Go_To_URL()<CR>', opts)
+mapp('n', 'gxm', ':lua Go_To_URL("nice")<CR>', opts)
 -- 'https://github.com'
 ---------------------
 
@@ -73,7 +75,8 @@ local comment_map = {
     sh		= '#',
     conf	= '#',
     yaml	= '#',
-    lua		= '--'
+    lua		= '--',
+	svelte  = '//'
 }
 
 function Toggle_comment(visual)
