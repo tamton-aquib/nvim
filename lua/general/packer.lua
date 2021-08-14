@@ -5,8 +5,7 @@ packer.startup { function(use)
     use {'rcarriga/nvim-notify'} -- config = function() vim.notify = require("notify") end } }
 
     use {
-		'tamton-aquib/staline.nvim', -- branch = 'beta',
-		-- config = function() require'themes.staline' end
+		'tamton-aquib/staline.nvim', branch = 'beta',
 		config = function() require"themes.staline" end
     }
 
@@ -42,7 +41,7 @@ packer.startup { function(use)
 	use {
 		'nvim-treesitter/nvim-treesitter',
 		event='BufRead',
-		config = function() require"config.treesittter" end
+		config = function() require"plugins.treesittter" end
 	}
 	use {'nvim-treesitter/playground', after="nvim-treesitter"}
 	use 'nvim-lua/popup.nvim'
@@ -63,7 +62,7 @@ packer.startup { function(use)
 	use {
 		'L3MON4D3/LuaSnip',
 		-- event = "InsertCharPre",
-		-- config = function() require"config.snippets" end
+		-- config = function() require"plugins.snippets" end
 	}
 	use {
 		'kyazdani42/nvim-web-devicons',
@@ -73,7 +72,7 @@ packer.startup { function(use)
 	use {
 		'akinsho/nvim-toggleterm.lua',
 		event = "BufWinEnter",
-		config = function() require"config.floaterm" end
+		config = function() require"plugins.floaterm" end
 	}
 	use 'kyazdani42/nvim-tree.lua'
 	use {
