@@ -4,8 +4,19 @@ packer.startup { function(use)
 	--> Testing and temporary
     use {'rcarriga/nvim-notify'}
 	use 'tamago324/lir.nvim'
+	use 'NTBBloodbath/doom-one.nvim'
 
-    use { 'tamton-aquib/staline.nvim', branch = 'beta', config = function() require"themes.staline" end }
+    -- use { 'tamton-aquib/staline.nvim', config = function() require"themes.staline" end }
+    use {
+		'~/TOOLS/staline.nvim',
+		config = function()
+			require"themes.staline"
+		 -- require"staline".setup{}
+		 -- require"stabline".setup{}
+		end
+	}
+
+	use {'ms-jpq/coq_nvim', branch="coq"}
 
 
     --> THEMES AND UI
@@ -19,7 +30,7 @@ packer.startup { function(use)
 
     --> LSP
     use 'neovim/nvim-lspconfig'
-	use { 'hrsh7th/nvim-compe', after="LuaSnip", event = 'InsertEnter', config = function() require"lsp.compe-config" end }
+	-- use { 'hrsh7th/nvim-compe', after="LuaSnip", event = 'InsertEnter', config = function() require"lsp.compe-config" end }
 	use 'kabouzeid/nvim-lspinstall'
 
 

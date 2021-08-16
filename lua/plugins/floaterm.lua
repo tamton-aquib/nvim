@@ -17,10 +17,10 @@ require("toggleterm").setup{
 	close_on_exit = false,
 	direction = 'float',
 	float_opts = {
-		border = 'shadow',
+		border = border,
 		winblend = 30,
 		highlights = {
-			border = "Normal",
+			border = "FloatBorder",
 			background = "NormalFloat"
 		}
 	}

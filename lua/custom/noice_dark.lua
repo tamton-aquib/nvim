@@ -1,4 +1,5 @@
 M = {}
+M.Flag = false
 local ns = vim.api.nvim_create_namespace('noice_dark')
 
 local c = {
@@ -44,7 +45,7 @@ end
 local Usual = {
 	UsualHighlights = {
 		-- Normal		= { fg = c.white_two, bg = back },
-		NormalFloat = { fg = c.white_two, bg = c.background_dark},
+		NormalFloat = { fg = c.white_two, bg = c.background_dark, blend=50},
 		FloatBorder = { fg = c.blue_three, bg = c.background_dark},
 		LineNr		= { fg = c.white_three, bg = nil },
 		SignColumn	= { bg = nil},
@@ -207,9 +208,14 @@ function M.Lang_high(ft)
 	end
 end
 
+function M.check_change()
+	vim.api.nvim_buf_clear_namespace(0, ns, 0, -1)
+	vim.api.nvim__set_hl_ns(0)
+end
+
 function M.noice()
 	vim.cmd 'highlight clear'
-	if vim.fn.exists("syntax_on") then vim.cmd'syntax reset' end
+	if vim.fn.exists("syntax_on") then vim.cmd 'syntax reset' end
 	vim.g.colors_name = "noice"
 
 	for _, tbl in pairs(Usual) do add_highlight_table(tbl) end
@@ -219,6 +225,7 @@ function M.noice()
 	vim.cmd('hi Normal guibg='..bg..' guifg=#dddddd')
 
 	vim.cmd [[au BufEnter,FileType * :lua require"custom.noice_dark".Lang_high(vim.bo.ft)]]
+	vim.cmd [[au ColorSchemePre * :lua require"custom.noice_dark".check_change()]]
 	vim.api.nvim__set_hl_ns(ns)
 end
 

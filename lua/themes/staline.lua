@@ -5,10 +5,11 @@ require'stabline'.setup {
 	bg = "#1e2127",
 	fg = "#986fec",
 	stab_bg = "none",
-	font_active = "none"
+	font_active = "none",
+	exclude_fts = {'NvimTree', 'dashboard', 'packer', 'lir'},
 	-- stab_right = "",
 	-- stab_left = ""
-	-- inactive_bg = "#282c34"
+	inactive_bg = "#282c34"
 }
 
 require"staline".setup {

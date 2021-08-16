@@ -1,5 +1,4 @@
 M = {}
--- WARN: not working as expected. frickin piece of sh*t
 
 -- TODO: break into pieces
 local fn = vim.fn
@@ -102,9 +101,9 @@ end
 local function set_keymaps_and_options()
     -- TODO: remove these when opening a new buffer
     local temp_options = {
-	nu=false, rnu=false, cuc=false, list=false,
-	ma=false, mod=false, cul=false,
-	ft='dashboard', cursorcolumn = false
+		nu=false, rnu=false, cuc=false, list=false,
+		ma=false, mod=false, cul=false,
+		ft='dashboard', cursorcolumn = false
     }
     for k,v in pairs(temp_options) do
 	vim.opt_local[k] = v

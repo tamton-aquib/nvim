@@ -8,7 +8,7 @@ require 'general.packer'
 require 'custom.noice_rename'.setup()
 require 'custom.noiceboard'.setup()
 require 'custom.noice_sus'.setup()
-require 'themes.colorschemes'.noice(false)
+-- require 'themes.colorschemes'.tokyonight(false)
 
 --> PLUG CONFIGS
 require 'plugins.telescope'
