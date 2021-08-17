@@ -1,8 +1,8 @@
 --> GENERAL SETTINGS AND MAPPINGS
-require 'general.settings'
-require 'general.mappings'
-require 'general.functions'
-require 'general.packer'
+require "general.settings"
+require "general.functions"
+require "general.mappings"
+require "general.packer"
 
 --> THEMES and CUSTOM
 require 'custom.noice_rename'.setup()

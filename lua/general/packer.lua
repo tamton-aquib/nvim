@@ -52,8 +52,8 @@ packer.startup { function(use)
 			vim.g.indentLine_enabled = 1
 			vim.g.indent_blankline_char = "▏"
 
-			vim.g.indent_blankline_filetype_exclude = {"help", "terminal", "dashboard", "packer"}
-			vim.g.indent_blankline_buftype_exclude = {"terminal"}
+			vim.g.indent_blankline_filetype_exclude = {"help", "terminal", "dashboard", "packer", "norg"}
+			vim.g.indent_blankline_buftype_exclude = {"terminal", "norg"}
 		end
     }
 
