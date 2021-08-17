@@ -106,8 +106,9 @@ local function set_keymaps_and_options()
 		ft='dashboard', cursorcolumn = false
     }
     for k,v in pairs(temp_options) do
-	vim.opt_local[k] = v
+		vim.opt_local[k] = v
     end
+	vim.opt.showtabline = 0
 
     for key, file in pairs(keymaps) do
 	buf_map(
@@ -136,7 +137,7 @@ function M.noice_board()
 	    -- TODO: set CursorMoved autocmd to make it smooth
 	    -- vim.cmd [[au CursorMoved * lua require'noiceboard'.go_to_line()]]
 	    set_keymaps_and_options()
-	    vim.cmd [[au BufEnter * setlocal nu rnu]]
+	    vim.cmd [[au BufEnter * setlocal nu rnu | set showtabline=2]]
 	    -- TODO: clean this part
 	    vim.api.nvim_win_set_cursor(0, {vim.g.section_length, 0})
 	    vim.cmd [[norm w]]

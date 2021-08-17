@@ -151,17 +151,18 @@ local lang = {
 		helpHyperTextJump = { fg = c.blue_three, italic=true},
 		helpSpecial = {fg = c.red_two},
 		helpHyperTextEntry = {fg = c.blue_one, bold=true}
-	}
+	},
 }
 
 local Plugins = {
-	IndentBlankLine = {
-		IndentBlanklineChar = { fg=c.white_three }
-	},
 	Neorg = {
 		NeorgHeading1 = { fg = "#f7768e"},
 		NeorgHeading2 = { fg = "#ad8ee6"},
 		NeorgHeading3 = { fg = c.green_two},
+	},
+	IndentBlankLine = {
+		IndentBlanklineChar = { fg=c.white_three },
+		IndentBlanklineSpaceChar = { fg=c.white_three }
 	},
 	Telescope = {
 		TelescopeBorder			= { fg = c.blue_two, bg = back},
