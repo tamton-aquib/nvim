@@ -3,7 +3,7 @@ local map = vim.api.nvim_set_keymap
 local noice = {noremap=true, silent=true}
 
 --> Custom
-map('n', '<CR>', ':PackerProfile<CR>', noice)
+-- map('n', '<CR>', ':PackerProfile<CR>', noice)
 -- map('n', '<leader>\'', 'ciw""<Esc>P', noice)
 vim.cmd [[autocmd FileType help nnoremap <buffer> <CR> <C-]>]]
 map('n', '<C-h>', ':lua vim.cmd(":vert :h "..vim.fn.expand("<cword>"))<CR>', noice)

@@ -16,7 +16,7 @@ require'compe'.setup {
 	max_kind_width = 100;
 	max_menu_width = 100;
 	documentation = {
-		border=border,
+		border = border,
 		winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
 	};
 

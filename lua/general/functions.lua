@@ -57,7 +57,7 @@ function Packer_do_everything()
     cmd [[w]]
     cmd [[luafile ~/.config/nvim/lua/general/packer.lua]]
     cmd [[PackerSync]]
-    require'notify'("Updating Plugins", 'info', {title="Packer"})
+    -- require'notify'("Updating Plugins", 'info', {title="Packer"})
 end
 
 mapp('n', '<leader>u', ':lua Packer_do_everything()<CR>', opts)
