@@ -7,8 +7,6 @@
 	tangle: init.lua
 @end
 
-*NOTE*: this is noice
-
 *  This is the first part where I require some files which includes:
  ** settings.lua
 	General settings like tab configs, and similar stuff
