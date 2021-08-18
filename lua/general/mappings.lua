@@ -3,17 +3,15 @@ local map = vim.api.nvim_set_keymap
 local opts = {noremap=true, silent=true}
 
 map('n', '<leader>s', ':lua require"general.functions".swap_bool()<CR>', opts)
-map('n', 'gxx', ':lua require"general.functions".go_To_URL()<CR>', opts)
-map('n', 'gxm', ':lua require"general.functions".go_To_URL("nice")<CR>', opts)
+map('n', 'gxx', ':lua require"general.functions".go_to_url()<CR>', opts)
+map('n', 'gxm', ':lua require"general.functions".go_to_url("nice")<CR>', opts)
 map('n', '<leader>u', ':lua require"general.functions".packer_do_everything()<CR>', {noremap=true})
-map('v', '<C-_>', ':lua require"general.functions".toggle_comment("nice")<CR>', opts)
-map('n', '<C-_>', ':lua require"general.functions".toggle_comment()<CR>', opts)
 map('n', '<C-t>', ':lua require"general.functions".toggle_transparent()<CR>', opts)
 vim.cmd [[au BufEnter * lua require"general.functions".on_file_enter()]]
 
 --> Custom
 vim.cmd [[autocmd FileType help nnoremap <buffer> <CR> <C-]>]]
-map('n', '<C-h>', ':lua vim.cmd(":vert :h "..vim.fn.expand("<cword>"))<CR>', opts)
+map('n', '<M-h>', ':lua vim.cmd(":vert :h "..vim.fn.expand("<cword>"))<CR>', opts)
 
 --> WINDOW Control
 map('n', '<C-h>','<C-w>h', opts)

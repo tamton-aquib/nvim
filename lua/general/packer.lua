@@ -11,10 +11,10 @@ packer.startup { function(use)
 
 
     --> THEMES AND UI
-    use 'ghifarit53/tokyonight-vim'
-    use 'sainnhe/sonokai'
-    use 'eddyekofo94/gruvbox-flat.nvim'
-    use 'norcalli/nvim-colorizer.lua'
+    use { 'ghifarit53/tokyonight-vim' }
+    use { 'sainnhe/sonokai' }
+    use { 'eddyekofo94/gruvbox-flat.nvim' }
+    use { 'norcalli/nvim-colorizer.lua' }
     use { 'folke/todo-comments.nvim', config = function() require'todo-comments'.setup{} end }
     use { 'lewis6991/gitsigns.nvim', config = function() require'gitsigns'.setup{} end }
 

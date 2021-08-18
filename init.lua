@@ -8,6 +8,7 @@ require "general.packer"
 require 'custom.noice_rename'.setup()
 require 'custom.noiceboard'.setup()
 require 'custom.noice_sus'.setup()
+require 'custom.noice_comment'.setup()
 require 'themes.colorschemes'.gruvbox(false)
 
 --> PLUG CONFIGS
