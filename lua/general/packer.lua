@@ -3,6 +3,9 @@ local packer = require "packer"
 packer.startup { function(use)
 	--> Testing and temporary
     use {'rcarriga/nvim-notify'}
+	-- use 'hrsh7th/nvim-cmp'
+	-- use 'hrsh7th/cmp-buffer'
+	-- use 'hrsh7th/cmp-nvim-lsp'
 
 	-- use { 'tamton-aquib/staline.nvim', config = function() require"themes.staline" end }
     -- use { 'tamton-aquib/staline.nvim', config = function() require"staline".setup{} end }

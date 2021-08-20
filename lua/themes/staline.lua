@@ -5,7 +5,7 @@ require'stabline'.setup {
 	-- bg = "#1e2127",
 	-- fg = "#986fec",
 	-- stab_bg = "none",
-	-- font_active = "none",
+	font_active = "none",
 	-- exclude_fts = {'NvimTree', 'dashboard', 'packer', 'lir'},
 	stab_left = " ",
 	stab_right = " "
