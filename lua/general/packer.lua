@@ -9,7 +9,7 @@ packer.startup { function(use)
 
 	-- use { 'tamton-aquib/staline.nvim', config = function() require"themes.staline" end }
     -- use { 'tamton-aquib/staline.nvim', config = function() require"staline".setup{} end }
-    use { '~/TOOLS/staline.nvim',      config = function() require"themes.staline" end }
+    use { '~/TOOLS/staline.nvim', config = function() require"themes.staline" end}
     -- use { '~/TOOLS/staline.nvim',      config = function() require"staline".setup{} end }
 
 

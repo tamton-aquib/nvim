@@ -7,42 +7,58 @@ require'stabline'.setup {
 	-- stab_bg = "none",
 	font_active = "none",
 	-- exclude_fts = {'NvimTree', 'dashboard', 'packer', 'lir'},
+	start = "%#DevIconVim#    ",
 	stab_left = " ",
-	stab_right = " "
+	stab_right = ""
 	-- inactive_bg = "#282c34"
 }
--- 
-require"staline".setup {
+
+require "staline".setup {
 	sections = {
-		left = {
-			'▊', '   ', { 'Evil', '  ' }, ' ',         -- The mode and evil sign
-			'file_size', ' ',                      -- Filesize
-			{ 'StalineFile', 'file_name' }, ' '       -- Filename in different highlight
-		},
-		mid = { 'lsp_name' },                  -- "lsp_name" is still a little buggy
-		right = {
-			{ 'StalineEnc', vim.bo.fileencoding:upper() }, '  ',  -- Example for custom section
-			{ 'StalineEnc', 'cool_symbol' }, ' ',                 -- the cool_symbol for your OS
-			{ 'StalineGit', 'branch' }, ' ', '▊'                  -- Branch Name in different highlight
-		}
-	},
-	defaults = {
-		bg = "#202328",
-		branch_symbol = " "
+		left = { '  ', 'mode', ' ', 'branch' },
+		right = { 'line_column' }
 	},
 	mode_colors = {
-		-- n = "#38b1f0",
-		-- i = "#9ece6a",       -- etc mode
 		n = "#a89985",
 		i = "#84a598",
 		c = "#8fbf7f",
 		v = "#fc802d",
-	}
+	},
 }
-vim.cmd [[hi Evil        guifg=#f36365 guibg=#202328]]             -- Higlight for Evil symbol
-vim.cmd [[hi StalineEnc  guifg=#7d9955 guibg=#202328]]       -- Encoding Highlight
-vim.cmd [[hi StalineGit  guifg=#8583b3 guibg=#202328]]       -- Branch Name Highlight
-vim.cmd [[hi StalineFile guifg=#c37cda guibg=#202328]]      -- File name Highlight
+
+--    
+
+-- require"staline".setup {
+	-- sections = {
+		-- left = {
+			-- '▊', '   ', { 'Evil', '  ' }, ' ',       -- The mode and evil sign
+			-- 'file_size', ' ',                         -- Filesize
+			-- { 'StalineFile', 'file_name' }, ' '       -- Filename in different highlight
+		-- },
+		-- mid = { 'lsp_name' },                         -- "lsp_name" is still a little buggy
+		-- right = {
+			-- { 'StalineEnc', vim.bo.fileencoding:upper() }, '  ',  -- Example for custom section
+			-- { 'StalineEnc', 'cool_symbol' }, ' ',                 -- the cool_symbol for your OS
+			-- { 'StalineGit', 'branch' }, ' ', '▊'                  -- Branch Name in different highlight
+		-- }
+	-- },
+	-- defaults = {
+		-- bg = "#202328",
+		-- branch_symbol = " "
+	-- },
+	-- mode_colors = {
+		-- -- n = "#38b1f0",
+		-- -- i = "#9ece6a",       -- etc mode
+		-- n = "#a89985",
+		-- i = "#84a598",
+		-- c = "#8fbf7f",
+		-- v = "#fc802d",
+	-- }
+-- }
+-- vim.cmd [[hi Evil        guifg=#f36365 guibg=#202328]]             -- Higlight for Evil symbol
+-- vim.cmd [[hi StalineEnc  guifg=#7d9955 guibg=#202328]]       -- Encoding Highlight
+-- vim.cmd [[hi StalineGit  guifg=#8583b3 guibg=#202328]]       -- Branch Name Highlight
+-- vim.cmd [[hi StalineFile guifg=#c37cda guibg=#202328]]      -- File name Highlight
 
 -- require'stabline'.setup {
 	-- style = 'bar',
@@ -82,9 +98,9 @@ vim.cmd [[hi StalineFile guifg=#c37cda guibg=#202328]]      -- File name Highlig
 		-- ic= "#9ece6a"
 	-- }
 -- }
-
-vim.cmd [[hi FileNameHighlight guifg=white guibg=#393b4d]]
-vim.cmd [[hi FileNameRightSepHighlight guifg=#393b4d]]
+-- 
+-- vim.cmd [[hi FileNameHighlight guifg=white guibg=#393b4d]]
+-- vim.cmd [[hi FileNameRightSepHighlight guifg=#393b4d]]
 -- ;#a3be8c
 
 -- require'staline'.setup{
@@ -117,7 +133,7 @@ vim.cmd [[hi FileNameRightSepHighlight guifg=#393b4d]]
 	-- sections = {
 		-- left = {
 			-- ' ', 'right_sep_double', '-mode', 'left_sep_double', ' ',
-			-- 'right_sep', '-filename', 'left_sep', ' ',
+			-- 'right_sep', '-file_name', 'left_sep', ' ',
 			-- 'right_sep_double', '-branch', 'left_sep_double', ' ',},
 		-- mid  = {'lsp'},
 		-- right= {
