@@ -1,39 +1,52 @@
 --> staline setup
 -- #181a23    
-require'stabline'.setup {
-	style = "slant",
+
+require 'stabline'.setup {
+	style = "bar",
 	-- bg = "#1e2127",
-	-- fg = "#986fec",
-	-- stab_bg = "none",
-	font_active = "none",
-	-- exclude_fts = {'NvimTree', 'dashboard', 'packer', 'lir'},
-	start = "%#DevIconVim#    ",
-	stab_left = " ",
-	stab_right = ""
-	-- inactive_bg = "#282c34"
+	font_active = "bold,italic",
+	stab_start = "%#LspDiagnosticsDefaultError#   ",
+	inactive_bg = "#1e1e1e",
+	fg = "#986fec"
 }
 
 require "staline".setup {
 	sections = {
-		left = { '  ', 'mode', ' ', 'branch' },
-		right = { 'line_column' }
+		left = { '  ', 'mode', ' ', 'branch', ' ', 'lsp' },
+		mid = {},
+		right = {'file_name', 'line_column' }
 	},
 	mode_colors = {
-		n = "#a89985",
+		n = "#986fec",
 		i = "#84a598",
-		c = "#8fbf7f",
-		v = "#fc802d",
+		-- c = "#8fbf7f",
+		-- v = "#fc802d",
 	},
+	defaults = {
+		true_colors = true,
+		line_column = " [%l/%L] :%c  ",
+		branch_symbol = " ",
+	}
 }
 
 --    
+
+-- require "staline".setup {
+	-- sections = { left =
+		-- { ("▁"):rep(vim.o.columns) },
+		-- mid = {},
+		-- right = {}
+	-- },
+-- }
+
 
 -- require"staline".setup {
 	-- sections = {
 		-- left = {
 			-- '▊', '   ', { 'Evil', '  ' }, ' ',       -- The mode and evil sign
 			-- 'file_size', ' ',                         -- Filesize
-			-- { 'StalineFile', 'file_name' }, ' '       -- Filename in different highlight
+			-- { 'StalineFile', 'file_name' }, ' ',       -- Filename in different highlight
+			-- 'lsp'
 		-- },
 		-- mid = { 'lsp_name' },                         -- "lsp_name" is still a little buggy
 		-- right = {
@@ -43,8 +56,10 @@ require "staline".setup {
 		-- }
 	-- },
 	-- defaults = {
-		-- bg = "#202328",
-		-- branch_symbol = " "
+		-- bg = "#202020",
+		-- branch_symbol = " ",
+		-- true_colors = true,
+		-- font_active = "bold"
 	-- },
 	-- mode_colors = {
 		-- -- n = "#38b1f0",
@@ -55,10 +70,11 @@ require "staline".setup {
 		-- v = "#fc802d",
 	-- }
 -- }
--- vim.cmd [[hi Evil        guifg=#f36365 guibg=#202328]]             -- Higlight for Evil symbol
--- vim.cmd [[hi StalineEnc  guifg=#7d9955 guibg=#202328]]       -- Encoding Highlight
--- vim.cmd [[hi StalineGit  guifg=#8583b3 guibg=#202328]]       -- Branch Name Highlight
--- vim.cmd [[hi StalineFile guifg=#c37cda guibg=#202328]]      -- File name Highlight
+
+-- vim.cmd [[hi Evil        guifg=#f36365 guibg=#202020]]             -- Higlight for Evil symbol
+-- vim.cmd [[hi StalineEnc  guifg=#7d9955 guibg=#202020]]       -- Encoding Highlight
+-- vim.cmd [[hi StalineGit  guifg=#8583b3 guibg=#202020]]       -- Branch Name Highlight
+-- vim.cmd [[hi StalineFile guifg=#c37cda guibg=#202020]]      -- File name Highlight
 
 -- require'stabline'.setup {
 	-- style = 'bar',
@@ -79,7 +95,7 @@ require "staline".setup {
 
 -- require 'staline'.setup {
 	-- sections = {
-		-- left = {' ', '', '-   ', {'FileNameHighlight', 'filename'}, {'FileNameRightSepHighlight',''}, 'branch' },
+		-- left = {' ', '', '-   ', {'FileNameHighlight', 'file_name'}, {'FileNameRightSepHighlight',''}, 'branch' },
 		-- mid = {'-lsp'},
 		-- right = {'', '-mode', {'FileNameHighlight', 'line_column'}, {'FileNameRightSepHighlight',''}, '  ' },
 	-- },
@@ -98,7 +114,7 @@ require "staline".setup {
 		-- ic= "#9ece6a"
 	-- }
 -- }
--- 
+
 -- vim.cmd [[hi FileNameHighlight guifg=white guibg=#393b4d]]
 -- vim.cmd [[hi FileNameRightSepHighlight guifg=#393b4d]]
 -- ;#a3be8c
@@ -129,16 +145,17 @@ require "staline".setup {
 	-- }
 -- }
 
--- require'staline'.setup{
+-- require'staline'.setup {
 	-- sections = {
 		-- left = {
 			-- ' ', 'right_sep_double', '-mode', 'left_sep_double', ' ',
 			-- 'right_sep', '-file_name', 'left_sep', ' ',
-			-- 'right_sep_double', '-branch', 'left_sep_double', ' ',},
+			-- 'right_sep_double', '-branch', 'left_sep_double', ' ',
+		-- },
 		-- mid  = {'lsp'},
 		-- right= {
 			-- 'right_sep', '-cool_symbol', 'left_sep', ' ',
-			-- 'right_sep', '-  ', '-lsp_name', '- ', 'left_sep',
+			-- 'right_sep', '- ', '-lsp_name', '- ', 'left_sep',
 			-- 'right_sep_double', '-line_column', 'left_sep_double', ' ',}
 	-- },
 	-- defaults={
@@ -149,16 +166,17 @@ require "staline".setup {
 		-- right_separator = "",
 		-- -- line_column = "%l:%c [%L]",
 		-- true_colors = true,
+		-- line_column = "[%l:%c] 並%p%% "
 		-- -- font_active = "bold"
 	-- },
 	-- mode_colors = {
 		-- n = "#181a23",
 		-- i = "#181a23",
 		-- ic= "#181a23",
-		-- c = "#181a23"
+		-- c = "#181a23",
+		-- v = "#181a23"
 	-- }
 -- }
-
 -- 	mode_colors = {
 -- 		n = "#986fec",
 -- 		i = "#e86671",

@@ -11,6 +11,7 @@ require("toggleterm").setup{
 	hide_numbers = true,
 	start_in_insert = true,
 	insert_mappings = true,
+	-- open_mapping = [[<leader>t]],
 	shade_terminals = true,
 	shading_factor = '3',
 	persist_size = true,
