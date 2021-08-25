@@ -38,17 +38,6 @@ require 'custom.noice_sus'.setup()
 require 'themes.colorschemes'.gruvbox(false)
 @end
 
-*  Plugin Configs which could not be included inside packer.lua as these are large
-   mainly telescope, plug-colorizer and lir
-
-@code lua
-
---> PLUG CONFIGS
-require 'plugins.telescope'
-require 'plugins.plug-colorizer'
-require 'plugins.lir'
-@end
-
 *  LSP related stuff
 
 @code lua

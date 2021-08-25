@@ -30,7 +30,7 @@ require('telescope').setup{
 		file_sorter =  require'telescope.sorters'.get_fuzzy_file,
 		file_ignore_patterns = {'__pycache__', 'node_modules'},
 		generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
-		winblend = 30,
+		winblend = 0,
 		border = {},
 		borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
 

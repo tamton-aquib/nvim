@@ -16,15 +16,25 @@ function Colo.random()
 	vim.cmd('colo '..selected)
 end
 
+function Colo.tokyodark(transparent)
+	vim.g.tokyodark_transparent_background = transparent and true or false
+	vim.g.tokyodark_enable_italic = false
+
+	vim.cmd [[colo tokyodark]]
+	vim.cmd [[hi Normal guibg=#11121d]]
+end
+
 function Colo.tokyonight(transparent)
 	vim.g.tokyonight_italic_keywords = false
 	vim.g.tokyonight_italic_functions = false
 	vim.g.tokyonight_style = "night"
-	vim.g.tokyonight_transparent_background = transparent and 1 or 0
+	-- vim.g.tokyonight_transparent_background = transparent and 1 or 0
+	vim.g.tokyonight_transparent = transparent and 1 or 0
 
 	vim.cmd [[colo tokyonight]]
-	vim.cmd [[hi FloatBorder guibg=#2a2b3d]]
-	vim.cmd [[hi SignColumn guibg=#1a1b26]]
+	vim.cmd [[hi NormalFloat guibg=#1a1b26]]
+	-- vim.cmd [[hi FloatBorder guibg=#2a2b3d]]
+	-- vim.cmd [[hi SignColumn guibg=#1a1b26]]
 end
 
 function Colo.gruvbox(transparent)

@@ -34,6 +34,11 @@ cmp.setup {
 			return item
 		end
 	},
+    documentation = {
+      -- border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+		border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" },
+		winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+    },
 
     -- snippet = {
       -- expand = function(args)

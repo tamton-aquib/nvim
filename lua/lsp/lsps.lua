@@ -3,6 +3,12 @@ vim.cmd [[au CursorHoldI * lua vim.lsp.buf.signature_help({focusable=false})]]
 -- vim.cmd [[au CursorHold * lua vim.lsp.buf.hover()]]
 vim.cmd [[au CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics({border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }, focusable=false})]]
 
+local signs = { Error = " ", Warning = " ", Hint = "", Information = "", other = "﫠" }
+for type, icon in pairs(signs) do
+	local hl = "LspDiagnosticsSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
+
 local border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏"}
 
 local on_attach = function(_, _)

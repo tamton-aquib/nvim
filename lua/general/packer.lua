@@ -8,17 +8,25 @@ packer.startup { function(use)
 	use 'hrsh7th/cmp-nvim-lsp'
 	use 'saadparwaiz1/cmp_luasnip'
 
-	-- use { 'tamton-aquib/staline.nvim', config = function() require"themes.staline" end }
+	use { 'tamton-aquib/staline.nvim', config = function() require"themes.staline" end }
     -- use { 'tamton-aquib/staline.nvim', config = function() require"staline".setup{} end }
-    use { '~/TOOLS/staline.nvim', config = function() require"themes.staline" end}
+    -- use { '~/TOOLS/staline.nvim', config = function() require"themes.staline" end}
     -- use { '~/TOOLS/staline.nvim',      config = function() require"staline".setup{} end }
 
 
     --> THEMES AND UI
-    use { 'ghifarit53/tokyonight-vim' }
+    -- use { 'ghifarit53/tokyonight-vim' }
+	use 'folke/tokyonight.nvim'
+	use 'tiagovla/tokyodark.nvim'
     use { 'sainnhe/sonokai' }
     use { 'eddyekofo94/gruvbox-flat.nvim' }
-    use { 'norcalli/nvim-colorizer.lua' }
+
+    use {
+		'norcalli/nvim-colorizer.lua',
+		-- event='BufReadPost',
+		config = function() require"plugins.plug-colorizer" end
+	}
+
     use { 'folke/todo-comments.nvim', config = function() require'todo-comments'.setup{} end }
     use { 'lewis6991/gitsigns.nvim', config = function() require'gitsigns'.setup{} end }
 
@@ -33,7 +41,7 @@ packer.startup { function(use)
 	use { 'nvim-treesitter/nvim-treesitter', event='BufRead', config = function() require"plugins.treesittter" end }
 	use {'nvim-treesitter/playground', after="nvim-treesitter"}
 	use 'nvim-lua/plenary.nvim'
-	use 'nvim-telescope/telescope.nvim'
+	use {'nvim-telescope/telescope.nvim', config = function() require"plugins.telescope" end}
 	use { 'vhyrro/neorg', branch='unstable', event = 'BufReadPost', ft = {"norg"}, after = "nvim-treesitter", requires = "vhyrro/neorg-telescope", config = function() require "plugins.neorg" end }
 
 
@@ -43,7 +51,7 @@ packer.startup { function(use)
 	use { 'kyazdani42/nvim-web-devicons', config = function() require "plugins.web_devicons" end }
 	use { 'steelsojka/pears.nvim', config=function() require"plugins.pears" end}
 	use { 'akinsho/nvim-toggleterm.lua', event = "BufWinEnter", config = function() require"plugins.floaterm" end }
-	use 'tamago324/lir.nvim'
+	use { 'tamago324/lir.nvim', config = function() require"plugins.lir" end }
 	use { 'iamcco/markdown-preview.nvim', ft={'markdown'},
 		config = function()
 			vim.g.mkdp_refresh_slow = 1

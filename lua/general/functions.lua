@@ -1,6 +1,4 @@
 M = {}
-
-local opts = { noremap = true, silent = true }
 local line = vim.fn.line
 
 ------ Timing scheme --------
