@@ -19,8 +19,6 @@ require "staline".setup {
 	mode_colors = {
 		n = "#986fec",
 		i = "#84a598",
-		-- c = "#8fbf7f",
-		-- v = "#fc802d",
 	},
 	defaults = {
 		true_colors = true,

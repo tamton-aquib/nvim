@@ -7,10 +7,10 @@ require "general.packer"
 --> THEMES and CUSTOM
 require 'custom.noice_rename'.setup()
 require 'custom.noiceboard'.setup()
--- require 'custom.noice_sus'.setup()
+require 'custom.noice_sus'.setup()
 require 'themes.colorschemes'.noice(true)
 require 'custom.noice_comment'.setup()
--- require 'lsp.cmp'
+require 'lsp.cmp'
 
 --> PLUG CONFIGS
 require 'plugins.telescope'

@@ -43,12 +43,3 @@ require 'lspconfig'.sumneko_lua.setup {
 		}
 	}
 }
-
-
-local jdtls_root_path = vim.fn.stdpath('data').. "/lspinstall/java"
-require 'lspconfig'.java.setup{
-	cmd = {jdtls_root_path..'/jdtls.sh'},
-	filetypes = {'java'},
-	on_attach = on_attach,
-}
-

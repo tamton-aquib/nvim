@@ -3,9 +3,10 @@ local packer = require "packer"
 packer.startup { function(use)
 	--> Testing and temporary
     use {'rcarriga/nvim-notify'}
-	-- use 'hrsh7th/nvim-cmp'
-	-- use 'hrsh7th/cmp-buffer'
-	-- use 'hrsh7th/cmp-nvim-lsp'
+	use 'hrsh7th/nvim-cmp'
+	use 'hrsh7th/cmp-buffer'
+	use 'hrsh7th/cmp-nvim-lsp'
+	use 'saadparwaiz1/cmp_luasnip'
 
 	-- use { 'tamton-aquib/staline.nvim', config = function() require"themes.staline" end }
     -- use { 'tamton-aquib/staline.nvim', config = function() require"staline".setup{} end }
@@ -24,7 +25,7 @@ packer.startup { function(use)
 
     --> LSP
     use 'neovim/nvim-lspconfig'
-	use { 'hrsh7th/nvim-compe', after="LuaSnip", event = 'InsertEnter', config = function() require"lsp.compe-config" end }
+	-- use { 'hrsh7th/nvim-compe', after="LuaSnip", event = 'InsertEnter', config = function() require"lsp.compe-config" end }
 	use 'kabouzeid/nvim-lspinstall'
 
 
