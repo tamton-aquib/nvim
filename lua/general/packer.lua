@@ -3,10 +3,6 @@ local packer = require "packer"
 packer.startup { function(use)
 	--> Testing and temporary
     use {'rcarriga/nvim-notify'}
-	use 'hrsh7th/nvim-cmp'
-	use 'hrsh7th/cmp-buffer'
-	use 'hrsh7th/cmp-nvim-lsp'
-	use 'saadparwaiz1/cmp_luasnip'
 
 	use { 'tamton-aquib/staline.nvim', config = function() require"themes.staline" end }
     -- use { 'tamton-aquib/staline.nvim', config = function() require"staline".setup{} end }
@@ -17,13 +13,14 @@ packer.startup { function(use)
     --> THEMES AND UI
     -- use { 'ghifarit53/tokyonight-vim' }
 	use 'folke/tokyonight.nvim'
-	use 'tiagovla/tokyodark.nvim'
+	-- use 'tiagovla/tokyodark.nvim'
+	use '~/TOOLS/tokyodark.nvim'
     use { 'sainnhe/sonokai' }
     use { 'eddyekofo94/gruvbox-flat.nvim' }
 
     use {
 		'norcalli/nvim-colorizer.lua',
-		-- event='BufReadPost',
+		event='BufReadPre',
 		config = function() require"plugins.plug-colorizer" end
 	}
 
@@ -31,10 +28,16 @@ packer.startup { function(use)
     use { 'lewis6991/gitsigns.nvim', config = function() require'gitsigns'.setup{} end }
 
 
-    --> LSP
+
+    --> LSP and COMPLETION
     use 'neovim/nvim-lspconfig'
 	-- use { 'hrsh7th/nvim-compe', after="LuaSnip", event = 'InsertEnter', config = function() require"lsp.compe-config" end }
 	use 'kabouzeid/nvim-lspinstall'
+	use 'hrsh7th/nvim-cmp'
+	use 'hrsh7th/cmp-buffer'
+	use 'hrsh7th/cmp-nvim-lsp'
+	use 'saadparwaiz1/cmp_luasnip'
+
 
 
 	--> TELESCOPE, TREESITTER, NEORG

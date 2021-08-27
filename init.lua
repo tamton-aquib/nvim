@@ -8,8 +8,8 @@ require "general.packer"
 require 'custom.noice_rename'.setup()
 require 'custom.noiceboard'.setup()
 require 'custom.noice_sus'.setup()
-require 'themes.colorschemes'.tokyonight(true)
 require 'custom.noice_comment'.setup()
+require 'themes.colorschemes'.tokyonight(false)
 
 --> LSP SETTINGS
 require 'lsp.lspconfig'

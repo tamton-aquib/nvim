@@ -37,7 +37,7 @@ local files = {
 }
 
 map('n', '<leader>l', ':lua Open_term:new{cmd="lazygit", close_on_exit=true}:toggle()<CR>', noice)
-map('n', '<leader>t', ':lua Open_term:new{cmd=nil, close_on_exit=true}:toggle()<CR>', noice)
+map('n', '<leader>t', ':lua Open_term:new{cmd=nil, close_on_exit=true, count=5}:toggle()<CR>', noice)
 
 function Run_file()
 	local command = files[vim.bo.filetype]

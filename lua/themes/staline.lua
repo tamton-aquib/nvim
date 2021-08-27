@@ -12,7 +12,7 @@ require 'stabline'.setup {
 
 require "staline".setup {
 	sections = {
-		left = { '  ', 'mode', ' ', 'branch', ' ', 'lsp' },
+		left = { '  ', 'mode', ' ', 'branch', '   ', 'lsp' },
 		mid = {},
 		right = {'file_name', 'line_column' }
 	},

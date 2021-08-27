@@ -2,6 +2,16 @@ vim.g.mapleader = ' '
 local map = vim.api.nvim_set_keymap
 local opts = {noremap=true, silent=true}
 
+-- local function nnoremap(key)
+	-- local arr = vim.split(key, ' ')
+	-- local mode = table.remove(arr, 1)
+	-- local map = table.remove(arr, 1)
+-- 
+	-- vim.api.nvim_set_keymap(mode, map, vim.fn.join(arr), opts)
+-- end
+-- 
+-- nnoremap 'n <leader>s :lua require"general.functions".swap_bool()<CR>'
+
 map('n', '<leader>s', ':lua require"general.functions".swap_bool()<CR>', opts)
 map('n', 'gxx', ':lua require"general.functions".go_to_url()<CR>', opts)
 map('n', 'gxm', ':lua require"general.functions".go_to_url("nice")<CR>', opts)
@@ -18,13 +28,13 @@ map('n', '<C-h>','<C-w>h', opts)
 map('n', '<C-j>','<C-w>j', opts)
 map('n', '<C-k>','<C-w>k', opts)
 map('n', '<C-l>','<C-w>l', opts)
-map('n', '<M-h>', ':vertical resize +2<CR>', opts)
-map('n', '<M-j>', ':resize -2<CR>', opts)
-map('n', '<M-k>', ':resize +2<CR>', opts)
-map('n', '<M-l>', ':vertical resize -2<CR>', opts)
+map('n', '<M-Left>', ':vertical resize +2<CR>', opts)
+map('n', '<M-Down>', ':resize -2<CR>', opts)
+map('n', '<M-Up>', ':resize +2<CR>', opts)
+map('n', '<M-Right>', ':vertical resize -2<CR>', opts)
 
 -- Move selected line / block of text in visual mode
-map("x", "<M-j>", ":move '<-2<CR>gv-gv", opts)
+map("x", "<M-k>", ":move '<-2<CR>gv-gv", opts)
 map("x", "<M-j>", ":move '>+1<CR>gv-gv", opts)
 map('n', '<M-j>', ':m .+1<CR>==', opts)
 map('n', '<M-k>', ':m .-2<CR>==', opts)

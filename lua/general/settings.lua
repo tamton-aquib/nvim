@@ -2,6 +2,8 @@ local set = vim.opt
 
 vim.cmd [[ filetype plugin indent off ]]
 vim.opt.spell = false
+set.fillchars = 'eob: ,vert: '
+-- set.listchars = 'tab:▏ '
 
 vim.g.loaded_gzip = false
 vim.g.loaded_matchit = false

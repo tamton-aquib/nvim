@@ -2,7 +2,7 @@
 require'nvim-web-devicons'.setup{
 	override = {
 		norg = {
-			icon = " ",
+			icon = "",
 			-- color = "#f36365",
 			color = "#cbcb41",
 			name = "Neorg"
