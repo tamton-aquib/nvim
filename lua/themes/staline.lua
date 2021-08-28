@@ -1,5 +1,17 @@
 --> staline setup
 -- #181a23    
+function get_git_signs()
+	local stuff = vim.b.gitsigns_status_dict
+	return stuff and stuff['head'] or "nice"
+end
+function line_perc()
+	local current_line = vim.fn.line "."
+	local total_lines = vim.fn.line "$"
+	local chars = { "_", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" }
+	local line_ratio = current_line / total_lines
+	local index = math.ceil(line_ratio * #chars)
+	return chars[index]
+end
 
 require 'stabline'.setup {
 	style = "bar",
@@ -14,7 +26,7 @@ require "staline".setup {
 	sections = {
 		left = { '  ', 'mode', ' ', 'branch', '   ', 'lsp' },
 		mid = {},
-		right = {'file_name', 'line_column' }
+		right = { '%{luaeval("get_git_signs()")}', 'file_name', "%{luaeval('line_perc()')}" }
 	},
 	mode_colors = {
 		n = "#986fec",

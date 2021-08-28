@@ -4,9 +4,9 @@ packer.startup { function(use)
 	--> Testing and temporary
     use {'rcarriga/nvim-notify'}
 
-	use { 'tamton-aquib/staline.nvim', config = function() require"themes.staline" end }
+	-- use { 'tamton-aquib/staline.nvim', config = function() require"themes.staline" end }
     -- use { 'tamton-aquib/staline.nvim', config = function() require"staline".setup{} end }
-    -- use { '~/TOOLS/staline.nvim', config = function() require"themes.staline" end}
+    use { '~/TOOLS/staline.nvim', config = function() require"themes.staline" end}
     -- use { '~/TOOLS/staline.nvim',      config = function() require"staline".setup{} end }
 
 
@@ -18,12 +18,7 @@ packer.startup { function(use)
     use { 'sainnhe/sonokai' }
     use { 'eddyekofo94/gruvbox-flat.nvim' }
 
-    use {
-		'norcalli/nvim-colorizer.lua',
-		event='BufReadPre',
-		config = function() require"plugins.plug-colorizer" end
-	}
-
+    use { 'norcalli/nvim-colorizer.lua', event='BufReadPre', config = function() require"plugins.plug-colorizer" end }
     use { 'folke/todo-comments.nvim', config = function() require'todo-comments'.setup{} end }
     use { 'lewis6991/gitsigns.nvim', config = function() require'gitsigns'.setup{} end }
 

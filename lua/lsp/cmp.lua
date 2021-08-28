@@ -1,7 +1,6 @@
 local cmp = require('cmp')
 local luasnip = require "luasnip"
 
-
 local icons = {
 	Class       = "  ",
 	Color		= "  ",
