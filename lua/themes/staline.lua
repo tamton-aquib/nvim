@@ -1,36 +1,43 @@
 --> staline setup
 -- #181a23    
-function get_git_signs()
-	local stuff = vim.b.gitsigns_status_dict
-	return stuff and stuff['head'] or "nice"
-end
-function line_perc()
-	local current_line = vim.fn.line "."
-	local total_lines = vim.fn.line "$"
-	local chars = { "_", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" }
-	local line_ratio = current_line / total_lines
-	local index = math.ceil(line_ratio * #chars)
-	return chars[index]
-end
 
 require 'stabline'.setup {
 	style = "bar",
 	-- bg = "#1e2127",
 	font_active = "bold,italic",
 	stab_start = "%#LspDiagnosticsDefaultError#    ",
-	inactive_bg = "#1e1e1e",
+	inactive_bg = "#11121d",
+	-- stab_bg = "#1e1e1e",
 	fg = "#986fec"
 }
 
 require "staline".setup {
 	sections = {
-		left = { '  ', 'mode', ' ', 'branch', '   ', 'lsp' },
+		left = { '  ', 'mode', ' ', 'branch', '   ', 'lsp',
+			function()
+				local stuff = vim.b.gitsigns_status_dict
+				local noice = stuff and (stuff.added or "")..
+					(stuff.removed or "")..
+					(stuff.changed or "") or ""
+				return noice
+				-- return stuff and stuff['head'] or "nice"
+			end
+		},
 		mid = {},
-		right = { '%{luaeval("get_git_signs()")}', 'file_name', "%{luaeval('line_perc()')}" }
+		right = { 'file_name',
+			-- function()
+				-- local current_line = vim.fn.line "."
+				-- local total_lines = vim.fn.line "$"
+				-- local chars = { "_", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" }
+				-- local line_ratio = current_line / total_lines
+				-- local index = math.ceil(line_ratio * #chars)
+				-- return chars[index]
+			-- end
+		}
 	},
 	mode_colors = {
 		n = "#986fec",
-		i = "#84a598",
+		i = "#759a51",
 	},
 	defaults = {
 		true_colors = true,

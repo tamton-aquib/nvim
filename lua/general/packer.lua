@@ -1,8 +1,8 @@
-local packer = require "packer"
-
-packer.startup { function(use)
+require "packer".startup { function(use)
 	--> Testing and temporary
     use {'rcarriga/nvim-notify'}
+	use 'lewis6991/impatient.nvim'
+	use {'lewis6991/cleanfold.nvim', config = function() require "cleanfold".setup{} end}
 
 	-- use { 'tamton-aquib/staline.nvim', config = function() require"themes.staline" end }
     -- use { 'tamton-aquib/staline.nvim', config = function() require"staline".setup{} end }
