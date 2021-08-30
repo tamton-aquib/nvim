@@ -11,20 +11,20 @@ require 'stabline'.setup {
 	fg = "#986fec"
 }
 
-require "staline".setup {
-	sections = {
-		left = { '  ', 'mode', ' ', 'branch', '   ', 'lsp',
-			function()
-				local stuff = vim.b.gitsigns_status_dict
-				local noice = stuff and (stuff.added or "")..
-					(stuff.removed or "")..
-					(stuff.changed or "") or ""
-				return noice
-				-- return stuff and stuff['head'] or "nice"
-			end
-		},
-		mid = {},
-		right = { 'file_name',
+-- require "staline".setup {
+	-- sections = {
+		-- left = { '  ', 'mode', ' ', 'branch', '   ', 'lsp',
+			-- -- function()
+				-- -- local stuff = vim.b.gitsigns_status_dict
+				-- -- local noice = stuff and (stuff.added or "")..
+					-- -- (stuff.removed or "")..
+					-- -- (stuff.changed or "") or ""
+				-- -- return noice
+				-- -- -- return stuff and stuff['head'] or "nice"
+			-- -- end
+		-- },
+		-- mid = {},
+		-- right = { 'file_name', ' ',
 			-- function()
 				-- local current_line = vim.fn.line "."
 				-- local total_lines = vim.fn.line "$"
@@ -33,18 +33,18 @@ require "staline".setup {
 				-- local index = math.ceil(line_ratio * #chars)
 				-- return chars[index]
 			-- end
-		}
-	},
-	mode_colors = {
-		n = "#986fec",
-		i = "#759a51",
-	},
-	defaults = {
-		true_colors = true,
-		line_column = " [%l/%L] :%c  ",
-		branch_symbol = " ",
-	}
-}
+		-- }
+	-- },
+	-- mode_colors = {
+		-- n = "#986fec",
+		-- i = "#759a51",
+	-- },
+	-- defaults = {
+		-- true_colors = true,
+		-- line_column = " [%l/%L] :%c  ",
+		-- branch_symbol = " ",
+	-- }
+-- }
 
 --    
 
@@ -162,38 +162,39 @@ require "staline".setup {
 	-- }
 -- }
 
--- require'staline'.setup {
-	-- sections = {
-		-- left = {
-			-- ' ', 'right_sep_double', '-mode', 'left_sep_double', ' ',
-			-- 'right_sep', '-file_name', 'left_sep', ' ',
-			-- 'right_sep_double', '-branch', 'left_sep_double', ' ',
-		-- },
-		-- mid  = {'lsp'},
-		-- right= {
-			-- 'right_sep', '-cool_symbol', 'left_sep', ' ',
-			-- 'right_sep', '- ', '-lsp_name', '- ', 'left_sep',
-			-- 'right_sep_double', '-line_column', 'left_sep_double', ' ',}
-	-- },
-	-- defaults={
-		-- -- bg="#181a23",
+require'staline'.setup {
+	sections = {
+		left = {
+			' ', 'right_sep_double', '-mode', 'left_sep_double', ' ',
+			'right_sep', '-file_name', 'left_sep', ' ',
+			'right_sep_double', '-branch', 'left_sep_double', ' ',
+		},
+		mid  = {'lsp'},
+		right= {
+			'right_sep', '-cool_symbol', 'left_sep', ' ',
+			'right_sep', '- ', '-lsp_name', '- ', 'left_sep', ' ',
+			'right_sep_double', '-line_column', 'left_sep_double', ' ',}
+	},
+	defaults={
+		-- bg="#181a23",
 		-- fg="#986fec",
-		-- cool_symbol = "  ",
-		-- left_separator = "",
-		-- right_separator = "",
-		-- -- line_column = "%l:%c [%L]",
-		-- true_colors = true,
-		-- line_column = "[%l:%c] 並%p%% "
-		-- -- font_active = "bold"
-	-- },
-	-- mode_colors = {
-		-- n = "#181a23",
-		-- i = "#181a23",
-		-- ic= "#181a23",
-		-- c = "#181a23",
-		-- v = "#181a23"
-	-- }
--- }
+		fg="#181a23",
+		cool_symbol = "  ",
+		left_separator = "",
+		right_separator = "",
+		-- line_column = "%l:%c [%L]",
+		true_colors = true,
+		line_column = "[%l:%c] 並%p%% "
+		-- font_active = "bold"
+	},
+	mode_colors = {
+		n = "#bbbbbb",
+		i = "#bbbbbb",
+		ic= "#bbbbbb",
+		c = "#bbbbbb",
+		v = "#bbbbbb"
+	}
+}
 -- 	mode_colors = {
 -- 		n = "#986fec",
 -- 		i = "#e86671",
