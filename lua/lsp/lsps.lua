@@ -1,5 +1,5 @@
 
-vim.cmd [[au CursorHoldI * lua vim.lsp.buf.signature_help({focusable=false})]]
+-- vim.cmd [[au CursorHoldI * lua vim.lsp.buf.signature_help({focusable=false})]]
 vim.cmd [[au CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics({border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }, focusable=false})]]
 
 local signs = { Error = " ", Warning = " ", Hint = "", Information = "", other = "﫠" }
@@ -35,16 +35,25 @@ end
 local sumneko_root_path = vim.fn.stdpath('data').. "/lspinstall/lua"
 local sumneko_binary = sumneko_root_path .. "/sumneko-lua-language-server"
 
-require 'lspconfig'.sumneko_lua.setup {
-	on_attach = on_attach,
-    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
-	filetypes = {'lua'},
-	settings = {
-		Lua = {
-			diagnostics = {
-				globals = {'vim'},
-			},
-			telemetry = { enable = false },
+local luadev = require "lua-dev".setup {
+	library = {
+		vimruntime = true,
+    	types = true,
+    	plugins = false,
+    },
+	lspconfig = {
+		on_attach = on_attach,
+		cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
+		filetypes = {'lua'},
+		settings = {
+			Lua = {
+				diagnostics = {
+					globals = {'vim'},
+				},
+				telemetry = { enable = false },
+			}
 		}
 	}
 }
+
+require 'lspconfig'.sumneko_lua.setup(luadev)

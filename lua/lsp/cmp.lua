@@ -39,11 +39,11 @@ cmp.setup {
 		winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
     },
 
-    -- snippet = {
-      -- expand = function(args)
-        -- require("luasnip").lsp_expand(args.body)
-      -- end,
-    -- },
+    snippet = {
+      expand = function(args)
+        require("luasnip").lsp_expand(args.body)
+      end,
+    },
 
 	mapping = {
 		['<C-n>'] = cmp.mapping.select_next_item(),

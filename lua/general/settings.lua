@@ -4,6 +4,7 @@ vim.cmd [[ filetype plugin indent off ]]
 vim.opt.spell = false
 set.fillchars = 'eob: ,vert: '
 -- set.listchars = 'tab:▏ '
+-- let &colorcolumn=join(range(81,999),",")
 
 vim.g.loaded_gzip = false
 vim.g.loaded_matchit = false

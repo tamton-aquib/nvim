@@ -3,11 +3,13 @@ require "packer".startup { function(use)
     use {'rcarriga/nvim-notify'}
 	use 'lewis6991/impatient.nvim'
 	use {'lewis6991/cleanfold.nvim', config = function() require "cleanfold".setup{} end}
+	use 'folke/lua-dev.nvim'
 
 	-- use { 'tamton-aquib/staline.nvim', config = function() require"themes.staline" end }
     -- use { 'tamton-aquib/staline.nvim', config = function() require"staline".setup{} end }
     use { '~/TOOLS/staline.nvim', config = function() require"themes.staline" end}
     -- use { '~/TOOLS/staline.nvim',      config = function() require"staline".setup{} end }
+	-- use {'hoob3rt/lualine.nvim', config = function() require"lualine".setup{} end}
 
 
     --> THEMES AND UI
@@ -27,6 +29,7 @@ require "packer".startup { function(use)
     --> LSP and COMPLETION
     use 'neovim/nvim-lspconfig'
 	-- use { 'hrsh7th/nvim-compe', after="LuaSnip", event = 'InsertEnter', config = function() require"lsp.compe-config" end }
+	use { 'L3MON4D3/LuaSnip', config = function() require"plugins.snippets" end }
 	use 'kabouzeid/nvim-lspinstall'
 	use 'hrsh7th/nvim-cmp'
 	use 'hrsh7th/cmp-buffer'
@@ -48,9 +51,8 @@ require "packer".startup { function(use)
 
 
 	--> GENERAL PURPOSE
-	use { 'L3MON4D3/LuaSnip', config = function() require"plugins.snippets" end }
 	use { 'kyazdani42/nvim-web-devicons', config = function() require "plugins.web_devicons" end }
-	use { 'steelsojka/pears.nvim', config=function() require"plugins.pears" end}
+	use { 'steelsojka/pears.nvim', config=function() require"pears".setup() end}
 	use { 'akinsho/nvim-toggleterm.lua', event = "BufWinEnter", config = function() require"plugins.floaterm" end }
 	use { 'tamago324/lir.nvim', config = function() require"plugins.lir" end }
 	use { 'iamcco/markdown-preview.nvim', ft={'markdown'},
