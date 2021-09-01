@@ -6,9 +6,9 @@ require 'stabline'.setup {
 	style = "bar",
 	-- bg = "#1e2127",
 	font_active = "bold,italic",
-	stab_start = "%#LspDiagnosticsDefaultError#   ",
-	inactive_bg = "#11121d",
-	-- stab_bg = "#1e1e1e",
+	stab_start = "%#LspDiagnosticsDefaultError#    ",
+	inactive_bg = "#1e1e1e",
+	stab_bg = "#1e1e1e",
 	fg = "#986fec",
 	-- stab_end = [[%{luaeval("get_stuff()")}]]
 }
@@ -231,4 +231,4 @@ Styles.pebble_line = {
 -- local leftSeparator = ""	-->      
 -- local rightSeparator = ""	-->      
 
-require "staline".setup(Styles.evil_line)
+require "staline".setup(Styles.pebble_line)

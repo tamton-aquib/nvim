@@ -10,5 +10,5 @@ map('n', '<C-n>', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
 map('n', '<C-p>', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 
 vim.cmd [[au BufWritePre *.js,*.jsx lua vim.lsp.buf.formatting_sync(nil, 100)]]
-vim.cmd [[au CursorHoldI * lua vim.lsp.buf.signature_help({focusable=false})]]
+-- vim.cmd [[au CursorHoldI * lua vim.lsp.buf.signature_help({focusable=false})]]
 vim.cmd [[au CursorHold  * lua vim.lsp.diagnostic.show_line_diagnostics({border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }, focusable=false})]]
