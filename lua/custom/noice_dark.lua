@@ -46,6 +46,7 @@ local Usual = {
 	UsualHighlights = {
 		-- Normal		= { fg = c.white_two, bg = back },
 		NormalFloat = { fg = c.white_two, bg = c.background_dark, blend=50},
+		String		= { fg = c.green_two },
 		FloatBorder = { fg = c.blue_three, bg = c.background_dark},
 		LineNr		= { fg = c.white_three, bg = nil },
 		SignColumn	= { bg = nil},

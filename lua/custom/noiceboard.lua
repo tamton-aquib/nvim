@@ -83,7 +83,7 @@ function M.delete_noice_screen()
 end
 
 function M.setup()
-    vim.cmd [[au BufEnter * lua require'custom.noiceboard'.delete_noice_screen()]]
+    vim.cmd [[au BufEnter,WinEnter,BufWinEnter * lua require'custom.noiceboard'.delete_noice_screen()]]
     M.noice_board()
 end
 
@@ -132,8 +132,8 @@ function M.noice_board()
 
 	    empty()
 	    set_lines(#header, header, 'String'); empty() empty()
-	    set_lines(#d, d, 'TSVariable', true);       empty()
-	    set_lines(1, {'taj@arch'}, 'TSType')
+	    set_lines(#d, d, 'Function', true);       empty()
+	    set_lines(1, {'taj@arch'}, 'Constant')
 
 	    -- TODO: set CursorMoved autocmd to make it smooth
 	    -- vim.cmd [[au CursorMoved * lua require'noiceboard'.go_to_line()]]

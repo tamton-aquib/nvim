@@ -6,12 +6,13 @@ require 'stabline'.setup {
 	style = "bar",
 	-- bg = "#1e2127",
 	font_active = "bold,italic",
-	stab_start = "%#LspDiagnosticsDefaultError#    ",
+	stab_start = "%#LspDiagnosticsDefaultError#   ",
 	inactive_bg = "#11121d",
 	-- stab_bg = "#1e1e1e",
-	fg = "#986fec"
+	fg = "#986fec",
+	-- stab_end = [[%{luaeval("get_stuff()")}]]
 }
-
+-- 
 Styles.simple_line = {
 	sections = {
 		left = { '  ', 'mode', ' ', 'branch', '   ', 'lsp',
@@ -61,13 +62,28 @@ Styles.simple_line = {
 Styles.evil_line = {
 	sections = {
 		left = {
-			'▊', '   ', { 'Evil', '  ' }, ' ',       -- The mode and evil sign
+			'▊', '  ', { 'Evil', '  ' }, ' ',       -- The mode and evil sign
 			'file_size', ' ',                         -- Filesize
 			{ 'StalineFile', 'file_name' }, ' ',       -- Filename in different highlight
 			'lsp'
 		},
 		mid = { 'lsp_name' },                         -- "lsp_name" is still a little buggy
 		right = {
+
+			-- function()
+				-- local stuff = vim.b.gitsigns_status_dict
+				-- local symbols = { added = "  ", changed = "柳", removed = " " }
+				-- local noice = ""
+				-- for k, v in pairs(symbols) do
+					-- -- noice = noice .. (stuff and symbols[k]..stuff[k] or "").." "
+					-- noice = noice .. (stuff and (stuff[k] and symbols[k]..stuff[k] or "") or "")
+				-- end
+-- 
+				-- return noice.."  "
+			-- end,
+				-- return stuff and stuff['head'] or "nice"
+			-- end, '  ',
+			{'StalineGit', ' %l/%L :%c  '},
 			{ 'StalineEnc', vim.bo.fileencoding:upper() }, '  ',  -- Example for custom section
 			{ 'StalineEnc', 'cool_symbol' }, ' ',                 -- the cool_symbol for your OS
 			{ 'StalineGit', 'branch' }, ' ',

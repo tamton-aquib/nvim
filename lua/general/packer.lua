@@ -4,6 +4,7 @@ require "packer".startup { function(use)
 	use 'lewis6991/impatient.nvim'
 	use {'lewis6991/cleanfold.nvim', config = function() require "cleanfold".setup{} end}
 	use 'folke/lua-dev.nvim'
+	use 'JoosepAlviste/nvim-ts-context-commentstring'
 
 	-- use { 'tamton-aquib/staline.nvim', config = function() require"themes.staline" end }
     -- use { 'tamton-aquib/staline.nvim', config = function() require"staline".setup{} end }
@@ -64,9 +65,8 @@ require "packer".startup { function(use)
 
     use {'lukas-reineke/indent-blankline.nvim', event="BufReadPost",
 		config = function()
-			vim.g.indentLine_enabled = 1
+			-- vim.g.indentLine_enabled = 1
 			vim.g.indent_blankline_char = "▏"
-
 			vim.g.indent_blankline_filetype_exclude = {"help", "terminal", "dashboard", "packer", "norg"}
 			vim.g.indent_blankline_buftype_exclude = {"terminal", "norg"}
 		end
