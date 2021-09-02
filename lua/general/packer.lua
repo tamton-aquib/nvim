@@ -1,10 +1,17 @@
+local fn = vim.fn
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+  fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  vim.cmd 'packadd packer.nvim'
+end
+
 require "packer".startup { function(use)
 	--> Testing and temporary
     use {'rcarriga/nvim-notify'}
 	use 'lewis6991/impatient.nvim'
 	use {'lewis6991/cleanfold.nvim', config = function() require "cleanfold".setup{} end}
 	use 'folke/lua-dev.nvim'
-	use 'JoosepAlviste/nvim-ts-context-commentstring'
+	-- use 'JoosepAlviste/nvim-ts-context-commentstring'
 
 	-- use { 'tamton-aquib/staline.nvim', config = function() require"themes.staline" end }
     -- use { 'tamton-aquib/staline.nvim', config = function() require"staline".setup{} end }

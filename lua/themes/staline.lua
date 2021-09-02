@@ -231,4 +231,4 @@ Styles.pebble_line = {
 -- local leftSeparator = ""	-->      
 -- local rightSeparator = ""	-->      
 
-require "staline".setup(Styles.pebble_line)
+require "staline".setup(Styles.simple_line)
