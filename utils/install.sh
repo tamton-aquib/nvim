@@ -15,15 +15,6 @@ fi
 
 sleep 1
 
-echo -e "\n=> Installing packer..\n"
-
-git clone https://github.com/wbthomason/packer.nvim \
-  ~/.local/share/nvim/site/pack/packer/start/packer.nvim 2>/dev/null
-  
-echo -e "${G}=> Packer installed!${E}"
-
-sleep 1
-
 echo -e "\n${G}Cloning the repo...${E}\n"
 git clone https://github.com/tamton-aquib/nvim.git ~/.config/nvim 2>/dev/null
 echo -e "\n${G}Cloned Successfully!${E}\n"
