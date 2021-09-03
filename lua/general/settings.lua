@@ -2,7 +2,7 @@ local set = vim.opt
 
 vim.cmd [[ filetype plugin indent off ]]
 vim.opt.spell = false
-set.fillchars = 'eob: ,vert: '
+set.fillchars = 'eob: '
 -- set.listchars = 'tab:▏ '
 -- let &colorcolumn=join(range(81,999),",")
 
@@ -63,11 +63,12 @@ set.title = true
 set.titlestring = "  Editing %f..."
 
 set.tabstop = 4
-set.softtabstop = 4
+set.softtabstop = 0
 set.shiftwidth = 4
 set.expandtab = false
 set.smartindent = true
--- set.autoindent = true
+set.autoindent = true
 -- set.copyindent = true
 -- set.breakindent = true
 -- set.preserveindent = true
+vim.cmd( [[ autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=300} ]])

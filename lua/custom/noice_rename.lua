@@ -13,7 +13,11 @@ end
 function Rename.pre()
 	Rename.rename_old = vim.fn.expand('<cword>')
 	Rename.noice_buf = vim.api.nvim_create_buf(false, false)
-	vim.api.nvim_open_win(Rename.noice_buf, true, {relative='cursor', border=border, row=1, col=1,  width=10, height=1, style='minimal'})
+	local win = vim.api.nvim_open_win(Rename.noice_buf, true, {
+		relative='cursor', border=border, style='minimal',
+		row=1, col=1,  width=10, height=1,
+	})
+	vim.wo[win].winblend = 30
 	vim.cmd [[startinsert]]
 	vim.api.nvim_buf_set_keymap(Rename.noice_buf, 'i', '<CR>', '<cmd>lua require"custom.noice_rename".post()<CR>', {noremap=true, silent=true})
 end

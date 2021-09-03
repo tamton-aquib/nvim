@@ -4,12 +4,14 @@ Styles = {}
 
 require 'stabline'.setup {
 	style = "bar",
-	-- bg = "#1e2127",
 	font_active = "bold,italic",
 	stab_start = "%#LspDiagnosticsDefaultError#    ",
+
 	inactive_bg = "#1e1e1e",
 	stab_bg = "#1e1e1e",
 	fg = "#986fec",
+	-- bg = "#1e2127",
+
 	-- stab_end = [[%{luaeval("get_stuff()")}]]
 }
 -- 
@@ -45,6 +47,7 @@ Styles.simple_line = {
 		true_colors = true,
 		line_column = " [%l/%L] :%c  ",
 		branch_symbol = " ",
+		font_active = "bold"
 	}
 }
 

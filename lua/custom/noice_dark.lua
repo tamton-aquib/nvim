@@ -4,6 +4,8 @@ local ns = vim.api.nvim_create_namespace('noice_dark')
 
 local c = {
 	black            = "#000000",
+	background       = "#282c34",
+	background_dark  = "#1f1f1f",
 
 	violet_one       = "#c678dd",
 	violet_two       = "#986fec",
@@ -31,8 +33,6 @@ local c = {
 	white_two        = "#dddddd",
 	white_five       = "#999999",
 	white_three      = "#5c6370",
-	background       = "#282c34",
-	background_dark  = "#1f1f1f",
 }
 
 local back
