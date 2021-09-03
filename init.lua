@@ -1,5 +1,5 @@
 --> GENERAL SETTINGS AND MAPPINGS
-require 'impatient'
+-- require 'impatient'
 require 'general.settings'
 require 'general.functions'
 require 'general.mappings'
