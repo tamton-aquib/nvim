@@ -5,8 +5,6 @@ local this = vim.api.nvim_get_current_buf
 local noice = {noremap=true, silent=true}
 Open_term = require'toggleterm.terminal'.Terminal
 
-local border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏"}
-
 require("toggleterm").setup{
 	hide_numbers = true,
 	start_in_insert = true,
@@ -18,7 +16,7 @@ require("toggleterm").setup{
 	close_on_exit = false,
 	direction = 'float',
 	float_opts = {
-		border = border,
+		border = require"general.utils".border,
 		winblend = 30,
 		highlights = {
 			border = "FloatBorder",

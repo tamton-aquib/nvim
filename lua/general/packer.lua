@@ -9,9 +9,7 @@ require "packer".startup { function(use)
 	--> Testing and temporary
     use {'rcarriga/nvim-notify'}
 	use 'lewis6991/impatient.nvim'
-	use {'lewis6991/cleanfold.nvim', config = function() require "cleanfold".setup{} end}
-	use 'folke/lua-dev.nvim'
-	-- use 'JoosepAlviste/nvim-ts-context-commentstring'
+	use 'tamton-aquib/tokyodark.nvim'
 
 	-- use { 'tamton-aquib/staline.nvim', config = function() require"themes.staline" end }
     -- use { 'tamton-aquib/staline.nvim', config = function() require"staline".setup{} end }
@@ -24,7 +22,7 @@ require "packer".startup { function(use)
     -- use { 'ghifarit53/tokyonight-vim' }
 	use 'folke/tokyonight.nvim'
 	-- use 'tiagovla/tokyodark.nvim'
-	use '~/TOOLS/tokyodark.nvim'
+	-- use '~/TOOLS/tokyodark.nvim'
     use { 'sainnhe/sonokai' }
     use { 'eddyekofo94/gruvbox-flat.nvim' }
 
@@ -36,10 +34,10 @@ require "packer".startup { function(use)
 
     --> LSP and COMPLETION
     use 'neovim/nvim-lspconfig'
+	use 'kabouzeid/nvim-lspinstall'
 	-- use { 'hrsh7th/nvim-compe', after="LuaSnip", event = 'InsertEnter', config = function() require"lsp.compe-config" end }
 	use { 'L3MON4D3/LuaSnip', config = function() require"plugins.snippets" end }
-	use 'kabouzeid/nvim-lspinstall'
-	use 'hrsh7th/nvim-cmp'
+	use {'hrsh7th/nvim-cmp'}
 	use 'hrsh7th/cmp-buffer'
 	use 'hrsh7th/cmp-nvim-lsp'
 	use 'hrsh7th/cmp-path'
@@ -59,6 +57,8 @@ require "packer".startup { function(use)
 
 
 	--> GENERAL PURPOSE
+	use {'lewis6991/cleanfold.nvim', config = function() require "cleanfold".setup{} end}
+	use 'folke/lua-dev.nvim'
 	use { 'kyazdani42/nvim-web-devicons', config = function() require "plugins.web_devicons" end }
 	use { 'steelsojka/pears.nvim', config=function() require"pears".setup() end}
 	use { 'akinsho/nvim-toggleterm.lua', event = "BufWinEnter", config = function() require"plugins.floaterm" end }
@@ -90,8 +90,7 @@ end,
 			working_sym = "",
 			open_fn = function()
 				return require('packer.util').float{
-					border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }
-					-- border = 'shadow'
+					border = require"general.utils".border
 				}
 			end
 		}

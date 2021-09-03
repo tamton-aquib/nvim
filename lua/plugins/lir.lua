@@ -38,10 +38,9 @@ require'lir'.setup {
 		-- argument of nvim_open_win().
 		win_opts = function()
 		  return {
-		    border = require("lir.float.helper").make_border_opts({
-		      -- "+", "─", "+", "│", "+", "─", "+", "│",
-				"🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏"
-		    }, "FloatBorder"),
+		    border = require("lir.float.helper").make_border_opts(
+				require"general.utils".border
+		    , "FloatBorder"),
 		  }
 		end,
 	},

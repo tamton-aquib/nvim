@@ -17,7 +17,7 @@ function Colo.random()
 end
 
 function Colo.tokyodark(transparent)
-	vim.g.tokyodark_transparent_background = transparent and true or false
+	vim.g.tokyodark_transparent_background = true
 	vim.g.tokyodark_enable_italic = false
 
 	vim.cmd [[colo tokyodark]]

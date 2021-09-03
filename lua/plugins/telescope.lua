@@ -1,6 +1,4 @@
 
--- local border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }
-
 require('telescope').setup{
 	defaults = {
 		vimgrep_arguments = {
@@ -32,9 +30,7 @@ require('telescope').setup{
 		generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
 		winblend = 0,
 		border = {},
-		borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
-
-		-- borderchars = { "▔", "▕", "▁", "▏", "🭽", "🭾", "🭿", "🭼" },
+		borderchars = require"general.utils".border,
 		color_devicons = true,
 		use_less = true,
 		path_display = {},

@@ -1,5 +1,5 @@
+local border = require"general.utils".border
 local signs = { Error = " ", Warning = " ", Hint = "", Information = "", other = "﫠" }
-local border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏"}
 
 for type, icon in pairs(signs) do
 	local hl = "LspDiagnosticsSign" .. type
