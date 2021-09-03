@@ -32,16 +32,15 @@ require'lir'.setup {
 		['P'] = clipboard_actions.paste,
 	},
 	float = {
-		winblend = 30,
+		winblend = 0,
 
 		-- You can define a function that returns a table to be passed as the third
 		-- argument of nvim_open_win().
 		win_opts = function()
 		  return {
-		    border = require("lir.float.helper").make_border_opts({
-		      "+", "─", "+", "│", "+", "─", "+", "│",
-			  -- "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏"
-		    }, "FloatBorder"),
+		    border = require("lir.float.helper").make_border_opts(
+				require"general.utils".border
+		    , "FloatBorder"),
 		  }
 		end,
 	},

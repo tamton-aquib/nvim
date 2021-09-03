@@ -1,20 +1,20 @@
+local border = require"general.utils".border
+local signs = { Error = " ", Warning = " ", Hint = "", Information = "", other = "﫠" }
 
-vim.cmd [[au CursorHoldI * lua vim.lsp.buf.signature_help({focusable=false})]]
--- vim.cmd [[au CursorHold * lua vim.lsp.buf.hover()]]
-vim.cmd [[au CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics({border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }, focusable=false})]]
-
-local border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏"}
+for type, icon in pairs(signs) do
+	local hl = "LspDiagnosticsSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
 
 local on_attach = function(_, _)
 	vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with(
 		vim.lsp.handlers.hover, {border = border})
 	vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with(
 		vim.lsp.handlers.signature_help, {border = border})
+	vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+		vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false }
+	)
 end
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-	vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false }
-)
 
 require'lspinstall'.setup()
 
@@ -30,25 +30,25 @@ end
 local sumneko_root_path = vim.fn.stdpath('data').. "/lspinstall/lua"
 local sumneko_binary = sumneko_root_path .. "/sumneko-lua-language-server"
 
-require 'lspconfig'.sumneko_lua.setup {
-	on_attach = on_attach,
-    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
-	filetypes = {'lua'},
-	settings = {
-		Lua = {
-			diagnostics = {
-				globals = {'vim'},
-			},
-			telemetry = { enable = false },
+local luadev = require "lua-dev".setup {
+	library = {
+		vimruntime = true,
+    	types = true,
+    	plugins = false,
+    },
+	lspconfig = {
+		on_attach = on_attach,
+		cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
+		filetypes = {'lua'},
+		settings = {
+			Lua = {
+				diagnostics = {
+					globals = {'vim'},
+				},
+				telemetry = { enable = false },
+			}
 		}
 	}
 }
 
-
-local jdtls_root_path = vim.fn.stdpath('data').. "/lspinstall/java"
-require 'lspconfig'.java.setup{
-	cmd = {jdtls_root_path..'/jdtls.sh'},
-	filetypes = {'java'},
-	on_attach = on_attach,
-}
-
+require 'lspconfig'.sumneko_lua.setup(luadev)

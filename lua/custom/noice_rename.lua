@@ -1,6 +1,6 @@
 Rename = {}
 
-local border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏"}
+local border = require"general.utils".border
 
 function Rename.post()
 	local new = vim.api.nvim_get_current_line()

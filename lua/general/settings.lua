@@ -2,6 +2,9 @@ local set = vim.opt
 
 vim.cmd [[ filetype plugin indent off ]]
 vim.opt.spell = false
+set.fillchars = 'eob: ,vert: '
+-- set.listchars = 'tab:▏ '
+-- let &colorcolumn=join(range(81,999),",")
 
 vim.g.loaded_gzip = false
 vim.g.loaded_matchit = false
@@ -33,7 +36,7 @@ set.smarttab = true
 set.backup = false
 set.writebackup = false
 set.conceallevel = 0
-set.cmdheight = 2
+set.cmdheight = 1
 set.splitright = true
 set.splitbelow = true
 set.pumheight = 10

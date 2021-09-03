@@ -23,13 +23,13 @@ require('neorg').setup {
 						level_1 = {
 							enable = true,
 							icon = "",
-							highlight = "NeorgQuote"
+							highlight = "String"
 						}
 					}
 				}
 			}
 		},
-		["core.norg.tangle"] = {},
+		-- ["core.norg.tangle"] = {},
 		["core.integrations.telescope"] = {},
 		["core.integrations.treesitter"] =  {
 			config = {

@@ -5,19 +5,18 @@ local this = vim.api.nvim_get_current_buf
 local noice = {noremap=true, silent=true}
 Open_term = require'toggleterm.terminal'.Terminal
 
-local border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏"}
-
 require("toggleterm").setup{
 	hide_numbers = true,
 	start_in_insert = true,
 	insert_mappings = true,
+	-- open_mapping = [[<leader>t]],
 	shade_terminals = true,
 	shading_factor = '3',
 	persist_size = true,
 	close_on_exit = false,
 	direction = 'float',
 	float_opts = {
-		border = border,
+		border = require"general.utils".border,
 		winblend = 30,
 		highlights = {
 			border = "FloatBorder",
@@ -36,7 +35,7 @@ local files = {
 }
 
 map('n', '<leader>l', ':lua Open_term:new{cmd="lazygit", close_on_exit=true}:toggle()<CR>', noice)
-map('n', '<leader>t', ':lua Open_term:new{cmd=nil, close_on_exit=true}:toggle()<CR>', noice)
+map('n', '<leader>t', ':lua Open_term:new{cmd=nil, close_on_exit=true, count=5}:toggle()<CR>', noice)
 
 function Run_file()
 	local command = files[vim.bo.filetype]
