@@ -11,9 +11,9 @@ require "packer".startup { function(use)
 	use 'lewis6991/impatient.nvim'
 	use 'tamton-aquib/tokyodark.nvim'
 
-	-- use { 'tamton-aquib/staline.nvim', config = function() require"themes.staline" end }
+	use { 'tamton-aquib/staline.nvim', config = function() require"themes.staline" end }
     -- use { 'tamton-aquib/staline.nvim', config = function() require"staline".setup{} end }
-    use { '~/TOOLS/staline.nvim', config = function() require"themes.staline" end}
+    -- use { '~/TOOLS/staline.nvim', config = function() require"themes.staline" end}
     -- use { '~/TOOLS/staline.nvim',      config = function() require"staline".setup{} end }
 	-- use {'hoob3rt/lualine.nvim', config = function() require"lualine".setup{} end}
 
