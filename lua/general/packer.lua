@@ -7,9 +7,10 @@ end
 
 require "packer".startup { function(use)
 	--> Testing and temporary
-    use {'rcarriga/nvim-notify'}
+    use { 'rcarriga/nvim-notify' }
 	use 'lewis6991/impatient.nvim'
 	use 'tamton-aquib/tokyodark.nvim'
+	-- use {'jdhao/better-escape.vim', config=function() vim.g.better_escape_shortcut = 'jk' end }
 
 	use { 'tamton-aquib/staline.nvim', config = function() require"themes.staline" end }
     -- use { 'tamton-aquib/staline.nvim', config = function() require"staline".setup{} end }

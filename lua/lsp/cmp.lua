@@ -2,28 +2,33 @@ local cmp = require('cmp')
 local luasnip = require "luasnip"
 
 local icons = {
-	Class       = "  ",
-	Color		= "  ",
-	Constant	= "  ",
-	Constructor = "  ",
-	Enum		= " 了",
-	EnumMember  = "  ",
-	Field		= "  ",
-	File		= "  ",
-	Folder		= "  ",
-	Function	= "  ",
-	Interface	= " ﰮ ",
-	Keyword		= "  ",
-	Method		= " ƒ ",
-	Module		= "  ",
-	Property	= "  ",
-	Snippet		= "  ",
-	Struct		= "  ",
-	Text		= "  ",
-	Unit		= "  ",
-	Value		= "  ",
-	Variable	= "  ",
+	Class = " ",
+	Color = " ",
+	Constant = " ",
+	Constructor = " ",
+	Enum = "了 ",
+	EnumMember = " ",
+	Event = "",
+	Field = "ﰠ",
+	File = "",
+	Folder = " ",
+	Function = " ",
+	Interface = "ﰮ ",
+	Keyword = " ",
+	Method = "ƒ ",
+	Module = " ",
+	Operator = "",
+	Property = " ",
+	Reference = "",
+	Snippet = "﬌ ",
+	Struct = " ",
+	Text = "",
+	TypeParameter = "",
+	Unit = "塞",
+	Value = " ",
+	Variable = "",
 }
+
 local check_back_space = function()
   local col = vim.fn.col '.' - 1
   return col == 0 or vim.fn.getline('.'):sub(col, col):match '%s' ~= nil
@@ -115,6 +120,5 @@ cmp.setup {
 		{ name = 'buffer'},
 		{ name = 'emoji'},
 	},
-
 }
 

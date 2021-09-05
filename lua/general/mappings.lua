@@ -5,7 +5,7 @@ local function map(mode, key, mapping) vim.api.nvim_set_keymap(mode, key, mappin
 --> Custom
 map('n', '<leader>s', ':lua require"general.functions".swap_bool()<CR>')
 map('n', 'gxx',       ':lua require"general.functions".go_to_url()<CR>')
-map('n', 'gxm',       ':lua require"general.functions".go_to_url("nice")<CR>')
+map('n', 'gxm',       ':lua require"general.functions".go_to_url("github")<CR>')
 map('n', '<leader>u', ':lua require"general.functions".packer_do_everything()<CR>')
 map('n', '<C-t>',     ':lua require"general.functions".toggle_transparent()<CR>')
 map('n', '<M-h>',     ':lua vim.cmd(":vert :h "..vim.fn.expand("<cword>"))<CR>')
