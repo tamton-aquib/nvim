@@ -31,8 +31,8 @@ map('n', '<M-k>', ':m .-2<CR>==')
 
 --> OLD
 map('n', '<leader>a','ggVG')
-map('i', 'jk', '<Esc>')
-map('n', 'n', 'nzz')
+-- map('i', 'jk', '<Esc>')
+-- map('n', 'n', 'nzz')
 map('i', '<C-u>', '<Esc>viwUi')
 map('n', '<C-u>', 'viwU')
 map('n', '<TAB>', ':bnext<CR>')
