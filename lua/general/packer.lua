@@ -10,6 +10,13 @@ require "packer".startup { function(use)
     use { 'rcarriga/nvim-notify' }
 	use 'lewis6991/impatient.nvim'
 	use 'sunjon/extmark-toy.nvim'
+	use {
+		'tamton-aquib/dynamic-cursor.nvim',
+		-- '~/TOOLS/nvim_stuff/cursor_color',
+		after="nvim-treesitter",
+		config=function() require "dynamic-cursor".setup{} end
+	}
+
 	-- use {'jdhao/better-escape.vim', config=function() vim.g.better_escape_shortcut = 'jk' end }
 
 	-- use { 'tamton-aquib/staline.nvim', config = function() require"themes.staline" end }

@@ -100,7 +100,7 @@ function M.set_folder(filename)
     M.Flag = true
     vim.cmd(':e '..filename)
     vim.api.nvim_set_current_dir(
-	vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':h')
+		vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':h')
     )
 end
 

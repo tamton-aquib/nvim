@@ -5,7 +5,8 @@ Styles = {}
 require 'stabline'.setup {
 	style = "bar",
 	font_active = "bold,italic",
-	stab_start = "%#LspDiagnosticsDefaultError#    ",
+	stab_start = "%#LspDiagnosticsDefaultError#    ",
+	-- stab_start = "%#DynamicCursor#    ",
 
 	inactive_bg = "#1e1e1e",
 	stab_bg = "#1e1e1e",

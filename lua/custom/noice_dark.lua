@@ -86,29 +86,29 @@ local Usual = {
 		TSString		= { fg = c.green_two },
 		TSInclude		= { fg = c.violet_one},
 		TSComment		= { fg = c.white_three, italic = true},
-		TSFuncBuiltin		= { fg = c.blue_two},
-		TSTypeBuiltin		= { fg = c.violet_one},
 		TSMethod		= { fg = c.blue_two},
+
 		TSVariable		= { fg = c.white_two },
-		TSFunction		= { fg = c.violet_one },
 		TSVariableBuiltin	= { fg = c.red_two},
-
+		TSFunction		= { fg = c.violet_one },
+		TSFuncBuiltin		= { fg = c.blue_two},
 		TSType			= { fg = c.red_two},
-		TSField			= { fg = c.red_two},
+		TSTypeBuiltin		= { fg = c.violet_one},
 
+		TSField			= { fg = c.red_two},
 		TSOperator		= { fg = c.red_two },
-		TSPunctDelimiter	= { fg = c.white_one},
 		TSRepeat		= { fg = c.red_two},
 		TSConstructor		= { fg = c.blue_one },
 		TSProperty		= { fg = c.blue_two},
 
-		TSPunctBracket		= { fg = c.blue_two},
-		-- TSPunctDelimiter
+		-- TSPunctDelimiter = {fg = c.black},
 		TSParameter		= { fg = c.orange_two},
 		TSConditional		= { fg = c.red_two},
 		TSPunctSpecial		= { fg = c.red_one },
-		TSNone			= { fg = c.red_one},
+		TSPunctBracket		= { fg = c.blue_two},
+		TSPunctDelimiter	= { fg = c.violet_three},
 		TSTagDelimiter  	= { fg = c.violet_one},
+		TSNone			= { fg = c.red_one},
 		TSTagAttribute		= { fg = c.red_two},
 	},
 
