@@ -10,7 +10,8 @@ require 'custom.noice_rename'.setup()
 require 'custom.noiceboard'.setup()
 require 'custom.noice_sus'.setup()
 require 'custom.noice_comment'.setup()
-require 'custom.noice_escape'.setup()
+require 'custom.noice_cursor'.setup()
+-- require 'custom.noice_escape'.setup()
 require 'themes.colorschemes'.tokyodark(false)
 
 --> LSP SETTINGS

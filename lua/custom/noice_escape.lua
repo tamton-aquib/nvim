@@ -1,3 +1,4 @@
+-- NOTE: this does not work as intended. The timer functions are useless as of now
 M = {}
 local uv = vim.loop
 local Flag = false
@@ -33,7 +34,6 @@ end
 
 function M.setup()
 	for k in pairs(package.loaded) do if k:match("^better_escape") then package.loaded[k] = nil end end
-
 	vim.cmd [[au InsertCharPre * lua require "custom.noice_escape".start_listening()]]
 end
 

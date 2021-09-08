@@ -9,12 +9,12 @@ require "packer".startup { function(use)
 	--> Testing and temporary
     use { 'rcarriga/nvim-notify' }
 	use 'lewis6991/impatient.nvim'
-	use 'tamton-aquib/tokyodark.nvim'
+	use 'sunjon/extmark-toy.nvim'
 	-- use {'jdhao/better-escape.vim', config=function() vim.g.better_escape_shortcut = 'jk' end }
 
-	use { 'tamton-aquib/staline.nvim', config = function() require"themes.staline" end }
+	-- use { 'tamton-aquib/staline.nvim', config = function() require"themes.staline" end }
     -- use { 'tamton-aquib/staline.nvim', config = function() require"staline".setup{} end }
-    -- use { '~/TOOLS/staline.nvim', config = function() require"themes.staline" end}
+    use { '~/TOOLS/staline.nvim', config = function() require"themes.staline" end}
     -- use { '~/TOOLS/staline.nvim',      config = function() require"staline".setup{} end }
 	-- use {'hoob3rt/lualine.nvim', config = function() require"lualine".setup{} end}
 
@@ -22,7 +22,7 @@ require "packer".startup { function(use)
     --> THEMES AND UI
     -- use { 'ghifarit53/tokyonight-vim' }
 	use 'folke/tokyonight.nvim'
-	-- use 'tiagovla/tokyodark.nvim'
+	use 'tiagovla/tokyodark.nvim'
 	-- use '~/TOOLS/tokyodark.nvim'
     use { 'sainnhe/sonokai' }
     use { 'eddyekofo94/gruvbox-flat.nvim' }
