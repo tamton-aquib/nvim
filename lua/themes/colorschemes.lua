@@ -28,7 +28,7 @@ end
 function Colo.tokyonight(transparent)
 	vim.g.tokyonight_italic_keywords = false
 	vim.g.tokyonight_italic_functions = false
-	vim.g.tokyonight_style = "night"
+	-- vim.g.tokyonight_style = "night"
 	-- vim.g.tokyonight_transparent_background = transparent and 1 or 0
 	vim.g.tokyonight_transparent = transparent and 1 or 0
 

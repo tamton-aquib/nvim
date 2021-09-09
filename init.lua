@@ -10,7 +10,9 @@ require 'custom.noice_rename'.setup()
 require 'custom.noiceboard'.setup()
 require 'custom.noice_sus'.setup()
 require 'custom.noice_comment'.setup()
-require 'themes.colorschemes'.tokyodark(false)
+require 'themes.colorschemes'.tokyonight(false)
+
+-- require'alpha'.setup(require'alpha.themes.startify'.opts)
 
 --> LSP SETTINGS
 require 'lsp.lspconfig'

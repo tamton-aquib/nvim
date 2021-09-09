@@ -37,27 +37,19 @@ cmp.setup {
 	formatting ={
 		format = function(entry, item)
 			item.kind = icons[item.kind] or "noice"
-			-- item.menu = ({
-				-- buffer = "[Buffer]",
-				-- nvim_lsp = "[LSP]",
-				-- luasnip = "n",
-				-- nvim_lua = "[Lua]",
-			-- })[entry.source.name]
 			return item
 		end
 	},
     documentation = {
-		-- border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
 		border = require"general.utils".border,
-		-- border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" },
 		winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
     },
 
-    -- snippet = {
-      -- expand = function(args)
-        -- require("luasnip").lsp_expand(args.body)
-      -- end,
-    -- },
+    snippet = {
+      expand = function(args)
+        require("luasnip").lsp_expand(args.body)
+      end,
+    },
 
 	mapping = {
 		['<C-n>'] = cmp.mapping.select_next_item(),
@@ -70,22 +62,11 @@ cmp.setup {
 			behavior = cmp.ConfirmBehavior.Replace,
 			select = true,
 		}),
-		-- ['<Tab>'] = function(fallback)
-			-- if vim.fn.pumvisible() == 1 then
-				-- vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-n>', true, true, true), 'n')
-	        -- elseif luasnip and luasnip.expand_or_jumpable() then
-				-- vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-expand-or-jump', true, true, true), '')
-			-- else
-				-- fallback()
-			-- end
-		-- end,
 
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if vim.fn.pumvisible() == 1 then
 				vim.fn.feedkeys(t("<C-n>"), "n")
 			elseif luasnip.expand_or_jumpable() then
-				-- vim.fn.feedkeys(t("<Plug>luasnip-expand-or-jump"), "")
-				-- vim.fn.feedkeys(t("<cmd>lua require'luasnip'.expand_or_jump()"), "")
 				luasnip.expand_or_jump()
 			elseif check_back_space() then
 				vim.fn.feedkeys(t("<Tab>"), "n")
@@ -93,12 +74,11 @@ cmp.setup {
 				fallback()
 			end
 		end, { "i", "s", }),
+
 		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if vim.fn.pumvisible() == 1 then
 				vim.fn.feedkeys(t("<C-p>"), "n")
 			elseif luasnip.jumpable(-1) then
-				-- vim.fn.feedkeys(t("<Plug>luasnip-jump-prev"), "")
-				-- vim.fn.feedkeys(t("<cmd>lua require'luasnip'.jump(-1)"), "")
 				luasnip.jump(-1)
 
 			else

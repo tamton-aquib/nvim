@@ -3,15 +3,18 @@
 Styles = {}
 
 require 'stabline'.setup {
-	style = "bar",
+	style = "slant",
 	-- bg = "#1e2127",
+	-- bg = "#11121d",
 	font_active = "bold,italic",
-	stab_start = "%#LspDiagnosticsDefaultError#    ",
-	inactive_bg = "#1e1e1e",
-	stab_bg = "#1e1e1e",
-	fg = "#986fec",
+	-- stab_start = "%#LspDiagnosticsDefaultError#    ",
+	stab_start = "%#Rocket#      ",
+	-- inactive_bg = "#1e1e1f",
+	-- stab_bg = "#1e1e1e",
+	-- fg = "#986fec",
 	-- stab_end = [[%{luaeval("get_stuff()")}]]
 }
+vim.cmd [[hi Rocket guifg=#f36365 guibg=#12141d gui=bold]]
 -- 
 Styles.simple_line = {
 	sections = {
@@ -38,8 +41,9 @@ Styles.simple_line = {
 		}
 	},
 	mode_colors = {
-		n = "#986fec",
-		i = "#759a51",
+		i = "#986fec",
+		-- n = "#759a51",
+		n = "#7aa2f7"
 	},
 	defaults = {
 		true_colors = true,
@@ -78,7 +82,7 @@ Styles.evil_line = {
 					-- -- noice = noice .. (stuff and symbols[k]..stuff[k] or "").." "
 					-- noice = noice .. (stuff and (stuff[k] and symbols[k]..stuff[k] or "") or "")
 				-- end
--- 
+--
 				-- return noice.."  "
 			-- end,
 				-- return stuff and stuff['head'] or "nice"
@@ -193,18 +197,18 @@ Styles.pebble_line = {
 		left = {
 			' ', 'right_sep_double', '-mode', 'left_sep_double', ' ',
 			'right_sep', '-file_name', 'left_sep', ' ',
-			'right_sep_double', '-branch', 'left_sep_double', ' ',
+			'branch'
 		},
 		mid  = {'lsp'},
 		right= {
+			'-lsp_name', ' ',
 			'right_sep', '-cool_symbol', 'left_sep', ' ',
-			'right_sep', '- ', '-lsp_name', '- ', 'left_sep', ' ',
-			'right_sep_double', '-line_column', 'left_sep_double', ' ',}
+			'right_sep_double', '-line_column', 'left_sep_double', ' ',},
 	},
 	defaults={
 		-- bg="#181a23",
-		-- fg="#986fec",
-		fg="#181a23",
+		fg="#986fec",
+		-- fg="#181a23",
 		cool_symbol = "  ",
 		left_separator = "",
 		right_separator = "",
@@ -214,11 +218,11 @@ Styles.pebble_line = {
 		-- font_active = "bold"
 	},
 	mode_colors = {
-		n = "#bbbbbb",
-		i = "#bbbbbb",
-		ic= "#bbbbbb",
-		c = "#bbbbbb",
-		v = "#bbbbbb"
+		n = "#181a23",
+		i = "#181a23",
+		ic= "#181a23",
+		c = "#181a23",
+		v = "#181a23"
 	}
 }
 
