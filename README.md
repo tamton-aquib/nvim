@@ -4,7 +4,7 @@ My neovim config
 
 ---
 ![nvim_ss_03](https://i.imgur.com/B1gWlPL.png)
-![nvim_ss_03](https://i.imgur.com/D1yBclH.png)
+![nvim_ss_04](https://i.imgur.com/D1yBclH.png)
 ---
 
 * neovim version: 0.5

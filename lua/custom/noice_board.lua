@@ -76,7 +76,6 @@ local d = {
 }
 
 function M.set_folder(filename)
-    M.Flag = true
     vim.cmd(':e '..filename)
     vim.api.nvim_set_current_dir(
 		fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':h')
@@ -85,6 +84,7 @@ end
 
 local function set_keymaps_and_options()
     -- TODO: remove these when opening a new buffer
+	vim.cmd [[silent! setlocal nonu nornu ft=dashboard]]
     for key, file in pairs(keymaps) do
 	buf_map(
 	    0, 'n', key,
@@ -114,7 +114,6 @@ function M.setup()
 			-- vim.cmd [[au CursorMoved * lua require'custom.noice_board'.go_to_line()]]
 
 			set_keymaps_and_options()
-			vim.cmd [[silent! setlocal nonu nornu ft=dashboard]]
 			-- TODO: clean this part
 			vim.api.nvim_win_set_cursor(0, {vim.g.section_length, 0})
 			vim.cmd [[norm w]]
