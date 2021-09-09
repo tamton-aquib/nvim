@@ -5,10 +5,10 @@ local fn = vim.fn
 local nb = vim.api.nvim_create_namespace('noiceboard')
 local opts = {noremap = true, silent = true}
 local buf_map = vim.api.nvim_buf_set_keymap
-local temp_options = {
-	nu=false, rnu=false, cuc=false, list=false,
-	ma=false, mod=false, cul=false, ft='dashboard'
-}
+-- local temp_options = {
+	-- nu=false, rnu=false, cuc=false, list=false,
+	-- ma=false, mod=false, cul=false, ft='dashboard'
+-- }
 
 local keymaps = {
     K = '~/.config/kitty/kitty.conf',
@@ -85,19 +85,14 @@ end
 
 local function set_keymaps_and_options()
     -- TODO: remove these when opening a new buffer
-    for k,v in pairs(temp_options) do
-		vim.opt_local[k] = v
-    end
-	vim.opt.showtabline = 0
-
     for key, file in pairs(keymaps) do
 	buf_map(
 	    0, 'n', key,
-	    '<cmd>lua require"custom.noiceboard".set_folder("'..file..'")<CR>',
+	    '<cmd>lua require"custom.noice_board".set_folder("'..file..'")<CR>',
 	    opts
 	)
     end
-    buf_map(0, 'n', '<CR>', '<cmd>lua require"custom.noiceboard".get_line()<CR>', opts)
+    buf_map(0, 'n', '<CR>', '<cmd>lua require"custom.noice_board".get_line()<CR>', opts)
 end
 
 local function empty() set_lines(2, {'', ''}, 'String') end
@@ -105,6 +100,7 @@ local function empty() set_lines(2, {'', ''}, 'String') end
 function M.setup()
     if vim.api.nvim_buf_get_name(0) == "" then
 		vim.api.nvim_buf_set_option(0, 'bufhidden', 'wipe')
+
 		vim.schedule(function()
 			New_buffer = vim.api.nvim_create_buf(false, true)
 			vim.api.nvim_win_set_buf(0, New_buffer)
@@ -115,10 +111,10 @@ function M.setup()
 			set_lines(1, {'taj@arch'}, 'Constant')
 
 			-- TODO: set CursorMoved autocmd to make it smooth
-			-- vim.cmd [[au CursorMoved * lua require'noiceboard'.go_to_line()]]
+			-- vim.cmd [[au CursorMoved * lua require'custom.noice_board'.go_to_line()]]
+
 			set_keymaps_and_options()
-			vim.cmd [[au BufEnter * set nu rnu | set showtabline=2]]
-			-- vim.cmd [[au BufEnter * lua require"custom.noiceboard".revert_settings()]]
+			vim.cmd [[silent! setlocal nonu nornu ft=dashboard]]
 			-- TODO: clean this part
 			vim.api.nvim_win_set_cursor(0, {vim.g.section_length, 0})
 			vim.cmd [[norm w]]

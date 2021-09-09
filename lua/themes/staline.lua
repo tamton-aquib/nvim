@@ -29,7 +29,7 @@ Styles.simple_line = {
 			-- end
 		},
 		mid = {},
-		right = {'%l/%L  :%c  ', 'file_name', ' ',
+		right = {'%l/%L  :%c  ', 'file_name', '  ',
 			function()
 				local current_line = vim.fn.line "."
 				local total_lines = vim.fn.line "$"

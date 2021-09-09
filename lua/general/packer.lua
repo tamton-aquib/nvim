@@ -8,10 +8,8 @@ end
 require "packer".startup { function(use)
 
 	--> Testing and temporary
-	use 'lewis6991/impatient.nvim'
-	use { '~/TOOLS/alpha-nvim' }
+	use { 'lewis6991/impatient.nvim' }
 	use { 'tamton-aquib/dynamic-cursor.nvim', config=function() require "dynamic-cursor".setup{} end }
-	-- use 'tamton-aquib/tokyodark.nvim'
 
 	-- use { 'tamton-aquib/staline.nvim', config = function() require"themes.staline" end }
     -- use { 'tamton-aquib/staline.nvim', config = function() require"staline".setup{} end }
@@ -32,17 +30,16 @@ require "packer".startup { function(use)
 
 
     --> LSP and COMPLETION
-    use 'neovim/nvim-lspconfig'
-	use 'kabouzeid/nvim-lspinstall'
-	-- use { 'hrsh7th/nvim-compe', after="LuaSnip", event = 'InsertEnter', config = function() require"lsp.compe-config" end }
+    use { 'neovim/nvim-lspconfig' }
+	use { 'kabouzeid/nvim-lspinstall' }
 	use { 'L3MON4D3/LuaSnip', config = function() require"plugins.snippets" end }
-	use {'hrsh7th/nvim-cmp'}
-	use 'hrsh7th/cmp-buffer'
-	use 'hrsh7th/cmp-nvim-lsp'
-	use 'hrsh7th/cmp-path'
-	use 'hrsh7th/cmp-emoji'
-	use 'hrsh7th/cmp-nvim-lua'
-	use 'saadparwaiz1/cmp_luasnip'
+	use { 'hrsh7th/nvim-cmp' }
+	use { 'hrsh7th/cmp-buffer' }
+	use { 'hrsh7th/cmp-nvim-lsp' }
+	use { 'hrsh7th/cmp-path' }
+	use { 'hrsh7th/cmp-emoji' }
+	use { 'hrsh7th/cmp-nvim-lua' }
+	use { 'saadparwaiz1/cmp_luasnip' }
 
 
 

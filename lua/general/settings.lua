@@ -2,7 +2,7 @@ local set = vim.opt
 
 vim.cmd [[ filetype plugin indent off ]]
 vim.opt.spell = false
-set.fillchars = 'eob: ,vert: '
+set.fillchars = 'eob: '
 -- set.listchars = 'tab:▏ '
 -- let &colorcolumn=join(range(81,999),",")
 

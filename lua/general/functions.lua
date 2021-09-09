@@ -30,7 +30,7 @@ end
 function M.on_file_enter()
 	-- if vim.api.nvim_win_is_valid(0) and vim.api.nvim_buf_is_loaded(0) then
 	if vim.tbl_contains(vim.api.nvim_list_bufs(), vim.api.nvim_get_current_buf()) then
-		if vim.bo.ft ~= "help" then
+		if not vim.tbl_contains({"help", "packer", "toggleterm"}, vim.bo.ft) then
 			if line [['"]] > 1 and line [['"]] <= line("$") then
 				vim.cmd [[norm '"]]
 			end
