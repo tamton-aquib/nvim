@@ -3,8 +3,10 @@ local set = vim.opt
 vim.cmd [[ filetype plugin indent off ]]
 vim.opt.spell = false
 set.fillchars = 'eob: '
+vim.notify = require "notify"
 -- set.listchars = 'tab:▏ '
 -- let &colorcolumn=join(range(81,999),",")
+vim.cmd [[au FileType lspinfo nnoremap q <cmd>q<CR>]]
 
 vim.g.loaded_gzip = false
 vim.g.loaded_matchit = false
@@ -63,7 +65,7 @@ set.title = true
 set.titlestring = "  Editing %f..."
 
 set.tabstop = 4
-set.softtabstop = 4
+set.softtabstop = 0
 set.shiftwidth = 4
 set.expandtab = false
 set.smartindent = true

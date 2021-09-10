@@ -41,8 +41,8 @@ require('neorg').setup {
 			workspaces = {
 				my_workspace = "~/neorg",
 			},
-			autodetect = true,
-			autochdir = true,
+				autodetect = true,
+				autochdir = true,
 			}
 		}
     },

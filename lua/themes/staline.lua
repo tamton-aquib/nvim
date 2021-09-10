@@ -1,33 +1,22 @@
 --> staline setup
 -- #181a23    
+--      
 Styles = {}
 
 require 'stabline'.setup {
 	style = "slant",
-	-- bg = "#1e2127",
-	-- bg = "#11121d",
 	font_active = "bold,italic",
 	-- stab_start = "%#LspDiagnosticsDefaultError#    ",
 	stab_start = "%#Rocket#      ",
-	-- inactive_bg = "#1e1e1f",
-	-- stab_bg = "#1e1e1e",
-	-- fg = "#986fec",
-	-- stab_end = [[%{luaeval("get_stuff()")}]]
+	stab_bg = "#1e1e1e",
+	bg = "#11121d"
 }
-vim.cmd [[hi Rocket guifg=#f36365 guibg=#12141d gui=bold]]
--- 
+
+vim.cmd [[hi Rocket guifg=#f36365 guibg=#1e1e1e gui=bold]]
+
 Styles.simple_line = {
 	sections = {
-		left = { '  ', 'mode', ' ', 'branch', '   ', 'lsp',
-			-- function()
-				-- local stuff = vim.b.gitsigns_status_dict
-				-- local noice = stuff and (stuff.added or "")..
-					-- (stuff.removed or "")..
-					-- (stuff.changed or "") or ""
-				-- return noice
-				-- -- return stuff and stuff['head'] or "nice"
-			-- end
-		},
+		left = { '  ', 'mode', ' ', 'branch', '   ', 'lsp', },
 		mid = {},
 		right = {'%l/%L  :%c  ', 'file_name', '  ',
 			function()
@@ -52,16 +41,6 @@ Styles.simple_line = {
 	}
 }
 
---    
-
--- local color_line = {
-	-- sections = { left =
-		-- { ("▁"):rep(vim.o.columns) },
-		-- mid = {},
-		-- right = {}
-	-- },
--- }
-
 
 Styles.evil_line = {
 	sections = {
@@ -73,20 +52,6 @@ Styles.evil_line = {
 		},
 		mid = { 'lsp_name' },                         -- "lsp_name" is still a little buggy
 		right = {
-
-			-- function()
-				-- local stuff = vim.b.gitsigns_status_dict
-				-- local symbols = { added = "  ", changed = "柳", removed = " " }
-				-- local noice = ""
-				-- for k, v in pairs(symbols) do
-					-- -- noice = noice .. (stuff and symbols[k]..stuff[k] or "").." "
-					-- noice = noice .. (stuff and (stuff[k] and symbols[k]..stuff[k] or "") or "")
-				-- end
---
-				-- return noice.."  "
-			-- end,
-				-- return stuff and stuff['head'] or "nice"
-			-- end, '  ',
 			{'StalineGit', ' %l/%L :%c  '},
 			{ 'StalineEnc', vim.bo.fileencoding:upper() }, '  ',  -- Example for custom section
 			{ 'StalineEnc', 'cool_symbol' }, ' ',                 -- the cool_symbol for your OS
@@ -123,44 +88,27 @@ vim.cmd [[hi StalineEnc  guifg=#7d9955 guibg=#202328]]       -- Encoding Highlig
 vim.cmd [[hi StalineGit  guifg=#8583b3 guibg=#202328]]       -- Branch Name Highlight
 vim.cmd [[hi StalineFile guifg=#c37cda guibg=#202328]]      -- File name Highlight
 
--- require'stabline'.setup {
-	-- style = 'bar',
-	-- font_active = "bold,italic",
-	-- font_inactive = "italic",
-	-- -- bg = "#ff6077",
-	-- -- fg = "#414550",
-	-- fg = "#986fec",
-	-- -- stab_bg = "none",
-	-- start = "%#BranchGreen#    ",
-	-- -- stab_right = ""
-	-- -- inactive_bg = "none"
-	-- -- bg = "#181a23",
-	-- -- bg = "#7741e6",
--- }
--- vim.cmd [[hi BranchGreen guifg=#2bbb4f ]]
---'right_sep', {'LspDiagnosti csSignError', '   '}, 'left_sep',
-
--- local atom_line = {
-	-- sections = {
-		-- left = {' ', '', '-   ', {'FileNameHighlight', 'file_name'}, {'FileNameRightSepHighlight',''}, 'branch' },
-		-- mid = {'-lsp'},
-		-- right = {'', '-mode', {'FileNameHighlight', 'line_column'}, {'FileNameRightSepHighlight',''}, '  ' },
-	-- },
-	-- defaults = {
-		-- font_active = "bold,italic",
-		-- branch_symbol = " ",
-		-- true_colors = true,
-	-- },
-	-- mode_icons = {
-		-- n = "NORMAL"
-	-- },
-	-- mode_colors = {
-		-- -- n = "#e95678",
-		-- n = "#986fec",
-		-- i = "#9ece6a",
-		-- ic= "#9ece6a"
-	-- }
--- }
+Styles.atom_line = {
+	sections = {
+		left = {' ', '', '-   ', {'FileNameHighlight', 'file_name'}, {'FileNameRightSepHighlight',''}, 'branch' },
+		mid = {'-lsp'},
+		right = {'', '-mode', {'FileNameHighlight', 'line_column'}, {'FileNameRightSepHighlight',''}, '  ' },
+	},
+	defaults = {
+		font_active = "bold,italic",
+		branch_symbol = " ",
+		true_colors = true,
+	},
+	mode_icons = {
+		n = "NORMAL"
+	},
+	mode_colors = {
+		-- n = "#e95678",
+		n = "#986fec",
+		i = "#9ece6a",
+		ic= "#9ece6a"
+	}
+}
 
 -- vim.cmd [[hi FileNameHighlight guifg=white guibg=#393b4d]]
 -- vim.cmd [[hi FileNameRightSepHighlight guifg=#393b4d]]
@@ -222,7 +170,8 @@ Styles.pebble_line = {
 		i = "#181a23",
 		ic= "#181a23",
 		c = "#181a23",
-		v = "#181a23"
+		v = "#181a23",
+		V = "#181a23"
 	}
 }
 
@@ -235,4 +184,4 @@ Styles.pebble_line = {
 -- local leftSeparator = ""	-->      
 -- local rightSeparator = ""	-->      
 
-require "staline".setup(Styles.simple_line)
+require "staline".setup(Styles.evil_line)

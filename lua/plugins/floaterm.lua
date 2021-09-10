@@ -30,8 +30,7 @@ local files = {
 	c		   = "gcc -o noice "..exp('%:t').." && ./noice && rm ./noice",
 	java	   = "javac "..exp('%:t').." && java "..exp('%:t:r').." && rm *.class",
 	rust	   = "cargo run",
-	javascript = "node "..exp('%:t'),
-	typescript = "tsc "..exp('%:t').." && node "..exp('%:t:r')..".js",
+	javascript = "npm start",
 }
 
 map('n', '<leader>l', ':lua Open_term:new{cmd="lazygit", close_on_exit=true}:toggle()<CR>', noice)

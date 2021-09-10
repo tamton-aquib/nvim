@@ -4,13 +4,18 @@ My neovim config
 
 ---
 ![nvim_ss_03](https://i.imgur.com/B1gWlPL.png)
+
+* Colorscheme: [custom](https://github.com/tamton-aquib/nvim/blob/main/lua/custom/noice_dark.lua)
+
 ![nvim_ss_04](https://i.imgur.com/D1yBclH.png)
+* Colorscheme: tokyonight.nvim
 ---
 
+### Overall Structure
 * neovim version: 0.5
 * Statusline and bufferline : [staline and stabline](https://github.com/tamton-aquib/staline.nvim)
-* Colorscheme: [custom](https://github.com/tamton-aquib/nvim/blob/main/lua/custom/noice_dark.lua)
 * LSP: builtin. (inside lua/lsp/)
+* Completion engine: nvim-cmp
 
 ### Structure:
 
