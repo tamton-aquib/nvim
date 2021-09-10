@@ -112,31 +112,32 @@ Styles.atom_line = {
 
 -- vim.cmd [[hi FileNameHighlight guifg=white guibg=#393b4d]]
 -- vim.cmd [[hi FileNameRightSepHighlight guifg=#393b4d]]
+vim.cmd [[hi ArchSymbol guifg=#1793d1 guibg=#11121d]]
 -- ;#a3be8c
 
 Styles.normal_line = {
 	sections = {
-		left = {'- ', '-mode', 'left_sep_double', 'filename', '  ', 'branch'},
-		mid  = {'lsp'},
-		right= { {'ArchSymbol', 'cool_symbol'}, '  ', vim.bo.fileencoding:upper(), 'right_sep_double', '-line_column'}
+		left = { '- ', '-mode', 'left_sep_double', ' ', 'branch', {'ArchSymbol', 'cool_symbol'}},
+		mid  = { 'file_name', 'lsp'},
+		right= { vim.bo.fileencoding:upper(), '  ', 'right_sep_double', '-line_column'}
 	},
 	defaults = {
 		cool_symbol = "  ",
 		left_separator = "",
 		right_separator = "",
-		bg = "#303030",
+		bg = "#11121d",
 		full_path = false,
 		branch_symbol = " "
 	},
 	mode_colors = {
-		-- n = "#986fec",
-		-- i = "#e86671",
-		-- ic= "#e86671",
-		-- c = "#e27d60"
-		n = "#dddddd",
-		i = "#dddddd",
-		ic= "#dddddd",
-		c = "#dddddd"
+		n = "#986fec",
+		i = "#e86671",
+		ic= "#e86671",
+		c = "#e27d60"
+		-- n = "#dddddd",
+		-- i = "#dddddd",
+		-- ic= "#dddddd",
+		-- c = "#dddddd"
 	}
 }
 
@@ -184,4 +185,4 @@ Styles.pebble_line = {
 -- local leftSeparator = ""	-->      
 -- local rightSeparator = ""	-->      
 
-require "staline".setup(Styles.evil_line)
+require "staline".setup(Styles.normal_line)

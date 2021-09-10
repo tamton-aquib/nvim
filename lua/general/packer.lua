@@ -48,7 +48,6 @@ require "packer".startup { function(use)
 
 	--> GENERAL PURPOSE
     use { 'rcarriga/nvim-notify' }
-	use { 'lewis6991/cleanfold.nvim', config = function() require "cleanfold".setup{} end }
 	use { 'folke/lua-dev.nvim' }
 	use { 'kyazdani42/nvim-web-devicons', config = function() require "plugins.web_devicons" end }
 	use { 'steelsojka/pears.nvim', config=function() require"pears".setup() end}

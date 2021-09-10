@@ -25,6 +25,9 @@ require("toggleterm").setup{
 	}
 }
 
+map('n', '<leader>l', ':lua Open_term:new{cmd="lazygit", close_on_exit=true}:toggle()<CR>', noice)
+map('n', '<leader>t', ':lua Open_term:new{cmd=nil, close_on_exit=true, count=5}:toggle()<CR>', noice)
+
 local files = {
 	python	   = "python "..exp('%:t'),
 	c		   = "gcc -o noice "..exp('%:t').." && ./noice && rm ./noice",
@@ -32,9 +35,6 @@ local files = {
 	rust	   = "cargo run",
 	javascript = "npm start",
 }
-
-map('n', '<leader>l', ':lua Open_term:new{cmd="lazygit", close_on_exit=true}:toggle()<CR>', noice)
-map('n', '<leader>t', ':lua Open_term:new{cmd=nil, close_on_exit=true, count=5}:toggle()<CR>', noice)
 
 function Run_file()
 	local command = files[vim.bo.filetype]
