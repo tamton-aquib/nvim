@@ -9,10 +9,11 @@ require 'stabline'.setup {
 	-- stab_start = "%#LspDiagnosticsDefaultError#    ",
 	stab_start = "%#Rocket#      ",
 	stab_bg = "#1e1e1e",
-	bg = "#11121d"
+	bg = "#0e171c"
 }
 
 vim.cmd [[hi Rocket guifg=#f36365 guibg=#1e1e1e gui=bold]]
+vim.cmd [[hi Rocket guifg=#97c374 guibg=#1e1e1e gui=bold]]
 
 Styles.simple_line = {
 	sections = {
@@ -74,12 +75,12 @@ Styles.evil_line = {
 		font_active = "bold"
 	},
 	mode_colors = {
-		n = "#38b1f0",
-		i = "#9ece6a",       -- etc mode
-		-- n = "#a89985",
-		-- i = "#84a598",
-		-- c = "#8fbf7f",
-		-- v = "#fc802d",
+		-- n = "#38b1f0",
+		-- i = "#9ece6a",       -- etc mode
+		n = "#61afef",
+		i = "#97c374",       -- etc mode
+		ic= "#97c374",       -- etc mode
+		c = "#c94f6d",
 	}
 }
 
@@ -119,7 +120,7 @@ Styles.normal_line = {
 	sections = {
 		left = { '- ', '-mode', 'left_sep_double', ' ', 'branch', {'ArchSymbol', 'cool_symbol'}},
 		mid  = { 'file_name', 'lsp'},
-		right= { vim.bo.fileencoding:upper(), '  ', 'right_sep_double', '-line_column'}
+		right= { vim.bo.fileencoding, '  ', 'right_sep_double', '-line_column'}
 	},
 	defaults = {
 		cool_symbol = "  ",
@@ -185,4 +186,4 @@ Styles.pebble_line = {
 -- local leftSeparator = ""	-->      
 -- local rightSeparator = ""	-->      
 
-require "staline".setup(Styles.normal_line)
+require "staline".setup(Styles.evil_line)

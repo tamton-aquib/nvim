@@ -3,11 +3,12 @@ local opts = {noremap=true, silent=true}
 local function map(mode, key, mapping) vim.api.nvim_set_keymap(mode, key, mapping, opts) end
 
 --> Custom
+map('n', '<M-h>',     ':lua vim.cmd(":h "..vim.fn.expand("<cword>"))<CR>')
+
 map('n', '<leader>s', ':lua require"general.functions".swap_bool()<CR>')
 map('n', 'gx',        ':lua require"general.functions".go_to_url()<CR>')
 map('n', '<leader>u', ':lua require"general.functions".packer_do_everything()<CR>')
 map('n', '<C-t>',     ':lua require"general.functions".toggle_transparent()<CR>')
-map('n', '<M-h>',     ':lua vim.cmd(":h "..vim.fn.expand("<cword>"))<CR>')
 
 vim.cmd [[au BufEnter * lua require"general.functions".on_file_enter()]]
 vim.cmd [[autocmd FileType help nnoremap <buffer> <CR> <C-]>]]
@@ -22,7 +23,7 @@ map('n', '<M-Down>',  ':resize -2<CR>')
 map('n', '<M-Up>',    ':resize +2<CR>')
 map('n', '<M-Right>', ':vertical resize -2<CR>')
 
--- Move selected line / block of text in visual mode
+--> Move selected line / block of text in visual mode
 map("x", "<M-k>", ":move '<-2<CR>gv-gv")
 map("x", "<M-j>", ":move '>+1<CR>gv-gv")
 map('n', '<M-j>', ':m .+1<CR>==')
