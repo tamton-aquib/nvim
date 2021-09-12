@@ -1,4 +1,3 @@
-
 R="\033[31m"
 G="\033[32m"
 E="\033[0m"
@@ -16,7 +15,7 @@ fi
 sleep 1
 
 echo -e "\n${G}Cloning the repo...${E}\n"
-git clone https://github.com/tamton-aquib/nvim.git ~/.config/nvim 2>/dev/null
+git clone git@github.com:tamton-aquib/nvim.git ~/.config/nvim 2>/dev/null
 echo -e "\n${G}Cloned Successfully!${E}\n"
 sleep 1
 
