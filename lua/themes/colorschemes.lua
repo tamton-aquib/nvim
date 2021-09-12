@@ -19,6 +19,7 @@ end
 function Colo.catppuccino(transparent)
 	local cap = require "catppuccino"
 	cap.setup{
+		-- colorscheme = "neon_latte",
 		colorscheme = "dark_catppuccino",
 		transparency = transparent,
 	}

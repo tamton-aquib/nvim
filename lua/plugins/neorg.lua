@@ -15,6 +15,11 @@ end)
 
 require('neorg').setup {
     load = {
+		["core.norg.completion"] = {
+			config = {
+				engine = "nvim-cmp"
+			}
+		},
 		["core.defaults"] = {},
 		["core.norg.concealer"] = {
 			config = {

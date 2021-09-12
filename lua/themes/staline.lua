@@ -1,13 +1,13 @@
 --> staline setup
 -- #181a23    
---      
+--        
 Styles = {}
 
 require 'stabline'.setup {
 	style = "slant",
 	font_active = "bold,italic",
 	-- stab_start = "%#LspDiagnosticsDefaultError#    ",
-	stab_start = "%#Rocket#      ",
+	stab_start = "%#Rocket#      ",
 	stab_bg = "#1e1e1e",
 	bg = "#0e171c"
 }
