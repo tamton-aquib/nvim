@@ -31,7 +31,8 @@ require('telescope').setup{
 		winblend = 0,
 		border = {},
 		-- borderchars = require"general.utils".border,
-		borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+		-- borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+
 		color_devicons = true,
 		use_less = true,
 		path_display = {},

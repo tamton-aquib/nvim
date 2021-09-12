@@ -5,13 +5,10 @@ local fn = vim.fn
 local nb = vim.api.nvim_create_namespace('noiceboard')
 local opts = {noremap = true, silent = true}
 local buf_map = vim.api.nvim_buf_set_keymap
-local temp_options = {
-	nu=false, rnu=false, cuc=false, list=false,
-	ma=false, mod=false, cul=false,
-	ft='dashboard', cursorcolumn = false
-}
-M.Flag = false
-M.is_ded = false
+-- local temp_options = {
+	-- nu=false, rnu=false, cuc=false, list=false,
+	-- ma=false, mod=false, cul=false, ft='dashboard'
+-- }
 
 local keymaps = {
     K = '~/.config/kitty/kitty.conf',
@@ -69,24 +66,6 @@ function M.get_line()
     vim.api.nvim_set_current_buf(0)
 end
 
-function M.delete_noice_screen()
-    if M.Flag == true and M.is_ded ~= true then
-		for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-			if vim.bo[buf].ft == 'dead' then
-				vim.api.nvim_buf_delete(buf, {force=true})
-			end
-		end
-
-		vim.api.nvim_buf_delete(New_buffer, {force=true})
-		M.is_ded = true
-    end
-end
-
-function M.setup()
-    vim.cmd [[au BufEnter,WinEnter,BufWinEnter * lua require'custom.noiceboard'.delete_noice_screen()]]
-    M.noice_board()
-end
-
 -- TODO: break into sections
 local d = {
     "   Find Files                       SPC f f", "",
@@ -97,53 +76,48 @@ local d = {
 }
 
 function M.set_folder(filename)
-    M.Flag = true
     vim.cmd(':e '..filename)
     vim.api.nvim_set_current_dir(
-		vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':h')
+		fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':h')
     )
 end
 
 local function set_keymaps_and_options()
     -- TODO: remove these when opening a new buffer
-    for k,v in pairs(temp_options) do
-		vim.opt_local[k] = v
-    end
-	vim.opt.showtabline = 0
-
+	vim.cmd [[silent! setlocal nonu nornu ft=dashboard]]
     for key, file in pairs(keymaps) do
 	buf_map(
-	    New_buffer, 'n', key,
-	    '<cmd>lua require"custom.noiceboard".set_folder("'..file..'")<CR>',
+	    0, 'n', key,
+	    '<cmd>lua require"custom.noice_board".set_folder("'..file..'")<CR>',
 	    opts
 	)
     end
-    buf_map(0, 'n', '<CR>', '<cmd>lua require"custom.noiceboard".get_line()<CR>', opts)
+    buf_map(0, 'n', '<CR>', '<cmd>lua require"custom.noice_board".get_line()<CR>', opts)
 end
 
 local function empty() set_lines(2, {'', ''}, 'String') end
 
-function M.noice_board()
+function M.setup()
     if vim.api.nvim_buf_get_name(0) == "" then
-	vim.api.nvim_buf_set_option(0, 'filetype', 'dead')
-	vim.schedule(function()
-	    New_buffer = vim.api.nvim_create_buf(false, true)
-	    vim.api.nvim_win_set_buf(0, New_buffer)
+		vim.api.nvim_buf_set_option(0, 'bufhidden', 'wipe')
 
-	    empty()
-	    set_lines(#header, header, 'String'); empty() empty()
-	    set_lines(#d, d, 'Function', true);       empty()
-	    set_lines(1, {'taj@arch'}, 'Constant')
+		vim.schedule(function()
+			New_buffer = vim.api.nvim_create_buf(false, true)
+			vim.api.nvim_win_set_buf(0, New_buffer)
 
-	    -- TODO: set CursorMoved autocmd to make it smooth
-	    -- vim.cmd [[au CursorMoved * lua require'noiceboard'.go_to_line()]]
-	    set_keymaps_and_options()
-	    vim.cmd [[au BufEnter * setlocal nu rnu | set showtabline=2]]
-	    -- vim.cmd [[au BufEnter * lua require"custom.noiceboard".revert_settings()]]
-	    -- TODO: clean this part
-	    vim.api.nvim_win_set_cursor(0, {vim.g.section_length, 0})
-	    vim.cmd [[norm w]]
-	end)
+			empty()
+			set_lines(#header, header, 'String'); empty() empty()
+			set_lines(#d, d, 'Function', true);       empty()
+			set_lines(1, {'taj@arch'}, 'Constant')
+
+			-- TODO: set CursorMoved autocmd to make it smooth
+			-- vim.cmd [[au CursorMoved * lua require'custom.noice_board'.go_to_line()]]
+
+			set_keymaps_and_options()
+			-- TODO: clean this part
+			vim.api.nvim_win_set_cursor(0, {vim.g.section_length, 0})
+			vim.cmd [[norm w]]
+		end)
     end
 end
 

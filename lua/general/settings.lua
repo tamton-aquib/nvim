@@ -3,8 +3,10 @@ local set = vim.opt
 vim.cmd [[ filetype plugin indent off ]]
 vim.opt.spell = false
 set.fillchars = 'eob: '
+vim.notify = require "notify"
 -- set.listchars = 'tab:▏ '
 -- let &colorcolumn=join(range(81,999),",")
+vim.cmd [[au FileType lspinfo nnoremap q <cmd>q<CR>]]
 
 vim.g.loaded_gzip = false
 vim.g.loaded_matchit = false
@@ -67,8 +69,7 @@ set.softtabstop = 0
 set.shiftwidth = 4
 set.expandtab = false
 set.smartindent = true
-set.autoindent = true
+-- set.autoindent = true
 -- set.copyindent = true
 -- set.breakindent = true
 -- set.preserveindent = true
-vim.cmd( [[ autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=300} ]])

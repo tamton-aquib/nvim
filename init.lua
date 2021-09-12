@@ -1,17 +1,17 @@
 --> GENERAL SETTINGS AND MAPPINGS
--- require 'impatient'
+require 'general.startup'
+require 'general.packer'
 require 'general.settings'
 require 'general.functions'
 require 'general.mappings'
-require 'general.packer'
 
 --> THEMES and CUSTOM
 require 'custom.noice_rename'.setup()
-require 'custom.noiceboard'.setup()
+require 'custom.noice_board'.setup()
 require 'custom.noice_sus'.setup()
 require 'custom.noice_comment'.setup()
--- require 'custom.noice_escape'.setup()
-require 'themes.colorschemes'.noice(true)
+require 'custom.noice_fold'.setup()
+require 'themes.colorschemes'.catppuccino(false)
 
 --> LSP SETTINGS
 require 'lsp.lspconfig'

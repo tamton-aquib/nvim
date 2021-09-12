@@ -16,6 +16,17 @@ function Colo.random()
 	vim.cmd('colo '..selected)
 end
 
+function Colo.catppuccino(transparent)
+	local cap = require "catppuccino"
+	cap.setup{
+		-- colorscheme = "neon_latte",
+		colorscheme = "dark_catppuccino",
+		transparency = transparent,
+	}
+	cap.load()
+	-- vim.cmd [[colo catppuccino]]
+end
+
 function Colo.tokyodark(transparent)
 	vim.g.tokyodark_transparent_background = true
 	vim.g.tokyodark_enable_italic = false
@@ -28,7 +39,7 @@ end
 function Colo.tokyonight(transparent)
 	vim.g.tokyonight_italic_keywords = false
 	vim.g.tokyonight_italic_functions = false
-	vim.g.tokyonight_style = "night"
+	-- vim.g.tokyonight_style = "night"
 	-- vim.g.tokyonight_transparent_background = transparent and 1 or 0
 	vim.g.tokyonight_transparent = transparent and 1 or 0
 

@@ -1,4 +1,5 @@
 M = {}
+local opts = { noremap=true, silent=true }
 
 local comment_map = {
     javascript	= '//',
@@ -32,8 +33,8 @@ function M.toggle_comment(visual)
 end
 
 function M.setup()
-	vim.api.nvim_set_keymap('v', '<C-_>', ':lua require"custom.noice_comment".toggle_comment("nice")<CR>', {noremap=true})
-	vim.api.nvim_set_keymap('n', '<C-_>', ':lua require"custom.noice_comment".toggle_comment()<CR>', {noremap=true})
+	vim.api.nvim_set_keymap('v', '<C-_>', ':lua require"custom.noice_comment".toggle_comment("nice")<CR>', opts)
+	vim.api.nvim_set_keymap('n', '<C-_>', ':lua require"custom.noice_comment".toggle_comment()<CR>', opts)
 end
 
 return M

@@ -4,8 +4,6 @@ local ns = vim.api.nvim_create_namespace('noice_dark')
 
 local c = {
 	black            = "#000000",
-	background       = "#282c34",
-	background_dark  = "#1f1f1f",
 
 	violet_one       = "#c678dd",
 	violet_two       = "#986fec",
@@ -33,6 +31,8 @@ local c = {
 	white_two        = "#dddddd",
 	white_five       = "#999999",
 	white_three      = "#5c6370",
+	background       = "#282c34",
+	background_dark  = "#1f1f1f",
 }
 
 local back
@@ -86,29 +86,29 @@ local Usual = {
 		TSString		= { fg = c.green_two },
 		TSInclude		= { fg = c.violet_one},
 		TSComment		= { fg = c.white_three, italic = true},
-		TSMethod		= { fg = c.blue_two},
-
-		TSVariable		= { fg = c.white_two },
-		TSVariableBuiltin	= { fg = c.red_two},
-		TSFunction		= { fg = c.violet_one },
 		TSFuncBuiltin		= { fg = c.blue_two},
-		TSType			= { fg = c.red_two},
 		TSTypeBuiltin		= { fg = c.violet_one},
+		TSMethod		= { fg = c.blue_two},
+		TSVariable		= { fg = c.white_two },
+		TSFunction		= { fg = c.violet_one },
+		TSVariableBuiltin	= { fg = c.red_two},
 
+		TSType			= { fg = c.red_two},
 		TSField			= { fg = c.red_two},
+
 		TSOperator		= { fg = c.red_two },
+		TSPunctDelimiter	= { fg = c.white_one},
 		TSRepeat		= { fg = c.red_two},
 		TSConstructor		= { fg = c.blue_one },
 		TSProperty		= { fg = c.blue_two},
 
-		-- TSPunctDelimiter = {fg = c.black},
+		TSPunctBracket		= { fg = c.blue_two},
+		-- TSPunctDelimiter
 		TSParameter		= { fg = c.orange_two},
 		TSConditional		= { fg = c.red_two},
 		TSPunctSpecial		= { fg = c.red_one },
-		TSPunctBracket		= { fg = c.blue_two},
-		TSPunctDelimiter	= { fg = c.violet_three},
-		TSTagDelimiter  	= { fg = c.violet_one},
 		TSNone			= { fg = c.red_one},
+		TSTagDelimiter  	= { fg = c.violet_one},
 		TSTagAttribute		= { fg = c.red_two},
 	},
 

@@ -15,6 +15,11 @@ end)
 
 require('neorg').setup {
     load = {
+		["core.norg.completion"] = {
+			config = {
+				engine = "nvim-cmp"
+			}
+		},
 		["core.defaults"] = {},
 		["core.norg.concealer"] = {
 			config = {
@@ -41,8 +46,8 @@ require('neorg').setup {
 			workspaces = {
 				my_workspace = "~/neorg",
 			},
-			autodetect = true,
-			autochdir = true,
+				autodetect = true,
+				autochdir = true,
 			}
 		}
     },

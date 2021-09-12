@@ -9,7 +9,6 @@ map('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
 map('n', '<C-n>', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
 map('n', '<C-p>', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 
-vim.cmd [[au BufWritePre *.js,*.jsx lua vim.lsp.buf.formatting_sync(nil, 100)]]
--- vim.cmd [[au CursorHoldI * lua vim.lsp.buf.hover({focusable=false})]]
-vim.cmd [[au CursorHoldI * lua vim.lsp.buf.hover()]]
+vim.cmd [[au BufWritePre *.js,*.jsx,*.svelte lua vim.lsp.buf.formatting_sync(nil, 200)]]
+vim.cmd [[au CursorHoldI * lua vim.lsp.buf.signature_help({focusable=false})]]
 vim.cmd [[au CursorHold  * lua vim.lsp.diagnostic.show_line_diagnostics({border = require"general.utils".border, focusable=false})]]

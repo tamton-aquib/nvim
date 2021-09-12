@@ -21,4 +21,3 @@ echo -e "\n${G}Cloned Successfully!${E}\n"
 sleep 1
 
 nvim +PackerSync
-
