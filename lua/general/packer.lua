@@ -22,7 +22,8 @@ require "packer".startup { function(use)
 
     --> LSP and COMPLETION
     use { 'neovim/nvim-lspconfig' }
-	use { 'kabouzeid/nvim-lspinstall' }
+	-- use { 'kabouzeid/nvim-lspinstall' }
+	use { 'MordechaiHadad/nvim-lspmanager', branch="dev" }
 	use { 'L3MON4D3/LuaSnip' , config = function() require"plugins.snippets" end }
 	use { 'hrsh7th/nvim-cmp' }
 	use { 'hrsh7th/cmp-buffer' }

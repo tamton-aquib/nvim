@@ -12,7 +12,7 @@ require 'stabline'.setup {
 	bg = "#0e171c"
 }
 
-vim.cmd [[hi Rocket guifg=#f36365 guibg=#1e1e1e gui=bold]]
+-- vim.cmd [[hi Rocket guifg=#f36365 guibg=#1e1e1e gui=bold]]
 vim.cmd [[hi Rocket guifg=#97c374 guibg=#1e1e1e gui=bold]]
 
 Styles.simple_line = {
@@ -84,21 +84,25 @@ Styles.evil_line = {
 	}
 }
 
-vim.cmd [[hi Evil        guifg=#f36365 guibg=#202328]]             -- Higlight for Evil symbol
-vim.cmd [[hi StalineEnc  guifg=#7d9955 guibg=#202328]]       -- Encoding Highlight
-vim.cmd [[hi StalineGit  guifg=#8583b3 guibg=#202328]]       -- Branch Name Highlight
-vim.cmd [[hi StalineFile guifg=#c37cda guibg=#202328]]      -- File name Highlight
+-- vim.cmd [[hi Evil        guifg=#f36365 guibg=#202328]]             -- Higlight for Evil symbol
+-- vim.cmd [[hi StalineEnc  guifg=#7d9955 guibg=#202328]]       -- Encoding Highlight
+-- vim.cmd [[hi StalineGit  guifg=#8583b3 guibg=#202328]]       -- Branch Name Highlight
+-- vim.cmd [[hi StalineFile guifg=#c37cda guibg=#202328]]      -- File name Highlight
 
 Styles.atom_line = {
 	sections = {
 		left = {' ', '', '-   ', {'FileNameHighlight', 'file_name'}, {'FileNameRightSepHighlight',''}, 'branch' },
 		mid = {'-lsp'},
-		right = {'', '-mode', {'FileNameHighlight', 'line_column'}, {'FileNameRightSepHighlight',''}, '  ' },
+		right = {
+			'', '-mode', {'FileNameHighlight', 'line_column'},
+			{'FileNameHighlight'," ".. os.date("%H:%M").." "},
+			{'FileNameRightSepHighlight',''}, '  ' },
 	},
 	defaults = {
 		font_active = "bold,italic",
 		branch_symbol = " ",
 		true_colors = true,
+		line_column = " %l/%L :%c "
 	},
 	mode_icons = {
 		n = "NORMAL"
@@ -111,9 +115,9 @@ Styles.atom_line = {
 	}
 }
 
--- vim.cmd [[hi FileNameHighlight guifg=white guibg=#393b4d]]
--- vim.cmd [[hi FileNameRightSepHighlight guifg=#393b4d]]
-vim.cmd [[hi ArchSymbol guifg=#1793d1 guibg=#11121d]]
+vim.cmd [[hi FileNameHighlight guifg=white guibg=#393b4d]]
+vim.cmd [[hi FileNameRightSepHighlight guifg=#393b4d]]
+-- vim.cmd [[hi ArchSymbol guifg=#1793d1 guibg=#11121d]]
 -- ;#a3be8c
 
 Styles.normal_line = {
@@ -186,4 +190,4 @@ Styles.pebble_line = {
 -- local leftSeparator = ""	-->      
 -- local rightSeparator = ""	-->      
 
-require "staline".setup(Styles.evil_line)
+require "staline".setup(Styles.atom_line)
