@@ -11,7 +11,7 @@ require 'custom.noice_board'.setup()
 require 'custom.noice_sus'.setup()
 require 'custom.noice_comment'.setup()
 require 'custom.noice_fold'.setup()
-require 'themes.colorschemes'.tokyodark(false)
+require 'themes.colorschemes'.catppuccino(false)
 
 --> LSP SETTINGS
 require 'lsp.lspconfig'

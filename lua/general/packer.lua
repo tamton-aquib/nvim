@@ -22,8 +22,8 @@ require "packer".startup { function(use)
 
     --> LSP and COMPLETION
     use { 'neovim/nvim-lspconfig' }
-	-- use { 'kabouzeid/nvim-lspinstall' }
-	use { 'MordechaiHadad/nvim-lspmanager', branch="dev" }
+	use { 'kabouzeid/nvim-lspinstall' }
+	-- use { 'MordechaiHadad/nvim-lspmanager', branch="dev" }
 	use { 'L3MON4D3/LuaSnip' , config = function() require"plugins.snippets" end }
 	use { 'hrsh7th/nvim-cmp' }
 	use { 'hrsh7th/cmp-buffer' }
@@ -48,7 +48,7 @@ require "packer".startup { function(use)
 	use { 'kyazdani42/nvim-web-devicons' , config = function() require "plugins.web_devicons" end }
 	use { 'steelsojka/pears.nvim' , config=function() require"pears".setup() end}
 	use { 'akinsho/nvim-toggleterm.lua' , event = "BufWinEnter", config = function() require"plugins.floaterm" end }
-	use { 'tamago324/lir.nvim' , config = function() require"plugins.lir" end }
+	use { 'tamago324/lir.nvim' , config = function() require"plugins.lir" end, after="nvim-web-devicons" }
 	use { 'iamcco/markdown-preview.nvim' , ft={'markdown'}, config = function() require"plugins.others".markdown_preview() end, run = "cd app && yarn install", }
     use { 'lukas-reineke/indent-blankline.nvim', event="BufReadPost", config = function() require"plugins.others".indent_blankline() end }
 

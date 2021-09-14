@@ -6,6 +6,16 @@ for type, icon in pairs(signs) do
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
+local on_attach = function(_, _)
+	vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with(
+		vim.lsp.handlers.hover, {border = border})
+	vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with(
+		vim.lsp.handlers.signature_help, {border = border})
+	vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+		vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false }
+	)
+end
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.resolveSupport = {
@@ -16,20 +26,9 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
     }
 }
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-	vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false }
-)
+require'lspmanager'.setup()
 
-local on_attach = function(_, _)
-	vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with(
-		vim.lsp.handlers.hover, {border = border})
-	vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with(
-		vim.lsp.handlers.signature_help, {border = border})
-end
-
--- local servers = require'lspinstall'.installed_servers()
 local servers = require'lspmanager'.installed_servers()
-
 for _, server in pairs(servers) do
 	if server ~= 'sumneko_lua' then
 		require'lspconfig'[server].setup{
@@ -38,6 +37,9 @@ for _, server in pairs(servers) do
 		}
 	end
 end
+
+-- local sumneko_root_path = vim.fn.stdpath('data').. "/lspinstall/lua"
+-- local sumneko_binary = sumneko_root_path .. "/sumneko-lua-language-server"
 
 local sumneko_root_path = vim.fn.stdpath('data').. "/lspmanager/sumneko_lua"
 local sumneko_binary = sumneko_root_path .. "/sumneko-lua-language-server"

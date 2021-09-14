@@ -95,8 +95,9 @@ Styles.atom_line = {
 		mid = {'-lsp'},
 		right = {
 			'', '-mode', {'FileNameHighlight', 'line_column'},
-			{'FileNameHighlight'," ".. os.date("%H:%M").." "},
-			{'FileNameRightSepHighlight',''}, '  ' },
+			{'FileNameHighlight'," ".. os.date("%I:%M").." "},
+			{'FileNameRightSepHighlight',''}, '  '
+		},
 	},
 	defaults = {
 		font_active = "bold,italic",
