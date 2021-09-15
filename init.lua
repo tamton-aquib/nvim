@@ -11,6 +11,7 @@ require 'custom.noice_board'.setup()
 require 'custom.noice_sus'.setup()
 require 'custom.noice_comment'.setup()
 require 'custom.noice_fold'.setup()
+require 'plugins.others'.femboyf()
 require 'themes.colorschemes'.catppuccino(false)
 
 --> LSP SETTINGS

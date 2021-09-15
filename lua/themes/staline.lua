@@ -1,12 +1,11 @@
 --> staline setup
 -- #181a23    
---        
+--          
 Styles = {}
 
 require 'stabline'.setup {
 	style = "slant",
 	font_active = "bold,italic",
-	-- stab_start = "%#LspDiagnosticsDefaultError#    ",
 	stab_start = "%#Rocket#      ",
 	stab_bg = "#1e1e1e",
 	bg = "#0e171c"
@@ -17,7 +16,7 @@ vim.cmd [[hi Rocket guifg=#97c374 guibg=#1e1e1e gui=bold]]
 
 Styles.simple_line = {
 	sections = {
-		left = { '  ', 'mode', ' ', 'branch', '   ', 'lsp', },
+		left = { '  ', 'mode', ' ', 'branch', '     ', 'lsp', },
 		mid = {},
 		right = {'%l/%L  :%c  ', 'file_name', '  ',
 			function()
@@ -41,7 +40,6 @@ Styles.simple_line = {
 		branch_symbol = " ",
 	}
 }
-
 
 Styles.evil_line = {
 	sections = {
@@ -191,4 +189,5 @@ Styles.pebble_line = {
 -- local leftSeparator = ""	-->      
 -- local rightSeparator = ""	-->      
 
-require "staline".setup(Styles.atom_line)
+require "staline".setup(Styles.simple_line)
+--vim:set foldlevelstart=0, set foldenable

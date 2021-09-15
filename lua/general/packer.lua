@@ -3,9 +3,8 @@ require "packer".startup { function(use)
 
 	--> Testing and temporary
 	use { "karb94/neoscroll.nvim", event="WinScrolled", config=function() require"neoscroll".setup() end }
-	use { 'Pocco81/Catppuccino.nvim' }
+	use { '3lv/femboyf' }
 	use { 'lewis6991/impatient.nvim' }
-	use { 'tamton-aquib/dynamic-cursor.nvim' , after="nvim-treesitter", config=function() require "dynamic-cursor".setup{} end }
     use { 'tamton-aquib/staline.nvim' , config = function() require"themes.staline" end}
 
 
@@ -14,6 +13,8 @@ require "packer".startup { function(use)
 	use { 'tiagovla/tokyodark.nvim' }
     use { 'sainnhe/sonokai' }
     use { 'eddyekofo94/gruvbox-flat.nvim' }
+	use { 'Pocco81/Catppuccino.nvim' }
+	use { 'tamton-aquib/dynamic-cursor.nvim' , after="nvim-treesitter", config=function() require "dynamic-cursor".setup{} end }
 
     use { 'norcalli/nvim-colorizer.lua' , event='BufReadPre', config = function() require"plugins.plug-colorizer" end }
     use { 'folke/todo-comments.nvim' , config = function() require'todo-comments'.setup{} end }
@@ -22,8 +23,8 @@ require "packer".startup { function(use)
 
     --> LSP and COMPLETION
     use { 'neovim/nvim-lspconfig' }
-	use { 'kabouzeid/nvim-lspinstall' }
-	-- use { 'MordechaiHadad/nvim-lspmanager', branch="dev" }
+	-- use { 'kabouzeid/nvim-lspinstall' }
+	use { 'MordechaiHadad/nvim-lspmanager', branch="dev" }
 	use { 'L3MON4D3/LuaSnip' , config = function() require"plugins.snippets" end }
 	use { 'hrsh7th/nvim-cmp' }
 	use { 'hrsh7th/cmp-buffer' }
@@ -53,19 +54,4 @@ require "packer".startup { function(use)
     use { 'lukas-reineke/indent-blankline.nvim', event="BufReadPost", config = function() require"plugins.others".indent_blankline() end }
 
 	use 'wbthomason/packer.nvim'
-end,
-
-	config = {
-		profile = {enable = true},
-		display = {
-			done_sym = "✓",
-			error_sym = "×",
-			working_sym = "",
-			open_fn = function()
-				return require('packer.util').float{
-					border = require"general.utils".border
-				}
-			end
-		}
-	}
-}
+end }

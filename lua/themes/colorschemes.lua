@@ -24,7 +24,7 @@ function Colo.catppuccino(transparent)
 		transparency = transparent,
 	}
 	cap.load()
-	-- vim.cmd [[colo catppuccino]]
+	vim.cmd [[hi FloatBorder guibg=#0b1115]]
 end
 
 function Colo.tokyodark(transparent)

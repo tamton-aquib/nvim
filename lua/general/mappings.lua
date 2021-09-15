@@ -2,12 +2,15 @@ vim.g.mapleader = ' '
 local opts = {noremap=true, silent=true}
 local function map(mode, key, mapping) vim.api.nvim_set_keymap(mode, key, mapping, opts) end
 
+--> NEW
+map('n', '<leader>ps', ":w<CR>:so %<CR>:PackerSync<CR>")
+map('n', '<leader>pp', ":PackerProfile<CR>")
+
 --> Custom
 map('n', '<M-h>',     ':lua vim.cmd(":h "..vim.fn.expand("<cword>"))<CR>')
 
 map('n', '<leader>s', ':lua require"general.functions".swap_bool()<CR>')
 map('n', 'gx',        ':lua require"general.functions".go_to_url()<CR>')
-map('n', '<leader>u', ':lua require"general.functions".packer_do_everything()<CR>')
 map('n', '<C-t>',     ':lua require"general.functions".toggle_transparent()<CR>')
 
 vim.cmd [[au BufEnter * lua require"general.functions".on_file_enter()]]
