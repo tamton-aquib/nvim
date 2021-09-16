@@ -5,7 +5,9 @@ require "packer".startup { function(use)
 	use { "karb94/neoscroll.nvim", event="WinScrolled", config=function() require"neoscroll".setup() end }
 	use { '3lv/femboyf' }
 	use { 'lewis6991/impatient.nvim' }
-    use { 'tamton-aquib/staline.nvim' , config = function() require"themes.staline" end}
+    -- use { 'tamton-aquib/staline.nvim' , config = function() require"themes.staline" end}
+    use { '~/TOOLS/staline.nvim' , config = function() require"themes.staline" end}
+	-- use { 'SmiteshP/nvim-gps' , config=function() require"nvim-gps".setup() end}
 
 
     --> THEMES AND UI

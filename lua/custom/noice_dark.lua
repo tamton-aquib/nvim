@@ -31,13 +31,15 @@ local c = {
 	white_two        = "#dddddd",
 	white_five       = "#999999",
 	white_three      = "#5c6370",
-	background       = "#282c34",
+	-- background       = "#282c34",
+	-- background       = "#24283b",
+	background       = "#11121d",
 	background_dark  = "#1f1f1f",
 }
 
 local back
 if vim.g.noice_transparency then
-	back = nil
+	back = ""
 else
 	back = c.background
 end
@@ -47,7 +49,8 @@ local Usual = {
 		-- Normal		= { fg = c.white_two, bg = back },
 		NormalFloat = { fg = c.white_two, bg = c.background_dark, blend=50},
 		String		= { fg = c.green_two },
-		FloatBorder = { fg = c.blue_three, bg = c.background_dark},
+		-- FloatBorder = { fg = c.blue_three, bg = c.background_dark},
+		FloatBorder = { fg = c.green_three, bg = c.background_dark},
 		LineNr		= { fg = c.white_three, bg = nil },
 		SignColumn	= { bg = nil},
 		EndOfbuffer	= { fg = c.background},
@@ -95,6 +98,7 @@ local Usual = {
 
 		TSType			= { fg = c.red_two},
 		TSField			= { fg = c.red_two},
+		TSTag           = { fg = c.red_two},
 
 		TSOperator		= { fg = c.red_two },
 		TSPunctDelimiter	= { fg = c.white_one},
@@ -109,7 +113,8 @@ local Usual = {
 		TSPunctSpecial		= { fg = c.red_one },
 		TSNone			= { fg = c.red_one},
 		TSTagDelimiter  	= { fg = c.violet_one},
-		TSTagAttribute		= { fg = c.red_two},
+		-- TSTagAttribute		= { fg = c.red_two},
+		TSTagAttribute = { fg = c.blue_two},
 	},
 
 	LspRelated = {
@@ -131,16 +136,12 @@ local Usual = {
 }
 
 local lang = {
-	html = {
-		TSTag = { fg = c.red_two},
-		htmlTSTagAttribute = { fg = c.blue_two},
-	},
-	css = {
-		cssTagName	= { fg = c.red_two},
-		Constant = {fg = c.green_three},
-		cssBraces = { fg = c.blue_two},
-		Type   = { fg = c.blue_three}
-	},
+	-- css = {
+		-- cssTagName	= { fg = c.red_two},
+		-- Constant = {fg = c.green_three},
+		-- cssBraces = { fg = c.blue_two},
+		-- Type   = { fg = c.blue_three}
+	-- },
 	dosini = {
 		dosiniLabel = { fg = c.blue_three },
 		dosiniNumber = { fg = c.green_two},
@@ -153,14 +154,14 @@ local lang = {
 		helpSpecial = {fg = c.red_two},
 		helpHyperTextEntry = {fg = c.blue_one, bold=true}
 	},
+	norg = {
+		NeorgHeading1Title = { fg = "#f7768e"},
+		NeorgHeading2Title = { fg = "#ad8ee6"},
+		NeorgHeading3Title = { fg = c.green_two},
+	},
 }
 
 local Plugins = {
-	Neorg = {
-		NeorgHeading1 = { fg = "#f7768e"},
-		NeorgHeading2 = { fg = "#ad8ee6"},
-		NeorgHeading3 = { fg = c.green_two},
-	},
 	IndentBlankLine = {
 		IndentBlanklineChar = { fg=c.white_three },
 		IndentBlanklineSpaceChar = { fg=c.white_three }
@@ -171,11 +172,11 @@ local Plugins = {
 		TelescopeSelectionCaret = { fg = c.red_two, bg = back},
 		TelescopeSelection		= { fg = c.red_two, bg = back}
 	},
-	NvimTree = {
-		NvimTreeRootFolder = { fg = c.red_two, bold = true},
-		NvimTreeFolderIcon = { fg=c.blue_one },
-		NvimTreeSpecialFile = { fg=c.green_three }
-	},
+	-- NvimTree = {
+		-- NvimTreeRootFolder = { fg = c.red_two, bold = true},
+		-- NvimTreeFolderIcon = { fg=c.blue_one },
+		-- NvimTreeSpecialFile = { fg=c.green_three }
+	-- },
 	GitSign = {
 		GitSignsAdd = { fg = c.green_three },
 		GitSignsChange = { fg = c.yellow_one},
@@ -195,7 +196,7 @@ local Plugins = {
 		markdownCodeDelimiter	= { fg = c.green_two, italic = true},
 		markdownListMarker		= { fg = c.orange_two },
 		markdownError           = { fg = c.white_two}
-	}
+	},
 }
 
 local function add_highlight_table(tbl)
@@ -226,7 +227,7 @@ function M.noice()
 	local bg = back or "none"
 	vim.cmd('hi Normal guibg='..bg..' guifg=#dddddd')
 
-	vim.cmd [[au BufEnter,FileType * :lua require"custom.noice_dark".Lang_high(vim.bo.ft)]]
+	vim.cmd [[au BufEnter,FileType,ColorSchemePre * :lua require"custom.noice_dark".Lang_high(vim.bo.ft)]]
 	vim.cmd [[au ColorSchemePre * :lua require"custom.noice_dark".check_change()]]
 	vim.api.nvim__set_hl_ns(ns)
 end

@@ -4,15 +4,21 @@
 Styles = {}
 
 require 'stabline'.setup {
-	style = "slant",
+	style = "bar",
 	font_active = "bold,italic",
 	stab_start = "%#Rocket#      ",
-	stab_bg = "#1e1e1e",
-	bg = "#0e171c"
+	-- stab_bg = "#1e1e1e",
+	-- bg = "#0e171c"
+	fg = "#986fec",
+	inactive_bg = "#1e1e1e"
 }
 
--- vim.cmd [[hi Rocket guifg=#f36365 guibg=#1e1e1e gui=bold]]
-vim.cmd [[hi Rocket guifg=#97c374 guibg=#1e1e1e gui=bold]]
+function Get_GPS()
+	return require"nvim-gps".get_location()
+end
+
+vim.cmd [[hi Rocket guifg=#f36365 guibg=#1e1e1e gui=bold]]
+-- vim.cmd [[hi Rocket guifg=#97c374 guibg=#1e1e1e gui=bold]]
 
 Styles.simple_line = {
 	sections = {
@@ -29,10 +35,17 @@ Styles.simple_line = {
 			end
 		}
 	},
+	-- mode_colors = {
+		-- i = "#986fec",
+		-- -- n = "#759a51",
+		-- n = "#7aa2f7"
+	-- },
+
 	mode_colors = {
-		i = "#986fec",
-		-- n = "#759a51",
-		n = "#7aa2f7"
+		n = "#986fec",
+		i = "#e86671",
+		ic= "#e86671",
+		c = "#e27d60"
 	},
 	defaults = {
 		true_colors = true,
@@ -180,12 +193,6 @@ Styles.pebble_line = {
 	}
 }
 
--- 	mode_colors = {
--- 		n = "#986fec",
--- 		i = "#e86671",
--- 		ic= "#e86671",
--- 		c = "#e27d60"
--- 	}
 -- local leftSeparator = ""	-->      
 -- local rightSeparator = ""	-->      
 

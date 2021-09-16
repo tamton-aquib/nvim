@@ -12,7 +12,7 @@ require 'custom.noice_sus'.setup()
 require 'custom.noice_comment'.setup()
 require 'custom.noice_fold'.setup()
 require 'plugins.others'.femboyf()
-require 'themes.colorschemes'.catppuccino(false)
+require 'themes.colorschemes'.noice(true)
 
 --> LSP SETTINGS
 require 'lsp.lspconfig'
