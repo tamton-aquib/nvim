@@ -7,8 +7,6 @@ require 'stabline'.setup {
 	style = "bar",
 	font_active = "bold,italic",
 	stab_start = "%#Rocket#      ",
-	-- stab_bg = "#1e1e1e",
-	-- bg = "#0e171c"
 	fg = "#986fec",
 	inactive_bg = "#1e1e1e"
 }

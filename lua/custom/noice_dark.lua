@@ -105,6 +105,7 @@ local Usual = {
 		TSRepeat		= { fg = c.red_two},
 		TSConstructor		= { fg = c.blue_one },
 		TSProperty		= { fg = c.blue_two},
+		TSNamespace     = { fg = c.red_two },
 
 		TSPunctBracket		= { fg = c.blue_two},
 		-- TSPunctDelimiter
@@ -115,6 +116,8 @@ local Usual = {
 		TSTagDelimiter  	= { fg = c.violet_one},
 		-- TSTagAttribute		= { fg = c.red_two},
 		TSTagAttribute = { fg = c.blue_two},
+
+		TSFuncMacro    = { fg = c.blue_two }
 	},
 
 	LspRelated = {
@@ -159,6 +162,9 @@ local lang = {
 		NeorgHeading2Title = { fg = "#ad8ee6"},
 		NeorgHeading3Title = { fg = c.green_two},
 	},
+	rust = {
+		TSKeyword = { fg = c.violet_one }
+	}
 }
 
 local Plugins = {

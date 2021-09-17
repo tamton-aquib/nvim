@@ -5,10 +5,7 @@ require "packer".startup { function(use)
 	use { "karb94/neoscroll.nvim", event="WinScrolled", config=function() require"neoscroll".setup() end }
 	use { '3lv/femboyf' }
 	use { 'lewis6991/impatient.nvim' }
-    -- use { 'tamton-aquib/staline.nvim' , config = function() require"themes.staline" end}
-    use { '~/TOOLS/staline.nvim' , config = function() require"themes.staline" end}
-	-- use { 'SmiteshP/nvim-gps' , config=function() require"nvim-gps".setup() end}
-
+    use { 'tamton-aquib/staline.nvim' , config = function() require"themes.staline" end}
 
     --> THEMES AND UI
 	use { 'folke/tokyonight.nvim' }
@@ -21,7 +18,6 @@ require "packer".startup { function(use)
     use { 'norcalli/nvim-colorizer.lua' , event='BufReadPre', config = function() require"plugins.plug-colorizer" end }
     use { 'folke/todo-comments.nvim' , config = function() require'todo-comments'.setup{} end }
     use { 'lewis6991/gitsigns.nvim' , config = function() require'gitsigns'.setup{} end }
-
 
     --> LSP and COMPLETION
     use { 'neovim/nvim-lspconfig' }
@@ -36,14 +32,12 @@ require "packer".startup { function(use)
 	use { 'hrsh7th/cmp-nvim-lua' }
 	use { 'saadparwaiz1/cmp_luasnip' }
 
-
 	--> TELESCOPE, TREESITTER, NEORG
 	use { 'nvim-treesitter/nvim-treesitter' , event='BufRead', config=function() require"plugins.treesittter" end }
 	use { 'nvim-treesitter/playground' , after="nvim-treesitter" }
 	use { 'nvim-lua/plenary.nvim' }
 	use { 'nvim-telescope/telescope.nvim' , config=function() require"plugins.telescope" end}
 	use { 'nvim-neorg/neorg' , branch='unstable', event='BufReadPost', ft={"norg"}, after="nvim-treesitter", requires="vhyrro/neorg-telescope", config = function() require "plugins.neorg" end }
-
 
 	--> GENERAL PURPOSE
     use { 'rcarriga/nvim-notify' }

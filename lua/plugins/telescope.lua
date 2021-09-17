@@ -59,3 +59,4 @@ vim.api.nvim_set_keymap(
 	, {noremap = true, silent = true}
 )
 vim.api.nvim_set_keymap('n', '<leader>h', ':Telescope help_tags<CR>', {noremap=true, silent=true})
+vim.api.nvim_set_keymap('n', '<leader>c', ':Telescope commands<CR>', {noremap=true, silent=true})

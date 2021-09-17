@@ -5,8 +5,9 @@ vim.opt.spell = false
 set.fillchars = 'eob: '
 vim.notify = require "notify"
 -- set.listchars = 'tab:▏ '
--- let &colorcolumn=join(range(81,999),",")
+-- vim.cmd [[let &colorcolumn=join(range(81,999),",")]]
 vim.cmd [[au FileType lspinfo nnoremap q <cmd>q<CR>]]
+vim.cmd [[au BufEnter,FileType *.toml echo "Noice"]]
 
 -- set.shell = '/usr/bin/bash'
 set.lazyredraw = true
