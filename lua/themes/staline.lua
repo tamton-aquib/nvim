@@ -8,7 +8,7 @@ require 'stabline'.setup {
 	font_active = "bold,italic",
 	stab_start = "%#Rocket#      ",
 	fg = "#986fec",
-	inactive_bg = "none"
+	inactive_bg = "#211a35"
 }
 
 vim.cmd [[hi Rocket guifg=#f36365 guibg=none gui=bold]]
@@ -16,7 +16,7 @@ vim.cmd [[hi Rocket guifg=#f36365 guibg=none gui=bold]]
 
 Styles.simple_line = {
 	sections = {
-		left = { '  ', 'mode', ' ', 'branch', {'Rocket', '      '}, 'lsp', },
+		left = { '  ', 'mode', ' ', 'branch', '      ', 'lsp', },
 		-- left = { '  ', 'mode', ' ', 'branch', '     ', 'lsp', },
 		mid = {},
 		right = {'%l/%L  :%c  ', 'file_name', '  ',
@@ -27,7 +27,7 @@ Styles.simple_line = {
 				local line_ratio = current_line / total_lines
 				local index = math.ceil(line_ratio * #chars)
 				return chars[index]
-			end
+			end, ' '
 		}
 	},
 	-- mode_colors = {

@@ -17,11 +17,11 @@ require "packer".startup { function(use)
 
     use { 'norcalli/nvim-colorizer.lua' , event='BufReadPre', config = function() require"plugins.plug-colorizer" end }
     use { 'folke/todo-comments.nvim' , config = function() require'todo-comments'.setup{} end }
-    use { 'lewis6991/gitsigns.nvim' , config = function() require'gitsigns'.setup{} end } --, event='BufRead'}
+    use { 'lewis6991/gitsigns.nvim' , config = function() require'gitsigns'.setup{} end , event='BufRead'}
 
     --> LSP and COMPLETION
     use { 'neovim/nvim-lspconfig' }
-	use { 'MordechaiHadad/nvim-lspmanager', branch="dev" }
+	use { 'MordechaiHadad/nvim-lspmanager', branch="dev", config=function() require"lsp.lsps" end }
 	use { 'L3MON4D3/LuaSnip' , config = function() require"plugins.snippets" end }
 	use { 'hrsh7th/nvim-cmp' , after="LuaSnip", config=function() require 'lsp.cmp' end }
 	use { 'hrsh7th/cmp-buffer' }

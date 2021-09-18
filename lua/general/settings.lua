@@ -1,19 +1,10 @@
 local set = vim.opt
-
-vim.cmd [[ filetype plugin indent off ]]
-vim.opt.spell = false
-set.fillchars = 'eob: '
 vim.notify = require "notify"
--- set.listchars = 'tab:▏ '
--- vim.cmd [[let &colorcolumn=join(range(81,999),",")]]
-vim.cmd [[au FileType lspinfo nnoremap q <cmd>q<CR>]]
-vim.cmd [[au BufEnter,FileType *.toml echo "Noice"]]
 
--- set.shell = '/usr/bin/bash'
+set.fillchars = 'eob: '
 set.lazyredraw = true
-set.ruler = false
 
--- set.cursorline = true
+set.ruler = false
 set.conceallevel = 2
 set.mouse = "a"
 set.encoding = "UTF-8"
@@ -29,7 +20,6 @@ set.clipboard = "unnamedplus"
 set.smarttab = true
 set.backup = false
 set.writebackup = false
-set.conceallevel = 0
 set.cmdheight = 1
 set.splitright = true
 set.splitbelow = true
@@ -38,7 +28,7 @@ set.incsearch = true
 set.showmode = false
 set.showtabline = 2
 set.laststatus = 2
-set.foldenable = false
+set.foldenable = true
 set.foldmethod = "expr"
 set.foldexpr = "nvim_treesitter#foldexpr()"
 set.foldlevelstart = 25
@@ -50,18 +40,30 @@ set.inccommand = "split"
 set.number = true
 set.relativenumber = true
 set.wrap = false
--- set.list = true
--- set.listchars = 'tab:▏ '
--- set.listchars = 'tab: '
 set.title = true
 set.titlestring = "  Editing %f..."
 
+set.shiftwidth = 4
 set.tabstop = 4
 set.softtabstop = 0
-set.shiftwidth = 4
 set.expandtab = false
 set.smartindent = true
+
+--> TEST
+-- set.shiftwidth = 4
+-- set.tabstop = 4
+-- set.softtabstop = 0
+-- set.expandtab = true
+-- set.smartindent = true
+-- set.shiftwidth = 4
+-- set.expandtab = true
+
 -- set.autoindent = true
 -- set.copyindent = true
 -- set.breakindent = true
 -- set.preserveindent = true
+-- set.list = true
+-- set.listchars = 'tab:▏ '
+-- set.listchars = 'tab: '
+-- set.cursorline = true
+-- vim.cmd [[let &colorcolumn=join(range(81,999),",")]]

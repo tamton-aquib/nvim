@@ -109,7 +109,7 @@ function M.setup()
 			empty()
 			set_lines(#header, header, 'String'); empty() empty()
 			set_lines(#d, d, 'Function', true);       empty()
-			set_lines(1, {'taj@arch'}, 'Function')
+			set_lines(1, {'taj@arch'}, 'Directory')
 
 			-- TODO: set CursorMoved autocmd to make it smooth
 			-- vim.cmd [[au CursorMoved * lua require'custom.noice_board'.go_to_line()]]

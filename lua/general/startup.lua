@@ -7,6 +7,9 @@ vim.g.loaded_man = false
 vim.g.loaded_2html_plugin = false
 vim.g.loaded_remote_plugins = false
 
+vim.cmd [[ filetype plugin indent off ]]
+vim.opt.spell = false
+
 if pcall(require, 'impatient') then
 	require 'impatient'
 end

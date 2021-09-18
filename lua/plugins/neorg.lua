@@ -1,6 +1,5 @@
-vim.cmd [[packadd nvim-treesitter]]
-vim.cmd [[packadd nvim-compe]]
-vim.cmd [[packadd neorg]]
+-- vim.cmd [[packadd nvim-treesitter]]
+-- vim.cmd [[packadd neorg]]
 local neorg_callbacks = require('neorg.callbacks')
 
 neorg_callbacks.on_event("core.keybinds.events.enable_keybinds", function(_, content)

@@ -70,7 +70,7 @@ local Usual = {
 		ErrorMsg	= { fg = c.red_one},
 		Conceal		= { bg = back},
 
-		Folded		= { fg = c.black, bg = c.white_five},
+		Folded		= { fg = "#7aa2f7", bg = "#3b4261"},
 		Matchparen	= { underline = true},
 		MsgArea		= { fg = c.white_one},
 		Pmenu		= { fg = c.white_two, bg = c.background_dark},
@@ -93,7 +93,9 @@ local Usual = {
 		TSTypeBuiltin		= { fg = c.violet_one},
 		TSMethod		= { fg = c.blue_two},
 		TSVariable		= { fg = c.white_two },
-		TSFunction		= { fg = c.violet_one },
+		-- TSFunction		= { fg = c.violet_one },
+		TSFunction		= { fg = c.violet_two },
+		-- TSFunction		= { fg = c.violet_three },
 		TSVariableBuiltin	= { fg = c.red_two},
 
 		TSType			= { fg = c.red_two},
@@ -110,7 +112,8 @@ local Usual = {
 		-- TSPunctBracket		= { fg = c.blue_two},
 		TSPunctBracket		= { fg = c.red_one},
 		-- TSPunctDelimiter
-		TSParameter		= { fg = c.orange_two},
+		TSParameter		= { fg = c.blue_three},
+		-- TSParameter		= { fg = c.orange_two},
 		TSConditional		= { fg = c.red_two},
 		TSPunctSpecial		= { fg = c.red_one },
 		TSNone			= { fg = c.red_one},
