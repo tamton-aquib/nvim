@@ -107,7 +107,8 @@ local Usual = {
 		TSProperty		= { fg = c.blue_two},
 		TSNamespace     = { fg = c.red_two },
 
-		TSPunctBracket		= { fg = c.blue_two},
+		-- TSPunctBracket		= { fg = c.blue_two},
+		TSPunctBracket		= { fg = c.red_one},
 		-- TSPunctDelimiter
 		TSParameter		= { fg = c.orange_two},
 		TSConditional		= { fg = c.red_two},

@@ -13,18 +13,17 @@ require "packer".startup { function(use)
     use { 'sainnhe/sonokai' }
     use { 'eddyekofo94/gruvbox-flat.nvim' }
 	use { 'Pocco81/Catppuccino.nvim' }
-	use { 'tamton-aquib/dynamic-cursor.nvim' , after="nvim-treesitter", config=function() require "dynamic-cursor".setup{} end }
+	-- use { 'tamton-aquib/dynamic-cursor.nvim' , after="nvim-treesitter", config=function() require "dynamic-cursor".setup{} end }
 
     use { 'norcalli/nvim-colorizer.lua' , event='BufReadPre', config = function() require"plugins.plug-colorizer" end }
     use { 'folke/todo-comments.nvim' , config = function() require'todo-comments'.setup{} end }
-    use { 'lewis6991/gitsigns.nvim' , config = function() require'gitsigns'.setup{} end }
+    use { 'lewis6991/gitsigns.nvim' , config = function() require'gitsigns'.setup{} end } --, event='BufRead'}
 
     --> LSP and COMPLETION
     use { 'neovim/nvim-lspconfig' }
-	-- use { 'kabouzeid/nvim-lspinstall' }
 	use { 'MordechaiHadad/nvim-lspmanager', branch="dev" }
 	use { 'L3MON4D3/LuaSnip' , config = function() require"plugins.snippets" end }
-	use { 'hrsh7th/nvim-cmp' }
+	use { 'hrsh7th/nvim-cmp' , after="LuaSnip", config=function() require 'lsp.cmp' end }
 	use { 'hrsh7th/cmp-buffer' }
 	use { 'hrsh7th/cmp-nvim-lsp' }
 	use { 'hrsh7th/cmp-path' }
@@ -36,7 +35,7 @@ require "packer".startup { function(use)
 	use { 'nvim-treesitter/nvim-treesitter' , event='BufRead', config=function() require"plugins.treesittter" end }
 	use { 'nvim-treesitter/playground' , after="nvim-treesitter" }
 	use { 'nvim-lua/plenary.nvim' }
-	use { 'nvim-telescope/telescope.nvim' , config=function() require"plugins.telescope" end}
+	use { 'nvim-telescope/telescope.nvim' , config=function() require"plugins.telescope" end, cmd="Telescope"}
 	use { 'nvim-neorg/neorg' , branch='unstable', event='BufReadPost', ft={"norg"}, after="nvim-treesitter", requires="vhyrro/neorg-telescope", config = function() require "plugins.neorg" end }
 
 	--> GENERAL PURPOSE
@@ -48,6 +47,7 @@ require "packer".startup { function(use)
 	use { 'tamago324/lir.nvim' , config = function() require"plugins.lir" end, after="nvim-web-devicons" }
 	use { 'iamcco/markdown-preview.nvim' , ft={'markdown'}, config = function() require"plugins.others".markdown_preview() end, run = "cd app && yarn install", }
     use { 'lukas-reineke/indent-blankline.nvim', event="BufReadPost", config = function() require"plugins.others".indent_blankline() end }
+
 
 	use 'wbthomason/packer.nvim'
 end }

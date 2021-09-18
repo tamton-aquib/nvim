@@ -16,6 +16,12 @@ map('n', '<C-t>',     ':lua require"general.functions".toggle_transparent()<CR>'
 vim.cmd [[au BufEnter * lua require"general.functions".on_file_enter()]]
 vim.cmd [[autocmd FileType help nnoremap <buffer> <CR> <C-]>]]
 
+--> Telescope mappings
+map( 'n', '<leader>f', ':Telescope find_files theme=get_cursor previewer=false<CR>')
+map( 'n', '<leader>g', ':Telescope live_grep theme=cursor previewer=false<CR>')
+map( 'n', '<leader>h', ':Telescope help_tags<CR>')
+map( 'n', '<leader>c', ':Telescope commands theme=ivy<CR>')
+
 --> WINDOW Control
 map('n', '<C-h>',     '<C-w>h')
 map('n', '<C-j>',     '<C-w>j')

@@ -8,19 +8,16 @@ require 'stabline'.setup {
 	font_active = "bold,italic",
 	stab_start = "%#Rocket#      ",
 	fg = "#986fec",
-	inactive_bg = "#1e1e1e"
+	inactive_bg = "none"
 }
 
-function Get_GPS()
-	return require"nvim-gps".get_location()
-end
-
-vim.cmd [[hi Rocket guifg=#f36365 guibg=#1e1e1e gui=bold]]
+vim.cmd [[hi Rocket guifg=#f36365 guibg=none gui=bold]]
 -- vim.cmd [[hi Rocket guifg=#97c374 guibg=#1e1e1e gui=bold]]
 
 Styles.simple_line = {
 	sections = {
-		left = { '  ', 'mode', ' ', 'branch', '     ', 'lsp', },
+		left = { '  ', 'mode', ' ', 'branch', {'Rocket', '      '}, 'lsp', },
+		-- left = { '  ', 'mode', ' ', 'branch', '     ', 'lsp', },
 		mid = {},
 		right = {'%l/%L  :%c  ', 'file_name', '  ',
 			function()

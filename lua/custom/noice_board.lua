@@ -15,7 +15,7 @@ local keymaps = {
     F = '~/.config/fish/config.fish',
     I = '~/.config/nvim/init.lua',
     A = '~/.config/alacritty/alacritty.yml',
-    P = '~/.config/picom/picom.conf'
+    P = '~/.config/picom/picom.conf',
 }
 
 local header = {
@@ -93,6 +93,7 @@ local function set_keymaps_and_options()
 	)
     end
     buf_map(0, 'n', '<CR>', '<cmd>lua require"custom.noice_board".get_line()<CR>', opts)
+    buf_map(0, 'n', 'q', '<cmd>q<CR>', opts)
 end
 
 local function empty() set_lines(2, {'', ''}, 'String') end
@@ -108,7 +109,7 @@ function M.setup()
 			empty()
 			set_lines(#header, header, 'String'); empty() empty()
 			set_lines(#d, d, 'Function', true);       empty()
-			set_lines(1, {'taj@arch'}, 'Constant')
+			set_lines(1, {'taj@arch'}, 'Function')
 
 			-- TODO: set CursorMoved autocmd to make it smooth
 			-- vim.cmd [[au CursorMoved * lua require'custom.noice_board'.go_to_line()]]

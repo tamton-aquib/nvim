@@ -18,4 +18,3 @@ require 'themes.colorschemes'.noice(true)
 require 'lsp.lspconfig'
 require 'lsp.lsps'
 require 'lsp.emmet_lsp'
-require 'lsp.cmp'

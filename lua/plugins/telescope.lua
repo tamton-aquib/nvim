@@ -45,18 +45,3 @@ require('telescope').setup{
 		buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
 	}
 }
-
-vim.api.nvim_set_keymap(
-	'n',
-	'<leader>f',
-	[[:lua require('telescope.builtin').find_files(require'telescope.themes'.get_cursor({previewer=false}))<CR>]]
-	, {noremap = true, silent = true}
-)
-vim.api.nvim_set_keymap(
-	'n',
-	'<leader>g',
-	[[:lua require('telescope.builtin').live_grep(require'telescope.themes'.get_cursor({previewer=false}))<CR>]]
-	, {noremap = true, silent = true}
-)
-vim.api.nvim_set_keymap('n', '<leader>h', ':Telescope help_tags<CR>', {noremap=true, silent=true})
-vim.api.nvim_set_keymap('n', '<leader>c', ':Telescope commands<CR>', {noremap=true, silent=true})
