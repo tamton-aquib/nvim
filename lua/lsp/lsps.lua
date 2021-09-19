@@ -16,19 +16,30 @@ local on_attach = function(_, _)
 	)
 end
 
-require'lspinstall'.setup()
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+    properties = {
+        'documentation',
+        'detail',
+        'additionalTextEdits',
+    }
+}
 
-local servers = require'lspinstall'.installed_servers()
+require'lspmanager'.setup()
+
+local servers = require'lspmanager'.installed_servers()
 for _, server in pairs(servers) do
-	if server ~= 'lua' then
+	if server ~= 'sumneko_lua' then
 		require'lspconfig'[server].setup{
-			on_attach = on_attach
+			on_attach = on_attach,
+			capabilities = capabilities
 		}
 	end
 end
 
-local sumneko_root_path = vim.fn.stdpath('data').. "/lspinstall/lua"
-local sumneko_binary = sumneko_root_path .. "/sumneko-lua-language-server"
+local sumneko_root_path = vim.fn.stdpath('data').. "/lspmanager/sumneko_lua"
+local sumneko_binary = sumneko_root_path .. "/extension/server/bin/Linux/lua-language-server"
 
 local luadev = require "lua-dev".setup {
 	library = {
@@ -38,7 +49,7 @@ local luadev = require "lua-dev".setup {
     },
 	lspconfig = {
 		on_attach = on_attach,
-		cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
+		cmd = {sumneko_binary, "-E","./extension/server/main.lua"},
 		filetypes = {'lua'},
 		settings = {
 			Lua = {

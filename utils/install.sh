@@ -2,12 +2,12 @@ R="\033[31m"
 G="\033[32m"
 E="\033[0m"
 
-if [ -d "/home/taj/.config/nvim/" ]; then
+if [[ -d "/home/taj/.config/nvim/" ]]; then
     echo -e "${R}Get a backup of ur current nvim config bruh...${E}"
     exit 1
 fi
 
-if [ -d ~/.local/share/nvim/site/pack/packer ]; then
+if [[ -d ~/.local/share/nvim/site/pack/packer ]]; then
 	echo -e "Clearning previous packer installs"
 	rm -rf ~/.local/share/nvim/site/pack
 fi

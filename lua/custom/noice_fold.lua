@@ -10,14 +10,12 @@ M = {}
 -- end
 
 function M.fold_stuff()
-	local fs = vim.v.foldstart
-	local fe = vim.v.foldend
+	local fs, fe = vim.v.foldstart, vim.v.foldend
+	local start_line, end_line = vim.fn.getline(fs), vim.fn.getline(fe)
 
-	local start_line = vim.fn.getline(fs)
-	local end_line = vim.fn.getline(fe)
 	local spaces = (" "):rep(vim.api.nvim_win_get_width(0) - 6 - start_line:len() - end_line:len())
 
-	return start_line .. "  " .. end_line .. spaces
+	return vim.trim(start_line) .. "  " .. end_line .. spaces
 end
 
 function M.setup()

@@ -8,7 +8,7 @@ require'nvim-web-devicons'.setup{
 			name = "Neorg"
 		},
 		lir_folder_icon = {
-			icon = " ",
+			icon = "",
 			color = "#7ebae4",
 			name = "LirFolderNode"
 		}

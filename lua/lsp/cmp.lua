@@ -35,7 +35,7 @@ end
 
 cmp.setup {
 	formatting ={
-		format = function(entry, item)
+		format = function(_, item)
 			item.kind = icons[item.kind] or "noice"
 			return item
 		end
@@ -96,6 +96,5 @@ cmp.setup {
 		{ name = 'emoji'},
 		{ name = 'neorg'},
 	},
-
 }
 

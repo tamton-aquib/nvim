@@ -12,4 +12,14 @@ function M.markdown_preview()
 	vim.g.mkdp_auto_close = 0
 end
 
+function M.femboyf()
+	require('femboyf').setup {
+		when = 'always',
+		style = '1perword',
+
+		color1 = '#986fec',
+		color2 = '#986fec',
+	}
+end
+
 return M

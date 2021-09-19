@@ -1,23 +1,6 @@
 M = {}
 local line = vim.fn.line
 
------- Timing scheme --------
-function M.timing_scheme()
-    local hour = tonumber(os.date("%H"))
-    local colo = ""
-    if hour <= 12 then
-		colo = "noice"
-    elseif hour <= 20 then
-		colo = "tokyonight"
-    else
-		colo = "sonokai"
-    end
-    require"themes.colorschemes"[colo](false)
-end
-
--- cmd [[au BufEnter * lua Timing_scheme()]]
------------------------------
-
 -------- twist ----------
 function M.swap_bool()
 	local c = vim.api.nvim_get_current_line()
@@ -49,27 +32,5 @@ function M.go_to_url()
 end
 -- 'https://github.com'
 ---------------------
-
-----Packer Reload----
-function M.packer_do_everything()
-    vim.cmd [[w]]
-    vim.cmd [[luafile ~/.config/nvim/lua/general/packer.lua]]
-    vim.cmd [[PackerSync]]
-    -- require'notify'("Updating Plugins", 'info', {title="Packer"})
-end
----------------------
-
---------Transparent Toggle-------------
-local is_tranparent = 0
-function M.toggle_transparent()
-    if (is_tranparent == 1) then
-		vim.cmd('hi Normal guibg=NONE ctermbg=NONE')
-		is_tranparent = 0
-    else
-		vim.o.background = "dark"
-		is_tranparent = 1
-    end
-end
----------------------------------------
 
 return M

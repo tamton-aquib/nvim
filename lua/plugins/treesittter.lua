@@ -12,7 +12,7 @@ parser_configs.norg = {
 require'nvim-treesitter.configs'.setup {
 	ensure_installed = { "norg" ,"lua", "python", "typescript", "javascript"},
 	highlight = {
-		enable = true,              -- false will disable the whole extension
+		enable = true,
 	},
 	indent = {
 		enable = true

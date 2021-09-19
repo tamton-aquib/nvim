@@ -10,8 +10,8 @@ require('telescope').setup{
 			'--column',
 			'--smart-case'
 		},
-		prompt_prefix = "    ",
-		selection_caret = "❱ ",
+		prompt_prefix = "   ",
+		selection_caret = " ",
 		entry_prefix = "  ",
 		initial_mode = "insert",
 		selection_strategy = "reset",
@@ -45,17 +45,3 @@ require('telescope').setup{
 		buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
 	}
 }
-
-vim.api.nvim_set_keymap(
-	'n',
-	'<leader>f',
-	[[:lua require('telescope.builtin').find_files(require'telescope.themes'.get_cursor({previewer=false}))<CR>]]
-	, {noremap = true, silent = true}
-)
-vim.api.nvim_set_keymap(
-	'n',
-	'<leader>g',
-	[[:lua require('telescope.builtin').live_grep(require'telescope.themes'.get_cursor({previewer=false}))<CR>]]
-	, {noremap = true, silent = true}
-)
-vim.api.nvim_set_keymap('n', '<leader>h', ':Telescope help_tags<CR>', {noremap=true, silent=true})

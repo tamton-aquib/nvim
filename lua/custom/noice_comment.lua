@@ -11,6 +11,7 @@ local comment_map = {
     python	= '#',
     sh		= '#',
     conf	= '#',
+    dosini	= '#',
     yaml	= '#',
     lua		= '--',
 	svelte  = '//'

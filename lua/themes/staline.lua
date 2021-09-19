@@ -1,23 +1,23 @@
 --> staline setup
 -- #181a23    
---        
+--          
 Styles = {}
 
 require 'stabline'.setup {
-	style = "slant",
+	style = "bar",
 	font_active = "bold,italic",
-	-- stab_start = "%#LspDiagnosticsDefaultError#    ",
 	stab_start = "%#Rocket#      ",
-	stab_bg = "#1e1e1e",
-	bg = "#0e171c"
+	fg = "#986fec",
+	inactive_bg = "#211a35"
 }
 
-vim.cmd [[hi Rocket guifg=#f36365 guibg=#1e1e1e gui=bold]]
-vim.cmd [[hi Rocket guifg=#97c374 guibg=#1e1e1e gui=bold]]
+vim.cmd [[hi Rocket guifg=#f36365 guibg=none gui=bold]]
+-- vim.cmd [[hi Rocket guifg=#97c374 guibg=#1e1e1e gui=bold]]
 
 Styles.simple_line = {
 	sections = {
-		left = { '  ', 'mode', ' ', 'branch', '   ', 'lsp', },
+		left = { '  ', 'mode', ' ', 'branch', '      ', 'lsp', },
+		-- left = { '  ', 'mode', ' ', 'branch', '     ', 'lsp', },
 		mid = {},
 		right = {'%l/%L  :%c  ', 'file_name', '  ',
 			function()
@@ -27,13 +27,20 @@ Styles.simple_line = {
 				local line_ratio = current_line / total_lines
 				local index = math.ceil(line_ratio * #chars)
 				return chars[index]
-			end
+			end, ' '
 		}
 	},
+	-- mode_colors = {
+		-- i = "#986fec",
+		-- -- n = "#759a51",
+		-- n = "#7aa2f7"
+	-- },
+
 	mode_colors = {
-		i = "#986fec",
-		-- n = "#759a51",
-		n = "#7aa2f7"
+		n = "#986fec",
+		i = "#e86671",
+		ic= "#e86671",
+		c = "#e27d60"
 	},
 	defaults = {
 		true_colors = true,
@@ -41,7 +48,6 @@ Styles.simple_line = {
 		branch_symbol = " ",
 	}
 }
-
 
 Styles.evil_line = {
 	sections = {
@@ -84,21 +90,26 @@ Styles.evil_line = {
 	}
 }
 
-vim.cmd [[hi Evil        guifg=#f36365 guibg=#202328]]             -- Higlight for Evil symbol
-vim.cmd [[hi StalineEnc  guifg=#7d9955 guibg=#202328]]       -- Encoding Highlight
-vim.cmd [[hi StalineGit  guifg=#8583b3 guibg=#202328]]       -- Branch Name Highlight
-vim.cmd [[hi StalineFile guifg=#c37cda guibg=#202328]]      -- File name Highlight
+-- vim.cmd [[hi Evil        guifg=#f36365 guibg=#202328]]             -- Higlight for Evil symbol
+-- vim.cmd [[hi StalineEnc  guifg=#7d9955 guibg=#202328]]       -- Encoding Highlight
+-- vim.cmd [[hi StalineGit  guifg=#8583b3 guibg=#202328]]       -- Branch Name Highlight
+-- vim.cmd [[hi StalineFile guifg=#c37cda guibg=#202328]]      -- File name Highlight
 
 Styles.atom_line = {
 	sections = {
 		left = {' ', '', '-   ', {'FileNameHighlight', 'file_name'}, {'FileNameRightSepHighlight',''}, 'branch' },
 		mid = {'-lsp'},
-		right = {'', '-mode', {'FileNameHighlight', 'line_column'}, {'FileNameRightSepHighlight',''}, '  ' },
+		right = {
+			'', '-mode', {'FileNameHighlight', 'line_column'},
+			{'FileNameHighlight'," ".. os.date("%I:%M").." "},
+			{'FileNameRightSepHighlight',''}, '  '
+		},
 	},
 	defaults = {
 		font_active = "bold,italic",
 		branch_symbol = " ",
 		true_colors = true,
+		line_column = " %l/%L :%c "
 	},
 	mode_icons = {
 		n = "NORMAL"
@@ -111,9 +122,9 @@ Styles.atom_line = {
 	}
 }
 
--- vim.cmd [[hi FileNameHighlight guifg=white guibg=#393b4d]]
--- vim.cmd [[hi FileNameRightSepHighlight guifg=#393b4d]]
-vim.cmd [[hi ArchSymbol guifg=#1793d1 guibg=#11121d]]
+vim.cmd [[hi FileNameHighlight guifg=white guibg=#393b4d]]
+vim.cmd [[hi FileNameRightSepHighlight guifg=#393b4d]]
+-- vim.cmd [[hi ArchSymbol guifg=#1793d1 guibg=#11121d]]
 -- ;#a3be8c
 
 Styles.normal_line = {
@@ -177,13 +188,8 @@ Styles.pebble_line = {
 	}
 }
 
--- 	mode_colors = {
--- 		n = "#986fec",
--- 		i = "#e86671",
--- 		ic= "#e86671",
--- 		c = "#e27d60"
--- 	}
 -- local leftSeparator = ""	-->      
 -- local rightSeparator = ""	-->      
 
-require "staline".setup(Styles.evil_line)
+require "staline".setup(Styles.simple_line)
+--vim:set foldlevelstart=0, set foldenable

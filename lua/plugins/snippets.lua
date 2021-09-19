@@ -51,7 +51,3 @@ ls.snippets = {
 		parse({trig="conso", wordTrig=true}, [[console.log(${0})]])
 	}
 }
-
-map('i','<Tab>', "luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'", opts)
-map('i','<C-E>', "luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'", opts)
-
