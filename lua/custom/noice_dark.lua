@@ -92,7 +92,7 @@ local Usual = {
 		TSFuncBuiltin		= { fg = c.blue_two},
 		TSTypeBuiltin		= { fg = c.violet_one},
 		TSMethod		= { fg = c.blue_two},
-		TSVariable		= { fg = c.white_two },
+		TSVariable		= { fg = "#cccccc" },
 		-- TSFunction		= { fg = c.violet_one },
 		TSFunction		= { fg = c.violet_two },
 		-- TSFunction		= { fg = c.violet_three },

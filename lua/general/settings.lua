@@ -4,6 +4,8 @@ vim.notify = require "notify"
 set.fillchars = 'eob: '
 set.lazyredraw = true
 
+set.completeopt="menu,menuone,noselect"
+
 set.ruler = false
 set.conceallevel = 2
 set.mouse = "a"

@@ -36,7 +36,7 @@ require "packer".startup { function(use)
 	use { 'nvim-treesitter/playground' , after="nvim-treesitter" }
 	use { 'nvim-lua/plenary.nvim' }
 	use { 'nvim-telescope/telescope.nvim' , config=function() require"plugins.telescope" end, cmd="Telescope"}
-	use { 'nvim-neorg/neorg' , branch='unstable', event='BufReadPost', ft={"norg"}, after="nvim-treesitter", requires="vhyrro/neorg-telescope", config = function() require "plugins.neorg" end }
+	use { 'nvim-neorg/neorg' , branch='unstable', event='BufReadPost', ft={"norg"}, after={"nvim-treesitter", "telescope.nvim"}, requires="vhyrro/neorg-telescope", config = function() require "plugins.neorg" end }
 
 	--> GENERAL PURPOSE
     use { 'rcarriga/nvim-notify' }
