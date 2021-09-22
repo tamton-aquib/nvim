@@ -1,4 +1,4 @@
-M = {}
+local M = {}
 M.Flag = false
 local ns = vim.api.nvim_create_namespace('noice_dark')
 
@@ -234,7 +234,7 @@ function M.noice()
 	for _, tbl in pairs(Usual) do add_highlight_table(tbl) end
 	for _, tbl in pairs(Plugins) do add_highlight_table(tbl) end
 
-	local bg = back or "none"
+	local bg = back == "" and "none" or "none"
 	vim.cmd('hi Normal guibg='..bg..' guifg=#dddddd')
 
 	vim.cmd [[au BufEnter,FileType,ColorSchemePre * :lua require"custom.noice_dark".Lang_high(vim.bo.ft)]]

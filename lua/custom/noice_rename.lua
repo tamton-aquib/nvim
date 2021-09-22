@@ -1,4 +1,4 @@
-Rename = {}
+local Rename = {}
 
 local border = require"general.utils".border
 

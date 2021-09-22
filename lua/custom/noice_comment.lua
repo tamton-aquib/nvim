@@ -1,4 +1,4 @@
-M = {}
+local M = {}
 local opts = { noremap=true, silent=true }
 
 local comment_map = {

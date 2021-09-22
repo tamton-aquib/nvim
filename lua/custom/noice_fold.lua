@@ -1,4 +1,4 @@
-M = {}
+local M = {}
 
 -- local function la_place(line)
 	-- vim.fn.sign_define('fold', {text=' ', texthl="LspDiagnosticsSignError"})
@@ -11,11 +11,11 @@ M = {}
 
 function M.fold_stuff()
 	local fs, fe = vim.v.foldstart, vim.v.foldend
+	print(fs..":"..fe)
 	local start_line, end_line = vim.fn.getline(fs), vim.fn.getline(fe)
+	local spaces = (" "):rep( vim.api.nvim_win_get_width(0) - start_line:len() - end_line:len() - 9)
 
-	local spaces = (" "):rep(vim.api.nvim_win_get_width(0) - 6 - start_line:len() - end_line:len())
-
-	return vim.trim(start_line) .. "  " .. end_line .. spaces
+	return start_line .. "  " .. end_line .. spaces
 end
 
 function M.setup()
