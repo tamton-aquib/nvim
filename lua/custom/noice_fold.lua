@@ -23,3 +23,5 @@ function M.setup()
 end
 
 return M
+
+-- set foldtext=substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend))

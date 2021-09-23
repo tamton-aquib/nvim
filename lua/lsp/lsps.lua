@@ -38,9 +38,6 @@ for _, server in pairs(servers) do
 	end
 end
 
-local sumneko_root_path = vim.fn.stdpath('data').. "/lspmanager/sumneko_lua"
-local sumneko_binary = sumneko_root_path .. "/extension/server/bin/Linux/lua-language-server"
-
 local luadev = require "lua-dev".setup {
 	library = {
 		vimruntime = true,
@@ -49,7 +46,6 @@ local luadev = require "lua-dev".setup {
     },
 	lspconfig = {
 		on_attach = on_attach,
-		cmd = {sumneko_binary, "-E","./extension/server/main.lua"},
 		filetypes = {'lua'},
 		settings = {
 			Lua = {

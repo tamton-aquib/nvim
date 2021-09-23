@@ -5,8 +5,10 @@ require "packer".startup { function(use)
 	use { "karb94/neoscroll.nvim", event="WinScrolled", config=function() require"neoscroll".setup() end }
 	use { '3lv/femboyf' }
 	use { 'lewis6991/impatient.nvim' }
-    use { 'tamton-aquib/staline.nvim' , config = function() require"themes.staline" end}
+    use { 'tamton-aquib/staline.nvim' , config = function() require"themes.staline" end, branch='beta'}
+    -- use { '~/TOOLS/staline.nvim' , config = function() require"themes.staline" end}
 	use { 'max397574/better-escape.nvim', config=function() require"better_escape".setup{} end }
+
 
     --> THEMES AND UI
 	use { 'folke/tokyonight.nvim' }
@@ -22,7 +24,7 @@ require "packer".startup { function(use)
 
     --> LSP and COMPLETION
     use { 'neovim/nvim-lspconfig' }
-	use { 'MordechaiHadad/nvim-lspmanager', branch="dev", config=function() require"lsp.lsps" end }
+	use { 'MordechaiHadad/nvim-lspmanager', branch="dev", config=function() require"lsp.lsps" end, event='BufReadPost'}
 	use { 'L3MON4D3/LuaSnip' , config = function() require"plugins.snippets" end }
 	use { 'hrsh7th/nvim-cmp' , after="LuaSnip", config=function() require 'lsp.cmp' end }
 	use { 'hrsh7th/cmp-buffer' }

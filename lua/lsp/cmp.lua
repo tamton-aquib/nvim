@@ -96,5 +96,7 @@ cmp.setup {
 		{ name = 'emoji'},
 		{ name = 'neorg'},
 	},
+	experimental = {
+		ghost_text = true
+	}
 }
-
