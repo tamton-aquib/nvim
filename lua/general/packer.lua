@@ -5,7 +5,8 @@ require "packer".startup { function(use)
 	use { "karb94/neoscroll.nvim", event="WinScrolled", config=function() require"neoscroll".setup() end }
 	use { '3lv/femboyf' }
 	use { 'lewis6991/impatient.nvim' }
-  use { 'tamton-aquib/staline.nvim' , config = function() require"themes.staline" end}
+    use { 'tamton-aquib/staline.nvim' , config = function() require"themes.staline" end}
+	use { 'max397574/better-escape.nvim', config=function() require"better_escape".setup{} end }
 
     --> THEMES AND UI
 	use { 'folke/tokyonight.nvim' }
