@@ -42,7 +42,7 @@ map("n", "<M-k>", ":m .-2<CR>==")
 
 --> OLD
 map('n', '<leader>a', 'ggVG')
-map('i', 'jk'       , '<Esc>')
+-- map('i', 'jk'       , '<Esc>')
 map('n', 'n'        , 'nzz')
 map('n', '<TAB>'    , ':bnext<CR>')
 map('n', '<S-TAB>'  , ':bprevious<CR>')
