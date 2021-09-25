@@ -11,6 +11,11 @@ require'nvim-web-devicons'.setup{
 			icon = "",
 			color = "#7ebae4",
 			name = "LirFolderNode"
+		},
+		rs = {
+			icon = "",
+			color = "#653e2f",
+			name = "Rs"
 		}
 	}
 }

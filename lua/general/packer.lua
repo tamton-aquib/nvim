@@ -3,27 +3,30 @@ require "packer".startup { function(use)
 
 	--> Testing and temporary
 	use { "karb94/neoscroll.nvim", event="WinScrolled", config=function() require"neoscroll".setup() end }
-	use { '3lv/femboyf' }
 	use { 'lewis6991/impatient.nvim' }
-    use { 'tamton-aquib/staline.nvim' , config = function() require"themes.staline" end, branch='beta'}
-    -- use { '~/TOOLS/staline.nvim' , config = function() require"themes.staline" end}
-	use { 'max397574/better-escape.nvim', config=function() require"better_escape".setup{} end }
+	-- use { 'tamton-aquib/staline.nvim' , config = function() require"themes.staline" end, branch='beta'}
+	use { '~/TOOLS/staline.nvim' , config = function() require"themes.staline" end}
+	use { 'max397574/better-escape.nvim', config=function() require"better_escape".setup{ mapping = "jk" } end }
+	-- use { '3lv/femboyf' }
+	-- use { "blackCauldron7/surround.nvim", config = function() require"surround".setup {mappings_style = "sandwich"} end }
+	-- use { 'abecodes/tabout.nvim', config=function() require('tabout').setup {} end }
 
 
-    --> THEMES AND UI
+	--> THEMES AND UI
 	use { 'folke/tokyonight.nvim' }
 	use { 'tiagovla/tokyodark.nvim' }
-    use { 'sainnhe/sonokai' }
-    use { 'eddyekofo94/gruvbox-flat.nvim' }
+	use { 'sainnhe/sonokai' }
+	use { 'eddyekofo94/gruvbox-flat.nvim' }
 	use { 'Pocco81/Catppuccino.nvim' }
+
 	-- use { 'tamton-aquib/dynamic-cursor.nvim' , after="nvim-treesitter", config=function() require "dynamic-cursor".setup{} end }
 
-    use { 'norcalli/nvim-colorizer.lua' , event='BufReadPre', config = function() require"plugins.plug-colorizer" end }
-    use { 'folke/todo-comments.nvim' , config = function() require'todo-comments'.setup{} end }
-    use { 'lewis6991/gitsigns.nvim' , config = function() require'gitsigns'.setup{} end , event='BufRead'}
+	use { 'norcalli/nvim-colorizer.lua' , event='BufReadPre', config = function() require"plugins.plug-colorizer" end }
+	use { 'folke/todo-comments.nvim' , event='BufReadPost' , config = function() require'todo-comments'.setup{} end }
+	use { 'lewis6991/gitsigns.nvim' , config = function() require'gitsigns'.setup{} end , event='BufRead'}
 
-    --> LSP and COMPLETION
-    use { 'neovim/nvim-lspconfig' }
+	--> LSP and COMPLETION
+	use { 'neovim/nvim-lspconfig' }
 	use { 'MordechaiHadad/nvim-lspmanager', branch="dev", config=function() require"lsp.lsps" end, event='BufReadPost'}
 	use { 'L3MON4D3/LuaSnip' , config = function() require"plugins.snippets" end }
 	use { 'hrsh7th/nvim-cmp' , after="LuaSnip", config=function() require 'lsp.cmp' end }
@@ -42,14 +45,14 @@ require "packer".startup { function(use)
 	use { 'nvim-neorg/neorg' , branch='unstable', event='BufReadPost', ft={"norg"}, after={"nvim-treesitter", "telescope.nvim"}, requires="vhyrro/neorg-telescope", config = function() require "plugins.neorg" end }
 
 	--> GENERAL PURPOSE
-    use { 'rcarriga/nvim-notify' }
+	use { 'rcarriga/nvim-notify' }
 	use { 'folke/lua-dev.nvim' }
 	use { 'kyazdani42/nvim-web-devicons' , config = function() require "plugins.web_devicons" end }
 	use { 'steelsojka/pears.nvim' , config=function() require"pears".setup() end}
 	use { 'akinsho/nvim-toggleterm.lua' , event = "BufWinEnter", config = function() require"plugins.floaterm" end }
 	use { 'tamago324/lir.nvim' , config = function() require"plugins.lir" end, after="nvim-web-devicons" }
 	use { 'iamcco/markdown-preview.nvim' , ft={'markdown'}, config = function() require"plugins.others".markdown_preview() end, run = "cd app && yarn install", }
-    use { 'lukas-reineke/indent-blankline.nvim', event="BufReadPost", config = function() require"plugins.others".indent_blankline() end }
+	use { 'lukas-reineke/indent-blankline.nvim', event="BufReadPost", config = function() require"plugins.others".indent_blankline() end }
 
 
 	use 'wbthomason/packer.nvim'

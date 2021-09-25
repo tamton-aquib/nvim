@@ -1,14 +1,22 @@
 --> staline setup
 -- #181a23    
 --          
-Styles = {}
+-- local leftSeparator = ""	-->      
+-- local rightSeparator = ""	-->      
+
+local Styles = {}
 
 require 'stabline'.setup {
-	style = "bar",
+	style = "slant",
 	font_active = "bold,italic",
-	stab_start = "%#Rocket#      ",
+	stab_start = "   ",
+	-- stab_start = "%#Rocket#      ",
+	bg = "#0e171c",
+	stab_bg = "#211641",
+	stab_left = " ",
+	stab_right = "  ",
 	fg = "#986fec",
-	inactive_bg = "#211a35"
+	inactive_bg = "#211641"
 }
 
 vim.cmd [[hi Rocket guifg=#f36365 guibg=none gui=bold]]
@@ -36,11 +44,19 @@ Styles.simple_line = {
 		-- n = "#7aa2f7"
 	-- },
 
+	-- mode_colors = {
+		-- n = "#986fec",
+		-- i = "#e86671",
+		-- ic= "#e86671",
+		-- c = "#e27d60"
+	-- },
 	mode_colors = {
-		n = "#986fec",
-		i = "#e86671",
-		ic= "#e86671",
-		c = "#e27d60"
+		-- n = "#38b1f0",
+		-- i = "#9ece6a",       -- etc mode
+		n = "#61afef",
+		i = "#97c374",       -- etc mode
+		ic= "#97c374",       -- etc mode
+		c = "#c94f6d",
 	},
 	defaults = {
 		true_colors = true,
@@ -187,9 +203,6 @@ Styles.pebble_line = {
 		V = "#181a23"
 	}
 }
-
--- local leftSeparator = ""	-->      
--- local rightSeparator = ""	-->      
 
 require "staline".setup(Styles.simple_line)
 --vim:set foldlevelstart=0, set foldenable

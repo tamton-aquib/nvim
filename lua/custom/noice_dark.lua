@@ -167,7 +167,9 @@ local lang = {
 		NeorgHeading3Title = { fg = c.green_two},
 	},
 	rust = {
-		TSKeyword = { fg = c.violet_one }
+		TSKeyword = { fg = c.violet_one },
+		-- Type = { fg = c.violet_two },
+		-- PreProc   = { fg = c.blue_one }
 	}
 }
 
