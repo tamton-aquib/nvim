@@ -37,6 +37,7 @@ set.foldlevelstart = 25
 
 set.iskeyword:append('-')
 set.shortmess:append('c')
+set.shortmess:append('s')
 set.pumblend = 30
 set.inccommand = "split"
 set.number = true
