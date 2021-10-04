@@ -34,6 +34,7 @@ local files = {
 	java	   = "javac "..exp('%:t').." && java "..exp('%:t:r').." && rm *.class",
 	rust	   = "cargo run",
 	javascript = "npm start",
+	sh         = "bash "..exp('%:p')
 }
 
 function Run_file()

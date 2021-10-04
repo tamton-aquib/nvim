@@ -2,6 +2,9 @@ vim.g.mapleader = ' '
 local opts = {noremap=true, silent=true}
 local function map(mode, key, mapping) vim.api.nvim_set_keymap(mode, key, mapping, opts) end
 
+
+map('n', '<leader>n', ":NvimTreeToggle<CR>")
+
 --> NEW
 map('n', '<leader>ps', ':w<CR>:so %<CR>:PackerSync<CR>')
 map('n', '<leader>pp', ':PackerProfile<CR>')
@@ -9,6 +12,7 @@ map('n', '<M-h>',      ':lua vim.cmd(":h "..vim.fn.expand("<cword>"))<CR>')
 map('n', '<leader>s',  ':lua require"general.functions".swap_bool()<CR>')
 map('n', 'gx',         ':lua require"general.functions".go_to_url()<CR>')
 map('n', '<C-t>',      ':lua require"general.functions".toggle_transparent()<CR>')
+-- map('t', '<Esc>',      [[<C-\><C-n>]])
 
 --> LSP mappings
 map('n', 'gd',    '<cmd>lua vim.lsp.buf.definition()<CR>')

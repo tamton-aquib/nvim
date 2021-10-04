@@ -1,5 +1,13 @@
-M = {}
+local M = {}
 local line = vim.fn.line
+
+----- term options -------
+function M.term_opts()
+	vim.opt_local.number = false
+	vim.opt_local.relativenumber = false
+	vim.cmd [[startinsert]]
+end
+--------------------------
 
 -------- twist ----------
 function M.swap_bool()

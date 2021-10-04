@@ -1,8 +1,9 @@
 local border = require"general.utils".border
-local signs = { Error = " ", Warning = " ", Hint = "", Information = "", other = "﫠" }
+
+local signs = { Error = " ", Warn = " ", Hint = "", Info = "", other = "﫠" }
 
 for type, icon in pairs(signs) do
-	local hl = "LspDiagnosticsSign" .. type
+	local hl = "DiagnosticSign" .. type
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 

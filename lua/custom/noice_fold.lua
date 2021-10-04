@@ -20,8 +20,8 @@ end
 
 function M.setup()
 	vim.cmd [[set foldtext=luaeval(\"require('custom.noice_fold').fold_stuff()\")]]
+	-- vim.cmd [[set foldtext=substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend))]]
 end
 
 return M
 
--- set foldtext=substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend))

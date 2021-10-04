@@ -9,7 +9,7 @@ require 'general.mappings'
 --> THEMES and CUSTOM
 require 'custom.noice_rename'.setup()
 require 'custom.noice_board'.setup()
--- require 'custom.noice_sus'.setup()
 require 'custom.noice_comment'.setup()
 require 'custom.noice_fold'.setup()
-require 'themes.colorschemes'.catppuccino(false)
+require 'themes.colorschemes'.noice(true)
+-- require 'custom.noice_sus'.setup()

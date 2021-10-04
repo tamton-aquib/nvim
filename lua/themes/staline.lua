@@ -3,30 +3,37 @@
 --          
 -- local leftSeparator = ""	-->      
 -- local rightSeparator = ""	-->      
-
 local Styles = {}
 
 require 'stabline'.setup {
-	style = "slant",
+	style = "bar",
 	font_active = "bold,italic",
-	stab_start = "   ",
 	-- stab_start = "%#Rocket#      ",
-	bg = "#0e171c",
-	stab_bg = "#211641",
-	stab_left = " ",
-	stab_right = "  ",
 	fg = "#986fec",
-	inactive_bg = "#211641"
+	inactive_bg = "#1c1f30"
 }
 
-vim.cmd [[hi Rocket guifg=#f36365 guibg=none gui=bold]]
+-- require 'stabline'.setup {
+	-- style = "slant",
+	-- font_active = "bold,italic",
+	-- stab_start = "   ",
+	-- -- stab_start = "%#Rocket#      ",
+	-- bg = "#0e171c",
+	-- stab_bg = "#211641",
+	-- stab_left = " ",
+	-- stab_right = "  ",
+	-- fg = "#986fec",
+	-- inactive_bg = "#211641"
+-- }
+
+-- vim.cmd [[hi Rocket guifg=#f36365 guibg=none gui=bold]]
 -- vim.cmd [[hi Rocket guifg=#97c374 guibg=#1e1e1e gui=bold]]
 
 Styles.simple_line = {
 	sections = {
 		left = { '  ', 'mode', ' ', 'branch', '      ', 'lsp', },
 		-- left = { '  ', 'mode', ' ', 'branch', '     ', 'lsp', },
-		mid = {},
+		mid = {'%<'},
 		right = {'%l/%L  :%c  ', 'file_name', '  ',
 			function()
 				local current_line = vim.fn.line "."
@@ -36,6 +43,9 @@ Styles.simple_line = {
 				local index = math.ceil(line_ratio * #chars)
 				return chars[index]
 			end, ' '
+		},
+		defaults = {
+			bg = "#0e171c"
 		}
 	},
 	-- mode_colors = {

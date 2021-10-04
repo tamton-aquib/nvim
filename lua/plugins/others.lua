@@ -1,4 +1,4 @@
-M = {}
+local M = {}
 
 function M.indent_blankline()
 	-- vim.g.indentLine_enabled = 1
@@ -12,13 +12,12 @@ function M.markdown_preview()
 	vim.g.mkdp_auto_close = 0
 end
 
-function M.femboyf()
-	require('femboyf').setup {
-		when = 'always',
-		style = '1perword',
-
-		color1 = '#986fec',
-		color2 = '#986fec',
+function M.folke_todo()
+	require('todo-comments').setup {
+		keywords = {
+			-- CHECK = { icon=' ', color='#61afef' }
+			[''] = { icon='', color='#61afef', signs=false }
+		}
 	}
 end
 
