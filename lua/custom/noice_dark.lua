@@ -32,8 +32,8 @@ local c = {
 	white_five       = "#999999",
 	white_three      = "#5c6370",
 	-- background       = "#282c34",
-	-- background       = "#24283b",
-	background       = "#11121d",
+	background       = "#24283b",
+	-- background       = "#11121d",
 	background_dark  = "#1f1f1f",
 }
 
@@ -125,25 +125,11 @@ local Usual = {
 	},
 
 	LspRelated = {
-		-- LspDiagnosticsSignError = { fg = c.red_one, bold = true },
-		-- LspDiagnosticsSignWarning = { fg = c.yellow_three, bold = true },
-		-- LspDiagnosticsSignHint = { fg = c.blue_one, bold = true },
-		-- LspDiagnosticsSignInformation = { fg = c.green_three, italic = true },
-
-		-- LspDiagnosticsDefaultError = { fg = c.red_one, italic = true, bold=true },
-		-- LspDiagnosticsDefaultWarning = { fg = c.yellow_three, bold = true , italic=true},
-		-- LspDiagnosticsDefaultHint = { fg = c.blue_one, bold = true, italic=true},
-		-- LspDiagnosticsDefaultInformation = { fg = c.green_three, italic = true, bold=true },
-
-		-- LspDiagnosticsUnderlineError = { sp = c.red_one, undercurl = true},
-		-- LspDiagnosticsUnderlineWarning = { sp = c.yellow_three, undercurl = true},
-		-- LspDiagnosticsUnderlineHint = { sp = c.blue_one, undercurl = true},
-		-- LspDiagnosticsUnderlineInformation = { sp = c.red_one, undercurl = true},
 		DiagnosticSignError = { fg = c.red_one, bold = true },
 		DiagnosticSignWarn = { fg = c.yellow_three, bold = true },
 		DiagnosticSignHint = { fg = c.blue_one, bold = true },
 		DiagnosticSignInfo = { fg = c.green_three, italic = true },
-		
+
 		DiagnosticError = { fg = c.red_one, bold = true },
 		DiagnosticWarn = { fg = c.yellow_three, bold = true },
 		DiagnosticHint = { fg = c.blue_one, bold = true },

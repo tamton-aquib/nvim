@@ -12,13 +12,4 @@ function M.markdown_preview()
 	vim.g.mkdp_auto_close = 0
 end
 
-function M.folke_todo()
-	require('todo-comments').setup {
-		keywords = {
-			-- CHECK = { icon=' ', color='#61afef' }
-			[''] = { icon='', color='#61afef', signs=false }
-		}
-	}
-end
-
 return M

@@ -6,11 +6,15 @@
 local Styles = {}
 
 require 'stabline'.setup {
-	style = "bar",
+	style = "slant",
 	font_active = "bold,italic",
 	-- stab_start = "%#Rocket#      ",
-	fg = "#986fec",
-	inactive_bg = "#1c1f30"
+	stab_left = " ",
+	stab_right = "  ",
+	stab_start = "  ",
+	bg = "#0e171c",
+	-- fg = "#986fec",
+	stab_bg = "#1e2127"
 }
 
 -- require 'stabline'.setup {
@@ -95,7 +99,7 @@ Styles.evil_line = {
 				local chars = { "_", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" }
 				local line_ratio = current_line / total_lines
 				local index = math.ceil(line_ratio * #chars)
-				return chars[index]
+				return "%#Staline#"..chars[index]
 			end
 		}
 	},
@@ -116,10 +120,10 @@ Styles.evil_line = {
 	}
 }
 
--- vim.cmd [[hi Evil        guifg=#f36365 guibg=#202328]]             -- Higlight for Evil symbol
--- vim.cmd [[hi StalineEnc  guifg=#7d9955 guibg=#202328]]       -- Encoding Highlight
--- vim.cmd [[hi StalineGit  guifg=#8583b3 guibg=#202328]]       -- Branch Name Highlight
--- vim.cmd [[hi StalineFile guifg=#c37cda guibg=#202328]]      -- File name Highlight
+vim.cmd [[hi Evil        guifg=#f36365 guibg=#202328]]             -- Higlight for Evil symbol
+vim.cmd [[hi StalineEnc  guifg=#7d9955 guibg=#202328]]       -- Encoding Highlight
+vim.cmd [[hi StalineGit  guifg=#8583b3 guibg=#202328]]       -- Branch Name Highlight
+vim.cmd [[hi StalineFile guifg=#c37cda guibg=#202328]]      -- File name Highlight
 
 Styles.atom_line = {
 	sections = {
@@ -182,15 +186,21 @@ Styles.normal_line = {
 Styles.pebble_line = {
 	sections = {
 		left = {
-			' ', 'right_sep_double', '-mode', 'left_sep_double', ' ',
-			'right_sep', '-file_name', 'left_sep', ' ',
+			{ 'Staline', ' '},
+			'right_sep_double',
+			{ 'StalineFill', 'mode' },
+			'left_sep_double', ' ',
+			'right_sep',
+			{ 'StalineFill', 'file_name' },
+			'left_sep', ' ',
 			'branch'
 		},
 		mid  = {'lsp'},
 		right= {
-			'-lsp_name', ' ',
-			'right_sep', '-cool_symbol', 'left_sep', ' ',
-			'right_sep_double', '-line_column', 'left_sep_double', ' ',},
+			'lsp_name', ' ',
+			'right_sep', { 'StalineFill', 'cool_symbol' }, 'left_sep', ' ',
+			'right_sep_double', { 'StalineFill', 'line_column' }, 'left_sep_double', ' ',
+		},
 	},
 	defaults={
 		-- bg="#181a23",
@@ -214,5 +224,5 @@ Styles.pebble_line = {
 	}
 }
 
-require "staline".setup(Styles.simple_line)
+require "staline".setup(Styles.pebble_line)
 --vim:set foldlevelstart=0, set foldenable
