@@ -35,8 +35,8 @@ require 'stabline'.setup {
 
 Styles.simple_line = {
 	sections = {
-		left = { '  ', 'mode', ' ', 'branch', '      ', 'lsp', },
-		-- left = { '  ', 'mode', ' ', 'branch', '     ', 'lsp', },
+		-- left = { '  ', 'mode', ' ', 'branch', '      ', 'lsp', },
+		left = { '  ', 'mode', ' ', 'branch', '     ', 'lsp' },
 		mid = {'%<'},
 		right = {'%l/%L  :%c  ', 'file_name', '  ',
 			function()
@@ -82,14 +82,16 @@ Styles.simple_line = {
 Styles.evil_line = {
 	sections = {
 		left = {
-			'▊', '  ', { 'Evil', '  ' }, ' ',       -- The mode and evil sign
+			'▊', '  ',
+			{ 'Evil', '  ' },
+			' ',       -- The mode and evil sign
 			'file_size', ' ',                         -- Filesize
-			{ 'StalineFile', 'file_name' }, ' ',       -- Filename in different highlight
-			'lsp'
+			{ 'StalineFile', 'file_name' },
+			' ', 'lsp'
 		},
 		mid = { 'lsp_name' },                         -- "lsp_name" is still a little buggy
 		right = {
-			{'StalineGit', ' %l/%L :%c  '},
+			{ 'StalineGit', ' %l/%L :%c  '},
 			{ 'StalineEnc', vim.bo.fileencoding:upper() }, '  ',  -- Example for custom section
 			{ 'StalineEnc', 'cool_symbol' }, ' ',                 -- the cool_symbol for your OS
 			{ 'StalineGit', 'branch' }, ' ',
@@ -99,7 +101,7 @@ Styles.evil_line = {
 				local chars = { "_", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" }
 				local line_ratio = current_line / total_lines
 				local index = math.ceil(line_ratio * #chars)
-				return "%#Staline#"..chars[index]
+				return chars[index]
 			end
 		}
 	},
@@ -154,20 +156,34 @@ Styles.atom_line = {
 
 vim.cmd [[hi FileNameHighlight guifg=white guibg=#393b4d]]
 vim.cmd [[hi FileNameRightSepHighlight guifg=#393b4d]]
--- vim.cmd [[hi ArchSymbol guifg=#1793d1 guibg=#11121d]]
 -- ;#a3be8c
 
 Styles.normal_line = {
 	sections = {
-		left = { '- ', '-mode', 'left_sep_double', ' ', 'branch', {'ArchSymbol', 'cool_symbol'}},
-		mid  = { 'file_name', 'lsp'},
-		right= { vim.bo.fileencoding, '  ', 'right_sep_double', '-line_column'}
+		left = {
+			{ 'StalineFill', ' ' },
+			{ 'StalineFill', 'mode' },
+			{ 'left_sep_double'},
+			{ ' ' },
+			{ 'branch' },
+			{ 'cool_symbol' }
+		},
+		mid = {
+			{ 'file_name' },
+			{ 'lsp' }
+		},
+		right = {
+			{ vim.bo.fileencoding },
+			{ '  ' },
+			{ 'right_sep_double' },
+			{ 'StalineFill', 'line_column' }
+		}
 	},
 	defaults = {
 		cool_symbol = "  ",
 		left_separator = "",
 		right_separator = "",
-		bg = "#11121d",
+		bg = "#202328",
 		full_path = false,
 		branch_symbol = " "
 	},
@@ -186,20 +202,20 @@ Styles.normal_line = {
 Styles.pebble_line = {
 	sections = {
 		left = {
-			{ 'Staline', ' '},
-			'right_sep_double',
+			' ', 'right_sep_double',
 			{ 'StalineFill', 'mode' },
-			'left_sep_double', ' ',
-			'right_sep',
+			'left_sep_double', ' ', 'right_sep',
 			{ 'StalineFill', 'file_name' },
-			'left_sep', ' ',
-			'branch'
+			'left_sep', ' ', 'branch'
 		},
-		mid  = {'lsp'},
+		-- mid  = { 'lsp' },
 		right= {
 			'lsp_name', ' ',
-			'right_sep', { 'StalineFill', 'cool_symbol' }, 'left_sep', ' ',
-			'right_sep_double', { 'StalineFill', 'line_column' }, 'left_sep_double', ' ',
+			'right_sep',
+			{ 'StalineFill', 'cool_symbol' },
+			'left_sep', ' ', 'right_sep_double',
+			{ 'StalineFill', 'line_column' },
+			'left_sep_double', ' ',
 		},
 	},
 	defaults={

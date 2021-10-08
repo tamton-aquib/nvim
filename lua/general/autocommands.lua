@@ -11,6 +11,6 @@ vim.cmd [[au CursorHold  * lua vim.lsp.diagnostic.show_line_diagnostics({border 
 -- vim.cmd [[au CursorHoldI * lua vim.lsp.buf.signature_help({focusable=false})]]
 
 --> OLD
-vim.cmd [[au BufEnter        *    lua require"essentials".last_place()]]
+vim.cmd [[au BufReadPost        *    lua require"essentials".last_place()]]
 vim.cmd [[au FileType       help  nnoremap <buffer> <CR> <C-]>]]
 vim.cmd [[au TextYankPost    *    silent! lua vim.highlight.on_yank{higroup="Folded", timeout=200} ]]

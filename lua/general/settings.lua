@@ -33,7 +33,7 @@ set.laststatus = 2
 set.foldenable = true
 set.foldmethod = "expr"
 set.foldexpr = "nvim_treesitter#foldexpr()"
-set.foldlevelstart = 25
+set.foldlevelstart = 10
 
 set.iskeyword:append('-')
 set.shortmess:append('c')

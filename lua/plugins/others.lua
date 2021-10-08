@@ -3,7 +3,9 @@ local M = {}
 function M.indent_blankline()
 	-- vim.g.indentLine_enabled = 1
 	vim.g.indent_blankline_char = "▏"
-	vim.g.indent_blankline_filetype_exclude = { "TelescopePrompt", "help", "terminal", "dashboard", "packer", "norg"}
+	vim.g.indent_blankline_filetype_exclude = {
+		"TelescopePrompt", "help", "terminal", "dashboard", "packer", "norg", "lspinfo"
+	}
 	vim.g.indent_blankline_buftype_exclude = {"terminal", "norg"}
 end
 

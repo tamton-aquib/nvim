@@ -3,7 +3,17 @@ require "packer".startup { function(use)
 
 	-->  Testing and temporary
 	use { 'kyazdani42/nvim-tree.lua', config = function() require 'plugins.nvim_tree' end , cmd='NvimTreeToggle'}
-	use { '~/TOOLS/staline.nvim' , config = function() require"themes.staline" end}
+	-- use { '~/TOOLS/staline.nvim' , config = function() require"staline".setup() end}
+	-- use { 'tamton-aquib/staline.nvim' , config = function() require"staline".setup() end}
+	use { 'shadmansaleh/lualine.nvim', config=function() require "lualine".setup() end }
+
+	-- use { '~/TOOLS/staline.nvim' , config = function() require"themes.staline" end}
+	-- use({
+		-- "NTBBloodbath/galaxyline.nvim",
+		-- config = function()
+			-- require("galaxyline.themes.eviline")
+		-- end,
+	-- })
 	-- use { 'tamago324/lir.nvim' , config = function() require"plugins.lir" end, after="nvim-web-devicons" }
 	use { 'folke/zen-mode.nvim', cmd='ZenMode', config=function() require "zen-mode".setup() end }
 	use { 'tamton-aquib/essentials.nvim' }
