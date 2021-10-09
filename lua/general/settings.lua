@@ -3,6 +3,8 @@ local set = vim.opt
 
 set.fillchars = 'eob: '
 set.lazyredraw = true
+set.signcolumn = "yes"
+vim.cmd [[set foldtext=luaeval(\"require('essentials').simple_fold()\")]]
 
 set.completeopt="menu,menuone,noselect"
 

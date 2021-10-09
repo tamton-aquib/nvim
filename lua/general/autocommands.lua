@@ -1,6 +1,6 @@
 
 --> NEW
-vim.cmd [[au FileType lspinfo nnoremap q <cmd>q<CR>]]
+vim.cmd [[au FileType lspinfo,lsp-installer nnoremap q <cmd>q<CR>]]
 vim.cmd [[au BufEnter *.toml set ft=dosini]]
 vim.cmd [[au BufWritePost ~/.config/nvim/lua/general/packer.lua PackerCompile]]
 vim.cmd [[au TermOpen term://* setlocal nonu nornu | startinsert]]

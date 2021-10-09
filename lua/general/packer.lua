@@ -1,11 +1,15 @@
 
-require "packer".startup { function(use)
+require("packer").startup { function(use)
 
 	-->  Testing and temporary
 	use { 'kyazdani42/nvim-tree.lua', config = function() require 'plugins.nvim_tree' end , cmd='NvimTreeToggle'}
-	-- use { '~/TOOLS/staline.nvim' , config = function() require"staline".setup() end}
-	-- use { 'tamton-aquib/staline.nvim' , config = function() require"staline".setup() end}
-	use { 'shadmansaleh/lualine.nvim', config=function() require "lualine".setup() end }
+	use { 'williamboman/nvim-lsp-installer', config=function() require "lsp.lsps" end }
+	use { '~/TOOLS/staline.nvim' , config = function() require"themes.staline" end}
+	-- use { 'tamton-aquib/staline.nvim', branch='beta' , config = function() require"themes.staline" end}
+	-- use { '~/TOOLS/nvim-cmp' , after="LuaSnip", config=function() require 'lsp.cmp' end }
+	-- use { '~/TOOLS/nvim_stuff/nvim-lspmanager', branch="dev", config=function() require"lsp.lsps" end}
+	-- use { 'MordechaiHadad/nvim-lspmanager', branch="dev", config=function() require"lsp.lsps" end}
+	-- use { 'shadmansaleh/lualine.nvim', config=function() require "lualine".setup() end }
 
 	-- use { '~/TOOLS/staline.nvim' , config = function() require"themes.staline" end}
 	-- use({
@@ -41,7 +45,6 @@ require "packer".startup { function(use)
 	use { 'lewis6991/gitsigns.nvim' , config = function() require'gitsigns'.setup{} end , event='BufRead' }
 
 	-->  LSP and COMPLETION
-	use { 'MordechaiHadad/nvim-lspmanager', branch="dev", config=function() require"lsp.lsps" end, event='BufReadPost'}
 	use { 'neovim/nvim-lspconfig' }
 	use { 'L3MON4D3/LuaSnip' , config = function() require"plugins.snippets" end }
 	use { 'hrsh7th/nvim-cmp' , after="LuaSnip", config=function() require 'lsp.cmp' end }
@@ -50,7 +53,7 @@ require "packer".startup { function(use)
 	use { 'hrsh7th/cmp-path' }
 	use { 'hrsh7th/cmp-emoji' }
 	use { 'hrsh7th/cmp-nvim-lua' }
-	use { 'saadparwaiz1/cmp_luasnip' }
+	-- use { 'saadparwaiz1/cmp_luasnip' }
 
 	-->  TELESCOPE, TREESITTER, NEORG
 	use { 'nvim-treesitter/nvim-treesitter' , event='BufRead', config=function() require"plugins.treesittter" end }

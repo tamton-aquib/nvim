@@ -202,26 +202,20 @@ Styles.normal_line = {
 Styles.pebble_line = {
 	sections = {
 		left = {
-			' ', 'right_sep_double',
-			{ 'StalineFill', 'mode' },
-			'left_sep_double', ' ', 'right_sep',
-			{ 'StalineFill', 'file_name' },
-			'left_sep', ' ', 'branch'
+			' ', 'right_sep_double', '-mode', 'left_sep_double', ' ',
+			'right_sep', '-file_name', 'left_sep', ' ',
+			'right_sep_double', '-branch', 'left_sep_double', ' ',
 		},
-		-- mid  = { 'lsp' },
+		mid  = {'lsp'},
 		right= {
-			'lsp_name', ' ',
-			'right_sep',
-			{ 'StalineFill', 'cool_symbol' },
-			'left_sep', ' ', 'right_sep_double',
-			{ 'StalineFill', 'line_column' },
-			'left_sep_double', ' ',
-		},
+			'right_sep', '-cool_symbol', 'left_sep', ' ',
+			'right_sep', '- ', '-lsp_name', '- ', 'left_sep',
+			'right_sep_double', '-line_column', 'left_sep_double', ' ',
+		}
 	},
+
 	defaults={
-		-- bg="#181a23",
-		fg="#986fec",
-		-- fg="#181a23",
+		fg = "#986fec",
 		cool_symbol = "  ",
 		left_separator = "",
 		right_separator = "",
@@ -231,14 +225,13 @@ Styles.pebble_line = {
 		-- font_active = "bold"
 	},
 	mode_colors = {
-		n = "#181a23",
-		i = "#181a23",
-		ic= "#181a23",
-		c = "#181a23",
-		v = "#181a23",
-		V = "#181a23"
+		n  = "#181a23",
+		i  = "#181a23",
+		ic = "#181a23",
+		c  = "#181a23",
+		v  = "#181a23"       -- etc
 	}
 }
 
-require "staline".setup(Styles.pebble_line)
+require("staline").setup(Styles.pebble_line)
 --vim:set foldlevelstart=0, set foldenable

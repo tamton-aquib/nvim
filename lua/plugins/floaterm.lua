@@ -17,7 +17,7 @@ require("toggleterm").setup{
 	direction = 'float',
 	float_opts = {
 		border = require"general.utils".border,
-		winblend = 30,
+		winblend = 15,
 		highlights = {
 			border = "FloatBorder",
 			background = "NormalFloat"

@@ -52,8 +52,8 @@ cmp.setup {
     },
 
 	mapping = {
-		['<C-n>'] = cmp.mapping.select_next_item(),
-		['<C-p>'] = cmp.mapping.select_prev_item(),
+		-- ['<C-n>'] = cmp.mapping.select_next_item(),
+		-- ['<C-p>'] = cmp.mapping.select_prev_item(),
 		['<C-d>'] = cmp.mapping.scroll_docs(-4),
 		['<C-f>'] = cmp.mapping.scroll_docs(4),
 		['<C-Space>'] = cmp.mapping.complete(),
@@ -64,8 +64,10 @@ cmp.setup {
 		}),
 
 		["<Tab>"] = cmp.mapping(function(fallback)
-			if vim.fn.pumvisible() == 1 then
-				vim.fn.feedkeys(t("<C-n>"), "n")
+			-- if vim.fn.pumvisible() == 1 then
+			if cmp.visible() then
+				-- vim.fn.feedkeys(t("<C-n>"), "n")
+				cmp.select_next_item()
 			elseif luasnip.expand_or_jumpable() then
 				luasnip.expand_or_jump()
 			elseif check_back_space() then
@@ -76,8 +78,10 @@ cmp.setup {
 		end, { "i", "s", }),
 
 		["<S-Tab>"] = cmp.mapping(function(fallback)
-			if vim.fn.pumvisible() == 1 then
-				vim.fn.feedkeys(t("<C-p>"), "n")
+			-- if vim.fn.pumvisible() == 1 then
+			if cmp.visible() then
+				-- vim.fn.feedkeys(t("<C-p>"), "n")
+				cmp.select_prev_item()
 			elseif luasnip.jumpable(-1) then
 				luasnip.jump(-1)
 
@@ -97,6 +101,7 @@ cmp.setup {
 		{ name = 'neorg'},
 	},
 	experimental = {
-		ghost_text = true
+		ghost_text = true,
+		custom_menu = true
 	}
 }

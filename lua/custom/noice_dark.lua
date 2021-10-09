@@ -1,5 +1,4 @@
 local M = {}
-M.Flag = false
 local ns = vim.api.nvim_create_namespace('noice_dark')
 
 local c = {
@@ -32,8 +31,8 @@ local c = {
 	white_five       = "#999999",
 	white_three      = "#5c6370",
 	-- background       = "#282c34",
-	background       = "#24283b",
-	-- background       = "#11121d",
+	-- background       = "#24283b",
+	background       = "#11121d",
 	background_dark  = "#1f1f1f",
 }
 
