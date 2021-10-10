@@ -6,32 +6,18 @@
 local Styles = {}
 
 require 'stabline'.setup {
-	style = "slant",
+	style = "bubble",
 	font_active = "bold,italic",
-	-- stab_start = "%#Rocket#      ",
-	stab_left = " ",
-	stab_right = "  ",
-	stab_start = "  ",
-	bg = "#0e171c",
-	-- fg = "#986fec",
-	stab_bg = "#1e2127"
-}
-
--- require 'stabline'.setup {
-	-- style = "slant",
-	-- font_active = "bold,italic",
-	-- stab_start = "   ",
-	-- -- stab_start = "%#Rocket#      ",
-	-- bg = "#0e171c",
-	-- stab_bg = "#211641",
+	stab_start = "%#Rocket#      ",
 	-- stab_left = " ",
 	-- stab_right = "  ",
+	-- stab_start = "  ",
+	bg = "#0e171c",
 	-- fg = "#986fec",
-	-- inactive_bg = "#211641"
--- }
+	-- stab_bg = "#1e2127"
+}
 
--- vim.cmd [[hi Rocket guifg=#f36365 guibg=none gui=bold]]
--- vim.cmd [[hi Rocket guifg=#97c374 guibg=#1e1e1e gui=bold]]
+vim.cmd [[hi Rocket guifg=#f36365 guibg=none gui=bold]] -- #97c374
 
 Styles.simple_line = {
 	sections = {
@@ -122,10 +108,10 @@ Styles.evil_line = {
 	}
 }
 
-vim.cmd [[hi Evil        guifg=#f36365 guibg=#202328]]             -- Higlight for Evil symbol
-vim.cmd [[hi StalineEnc  guifg=#7d9955 guibg=#202328]]       -- Encoding Highlight
-vim.cmd [[hi StalineGit  guifg=#8583b3 guibg=#202328]]       -- Branch Name Highlight
-vim.cmd [[hi StalineFile guifg=#c37cda guibg=#202328]]      -- File name Highlight
+-- vim.cmd [[hi Evil        guifg=#f36365 guibg=#202328]]             -- Higlight for Evil symbol
+-- vim.cmd [[hi StalineEnc  guifg=#7d9955 guibg=#202328]]       -- Encoding Highlight
+-- vim.cmd [[hi StalineGit  guifg=#8583b3 guibg=#202328]]       -- Branch Name Highlight
+-- vim.cmd [[hi StalineFile guifg=#c37cda guibg=#202328]]      -- File name Highlight
 
 Styles.atom_line = {
 	sections = {
@@ -208,8 +194,9 @@ Styles.pebble_line = {
 		},
 		mid  = {'lsp'},
 		right= {
-			'right_sep', '-cool_symbol', 'left_sep', ' ',
+			'right_sep', '-cool_symbol', 'left_sep', '%< ',
 			'right_sep', '- ', '-lsp_name', '- ', 'left_sep',
+			-- 'right_sep_double', '-line_column', 'left_sep_double', ' ',
 			'right_sep_double', '-line_column', 'left_sep_double', ' ',
 		}
 	},
@@ -224,14 +211,21 @@ Styles.pebble_line = {
 		line_column = "[%l:%c] 並%p%% "
 		-- font_active = "bold"
 	},
+	-- mode_colors = {
+		-- n  = "#181a23",
+		-- i  = "#181a23",
+		-- ic = "#181a23",
+		-- c  = "#181a23",
+		-- v  = "#181a23"       -- etc
+	-- }
 	mode_colors = {
-		n  = "#181a23",
-		i  = "#181a23",
-		ic = "#181a23",
-		c  = "#181a23",
-		v  = "#181a23"       -- etc
+		n  = "#0e171c",
+		i  = "#0e171c",
+		ic = "#0e171c",
+		c  = "#0e171c",
+		v  = "#0e171c"       -- etc
 	}
 }
 
 require("staline").setup(Styles.pebble_line)
---vim:set foldlevelstart=0, set foldenable
+-- vim: foldlevelstart=10
