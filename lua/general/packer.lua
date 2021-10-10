@@ -30,25 +30,25 @@ require("packer").startup { function(use)
 	use { 'hrsh7th/cmp-path' }
 	use { 'hrsh7th/cmp-emoji' }
 	use { 'hrsh7th/cmp-nvim-lua' }
-	-- use { 'saadparwaiz1/cmp_luasnip' }
+	use { 'saadparwaiz1/cmp_luasnip' }
 
 	-->  TELESCOPE, TREESITTER, NEORG
-	use { 'nvim-treesitter/nvim-treesitter' , event='BufRead', config=function() require"plugins.treesittter" end }
-	use { 'nvim-treesitter/playground' , after="nvim-treesitter" }
 	use { 'nvim-lua/plenary.nvim' }
+	use { 'nvim-treesitter/playground' , after="nvim-treesitter" }
 	use { 'nvim-telescope/telescope.nvim' , config=function() require"plugins.telescope" end, cmd="Telescope"}
+	use { 'nvim-treesitter/nvim-treesitter' , event='BufRead', config=function() require"plugins.treesittter" end }
 	use { 'nvim-neorg/neorg' , branch='unstable', ft={"norg"}, after={"nvim-treesitter", "telescope.nvim"}, requires="vhyrro/neorg-telescope", config = function() require "plugins.neorg" end }
 
 	-->  GENERAL PURPOSE
-	use { 'nathom/filetype.nvim' }
-	use { 'lewis6991/impatient.nvim' }
-	use { 'rcarriga/nvim-notify' }
 	use { 'folke/lua-dev.nvim' }
+	use { 'nathom/filetype.nvim' }
+	use { 'rcarriga/nvim-notify' }
+	use { 'lewis6991/impatient.nvim' }
 	use { 'tamton-aquib/essentials.nvim' }
-	use { 'max397574/better-escape.nvim', config=function() require"better_escape".setup { } end }
-	use { 'kyazdani42/nvim-tree.lua', config = function() require 'plugins.nvim_tree' end , cmd='NvimTreeToggle'}
-	use { 'kyazdani42/nvim-web-devicons' , config = function() require "plugins.web_devicons" end }
 	use { 'steelsojka/pears.nvim' , config=function() require"pears".setup() end}
+	use { 'max397574/better-escape.nvim', config=function() require"better_escape".setup {} end }
+	use { 'kyazdani42/nvim-web-devicons' , config = function() require "plugins.web_devicons" end }
+	use { 'kyazdani42/nvim-tree.lua', config = function() require 'plugins.nvim_tree' end , cmd='NvimTreeToggle'}
 	use { 'akinsho/nvim-toggleterm.lua' , event = "BufWinEnter", config = function() require"plugins.floaterm" end }
 	use { 'iamcco/markdown-preview.nvim' , ft={'markdown'}, config = function() require"plugins.others".markdown_preview() end, run = "cd app && yarn install", }
 	use { 'lukas-reineke/indent-blankline.nvim', event="BufReadPost", config = function() require"plugins.others".indent_blankline() end }

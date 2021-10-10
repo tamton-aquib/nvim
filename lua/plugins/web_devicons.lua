@@ -14,7 +14,8 @@ require'nvim-web-devicons'.setup{
 		},
 		rs = {
 			icon = "",
-			color = "#653e2f",
+			-- color = "#653e2f",
+			color = "#d5a083",
 			name = "Rs"
 		},
 		["bash"] = {

@@ -7,12 +7,13 @@ local Styles = {}
 
 require 'stabline'.setup {
 	style = "bubble",
-	font_active = "bold,italic",
+	font_active = "italic",
 	stab_start = "%#Rocket#      ",
 	-- stab_left = " ",
 	-- stab_right = "  ",
 	-- stab_start = "  ",
 	bg = "#0e171c",
+	fg = "#e06c75"
 	-- fg = "#986fec",
 	-- stab_bg = "#1e2127"
 }
@@ -195,14 +196,15 @@ Styles.pebble_line = {
 		mid  = {'lsp'},
 		right= {
 			'right_sep', '-cool_symbol', 'left_sep', '%< ',
-			'right_sep', '- ', '-lsp_name', '- ', 'left_sep',
+			'right_sep', '- ', '-lsp_name', '- ', 'left_sep', ' ',
 			-- 'right_sep_double', '-line_column', 'left_sep_double', ' ',
 			'right_sep_double', '-line_column', 'left_sep_double', ' ',
 		}
 	},
 
 	defaults={
-		fg = "#986fec",
+		-- fg = "#986fec",
+		fg = "#97c374",
 		cool_symbol = "  ",
 		left_separator = "",
 		right_separator = "",
@@ -223,7 +225,8 @@ Styles.pebble_line = {
 		i  = "#0e171c",
 		ic = "#0e171c",
 		c  = "#0e171c",
-		v  = "#0e171c"       -- etc
+		v  = "#0e171c",       -- etc
+		V  = "#0e171c"       -- etc
 	}
 }
 

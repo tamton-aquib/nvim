@@ -9,7 +9,7 @@ map('n', '<leader>pp', ':PackerProfile<CR>')
 map('n', '<M-h>',      ':lua vim.cmd(":h "..vim.fn.expand("<cword>"))<CR>')
 map('n', '<leader>s',  ':lua require"essentials".swap_bool()<CR>')
 map('n', 'gx',         ':lua require"essentials".go_to_url()<CR>')
-map('n', '<leader>d',  '<cmd>lua require "custom.noice_cheat".cheat()<CR>')
+map('n', '<leader>d',  ':lua require "essentials".cheat_sh()<CR>')
 -- map('t', '<Esc>',      [[<C-\><C-n>]])
 
 --> essentials.nvim mappings
