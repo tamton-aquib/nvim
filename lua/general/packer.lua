@@ -5,6 +5,7 @@ require("packer").startup { function(use)
 	use { 'williamboman/nvim-lsp-installer', config=function() require "lsp.lsps" end }
 	use { 'tamton-aquib/staline.nvim' , config = function() require"themes.staline" end}
 	use { 'Pocco81/TrueZen.nvim' , config=function() require"true-zen".setup() end }
+	-- use { 'simrat39/rust-tools.nvim', config=function() require "rust-tools".setup({}) end }
 	-- use { "AckslD/nvim-neoclip.lua", config = function() require('neoclip').setup() end, }
 	-- use { '3lv/femboyf' }
 	use { "blackCauldron7/surround.nvim", config = function() require"surround".setup {mappings_style = "sandwich"} end }

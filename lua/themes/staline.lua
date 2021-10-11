@@ -13,7 +13,8 @@ require 'stabline'.setup {
 	-- stab_right = "  ",
 	-- stab_start = "  ",
 	bg = "#0e171c",
-	fg = "#e06c75"
+	-- fg = "#e06c75",
+	fg = "#97c374",
 	-- fg = "#986fec",
 	-- stab_bg = "#1e2127"
 }
