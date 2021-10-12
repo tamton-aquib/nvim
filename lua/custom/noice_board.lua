@@ -1,4 +1,4 @@
-M = {}
+local M = {}
 
 -- TODO: break into pieces
 local fn = vim.fn

@@ -1,8 +1,10 @@
 local set = vim.opt
-vim.notify = require "notify"
+-- vim.notify = require "notify"
 
 set.fillchars = 'eob: '
 set.lazyredraw = true
+set.signcolumn = "yes"
+vim.cmd [[set foldtext=luaeval(\"require('essentials').simple_fold()\")]]
 
 set.completeopt="menu,menuone,noselect"
 
@@ -33,10 +35,11 @@ set.laststatus = 2
 set.foldenable = true
 set.foldmethod = "expr"
 set.foldexpr = "nvim_treesitter#foldexpr()"
-set.foldlevelstart = 25
+set.foldlevelstart = 10
 
 set.iskeyword:append('-')
 set.shortmess:append('c')
+set.shortmess:append('s')
 set.pumblend = 30
 set.inccommand = "split"
 set.number = true

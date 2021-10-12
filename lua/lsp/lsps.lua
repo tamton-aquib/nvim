@@ -1,9 +1,10 @@
 local border = require"general.utils".border
-local signs = { Error = " ", Warning = " ", Hint = "", Information = "", other = "﫠" }
+
+local signs = { Error = " ", Warn = " ", Hint = "", Info = "", other = "﫠" }
 
 for type, icon in pairs(signs) do
-	local hl = "LspDiagnosticsSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
 local on_attach = function(_, _)
@@ -19,12 +20,19 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.resolveSupport = {
-    properties = {
-        'documentation',
-        'detail',
-        'additionalTextEdits',
-    }
+    properties = { 'documentation', 'detail', 'additionalTextEdits' }
 }
+
+-- local lsp_installer = require("nvim-lsp-installer")
+-- lsp_installer.on_server_ready(function(server)
+    -- local opts = {
+		-- capabilities = capabilities,
+		-- on_attach = on_attach
+	-- }
+
+    -- server:setup(opts)
+    -- vim.cmd [[ do User LspAttachBuffers ]]
+-- end)
 
 require'lspmanager'.setup()
 
@@ -38,9 +46,8 @@ for _, server in pairs(servers) do
 	end
 end
 
-local sumneko_root_path = vim.fn.stdpath('data').. "/lspmanager/sumneko_lua"
-local sumneko_binary = sumneko_root_path .. "/extension/server/bin/Linux/lua-language-server"
-
+local bin = '/home/taj/.local/share/nvim/lspmanager/sumneko_lua/extension/server/bin/Linux/lua-language-server'
+local main = '/home/taj/.local/share/nvim/lspmanager/sumneko_lua/extension/server/main.lua'
 local luadev = require "lua-dev".setup {
 	library = {
 		vimruntime = true,
@@ -48,8 +55,9 @@ local luadev = require "lua-dev".setup {
     	plugins = false,
     },
 	lspconfig = {
+		cmd = { bin, '-E', main },
+		capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
 		on_attach = on_attach,
-		cmd = {sumneko_binary, "-E","./extension/server/main.lua"},
 		filetypes = {'lua'},
 		settings = {
 			Lua = {
@@ -61,5 +69,4 @@ local luadev = require "lua-dev".setup {
 		}
 	}
 }
-
 require 'lspconfig'.sumneko_lua.setup(luadev)

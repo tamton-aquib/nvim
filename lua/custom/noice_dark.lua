@@ -1,5 +1,4 @@
-M = {}
-M.Flag = false
+local M = {}
 local ns = vim.api.nvim_create_namespace('noice_dark')
 
 local c = {
@@ -87,7 +86,7 @@ local Usual = {
 		TSKeyword		= { fg = c.red_two },
 		TSKeywordFunction	= { fg = c.red_two },
 		TSString		= { fg = c.green_two },
-		TSInclude		= { fg = c.violet_one},
+		TSInclude		= { fg = c.violet_three },
 		TSComment		= { fg = c.white_three, italic = true},
 		TSFuncBuiltin		= { fg = c.blue_two},
 		TSTypeBuiltin		= { fg = c.violet_one},
@@ -125,20 +124,25 @@ local Usual = {
 	},
 
 	LspRelated = {
-		LspDiagnosticsSignError = { fg = c.red_one, bold = true },
-		LspDiagnosticsSignWarning = { fg = c.yellow_three, bold = true },
-		LspDiagnosticsSignHint = { fg = c.blue_one, bold = true },
-		LspDiagnosticsSignInformation = { fg = c.green_three, italic = true },
+		DiagnosticSignError = { fg = c.red_one, bold = true },
+		DiagnosticSignWarn = { fg = c.yellow_three, bold = true },
+		DiagnosticSignHint = { fg = c.blue_one, bold = true },
+		DiagnosticSignInfo = { fg = c.green_three, italic = true },
 
-		LspDiagnosticsDefaultError = { fg = c.red_one, italic = true, bold=true },
-		LspDiagnosticsDefaultWarning = { fg = c.yellow_three, bold = true , italic=true},
-		LspDiagnosticsDefaultHint = { fg = c.blue_one, bold = true, italic=true},
-		LspDiagnosticsDefaultInformation = { fg = c.green_three, italic = true, bold=true },
+		DiagnosticError = { fg = c.red_one, bold = true },
+		DiagnosticWarn = { fg = c.yellow_three, bold = true },
+		DiagnosticHint = { fg = c.blue_one, bold = true },
+		DiagnosticInfo = { fg = c.green_three, italic = true },
 
-		LspDiagnosticsUnderlineError = { sp = c.red_one, undercurl = true},
-		LspDiagnosticsUnderlineWarning = { sp = c.yellow_three, undercurl = true},
-		LspDiagnosticsUnderlineHint = { sp = c.blue_one, undercurl = true},
-		LspDiagnosticsUnderlineInformation = { sp = c.red_one, undercurl = true},
+		DiagnosticDefaultError = { fg = c.red_one, italic = true, bold=true },
+		DiagnosticDefaultWarn = { fg = c.yellow_three, bold = true , italic=true},
+		DiagnosticDefaultHint = { fg = c.blue_one, bold = true, italic=true},
+		DiagnosticDefaultInfo = { fg = c.green_three, italic = true, bold=true },
+
+		DiagnosticUnderlineError = { sp = c.red_one, undercurl = true},
+		DiagnosticUnderlineWarning = { sp = c.yellow_three, undercurl = true},
+		DiagnosticUnderlineHint = { sp = c.blue_one, undercurl = true},
+		DiagnosticUnderlineInformation = { sp = c.red_one, undercurl = true},
 	},
 }
 
@@ -167,7 +171,9 @@ local lang = {
 		NeorgHeading3Title = { fg = c.green_two},
 	},
 	rust = {
-		TSKeyword = { fg = c.violet_one }
+		TSKeyword = { fg = c.violet_one },
+		-- Type = { fg = c.violet_two },
+		-- PreProc   = { fg = c.blue_one }
 	}
 }
 
@@ -182,15 +188,20 @@ local Plugins = {
 		TelescopeSelectionCaret = { fg = c.red_two, bg = back},
 		TelescopeSelection		= { fg = c.red_two, bg = back}
 	},
-	-- NvimTree = {
-		-- NvimTreeRootFolder = { fg = c.red_two, bold = true},
-		-- NvimTreeFolderIcon = { fg=c.blue_one },
-		-- NvimTreeSpecialFile = { fg=c.green_three }
-	-- },
+	NvimTree = {
+		-- NvimTreeNormal      = { bg = c.background_dark },
+		NvimTreeRootFolder  = { fg = c.red_two, bold = true},
+		NvimTreeFolderIcon  = { fg = c.blue_one },
+		NvimTreeSpecialFile = { fg = c.green_three },
+		NvimTreeGitDirty    = { fg = c.red_one },
+	},
 	GitSign = {
 		GitSignsAdd = { fg = c.green_three },
 		GitSignsChange = { fg = c.yellow_one},
 		GitSignsDelete = { fg = c.red_one}
+	},
+	Cmp = {
+		CmpItemKind = { fg = "#97c374" }
 	},
 	MarkdownHighlights = {
 		markdownH1	= { fg = c.red_one, bold = true },
@@ -234,6 +245,7 @@ function M.noice()
 	for _, tbl in pairs(Usual) do add_highlight_table(tbl) end
 	for _, tbl in pairs(Plugins) do add_highlight_table(tbl) end
 
+	-- local bg = back == "" and "none" or "none"
 	local bg = back or "none"
 	vim.cmd('hi Normal guibg='..bg..' guifg=#dddddd')
 

@@ -4,8 +4,10 @@ local colors = {
 	'onedark',
 	'gruvbox-flat',
 	'tokyonight',
+	'tokyodark',
 	'sonokai',
-	'noice'
+	'noice',
+	'catppuccino'
 }
 
 function Colo.random()
@@ -25,6 +27,7 @@ function Colo.catppuccino(transparent)
 	}
 	cap.load()
 	vim.cmd [[hi FloatBorder guibg=#0b1115]]
+	vim.cmd [[hi IndentBlanklineSpaceChar guifg=none]]
 end
 
 function Colo.tokyodark(transparent)
@@ -32,7 +35,6 @@ function Colo.tokyodark(transparent)
 	vim.g.tokyodark_enable_italic = false
 
 	vim.cmd [[colo tokyodark]]
-	-- vim.cmd("hi Normal guibg=#11121d")
 	vim.cmd("hi Normal guibg="..(transparent and "none" or "#11121d"))
 end
 

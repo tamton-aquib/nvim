@@ -1,4 +1,4 @@
-M = {}
+local M = {}
 
 local function la_place(line)
 	vim.fn.sign_define('sus', {text=' ඞ', texthl="Sus"})

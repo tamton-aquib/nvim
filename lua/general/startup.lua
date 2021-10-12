@@ -1,3 +1,4 @@
+vim.g.did_load_filetypes = 1
 vim.g.loaded_gzip = false
 vim.g.loaded_matchit = false
 vim.g.loaded_netrwPlugin = false
@@ -11,7 +12,7 @@ vim.cmd [[ filetype plugin indent off ]]
 vim.opt.spell = false
 
 if pcall(require, 'impatient') then
-	require 'impatient'
+	require 'impatient'.enable_profile()
 end
 
 local fn = vim.fn
