@@ -6,6 +6,7 @@ local function map(mode, key, mapping) vim.api.nvim_set_keymap(mode, key, mappin
 map('n', '<leader>n',  ":NvimTreeToggle<CR>")
 map('n', '<leader>ps', ':w<CR>:so %<CR>:PackerSync<CR>')
 map('n', '<leader>pp', ':PackerProfile<CR>')
+map('n', '<leader>pc', ':PackerCompile<CR>')
 map('n', '<M-h>',      ':lua vim.cmd(":h "..vim.fn.expand("<cword>"))<CR>')
 map('n', '<leader>s',  ':lua require"essentials".swap_bool()<CR>')
 map('n', 'gx',         ':lua require"essentials".go_to_url()<CR>')

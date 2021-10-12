@@ -2,15 +2,17 @@
 require("packer").startup { function(use)
 
 	-->  Testing and temporary
-	use { 'williamboman/nvim-lsp-installer', config=function() require "lsp.lsps" end }
+	-- use { 'williamboman/nvim-lsp-installer', config=function() require "lsp.lsps" end }
 	use { 'tamton-aquib/staline.nvim' , config = function() require"themes.staline" end}
 	use { 'Pocco81/TrueZen.nvim' , config=function() require"true-zen".setup() end }
+	use { 'tamton-aquib/essentials.nvim' }
+	use { 'Saecki/crates.nvim', ft={'toml'}, config=function() require('crates').setup() end }
 	-- use { 'simrat39/rust-tools.nvim', config=function() require "rust-tools".setup({}) end }
 	-- use { "AckslD/nvim-neoclip.lua", config = function() require('neoclip').setup() end, }
 	-- use { '3lv/femboyf' }
 	use { "blackCauldron7/surround.nvim", config = function() require"surround".setup {mappings_style = "sandwich"} end }
 	-- use { 'abecodes/tabout.nvim', config=function() require('tabout').setup {} end }
-
+	use { '~/TOOLS/nvim-lspmanager', config=function() require "lsp.lsps" end  }
 
 	-->  THEMES AND UI
 	use { 'folke/tokyonight.nvim' }
@@ -45,7 +47,6 @@ require("packer").startup { function(use)
 	use { 'nathom/filetype.nvim' }
 	use { 'rcarriga/nvim-notify' }
 	use { 'lewis6991/impatient.nvim' }
-	use { 'tamton-aquib/essentials.nvim' }
 	use { 'steelsojka/pears.nvim' , config=function() require"pears".setup() end}
 	use { 'max397574/better-escape.nvim', config=function() require"better_escape".setup {} end }
 	use { 'kyazdani42/nvim-web-devicons' , config = function() require "plugins.web_devicons" end }
