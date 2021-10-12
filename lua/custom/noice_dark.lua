@@ -200,6 +200,9 @@ local Plugins = {
 		GitSignsChange = { fg = c.yellow_one},
 		GitSignsDelete = { fg = c.red_one}
 	},
+	Cmp = {
+		CmpItemKind = { fg = "#97c374" }
+	},
 	MarkdownHighlights = {
 		markdownH1	= { fg = c.red_one, bold = true },
 		markdownH2	= { fg = c.red_one, bold = true },

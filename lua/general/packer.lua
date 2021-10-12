@@ -3,7 +3,7 @@ require("packer").startup { function(use)
 
 	-->  Testing and temporary
 	-- use { 'williamboman/nvim-lsp-installer', config=function() require "lsp.lsps" end }
-	use { 'tamton-aquib/staline.nvim' , config = function() require"themes.staline" end}
+	use { '~/TOOLS/staline.nvim' , config = function() require"ui.staline" end}
 	use { 'Pocco81/TrueZen.nvim' , config=function() require"true-zen".setup() end }
 	use { 'tamton-aquib/essentials.nvim' }
 	use { 'Saecki/crates.nvim', ft={'toml'}, config=function() require('crates').setup() end }
@@ -20,7 +20,7 @@ require("packer").startup { function(use)
 	use { 'sainnhe/sonokai' }
 	use { 'eddyekofo94/gruvbox-flat.nvim' }
 	use { 'Pocco81/Catppuccino.nvim' }
-	use { 'norcalli/nvim-colorizer.lua' , event='BufReadPre', config = function() require"plugins.plug-colorizer" end }
+	use { 'norcalli/nvim-colorizer.lua' , event='BufReadPre', config = function() require"ui.plug-colorizer" end }
 	use { 'folke/todo-comments.nvim' , event='BufReadPost' , config = function() require'todo-comments'.setup{} end }
 	use { 'lewis6991/gitsigns.nvim' , config = function() require'gitsigns'.setup{} end , event='BufRead' }
 
@@ -49,7 +49,7 @@ require("packer").startup { function(use)
 	use { 'lewis6991/impatient.nvim' }
 	use { 'steelsojka/pears.nvim' , config=function() require"pears".setup() end}
 	use { 'max397574/better-escape.nvim', config=function() require"better_escape".setup {} end }
-	use { 'kyazdani42/nvim-web-devicons' , config = function() require "plugins.web_devicons" end }
+	use { 'kyazdani42/nvim-web-devicons' , config = function() require "ui.web_devicons" end }
 	use { 'kyazdani42/nvim-tree.lua', config = function() require 'plugins.nvim_tree' end , cmd='NvimTreeToggle'}
 	use { 'akinsho/nvim-toggleterm.lua' , event = "BufWinEnter", config = function() require"plugins.floaterm" end }
 	use { 'iamcco/markdown-preview.nvim' , ft={'markdown'}, config = function() require"plugins.others".markdown_preview() end, run = "cd app && yarn install", }

@@ -1,14 +1,10 @@
-
 # Neovim config
 My neovim config
 
 ---
-![nvim_ss_03](https://i.imgur.com/B1gWlPL.png)
+![image](https://user-images.githubusercontent.com/77913442/136957780-0459199a-c79d-43d2-9f13-7a9c8011cd71.png)
 
 * Colorscheme: [custom](https://github.com/tamton-aquib/nvim/blob/main/lua/custom/noice_dark.lua)
-
-![nvim_ss_04](https://i.imgur.com/D1yBclH.png)
-* Colorscheme: tokyonight.nvim
 ---
 
 ### Overall Structure
@@ -20,38 +16,34 @@ My neovim config
 ### Structure:
 
 ```
- .
+  nvim
 ├──  init.lua
-└──  lua
-   ├──  custom
-   │  ├──  noice_comment.lua
-   │  ├──  noice_dark.lua
-   │  ├──  noice_rename.lua
-   │  ├──  noice_sus.lua
-   │  ├──  noiceboard.lua
-   │  └──  scheme_picker.lua
-   ├──  general
-   │  ├──  functions.lua
+└──   lua
+   ├──   general
+   │  ├──  autocommands.lua
    │  ├──  mappings.lua
    │  ├──  packer.lua
+   │  ├──  startup.lua
    │  └──  settings.lua
-   ├──  lsp
+   ├──   custom
+   │  ├──  noice_dark.lua
+   │  ├──  noice_sus.lua
+   │  └──  noice_board.lua
+   ├──   lsp
    │  ├──  cmp.lua
-   │  ├──  emmet_lsp.lua
-   │  ├──  lspconfig.lua
    │  └──  lsps.lua
-   ├──  plugins
+   ├──   plugins
    │  ├──  floaterm.lua
-   │  ├──  lir.lua
+   │  ├──  nvim_tree.lua
    │  ├──  neorg.lua
-   │  ├──  plug-colorizer.lua
    │  ├──  snippets.lua
    │  ├──  telescope.lua
-   │  ├──  treesittter.lua
-   │  └──  web_devicons.lua
-   └──  themes
+   │  └──  treesittter.lua
+   └──   ui
       ├──  colorschemes.lua
       ├──  dashboard.lua
+      ├──  plug-colorizer.lua
+      ├──  web_devicons.lua
       └──  staline.lua
 ```
 

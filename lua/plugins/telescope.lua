@@ -2,13 +2,7 @@
 require('telescope').setup{
 	defaults = {
 		vimgrep_arguments = {
-			'rg',
-			'--color=never',
-			'--no-heading',
-			'--with-filename',
-			'--line-number',
-			'--column',
-			'--smart-case'
+			'rg', '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case'
 		},
 		prompt_prefix = "   ",
 		selection_caret = " ",
@@ -44,7 +38,4 @@ require('telescope').setup{
 		-- Developer configurations: Not meant for general override
 		buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
 	},
-	pickers = {
-		find = 'dropdown'
-	}
 }

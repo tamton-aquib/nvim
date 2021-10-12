@@ -9,21 +9,15 @@ require 'stabline'.setup {
 	style = "bubble",
 	font_active = "italic",
 	stab_start = "%#Rocket#      ",
-	-- stab_left = " ",
-	-- stab_right = "  ",
-	-- stab_start = "  ",
 	bg = "#0e171c",
-	-- fg = "#e06c75",
 	fg = "#97c374",
-	-- fg = "#986fec",
-	-- stab_bg = "#1e2127"
+	inactive_bg = "#101a38"
 }
 
 vim.cmd [[hi Rocket guifg=#f36365 guibg=none gui=bold]] -- #97c374
 
 Styles.simple_line = {
 	sections = {
-		-- left = { '  ', 'mode', ' ', 'branch', '      ', 'lsp', },
 		left = { '  ', 'mode', ' ', 'branch', '     ', 'lsp' },
 		mid = {'%<'},
 		right = {'%l/%L  :%c  ', 'file_name', '  ',
@@ -132,7 +126,9 @@ Styles.atom_line = {
 		line_column = " %l/%L :%c "
 	},
 	mode_icons = {
-		n = "NORMAL"
+		n = "NORMAL",
+		i = "INSERT",
+		c = "COMMAND"
 	},
 	mode_colors = {
 		-- n = "#e95678",

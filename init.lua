@@ -8,5 +8,5 @@ require 'general.mappings'
 
 --> CUSTOMS and THEMES section
 require 'custom.noice_board'.setup()
-require 'themes.colorschemes'.catppuccino(true)
+require 'ui.colorschemes'.catppuccino(true)
 -- require 'custom.noice_sus'.setup()
