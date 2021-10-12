@@ -3,7 +3,7 @@ require("packer").startup { function(use)
 
 	-->  Testing and temporary
 	-- use { 'williamboman/nvim-lsp-installer', config=function() require "lsp.lsps" end }
-	use { '~/TOOLS/staline.nvim' , config = function() require"ui.staline" end}
+	use { 'tamton-aquib/staline.nvim' , config = function() require"ui.staline" end}
 	use { 'Pocco81/TrueZen.nvim' , config=function() require"true-zen".setup() end }
 	use { 'tamton-aquib/essentials.nvim' }
 	use { 'Saecki/crates.nvim', ft={'toml'}, config=function() require('crates').setup() end }
