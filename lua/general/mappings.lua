@@ -2,22 +2,24 @@ vim.g.mapleader = ' '
 local opts = {noremap=true, silent=true}
 local function map(mode, key, mapping) vim.api.nvim_set_keymap(mode, key, mapping, opts) end
 
+
 --> NEW
 map('n', '<leader>n',  ":NvimTreeToggle<CR>")
 map('n', '<leader>ps', ':w<CR>:so %<CR>:PackerSync<CR>')
 map('n', '<leader>pp', ':PackerProfile<CR>')
 map('n', '<leader>pc', ':PackerCompile<CR>')
 map('n', '<M-h>',      ':lua vim.cmd(":h "..vim.fn.expand("<cword>"))<CR>')
-map('n', '<leader>s',  ':lua require"essentials".swap_bool()<CR>')
-map('n', 'gx',         ':lua require"essentials".go_to_url()<CR>')
-map('n', '<leader>d',  ':lua require "essentials".cheat_sh()<CR>')
 -- map('t', '<Esc>',      [[<C-\><C-n>]])
 
 --> essentials.nvim mappings
-map('n', '<F2>', ':lua require"essentials".rename()<CR>')
-map('v', '<C-l>', [[:lua require"essentials".get_full_url()<CR>]])
-map('v', '<C-_>', ':lua require"essentials".toggle_comment("nice")<CR>')
-map('n', '<C-_>', ':lua require"essentials".toggle_comment()<CR>')
+map('n', '<F2>'     , ':lua require"essentials".rename()<CR>')
+map('v', '<C-l>'    , ':lua require"essentials".get_full_url()<CR>')
+map('v', '<C-_>'    , ':lua require"essentials".toggle_comment("nice")<CR>')
+map('n', '<C-_>'    , ':lua require"essentials".toggle_comment()<CR>')
+map('n', '<leader>r', ':w<CR>:lua require("essentials").run_file()<CR>')
+map('n', '<leader>s', ':lua require"essentials".swap_bool()<CR>')
+map('n', 'gx',        ':lua require"essentials".go_to_url()<CR>')
+map('n', '<leader>d', ':lua require"essentials".cheat_sh()<CR>')
 
 --> LSP mappings
 map('n', 'gd',    '<cmd>lua vim.lsp.buf.definition()<CR>')
