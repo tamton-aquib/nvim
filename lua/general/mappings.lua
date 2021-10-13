@@ -13,7 +13,7 @@ map('n', '<M-h>',      ':lua vim.cmd(":h "..vim.fn.expand("<cword>"))<CR>')
 
 --> essentials.nvim mappings
 map('n', '<F2>'     , ':lua require"essentials".rename()<CR>')
-map('v', '<C-l>'    , ':lua require"essentials".get_full_url()<CR>')
+map('v', '<leader>i'    , ':lua require"essentials".get_url()<CR>')
 map('v', '<C-_>'    , ':lua require"essentials".toggle_comment("nice")<CR>')
 map('n', '<C-_>'    , ':lua require"essentials".toggle_comment()<CR>')
 map('n', '<leader>r', ':w<CR>:lua require("essentials").run_file()<CR>')

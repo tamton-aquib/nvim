@@ -47,8 +47,8 @@ require("packer").startup { function(use)
 	use { 'nathom/filetype.nvim' }
 	use { 'rcarriga/nvim-notify' }
 	use { 'lewis6991/impatient.nvim' }
-	use { 'steelsojka/pears.nvim' , config=function() require"pears".setup() end}
-	use { 'max397574/better-escape.nvim', config=function() require"better_escape".setup {} end }
+	use { 'steelsojka/pears.nvim', event='InsertEnter' , config=function() require"pears".setup() end}
+	use { 'max397574/better-escape.nvim', config=function() require"better_escape".setup {mapping={'jk'}} end }
 	use { 'kyazdani42/nvim-web-devicons' , config = function() require "ui.web_devicons" end }
 	use { 'kyazdani42/nvim-tree.lua', config = function() require 'plugins.nvim_tree' end , cmd='NvimTreeToggle'}
 	use { 'akinsho/nvim-toggleterm.lua' , event = "BufWinEnter", config = function() require"plugins.floaterm" end }
