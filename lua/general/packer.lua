@@ -3,6 +3,7 @@ require("packer").startup { function(use)
 
 	-->  Testing and temporary
 	-- use { 'williamboman/nvim-lsp-installer', config=function() require "lsp.lsps" end }
+	-- use { '~/TOOLS/staline.nvim' , config = function() require"ui.staline" end }
 	use { 'tamton-aquib/staline.nvim' , config = function() require"ui.staline" end}
 	use { 'Pocco81/TrueZen.nvim' , config=function() require"true-zen".setup() end }
 	use { 'tamton-aquib/essentials.nvim' }
@@ -47,8 +48,8 @@ require("packer").startup { function(use)
 	use { 'nathom/filetype.nvim' }
 	use { 'rcarriga/nvim-notify' }
 	use { 'lewis6991/impatient.nvim' }
-	use { 'steelsojka/pears.nvim' , config=function() require"pears".setup() end}
-	use { 'max397574/better-escape.nvim', config=function() require"better_escape".setup {} end }
+	use { 'steelsojka/pears.nvim', event='InsertEnter' , config=function() require"pears".setup() end}
+	use { 'max397574/better-escape.nvim', config=function() require"better_escape".setup {mapping={'jk'}} end }
 	use { 'kyazdani42/nvim-web-devicons' , config = function() require "ui.web_devicons" end }
 	use { 'kyazdani42/nvim-tree.lua', config = function() require 'plugins.nvim_tree' end , cmd='NvimTreeToggle'}
 	use { 'akinsho/nvim-toggleterm.lua' , event = "BufWinEnter", config = function() require"plugins.floaterm" end }
