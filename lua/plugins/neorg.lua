@@ -28,7 +28,7 @@ require('neorg').setup {
 							enable = true,
 							icon = "",
 							highlight = "String"
-						}
+						},
 					}
 				}
 			}

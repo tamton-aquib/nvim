@@ -11,7 +11,7 @@ require 'stabline'.setup {
 	stab_start = "%#Rocket#      ",
 	bg = "#0e171c",
 	fg = "#97c374",
-	inactive_bg = "#101a38"
+	-- inactive_bg = "#101a38"
 }
 
 vim.cmd [[hi Rocket guifg=#f36365 guibg=none gui=bold]] -- #97c374
@@ -104,10 +104,10 @@ Styles.evil_line = {
 	}
 }
 
--- vim.cmd [[hi Evil        guifg=#f36365 guibg=#202328]]             -- Higlight for Evil symbol
--- vim.cmd [[hi StalineEnc  guifg=#7d9955 guibg=#202328]]       -- Encoding Highlight
--- vim.cmd [[hi StalineGit  guifg=#8583b3 guibg=#202328]]       -- Branch Name Highlight
--- vim.cmd [[hi StalineFile guifg=#c37cda guibg=#202328]]      -- File name Highlight
+vim.cmd [[hi Evil        guifg=#f36365 guibg=#202328]]             -- Higlight for Evil symbol
+vim.cmd [[hi StalineEnc  guifg=#7d9955 guibg=#202328]]       -- Encoding Highlight
+vim.cmd [[hi StalineGit  guifg=#8583b3 guibg=#202328]]       -- Branch Name Highlight
+vim.cmd [[hi StalineFile guifg=#c37cda guibg=#202328]]      -- File name Highlight
 
 Styles.atom_line = {
 	sections = {
@@ -210,13 +210,6 @@ Styles.pebble_line = {
 		line_column = "[%l:%c] 並%p%% "
 		-- font_active = "bold"
 	},
-	-- mode_colors = {
-		-- n  = "#181a23",
-		-- i  = "#181a23",
-		-- ic = "#181a23",
-		-- c  = "#181a23",
-		-- v  = "#181a23"       -- etc
-	-- }
 	mode_colors = {
 		n  = "#0e171c",
 		i  = "#0e171c",
@@ -227,5 +220,5 @@ Styles.pebble_line = {
 	}
 }
 
-require("staline").setup(Styles.pebble_line)
--- vim: foldlevelstart=10
+require("staline").setup(Styles.evil_line)
+-- vim: foldlevelstart=10:fdm=indent
