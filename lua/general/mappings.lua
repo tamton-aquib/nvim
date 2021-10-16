@@ -3,6 +3,8 @@ local opts = {noremap=true, silent=true}
 local function map(mode, key, mapping) vim.api.nvim_set_keymap(mode, key, mapping, opts) end
 
 
+map('n', 'n', 'n:lua require("specs").show_specs()<CR>')
+map('n', 'N', 'N:lua require("specs").show_specs()<CR>')
 --> NEW
 map('n', '<leader>n',  ":NvimTreeToggle<CR>")
 map('n', '<leader>ps', ':w<CR>:so %<CR>:PackerSync<CR>')
