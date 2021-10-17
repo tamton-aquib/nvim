@@ -4,17 +4,17 @@ require("packer").startup { function(use)
 	-->  Testing and temporary
 	use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](69) end }
 	use { 'edluffy/specs.nvim', config=function() require("plugins.others").specs() end }
-	-- use { '~/TOOLS/staline.nvim' , config = function() require"ui.staline" end }
-	use { 'tamton-aquib/staline.nvim' , config = function() require"ui.staline" end}
+	use { '~/TOOLS/staline.nvim' , config = function() require"ui.staline" end }
+	-- use { "blackCauldron7/surround.nvim", config = function() require"surround".setup {mappings_style = "sandwich"} end }
+	-- use { 'tamton-aquib/staline.nvim' , config = function() require"ui.staline" end}
 	use { 'Pocco81/TrueZen.nvim' , config=function() require"true-zen".setup() end }
 	use { 'tamton-aquib/essentials.nvim' }
 	use { 'Saecki/crates.nvim', ft={'toml'}, config=function() require('crates').setup() end }
 	use { 'jdhao/better-escape.vim' }
-	-- use { 'simrat39/rust-tools.nvim', config=function() require "rust-tools".setup({}) end }
+	use { 'ggandor/lightspeed.nvim' }
 	-- use { "AckslD/nvim-neoclip.lua", config = function() require('neoclip').setup() end, }
-	-- use { '3lv/femboyf' }
 	-- use { 'abecodes/tabout.nvim', config=function() require('tabout').setup {} end }
-	use { 'tamton-aquib/nvim-lspmanager', config=function() require "lsp.lsps" end  }
+	use { 'MordechaiHadad/nvim-lspmanager', branch='dev', config=function() require "lsp.lsps" end  }
 
 	-->  THEMES AND UI
 	use { 'folke/tokyonight.nvim' }
@@ -50,10 +50,7 @@ require("packer").startup { function(use)
 	use { 'rcarriga/nvim-notify' }
 	use { 'lewis6991/impatient.nvim' }
 	use { 'steelsojka/pears.nvim' , config=function() require"pears".setup() end}
-	-- use { 'max397574/better-escape.nvim', config=function() require"better_escape".setup {mapping={'jk'}} end }
 	use { 'kyazdani42/nvim-web-devicons' , config = function() require "ui.web_devicons" end }
-	use { 'max397574/better-escape.nvim', config=function() require"better_escape".setup {mapping={'jk'}} end }
-	use { "blackCauldron7/surround.nvim", config = function() require"surround".setup {mappings_style = "sandwich"} end }
 	use { 'kyazdani42/nvim-tree.lua', config = function() require 'plugins.nvim_tree' end , cmd='NvimTreeToggle'}
 	use { 'akinsho/nvim-toggleterm.lua' , event = "BufWinEnter", config = function() require"plugins.floaterm" end }
 	use { 'iamcco/markdown-preview.nvim' , ft={'markdown'}, config = function() require"plugins.others".markdown_preview() end, run = "cd app && yarn install", }

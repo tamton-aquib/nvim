@@ -8,7 +8,8 @@ local Styles = {}
 require 'stabline'.setup {
 	style = "bubble",
 	font_active = "italic",
-	stab_start = "%#Rocket#      ",
+	stab_start = "%#Rocket#   卐    ",
+	stab_bg = "#2c2e34",
 	bg = "#0e171c",
 	fg = "#97c374",
 	-- inactive_bg = "#101a38"
@@ -220,5 +221,5 @@ Styles.pebble_line = {
 	}
 }
 
-require("staline").setup(Styles.evil_line)
+require("staline").setup(Styles.pebble_line)
 -- vim: foldlevelstart=10:fdm=indent
