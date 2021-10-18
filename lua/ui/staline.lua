@@ -8,8 +8,8 @@ local Styles = {}
 require 'stabline'.setup {
 	style = "bubble",
 	font_active = "italic",
-	stab_start = "%#Rocket#   卐    ",
-	stab_bg = "#2c2e34",
+	stab_start = "%#Rocket#       ",
+	-- stab_bg = "#2c2e34",
 	bg = "#0e171c",
 	fg = "#97c374",
 	-- inactive_bg = "#101a38"
@@ -219,6 +219,13 @@ Styles.pebble_line = {
 		v  = "#0e171c",       -- etc
 		V  = "#0e171c"       -- etc
 	}
+}
+Styles.color_line = {
+	sections = { 
+		left = { ("▁"):rep(vim.o.columns) }, -- change thickness: "_", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"
+		mid = {},
+		right = {}
+	},
 }
 
 require("staline").setup(Styles.pebble_line)

@@ -2,6 +2,13 @@
 require("packer").startup { function(use)
 
 	-->  Testing and temporary
+	use {
+      "max397574/startup.nvim",
+	  branch = 'dev',
+      config = function()
+        require("startup").setup(require("noice"))
+      end,
+    }
 	use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](69) end }
 	use { 'edluffy/specs.nvim', config=function() require("plugins.others").specs() end }
 	use { '~/TOOLS/staline.nvim' , config = function() require"ui.staline" end }
@@ -10,11 +17,12 @@ require("packer").startup { function(use)
 	use { 'Pocco81/TrueZen.nvim' , config=function() require"true-zen".setup() end }
 	use { 'tamton-aquib/essentials.nvim' }
 	use { 'Saecki/crates.nvim', ft={'toml'}, config=function() require('crates').setup() end }
-	use { 'jdhao/better-escape.vim' }
+	use { 'max397574/better-escape.nvim', config=function() require("better_escape").setup() end }
 	use { 'ggandor/lightspeed.nvim' }
 	-- use { "AckslD/nvim-neoclip.lua", config = function() require('neoclip').setup() end, }
 	-- use { 'abecodes/tabout.nvim', config=function() require('tabout').setup {} end }
-	use { 'MordechaiHadad/nvim-lspmanager', branch='dev', config=function() require "lsp.lsps" end  }
+	-- use { 'MordechaiHadad/nvim-lspmanager', branch='dev', config=function() require "lsp.lsps" end  }
+	use { 'NTBBloodbath/nvim-lspmanager', branch='feat/add-servers-config-to-setup', config=function() require "lsp.lsps" end  }
 
 	-->  THEMES AND UI
 	use { 'folke/tokyonight.nvim' }
