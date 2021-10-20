@@ -7,6 +7,6 @@ require 'general.autocommands'
 require 'general.mappings'
 
 --> CUSTOMS and THEMES section
--- require 'custom.noice_board'.setup()
-require 'ui.colorschemes'.catppuccino(true)
--- require 'custom.noice_sus'.setup()
+require 'custom.noice_board'.setup()
+require 'ui.colorschemes'.tokyodark(false)
+require 'custom.noice_sus'.setup()

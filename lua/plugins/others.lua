@@ -2,7 +2,8 @@ local M = {}
 
 function M.indent_blankline()
 	-- vim.g.indentLine_enabled = 1
-	vim.g.indent_blankline_char = "▏"
+	-- vim.g.indent_blankline_char = "▏"
+	vim.g.indent_blankline_char = ""
 	vim.g.indent_blankline_filetype_exclude = {
 		"TelescopePrompt", "help", "terminal", "dashboard", "NvimTree",
 		"packer", "norg", "lspinfo", "lsp-installer"
@@ -11,7 +12,7 @@ function M.indent_blankline()
 end
 
 function M.specs()
-	vim.cmd [[hi Specs guibg=#bbbbbb]]
+	vim.cmd [[hi Specs guibg=#ffffff]]
 	require('specs').setup{
 		show_jumps  = true,
 		min_jump = 1,

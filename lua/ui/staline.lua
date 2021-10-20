@@ -6,13 +6,13 @@
 local Styles = {}
 
 require 'stabline'.setup {
-	style = "bubble",
-	font_active = "italic",
+	-- style = "bubble",
+	font_active = "bold,italic",
 	stab_start = "%#Rocket#       ",
-	-- stab_bg = "#2c2e34",
-	bg = "#0e171c",
 	fg = "#97c374",
-	-- inactive_bg = "#101a38"
+	-- fg = "#f06780",
+	-- fg = "#000000",
+	inactive_bg = "#11121d"
 }
 
 vim.cmd [[hi Rocket guifg=#f36365 guibg=none gui=bold]] -- #97c374
@@ -202,7 +202,7 @@ Styles.pebble_line = {
 
 	defaults={
 		-- fg = "#986fec",
-		fg = "#97c374",
+		fg = "#000000",
 		cool_symbol = "  ",
 		left_separator = "",
 		right_separator = "",
@@ -211,13 +211,22 @@ Styles.pebble_line = {
 		line_column = "[%l:%c] 並%p%% "
 		-- font_active = "bold"
 	},
+	-- mode_colors = {
+		-- n  = "#0e171c",
+		-- i  = "#0e171c",
+		-- ic = "#0e171c",
+		-- c  = "#0e171c",
+		-- v  = "#0e171c",       -- etc
+		-- V  = "#0e171c"       -- etc
+	-- }
+	-- #97c374
 	mode_colors = {
-		n  = "#0e171c",
-		i  = "#0e171c",
-		ic = "#0e171c",
-		c  = "#0e171c",
-		v  = "#0e171c",       -- etc
-		V  = "#0e171c"       -- etc
+		n  = "#97c374",
+		i  = "#97c374",
+		ic = "#97c374",
+		c  = "#97c374",
+		v  = "#97c374",       -- etc
+		V  = "#97c374"       -- etc
 	}
 }
 Styles.color_line = {

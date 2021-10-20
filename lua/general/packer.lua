@@ -2,27 +2,17 @@
 require("packer").startup { function(use)
 
 	-->  Testing and temporary
-	use {
-      "max397574/startup.nvim",
-	  branch = 'dev',
-      config = function()
-        require("startup").setup(require("noice"))
-      end,
-    }
-	use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](69) end }
-	use { 'edluffy/specs.nvim', config=function() require("plugins.others").specs() end }
-	use { '~/TOOLS/staline.nvim' , config = function() require"ui.staline" end }
-	-- use { "blackCauldron7/surround.nvim", config = function() require"surround".setup {mappings_style = "sandwich"} end }
-	-- use { 'tamton-aquib/staline.nvim' , config = function() require"ui.staline" end}
-	use { 'Pocco81/TrueZen.nvim' , config=function() require"true-zen".setup() end }
-	use { 'tamton-aquib/essentials.nvim' }
+	use { 'MordechaiHadad/nvim-lspmanager', branch='dev', config=function() require("lsp.lsps") end }
+	use { 'tamton-aquib/staline.nvim' , config = function() require"ui.staline" end}
+	use { 'tamton-aquib/dynamic-cursor.nvim', config=function() require"dynamic-cursor".setup() end }
 	use { 'Saecki/crates.nvim', ft={'toml'}, config=function() require('crates').setup() end }
-	use { 'max397574/better-escape.nvim', config=function() require("better_escape").setup() end }
 	use { 'ggandor/lightspeed.nvim' }
 	-- use { "AckslD/nvim-neoclip.lua", config = function() require('neoclip').setup() end, }
 	-- use { 'abecodes/tabout.nvim', config=function() require('tabout').setup {} end }
-	-- use { 'MordechaiHadad/nvim-lspmanager', branch='dev', config=function() require "lsp.lsps" end  }
-	use { 'NTBBloodbath/nvim-lspmanager', branch='feat/add-servers-config-to-setup', config=function() require "lsp.lsps" end  }
+	-- use { 'luukvbaal/stabilize.nvim', config = function() require("stabilize").setup() end }
+	-- use { "blackCauldron7/surround.nvim", config = function() require"surround".setup {mappings_style = "sandwich"} end }
+	-- use { 'edluffy/specs.nvim', config=function() require("plugins.others").specs() end }
+	-- use { 'Pocco81/TrueZen.nvim' , config=function() require"true-zen".setup() end }
 
 	-->  THEMES AND UI
 	use { 'folke/tokyonight.nvim' }
@@ -57,8 +47,10 @@ require("packer").startup { function(use)
 	use { 'nathom/filetype.nvim' }
 	use { 'rcarriga/nvim-notify' }
 	use { 'lewis6991/impatient.nvim' }
+	use { 'tamton-aquib/essentials.nvim' }
 	use { 'steelsojka/pears.nvim' , config=function() require"pears".setup() end}
 	use { 'kyazdani42/nvim-web-devicons' , config = function() require "ui.web_devicons" end }
+	use { 'max397574/better-escape.nvim', config=function() require("better_escape").setup{mapping='jk'} end }
 	use { 'kyazdani42/nvim-tree.lua', config = function() require 'plugins.nvim_tree' end , cmd='NvimTreeToggle'}
 	use { 'akinsho/nvim-toggleterm.lua' , event = "BufWinEnter", config = function() require"plugins.floaterm" end }
 	use { 'iamcco/markdown-preview.nvim' , ft={'markdown'}, config = function() require"plugins.others".markdown_preview() end, run = "cd app && yarn install", }

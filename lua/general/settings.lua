@@ -7,20 +7,6 @@ set.signcolumn = "yes"
 vim.cmd [[set foldtext=luaeval(\"require('essentials').simple_fold()\")]]
 vim.opt.guifont = "Operator Mono Medium"
 
--- vim.cmd [[
--- if exists('g:started_by_firenvim')
-	-- set laststatus=0
-	-- set showtabline=0
--- else
-	-- set laststatus=2
-	-- set showtabline=2
--- endif
--- ]]
-if vim.g.started_by_firenvim then
-	vim.opt_local.laststatus = 0
-	vim.opt_local.showtabline = 0
-end
-
 set.completeopt="menu,menuone,noselect"
 
 set.ruler = false

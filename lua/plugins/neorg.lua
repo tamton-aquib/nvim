@@ -30,7 +30,6 @@ require('neorg').setup {
 							-- highlight = "String"
 						-- },
 					-- }
-					
 				-- }
                 icons = {
                     heading = {
@@ -73,8 +72,8 @@ require('neorg').setup {
 			}
 		}
     },
-    -- 	logger = {
-    -- 		level = "trace"
-    -- 	}
+	-- logger = {
+		-- level = "trace"
+	-- }
 }
 
