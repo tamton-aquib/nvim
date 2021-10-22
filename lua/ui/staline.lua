@@ -12,7 +12,9 @@ require 'stabline'.setup {
 	fg = "#97c374",
 	-- fg = "#f06780",
 	-- fg = "#000000",
-	inactive_bg = "#11121d"
+	inactive_bg = "#11121d",
+	padding = 3,
+	close_symbol = ""
 }
 
 vim.cmd [[hi Rocket guifg=#f36365 guibg=none gui=bold]] -- #97c374

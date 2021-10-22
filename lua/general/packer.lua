@@ -4,7 +4,7 @@ require("packer").startup { function(use)
 	-->  Testing and temporary
 	use { 'MordechaiHadad/nvim-lspmanager', branch='dev', config=function() require("lsp.lsps") end }
 	use { 'tamton-aquib/staline.nvim' , config = function() require"ui.staline" end}
-	use { 'tamton-aquib/dynamic-cursor.nvim', config=function() require"dynamic-cursor".setup() end }
+	use { 'tamton-aquib/dynamic-cursor.nvim', config=function() require"dynamic-cursor".setup() end , after="nvim-treesitter"}
 	use { 'Saecki/crates.nvim', ft={'toml'}, config=function() require('crates').setup() end }
 	use { 'ggandor/lightspeed.nvim' }
 	-- use { "AckslD/nvim-neoclip.lua", config = function() require('neoclip').setup() end, }
@@ -13,15 +13,17 @@ require("packer").startup { function(use)
 	-- use { "blackCauldron7/surround.nvim", config = function() require"surround".setup {mappings_style = "sandwich"} end }
 	-- use { 'edluffy/specs.nvim', config=function() require("plugins.others").specs() end }
 	-- use { 'Pocco81/TrueZen.nvim' , config=function() require"true-zen".setup() end }
+	-- use { 'windwp/floatline.nvim', config=function() require("floatline").setup() end }
+	-- use { 'hrsh7th/cmp-cmdline' }
 
 	-->  THEMES AND UI
+	use { 'folke/todo-comments.nvim' , event='BufReadPost' , config = function() require'todo-comments'.setup{} end }
 	use { 'folke/tokyonight.nvim' }
 	use { 'tiagovla/tokyodark.nvim' }
 	use { 'sainnhe/sonokai' }
 	use { 'eddyekofo94/gruvbox-flat.nvim' }
 	use { 'Pocco81/Catppuccino.nvim' }
 	use { 'norcalli/nvim-colorizer.lua' , event='BufReadPre', config = function() require"ui.plug-colorizer" end }
-	use { 'folke/todo-comments.nvim' , event='BufReadPost' , config = function() require'todo-comments'.setup{} end }
 	use { 'lewis6991/gitsigns.nvim' , config = function() require'gitsigns'.setup{} end , event='BufRead' }
 
 	-->  LSP and COMPLETION
