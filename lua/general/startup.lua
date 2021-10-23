@@ -11,8 +11,9 @@ vim.g.loaded_remote_plugins = false
 vim.cmd [[ filetype plugin indent off ]]
 vim.opt.spell = false
 
-if pcall(require, 'impatient') then
-	require 'impatient'.enable_profile()
+local ok, stuff = pcall(require, 'impatient')
+if ok then
+	stuff.enable_profile()
 end
 
 local fn = vim.fn

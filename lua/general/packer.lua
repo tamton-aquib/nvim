@@ -3,7 +3,7 @@ require("packer").startup { function(use)
 
 	-->  Testing and temporary
 	use { 'MordechaiHadad/nvim-lspmanager', branch='dev', config=function() require("lsp.lsps") end }
-	use { 'tamton-aquib/staline.nvim' , config = function() require"ui.staline" end}
+	use { '~/TOOLS/STALINE/staline.nvim' , config = function() require"ui.staline" end}
 	use { 'tamton-aquib/dynamic-cursor.nvim', config=function() require"dynamic-cursor".setup() end , after="nvim-treesitter"}
 	use { 'Saecki/crates.nvim', ft={'toml'}, config=function() require('crates').setup() end }
 	use { 'ggandor/lightspeed.nvim' }

@@ -6,15 +6,17 @@
 local Styles = {}
 
 require 'stabline'.setup {
-	-- style = "bubble",
+	style = "bar",
+	fg = "#97c374",
+	stab_left = "",
+	stab_right = "",
 	font_active = "bold,italic",
 	stab_start = "%#Rocket#       ",
-	fg = "#97c374",
 	-- fg = "#f06780",
 	-- fg = "#000000",
 	inactive_bg = "#11121d",
 	padding = 3,
-	close_symbol = ""
+	close_symbol = " "
 }
 
 vim.cmd [[hi Rocket guifg=#f36365 guibg=none gui=bold]] -- #97c374
