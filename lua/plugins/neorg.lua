@@ -22,37 +22,28 @@ require('neorg').setup {
 		["core.defaults"] = {},
 		["core.norg.concealer"] = {
 			config = {
-				-- icons = {
-					-- heading = {
-						-- level_1 = {
-							-- enable = true,
-							-- icon = "",
-							-- highlight = "String"
-						-- },
-					-- }
-				-- }
-                icons = {
-                    heading = {
-                        level_1 = {
-                            icon = "◈",
-                        },
-                        level_2 = {
-                            icon = " ◇",
-                        },
-                        level_3 = {
-                            icon = "  ◆",
-                        },
-                        level_4 = {
-                            icon = "   ⋄",
-                        },
-                        level_5 = {
-                            icon = "    ❖",
-                        },
-                        level_6 = {
-                            icon = "     ⟡",
-                        },
-                    },
-                },
+				icons = {
+					heading = {
+						level_1 = {
+							icon = "◈",
+						},
+						level_2 = {
+							icon = " ◇",
+						},
+						level_3 = {
+							icon = "  ◆",
+						},
+						level_4 = {
+							icon = "   ⋄",
+						},
+						level_5 = {
+							icon = "    ❖",
+						},
+						level_6 = {
+							icon = "     ⟡",
+						},
+					},
+				},
 			}
 		},
 		-- ["core.norg.tangle"] = {},
@@ -64,16 +55,15 @@ require('neorg').setup {
 		},
 		["core.norg.dirman"] = {
 			config = {
-			workspaces = {
-				my_workspace = "~/neorg",
-			},
+				workspaces = {
+					my_workspace = "~/neorg",
+				},
 				autodetect = true,
 				autochdir = true,
 			}
 		}
-    },
+	},
 	-- logger = {
-		-- level = "trace"
+	-- level = "trace"
 	-- }
 }
-

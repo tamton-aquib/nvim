@@ -3,10 +3,12 @@ require("packer").startup { function(use)
 
 	-->  Testing and temporary
 	use { 'MordechaiHadad/nvim-lspmanager', branch='dev', config=function() require("lsp.lsps") end }
-	use { '~/TOOLS/STALINE/staline.nvim' , config = function() require"ui.staline" end}
-	use { 'tamton-aquib/dynamic-cursor.nvim', config=function() require"dynamic-cursor".setup() end , after="nvim-treesitter"}
+	use { 'tamton-aquib/staline.nvim' , config = function() require"ui.staline" end}
+	-- use { '~/TOOLS/dynamic-cursor.nvim', config=function() require"dynamic-cursor".setup() end , after="nvim-treesitter"}
 	use { 'Saecki/crates.nvim', ft={'toml'}, config=function() require('crates').setup() end }
 	use { 'ggandor/lightspeed.nvim' }
+	use { 'beauwilliams/focus.nvim', config = function() require("focus").setup{cursorline=false} end }
+	-- use { 'bfredl/nvim-luadev' }
 	-- use { "AckslD/nvim-neoclip.lua", config = function() require('neoclip').setup() end, }
 	-- use { 'abecodes/tabout.nvim', config=function() require('tabout').setup {} end }
 	-- use { 'luukvbaal/stabilize.nvim', config = function() require("stabilize").setup() end }
@@ -48,11 +50,11 @@ require("packer").startup { function(use)
 	use { 'folke/lua-dev.nvim' }
 	use { 'nathom/filetype.nvim' }
 	use { 'rcarriga/nvim-notify' }
-	use { 'lewis6991/impatient.nvim' }
+	use { 'lewis6991/impatient.nvim', commit="561b86e5602def047010d451c3e7977a65982788" }
 	use { 'tamton-aquib/essentials.nvim' }
 	use { 'steelsojka/pears.nvim' , config=function() require"pears".setup() end}
 	use { 'kyazdani42/nvim-web-devicons' , config = function() require "ui.web_devicons" end }
-	use { 'max397574/better-escape.nvim', config=function() require("better_escape").setup{mapping='jk'} end }
+	-- use { 'max397574/better-escape.nvim', config=function() require("better_escape").setup{mapping='jk'} end }
 	use { 'kyazdani42/nvim-tree.lua', config = function() require 'plugins.nvim_tree' end , cmd='NvimTreeToggle'}
 	use { 'akinsho/nvim-toggleterm.lua' , event = "BufWinEnter", config = function() require"plugins.floaterm" end }
 	use { 'iamcco/markdown-preview.nvim' , ft={'markdown'}, config = function() require"plugins.others".markdown_preview() end, run = "cd app && yarn install", }

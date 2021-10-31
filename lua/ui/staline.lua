@@ -1,6 +1,6 @@
 --> staline setup
 -- #181a23    
---          
+--            
 -- local leftSeparator = ""	-->      
 -- local rightSeparator = ""	-->      
 local Styles = {}
@@ -8,18 +8,44 @@ local Styles = {}
 require 'stabline'.setup {
 	style = "bar",
 	fg = "#97c374",
+	bg = "none",
 	stab_left = "",
 	stab_right = "",
 	font_active = "bold,italic",
 	stab_start = "%#Rocket#       ",
-	-- fg = "#f06780",
-	-- fg = "#000000",
-	inactive_bg = "#11121d",
 	padding = 3,
-	close_symbol = " "
+	close_symbol = " ",
 }
 
 vim.cmd [[hi Rocket guifg=#f36365 guibg=none gui=bold]] -- #97c374
+
+Styles.nice_line = {
+	sections = {
+		left = {
+			function()
+				return vim.b.gitsigns_status or ""
+			end
+		},
+		right = {},
+		mid = {
+			'right_sep_double',
+			"-   " .. os.date("%I:%M %P "),
+			'left_sep_double'
+		}
+	},
+	defaults = {
+		left_separator = "",
+		right_separator = ""
+	},
+	mode_colors = {
+		n  = "#97c374",
+		i  = "#97c374",
+		ic = "#97c374",
+		c  = "#97c374",
+		v  = "#97c374",       -- etc
+		V  = "#97c374"       -- etc
+	}
+}
 
 Styles.simple_line = {
 	sections = {
@@ -54,7 +80,8 @@ Styles.simple_line = {
 	mode_colors = {
 		-- n = "#38b1f0",
 		-- i = "#9ece6a",       -- etc mode
-		n = "#61afef",
+		n = "#97c374",
+		-- n = "#61afef",
 		i = "#97c374",       -- etc mode
 		ic= "#97c374",       -- etc mode
 		c = "#c94f6d",
@@ -193,9 +220,11 @@ Styles.pebble_line = {
 		left = {
 			' ', 'right_sep_double', '-mode', 'left_sep_double', ' ',
 			'right_sep', '-file_name', 'left_sep', ' ',
-			'right_sep_double', '-branch', 'left_sep_double', ' ',
+			'right_sep_double',
+			'-branch',
+			'left_sep_double', ' ',
 		},
-		mid  = {'lsp'},
+		mid = { 'lsp' },
 		right= {
 			'right_sep', '-cool_symbol', 'left_sep', '%< ',
 			'right_sep', '- ', '-lsp_name', '- ', 'left_sep', ' ',
@@ -234,7 +263,7 @@ Styles.pebble_line = {
 	}
 }
 Styles.color_line = {
-	sections = { 
+	sections = {
 		left = { ("▁"):rep(vim.o.columns) }, -- change thickness: "_", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"
 		mid = {},
 		right = {}

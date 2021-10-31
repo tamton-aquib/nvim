@@ -36,6 +36,7 @@ function Colo.tokyodark(transparent)
 
 	vim.cmd [[colo tokyodark]]
 	vim.cmd("hi Normal guibg="..(transparent and "none" or "#11121d"))
+	vim.cmd [[hi IndentBlanklineChar guifg=#555555]]
 end
 
 function Colo.tokyonight(transparent)

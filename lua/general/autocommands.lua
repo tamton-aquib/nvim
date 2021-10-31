@@ -1,7 +1,8 @@
 
 --> NEW
-vim.cmd [[au FileType lspinfo,lsp-installer nnoremap q <cmd>q<CR>]]
+vim.cmd [[au FileType lspinfo,help nnoremap q <cmd>q<CR>]]
 vim.cmd [[au BufEnter *.toml set ft=dosini]]
+vim.cmd [[au BufEnter *.json set cole=0]]
 vim.cmd [[au BufWritePost ~/.config/nvim/lua/general/packer.lua so % | PackerCompile<CR>]]
 vim.cmd [[au TermOpen term://* setlocal nonu nornu | startinsert]]
 vim.cmd [[au BufEnter github.com_*.txt set filetype=markdown]]

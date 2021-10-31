@@ -2,20 +2,21 @@ vim.g.mapleader = ' '
 local opts = {noremap=true, silent=true}
 local function map(mode, key, mapping) vim.api.nvim_set_keymap(mode, key, mapping, opts) end
 
-
-map('n', 'n', 'n:lua require("specs").show_specs()<CR>')
-map('n', 'N', 'N:lua require("specs").show_specs()<CR>')
+map('n', '<leader>w', ':q<CR>')
 --> NEW
 map('n', '<leader>n',  ":NvimTreeToggle<CR>")
+map('n', '<M-h>',      ':lua vim.cmd(":h "..vim.fn.expand("<cword>").." | resize -6")<CR>')
+map('n', 'n', 'n:lua require("specs").show_specs()<CR>')
+map('n', 'N', 'N:lua require("specs").show_specs()<CR>')
+
+--> Packer commands
 map('n', '<leader>ps', ':w<CR>:so %<CR>:PackerSync<CR>')
 map('n', '<leader>pp', ':PackerProfile<CR>')
 map('n', '<leader>pc', ':PackerCompile<CR>')
-map('n', '<M-h>',      ':lua vim.cmd(":h "..vim.fn.expand("<cword>"))<CR>')
--- map('t', '<Esc>',      [[<C-\><C-n>]])
 
 --> essentials.nvim mappings
 map('n', '<F2>'     , ':lua require"essentials".rename()<CR>')
-map('v', '<leader>i'    , ':lua require"essentials".get_url()<CR>')
+map('v', '<leader>i', ':lua require"essentials".get_url()<CR>')
 map('v', '<C-_>'    , ':lua require"essentials".toggle_comment("nice")<CR>')
 map('n', '<C-_>'    , ':lua require"essentials".toggle_comment()<CR>')
 map('n', '<leader>r', ':w<CR>:lua require("essentials").run_file()<CR>')
