@@ -1,6 +1,6 @@
 local set = vim.opt
 
--- vim.notify = require "notify"
+vim.notify = require "notify"
 
 set.fillchars = 'eob: '
 set.lazyredraw = true

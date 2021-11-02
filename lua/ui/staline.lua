@@ -3,18 +3,15 @@
 --            
 -- local leftSeparator = ""	-->      
 -- local rightSeparator = ""	-->      
+-- TODO: cleanup the whole file
 local Styles = {}
 
 require 'stabline'.setup {
-	style = "bar",
-	fg = "#97c374",
-	bg = "none",
-	stab_left = "",
-	stab_right = "",
+	stab_left = "",
 	font_active = "bold,italic",
-	stab_start = "%#Rocket#       ",
-	padding = 3,
-	close_symbol = " ",
+	-- fg = "#97c374",
+	fg = "#986fec",
+	inactive_bg = "#1e1e1e"
 }
 
 vim.cmd [[hi Rocket guifg=#f36365 guibg=none gui=bold]] -- #97c374
@@ -71,21 +68,21 @@ Styles.simple_line = {
 		-- n = "#7aa2f7"
 	-- },
 
-	-- mode_colors = {
-		-- n = "#986fec",
-		-- i = "#e86671",
-		-- ic= "#e86671",
-		-- c = "#e27d60"
-	-- },
 	mode_colors = {
-		-- n = "#38b1f0",
-		-- i = "#9ece6a",       -- etc mode
-		n = "#97c374",
-		-- n = "#61afef",
-		i = "#97c374",       -- etc mode
-		ic= "#97c374",       -- etc mode
-		c = "#c94f6d",
+		n = "#986fec",
+		i = "#e86671",
+		ic= "#e86671",
+		c = "#e27d60"
 	},
+	-- mode_colors = {
+		-- -- n = "#38b1f0",
+		-- -- i = "#9ece6a",       -- etc mode
+		-- n = "#97c374",
+		-- -- n = "#61afef",
+		-- i = "#97c374",       -- etc mode
+		-- ic= "#97c374",       -- etc mode
+		-- c = "#c94f6d",
+	-- },
 	defaults = {
 		true_colors = true,
 		line_column = " [%l/%L] :%c  ",
@@ -234,8 +231,8 @@ Styles.pebble_line = {
 	},
 
 	defaults={
-		-- fg = "#986fec",
-		fg = "#000000",
+		fg = "#97c374",
+		-- fg = "#000000",
 		cool_symbol = "  ",
 		left_separator = "",
 		right_separator = "",
@@ -244,23 +241,23 @@ Styles.pebble_line = {
 		line_column = "[%l:%c] 並%p%% "
 		-- font_active = "bold"
 	},
-	-- mode_colors = {
-		-- n  = "#0e171c",
-		-- i  = "#0e171c",
-		-- ic = "#0e171c",
-		-- c  = "#0e171c",
-		-- v  = "#0e171c",       -- etc
-		-- V  = "#0e171c"       -- etc
-	-- }
-	-- #97c374
 	mode_colors = {
-		n  = "#97c374",
-		i  = "#97c374",
-		ic = "#97c374",
-		c  = "#97c374",
-		v  = "#97c374",       -- etc
-		V  = "#97c374"       -- etc
+		n  = "#0e171c",
+		i  = "#0e171c",
+		ic = "#0e171c",
+		c  = "#0e171c",
+		v  = "#0e171c",       -- etc
+		V  = "#0e171c"       -- etc
 	}
+	-- #97c374
+	-- mode_colors = {
+		-- n  = "#97c374",
+		-- i  = "#97c374",
+		-- ic = "#97c374",
+		-- c  = "#97c374",
+		-- v  = "#97c374",       -- etc
+		-- V  = "#97c374"       -- etc
+	-- }
 }
 Styles.color_line = {
 	sections = {
@@ -270,5 +267,5 @@ Styles.color_line = {
 	},
 }
 
-require("staline").setup(Styles.pebble_line)
+require("staline").setup(Styles.simple_line)
 -- vim: foldlevelstart=10:fdm=indent

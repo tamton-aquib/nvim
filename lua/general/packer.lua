@@ -13,7 +13,7 @@ require("packer").startup { function(use)
 	-- use { 'abecodes/tabout.nvim', config=function() require('tabout').setup {} end }
 	-- use { 'luukvbaal/stabilize.nvim', config = function() require("stabilize").setup() end }
 	-- use { "blackCauldron7/surround.nvim", config = function() require"surround".setup {mappings_style = "sandwich"} end }
-	-- use { 'edluffy/specs.nvim', config=function() require("plugins.others").specs() end }
+	use { 'edluffy/specs.nvim', config=function() require("plugins.others").specs() end }
 	-- use { 'Pocco81/TrueZen.nvim' , config=function() require"true-zen".setup() end }
 	-- use { 'windwp/floatline.nvim', config=function() require("floatline").setup() end }
 	-- use { 'hrsh7th/cmp-cmdline' }
@@ -44,7 +44,7 @@ require("packer").startup { function(use)
 	use { 'nvim-treesitter/playground' , after="nvim-treesitter" }
 	use { 'nvim-telescope/telescope.nvim' , config=function() require"plugins.telescope" end, cmd="Telescope"}
 	use { 'nvim-treesitter/nvim-treesitter' , event='BufRead', config=function() require"plugins.treesittter" end }
-	use { 'nvim-neorg/neorg' , branch='unstable', ft={"norg"}, after={"nvim-treesitter", "telescope.nvim"}, requires="vhyrro/neorg-telescope", config = function() require "plugins.neorg" end }
+	use { 'nvim-neorg/neorg' , branch='unstable', ft={"norg"}, after={"nvim-treesitter", "telescope.nvim"}, requires="nvim-neorg/neorg-telescope", config = function() require "plugins.neorg" end }
 
 	-->  GENERAL PURPOSE
 	use { 'folke/lua-dev.nvim' }

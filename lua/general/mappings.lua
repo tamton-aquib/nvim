@@ -2,7 +2,11 @@ vim.g.mapleader = ' '
 local opts = {noremap=true, silent=true}
 local function map(mode, key, mapping) vim.api.nvim_set_keymap(mode, key, mapping, opts) end
 
+--> TEMP and TEST maps
 map('n', '<leader>w', ':q<CR>')
+map('n', '<RightMouse>', ':lua vim.lsp.buf.hover({focusable=false})<CR>')
+map('n', '<LeftMouse>', ':lua vim.lsp.buf.signature_help({focusable=false})<CR>')
+
 --> NEW
 map('n', '<leader>n',  ":NvimTreeToggle<CR>")
 map('n', '<M-h>',      ':lua vim.cmd(":h "..vim.fn.expand("<cword>").." | resize -6")<CR>')
@@ -56,7 +60,7 @@ map("n", "<M-k>", ":m .-2<CR>==")
 
 --> OLD
 map('n', '<leader>a', 'ggVG')
--- map('i', 'jk'       , '<Esc>')
+map('i', 'jk'       , '<Esc>')
 map('n', 'n'        , 'nzz')
 map('n', '<TAB>'    , ':bnext<CR>')
 map('n', '<S-TAB>'  , ':bprevious<CR>')
