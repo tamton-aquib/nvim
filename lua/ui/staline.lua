@@ -11,7 +11,8 @@ require 'stabline'.setup {
 	font_active = "bold,italic",
 	-- fg = "#97c374",
 	fg = "#986fec",
-	inactive_bg = "#1e1e1e"
+	-- inactive_bg = "#1e1e1e"
+	inactive_bg = "none"
 }
 
 vim.cmd [[hi Rocket guifg=#f36365 guibg=none gui=bold]] -- #97c374
@@ -46,8 +47,16 @@ Styles.nice_line = {
 
 Styles.simple_line = {
 	sections = {
-		left = { '  ', 'mode', ' ', 'branch', '     ', 'lsp' },
-		mid = {'%<'},
+		left = {
+			'  ', 'mode', ' ', 'branch',
+			function()
+				if vim.o.columns > 100 then
+					return '     '
+				end
+				return ''
+			end
+		},
+		mid = { 'lsp', '%<'},
 		right = {'%l/%L  :%c  ', 'file_name', '  ',
 			function()
 				local current_line = vim.fn.line "."
@@ -247,7 +256,8 @@ Styles.pebble_line = {
 		ic = "#0e171c",
 		c  = "#0e171c",
 		v  = "#0e171c",       -- etc
-		V  = "#0e171c"       -- etc
+		V  = "#0e171c",       -- etc
+		[""] = "#0e171c"
 	}
 	-- #97c374
 	-- mode_colors = {

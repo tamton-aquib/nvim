@@ -3,7 +3,7 @@ local set = vim.opt
 vim.notify = require "notify"
 
 set.fillchars = 'eob: '
-set.lazyredraw = true
+-- set.lazyredraw = true
 set.signcolumn = "yes"
 vim.cmd [[set foldtext=luaeval(\"require('essentials').simple_fold()\")]]
 vim.opt.guifont = "Operator Mono Medium"

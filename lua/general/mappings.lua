@@ -7,6 +7,8 @@ map('n', '<leader>w', ':q<CR>')
 map('n', '<RightMouse>', ':lua vim.lsp.buf.hover({focusable=false})<CR>')
 map('n', '<LeftMouse>', ':lua vim.lsp.buf.signature_help({focusable=false})<CR>')
 
+-- vim.api.nvim_set_keymap('n', "<leader>la", ":lua require'telescope.builtin'.lsp_code_actions(require('telescope.themes').get_cursor({}))<cr>", { noremap = true, silent = true})
+
 --> NEW
 map('n', '<leader>n',  ":NvimTreeToggle<CR>")
 map('n', '<M-h>',      ':lua vim.cmd(":h "..vim.fn.expand("<cword>").." | resize -6")<CR>')
