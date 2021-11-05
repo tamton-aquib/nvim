@@ -1,8 +1,8 @@
 local set = vim.opt
 
-vim.notify = require "notify"
+-- vim.notify = require "notify"
 
-set.fillchars = 'eob: '
+set.fillchars = 'eob: ,fold: '
 -- set.lazyredraw = true
 set.signcolumn = "yes"
 vim.cmd [[set foldtext=luaeval(\"require('essentials').simple_fold()\")]]

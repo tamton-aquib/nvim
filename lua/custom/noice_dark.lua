@@ -249,8 +249,8 @@ function M.noice()
 	local bg = back or "none"
 	vim.cmd('hi Normal guibg='..bg..' guifg=#dddddd')
 
-	vim.cmd [[au BufEnter,FileType,ColorSchemePre * :lua require"custom.noice_dark".Lang_high(vim.bo.ft)]]
-	vim.cmd [[au ColorSchemePre * :lua require"custom.noice_dark".check_change()]]
+	vim.cmd [[au BufEnter,FileType,ColorSchemePre * :lua require("custom.noice_dark").Lang_high(vim.bo.ft)]]
+	vim.cmd [[au ColorSchemePre * :lua require("custom.noice_dark").check_change()]]
 	vim.api.nvim__set_hl_ns(ns)
 end
 

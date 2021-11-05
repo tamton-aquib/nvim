@@ -6,13 +6,13 @@
 -- TODO: cleanup the whole file
 local Styles = {}
 
-require 'stabline'.setup {
-	stab_left = "",
+require('stabline').setup {
+	style = "slant",
+	stab_start = "   ",
+	stab_bg = "#1e1e1e",
 	font_active = "bold,italic",
-	-- fg = "#97c374",
 	fg = "#986fec",
-	-- inactive_bg = "#1e1e1e"
-	inactive_bg = "none"
+	bg = "#0e171c"
 }
 
 vim.cmd [[hi Rocket guifg=#f36365 guibg=none gui=bold]] -- #97c374
@@ -185,19 +185,16 @@ Styles.normal_line = {
 		left = {
 			{ 'StalineFill', ' ' },
 			{ 'StalineFill', 'mode' },
-			{ 'left_sep_double'},
-			{ ' ' },
-			{ 'branch' },
-			{ 'cool_symbol' }
+			'left_sep_double', ' ', 'branch', 'cool_symbol'
 		},
 		mid = {
-			{ 'file_name' },
-			{ 'lsp' }
+			'file_name',
+			'lsp'
 		},
 		right = {
-			{ vim.bo.fileencoding },
-			{ '  ' },
-			{ 'right_sep_double' },
+			function() return vim.bo.fileencoding or "" end,
+			'  ',
+			'right_sep_double',
 			{ 'StalineFill', 'line_column' }
 		}
 	},
@@ -269,13 +266,17 @@ Styles.pebble_line = {
 		-- V  = "#97c374"       -- etc
 	-- }
 }
-Styles.color_line = {
-	sections = {
-		left = { ("▁"):rep(vim.o.columns) }, -- change thickness: "_", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"
-		mid = {},
-		right = {}
-	},
-}
+-- require("staline").setup {
+	-- sections = {
+		-- left = {
+			-- function()
+				-- return ("▁"):rep(vim.fn.winwidth(0))
+			-- end
+		-- }, -- change thickness: "_", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"
+		-- mid = {},
+		-- right = {}
+	-- },
+-- }
 
-require("staline").setup(Styles.simple_line)
+require("staline").setup(Styles.normal_line)
 -- vim: foldlevelstart=10:fdm=indent

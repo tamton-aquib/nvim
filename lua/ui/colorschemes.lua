@@ -61,7 +61,7 @@ function Colo.gruvbox(transparent)
 end
 
 function Colo.sonokai(transparent)
-	vim.g.monokai_style = 'andromeda'
+	vim.g.sonokai_style = 'andromeda'
 	vim.g.sonokai_transparent_background = transparent and 1 or 0
 	vim.g.sonokai_better_performance = 1
 

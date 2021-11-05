@@ -4,9 +4,10 @@ local function map(mode, key, mapping) vim.api.nvim_set_keymap(mode, key, mappin
 
 --> TEMP and TEST maps
 map('n', '<leader>w', ':q<CR>')
-map('n', '<RightMouse>', ':lua vim.lsp.buf.hover({focusable=false})<CR>')
-map('n', '<LeftMouse>', ':lua vim.lsp.buf.signature_help({focusable=false})<CR>')
+map('n', '<leader>m', ':FocusMaximise<CR>')
 
+-- map('n', '<RightMouse>', ':lua vim.lsp.buf.hover({focusable=false})<CR>')
+-- map('n', '<LeftMouse>', ':lua vim.lsp.buf.signature_help({focusable=false})<CR>')
 -- vim.api.nvim_set_keymap('n', "<leader>la", ":lua require'telescope.builtin'.lsp_code_actions(require('telescope.themes').get_cursor({}))<cr>", { noremap = true, silent = true})
 
 --> NEW

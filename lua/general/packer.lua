@@ -2,17 +2,30 @@
 require("packer").startup { function(use)
 
 	-->  Testing and temporary
+	-- use { 'TimUntersberger/neogit', config=[[ require("neogit").setup() ]] }
+	-- use { 'hrsh7th/vim-eft' }
 	use { 'MordechaiHadad/nvim-lspmanager', branch='dev', config=function() require("lsp.lsps") end }
-	-- use({
-		-- "narutoxy/themer.lua",
-		-- branch = "dev",	-- I recommend dev branch because it has more plugin support currently
-	-- })
-	use { 'tamton-aquib/staline.nvim' , config = [[ require"ui.staline" ]]}
-	-- use { '~/TOOLS/dynamic-cursor.nvim', config=function() require"dynamic-cursor".setup() end , after="nvim-treesitter"}
+	use { '~/TOOLS/STALINE/staline.nvim' , config = [[ require"ui.staline" ]]}
 	use { 'Saecki/crates.nvim', ft={'toml'}, config=[[ require('crates').setup() ]] }
 	use { 'ggandor/lightspeed.nvim' }
-	use { 'beauwilliams/focus.nvim', config = [[ require("focus").setup{cursorline=false} ]] }
+	use { 'beauwilliams/focus.nvim', config = function() require("focus").setup{cursorline=false} end }
 	use { 'ThePrimeagen/vim-be-good' }
+	use {
+		'NarutoXY/themer.lua',
+		branch='dev',
+		config=function()
+			require("themer").setup {
+				colorscheme = "dark_cpt",
+				transparent = true,
+				styles = {
+					functions = { italic=true },
+					keywords = { italic=true }
+				}
+			}
+
+			require("themer").load("dark_cpt")
+		end
+	}
 	-- use { 'bfredl/nvim-luadev' }
 	-- use { "AckslD/nvim-neoclip.lua", config = function() require('neoclip').setup() end, }
 	-- use { 'phaazon/hop.nvim' }
@@ -58,14 +71,13 @@ require("packer").startup { function(use)
 	use { 'rcarriga/nvim-notify' }
 	use { 'lewis6991/impatient.nvim', commit="561b86e5602def047010d451c3e7977a65982788" }
 	use { 'tamton-aquib/essentials.nvim' }
-	use { 'steelsojka/pears.nvim' , config=function() require"pears".setup() end}
-	use { 'kyazdani42/nvim-web-devicons' , config = function() require "ui.web_devicons" end }
+	use { 'steelsojka/pears.nvim' , config=[[ require"pears".setup() ]]}
+	use { 'kyazdani42/nvim-web-devicons' , config=[[ require "ui.web_devicons" ]] }
 	-- use { 'max397574/better-escape.nvim', config=function() require("better_escape").setup{mapping='jk'} end }
-	use { 'kyazdani42/nvim-tree.lua', config = function() require 'plugins.nvim_tree' end , cmd='NvimTreeToggle'}
-	use { 'akinsho/nvim-toggleterm.lua' , event = "BufWinEnter", config = function() require"plugins.floaterm" end }
-	use { 'iamcco/markdown-preview.nvim' , ft={'markdown'}, config = function() require"plugins.others".markdown_preview() end, run = "cd app && yarn install", }
-	use { 'lukas-reineke/indent-blankline.nvim', event="BufReadPost", config = function() require"plugins.others".indent_blankline() end }
-
+	use { 'kyazdani42/nvim-tree.lua', config=[[ require 'plugins.nvim_tree' ]], cmd='NvimTreeToggle'}
+	use { 'akinsho/nvim-toggleterm.lua' , event = "BufWinEnter", config=[[ require"plugins.floaterm" ]] }
+	use { 'iamcco/markdown-preview.nvim' , ft={'markdown'}, config=[[ require"plugins.others".markdown_preview() ]], run = "cd app && yarn install", }
+	use { 'lukas-reineke/indent-blankline.nvim', event="BufReadPost", config = [[ require"plugins.others".indent_blankline() ]] }
 
 	use 'wbthomason/packer.nvim'
 end }

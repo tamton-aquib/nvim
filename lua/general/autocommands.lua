@@ -10,7 +10,7 @@ vim.cmd [[au BufEnter github.com_*.txt set filetype=markdown]]
 --> LSP related
 vim.cmd [[au BufWritePre *.js,*.jsx,*.svelte lua vim.lsp.buf.formatting_sync(nil, 200)]]
 vim.cmd [[au CursorHold  * lua vim.lsp.diagnostic.show_line_diagnostics({border = require"general.utils".border, focusable=false})]]
-vim.cmd [[au CursorHoldI * lua vim.lsp.buf.signature_help({focusable=false})]]
+-- vim.cmd [[au CursorHoldI * lua vim.lsp.buf.signature_help({focusable=false})]]
 
 --> OLD
 vim.cmd [[au BufReadPost        *    lua require"essentials".last_place()]]
