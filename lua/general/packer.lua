@@ -4,28 +4,11 @@ require("packer").startup { function(use)
 	-->  Testing and temporary
 	-- use { 'TimUntersberger/neogit', config=[[ require("neogit").setup() ]] }
 	-- use { 'hrsh7th/vim-eft' }
-	use { 'MordechaiHadad/nvim-lspmanager', branch='dev', config=function() require("lsp.lsps") end }
-	use { '~/TOOLS/STALINE/staline.nvim' , config = [[ require"ui.staline" ]]}
-	use { 'Saecki/crates.nvim', ft={'toml'}, config=[[ require('crates').setup() ]] }
+	use { '~/STUFF/themer.lua', config=[[ require("ui.themer") ]] }
+	-- use { '~/TOOLS/nvim_stuff/duck_wreck.nvim' }
+	use { 'tamton-aquib/staline.nvim' , config = [[ require"ui.staline" ]]}
 	use { 'ggandor/lightspeed.nvim' }
-	use { 'beauwilliams/focus.nvim', config = function() require("focus").setup{cursorline=false} end }
 	use { 'ThePrimeagen/vim-be-good' }
-	use {
-		'NarutoXY/themer.lua',
-		branch='dev',
-		config=function()
-			require("themer").setup {
-				colorscheme = "dark_cpt",
-				transparent = true,
-				styles = {
-					functions = { italic=true },
-					keywords = { italic=true }
-				}
-			}
-
-			require("themer").load("dark_cpt")
-		end
-	}
 	-- use { 'bfredl/nvim-luadev' }
 	-- use { "AckslD/nvim-neoclip.lua", config = function() require('neoclip').setup() end, }
 	-- use { 'phaazon/hop.nvim' }
@@ -44,6 +27,7 @@ require("packer").startup { function(use)
 	use { 'sainnhe/sonokai' }
 	use { 'eddyekofo94/gruvbox-flat.nvim' }
 	use { 'Pocco81/Catppuccino.nvim' }
+	use { 'kyazdani42/nvim-web-devicons' , config=[[ require "ui.web_devicons" ]] }
 	use { 'norcalli/nvim-colorizer.lua' , event='BufReadPre', config = [[ require"ui.plug-colorizer" ]] }
 	use { 'lewis6991/gitsigns.nvim' , config = [[ require'gitsigns'.setup{} ]] , event='BufRead' }
 
@@ -51,6 +35,7 @@ require("packer").startup { function(use)
 	use { 'neovim/nvim-lspconfig' }
 	use { 'L3MON4D3/LuaSnip' , config = [[ require"plugins.snippets" ]] }
 	use { 'hrsh7th/nvim-cmp' , after="LuaSnip", config=[[ require 'lsp.cmp' ]] }
+	use { 'MordechaiHadad/nvim-lspmanager', branch='dev', config=function() require("lsp.lsps") end }
 	use { 'hrsh7th/cmp-buffer' }
 	use { 'hrsh7th/cmp-nvim-lsp' }
 	use { 'hrsh7th/cmp-path' }
@@ -69,10 +54,11 @@ require("packer").startup { function(use)
 	use { 'folke/lua-dev.nvim' }
 	use { 'nathom/filetype.nvim' }
 	use { 'rcarriga/nvim-notify' }
-	use { 'lewis6991/impatient.nvim', commit="561b86e5602def047010d451c3e7977a65982788" }
 	use { 'tamton-aquib/essentials.nvim' }
+	use { 'lewis6991/impatient.nvim', commit="561b86e5602def047010d451c3e7977a65982788" }
+	use { 'beauwilliams/focus.nvim', config = function() require("focus").setup{cursorline=false} end }
 	use { 'steelsojka/pears.nvim' , config=[[ require"pears".setup() ]]}
-	use { 'kyazdani42/nvim-web-devicons' , config=[[ require "ui.web_devicons" ]] }
+	use { 'Saecki/crates.nvim', ft={'toml'}, config=[[ require('crates').setup() ]] }
 	-- use { 'max397574/better-escape.nvim', config=function() require("better_escape").setup{mapping='jk'} end }
 	use { 'kyazdani42/nvim-tree.lua', config=[[ require 'plugins.nvim_tree' ]], cmd='NvimTreeToggle'}
 	use { 'akinsho/nvim-toggleterm.lua' , event = "BufWinEnter", config=[[ require"plugins.floaterm" ]] }

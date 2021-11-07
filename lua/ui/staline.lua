@@ -12,7 +12,8 @@ require('stabline').setup {
 	stab_bg = "#1e1e1e",
 	font_active = "bold,italic",
 	fg = "#986fec",
-	bg = "#0e171c"
+	-- bg = "#0e171c",
+	bg = "#11121d"
 }
 
 vim.cmd [[hi Rocket guifg=#f36365 guibg=none gui=bold]] -- #97c374

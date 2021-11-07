@@ -1,4 +1,4 @@
-Colo = {}
+local Colo = {}
 
 local colors = {
 	'onedark',
@@ -32,7 +32,7 @@ end
 
 function Colo.tokyodark(transparent)
 	vim.g.tokyodark_transparent_background = true
-	vim.g.tokyodark_enable_italic = false
+	vim.g.tokyodark_enable_italic = true
 
 	vim.cmd [[colo tokyodark]]
 	vim.cmd("hi Normal guibg="..(transparent and "none" or "#11121d"))

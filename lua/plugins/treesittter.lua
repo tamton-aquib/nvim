@@ -9,7 +9,7 @@ parser_configs.norg = {
     },
 }
 
-require'nvim-treesitter.configs'.setup {
+require('nvim-treesitter.configs').setup {
 	ensure_installed = { "norg" ,"lua", "python", "rust", "javascript"},
 	highlight = {
 		enable = true,
