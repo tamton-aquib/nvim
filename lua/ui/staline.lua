@@ -11,9 +11,9 @@ require('stabline').setup {
 	stab_start = "   ",
 	stab_bg = "#1e1e1e",
 	font_active = "bold,italic",
-	fg = "#986fec",
+	bg = "#11121d",
 	-- bg = "#0e171c",
-	bg = "#11121d"
+	fg = "#8dbd67"
 }
 
 vim.cmd [[hi Rocket guifg=#f36365 guibg=none gui=bold]] -- #97c374
@@ -224,9 +224,13 @@ Styles.pebble_line = {
 		left = {
 			' ', 'right_sep_double', '-mode', 'left_sep_double', ' ',
 			'right_sep', '-file_name', 'left_sep', ' ',
-			'right_sep_double',
-			'-branch',
-			'left_sep_double', ' ',
+			-- 'right_sep_double',
+			-- '-branch',
+			function()
+				local head = vim.g.gitsigns_head or ""
+				return head and unpack({"   "..head})
+			end,
+			-- 'left_sep_double', ' ',
 		},
 		mid = { 'lsp' },
 		right= {
@@ -238,8 +242,8 @@ Styles.pebble_line = {
 	},
 
 	defaults={
-		fg = "#97c374",
-		-- fg = "#000000",
+		-- fg = "#97c374",
+		-- fg = "#986fec",
 		cool_symbol = "  ",
 		left_separator = "",
 		right_separator = "",
@@ -248,24 +252,24 @@ Styles.pebble_line = {
 		line_column = "[%l:%c] 並%p%% "
 		-- font_active = "bold"
 	},
-	mode_colors = {
-		n  = "#0e171c",
-		i  = "#0e171c",
-		ic = "#0e171c",
-		c  = "#0e171c",
-		v  = "#0e171c",       -- etc
-		V  = "#0e171c",       -- etc
-		[""] = "#0e171c"
-	}
-	-- #97c374
 	-- mode_colors = {
-		-- n  = "#97c374",
-		-- i  = "#97c374",
-		-- ic = "#97c374",
-		-- c  = "#97c374",
-		-- v  = "#97c374",       -- etc
-		-- V  = "#97c374"       -- etc
+		-- n  = "#0e171c",
+		-- i  = "#0e171c",
+		-- ic = "#0e171c",
+		-- c  = "#0e171c",
+		-- v  = "#0e171c",       -- etc
+		-- V  = "#0e171c",       -- etc
+		-- [""] = "#0e171c"
 	-- }
+	-- #97c374
+	mode_colors = {
+		n  = "#97c374",
+		i  = "#97c374",
+		ic = "#97c374",
+		c  = "#97c374",
+		v  = "#97c374",
+		V  = "#97c374"
+	}
 }
 -- require("staline").setup {
 	-- sections = {
@@ -279,5 +283,5 @@ Styles.pebble_line = {
 	-- },
 -- }
 
-require("staline").setup(Styles.normal_line)
+require("staline").setup(Styles.pebble_line)
 -- vim: foldlevelstart=10:fdm=indent

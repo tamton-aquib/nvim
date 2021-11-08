@@ -3,8 +3,12 @@ local opts = {noremap=true, silent=true}
 local function map(mode, key, mapping) vim.api.nvim_set_keymap(mode, key, mapping, opts) end
 
 --> TEMP and TEST maps
-map('n', '<leader>w', ':q<CR>')
+map('n', '<leader>w', ':bd<CR>')
 map('n', '<leader>m', ':FocusMaximise<CR>')
+map('n', "c", "\"_c")
+map('n', "C", "\"_C")
+-- map('n', "s", "\"_s")
+-- map('n', "S", "\"_S")
 
 -- map('n', '<RightMouse>', ':lua vim.lsp.buf.hover({focusable=false})<CR>')
 -- map('n', '<LeftMouse>', ':lua vim.lsp.buf.signature_help({focusable=false})<CR>')

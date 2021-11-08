@@ -9,4 +9,4 @@ require 'general.settings'
 --> CUSTOMS and THEMES section
 require 'custom.noice_board'.setup()
 -- require 'custom.noice_sus'.setup()
--- require('ui.colorschemes').tokyodark(false)
+-- require('ui.colorschemes').noice(false)

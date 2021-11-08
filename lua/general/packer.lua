@@ -2,23 +2,16 @@
 require("packer").startup { function(use)
 
 	-->  Testing and temporary
-	-- use { 'TimUntersberger/neogit', config=[[ require("neogit").setup() ]] }
-	-- use { 'hrsh7th/vim-eft' }
-	use { '~/STUFF/themer.lua', config=[[ require("ui.themer") ]] }
-	-- use { '~/TOOLS/nvim_stuff/duck_wreck.nvim' }
+	use { 'NarutoXY/themer.lua', branch='dev', config=[[ require("ui.themer") ]] }
 	use { 'tamton-aquib/staline.nvim' , config = [[ require"ui.staline" ]]}
 	use { 'ggandor/lightspeed.nvim' }
 	use { 'ThePrimeagen/vim-be-good' }
-	-- use { 'bfredl/nvim-luadev' }
-	-- use { "AckslD/nvim-neoclip.lua", config = function() require('neoclip').setup() end, }
+	-- use { 'AckslD/nvim-neoclip.lua', config = function() require('neoclip').setup() end, }
 	-- use { 'phaazon/hop.nvim' }
 	-- use { 'abecodes/tabout.nvim', config=function() require('tabout').setup {} end }
-	-- use { 'luukvbaal/stabilize.nvim', config = function() require("stabilize").setup() end }
 	-- use { "blackCauldron7/surround.nvim", config = function() require"surround".setup {mappings_style = "sandwich"} end }
 	-- use { 'edluffy/specs.nvim', config=function() require("plugins.others").specs() end }
 	-- use { 'Pocco81/TrueZen.nvim' , config=function() require"true-zen".setup() end }
-	-- use { 'windwp/floatline.nvim', config=function() require("floatline").setup() end }
-	-- use { 'hrsh7th/cmp-cmdline' }
 
 	-->  THEMES AND UI
 	use { 'folke/todo-comments.nvim' , event='BufReadPost' , config=[[ require'todo-comments'.setup{} ]] }
@@ -48,7 +41,7 @@ require("packer").startup { function(use)
 	use { 'nvim-treesitter/playground' , after="nvim-treesitter" }
 	use { 'nvim-telescope/telescope.nvim' , config=[[ require"plugins.telescope" ]], cmd="Telescope"}
 	use { 'nvim-treesitter/nvim-treesitter' , event='BufRead', config=[[ require"plugins.treesittter" ]] }
-	use { 'nvim-neorg/neorg' , branch='unstable', ft={"norg"}, after={"nvim-treesitter", "telescope.nvim"}, requires="nvim-neorg/neorg-telescope", config = function() require "plugins.neorg" end }
+	use { 'nvim-neorg/neorg', branch='unstable', ft={"norg"}, after={"nvim-treesitter", "telescope.nvim"}, requires="nvim-neorg/neorg-telescope", config = function() require "plugins.neorg" end }
 
 	-->  GENERAL PURPOSE
 	use { 'folke/lua-dev.nvim' }
@@ -57,7 +50,7 @@ require("packer").startup { function(use)
 	use { 'tamton-aquib/essentials.nvim' }
 	use { 'lewis6991/impatient.nvim', commit="561b86e5602def047010d451c3e7977a65982788" }
 	use { 'beauwilliams/focus.nvim', config = function() require("focus").setup{cursorline=false} end }
-	use { 'steelsojka/pears.nvim' , config=[[ require"pears".setup() ]]}
+	use { 'steelsojka/pears.nvim', config=[[ require"pears".setup() ]]}
 	use { 'Saecki/crates.nvim', ft={'toml'}, config=[[ require('crates').setup() ]] }
 	-- use { 'max397574/better-escape.nvim', config=function() require("better_escape").setup{mapping='jk'} end }
 	use { 'kyazdani42/nvim-tree.lua', config=[[ require 'plugins.nvim_tree' ]], cmd='NvimTreeToggle'}

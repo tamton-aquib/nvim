@@ -1,7 +1,7 @@
 
 require("themer").setup {
 	colorscheme = "tokyodark",
-	transparent = false,
+	transparency = false,
 	styles = {
 		functions = { italic=true }
 	},

@@ -20,10 +20,10 @@ function M.specs()
 		popup = {
 			-- delay_ms = 1, -- delay before popup displays
 			inc_ms = 1, -- time increments used for fade/resize effects
-			blend = 0, -- starting blend, between 0-100 (fully transparent), see :h winblend
+			blend = 100, -- starting blend, between 0-100 (fully transparent), see :h winblend
 			width = 6,
 			winhl = "Specs",
-			-- fader = require('specs').pulse_fader,
+			fader = require('specs').pulse_fader,
 			resizer = require('specs').empty_resizer
 		},
 		-- ignore_filetypes = {},

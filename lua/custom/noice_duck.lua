@@ -59,7 +59,7 @@ M.hatch = function()
 	local duck = vim.api.nvim_open_win(buf, false, {
 		relative='win', style='minimal', row=row, col=col, width=2, height=1
 	})
-	vim.api.nvim_win_set_option(duck, 'winblend', 100)
+	vim.api.nvim_win_set_option(duck, 'winblend', 0)
 	-- vim.api.nvim_win_set_option(duck, 'winhighlight', 'Normal:Duck')
 	-- vim.cmd [[hi Duck guifg=red guibg=green]]
 	vim.api.nvim_set_keymap(
