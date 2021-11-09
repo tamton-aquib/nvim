@@ -1,6 +1,6 @@
 
 --> GENERAL SETTINGS AND MAPPINGS
-require 'general.startup'
+require 'general.start'
 require 'general.packer'
 require 'general.autocommands'
 require 'general.mappings'
