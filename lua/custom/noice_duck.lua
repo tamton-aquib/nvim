@@ -2,9 +2,14 @@
 -- NOTE: release the duck with require("duck").hatch()
 -- NOTE: default mapping to cook(stop): <leader>k (require"duck".cook())
 -- TODO: stop timer before quitting the window? 🤔
+-- TODO: cant start it a second time, so make timer local
 local M = {}
 local character = "🦆"  -- ඞ🐈🐎 🦖 🐤
 local wreckage = false
+local kill_map = "<leader>dk"
+
+
+local timer = vim.loop.new_timer()
 
 -- TODO: wreak havoc level: 🦆
 -- TODO: maybe a function to drag it to center
@@ -18,7 +23,6 @@ local wreck = function(config)
 end
 
 local waddle = function(win)
-	local timer = vim.loop.new_timer()
 	vim.loop.timer_start(timer, 1000, 100, vim.schedule_wrap(function()
 		if vim.api.nvim_win_is_valid(win) then
 			-- TODO: restrict movement inside walls
@@ -38,10 +42,6 @@ local waddle = function(win)
 				config["col"] = col - 1
 			end
 			vim.api.nvim_win_set_config(win, config)
-		else
-			timer:stop()
-			timer:close()
-			return
 		end
 	end))
 end
@@ -50,20 +50,16 @@ M.hatch = function()
 	for k in pairs(package.loaded) do if k:match("^duck") then package.loaded[k] = nil end end
 	local buf = vim.api.nvim_create_buf(false, true)
 	vim.api.nvim_buf_set_lines(buf , 0, 1, true , {character})
-
-	local w, h = vim.o.columns, vim.o.lines
-	local win_h, win_w = math.ceil(h * 0.5 - 2), math.ceil(w * 0.5)
-	local row = math.ceil((h - win_h) / 2 - 1)
-	local col = math.ceil((w - win_w) / 2)
+	local w, h = vim.o.columns-2, vim.o.lines-4
 
 	local duck = vim.api.nvim_open_win(buf, false, {
-		relative='win', style='minimal', row=row, col=col, width=2, height=1
+		relative='win', style='minimal', row=h/4, col=w/4, width=2, height=1
 	})
 	vim.api.nvim_win_set_option(duck, 'winblend', 0)
 	-- vim.api.nvim_win_set_option(duck, 'winhighlight', 'Normal:Duck')
 	-- vim.cmd [[hi Duck guifg=red guibg=green]]
 	vim.api.nvim_set_keymap(
-		'n', '<leader>k',
+		'n', kill_map,
 		':lua require("custom.noice_duck").cook('..duck..')<CR>',
 		{noremap=true, silent=true}
 	)
@@ -71,6 +67,10 @@ M.hatch = function()
 	waddle(duck)
 end
 
-M.cook = function(win) vim.api.nvim_win_close(win, true) end
+M.cook = function(win)
+	timer:stop()
+	timer:close()
+	vim.api.nvim_win_close(win, true)
+end
 
 return M

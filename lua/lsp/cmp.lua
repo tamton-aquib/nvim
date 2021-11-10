@@ -43,6 +43,7 @@ cmp.setup {
     documentation = {
 		border = require"general.utils".border,
 		winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+		-- other params: maxwidth and maxheight
     },
 
     snippet = {

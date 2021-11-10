@@ -3,10 +3,13 @@ local set = vim.opt
 -- vim.notify = require "notify"
 
 set.fillchars = 'eob: ,fold: '
+set.fillchars = { eob=' ', fold=' ', foldopen="▾", foldsep="│", foldclose="▸", }
 -- set.lazyredraw = true
 set.signcolumn = "yes"
 vim.cmd [[set foldtext=luaeval(\"require('essentials').simple_fold()\")]]
-vim.opt.guifont = "Operator Mono Medium"
+set.guifont = "Operator Mono Medium"
+set.wildignore = { '*.pyc,__pycache__' }
+set.shortmess:append({c=true, s=true, A=true, W=true})
 
 set.completeopt="menu,menuone,noselect"
 
@@ -40,8 +43,6 @@ set.foldexpr = "nvim_treesitter#foldexpr()"
 set.foldlevelstart = 10
 
 set.iskeyword:append('-')
-set.shortmess:append('c')
-set.shortmess:append('s')
 set.pumblend = 30
 set.inccommand = "split"
 set.number = true

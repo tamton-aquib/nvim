@@ -18,17 +18,19 @@ require('stabline').setup {
 
 vim.cmd [[hi Rocket guifg=#f36365 guibg=none gui=bold]] -- #97c374
 
+vim.g.staline_date = true
+vim.api.nvim_set_keymap('n', '<leader>k', ':lua vim.g.staline_date=not vim.g.staline_date<CR>', {noremap=true, silent=true})
 Styles.nice_line = {
 	sections = {
-		left = {
-			function()
-				return vim.b.gitsigns_status or ""
-			end
-		},
+		left = {},
 		right = {},
 		mid = {
 			'right_sep_double',
-			"-   " .. os.date("%I:%M %P "),
+			"-   ",
+			function()
+				local yes = not vim.g.staline_date and os.date("%Y") or os.date("%I:%M %P ")
+				return "%#StalineFill# "..yes
+			end,
 			'left_sep_double'
 		}
 	},
@@ -228,7 +230,7 @@ Styles.pebble_line = {
 			-- '-branch',
 			function()
 				local head = vim.g.gitsigns_head or ""
-				return head and unpack({"   "..head})
+				return (head ~= nil or head ~= "") and unpack({"   "..head}) or ""
 			end,
 			-- 'left_sep_double', ' ',
 		},
@@ -271,7 +273,7 @@ Styles.pebble_line = {
 		V  = "#97c374"
 	}
 }
--- require("staline").setup {
+-- Styles.bruh_line = {
 	-- sections = {
 		-- left = {
 			-- function()
@@ -283,5 +285,5 @@ Styles.pebble_line = {
 	-- },
 -- }
 
-require("staline").setup(Styles.pebble_line)
+require("staline").setup(Styles.nice_line)
 -- vim: foldlevelstart=10:fdm=indent

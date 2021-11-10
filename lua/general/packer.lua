@@ -6,6 +6,12 @@ require("packer").startup { function(use)
 	use { 'tamton-aquib/staline.nvim' , config = [[ require"ui.staline" ]]}
 	use { 'ggandor/lightspeed.nvim' }
 	use { 'ThePrimeagen/vim-be-good' }
+	use {
+		"max397574/startup.nvim",
+		config = function()
+			require"startup".setup()
+		end
+	}
 	-- use { 'AckslD/nvim-neoclip.lua', config = function() require('neoclip').setup() end, }
 	-- use { 'phaazon/hop.nvim' }
 	-- use { 'abecodes/tabout.nvim', config=function() require('tabout').setup {} end }
@@ -21,6 +27,7 @@ require("packer").startup { function(use)
 	use { 'eddyekofo94/gruvbox-flat.nvim' }
 	use { 'Pocco81/Catppuccino.nvim' }
 	use { 'kyazdani42/nvim-web-devicons' , config=[[ require "ui.web_devicons" ]] }
+	-- use { 'Nguyen-Hoang-Nam/nvim-mini-file-icons', config=[[ require "ui.web_devicons" ]] }
 	use { 'norcalli/nvim-colorizer.lua' , event='BufReadPre', config = [[ require"ui.plug-colorizer" ]] }
 	use { 'lewis6991/gitsigns.nvim' , config = [[ require'gitsigns'.setup{} ]] , event='BufRead' }
 
