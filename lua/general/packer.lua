@@ -2,16 +2,10 @@
 require("packer").startup { function(use)
 
 	-->  Testing and temporary
-	use { 'NarutoXY/themer.lua', branch='dev', config=[[ require("ui.themer") ]] }
-	use { 'tamton-aquib/staline.nvim' , config = [[ require"ui.staline" ]]}
 	use { 'ggandor/lightspeed.nvim' }
 	use { 'ThePrimeagen/vim-be-good' }
-	use {
-		"max397574/startup.nvim",
-		config = function()
-			require"startup".setup()
-		end
-	}
+	use { "max397574/startup.nvim", config=[[require"ui.startup-config"]] }
+	-- use { 'NarutoXY/themer.lua', branch='dev', config=[[ require("ui.themer") ]] }
 	-- use { 'AckslD/nvim-neoclip.lua', config = function() require('neoclip').setup() end, }
 	-- use { 'phaazon/hop.nvim' }
 	-- use { 'abecodes/tabout.nvim', config=function() require('tabout').setup {} end }
@@ -20,13 +14,14 @@ require("packer").startup { function(use)
 	-- use { 'Pocco81/TrueZen.nvim' , config=function() require"true-zen".setup() end }
 
 	-->  THEMES AND UI
-	use { 'folke/todo-comments.nvim' , event='BufReadPost' , config=[[ require'todo-comments'.setup{} ]] }
+	use { 'folke/todo-comments.nvim', event='BufReadPost' , config=[[ require'todo-comments'.setup{} ]] }
 	use { 'folke/tokyonight.nvim' }
 	use { 'tiagovla/tokyodark.nvim' }
 	use { 'sainnhe/sonokai' }
 	use { 'eddyekofo94/gruvbox-flat.nvim' }
 	use { 'Pocco81/Catppuccino.nvim' }
 	use { 'kyazdani42/nvim-web-devicons' , config=[[ require "ui.web_devicons" ]] }
+	use { 'tamton-aquib/staline.nvim' , config = [[ require"ui.staline" ]]}
 	-- use { 'Nguyen-Hoang-Nam/nvim-mini-file-icons', config=[[ require "ui.web_devicons" ]] }
 	use { 'norcalli/nvim-colorizer.lua' , event='BufReadPre', config = [[ require"ui.plug-colorizer" ]] }
 	use { 'lewis6991/gitsigns.nvim' , config = [[ require'gitsigns'.setup{} ]] , event='BufRead' }
@@ -35,7 +30,7 @@ require("packer").startup { function(use)
 	use { 'neovim/nvim-lspconfig' }
 	use { 'L3MON4D3/LuaSnip' , config = [[ require"plugins.snippets" ]] }
 	use { 'hrsh7th/nvim-cmp' , after="LuaSnip", config=[[ require 'lsp.cmp' ]] }
-	use { 'MordechaiHadad/nvim-lspmanager', branch='dev', config=function() require("lsp.lsps") end }
+	use { 'MordechaiHadad/nvim-lspmanager', branch='dev', config=function() require("lspmanager").setup{} end }
 	use { 'hrsh7th/cmp-buffer' }
 	use { 'hrsh7th/cmp-nvim-lsp' }
 	use { 'hrsh7th/cmp-path' }

@@ -1,7 +1,6 @@
 local set = vim.opt
 
 -- vim.notify = require "notify"
-
 set.fillchars = 'eob: ,fold: '
 set.fillchars = { eob=' ', fold=' ', foldopen="▾", foldsep="│", foldclose="▸", }
 -- set.lazyredraw = true

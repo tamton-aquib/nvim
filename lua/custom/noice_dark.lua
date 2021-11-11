@@ -1,5 +1,6 @@
 local M = {}
 local ns = vim.api.nvim_create_namespace('noice_dark')
+-- TODO: about to move to themer so i can delete this :kek:
 
 local c = {
 	black            = "#000000",
@@ -201,7 +202,7 @@ local Plugins = {
 		GitSignsDelete = { fg = c.red_one}
 	},
 	Cmp = {
-		CmpItemKind = { fg = "#97c374" }
+		CmpItemKind = { fg = "#97c374"}
 	},
 	MarkdownHighlights = {
 		markdownH1	= { fg = c.red_one, bold = true },

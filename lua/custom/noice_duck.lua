@@ -1,21 +1,19 @@
--- NOTE: this doesnt mess with the current buffer (which means: release the duck when coding :kek:)
--- NOTE: release the duck with require("duck").hatch()
+-- NOTE: This wont mess with the current buffer (which means: release the duck when coding :kek:)
+-- NOTE: release the beast with require("duck").hatch()
+
 -- NOTE: default mapping to cook(stop): <leader>k (require"duck".cook())
--- TODO: stop timer before quitting the window? 🤔
--- TODO: cant start it a second time, so make timer local
 local M = {}
 local character = "🦆"  -- ඞ🐈🐎 🦖 🐤
 local wreckage = false
 local kill_map = "<leader>dk"
 
 
-local timer = vim.loop.new_timer()
+-- TODO: maybe a function to drag it to center
+-- TODO: multiple ducks? 🤔
 
 -- TODO: wreak havoc level: 🦆
--- TODO: maybe a function to drag it to center
 local wreck = function(config)
 	local col, row = config["col"][false], config["row"][false]
-	print(col, row)
 	-- if (0 < col) and (col < vim.o.columns) and (0 < row) and (row < vim.o.lines)  then
 	if (0 < row) and (row < vim.o.lines) then
 		vim.api.nvim_win_set_cursor(0, {row, col})
@@ -23,7 +21,8 @@ local wreck = function(config)
 end
 
 local waddle = function(win)
-	vim.loop.timer_start(timer, 1000, 100, vim.schedule_wrap(function()
+	M.timer = vim.loop.new_timer()
+	vim.loop.timer_start(M.timer, 1000, 100, vim.schedule_wrap(function()
 		if vim.api.nvim_win_is_valid(win) then
 			-- TODO: restrict movement inside walls
 			local config = vim.api.nvim_win_get_config(win)
@@ -68,8 +67,8 @@ M.hatch = function()
 end
 
 M.cook = function(win)
-	timer:stop()
-	timer:close()
+	M.timer:stop()
+	M.timer:close()
 	vim.api.nvim_win_close(win, true)
 end
 

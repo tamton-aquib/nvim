@@ -25,18 +25,56 @@ local icons = {
 	Variable	= "  ",
 }
 local check_back_space = function()
-  local col = vim.fn.col '.' - 1
-  return col == 0 or vim.fn.getline('.'):sub(col, col):match '%s' ~= nil
+	local col = vim.fn.col '.' - 1
+	return col == 0 or vim.fn.getline('.'):sub(col, col):match '%s' ~= nil
 end
 
 local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
+local source_names = {
+	nvim_lsp = "[LSP]",
+	emoji = "[Emoji]",
+	path = "[Path]",
+	luasnip = "[Snippet]",
+	buffer = "[Buffer]",
+}
+local kind_icons = {
+	Class = "  ",
+	Color = "  ",
+	Constant = " ﲀ ",
+	Constructor = "  ",
+	Enum = " 練 ",
+	EnumMember = "   ",
+	Event = "  ",
+	Field = "  ",
+	File = "  ",
+	Folder = "  ",
+	Function = "  ",
+	Interface = " ﰮ ",
+	Keyword = "  ",
+	Method = "  ",
+	Module = "  ",
+	Operator = "  ",
+	Property = "  ",
+	Reference = "  ",
+	Snippet = "  ",
+	-- Snippet = "  ",
+	Struct = "  ",
+	Text = "  ",
+	TypeParameter = "  ",
+	Unit = "塞",
+	Value = "  ",
+	Variable = "  ",
+}
+
 cmp.setup {
-	formatting ={
-		format = function(_, item)
-			item.kind = icons[item.kind] or "noice"
+	formatting = {
+		fields = { 'kind', 'abbr', 'menu' },
+		format = function(entry, item)
+			item.kind = kind_icons[item.kind] or " "
+			item.menu = source_names[entry.source.name] or " "
 			return item
 		end
 	},

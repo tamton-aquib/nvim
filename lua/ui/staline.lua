@@ -22,7 +22,7 @@ vim.g.staline_date = true
 vim.api.nvim_set_keymap('n', '<leader>k', ':lua vim.g.staline_date=not vim.g.staline_date<CR>', {noremap=true, silent=true})
 Styles.nice_line = {
 	sections = {
-		left = {},
+		left = {''},
 		right = {},
 		mid = {
 			'right_sep_double',

@@ -1,12 +1,10 @@
 
---> GENERAL SETTINGS AND MAPPINGS
+
+--> TODO: feels like a barren land here 🍣
 require 'general.start'
 require 'general.packer'
 require 'general.autocommands'
 require 'general.mappings'
 require 'general.settings'
-
---> CUSTOMS and THEMES section
--- require 'custom.noice_board'.setup()
--- require 'custom.noice_sus'.setup()
--- require('ui.colorschemes').noice(false)
+require 'lsp.lsp_defaults'
+require('ui.colorschemes').tokyodark(false)
