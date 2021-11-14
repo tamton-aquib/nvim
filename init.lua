@@ -1,6 +1,5 @@
 
-
---> TODO: feels like a barren land here 🍣
+--> General stuff
 require 'general.start'
 require 'general.packer'
 require 'general.autocommands'

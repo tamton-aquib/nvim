@@ -1,6 +1,4 @@
 
-vim.api.nvim_buf_set_keymap(0, 'n', 'I', ':e ~/.config/nice/init.lua<CR>', {noremap =true})
-vim.api.nvim_buf_set_keymap(0, 'n', 'K', ':e ~/.config/kitty/kitty.conf<CR>', {noremap =true})
 local section1 = {
 	type = "text",
 	align = "center",

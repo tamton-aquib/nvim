@@ -3,7 +3,6 @@ local opts = {noremap=true, silent=true}
 local function map(mode, key, mapping) vim.api.nvim_set_keymap(mode, key, mapping, opts) end
 
 --> TEMP and TEST maps
-map('n', '<leader>w', ':bd<CR>')
 map('n', '<leader>m', ':FocusMaximise<CR>')
 map('n', "c", "\"_c")
 map('n', "C", "\"_C")
@@ -26,12 +25,12 @@ map('n', '<leader>pc', ':PackerCompile<CR>')
 
 --> essentials.nvim mappings
 map('n', '<F2>'     ,  ':lua require"essentials".rename()<CR>')
-map('v', '<leader>i',  ':lua require"essentials".get_url()<CR>')
+map('v', 'gl'       ,  ':lua require"essentials".get_git_url()<CR>')
 map('v', '<leader>/',  ':lua require"essentials".toggle_comment("nice")<CR>')
 map('n', '<leader>/',  ':lua require"essentials".toggle_comment()<CR>')
 map('n', '<leader>r',  ':w<CR>:lua require("essentials").run_file()<CR>')
 map('n', '<leader>s',  ':lua require"essentials".swap_bool()<CR>')
-map('n', 'gx',         ':lua require"essentials".go_to_url()<CR>')
+map('n', 'gx'       ,  ':lua require"essentials".go_to_url()<CR>')
 map('n', '<leader>cs', ':lua require"essentials".cheat_sh()<CR>')
 
 --> LSP mappings
@@ -66,6 +65,7 @@ map("n", "<M-k>", ":m .-2<CR>==")
 
 --> OLD
 map('n', '<leader>a', 'ggVG')
+map('n', '<leader>w', ':bd<CR>')
 map('i', 'jk'       , '<Esc>')
 map('n', 'n'        , 'nzz')
 map('n', '<TAB>'    , ':bnext<CR>')

@@ -173,8 +173,8 @@ Styles.atom_line = {
 	},
 	mode_colors = {
 		-- n = "#e95678",
-		n = "#986fec",
-		i = "#9ece6a",
+		i = "#986fec",
+		n = "#9ece6a",
 		ic= "#9ece6a"
 	}
 }
@@ -210,10 +210,15 @@ Styles.normal_line = {
 		branch_symbol = " "
 	},
 	mode_colors = {
-		n = "#986fec",
-		i = "#e86671",
-		ic= "#e86671",
-		c = "#e27d60"
+		-- n = "#986fec",
+		n = "#97c374",
+		i = "#97c374",
+		c = "#97c374",
+		v = "#97c374",
+		V = "#97c374",
+		-- i = "#e86671",
+		-- ic= "#e86671",
+		-- c = "#e27d60"
 		-- n = "#dddddd",
 		-- i = "#dddddd",
 		-- ic= "#dddddd",
@@ -285,5 +290,5 @@ Styles.pebble_line = {
 	-- },
 -- }
 
-require("staline").setup(Styles.nice_line)
+require("staline").setup(Styles.normal_line)
 -- vim: foldlevelstart=10:fdm=indent

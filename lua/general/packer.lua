@@ -5,6 +5,8 @@ require("packer").startup { function(use)
 	use { 'ggandor/lightspeed.nvim' }
 	use { 'ThePrimeagen/vim-be-good' }
 	use { "max397574/startup.nvim", config=[[require"ui.startup-config"]] }
+	use { 'MordechaiHadad/nvim-lspmanager', branch='dev', config=[[require("lspmanager").setup{}]] }
+	-- use { 'simrat39/rust-tools.nvim', ft={'rust', 'rs'}, config=[[require("rust-tools").setup({})]] }
 	-- use { 'NarutoXY/themer.lua', branch='dev', config=[[ require("ui.themer") ]] }
 	-- use { 'AckslD/nvim-neoclip.lua', config = function() require('neoclip').setup() end, }
 	-- use { 'phaazon/hop.nvim' }
@@ -19,7 +21,7 @@ require("packer").startup { function(use)
 	use { 'tiagovla/tokyodark.nvim' }
 	use { 'sainnhe/sonokai' }
 	use { 'eddyekofo94/gruvbox-flat.nvim' }
-	use { 'Pocco81/Catppuccino.nvim' }
+	use { 'catppuccin/nvim', as="catppuccino" }
 	use { 'kyazdani42/nvim-web-devicons' , config=[[ require "ui.web_devicons" ]] }
 	use { 'tamton-aquib/staline.nvim' , config = [[ require"ui.staline" ]]}
 	-- use { 'Nguyen-Hoang-Nam/nvim-mini-file-icons', config=[[ require "ui.web_devicons" ]] }
@@ -30,7 +32,6 @@ require("packer").startup { function(use)
 	use { 'neovim/nvim-lspconfig' }
 	use { 'L3MON4D3/LuaSnip' , config = [[ require"plugins.snippets" ]] }
 	use { 'hrsh7th/nvim-cmp' , after="LuaSnip", config=[[ require 'lsp.cmp' ]] }
-	use { 'MordechaiHadad/nvim-lspmanager', branch='dev', config=function() require("lspmanager").setup{} end }
 	use { 'hrsh7th/cmp-buffer' }
 	use { 'hrsh7th/cmp-nvim-lsp' }
 	use { 'hrsh7th/cmp-path' }
@@ -51,7 +52,7 @@ require("packer").startup { function(use)
 	use { 'rcarriga/nvim-notify' }
 	use { 'tamton-aquib/essentials.nvim' }
 	use { 'lewis6991/impatient.nvim', commit="561b86e5602def047010d451c3e7977a65982788" }
-	use { 'beauwilliams/focus.nvim', config = function() require("focus").setup{cursorline=false} end }
+	use { 'beauwilliams/focus.nvim', config = [[require("focus").setup{cursorline=false}]] }
 	use { 'steelsojka/pears.nvim', config=[[ require"pears".setup() ]]}
 	use { 'Saecki/crates.nvim', ft={'toml'}, config=[[ require('crates').setup() ]] }
 	-- use { 'max397574/better-escape.nvim', config=function() require("better_escape").setup{mapping='jk'} end }
