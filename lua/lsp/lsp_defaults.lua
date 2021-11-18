@@ -11,16 +11,15 @@ vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with( vim.lsp.handlers.hover, 
 vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with( vim.lsp.handlers.signature_help, {border = border})
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with( vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false })
 
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
--- capabilities.textDocument.completion.completionItem.snippetSupport = true
--- capabilities.textDocument.completion.completionItem.resolveSupport = {
---     properties = { 'documentation', 'detail', 'additionalTextEdits' }
--- }
-
--- local luadev = require "lua-dev".setup {
-	-- library = {
-		-- vimruntime = true,
-    	-- types = true,
-    	-- plugins = false,
-    -- },
--- }
+local luadev = require "lua-dev".setup {
+	library = {
+		vimruntime = true,
+    	types = true,
+    	plugins = false,
+    },
+}
+require("lspmanager").setup {
+	lsps = {
+		sumneko_lua = luadev
+	}
+}

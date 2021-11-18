@@ -3,10 +3,13 @@ local opts = {noremap=true, silent=true}
 local function map(mode, key, mapping) vim.api.nvim_set_keymap(mode, key, mapping, opts) end
 
 --> TEMP and TEST maps
+map('n', '<leader>w', ':lua require("general.utils").close_command()<CR>')
 map('n', '<leader>m', ':FocusMaximise<CR>')
+map('n', '<leader>mp', ':MarkdownPreviewToggle<CR>')
 map('n', "c", "\"_c")
 map('n', "C", "\"_C")
-map('n', '<leader>dd', ':lua require("custom.noice_duck").hatch()<CR>')
+map('n', '<leader>dd', ':lua require("duck").hatch()<CR>')
+map('n', '<leader>dk', ':lua require("duck").cook()<CR>')
 
 -- map('n', '<RightMouse>', ':lua vim.lsp.buf.hover({focusable=false})<CR>')
 -- map('n', '<LeftMouse>', ':lua vim.lsp.buf.signature_help({focusable=false})<CR>')
@@ -42,10 +45,11 @@ map('n', '<C-n>', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
 map('n', '<C-p>', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
 
 --> Telescope mappings
-map( 'n', '<leader>ff', ':Telescope find_files theme=get_cursor previewer=false<CR>')
-map( 'n', '<leader>fg', ':Telescope live_grep theme=cursor previewer=false<CR>')
-map( 'n', '<leader>fh', ':Telescope help_tags<CR>')
-map( 'n', '<leader>fc', ':Telescope commands theme=ivy<CR>')
+-- map('n', '<leader>ff', ':Telescope find_files theme=get_dropdown previewer=false<CR>')
+map('n', '<leader>ff', ':lua require("telescope.builtin").find_files(require("general.utils").telescope_theme)<CR>')
+map('n', '<leader>fg', ':Telescope live_grep theme=cursor previewer=false<CR>')
+map('n', '<leader>fh', ':Telescope help_tags<CR>')
+map('n', '<leader>fc', ':Telescope commands theme=ivy<CR>')
 
 --> WINDOW Control
 map('n', '<C-h>',     '<C-w>h')
@@ -65,7 +69,6 @@ map("n", "<M-k>", ":m .-2<CR>==")
 
 --> OLD
 map('n', '<leader>a', 'ggVG')
-map('n', '<leader>w', ':bd<CR>')
 map('i', 'jk'       , '<Esc>')
 map('n', 'n'        , 'nzz')
 map('n', '<TAB>'    , ':bnext<CR>')
@@ -74,5 +77,3 @@ map('n', '<C-s>'    , ':w<CR>')
 map('n', '<C-q>'    , ':q<CR>')
 map('v', '<'        , '<gv')
 map('v', '>'        , '>gv')
--- map('i', '<C-u>', '<Esc>viwUi')
--- map('n', '<C-u>', 'viwU')

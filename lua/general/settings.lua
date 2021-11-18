@@ -1,6 +1,5 @@
 local set = vim.opt
 
--- vim.notify = require "notify"
 set.fillchars = 'eob: ,fold: '
 set.fillchars = { eob=' ', fold=' ', foldopen="▾", foldsep="│", foldclose="▸", }
 -- set.lazyredraw = true
@@ -74,3 +73,4 @@ set.smartindent = true
 -- set.listchars = 'tab: '
 -- set.cursorline = true
 -- vim.cmd [[let &colorcolumn=join(range(81,999),",")]]
+vim.notify = require("notify")

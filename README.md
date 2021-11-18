@@ -24,14 +24,11 @@ My neovim config
    │  ├──  mappings.lua
    │  ├──  packer.lua
    │  ├──  startup.lua
+   │  ├──  utils.lua
    │  └──  settings.lua
-   ├──   custom
-   │  ├──  noice_dark.lua
-   │  ├──  noice_sus.lua
-   │  └──  noice_board.lua
    ├──   lsp
    │  ├──  cmp.lua
-   │  └──  lsps.lua
+   │  └──  lsp_defaults.lua
    ├──   plugins
    │  ├──  floaterm.lua
    │  ├──  nvim_tree.lua
@@ -41,9 +38,7 @@ My neovim config
    │  └──  treesittter.lua
    └──   ui
       ├──  colorschemes.lua
-      ├──  dashboard.lua
-      ├──  plug-colorizer.lua
-      ├──  web_devicons.lua
+      ├──  startup-config.lua
       └──  staline.lua
 ```
 

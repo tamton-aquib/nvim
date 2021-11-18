@@ -1,7 +1,5 @@
 vim.cmd [[packadd LuaSnip]]
 local ls = require'luasnip'
-local map = vim.api.nvim_set_keymap
-local opts = {noremap = true, expr=true}
 local parse = ls.parser.parse_snippet
 
 local html_bp = [[
@@ -49,5 +47,8 @@ ls.snippets = {
 		parse({trig="rfc", wordTrig=true}, react_rfc),
 		parse({trig="high", wordTrig=true}, high),
 		parse({trig="conso", wordTrig=true}, [[console.log(${0})]])
+	},
+	rust = {
+		parse({trig="print", wordTrig=true}, [[println!("${0}");]])
 	}
 }

@@ -11,8 +11,8 @@ vim.g.loaded_remote_plugins = false
 -- vim.cmd [[ filetype plugin indent off ]]
 vim.opt.spell = false
 
-local ok, stuff = pcall(require, 'impatient')
-if ok then stuff.enable_profile() end
+local ok, impatient = pcall(require, 'impatient')
+if ok then impatient.enable_profile() end
 
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'

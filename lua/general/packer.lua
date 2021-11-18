@@ -5,7 +5,8 @@ require("packer").startup { function(use)
 	use { 'ggandor/lightspeed.nvim' }
 	use { 'ThePrimeagen/vim-be-good' }
 	use { "max397574/startup.nvim", config=[[require"ui.startup-config"]] }
-	use { 'MordechaiHadad/nvim-lspmanager', branch='dev', config=[[require("lspmanager").setup{}]] }
+	use { 'MordechaiHadad/nvim-lspmanager', branch='dev', config=[[require("lsp.lsp_defaults")]] }
+	use { 'tamton-aquib/duck.nvim' }
 	-- use { 'simrat39/rust-tools.nvim', ft={'rust', 'rs'}, config=[[require("rust-tools").setup({})]] }
 	-- use { 'NarutoXY/themer.lua', branch='dev', config=[[ require("ui.themer") ]] }
 	-- use { 'AckslD/nvim-neoclip.lua', config = function() require('neoclip').setup() end, }
@@ -14,18 +15,18 @@ require("packer").startup { function(use)
 	-- use { "blackCauldron7/surround.nvim", config = function() require"surround".setup {mappings_style = "sandwich"} end }
 	-- use { 'edluffy/specs.nvim', config=function() require("plugins.others").specs() end }
 	-- use { 'Pocco81/TrueZen.nvim' , config=function() require"true-zen".setup() end }
+	-- use { 'Nguyen-Hoang-Nam/nvim-mini-file-icons', config=[[ require "ui.web_devicons" ]] }
 
 	-->  THEMES AND UI
 	use { 'folke/todo-comments.nvim', event='BufReadPost' , config=[[ require'todo-comments'.setup{} ]] }
 	use { 'folke/tokyonight.nvim' }
 	use { 'tiagovla/tokyodark.nvim' }
 	use { 'sainnhe/sonokai' }
-	use { 'eddyekofo94/gruvbox-flat.nvim' }
+	use { 'sainnhe/gruvbox-material' }
 	use { 'catppuccin/nvim', as="catppuccino" }
-	use { 'kyazdani42/nvim-web-devicons' , config=[[ require "ui.web_devicons" ]] }
+	use { 'kyazdani42/nvim-web-devicons' , config=[[ require "nvim-web-devicons".setup{} ]] }
 	use { 'tamton-aquib/staline.nvim' , config = [[ require"ui.staline" ]]}
-	-- use { 'Nguyen-Hoang-Nam/nvim-mini-file-icons', config=[[ require "ui.web_devicons" ]] }
-	use { 'norcalli/nvim-colorizer.lua' , event='BufReadPre', config = [[ require"ui.plug-colorizer" ]] }
+	use { 'norcalli/nvim-colorizer.lua' , event='BufReadPre', config = [[ require"colorizer".setup() ]] }
 	use { 'lewis6991/gitsigns.nvim' , config = [[ require'gitsigns'.setup{} ]] , event='BufRead' }
 
 	-->  LSP and COMPLETION
@@ -42,9 +43,10 @@ require("packer").startup { function(use)
 	-->  TELESCOPE, TREESITTER, NEORG
 	use { 'nvim-lua/plenary.nvim' }
 	use { 'nvim-treesitter/playground' , after="nvim-treesitter" }
-	use { 'nvim-telescope/telescope.nvim' , config=[[ require"plugins.telescope" ]], cmd="Telescope"}
+	use { 'nvim-telescope/telescope.nvim', cmd='Telescope' , config=[[ require"plugins.telescope" ]], module="telescope"}
 	use { 'nvim-treesitter/nvim-treesitter' , event='BufRead', config=[[ require"plugins.treesittter" ]] }
-	use { 'nvim-neorg/neorg', branch='unstable', ft={"norg"}, after={"nvim-treesitter", "telescope.nvim"}, requires="nvim-neorg/neorg-telescope", config = function() require "plugins.neorg" end }
+	use { 'nvim-neorg/neorg', branch='unstable', ft={"norg"}, after={"nvim-treesitter", "telescope.nvim"}, config = function() require "plugins.neorg" end }
+	use { 'nvim-neorg/neorg-telescope' }
 
 	-->  GENERAL PURPOSE
 	use { 'folke/lua-dev.nvim' }
