@@ -4,19 +4,13 @@
 -- local rightSeparator = ""	-->        
 local Styles = {}
 
-local gruvbox = {
-    n = "#a89985",
-    i = "#84a598",
-    c = "#8fbf7f",
-    v = "#fc802d",
-    V = "#fc802d",
-}
-
 require('stabline').setup {
-	style = "slant",
-	stab_start = "   ",
-	font_active = "bold,italic",
-	inactive_bg = "#191817",
+	style = "arrow",
+	stab_left = "",
+	stab_right = "",
+	inactive_bg =  "11121d",
+	fg = "#986fec",
+	bg = "#11121d"
 }
 
 Styles.simple_line = {
@@ -45,7 +39,9 @@ Styles.simple_line = {
 			bg = "#0e171c"
 		}
 	},
-	mode_colors = gruvbox,
+	mode_colors = {
+		n = "#986fec",
+	},
 
 	defaults = {
 		true_colors = true,
@@ -79,7 +75,7 @@ Styles.pebble_line = {
 		true_colors = true,
 		line_column = "[%l:%c] 並%p%% "
 	},
-	mode_colors = gruvbox
+	-- mode_colors = gruvbox
 }
 
-require("staline").setup(Styles.pebble_line)
+require("staline").setup(Styles.simple_line)

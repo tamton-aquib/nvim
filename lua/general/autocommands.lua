@@ -4,6 +4,7 @@ vim.cmd [[au BufEnter,FileType * setlocal fo-=c fo-=r fo-=o]]
 vim.cmd [[au BufEnter *.json set cole=0]]
 vim.cmd [[au BufEnter,FileType startup nnoremap <silent> I :e ~/.config/nice/init.lua<CR>]]
 vim.cmd [[au InsertLeave,BufEnter *.rs :w]]
+vim.cmd [[au BufEnter *.md set spell]]
 
 --> LSP related
 vim.cmd [[au BufWritePre *.js,*.jsx,*.svelte lua vim.lsp.buf.formatting_sync(nil, 200)]]

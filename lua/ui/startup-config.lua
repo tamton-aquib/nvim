@@ -6,10 +6,14 @@ local set_stuff = function()
 		A = "~/.config/alacritty/alacritty.yml"
 	}
 	for key, file in pairs(keymaps) do
-		vim.api.nvim_buf_set_keymap(0, 'n', key,
-		':e '..file..' | lua vim.api.nvim_set_current_dir("'..mod(file, ":h")..'")<CR>',
-			{noremap=true, silent=true}
-		)
+		local buf
+		if vim.bo.ft == "startup" then
+			buf = vim.api.nvim_get_current_buf()
+			vim.api.nvim_buf_set_keymap(buf, 'n', key,
+			':e '..file..' | lua vim.api.nvim_set_current_dir("'..mod(file, ":h")..'")<CR>',
+				{noremap=true, silent=true}
+			)
+		end
 	end
 end
 

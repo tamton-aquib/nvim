@@ -6,4 +6,4 @@ require 'general.autocommands'
 require 'general.mappings'
 require 'general.settings'
 
-require('ui.colorschemes').gruvbox(false)
+require('ui.colorschemes').tokyodark(false)

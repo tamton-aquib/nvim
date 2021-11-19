@@ -5,8 +5,9 @@ require("packer").startup { function(use)
 	use { 'ggandor/lightspeed.nvim' }
 	use { 'ThePrimeagen/vim-be-good' }
 	use { "max397574/startup.nvim", config=[[require"ui.startup-config"]] }
-	use { 'MordechaiHadad/nvim-lspmanager', branch='dev', config=[[require("lsp.lsp_defaults")]] }
 	use { 'tamton-aquib/duck.nvim' }
+	-- use { 'hrsh7th/cmp-nvim-lsp-signature-help' }
+	-- use { 'max397574/better-escape.nvim', config=function() require("better_escape").setup{mapping='jk'} end }
 	-- use { 'simrat39/rust-tools.nvim', ft={'rust', 'rs'}, config=[[require("rust-tools").setup({})]] }
 	-- use { 'NarutoXY/themer.lua', branch='dev', config=[[ require("ui.themer") ]] }
 	-- use { 'AckslD/nvim-neoclip.lua', config = function() require('neoclip').setup() end, }
@@ -39,6 +40,7 @@ require("packer").startup { function(use)
 	use { 'hrsh7th/cmp-emoji' }
 	use { 'hrsh7th/cmp-nvim-lua' }
 	use { 'saadparwaiz1/cmp_luasnip' }
+	use { 'MordechaiHadad/nvim-lspmanager', branch='dev', config=[[require("lsp.lsp_defaults")]] }
 
 	-->  TELESCOPE, TREESITTER, NEORG
 	use { 'nvim-lua/plenary.nvim' }
@@ -57,7 +59,6 @@ require("packer").startup { function(use)
 	use { 'beauwilliams/focus.nvim', config = [[require("focus").setup{cursorline=false}]] }
 	use { 'steelsojka/pears.nvim', config=[[ require"pears".setup() ]]}
 	use { 'Saecki/crates.nvim', ft={'toml'}, config=[[ require('crates').setup() ]] }
-	-- use { 'max397574/better-escape.nvim', config=function() require("better_escape").setup{mapping='jk'} end }
 	use { 'kyazdani42/nvim-tree.lua', config=[[ require 'plugins.nvim_tree' ]], cmd='NvimTreeToggle'}
 	use { 'akinsho/nvim-toggleterm.lua' , event = "BufWinEnter", config=[[ require"plugins.floaterm" ]] }
 	use { 'iamcco/markdown-preview.nvim' , ft={'markdown'}, config=[[ require"plugins.others".markdown_preview() ]], run = "cd app && yarn install", }

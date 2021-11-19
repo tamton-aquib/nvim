@@ -55,7 +55,7 @@ function Colo.gruvbox(transparent)
 	vim.g.gruvbox_material_cursor = "red"
 
 	vim.cmd [[colo gruvbox-material]]
-	vim.cmd [[hi FloatBorder guibg=#282828]]
+	vim.cmd [[hi FloatBorder guibg=#45403d]]
 end
 
 function Colo.sonokai(transparent)
