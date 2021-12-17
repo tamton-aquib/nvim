@@ -17,34 +17,33 @@ local source_names = {
 	luasnip = "[Snippet]",
 	buffer = "[Buffer]",
 }
-
 local kind_icons = {
-	Class = "  ",
-	Color = "  ",
-	Constant = " ﲀ ",
-	Constructor = "  ",
-	Enum = " 練 ",
-	EnumMember = "   ",
-	Event = "  ",
-	Field = "  ",
-	File = "  ",
-	Folder = "  ",
-	Function = "  ",
-	Interface = " ﰮ ",
-	Keyword = "  ",
-	Method = "  ",
-	Module = "  ",
-	Operator = "  ",
-	Property = "  ",
-	Reference = "  ",
-	Snippet = "  ",
-	-- Snippet = "  ",
-	Struct = "  ",
-	Text = "  ",
-	TypeParameter = "  ",
-	Unit = "塞",
-	Value = "  ",
-	Variable = "  ",
+	Text = ' ',
+	Method = ' ',
+	Function = ' ',
+	Constructor = ' ',
+	Field = ' ',
+	Variable = ' ',
+	Class = ' ',
+	Interface = ' ',
+	Module = ' ',
+	Property = ' ',
+	Unit = ' ',
+	Value = ' ',
+	Enum = ' ',
+	Keyword = ' ',
+	-- Snippet = ' ',
+	Snippet = ' ',
+	Color = ' ',
+	File = ' ',
+	Reference = ' ',
+	Folder = ' ',
+	EnumMember = ' ',
+	Constant = ' ',
+	Struct = ' ',
+	Event = ' ',
+	Operator = ' ',
+	TypeParameter = ' ',
 }
 
 cmp.setup {
@@ -52,7 +51,8 @@ cmp.setup {
 		fields = { 'kind', 'abbr', 'menu' },
 		format = function(entry, item)
 			item.kind = kind_icons[item.kind] or " "
-			item.menu = source_names[entry.source.name] or " "
+			-- item.menu = source_names[entry.source.name] or " "
+			item.menu = source_names[entry.source.name] or entry.source.name
 			return item
 		end
 	},
@@ -90,7 +90,7 @@ cmp.setup {
 			else
 				fallback()
 			end
-		end, { "i", "s", }),
+		end, { "i", "s" }),
 
 		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
@@ -100,12 +100,12 @@ cmp.setup {
 			else
 				fallback()
 			end
-		end, { "i", "s", }),
+		end, { "i", "s" }),
 	},
 
 	sources = {
 		{ name = 'nvim_lsp' },
-		{ name = 'nvim_lsp_signature_help' },
+		{ name = 'nvim_diagnostic' },
 		{ name = 'nvim_lua' },
 		{ name = 'luasnip' },
 		{ name = 'path' },
@@ -113,6 +113,7 @@ cmp.setup {
 		{ name = 'emoji'},
 		{ name = 'neorg'},
 		{ name = 'crates'},
+		-- { name = 'nvim_lsp_signature_help' },
 	},
 
 	experimental = {

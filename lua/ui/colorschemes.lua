@@ -1,6 +1,6 @@
 local Colo = {}
 
--- NOICE COLOR PALETTE
+-- TODO: NOICE COLOR PALETTE (port it in future)
 -- "#c678dd", "#986fec", "#c882e7",
 -- "#5af78e", "#98c379", "#7eca9c",
 -- "#56b6c2", "#61afef", "#8485ce",
@@ -11,7 +11,7 @@ local Colo = {}
 -- "#282c34", "#24283b", "#11121d", "#1f1f1f",
 
 local colors = {
-	'onedark',
+	-- 'onedark',
 	'gruvbox-material',
 	'tokyonight',
 	'tokyodark',

@@ -10,7 +10,7 @@ parser_configs.norg = {
 }
 
 require('nvim-treesitter.configs').setup {
-	ensure_installed = { "norg" ,"lua", "python", "rust", "javascript"},
+	ensure_installed = { "norg" ,"lua", "python", "rust" },
 	highlight = {
 		enable = true,
 	},
@@ -20,7 +20,4 @@ require('nvim-treesitter.configs').setup {
 	autotag = {
 		enable = true
 	},
-	-- context_commentstring = {
-		-- enable = true
-	-- }
 }

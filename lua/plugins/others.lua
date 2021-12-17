@@ -1,14 +1,16 @@
 local M = {}
 
 function M.indent_blankline()
-	-- vim.g.indentLine_enabled = 1
-	vim.g.indent_blankline_char = "▏"
-	-- vim.g.indent_blankline_char = ""
-	vim.g.indent_blankline_filetype_exclude = {
-		"TelescopePrompt", "help", "terminal", "dashboard", "NvimTree",
-		"packer", "lspinfo", "lsp-installer"
+	require("indent_blankline").setup{
+		char = "▏", -- 
+		show_current_context = true,
+		strict_tabs = true,
+		filetype_exclude = {
+			"TelescopePrompt", "help", "terminal", "dashboard", "NvimTree",
+			"packer", "lspinfo", "lsp-installer"
+		},
+		buftype_exclude = { "terminal", "norg" }
 	}
-	vim.g.indent_blankline_buftype_exclude = {"terminal", "norg"}
 end
 
 -- TODO: make this tidy :kek:

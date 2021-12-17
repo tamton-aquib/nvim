@@ -8,7 +8,6 @@ vim.g.loaded_man = false
 vim.g.loaded_2html_plugin = false
 vim.g.loaded_remote_plugins = false
 
--- vim.cmd [[ filetype plugin indent off ]]
 vim.opt.spell = false
 
 local ok, impatient = pcall(require, 'impatient')
@@ -23,7 +22,6 @@ end
 
 require("packer").init {
 	profile = { enable = true },
-	-- compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
 	display = {
 		done_sym = "✓",
 		error_sym = "×",

@@ -1,7 +1,6 @@
 local border = require"general.utils".border
 
 local signs = { Error = " ", Warn = " ", Hint = "", Info = "", other = "﫠" }
-
 for type, icon in pairs(signs) do
 	local hl = "DiagnosticSign" .. type
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
@@ -14,12 +13,12 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 local luadev = require "lua-dev".setup {
 	library = {
 		vimruntime = true,
-    	types = true,
-    	plugins = false,
+		types = true,
+		plugins = false,
     },
 }
-require("lspmanager").setup {
-	lsps = {
-		sumneko_lua = luadev
-	}
-}
+
+require("nvim-lsp-installer").on_server_ready(function(server)
+	local opts = server.name == "sumneko_lua" and luadev or {}
+    server:setup(opts)
+end)
