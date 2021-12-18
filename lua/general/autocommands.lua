@@ -1,14 +1,14 @@
 
 --> NEW
-vim.cmd [[au BufEnter,FileType * setlocal fo-=c fo-=r fo-=o]]
+vim.cmd [[au BufEnter * setlocal fo-=c fo-=r fo-=o]]
 vim.cmd [[au BufEnter *.json set cole=0]]
 vim.cmd [[au BufEnter *.md setlocal spell]]
--- vim.cmd [[au InsertLeave,BufEnter *.rs :w]]
+vim.cmd [[au BufEnter packer.lua call matchadd("TSFuncBuiltin", ".*$")]]
 
 --> LSP related
 vim.cmd [[au BufWritePre *.js,*.jsx lua vim.lsp.buf.formatting_sync(nil, 200)]]
 vim.cmd [[au BufWritePre *.rs,*.svelte lua vim.lsp.buf.formatting_sync(nil, 1000)]]
-vim.cmd [[au CursorHold  * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})]]
+vim.cmd [[au CursorHold  * lua require("general.utils").show_diagnostics()]]
 vim.cmd [[au CursorHoldI * lua if not require("cmp").visible() then vim.lsp.buf.signature_help({focusable=false}) end]]
 
 --> OLD

@@ -1,5 +1,18 @@
 Util = {}
 
+--> Float window for diagnostics
+function Util.show_diagnostics()
+	vim.diagnostic.open_float(0, {
+		header = { "律 Diagnostics", "String" },
+		focusable = false,
+		prefix = function(_, _, _)
+			-- local hl = "Diagnostic"..signs[diagnostic.severity].name
+			-- local icon = signs[diagnostic.severity].icon
+			return " " , "String" -- icons:        ﬌  
+		end
+	})
+end
+
 --> Centering an array of strings
 function Util.center(dict)
     local new_dict = {}
@@ -27,10 +40,11 @@ function Util.noice_board()
 		[[                                 ░                    ]]
 	}
     if vim.api.nvim_buf_get_name(0) == "" then
-		vim.fn.matchadd("Error", '[░▒]')
 		vim.api.nvim_buf_set_option(0, 'bufhidden', 'wipe')
 
 		vim.schedule(function()
+			vim.fn.matchadd("Error", '[░▒]')
+			vim.fn.matchadd("Function", '[▓█▄▀▐▌]')
 			local buf = vim.api.nvim_create_buf(false, true)
 			local keys = { K='~/.config/kitty/kitty.conf', F='~/.config/fish/config.fish', I='~/.config/nvim/init.lua', A='~/.config/alacritty/alacritty.yml', P='~/.config/picom/picom.conf' }
 			local opts = {noremap = true, silent = true}

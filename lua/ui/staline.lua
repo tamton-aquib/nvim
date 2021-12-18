@@ -1,16 +1,15 @@
---> staline setup
---           
--- left_sep = ""	-->        
--- right_sep = ""	-->        
+--> Noice icons:           
+--> left_sep   :          
+--> right_sep  :          
+--> TODO: cleanup
 local Styles = {}
 
 require('stabline').setup {
-	style = "arrow",
+	style = "bar",
 	stab_left = "",
-	stab_right = "",
-	inactive_bg =  "#11121d",
+	-- stab_right = "",
 	fg = "#986fec",
-	bg = "#11121d",
+	inactive_bg = "#11121d",
 	padding = 2
 }
 
@@ -20,12 +19,14 @@ Styles.simple_line = {
 			'  ', 'mode', ' ', 'branch',
 			function()
 				if vim.o.columns > 100 then
-					return '     '
+					-- return '     '
+					-- return '    '
+					return '    '
 				end
 				return ''
 			end
 		},
-		mid = { 'lsp', '%<'},
+		mid = { 'lsp', '%<' },
 		right = { '%l/%L  :%c  ', 'file_name', '  ',
 			function()
 				local current_line = vim.fn.line "."

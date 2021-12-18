@@ -3,21 +3,19 @@ local opts = {noremap=true, silent=true}
 local function map(mode, key, mapping) vim.api.nvim_set_keymap(mode, key, mapping, opts) end
 
 --> TEMP and TEST maps
-map('n', '<leader>w', ':lua require("general.utils").close_command()<CR>')
-map('n', '<leader>m', ':FocusMaximise<CR>')
+map('n', '<leader>w',  ':lua require("general.utils").close_command()<CR>')
+map('n', '<leader>m',  ':FocusMaximise<CR>')
 map('n', '<leader>mp', ':MarkdownPreviewToggle<CR>')
 map('n', "c", '"_c')
 map('n', "C", '"_C')
 map('n', '<leader>dd', ':lua require("duck").hatch()<CR>')
 map('n', '<leader>dk', ':lua require("duck").cook()<CR>')
--- map('n', '<RightMouse>', ':lua vim.lsp.buf.hover({focusable=false})<CR>')
--- map('n', '<LeftMouse>', ':lua vim.lsp.buf.signature_help({focusable=false})<CR>')
-
---> NEW
 map('n', '<leader>n',  ":NvimTreeToggle<CR>")
 map('n', '<M-h>',      ':lua vim.cmd(":h "..vim.fn.expand("<cword>").." | resize -6")<CR>')
-map('n', 'n', 'n:lua require("specs").show_specs()<CR>')
-map('n', 'N', 'N:lua require("specs").show_specs()<CR>')
+-- map('n', '<RightMouse>', ':lua vim.lsp.buf.hover({focusable=false})<CR>')
+-- map('n', '<LeftMouse>', ':lua vim.lsp.buf.signature_help({focusable=false})<CR>')
+-- map('n', 'n', 'n:lua require("specs").show_specs()<CR>')
+-- map('n', 'N', 'N:lua require("specs").show_specs()<CR>')
 
 --> Packer commands
 map('n', '<leader>ps', ':w<CR>:so %<CR>:PackerSync<CR>')
@@ -40,8 +38,8 @@ map('n', 'gD',    '<cmd>lua vim.lsp.buf.declaration()<CR>')
 map('n', 'gr',    '<cmd>lua vim.lsp.buf.references()<CR>')
 map('n', 'gi',    '<cmd>lua vim.lsp.buf.implementation()<CR>')
 map('n', 'gh',    '<cmd>lua vim.lsp.buf.hover()<CR>')
-map('n', '<C-n>', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
-map('n', '<C-p>', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
+map('n', '<C-n>', '<cmd>lua vim.diagnostic.goto_next()<CR>')
+map('n', '<C-p>', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
 
 --> Telescope mappings
 map('n', '<leader>ff', ':lua require("telescope.builtin").find_files(require("general.utils").telescope_theme)<CR>')

@@ -2,14 +2,15 @@
 require("packer").startup { function(use)
 
 	-->  Testing and temporary
-	use { 'tamton-aquib/duck.nvim', config=[[require("duck").setup{}]] }
+	use { 'tamton-aquib/duck.nvim' }
 	use { 'tamton-aquib/staline.nvim', config=[[ require"ui.staline" ]]}
 	use { 'williamboman/nvim-lsp-installer', config=[[require("lsp.lsp_defaults")]] }
 
 	-- use { 'ggandor/lightspeed.nvim' }
 	-- use { "max397574/startup.nvim", config=[[require"ui.startup-config"]] }
 	-- use { 'joshdick/onedark.vim' }
-	-- use { 'hrsh7th/cmp-nvim-lsp-signature-help' }
+	-- use { 'hrsh7th/cmp-nvim-lsp-signature-help', after={"nvim-cmp"}}
+	-- use { "SmiteshP/nvim-gps", config=function() require("nvim-gps").setup() end, after={"nvim-treesitter"}}
 	-- use { 'max397574/better-escape.nvim', config=function() require("better_escape").setup{mapping='jk'} end }
 	-- use { 'simrat39/rust-tools.nvim', ft={'rust', 'rs'}, config=[[require("rust-tools").setup({})]] }
 	-- use { 'NarutoXY/themer.lua', branch='dev', config=[[ require("ui.themer") ]] }

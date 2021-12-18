@@ -2,16 +2,22 @@
 My neovim config
 
 ---
-![image](https://user-images.githubusercontent.com/77913442/136957780-0459199a-c79d-43d2-9f13-7a9c8011cd71.png)
-
-* Colorscheme: [custom](https://github.com/tamton-aquib/nvim/blob/main/lua/custom/noice_dark.lua)
+![image](https://user-images.githubusercontent.com/77913442/146633265-bdbcdae3-29b2-4058-b217-d5f2b162af40.png)
+![image](https://user-images.githubusercontent.com/77913442/146633549-c098e7ca-6f6d-4740-8ab6-531d8a030555.png)
+![image](https://user-images.githubusercontent.com/77913442/146633580-3fa0430e-228e-4010-97ca-46ea58cffc14.png)
 ---
+<!-- GARBAGE COLLECTOR
+![image](https://user-images.githubusercontent.com/77913442/136957780-0459199a-c79d-43d2-9f13-7a9c8011cd71.png)
+* Colorscheme: [custom](https://github.com/tamton-aquib/nvim/blob/main/lua/custom/noice_dark.lua)
+-->
 
-### Overall Structure
-* neovim version: 0.5
+### Summary
+
+* neovim version : 0.7
+* Colorscheme: [tokyodark.nvim](https://github.com/tiagovla/tokyodark.nvim)
 * Statusline and bufferline : [staline and stabline](https://github.com/tamton-aquib/staline.nvim)
-* LSP: builtin. (inside lua/lsp/)
-* Completion engine: nvim-cmp
+* LSP: builtin (config @[here](https://github.com/tamton-aquib/nvim/blob/dev/lua/lsp/lsp_defaults.lua))
+* Completion engine: [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) (config @[here](https://github.com/tamton-aquib/nvim/blob/dev/lua/lsp/cmp.lua))
 
 ### Structure:
 
@@ -23,7 +29,7 @@ My neovim config
    │  ├──  autocommands.lua
    │  ├──  mappings.lua
    │  ├──  packer.lua
-   │  ├──  startup.lua
+   │  ├──  start.lua
    │  ├──  utils.lua
    │  └──  settings.lua
    ├──   lsp
@@ -35,10 +41,10 @@ My neovim config
    │  ├──  neorg.lua
    │  ├──  snippets.lua
    │  ├──  telescope.lua
+   │  ├──  others.lua
    │  └──  treesittter.lua
    └──   ui
       ├──  colorschemes.lua
-      ├──  startup-config.lua
       └──  staline.lua
 ```
 

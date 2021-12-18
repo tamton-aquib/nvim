@@ -1,6 +1,6 @@
 local Colo = {}
 
--- TODO: NOICE COLOR PALETTE (port it in future)
+-- TODO: NOICE COLOR PALETTE (might port in future)
 -- "#c678dd", "#986fec", "#c882e7",
 -- "#5af78e", "#98c379", "#7eca9c",
 -- "#56b6c2", "#61afef", "#8485ce",
