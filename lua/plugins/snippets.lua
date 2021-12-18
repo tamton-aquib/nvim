@@ -1,8 +1,14 @@
-vim.cmd [[packadd LuaSnip]]
 local ls = require'luasnip'
-local map = vim.api.nvim_set_keymap
-local opts = {noremap = true, expr=true}
 local parse = ls.parser.parse_snippet
+
+local hash_include = [[
+#include<stdio.h>
+#include<stdlib.h>
+
+int main() {
+	${0:Noice}
+}
+]]
 
 local html_bp = [[
 <!DOCTYPE html>
@@ -24,8 +30,6 @@ local html_bp = [[
 </html>
 ]]
 
-local shebang = "#!/usr/bin/env python3\n"
-
 local f_name = vim.fn.expand('%:t:r')
 local react_rfc = [[
 import React from 'react';
@@ -38,16 +42,19 @@ const ]]..f_name..[[ = (${1}) => {
 
 export default ]]..f_name
 
-local high = [[
-${1:HighlightGroup} = { fg = "${2}", bg = "${3}" },${0}
-]]
-
 ls.snippets = {
 	all = {
 		parse({trig="html", wordTrig=true}, html_bp),
-		parse({trig="#!", wordTrig=true}, shebang),
 		parse({trig="rfc", wordTrig=true}, react_rfc),
-		parse({trig="high", wordTrig=true}, high),
 		parse({trig="conso", wordTrig=true}, [[console.log(${0})]])
+	},
+	python = {
+		parse({trig="#!", wordTrig=true}, "#!/usr/bin/env python3\n"),
+	},
+	rust = {
+		parse({trig="print", wordTrig=true}, [[println!("${0}");]])
+	},
+	c = {
+		parse({trig="#include", wordTrig=true}, hash_include),
 	}
 }

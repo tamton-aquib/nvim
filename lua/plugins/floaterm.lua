@@ -1,14 +1,13 @@
 local map = vim.api.nvim_set_keymap
 local noice = {noremap=true, silent=true}
-Open_term = require'toggleterm.terminal'.Terminal
+Open_term = require'toggleterm.terminal'.Terminal -- NOTE: yes its intentionally global :kek:
 
 require("toggleterm").setup{
 	hide_numbers = true,
 	start_in_insert = true,
 	insert_mappings = true,
-	-- open_mapping = [[<leader>t]],
-	shade_terminals = true,
-	shading_factor = '3',
+	shade_terminals = false,
+	-- shading_factor = '0',
 	persist_size = true,
 	close_on_exit = false,
 	direction = 'float',

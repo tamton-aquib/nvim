@@ -1,12 +1,10 @@
 
---> GENERAL SETTINGS AND MAPPINGS
-require 'general.startup'
-require 'general.settings'
+--> General stuff
+require 'general.start'
 require 'general.packer'
 require 'general.autocommands'
 require 'general.mappings'
+require 'general.settings'
 
---> CUSTOMS and THEMES section
-require 'custom.noice_board'.setup()
-require 'ui.colorschemes'.catppuccino(true)
--- require 'custom.noice_sus'.setup()
+require('general.utils').noice_board()
+require('ui.colorschemes').tokyodark(false)

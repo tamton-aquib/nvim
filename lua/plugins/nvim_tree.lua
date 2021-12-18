@@ -6,6 +6,7 @@ vim.g.nvim_tree_indent_markers = 1
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 
 require "nvim-tree".setup {
+	hijack_netrw = true,
 	view = {
 		mappings = {
 			list = {

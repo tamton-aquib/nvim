@@ -1,34 +1,38 @@
 local M = {}
 
 function M.indent_blankline()
-	-- vim.g.indentLine_enabled = 1
-	vim.g.indent_blankline_char = "▏"
-	vim.g.indent_blankline_filetype_exclude = {
-		"TelescopePrompt", "help", "terminal", "dashboard", "NvimTree",
-		"packer", "norg", "lspinfo", "lsp-installer"
+	require("indent_blankline").setup{
+		char = "▏", -- 
+		show_current_context = true,
+		strict_tabs = true,
+		filetype_exclude = {
+			"TelescopePrompt", "help", "terminal", "dashboard", "NvimTree",
+			"packer", "lspinfo", "lsp-installer"
+		},
+		buftype_exclude = { "terminal", "norg" }
 	}
-	vim.g.indent_blankline_buftype_exclude = {"terminal", "norg"}
 end
 
+-- TODO: make this tidy :kek:
 function M.specs()
-	vim.cmd [[hi Specs guibg=#bbbbbb]]
+	vim.cmd [[hi Specs guibg=#cccccc]]
 	require('specs').setup{
 		show_jumps  = true,
 		min_jump = 1,
 		popup = {
-			delay_ms = 0, -- delay before popup displays
-			inc_ms = 10, -- time increments used for fade/resize effects
-			blend = 50, -- starting blend, between 0-100 (fully transparent), see :h winblend
+			-- delay_ms = 1, -- delay before popup displays
+			inc_ms = 1, -- time increments used for fade/resize effects
+			blend = 100, -- starting blend, between 0-100 (fully transparent), see :h winblend
 			width = 6,
 			winhl = "Specs",
-			fader = require('specs').empty_fader,
-			resizer = require('specs').shrink_resizer
+			fader = require('specs').pulse_fader,
+			resizer = require('specs').empty_resizer
 		},
-		ignore_filetypes = {},
-		ignore_buftypes = {
-			nofile = true,
-		},
-	} -- aiuwhefawefjasdfasdf
+		-- ignore_filetypes = {},
+		-- ignore_buftypes = {
+			-- nofile = true,
+		-- },
+	}
 end
 
 function M.markdown_preview()

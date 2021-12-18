@@ -2,7 +2,8 @@
 require('telescope').setup{
 	defaults = {
 		vimgrep_arguments = {
-			'rg', '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case'
+			-- 'rg', '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case'
+			'rg', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case'
 		},
 		prompt_prefix = "   ",
 		selection_caret = " ",
@@ -24,8 +25,7 @@ require('telescope').setup{
 		generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
 		winblend = 0,
 		border = {},
-		-- borderchars = require"general.utils".border,
-		-- borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+		borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
 
 		color_devicons = true,
 		use_less = true,

@@ -8,22 +8,20 @@ vim.g.loaded_man = false
 vim.g.loaded_2html_plugin = false
 vim.g.loaded_remote_plugins = false
 
-vim.cmd [[ filetype plugin indent off ]]
 vim.opt.spell = false
 
-if pcall(require, 'impatient') then
-	require 'impatient'.enable_profile()
-end
+local ok, impatient = pcall(require, 'impatient')
+if ok then impatient.enable_profile() end
 
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-  vim.cmd 'packadd packer.nvim'
+	fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+	vim.cmd 'packadd packer.nvim'
 end
 
-require"packer".init {
-	profile = {enable = true},
+require("packer").init {
+	profile = { enable = true },
 	display = {
 		done_sym = "✓",
 		error_sym = "×",
