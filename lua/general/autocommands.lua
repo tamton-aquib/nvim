@@ -1,6 +1,6 @@
 
 --> NEW
-vim.cmd [[au BufEnter * setlocal fo-=c fo-=r fo-=o]]
+-- vim.cmd [[au BufEnter * setlocal fo-=c fo-=r fo-=o]]
 vim.cmd [[au BufEnter *.json set cole=0]]
 vim.cmd [[au BufEnter *.md setlocal spell]]
 vim.cmd [[au BufEnter packer.lua call matchadd("TSFuncBuiltin", ".*$")]]

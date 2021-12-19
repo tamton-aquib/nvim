@@ -1,5 +1,5 @@
 local set = vim.opt
-
+_G.noice = function(stuff) print(vim.inspect(stuff)) end
 
 --> General settings
 set.wrap = false
@@ -58,6 +58,7 @@ set.wildignore = { '*.pyc,__pycache__' }
 set.fillchars:append({eob=' ', fold=' ', foldopen="", foldsep=" ", foldclose=""})
 set.shortmess:append({c=true, s=true, A=true, W=true})
 set.iskeyword:append('-')
+
 local ok, notify = pcall(require, "notify")
 if ok then vim.notify = notify end
 

@@ -1,6 +1,8 @@
 local ls = require'luasnip'
 local parse = ls.parser.parse_snippet
 
+local pp = [[println!("{${0}}");]]
+
 local hash_include = [[
 #include<stdio.h>
 #include<stdlib.h>
@@ -52,7 +54,7 @@ ls.snippets = {
 		parse({trig="#!", wordTrig=true}, "#!/usr/bin/env python3\n"),
 	},
 	rust = {
-		parse({trig="print", wordTrig=true}, [[println!("${0}");]])
+		parse({trig="ppp", wordTrig=true}, pp)
 	},
 	c = {
 		parse({trig="#include", wordTrig=true}, hash_include),
