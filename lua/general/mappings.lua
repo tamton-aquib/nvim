@@ -24,18 +24,19 @@ map('n', '<leader>pc', ':PackerCompile<CR>')
 
 --> essentials.nvim mappings
 map('n', '<F2>'     ,  ':lua require"essentials".rename()<CR>')
-map('v', 'gl'       ,  ':lua require"essentials".get_git_url()<CR>')
 map('v', '<leader>/',  ':lua require"essentials".toggle_comment("nice")<CR>')
 map('n', '<leader>/',  ':lua require"essentials".toggle_comment()<CR>')
 map('n', '<leader>r',  ':w<CR>:lua require("essentials").run_file("horizontal")<CR>')
 map('n', '<leader>s',  ':lua require"essentials".swap_bool()<CR>')
 map('n', 'gx'       ,  ':lua require"essentials".go_to_url()<CR>')
+map('v', 'gl'       ,  ':lua require"essentials".get_git_url()<CR>')
 map('n', '<leader>cs', ':lua require"essentials".cheat_sh()<CR>')
 
 --> LSP mappings
 map('n', 'gd',    '<cmd>lua vim.lsp.buf.definition()<CR>')
 map('n', 'gD',    '<cmd>lua vim.lsp.buf.declaration()<CR>')
-map('n', 'gr',    '<cmd>lua vim.lsp.buf.references()<CR>')
+-- map('n', 'gr',    '<cmd>lua vim.lsp.buf.references()<CR>')
+map('n', 'gr',    ':NiceReference<CR>')
 map('n', 'gi',    '<cmd>lua vim.lsp.buf.implementation()<CR>')
 map('n', 'gh',    '<cmd>lua vim.lsp.buf.hover()<CR>')
 map('n', '<C-n>', '<cmd>lua vim.diagnostic.goto_next()<CR>')

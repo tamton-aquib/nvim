@@ -1,5 +1,5 @@
 local cmp = require('cmp')
-local luasnip = require "luasnip"
+local luasnip = require('luasnip')
 
 local check_back_space = function()
 	local col = vim.fn.col '.' - 1

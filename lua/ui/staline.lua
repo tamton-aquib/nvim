@@ -38,7 +38,7 @@ Styles.simple_line = {
 			end, ' '
 		},
 	},
-	mode_colors = { n = "#986fec" },
+	mode_colors = { n = "#94c461" },
 
 	defaults = {
 		true_colors = true,

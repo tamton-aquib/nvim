@@ -1,7 +1,6 @@
 local ls = require'luasnip'
 local parse = ls.parser.parse_snippet
-
-local pp = [[println!("{${0}}");]]
+local d = ls.dynamic_node
 
 local hash_include = [[
 #include<stdio.h>
@@ -32,31 +31,38 @@ local html_bp = [[
 </html>
 ]]
 
-local f_name = vim.fn.expand('%:t:r')
-local react_rfc = [[
-import React from 'react';
 
-const ]]..f_name..[[ = (${1}) => {
-	return (
-		${0}
-	);
+local prints = {
+	rust = [[println!("{${0}}");]],
+	python = [[print(${0})]],
+	javascript = [[console.log(${0});]],
+	lua = [[print(${0})]],
+	c = [[printf("${0}");]]
 }
 
-export default ]]..f_name
-
 ls.snippets = {
-	all = {
-		parse({trig="html", wordTrig=true}, html_bp),
-		parse({trig="rfc", wordTrig=true}, react_rfc),
-		parse({trig="conso", wordTrig=true}, [[console.log(${0})]])
-	},
+	-- all = {
+		-- parse({trig="pp", wordTrig=true}, prints[vim.bo.ft] or ""),
+	-- },
+
 	python = {
 		parse({trig="#!", wordTrig=true}, "#!/usr/bin/env python3\n"),
+		parse({trig="pp", wordTrig=true}, prints.python),
 	},
 	rust = {
-		parse({trig="ppp", wordTrig=true}, pp)
+		parse({trig="pp", wordTrig=true}, prints.rust),
+	},
+	lua = {
+		parse({trig="pp", wordTrig=true}, prints.lua),
+	},
+	javascript = {
+		parse({trig="pp", wordTrig=true}, prints.javascript),
 	},
 	c = {
 		parse({trig="#include", wordTrig=true}, hash_include),
+		parse({trig="pp", wordTrig=true}, prints.c),
+	},
+	html = {
+		parse({trig="html", wordTrig=true}, html_bp),
 	}
 }
