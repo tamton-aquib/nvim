@@ -9,7 +9,6 @@ set.conceallevel = 2
 set.mouse = "a"
 set.encoding = "UTF-8"
 set.fileencoding = "UTF-8"
--- set.hidden = true
 set.scrolloff = 8
 set.timeoutlen = 300
 set.updatetime = 500
@@ -59,6 +58,7 @@ set.wildignore = { '*.pyc,__pycache__' }
 set.fillchars:append({eob=' ', fold=' ', foldopen="", foldsep=" ", foldclose=""})
 set.shortmess:append({c=true, s=true, A=true, W=true})
 set.iskeyword:append('-')
+
 local ok, notify = pcall(require, "notify")
 if ok then vim.notify = notify end
 

@@ -6,7 +6,7 @@ require("packer").startup { function(use)
 	use { 'tamton-aquib/staline.nvim', config=[[require"ui.staline"]]}
 	use { 'williamboman/nvim-lsp-installer', config=[[require("lsp.lsp_defaults")]] }
 	-- use { 'chentau/marks.nvim', config=[[require("marks").setup{}]] }
-	use { 'wiliamks/nice-reference.nvim', config=[[require 'nice-reference'.setup({})]] }
+	use { 'wiliamks/nice-reference.nvim', config=[[require 'nice-reference'.setup({})]], cmd="NiceReference" }
 
 	-- use { 'NarutoXY/themer.lua', branch='dev', config=[[ require("ui.themer") ]] }
 	-- use { 'code-biscuits/nvim-biscuits', config=[[require("nvim-biscuits").setup{}]] }

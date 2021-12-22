@@ -13,43 +13,6 @@ require('stabline').setup {
 	padding = 2
 }
 
-Styles.max_line = {
-	sections = {
-		left = {
-			' ', 'right_sep', '- ', '-file_name', '- ', 'left_sep',
-			' ', 'right_sep', '- ', '-branch', '- ', 'left_sep'
-		},
-		mid = {
-			'right_sep', '- ', '-mode', '- ', 'left_sep'
-		},
-		right = {
-			'right_sep', '- ', '-line_column', '- ', 'left_sep'
-		}
-	},
-
-	defaults = {
-		fg = "black",
-		left_separator  = "",
-		right_separator = "",
-		true_colors = true,
-		line_column = "[%l:%c] %p%% ",
-		font_active = "bold",
-		-- font_active = "bold"
-	},
-	mode_colors = {
-		-- n = "#98c379",
-		-- i = "#56b6c2",
-		-- ic = "#56b6c2",
-		-- c = "#c678dd",
-		-- v = "#61afef",       -- etc
-		n  = "#cccccd",
-		i  = "#cccccd",
-		ic = "#cccccd",
-		c  = "#cccccd",
-		v  = "#cccccd",       -- etc
-	},
-}
-
 Styles.simple_line = {
 	sections = {
 		left = {
