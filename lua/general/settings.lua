@@ -1,5 +1,6 @@
 local set = vim.opt
 
+set.cursorline = true
 
 --> General settings
 set.wrap = false
@@ -8,7 +9,7 @@ set.conceallevel = 2
 set.mouse = "a"
 set.encoding = "UTF-8"
 set.fileencoding = "UTF-8"
-set.hidden = true
+-- set.hidden = true
 set.scrolloff = 8
 set.timeoutlen = 300
 set.updatetime = 500
@@ -25,7 +26,7 @@ set.incsearch = true
 set.showmode = false
 set.showtabline = 2
 set.laststatus = 2
-set.completeopt="menu,menuone,noselect"
+set.completeopt = "menu,menuone,noselect"
 
 --> Fold Settings
 set.foldenable = true

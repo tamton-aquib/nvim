@@ -1,18 +1,5 @@
 Util = {}
 
---> Float window for diagnostics
-function Util.show_diagnostics()
-	vim.diagnostic.open_float(0, {
-		header = { "律 Diagnostics", "String" },
-		focusable = false,
-		prefix = function(_, _, _)
-			-- local hl = "Diagnostic"..signs[diagnostic.severity].name
-			-- local icon = signs[diagnostic.severity].icon
-			return " " , "String" -- icons:        ﬌  
-		end
-	})
-end
-
 --> Centering an array of strings
 function Util.center(dict)
     local new_dict = {}

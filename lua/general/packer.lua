@@ -3,9 +3,13 @@ require("packer").startup { function(use)
 
 	-->  Testing and temporary
 	use { 'tamton-aquib/duck.nvim' }
-	use { 'tamton-aquib/staline.nvim', config=[[ require"ui.staline" ]]}
+	use { 'tamton-aquib/staline.nvim', config=[[require"ui.staline"]]}
 	use { 'williamboman/nvim-lsp-installer', config=[[require("lsp.lsp_defaults")]] }
+	-- use { 'chentau/marks.nvim', config=[[require("marks").setup{}]] }
+	use { 'wiliamks/nice-reference.nvim', config=[[require 'nice-reference'.setup({})]] }
 
+	-- use { 'NarutoXY/themer.lua', branch='dev', config=[[ require("ui.themer") ]] }
+	-- use { 'code-biscuits/nvim-biscuits', config=[[require("nvim-biscuits").setup{}]] }
 	-- use { 'ggandor/lightspeed.nvim' }
 	-- use { "max397574/startup.nvim", config=[[require"ui.startup-config"]] }
 	-- use { 'joshdick/onedark.vim' }
@@ -13,7 +17,6 @@ require("packer").startup { function(use)
 	-- use { "SmiteshP/nvim-gps", config=function() require("nvim-gps").setup() end, after={"nvim-treesitter"}}
 	-- use { 'max397574/better-escape.nvim', config=function() require("better_escape").setup{mapping='jk'} end }
 	-- use { 'simrat39/rust-tools.nvim', ft={'rust', 'rs'}, config=[[require("rust-tools").setup({})]] }
-	-- use { 'NarutoXY/themer.lua', branch='dev', config=[[ require("ui.themer") ]] }
 	-- use { 'abecodes/tabout.nvim', config=function() require('tabout').setup {} end }
 	-- use { "blackCauldron7/surround.nvim", config = function() require"surround".setup {mappings_style = "sandwich"} end }
 	-- use { 'edluffy/specs.nvim', config=function() require("plugins.others").specs() end }

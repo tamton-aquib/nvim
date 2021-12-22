@@ -19,7 +19,16 @@ vim.diagnostic.config({
 	virtual_text = false,
 	underline={Error=true},
 	signs = true,
-	float = { border = border }
+	float = {
+		border = border,
+		header = { "律 Diagnostics", "String" },
+		focusable = false,
+		prefix = function(_, _, _)
+			-- local hl = "Diagnostic"..signs[diagnostic.severity].name
+			-- local icon = signs[diagnostic.severity].icon
+			return " " , "String" -- icons:        ﬌  
+		end
+	}
 })
 
 local luadev = require("lua-dev").setup {
@@ -31,6 +40,14 @@ local luadev = require("lua-dev").setup {
 }
 
 require("nvim-lsp-installer").on_server_ready(function(server)
-	local opts = server.name == "sumneko_lua" and luadev or {}
-    server:setup(opts)
+	local opts = {}
+	-- local opts = server.name == "sumneko_lua" and luadev or {}
+
+	if server.name == "rust_analyzer" then
+		server:setup({flags = { exit_timeout = false }})
+	elseif server.name ~= "sumneko_lua" then
+		server:setup(opts)
+	end
 end)
+
+require"lspconfig".sumneko_lua.setup(luadev)
