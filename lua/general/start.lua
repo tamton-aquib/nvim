@@ -21,6 +21,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 require("packer").init {
+	git = { depth = 1 },
 	profile = { enable = true },
 	display = {
 		done_sym = "✓",

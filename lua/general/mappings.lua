@@ -22,6 +22,11 @@ map('n', '<leader>ps', ':w<CR>:so %<CR>:PackerSync<CR>')
 map('n', '<leader>pp', ':PackerProfile<CR>')
 map('n', '<leader>pc', ':PackerCompile<CR>')
 
+--> Goto-Preview maps
+map('n', 'gpd', '<cmd>lua require("goto-preview").goto_preview_definition()<CR>')
+map('n', 'gpi', '<cmd>lua require("goto-preview").goto_preview_implementation()<CR>')
+map('n', 'gpr', '<cmd>lua require("goto-preview").goto_preview_references()<CR>')
+
 --> essentials.nvim mappings
 map('n', '<F2>'     ,  ':lua require"essentials".rename()<CR>')
 map('v', '<leader>/',  ':lua require"essentials".toggle_comment("nice")<CR>')
