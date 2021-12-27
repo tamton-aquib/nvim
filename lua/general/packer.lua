@@ -2,19 +2,21 @@
 require("packer").startup { function(use)
 
 	-->  Testing and temporary
-	use { 'tamton-aquib/duck.nvim' }
-	use { 'tamton-aquib/staline.nvim', config=[[require"ui.staline"]]}
+	use { 'tamton-aquib/staline.nvim', config=[[require"ui.staline"]] }
 	use { 'williamboman/nvim-lsp-installer', config=[[require("lsp.lsp_defaults")]] }
-	use { 'wiliamks/nice-reference.nvim', config=[[require 'nice-reference'.setup({})]], cmd="NiceReference" }
-	use { 'rmagatti/goto-preview', config=[[require("goto-preview").setup({border=require("general.utils").border})]] }
-	-- use { 'chentau/marks.nvim', config=[[require("marks").setup{}]] }
+	use { 'rmagatti/goto-preview', config=[[require("plugins.others").goto_preview()]] }
 
-	-- use { 'NarutoXY/themer.lua', branch='dev', config=[[ require("ui.themer") ]] }
+	-->  Might use in future
+	-- use { 'wiliamks/nice-reference.nvim', config=[[require 'nice-reference'.setup({})]], cmd="NiceReference" }
+	-- use { 'max397574/hangman.nvim' }
+	-- use { 'narutoxy/graphene.lua' }
+	-- use { 'NarutoXY/themer.lua', branch='dev' }
+	-- use { 'rlch/github-notifications.nvim' }
+	-- use { 'chentau/marks.nvim', config=[[require("marks").setup{}]] }
 	-- use { 'code-biscuits/nvim-biscuits', config=[[require("nvim-biscuits").setup{}]] }
 	-- use { 'ggandor/lightspeed.nvim' }
 	-- use { "max397574/startup.nvim", config=[[require"ui.startup-config"]] }
 	-- use { 'joshdick/onedark.vim' }
-	-- use { 'hrsh7th/cmp-nvim-lsp-signature-help', after={"nvim-cmp"}}
 	-- use { "SmiteshP/nvim-gps", config=function() require("nvim-gps").setup() end, after={"nvim-treesitter"}}
 	-- use { 'max397574/better-escape.nvim', config=function() require("better_escape").setup{mapping='jk'} end }
 	-- use { 'simrat39/rust-tools.nvim', ft={'rust', 'rs'}, config=[[require("rust-tools").setup({})]] }
@@ -43,17 +45,20 @@ require("packer").startup { function(use)
 	use { 'hrsh7th/cmp-emoji', after={"nvim-cmp"}  }
 	use { 'hrsh7th/cmp-nvim-lua', after={"nvim-cmp"}  }
 	use { 'saadparwaiz1/cmp_luasnip', after={"nvim-cmp"}  }
+	use { 'hrsh7th/cmp-nvim-lsp-signature-help', after={"nvim-cmp"}}
 
 	-->  TELESCOPE, TREESITTER, NEORG
 	use { 'nvim-lua/plenary.nvim' }
 	use { 'nvim-treesitter/playground' , after="nvim-treesitter" }
-	use { 'nvim-telescope/telescope.nvim', cmd='Telescope' , config=[[ require"plugins.telescope" ]], module="telescope"}
+	-- use { 'nvim-telescope/telescope.nvim', cmd='Telescope' , config=[[ require"plugins.telescope" ]], module="telescope"}
+	use { 'nvim-telescope/telescope.nvim', config=[[ require"plugins.telescope" ]]}
 	use { 'nvim-treesitter/nvim-treesitter' , event='BufRead', config=[[ require"plugins.treesittter" ]] }
-	use { 'nvim-neorg/neorg', ft={"norg"}, after={"nvim-treesitter", "telescope.nvim"}, config = function() require "plugins.neorg" end }
+	use { 'nvim-neorg/neorg', branch="log-notify", ft={"norg"}, after={"nvim-treesitter", "telescope.nvim"}, config = function() require "plugins.neorg" end }
 	use { 'nvim-neorg/neorg-telescope' }
 
 	-->  GENERAL PURPOSE
 	use { 'folke/lua-dev.nvim' }
+	use { 'tamton-aquib/duck.nvim' }
 	use { 'nathom/filetype.nvim' }
 	use { 'rcarriga/nvim-notify' }
 	use { 'tamton-aquib/essentials.nvim' }

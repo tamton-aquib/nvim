@@ -13,6 +13,16 @@ function M.indent_blankline()
 	}
 end
 
+function M.goto_preview()
+	require("goto-preview").setup({
+		border = require("general.utils").border,
+		references = { -- Configure the telescope UI for slowing the references cycling window.
+			-- telescope = require("general.utils").telescope_theme
+			telescope = { layout_strategy="cursor", previewer=false }
+		};
+	})
+end
+
 -- TODO: make this tidy :kek:
 function M.specs()
 	vim.cmd [[hi Specs guibg=#cccccc]]

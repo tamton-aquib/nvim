@@ -4,14 +4,14 @@ vim.g.loaded_matchit = false
 vim.g.loaded_netrwPlugin = false
 vim.g.loaded_tarPlugin = false
 vim.g.loaded_zipPlugin = false
-vim.g.loaded_man = false
+-- vim.g.loaded_man = false
 vim.g.loaded_2html_plugin = false
 vim.g.loaded_remote_plugins = false
 
 vim.opt.spell = false
 
-local ok, impatient = pcall(require, 'impatient')
-if ok then impatient.enable_profile() end
+-- local ok, impatient = pcall(require, 'impatient')
+-- if ok then impatient.enable_profile() end
 
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'

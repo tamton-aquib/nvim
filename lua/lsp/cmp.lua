@@ -16,6 +16,7 @@ local source_names = {
 	path = "[Path]",
 	luasnip = "[Snippet]",
 	buffer = "[Buffer]",
+	nvim_lsp_signature_help = "[sig_help]",
 }
 local kind_icons = {
 	Text = ' ',
@@ -113,7 +114,7 @@ cmp.setup {
 		{ name = 'emoji'},
 		{ name = 'neorg'},
 		{ name = 'crates'},
-		-- { name = 'nvim_lsp_signature_help' },
+		{ name = 'nvim_lsp_signature_help' },
 	},
 
 	experimental = {

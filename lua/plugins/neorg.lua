@@ -64,6 +64,6 @@ require('neorg').setup {
 		}
 	},
 	-- logger = {
-	-- level = "trace"
+		-- level = "info"
 	-- }
 }

@@ -23,9 +23,9 @@ map('n', '<leader>pp', ':PackerProfile<CR>')
 map('n', '<leader>pc', ':PackerCompile<CR>')
 
 --> Goto-Preview maps
-map('n', 'gpd', '<cmd>lua require("goto-preview").goto_preview_definition()<CR>')
-map('n', 'gpi', '<cmd>lua require("goto-preview").goto_preview_implementation()<CR>')
-map('n', 'gpr', '<cmd>lua require("goto-preview").goto_preview_references()<CR>')
+map('n', 'gd', '<cmd>lua require("goto-preview").goto_preview_definition()<CR>')
+map('n', 'gi', '<cmd>lua require("goto-preview").goto_preview_implementation()<CR>')
+map('n', 'gr', '<cmd>lua require("goto-preview").goto_preview_references()<CR>')
 
 --> essentials.nvim mappings
 map('n', '<F2>'     ,  ':lua require"essentials".rename()<CR>')
@@ -35,14 +35,15 @@ map('n', '<leader>r',  ':w<CR>:lua require("essentials").run_file("horizontal")<
 map('n', '<leader>s',  ':lua require"essentials".swap_bool()<CR>')
 map('n', 'gx'       ,  ':lua require"essentials".go_to_url()<CR>')
 map('v', 'gl'       ,  ':lua require"essentials".get_git_url()<CR>')
+map('n', 'gl'       ,  ':lua require"essentials".get_git_url()<CR>')
 map('n', '<leader>cs', ':lua require"essentials".cheat_sh()<CR>')
 
 --> LSP mappings
-map('n', 'gd',    '<cmd>lua vim.lsp.buf.definition()<CR>')
-map('n', 'gD',    '<cmd>lua vim.lsp.buf.declaration()<CR>')
+-- map('n', 'gd',    '<cmd>lua vim.lsp.buf.definition()<CR>')
+-- map('n', 'gD',    '<cmd>lua vim.lsp.buf.declaration()<CR>')
 -- map('n', 'gr',    '<cmd>lua vim.lsp.buf.references()<CR>')
-map('n', 'gr',    ':NiceReference<CR>')
-map('n', 'gi',    '<cmd>lua vim.lsp.buf.implementation()<CR>')
+-- map('n', 'gr',    ':NiceReference<CR>')
+-- map('n', 'gi',    '<cmd>lua vim.lsp.buf.implementation()<CR>')
 map('n', 'gh',    '<cmd>lua vim.lsp.buf.hover()<CR>')
 map('n', '<C-n>', '<cmd>lua vim.diagnostic.goto_next()<CR>')
 map('n', '<C-p>', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
