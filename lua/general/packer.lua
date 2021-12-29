@@ -3,14 +3,15 @@ require("packer").startup { function(use)
 
 	-->  Testing and temporary
 	use { 'tamton-aquib/staline.nvim', config=[[require"ui.staline"]] }
-	use { 'williamboman/nvim-lsp-installer', config=[[require("lsp.lsp_defaults")]] }
+	use { 'williamboman/nvim-lsp-installer', config=[[require("lsp.lsp_installer")]] }
 	use { 'rmagatti/goto-preview', config=[[require("plugins.others").goto_preview()]] }
+	use { 'tiagovla/tokyodark.nvim', config=[[require('ui.colorschemes').tokyodark(false)]] }
+	-- use { 'NarutoXY/themer.lua', branch='dev', config=[[require("ui.themer")]]}
 
 	-->  Might use in future
 	-- use { 'wiliamks/nice-reference.nvim', config=[[require 'nice-reference'.setup({})]], cmd="NiceReference" }
 	-- use { 'max397574/hangman.nvim' }
 	-- use { 'narutoxy/graphene.lua' }
-	-- use { 'NarutoXY/themer.lua', branch='dev' }
 	-- use { 'rlch/github-notifications.nvim' }
 	-- use { 'chentau/marks.nvim', config=[[require("marks").setup{}]] }
 	-- use { 'code-biscuits/nvim-biscuits', config=[[require("nvim-biscuits").setup{}]] }
@@ -29,7 +30,6 @@ require("packer").startup { function(use)
 	use { 'folke/todo-comments.nvim', event='BufReadPost' , config=[[ require'todo-comments'.setup{} ]] }
 	use { 'folke/tokyonight.nvim' }
 	use { 'sainnhe/sonokai' }
-	use { 'tiagovla/tokyodark.nvim' }
 	use { 'sainnhe/gruvbox-material' }
 	use { 'kyazdani42/nvim-web-devicons' , config=[[ require "nvim-web-devicons".setup{} ]] }
 	use { 'norcalli/nvim-colorizer.lua' , event='BufReadPre', config = [[ require"colorizer".setup() ]] }
@@ -51,9 +51,9 @@ require("packer").startup { function(use)
 	use { 'nvim-lua/plenary.nvim' }
 	use { 'nvim-treesitter/playground' , after="nvim-treesitter" }
 	-- use { 'nvim-telescope/telescope.nvim', cmd='Telescope' , config=[[ require"plugins.telescope" ]], module="telescope"}
-	use { 'nvim-telescope/telescope.nvim', config=[[ require"plugins.telescope" ]]}
+	use { 'nvim-telescope/telescope.nvim', config=[[ require"plugins.telescope" ]] }
 	use { 'nvim-treesitter/nvim-treesitter' , event='BufRead', config=[[ require"plugins.treesittter" ]] }
-	use { 'nvim-neorg/neorg', branch="log-notify", ft={"norg"}, after={"nvim-treesitter", "telescope.nvim"}, config = function() require "plugins.neorg" end }
+	use { 'nvim-neorg/neorg', branch="better-concealing-performance", ft={"norg"}, after={"nvim-treesitter", "telescope.nvim"}, config = function() require "plugins.neorg" end }
 	use { 'nvim-neorg/neorg-telescope' }
 
 	-->  GENERAL PURPOSE

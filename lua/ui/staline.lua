@@ -35,7 +35,7 @@ Styles.simple_line = {
 		},
 		right = { '%l/%L  :%c  ',
 			function()
-				return " "..os.date("%I:%M %P")
+				return " "..os.date("%I:%M %P"):upper()
 			end,
 			'  ',
 			function()

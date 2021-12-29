@@ -67,7 +67,7 @@ local borders = {
 	{ "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" },
 	{ "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
 }
-Util.border = borders[1]
+Util.border = borders[2]
 
 --> Custom telescope theme
 Util.telescope_theme = {
