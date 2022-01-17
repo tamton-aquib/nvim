@@ -8,5 +8,5 @@ require 'general.settings'
 
 -->  UI Related
 require('general.utils').noice_board()
-require('ui.colorschemes').tokyonight(false)
+require('ui.colorschemes').tokyodark(true)
 require('lsp.lsp_defaults')

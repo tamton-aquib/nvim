@@ -1,4 +1,4 @@
---> Noice icons:           
+--> Noice icons:             ⌬
 --> left_sep   :          
 --> right_sep  :          
 --> TODO: cleanup
@@ -34,10 +34,10 @@ Styles.simple_line = {
 			'%<',
 		},
 		right = { '%l/%L  :%c  ',
-			function()
-				return " "..os.date("%I:%M %P"):upper()
-			end,
 			'  ',
+			function()
+				return " "..os.date("%I:%M %p  "):upper()
+			end,
 			function()
 				local current_line = vim.fn.line "."
 				local total_lines = vim.fn.line "$"

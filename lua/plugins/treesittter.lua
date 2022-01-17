@@ -1,5 +1,6 @@
 -- vim.cmd [[packadd nvim-treesitter]]
 local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
+require 'nvim-treesitter.install'.compilers = { "clang" }
 
 parser_configs.norg = {
     install_info = {
@@ -10,7 +11,7 @@ parser_configs.norg = {
 }
 
 require('nvim-treesitter.configs').setup {
-	ensure_installed = { "norg" ,"lua", "python", "rust" },
+	-- ensure_installed = { "norg" ,"lua", "python", "rust" },
 	highlight = {
 		enable = true,
 	},

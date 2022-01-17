@@ -4,7 +4,8 @@ local function map(mode, key, mapping) vim.api.nvim_set_keymap(mode, key, mappin
 
 --> TEMP and TEST maps
 map('n', '<leader>w',  ':lua require("general.utils").close_command()<CR>')
-map('n', '<leader>m',  ':FocusMaximise<CR>')
+-- map('n', '<leader>m',  ':FocusMaximise<CR>')
+map('n', '<leader>z',  ':NeoZoomToggle<CR>')
 map('n', '<leader>mp', ':MarkdownPreviewToggle<CR>')
 map('n', "c", '"_c')
 map('n', "C", '"_C')

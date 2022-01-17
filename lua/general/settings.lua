@@ -41,8 +41,8 @@ set.termguicolors = true
 set.background = "dark"
 set.number = true
 set.relativenumber = true
-set.title = true
-set.titlestring = "  Editing %f..."
+-- set.title = true
+-- set.titlestring = "  Editing %f..."
 
 --> Tabspace settings
 set.shiftwidth = 4
