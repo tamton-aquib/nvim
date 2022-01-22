@@ -4,10 +4,10 @@ require("packer").startup { function(use)
 	-->  Testing and temporary
 	-- use { 'elihunter173/dirbuf.nvim' }
 	use { 'tamton-aquib/staline.nvim', config=[[require"ui.staline"]] }
-	use { 'williamboman/nvim-lsp-installer', config=[[require("lsp.lsp_installer")]] }
 	use { 'rmagatti/goto-preview', config=[[require("plugins.others").goto_preview()]] }
-	use { 'nyngwang/NeoZoom.lua' }
-	-- use { 'NarutoXY/themer.lua', branch='dev', config=[[require("ui.themer")]]}
+	use { 'NarutoXY/themer.lua' }
+	-- use { 'nyngwang/NeoZoom.lua' }
+	-- use { '~/STUFF/themer.lua' }
 
 	-->  Might use in future
 	-- use { 'wiliamks/nice-reference.nvim', config=[[require 'nice-reference'.setup({})]], cmd="NiceReference" }
@@ -29,7 +29,7 @@ require("packer").startup { function(use)
 
 	-->  THEMES AND UI
 	use { 'folke/todo-comments.nvim', event='BufReadPost' , config=[[ require'todo-comments'.setup{} ]] }
-	use { 'tiagovla/tokyodark.nvim' }
+	-- use { 'tiagovla/tokyodark.nvim' }
 	-- use { 'folke/tokyonight.nvim' }
 	-- use { 'sainnhe/sonokai' }
 	-- use { 'sainnhe/gruvbox-material' }
@@ -48,11 +48,13 @@ require("packer").startup { function(use)
 	use { 'hrsh7th/cmp-nvim-lua', after={"nvim-cmp"}  }
 	use { 'saadparwaiz1/cmp_luasnip', after={"nvim-cmp"}  }
 	use { 'hrsh7th/cmp-nvim-lsp-signature-help', after={"nvim-cmp"}}
+	use { 'williamboman/nvim-lsp-installer', config=[[require("lsp.lsp_installer")]] }
 
 	-->  TELESCOPE, TREESITTER, NEORG
 	use { 'nvim-lua/plenary.nvim' }
-	use { 'nvim-treesitter/playground' , after="nvim-treesitter" }
+	-- use { 'nvim-treesitter/playground' , after="nvim-treesitter" }
 	use { 'nvim-telescope/telescope.nvim', cmd='Telescope' , config=[[ require"plugins.telescope" ]], module="telescope"}
+	-- use { 'nvim-treesitter/nvim-treesitter' , event='BufRead', config=[[ require"plugins.treesittter" ]], commit = "668de0951a36ef17016074f1120b6aacbe6c4515" }
 	use { 'nvim-treesitter/nvim-treesitter' , event='BufRead', config=[[ require"plugins.treesittter" ]] }
 	use { 'nvim-neorg/neorg', ft={"norg"}, after={"nvim-treesitter", "telescope.nvim"}, config = function() require "plugins.neorg" end }
 	use { 'nvim-neorg/neorg-telescope' }
