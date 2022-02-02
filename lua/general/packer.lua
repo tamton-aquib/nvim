@@ -2,14 +2,17 @@
 require("packer").startup { function(use)
 
 	-->  Testing and temporary
-	-- use { 'elihunter173/dirbuf.nvim' }
-	use { 'tamton-aquib/staline.nvim', config=[[require"ui.staline"]] }
-	use { 'rmagatti/goto-preview', config=[[require("plugins.others").goto_preview()]] }
-	use { 'NarutoXY/themer.lua' }
-	-- use { 'nyngwang/NeoZoom.lua' }
-	-- use { '~/STUFF/themer.lua' }
+	use { 'tamton-aquib/staline.nvim', config=function() require"ui.staline" end }
+	use { 'tiagovla/tokyodark.nvim' }
+	use { 'danymat/neogen', config=function() require("neogen").setup{enable=true} end }
+	-- use { 'themercorp/themer.lua', branch='dev' }
 
 	-->  Might use in future
+	-- use { 'rmagatti/goto-preview', config=function() require("plugins.others").goto_preview() end }
+	-- use { 'nyngwang/NeoZoom.lua', cmd="NeoZoomToggle" }
+	-- use { 'j-hui/fidget.nvim', config=function() require"fidget".setup{text={spinner="moon"}} end }
+	-- use { 'elihunter173/dirbuf.nvim' }
+	-- use { 'sunjon/stylish.nvim', config=function() vim.ui.menu = require('stylish').ui_menu() end }
 	-- use { 'wiliamks/nice-reference.nvim', config=[[require 'nice-reference'.setup({})]], cmd="NiceReference" }
 	-- use { 'max397574/hangman.nvim' }
 	-- use { 'narutoxy/graphene.lua' }
@@ -19,6 +22,7 @@ require("packer").startup { function(use)
 	-- use { 'ggandor/lightspeed.nvim' }
 	-- use { "max397574/startup.nvim", config=[[require"ui.startup-config"]] }
 	-- use { 'joshdick/onedark.vim' }
+	-- use { 'mjlbach/onedark.nvim' }
 	-- use { "SmiteshP/nvim-gps", config=function() require("nvim-gps").setup() end, after={"nvim-treesitter"}}
 	-- use { 'max397574/better-escape.nvim', config=function() require("better_escape").setup{mapping='jk'} end }
 	-- use { 'simrat39/rust-tools.nvim', ft={'rust', 'rs'}, config=[[require("rust-tools").setup({})]] }
@@ -28,19 +32,15 @@ require("packer").startup { function(use)
 	-- use { 'Pocco81/TrueZen.nvim' , config=function() require"true-zen".setup() end }
 
 	-->  THEMES AND UI
-	use { 'folke/todo-comments.nvim', event='BufReadPost' , config=[[ require'todo-comments'.setup{} ]] }
-	-- use { 'tiagovla/tokyodark.nvim' }
-	-- use { 'folke/tokyonight.nvim' }
-	-- use { 'sainnhe/sonokai' }
-	-- use { 'sainnhe/gruvbox-material' }
-	use { 'kyazdani42/nvim-web-devicons', config=[[ require "nvim-web-devicons".setup{} ]] }
-	use { 'norcalli/nvim-colorizer.lua', event='BufReadPre', config = [[ require"colorizer".setup() ]] }
-	use { 'lewis6991/gitsigns.nvim', config = [[ require'gitsigns'.setup{} ]] , event='BufRead' }
+	use { 'folke/todo-comments.nvim', event='BufReadPost' , config=function() require'todo-comments'.setup{} end }
+	use { 'kyazdani42/nvim-web-devicons', config=function() require "nvim-web-devicons".setup{} end }
+	-- use { 'norcalli/nvim-colorizer.lua', event='BufReadPre', config = function() require"colorizer".setup() end }
+	use { 'lewis6991/gitsigns.nvim', config=function() require'gitsigns'.setup{} end , event='BufRead' }
 
 	-->  LSP and COMPLETION
 	use { 'neovim/nvim-lspconfig' }
-	use { 'L3MON4D3/LuaSnip' , config = [[ require"plugins.snippets" ]] }
-	use { 'hrsh7th/nvim-cmp' , after="LuaSnip", config=[[ require 'lsp.cmp' ]] , disale=true}
+	use { 'L3MON4D3/LuaSnip' , config=function() require"plugins.snippets" end }
+	use { 'hrsh7th/nvim-cmp' , after="LuaSnip", config=function() require 'lsp.cmp' end , disale=true}
 	use { 'hrsh7th/cmp-buffer', after={"nvim-cmp"} }
 	use { 'hrsh7th/cmp-nvim-lsp', after={"nvim-cmp"} }
 	use { 'hrsh7th/cmp-path', after={"nvim-cmp"}  }
@@ -48,14 +48,13 @@ require("packer").startup { function(use)
 	use { 'hrsh7th/cmp-nvim-lua', after={"nvim-cmp"}  }
 	use { 'saadparwaiz1/cmp_luasnip', after={"nvim-cmp"}  }
 	use { 'hrsh7th/cmp-nvim-lsp-signature-help', after={"nvim-cmp"}}
-	use { 'williamboman/nvim-lsp-installer', config=[[require("lsp.lsp_installer")]] }
+	use { 'williamboman/nvim-lsp-installer', config=function() require("lsp.lsp_installer") end }
 
 	-->  TELESCOPE, TREESITTER, NEORG
 	use { 'nvim-lua/plenary.nvim' }
 	-- use { 'nvim-treesitter/playground' , after="nvim-treesitter" }
-	use { 'nvim-telescope/telescope.nvim', cmd='Telescope' , config=[[ require"plugins.telescope" ]], module="telescope"}
-	-- use { 'nvim-treesitter/nvim-treesitter' , event='BufRead', config=[[ require"plugins.treesittter" ]], commit = "668de0951a36ef17016074f1120b6aacbe6c4515" }
-	use { 'nvim-treesitter/nvim-treesitter' , event='BufRead', config=[[ require"plugins.treesittter" ]] }
+	use { 'nvim-telescope/telescope.nvim', cmd='Telescope' , config=function() require"plugins.telescope" end, module="telescope"}
+	use { 'nvim-treesitter/nvim-treesitter' , event='BufRead', config=function() require"plugins.treesittter" end }
 	use { 'nvim-neorg/neorg', ft={"norg"}, after={"nvim-treesitter", "telescope.nvim"}, config = function() require "plugins.neorg" end }
 	use { 'nvim-neorg/neorg-telescope' }
 
@@ -63,16 +62,16 @@ require("packer").startup { function(use)
 	use { 'folke/lua-dev.nvim' }
 	use { 'tamton-aquib/duck.nvim' }
 	use { 'nathom/filetype.nvim' }
-	use { 'rcarriga/nvim-notify', config=[[require("notify").setup {background_colour = "Visual"}]] }
+	use { 'rcarriga/nvim-notify', config=function() require("notify").setup {background_colour = "Visual"} end }
 	use { 'tamton-aquib/essentials.nvim' }
 	use { 'lewis6991/impatient.nvim' }
-	use { 'beauwilliams/focus.nvim', config = [[require("focus").setup{cursorline=false}]] }
-	use { 'steelsojka/pears.nvim', config=[[ require"pears".setup() ]]}
-	use { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=[[ require('crates').setup() ]] }
+	use { 'beauwilliams/focus.nvim', config=function() require("focus").setup{cursorline=false} end }
+	use { 'steelsojka/pears.nvim', config=function() require"pears".setup() end}
+	use { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=function() require('crates').setup() end }
 	use { 'kyazdani42/nvim-tree.lua', config=[[ require 'plugins.nvim_tree' ]], cmd='NvimTreeToggle'}
-	use { 'akinsho/nvim-toggleterm.lua' , event = "BufWinEnter", config=[[ require"plugins.floaterm" ]] }
-	use { 'iamcco/markdown-preview.nvim' , ft={'markdown'}, config=[[ require"plugins.others".markdown_preview() ]], run = "cd app && yarn install", }
-	use { 'lukas-reineke/indent-blankline.nvim', event="BufReadPost", config = [[ require"plugins.others".indent_blankline() ]] }
+	use { 'akinsho/nvim-toggleterm.lua' , event = "BufWinEnter", config=function() require"plugins.floaterm" end }
+	use { 'iamcco/markdown-preview.nvim' , ft={'markdown'}, config=function() require"plugins.others".markdown_preview() end, run = "cd app && yarn install", }
+	use { 'lukas-reineke/indent-blankline.nvim', event="BufReadPost", config=function() require"plugins.others".indent_blankline() end }
 
 	use 'wbthomason/packer.nvim'
 end }

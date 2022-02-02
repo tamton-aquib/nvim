@@ -1,6 +1,6 @@
 -- vim.cmd [[packadd nvim-treesitter]]
 local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
-require 'nvim-treesitter.install'.compilers = { "clang" }
+-- require 'nvim-treesitter.install'.compilers = { "clang" }
 
 parser_configs.norg = {
     install_info = {
