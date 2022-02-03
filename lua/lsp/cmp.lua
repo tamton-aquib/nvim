@@ -79,8 +79,8 @@ cmp.setup {
 		fields = { 'kind', 'abbr', 'menu' },
 		format = function(entry, item)
 			item.kind = kind_icons[item.kind] or " "
-			-- item.menu = source_names[entry.source.name] or " "
-			item.menu = source_names[entry.source.name] or entry.source.name
+			item.menu = source_names[entry.source.name] or " "
+			-- item.menu = source_names[entry.source.name] or entry.source.name
 			return item
 		end
 	},
@@ -132,16 +132,16 @@ cmp.setup {
 	},
 
 	sources = {
+		{ name = 'path' },
 		{ name = 'nvim_lsp' },
 		{ name = 'nvim_diagnostic' },
+		{ name = 'buffer'},
+		{ name = 'nvim_lsp_signature_help' },
 		{ name = 'nvim_lua' },
 		{ name = 'luasnip' },
-		{ name = 'path' },
-		{ name = 'buffer'},
 		{ name = 'emoji'},
 		{ name = 'neorg'},
 		{ name = 'crates'},
-		{ name = 'nvim_lsp_signature_help' },
 	},
 
 	experimental = {

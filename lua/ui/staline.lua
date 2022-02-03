@@ -1,6 +1,7 @@
 --> Noice icons:             ⌬
 --> left_sep   :          
 --> right_sep  :          
+--> toggle on-off icons just in case:  
 --> TODO: cleanup
 local Styles = {}
 

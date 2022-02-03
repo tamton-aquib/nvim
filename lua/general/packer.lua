@@ -4,13 +4,12 @@ require("packer").startup { function(use)
 	-->  Testing and temporary
 	use { 'tamton-aquib/staline.nvim', config=function() require"ui.staline" end }
 	use { 'tiagovla/tokyodark.nvim' }
-	use { 'danymat/neogen', config=function() require("neogen").setup{enable=true} end }
-	use { 'nanotee/luv-vimdocs' }
-	use { 'j-hui/fidget.nvim', config=function() require"fidget".setup{text={spinner="moon"}} end }
 	use { 'rktjmp/paperplanes.nvim', config=function() require("paperplanes").setup{} end, cmd="PP" }
-	-- use { 'themercorp/themer.lua', branch='dev' }
+	-- use { 'themercorp/themer.lua', branch='dev', config=function() require("themer").setup{} end }
 
 	-->  Might use in future
+	-- use { 'j-hui/fidget.nvim', config=function() require"fidget".setup { window={blend = 0} } end }
+	-- use { 'danymat/neogen', config=function() require("neogen").setup{enable=true} end }
 	-- use { 'rmagatti/goto-preview', config=function() require("plugins.others").goto_preview() end }
 	-- use { 'wiliamks/nice-reference.nvim', config=[[require 'nice-reference'.setup({})]], cmd="NiceReference" }
 	-- use { 'kevinhwang91/nvim-bqf' }
@@ -18,15 +17,13 @@ require("packer").startup { function(use)
 	-- use { 'karb94/neoscroll.nvim' }
 	-- use { 'elihunter173/dirbuf.nvim' }
 	-- use { 'sunjon/stylish.nvim', config=function() vim.ui.menu = require('stylish').ui_menu() end }
-	-- use { 'max397574/hangman.nvim' }
+	-- use { 'max397574/hangman.nvim', config=function() require("hangman").setup{} end, cmd="Hangman" }
 	-- use { 'narutoxy/graphene.lua' }
 	-- use { 'rlch/github-notifications.nvim' }
 	-- use { 'chentau/marks.nvim', config=[[require("marks").setup{}]] }
 	-- use { 'code-biscuits/nvim-biscuits', config=[[require("nvim-biscuits").setup{}]] }
 	-- use { 'ggandor/lightspeed.nvim' }
 	-- use { "max397574/startup.nvim", config=[[require"ui.startup-config"]] }
-	-- use { 'joshdick/onedark.vim' }
-	-- use { 'mjlbach/onedark.nvim' }
 	-- use { "SmiteshP/nvim-gps", config=function() require("nvim-gps").setup() end, after={"nvim-treesitter"}}
 	-- use { 'max397574/better-escape.nvim', config=function() require("better_escape").setup{mapping='jk'} end }
 	-- use { 'simrat39/rust-tools.nvim', ft={'rust', 'rs'}, config=[[require("rust-tools").setup({})]] }
@@ -37,8 +34,10 @@ require("packer").startup { function(use)
 
 	-->  THEMES AND UI
 	use { 'folke/todo-comments.nvim', event='BufReadPost' , config=function() require'todo-comments'.setup{} end }
+	use { 'tamton-aquib/duck.nvim', config=function() require("duck").setup({winblend=0}) end }
 	use { 'kyazdani42/nvim-web-devicons', config=function() require "nvim-web-devicons".setup{} end }
 	-- use { 'norcalli/nvim-colorizer.lua', event='BufReadPre', config = function() require"colorizer".setup() end }
+	-- use { 'folke/tokyonight.nvim' }
 	use { 'lewis6991/gitsigns.nvim', config=function() require'gitsigns'.setup{} end , event='BufRead' }
 
 	-->  LSP and COMPLETION
@@ -60,12 +59,12 @@ require("packer").startup { function(use)
 	use { 'nvim-telescope/telescope.nvim', cmd='Telescope' , config=function() require"plugins.telescope" end, module="telescope"}
 	use { 'nvim-treesitter/nvim-treesitter', event='BufRead', config=function() require"plugins.treesittter" end }
 	use { 'nvim-neorg/neorg', ft={"norg"}, after={"nvim-treesitter", "telescope.nvim"}, config = function() require "plugins.neorg" end }
-	use { 'nvim-neorg/neorg-telescope', after={"neorg"}}
+	use { 'nvim-neorg/neorg-telescope' }
 
 	-->  GENERAL PURPOSE
 	use { 'folke/lua-dev.nvim' }
-	use { 'tamton-aquib/duck.nvim', config=function() require("duck").setup({winblend=0}) end }
 	use { 'nathom/filetype.nvim' }
+	use { 'nanotee/luv-vimdocs' }
 	use { 'rcarriga/nvim-notify', config=function() require("notify").setup {background_colour = "Visual"} end }
 	use { 'tamton-aquib/essentials.nvim' }
 	use { 'lewis6991/impatient.nvim' }

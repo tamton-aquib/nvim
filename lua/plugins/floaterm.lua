@@ -11,7 +11,7 @@ require("toggleterm").setup{
 	persist_size = true,
 	close_on_exit = false,
 	direction = 'float',
-	shell = "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe",
+	-- shell = "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe",
 
 	float_opts = {
 		border = require"general.utils".border,

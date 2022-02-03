@@ -33,7 +33,6 @@ set.foldenable = true
 set.foldmethod = "expr"
 set.foldexpr = "nvim_treesitter#foldexpr()"
 set.foldlevelstart = 10
--- vim.cmd [[set foldtext=luaeval(\"require('essentials').simple_fold()\")]]
 vim.opt.foldtext = 'v:lua.require("essentials").simple_fold()'
 
 --> Visual settings?
@@ -52,6 +51,7 @@ set.tabstop = 4
 set.softtabstop = 0
 set.expandtab = false
 set.smartindent = true
+set.breakindent = true
 
 --> Misc settings
 set.signcolumn = "yes"
@@ -65,9 +65,7 @@ local ok, notify = pcall(require, "notify")
 if ok then vim.notify = notify end
 
 --> Test settings
--- set.autoindent = true
 -- set.copyindent = true
--- set.breakindent = true
 -- set.preserveindent = true
 
 -- set.list = true

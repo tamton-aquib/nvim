@@ -1,4 +1,4 @@
-Util = {}
+local Util = {}
 
 --> Centering an array of strings
 function Util.center(dict)
@@ -13,7 +13,6 @@ end
 
 --> Noice simple dashboard (prolly temporary)
 function Util.noice_board()
-	-- local xdg = vim.fn.has('win32')==1 and "C:/Users/taj/Appdata/Local/" or "~/.config/"
 	local xdg = vim.fn.fnamemodify(vim.fn.stdpath("config"), ":h").."/"
 	local header = {
 		"","", "", "", "", "", "", "",

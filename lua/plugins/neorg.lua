@@ -1,5 +1,3 @@
--- vim.cmd [[packadd nvim-treesitter]]
--- vim.cmd [[packadd neorg]]
 local neorg_callbacks = require('neorg.callbacks')
 
 neorg_callbacks.on_event("core.keybinds.events.enable_keybinds", function(_, content)
@@ -46,7 +44,6 @@ require('neorg').setup {
 				},
 			}
 		},
-		-- ["core.norg.tangle"] = {},
 		["core.integrations.telescope"] = {},
 		["core.integrations.treesitter"] =  {
 			config = {
