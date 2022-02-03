@@ -30,8 +30,8 @@ map('n', '<leader>pc', '<cmd>PackerCompile<CR>')
 
 --> essentials.nvim mappings
 map('n', '<F2>'     ,  '<cmd>lua require"essentials".rename()<CR>')
-map('v', '<leader>/',  '<cmd>lua require"essentials".toggle_comment("nice")<CR>')
-map('n', '<leader>/',  '<cmd>lua require"essentials".toggle_comment()<CR>')
+map('v', '<leader>/',  ':lua require"essentials".toggle_comment("nice")<CR>')
+map('n', '<leader>/',  ':lua require"essentials".toggle_comment()<CR>')
 map('n', '<leader>r',  '<cmd>w<CR>:lua require("essentials").run_file("horizontal")<CR>')
 map('n', '<leader>s',  '<cmd>lua require"essentials".swap_bool()<CR>')
 map('n', 'gx'       ,  '<cmd>lua require"essentials".go_to_url()<CR>')

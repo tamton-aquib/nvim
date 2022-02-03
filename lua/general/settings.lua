@@ -1,6 +1,7 @@
 local set = vim.opt
 
 set.cursorline = true
+set.virtualedit = "block"
 
 --> General settings
 set.wrap = false
@@ -13,7 +14,7 @@ set.scrolloff = 8
 set.timeoutlen = 300
 set.updatetime = 500
 set.hlsearch = false
-set.clipboard = "unnamedplus"
+set.clipboard:prepend({"unnamedplus"})
 set.smarttab = true
 set.backup = false
 set.writebackup = false
@@ -32,7 +33,8 @@ set.foldenable = true
 set.foldmethod = "expr"
 set.foldexpr = "nvim_treesitter#foldexpr()"
 set.foldlevelstart = 10
-vim.cmd [[set foldtext=luaeval(\"require('essentials').simple_fold()\")]]
+-- vim.cmd [[set foldtext=luaeval(\"require('essentials').simple_fold()\")]]
+vim.opt.foldtext = 'v:lua.require("essentials").simple_fold()'
 
 --> Visual settings?
 set.pumblend = 30
@@ -73,3 +75,4 @@ if ok then vim.notify = notify end
 -- set.listchars = 'tab: '
 -- set.lazyredraw = true
 -- vim.cmd [[let &colorcolumn=join(range(81,999),",")]]
+-- vim.cmd [[packadd cfilter]]

@@ -23,7 +23,7 @@ Styles.simple_line = {
 
 			function()
 				if vim.api.nvim_win_get_width(0) > 100 then
-					return os.getenv("TERM") == "alacrtty" and '    ' or '   '
+					return os.getenv("TERM") == "alacrtty" and '    ' or '  ⌬  '
 				end
 				return ''
 			end,
