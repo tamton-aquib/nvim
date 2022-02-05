@@ -4,7 +4,7 @@ vim.cmd [[au BufEnter * set fo-=cro]]
 vim.cmd [[au BufEnter *.json set cole=0]]
 vim.cmd [[au BufEnter *.md setlocal spell]]
 vim.cmd [[au BufEnter packer.lua,init.lua call matchadd("Keyword", "--> \\zs.*\\ze$")]]
-vim.cmd [[au VimEnter * lua require("duck").hatch()]]
+-- vim.cmd [[au VimEnter * lua require("duck").hatch()]]
 
 --> LSP related
 vim.cmd [[au BufWritePre *.js,*.jsx lua vim.lsp.buf.formatting_sync(nil, 200)]]

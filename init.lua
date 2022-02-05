@@ -6,7 +6,8 @@ require 'general.autocommands'
 require 'general.mappings'
 require 'general.settings'
 
--->  UI Related
+-->  UI and LSP
 require('general.utils').noice_board()
-require('ui.colorschemes').tokyonight(true)
 require('lsp.lsp_defaults')
+require("themer").setup{}
+require("ui.colorschemes").tokyodark(true)

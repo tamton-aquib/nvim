@@ -3,9 +3,13 @@ require("packer").startup { function(use)
 
 	-->  Testing and temporary
 	use { 'tamton-aquib/staline.nvim', config=function() require"ui.staline" end }
-	use { 'tiagovla/tokyodark.nvim' }
 	use { 'rktjmp/paperplanes.nvim', config=function() require("paperplanes").setup{} end, cmd="PP" }
-	-- use { 'themercorp/themer.lua', branch='dev', config=function() require("themer").setup{} end }
+	use { 'ahmedkhalf/project.nvim', config=function() require("project_nvim").setup{} end }
+
+	use { 'themercorp/themer.lua' }
+	-- use { 'nvim-plugnplay/plugnplay.nvim' }
+	-- use { 'rlane/pounce.nvim' }
+	-- use { 'tiagovla/tokyodark.nvim', event='BufEnter', config=function() vim.cmd [[colo tokyodark]] end }
 
 	-->  Might use in future
 	-- use { 'j-hui/fidget.nvim', config=function() require"fidget".setup { window={blend = 0} } end }
@@ -35,8 +39,8 @@ require("packer").startup { function(use)
 	-->  THEMES AND UI
 	use { 'folke/todo-comments.nvim', event='BufReadPost' , config=function() require'todo-comments'.setup{} end }
 	use { 'tamton-aquib/duck.nvim', config=function() require("duck").setup({winblend=0}) end }
-	use { 'kyazdani42/nvim-web-devicons', config=function() require "nvim-web-devicons".setup{} end }
-	-- use { 'norcalli/nvim-colorizer.lua', event='BufReadPre', config = function() require"colorizer".setup() end }
+	use { 'kyazdani42/nvim-web-devicons' }
+	-- use { 'norcalli/nvim-colorizer.lua', event='BufReadPre', config=function() require"colorizer".setup() end }
 	-- use { 'folke/tokyonight.nvim' }
 	use { 'lewis6991/gitsigns.nvim', config=function() require'gitsigns'.setup{} end , event='BufRead' }
 
@@ -55,7 +59,7 @@ require("packer").startup { function(use)
 
 	-->  TELESCOPE, TREESITTER, NEORG
 	use { 'nvim-lua/plenary.nvim' }
-	-- use { 'nvim-treesitter/playground' , after="nvim-treesitter" }
+	use { 'nvim-treesitter/playground' , cmd="TSHi" }
 	use { 'nvim-telescope/telescope.nvim', cmd='Telescope' , config=function() require"plugins.telescope" end, module="telescope"}
 	use { 'nvim-treesitter/nvim-treesitter', event='BufRead', config=function() require"plugins.treesittter" end }
 	use { 'nvim-neorg/neorg', ft={"norg"}, after={"nvim-treesitter", "telescope.nvim"}, config = function() require "plugins.neorg" end }

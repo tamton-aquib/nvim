@@ -50,6 +50,7 @@ function Util.noice_board()
 			for k,f in pairs(keys) do
 				vim.api.nvim_buf_set_keymap(0,'n',k,':e '..f..' | setlocal noautochdir<CR>',opts)
 			end
+			vim.api.nvim_buf_set_keymap(0, 'n', 'P', '<cmd>Telescope oldfiles<CR>', opts)
 			vim.api.nvim_buf_set_keymap(0, 'n', 'q', '<cmd>q<CR>', opts)
 		end)
     end
@@ -64,7 +65,8 @@ Util.close_command = function()
 		end
 	end
 
-	vim.cmd(total == 1 and ":q" or ":bd")
+	if vim.bo.modified then print("buf not saved!")  return end
+	vim.cmd(total == 1 and ":q!" or ":bd!")
 end
 
 
