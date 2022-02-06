@@ -20,5 +20,7 @@ vim.cmd [[au BufEnter        *.toml   set ft=dosini]]
 vim.cmd [[au TermOpen       term://*  setlocal nonu nornu | startinsert]]
 vim.cmd [[au BufWritePost packer.lua  so % | PackerCompile<CR>]]
 
---> Commands
+--> Stuff for later
+vim.cmd [[command Format :lua vim.lsp.buf.formatting()]]
 -- vim.cmd [[command X :!xset r rate 170 69]]
+-- vim.cmd [[syntax keyword Keyword lambda conceal cchar=λ]] // TODO: populate

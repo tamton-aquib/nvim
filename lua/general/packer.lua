@@ -7,13 +7,16 @@ require("packer").startup { function(use)
 	use { 'ahmedkhalf/project.nvim', config=function() require("project_nvim").setup{} end }
 
 	use { 'themercorp/themer.lua' }
+	use { 'vim-scripts/BOOKMARKS--Mark-and-Highlight-Full-Lines' }
+	use { 'danymat/neogen', config=function() require("neogen").setup{enable=true} end }
+	-- use { 'vim-scripts/vim-lamdify' }
 	-- use { 'nvim-plugnplay/plugnplay.nvim' }
 	-- use { 'rlane/pounce.nvim' }
-	-- use { 'tiagovla/tokyodark.nvim', event='BufEnter', config=function() vim.cmd [[colo tokyodark]] end }
+	-- use { 'tiagovla/tokyodark.nvim', config=function() vim.cmd [[colo tokyodark]] end }
+	-- use { 'ehamberg/vim-cute-python' }
 
 	-->  Might use in future
 	-- use { 'j-hui/fidget.nvim', config=function() require"fidget".setup { window={blend = 0} } end }
-	-- use { 'danymat/neogen', config=function() require("neogen").setup{enable=true} end }
 	-- use { 'rmagatti/goto-preview', config=function() require("plugins.others").goto_preview() end }
 	-- use { 'wiliamks/nice-reference.nvim', config=[[require 'nice-reference'.setup({})]], cmd="NiceReference" }
 	-- use { 'kevinhwang91/nvim-bqf' }
@@ -40,8 +43,7 @@ require("packer").startup { function(use)
 	use { 'folke/todo-comments.nvim', event='BufReadPost' , config=function() require'todo-comments'.setup{} end }
 	use { 'tamton-aquib/duck.nvim', config=function() require("duck").setup({winblend=0}) end }
 	use { 'kyazdani42/nvim-web-devicons' }
-	-- use { 'norcalli/nvim-colorizer.lua', event='BufReadPre', config=function() require"colorizer".setup() end }
-	-- use { 'folke/tokyonight.nvim' }
+	use { 'norcalli/nvim-colorizer.lua', cmd="ColorizerToggle", config=function() require"colorizer".setup() end }
 	use { 'lewis6991/gitsigns.nvim', config=function() require'gitsigns'.setup{} end , event='BufRead' }
 
 	-->  LSP and COMPLETION
@@ -72,7 +74,7 @@ require("packer").startup { function(use)
 	use { 'rcarriga/nvim-notify', config=function() require("notify").setup {background_colour = "Visual"} end }
 	use { 'tamton-aquib/essentials.nvim' }
 	use { 'lewis6991/impatient.nvim' }
-	use { 'beauwilliams/focus.nvim', config=function() require("focus").setup{cursorline=false} end, event="WinEnter" }
+	use { 'beauwilliams/focus.nvim', config=function() require("focus").setup{cursorline=false} end, event="WinNew" }
 	use { 'steelsojka/pears.nvim', config=function() require"pears".setup() end}
 	use { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=function() require('crates').setup() end }
 	use { 'kyazdani42/nvim-tree.lua', config=[[ require 'plugins.nvim_tree' ]], cmd='NvimTreeToggle'}

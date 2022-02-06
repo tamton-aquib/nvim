@@ -7,7 +7,7 @@ local prints = {
 	javascript = [[console.log(${0});]],
 	lua = [[print(${0})]],
 	c = [[printf("${0}");]],
-	cpp = [[cout << ${0} << endl;]]
+	cpp = [[std::cout << ${0} << std::endl;]]
 }
 
 ls.snippets = {

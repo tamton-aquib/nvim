@@ -1,6 +1,6 @@
 local set = vim.opt
 
-set.cursorline = true
+set.cursorline = false
 set.virtualedit = "block"
 
 --> General settings
@@ -54,7 +54,7 @@ set.smartindent = true
 set.breakindent = true
 
 --> Misc settings
-set.signcolumn = "yes"
+set.signcolumn = "yes:1"
 set.guifont = "Operator Mono Medium"
 set.wildignore = { '*.pyc,__pycache__' }
 set.fillchars:append({eob=' ', fold=' ', foldopen="", foldsep=" ", foldclose=""})

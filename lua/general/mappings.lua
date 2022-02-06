@@ -2,6 +2,8 @@ vim.g.mapleader = ' '
 local opts = {noremap=true, silent=true}
 local function map(mode, key, mapping) vim.api.nvim_set_keymap(mode, key, mapping, opts) end
 
+map('n', '<Space>', '<Nop>')
+
 --> TEMP and TEST maps
 map('n', '<leader>w',  '<cmd>lua require("general.utils").close_command()<CR>')
 map('n', '<leader>z',  ':FocusMaximise<CR>')
@@ -51,7 +53,7 @@ map('n', '<C-p>', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
 
 --> Telescope mappings
 map('n', '<leader>ff', '<cmd>lua require("telescope.builtin").find_files(require("general.utils").telescope_theme)<CR>')
-map('n', '<leader>fg', '<cmd>Telescope live_grep theme=cursor previewer=false<CR>')
+map('n', '<leader>fg', '<cmd>Telescope live_grep<CR>')
 map('n', '<leader>fa', '<cmd>Telescope lsp_code_actions theme=cursor<cr>')
 map('n', '<leader>fh', '<cmd>Telescope help_tags<CR>')
 map('n', '<leader>fc', '<cmd>Telescope commands theme=ivy<CR>')
