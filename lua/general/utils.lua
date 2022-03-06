@@ -92,4 +92,9 @@ Util.telescope_theme = {
 	},
 }
 
+Util.toggle_quickfix = function()
+	vim.cmd(not vim.g.quickfix_toggled and "copen" or "cclose")
+	vim.g.quickfix_toggled = not vim.g.quickfix_toggled
+end
+
 return Util

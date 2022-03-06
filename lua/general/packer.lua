@@ -3,12 +3,8 @@ require("packer").startup { function(use)
 
 	-->  Testing and temporary
 	use { 'tamton-aquib/staline.nvim', config=function() require"ui.staline" end }
-	use { 'rktjmp/paperplanes.nvim', config=function() require("paperplanes").setup{} end, cmd="PP" }
 	use { 'ahmedkhalf/project.nvim', config=function() require("project_nvim").setup{} end }
-
 	use { 'themercorp/themer.lua' }
-	use { 'vim-scripts/BOOKMARKS--Mark-and-Highlight-Full-Lines' }
-	use { 'danymat/neogen', config=function() require("neogen").setup{enable=true} end }
 	-- use { 'vim-scripts/vim-lamdify' }
 	-- use { 'nvim-plugnplay/plugnplay.nvim' }
 	-- use { 'rlane/pounce.nvim' }
@@ -16,6 +12,7 @@ require("packer").startup { function(use)
 	-- use { 'ehamberg/vim-cute-python' }
 
 	-->  Might use in future
+	-- use { 'edluffy/specs.nvim', config=function() require("plugins.others").specs() end }
 	-- use { 'j-hui/fidget.nvim', config=function() require"fidget".setup { window={blend = 0} } end }
 	-- use { 'rmagatti/goto-preview', config=function() require("plugins.others").goto_preview() end }
 	-- use { 'wiliamks/nice-reference.nvim', config=[[require 'nice-reference'.setup({})]], cmd="NiceReference" }
@@ -36,7 +33,6 @@ require("packer").startup { function(use)
 	-- use { 'simrat39/rust-tools.nvim', ft={'rust', 'rs'}, config=[[require("rust-tools").setup({})]] }
 	-- use { 'abecodes/tabout.nvim', config=function() require('tabout').setup {} end }
 	-- use { "blackCauldron7/surround.nvim", config = function() require"surround".setup {mappings_style = "sandwich"} end }
-	-- use { 'edluffy/specs.nvim', config=function() require("plugins.others").specs() end }
 	-- use { 'Pocco81/TrueZen.nvim' , config=function() require"true-zen".setup() end }
 
 	-->  THEMES AND UI
@@ -66,14 +62,16 @@ require("packer").startup { function(use)
 	use { 'nvim-treesitter/nvim-treesitter', event='BufRead', config=function() require"plugins.treesittter" end }
 	use { 'nvim-neorg/neorg', ft={"norg"}, after={"nvim-treesitter", "telescope.nvim"}, config = function() require "plugins.neorg" end }
 	use { 'nvim-neorg/neorg-telescope' }
+	use { 'danymat/neogen', config=function() require("neogen").setup{enable=true} end }
 
 	-->  GENERAL PURPOSE
 	use { 'folke/lua-dev.nvim' }
 	use { 'nathom/filetype.nvim' }
 	use { 'nanotee/luv-vimdocs' }
-	use { 'rcarriga/nvim-notify', config=function() require("notify").setup {background_colour = "Visual"} end }
 	use { 'tamton-aquib/essentials.nvim' }
+	use { 'rcarriga/nvim-notify', config=function() require("notify").setup {background_colour = "Visual"} end }
 	use { 'lewis6991/impatient.nvim' }
+	use { 'rktjmp/paperplanes.nvim', config=function() require("paperplanes").setup{} end, cmd="PP" }
 	use { 'beauwilliams/focus.nvim', config=function() require("focus").setup{cursorline=false} end, event="WinNew" }
 	use { 'steelsojka/pears.nvim', config=function() require"pears".setup() end}
 	use { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=function() require('crates').setup() end }

@@ -10,6 +10,7 @@ require('stabline').setup {
 	stab_left = "",
 	-- stab_right = "",
 	fg = "#986fec",
+	bg = "none",
 	inactive_bg = "none",
 	padding = 2
 }
