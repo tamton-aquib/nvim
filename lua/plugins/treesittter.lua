@@ -1,4 +1,3 @@
--- vim.cmd [[packadd nvim-treesitter]]
 local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
 
 parser_configs.norg = {
@@ -10,14 +9,11 @@ parser_configs.norg = {
 }
 
 require('nvim-treesitter.configs').setup {
-	ensure_installed = { "norg" ,"lua", "python", "rust" },
+	-- ensure_installed = { "norg" ,"lua" },
 	highlight = {
 		enable = true,
 	},
 	indent = {
-		enable = true
-	},
-	autotag = {
 		enable = true
 	},
 }

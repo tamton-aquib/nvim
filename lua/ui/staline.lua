@@ -1,6 +1,7 @@
---> Noice icons:           
+--> Noice icons:             ⌬
 --> left_sep   :          
 --> right_sep  :          
+--> toggle on-off icons just in case:  
 --> TODO: cleanup
 local Styles = {}
 
@@ -9,25 +10,36 @@ require('stabline').setup {
 	stab_left = "",
 	-- stab_right = "",
 	fg = "#986fec",
-	inactive_bg = "#11121d",
+	bg = "none",
+	inactive_bg = "none",
 	padding = 2
 }
 
 Styles.simple_line = {
+
 	sections = {
 		left = {
-			'  ', 'mode', ' ', 'branch',
+
+			'  ', 'mode', ' ',
+			'branch',
+
 			function()
-				if vim.o.columns > 100 then
-					-- return '     '
-					-- return '    '
-					return '    '
+				if vim.api.nvim_win_get_width(0) > 100 then
+					return os.getenv("TERM") == "alacrtty" and '    ' or '  ⌬  '
 				end
 				return ''
-			end
+			end,
+			'lsp'
 		},
-		mid = { 'lsp', '%<' },
-		right = { '%l/%L  :%c  ', 'file_name', '  ',
+		mid = {
+			'file_name',
+			'%<',
+		},
+		right = { '%l/%L  :%c  ',
+			'  ',
+			function()
+				return " "..os.date("%I:%M %p  "):upper()
+			end,
 			function()
 				local current_line = vim.fn.line "."
 				local total_lines = vim.fn.line "$"
@@ -44,7 +56,7 @@ Styles.simple_line = {
 		true_colors = true,
 		line_column = " [%l/%L] :%c  ",
 		branch_symbol = " ",
-		bg = "#11121d"
+		-- bg = "#11121d"
 	}
 }
 

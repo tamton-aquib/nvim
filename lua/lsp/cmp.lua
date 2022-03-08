@@ -16,43 +16,71 @@ local source_names = {
 	path = "[Path]",
 	luasnip = "[Snippet]",
 	buffer = "[Buffer]",
+	nvim_lsp_signature_help = "[sig_help]",
 }
+-- local kind_icons = {
+	-- Text = ' ',
+	-- Method = ' ',
+	-- Function = ' ',
+	-- Constructor = ' ',
+	-- Field = ' ',
+	-- Variable = ' ',
+	-- Class = ' ',
+	-- Interface = ' ',
+	-- Module = ' ',
+	-- Property = ' ',
+	-- Unit = ' ',
+	-- Value = ' ',
+	-- Enum = ' ',
+	-- Keyword = ' ',
+	-- -- Snippet = ' ',
+	-- Snippet = ' ',
+	-- Color = ' ',
+	-- File = ' ',
+	-- Reference = ' ',
+	-- Folder = ' ',
+	-- EnumMember = ' ',
+	-- Constant = ' ',
+	-- Struct = ' ',
+	-- Event = ' ',
+	-- Operator = ' ',
+	-- TypeParameter = ' ',
+-- }
 local kind_icons = {
-	Text = ' ',
-	Method = ' ',
-	Function = ' ',
-	Constructor = ' ',
-	Field = ' ',
-	Variable = ' ',
-	Class = ' ',
-	Interface = ' ',
-	Module = ' ',
-	Property = ' ',
-	Unit = ' ',
-	Value = ' ',
-	Enum = ' ',
-	Keyword = ' ',
-	-- Snippet = ' ',
-	Snippet = ' ',
-	Color = ' ',
-	File = ' ',
-	Reference = ' ',
-	Folder = ' ',
-	EnumMember = ' ',
-	Constant = ' ',
-	Struct = ' ',
-	Event = ' ',
-	Operator = ' ',
-	TypeParameter = ' ',
+	Text = "",
+	Method = "",
+	Function = "",
+	Constructor = "",
+	Field = "ﰠ",
+	Variable = "",
+	Class = "",
+	Interface = "",
+	Module = "",
+	Property = "",
+	Unit = "",
+	Value = "",
+	Enum = "",
+	Keyword = "",
+	Snippet = "",
+	Color = "",
+	File = "",
+	Reference = "",
+	Folder = "",
+	EnumMember = "",
+	Constant = "",
+	Struct = "פּ",
+	Event = "",
+	Operator = "",
+	TypeParameter = "",
 }
 
 cmp.setup {
 	formatting = {
 		fields = { 'kind', 'abbr', 'menu' },
 		format = function(entry, item)
-			item.kind = kind_icons[item.kind] or " "
-			-- item.menu = source_names[entry.source.name] or " "
-			item.menu = source_names[entry.source.name] or entry.source.name
+			item.kind = kind_icons[item.kind] or " "
+			item.menu = source_names[entry.source.name] or " "
+			-- item.menu = source_names[entry.source.name] or entry.source.name
 			return item
 		end
 	},
@@ -69,11 +97,11 @@ cmp.setup {
 	},
 
 	mapping = {
-		-- ['<C-n>'] = cmp.mapping.select_next_item(),
-		-- ['<C-p>'] = cmp.mapping.select_prev_item(),
-		['<C-d>'] = cmp.mapping.scroll_docs(1),
-		['<C-f>'] = cmp.mapping.scroll_docs(-1),
-		['<C-Space>'] = cmp.mapping.complete(),
+		['<C-n>'] = cmp.mapping.select_next_item(),
+		['<C-p>'] = cmp.mapping.select_prev_item(),
+		['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(-2), { 'i', 'c' }),
+		['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(2), { 'i', 'c' }),
+		['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
 		['<C-e>'] = cmp.mapping.close(),
 		['<CR>'] = cmp.mapping.confirm({
 			behavior = cmp.ConfirmBehavior.Replace,
@@ -104,16 +132,16 @@ cmp.setup {
 	},
 
 	sources = {
+		{ name = 'path' },
 		{ name = 'nvim_lsp' },
 		{ name = 'nvim_diagnostic' },
+		{ name = 'buffer'},
+		{ name = 'nvim_lsp_signature_help' },
 		{ name = 'nvim_lua' },
 		{ name = 'luasnip' },
-		{ name = 'path' },
-		{ name = 'buffer'},
 		{ name = 'emoji'},
 		{ name = 'neorg'},
 		{ name = 'crates'},
-		-- { name = 'nvim_lsp_signature_help' },
 	},
 
 	experimental = {

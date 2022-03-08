@@ -1,6 +1,7 @@
 local set = vim.opt
 
-set.cursorline = true
+set.cursorline = false
+set.virtualedit = "block"
 
 --> General settings
 set.wrap = false
@@ -13,7 +14,7 @@ set.scrolloff = 8
 set.timeoutlen = 300
 set.updatetime = 500
 set.hlsearch = false
-set.clipboard = "unnamedplus"
+set.clipboard:prepend({"unnamedplus"})
 set.smarttab = true
 set.backup = false
 set.writebackup = false
@@ -32,7 +33,7 @@ set.foldenable = true
 set.foldmethod = "expr"
 set.foldexpr = "nvim_treesitter#foldexpr()"
 set.foldlevelstart = 10
-vim.cmd [[set foldtext=luaeval(\"require('essentials').simple_fold()\")]]
+vim.opt.foldtext = 'v:lua.require("essentials").simple_fold()'
 
 --> Visual settings?
 set.pumblend = 30
@@ -41,8 +42,8 @@ set.termguicolors = true
 set.background = "dark"
 set.number = true
 set.relativenumber = true
-set.title = true
-set.titlestring = "  Editing %f..."
+-- set.title = true
+-- set.titlestring = "  Editing %f..."
 
 --> Tabspace settings
 set.shiftwidth = 4
@@ -50,9 +51,10 @@ set.tabstop = 4
 set.softtabstop = 0
 set.expandtab = false
 set.smartindent = true
+set.breakindent = true
 
 --> Misc settings
-set.signcolumn = "yes"
+set.signcolumn = "yes:1"
 set.guifont = "Operator Mono Medium"
 set.wildignore = { '*.pyc,__pycache__' }
 set.fillchars:append({eob=' ', fold=' ', foldopen="", foldsep=" ", foldclose=""})
@@ -63,9 +65,7 @@ local ok, notify = pcall(require, "notify")
 if ok then vim.notify = notify end
 
 --> Test settings
--- set.autoindent = true
 -- set.copyindent = true
--- set.breakindent = true
 -- set.preserveindent = true
 
 -- set.list = true
@@ -73,3 +73,4 @@ if ok then vim.notify = notify end
 -- set.listchars = 'tab: '
 -- set.lazyredraw = true
 -- vim.cmd [[let &colorcolumn=join(range(81,999),",")]]
+-- vim.cmd [[packadd cfilter]]

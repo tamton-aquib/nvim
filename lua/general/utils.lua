@@ -1,4 +1,4 @@
-Util = {}
+local Util = {}
 
 --> Centering an array of strings
 function Util.center(dict)
@@ -13,6 +13,7 @@ end
 
 --> Noice simple dashboard (prolly temporary)
 function Util.noice_board()
+	local xdg = vim.fn.fnamemodify(vim.fn.stdpath("config"), ":h").."/"
 	local header = {
 		"","", "", "", "", "", "", "",
 		[[ ███▄    █     ▒█████      ██▓    ▄████▄     ▓█████   ]],
@@ -33,7 +34,13 @@ function Util.noice_board()
 			vim.fn.matchadd("Error", '[░▒]')
 			vim.fn.matchadd("Function", '[▓█▄▀▐▌]')
 			local buf = vim.api.nvim_create_buf(false, true)
-			local keys = { K='~/.config/kitty/kitty.conf', F='~/.config/fish/config.fish', I='~/.config/nvim/init.lua', A='~/.config/alacritty/alacritty.yml', P='~/.config/picom/picom.conf' }
+			local keys = {
+				K=xdg .. 'kitty/kitty.conf',
+				F=xdg .. 'fish/config.fish',
+				I=xdg .. 'nvim/init.lua',
+				A=xdg .. 'alacritty/alacritty.yml',
+				P=xdg .. 'picom/picom.conf'
+			}
 			local opts = {noremap = true, silent = true}
 
 			vim.api.nvim_win_set_buf(0, buf)
@@ -43,6 +50,7 @@ function Util.noice_board()
 			for k,f in pairs(keys) do
 				vim.api.nvim_buf_set_keymap(0,'n',k,':e '..f..' | setlocal noautochdir<CR>',opts)
 			end
+			vim.api.nvim_buf_set_keymap(0, 'n', 'P', '<cmd>Telescope oldfiles<CR>', opts)
 			vim.api.nvim_buf_set_keymap(0, 'n', 'q', '<cmd>q<CR>', opts)
 		end)
     end
@@ -52,12 +60,13 @@ end
 Util.close_command = function()
 	local total = 0
 	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-		if vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_is_valid(buf) then
+		if vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_is_valid(buf) and vim.api.nvim_buf_get_name(buf) ~= "" then
 			total = total + 1
 		end
 	end
 
-	vim.cmd(total == 1 and ":q" or ":bd")
+	if vim.bo.modified then print("buf not saved!")  return end
+	vim.cmd(total == 1 and ":q!" or ":bd!")
 end
 
 
@@ -74,7 +83,7 @@ Util.telescope_theme = {
 	results_title = false,
 	layout_strategy = "center",
 	previewer = false,
-	winblend = 30,
+	winblend = 0,
 	layout_config = { width = 0.6, height = 0.6 },
 	borderchars = {
 		preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
@@ -82,5 +91,10 @@ Util.telescope_theme = {
 		results = { "─", " ", " ", " ", "╰", "╯", " ", " " },
 	},
 }
+
+Util.toggle_quickfix = function()
+	vim.cmd(not vim.g.quickfix_toggled and "copen" or "cclose")
+	vim.g.quickfix_toggled = not vim.g.quickfix_toggled
+end
 
 return Util

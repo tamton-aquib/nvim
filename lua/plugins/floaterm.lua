@@ -2,7 +2,7 @@ local map = vim.api.nvim_set_keymap
 local noice = {noremap=true, silent=true}
 Open_term = require'toggleterm.terminal'.Terminal -- NOTE: yes its intentionally global :kek:
 
-require("toggleterm").setup{
+require("toggleterm").setup {
 	hide_numbers = true,
 	start_in_insert = true,
 	insert_mappings = true,
@@ -11,6 +11,8 @@ require("toggleterm").setup{
 	persist_size = true,
 	close_on_exit = false,
 	direction = 'float',
+	-- shell = "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe",
+
 	float_opts = {
 		border = require"general.utils".border,
 		winblend = 15,
