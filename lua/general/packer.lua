@@ -1,14 +1,16 @@
-
 require("packer").startup { function(use)
 
 	-->  Testing and temporary
 	use { 'tamton-aquib/staline.nvim', config=function() require"ui.staline" end }
 	use { 'ahmedkhalf/project.nvim', config=function() require("project_nvim").setup{} end }
 	use { 'themercorp/themer.lua' }
+	-- use { 'shift-d/scratch.nvim' }
+	-- use { 'p00f/clangd_extensions.nvim' }
+	-- use { 'dundargoc/stalker.nvim' }
+	-- use { 'nlsickler/colorscheme-tweaks.nvim' }
 	-- use { 'vim-scripts/vim-lamdify' }
 	-- use { 'nvim-plugnplay/plugnplay.nvim' }
 	-- use { 'rlane/pounce.nvim' }
-	-- use { 'tiagovla/tokyodark.nvim', config=function() vim.cmd [[colo tokyodark]] end }
 	-- use { 'ehamberg/vim-cute-python' }
 
 	-->  Might use in future
@@ -16,24 +18,17 @@ require("packer").startup { function(use)
 	-- use { 'j-hui/fidget.nvim', config=function() require"fidget".setup { window={blend = 0} } end }
 	-- use { 'rmagatti/goto-preview', config=function() require("plugins.others").goto_preview() end }
 	-- use { 'wiliamks/nice-reference.nvim', config=[[require 'nice-reference'.setup({})]], cmd="NiceReference" }
-	-- use { 'kevinhwang91/nvim-bqf' }
+	-- use { 'kevinhwang91/nvim-bqf', config=function() require("bqf").setup{} end}
 	-- use { 'nyngwang/NeoZoom.lua', cmd="NeoZoomToggle" }
 	-- use { 'karb94/neoscroll.nvim' }
 	-- use { 'elihunter173/dirbuf.nvim' }
 	-- use { 'sunjon/stylish.nvim', config=function() vim.ui.menu = require('stylish').ui_menu() end }
-	-- use { 'max397574/hangman.nvim', config=function() require("hangman").setup{} end, cmd="Hangman" }
-	-- use { 'narutoxy/graphene.lua' }
 	-- use { 'rlch/github-notifications.nvim' }
-	-- use { 'chentau/marks.nvim', config=[[require("marks").setup{}]] }
 	-- use { 'code-biscuits/nvim-biscuits', config=[[require("nvim-biscuits").setup{}]] }
 	-- use { 'ggandor/lightspeed.nvim' }
-	-- use { "max397574/startup.nvim", config=[[require"ui.startup-config"]] }
-	-- use { "SmiteshP/nvim-gps", config=function() require("nvim-gps").setup() end, after={"nvim-treesitter"}}
-	-- use { 'max397574/better-escape.nvim', config=function() require("better_escape").setup{mapping='jk'} end }
 	-- use { 'simrat39/rust-tools.nvim', ft={'rust', 'rs'}, config=[[require("rust-tools").setup({})]] }
 	-- use { 'abecodes/tabout.nvim', config=function() require('tabout').setup {} end }
 	-- use { "blackCauldron7/surround.nvim", config = function() require"surround".setup {mappings_style = "sandwich"} end }
-	-- use { 'Pocco81/TrueZen.nvim' , config=function() require"true-zen".setup() end }
 
 	-->  THEMES AND UI
 	use { 'folke/todo-comments.nvim', event='BufReadPost' , config=function() require'todo-comments'.setup{} end }
