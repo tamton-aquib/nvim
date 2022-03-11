@@ -3,6 +3,7 @@ local opts = {noremap=true, silent=true}
 local function map(mode, key, mapping) vim.api.nvim_set_keymap(mode, key, mapping, opts) end
 
 --> TEMP and TEST maps
+map('n', '<leader>l', ':term lazygit<CR>')
 map('n', '<leader>q', ':lua require("general.utils").toggle_quickfix()<CR>')
 map('n', '<leader>w',  '<cmd>lua require("general.utils").close_command()<CR>')
 map('n', '<leader>z',  ':FocusMaximise<CR>')

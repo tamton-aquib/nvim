@@ -15,7 +15,7 @@ vim.schedule(function()
 	ls.snippets = {
 		all = {
 			parse({trig="#!", wordTrig=true}, "#!/usr/bin/env ${0}"),
-			parse({trig="pp", wordTrig=true}, prints[vim.bo.ft]),
+			parse({trig="pp", wordTrig=true}, prints[vim.bo.ft] or ""),
 		},
 	}
 end)
