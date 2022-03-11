@@ -9,7 +9,7 @@ parser_configs.norg = {
 }
 
 require('nvim-treesitter.configs').setup {
-	-- ensure_installed = { "norg" ,"lua" },
+	ensure_installed = { "norg" ,"lua", "comment" },
 	highlight = {
 		enable = true,
 	},

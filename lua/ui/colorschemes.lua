@@ -11,7 +11,6 @@ local Colo = {}
 -- "#282c34", "#24283b", "#11121d", "#1f1f1f",
 
 local colors = {
-	-- 'onedark',
 	'gruvbox-material',
 	'tokyonight',
 	'tokyodark',
@@ -40,19 +39,14 @@ function Colo.tokyonight(transparent)
 	vim.g.tokyonight_style = "night"
 	vim.g.tokyonight_italic_keywords = true
 	vim.g.tokyonight_italic_functions = true
-	-- vim.g.tokyonight_style = "night"
-	-- vim.g.tokyonight_transparent_background = transparent and 1 or 0
 	vim.g.tokyonight_transparent = transparent and 1 or 0
 
 	vim.cmd [[colo tokyonight]]
 	vim.cmd [[hi NormalFloat guibg=#1a1b26]]
-	-- vim.cmd [[hi FloatBorder guibg=#2a2b3d]]
-	-- vim.cmd [[hi SignColumn guibg=#1a1b26]]
 end
 
 function Colo.gruvbox(transparent)
 	vim.g.gruvbox_material_transparent_background = transparent and 1 or 0
-	-- vim.g.gruvbox_flat_style = "dark"
 	vim.g.gruvbox_material_cursor = "red"
 
 	vim.cmd [[colo gruvbox-material]]
@@ -66,13 +60,6 @@ function Colo.sonokai(transparent)
 	vim.g.sonokai_better_performance = 1
 
 	vim.cmd [[colo sonokai]]
-end
-
-function Colo.onedark(transparent)
-	vim.g.onedark_italic_functions = true
-	vim.g.onedark_transparent = transparent and true or false
-
-	require "onedark".setup()
 end
 
 return Colo

@@ -10,7 +10,6 @@ vim.cmd [[au BufEnter packer.lua,init.lua call matchadd("Keyword", "--> \\zs.
 vim.cmd [[au BufWritePre *.js,*.jsx lua vim.lsp.buf.formatting_sync(nil, 200)]]
 vim.cmd [[au BufWritePre *.rs,*.svelte lua vim.lsp.buf.formatting_sync(nil, 1000)]]
 vim.cmd [[au CursorHold  * lua vim.diagnostic.open_float()]]
--- vim.cmd [[au CursorHoldI * lua if not require("cmp").visible() then vim.lsp.buf.signature_help({focusable=false}) end]]
 
 --> OLD
 vim.cmd [[au BufReadPost     *   lua require"essentials".last_place()]]
