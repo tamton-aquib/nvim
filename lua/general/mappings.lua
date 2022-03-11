@@ -52,13 +52,13 @@ map('n', '<leader>fh', '<cmd>Telescope help_tags<CR>')
 map('n', '<leader>fc', '<cmd>Telescope commands theme=ivy<CR>')
 
 --> WINDOW Control
-map('n', '<C-h>',     '<C-w>h')
-map('n', '<C-j>',     '<C-w>j')
-map('n', '<C-k>',     '<C-w>k')
-map('n', '<C-l>',     '<C-w>l')
-map('n', '<M-Left>',  '<cmd>vertical resize +2<CR>')
-map('n', '<M-Down>',  '<cmd>resize -2<CR>')
-map('n', '<M-Up>',    '<cmd>resize +2<CR>')
+map('n', '<C-h>'    , '<C-w>h')
+map('n', '<C-j>'    , '<C-w>j')
+map('n', '<C-k>'    , '<C-w>k')
+map('n', '<C-l>'    , '<C-w>l')
+map('n', '<M-Left>' , '<cmd>vertical resize +2<CR>')
+map('n', '<M-Down>' , '<cmd>resize -2<CR>')
+map('n', '<M-Up>'   , '<cmd>resize +2<CR>')
 map('n', '<M-Right>', '<cmd>vertical resize -2<CR>')
 
 --> Move selected line / block of text in visual mode
@@ -68,7 +68,7 @@ map("n", "<M-j>", "<cmd>m .+1<CR>==")
 map("n", "<M-k>", "<cmd>m .-2<CR>==")
 
 --> OLD
-map('n', '<Space>', '<Nop>')
+map('n', '<Space>'  , '<Nop>')
 map('n', '<leader>a', 'ggVG')
 map('i', 'jk'       , '<Esc>')
 map('n', 'n'        , 'nzz')
