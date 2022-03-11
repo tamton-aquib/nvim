@@ -4,6 +4,7 @@ require("packer").startup { function(use)
 	use { 'tamton-aquib/staline.nvim', config=function() require"ui.staline" end }
 	use { 'ahmedkhalf/project.nvim', config=function() require("project_nvim").setup{} end }
 	use { 'themercorp/themer.lua' }
+	-- use { 'akinsho/nvim-toggleterm.lua', event="BufWinEnter", config=function() require"plugins.floaterm" end }
 	-- use { 'shift-d/scratch.nvim' }
 	-- use { 'p00f/clangd_extensions.nvim' }
 	-- use { 'dundargoc/stalker.nvim' }
@@ -29,9 +30,9 @@ require("packer").startup { function(use)
 	-- use { 'simrat39/rust-tools.nvim', ft={'rust', 'rs'}, config=[[require("rust-tools").setup({})]] }
 	-- use { 'abecodes/tabout.nvim', config=function() require('tabout').setup {} end }
 	-- use { "blackCauldron7/surround.nvim", config = function() require"surround".setup {mappings_style = "sandwich"} end }
+	-- use { 'folke/todo-comments.nvim', event='BufReadPost' , config=function() require'todo-comments'.setup{} end }
 
 	-->  THEMES AND UI
-	use { 'folke/todo-comments.nvim', event='BufReadPost' , config=function() require'todo-comments'.setup{} end }
 	use { 'tamton-aquib/duck.nvim', config=function() require("duck").setup({winblend=0}) end }
 	use { 'kyazdani42/nvim-web-devicons' }
 	use { 'norcalli/nvim-colorizer.lua', cmd="ColorizerToggle", config=function() require"colorizer".setup() end }
@@ -61,17 +62,16 @@ require("packer").startup { function(use)
 
 	-->  GENERAL PURPOSE
 	use { 'folke/lua-dev.nvim' }
+	use { 'beauwilliams/focus.nvim', config=function() require("focus").setup{cursorline=false} end, event="WinNew" }
 	use { 'nathom/filetype.nvim' }
 	use { 'nanotee/luv-vimdocs' }
-	use { 'tamton-aquib/essentials.nvim' }
 	use { 'rcarriga/nvim-notify', config=function() require("notify").setup {background_colour = "Visual"} end }
+	use { 'tamton-aquib/essentials.nvim' }
 	use { 'lewis6991/impatient.nvim' }
 	use { 'rktjmp/paperplanes.nvim', config=function() require("paperplanes").setup{} end, cmd="PP" }
-	use { 'beauwilliams/focus.nvim', config=function() require("focus").setup{cursorline=false} end, event="WinNew" }
 	use { 'steelsojka/pears.nvim', config=function() require"pears".setup() end}
 	use { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=function() require('crates').setup() end }
 	use { 'kyazdani42/nvim-tree.lua', config=[[ require 'plugins.nvim_tree' ]], cmd='NvimTreeToggle'}
-	use { 'akinsho/nvim-toggleterm.lua', event="BufWinEnter", config=function() require"plugins.floaterm" end }
 	use { 'iamcco/markdown-preview.nvim', ft={'markdown'}, config=function() require"plugins.others".markdown_preview() end }
 	use { 'lukas-reineke/indent-blankline.nvim', event="BufReadPost", config=function() require"plugins.others".indent_blankline() end }
 
