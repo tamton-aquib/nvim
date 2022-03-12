@@ -4,17 +4,16 @@ require("packer").startup { function(use)
 	use { 'tamton-aquib/staline.nvim', config=function() require"ui.staline" end }
 	use { 'ahmedkhalf/project.nvim', config=function() require("project_nvim").setup{} end }
 	use { 'themercorp/themer.lua' }
-	-- use { 'akinsho/nvim-toggleterm.lua', event="BufWinEnter", config=function() require"plugins.floaterm" end }
 	-- use { 'shift-d/scratch.nvim' }
 	-- use { 'p00f/clangd_extensions.nvim' }
 	-- use { 'dundargoc/stalker.nvim' }
 	-- use { 'nlsickler/colorscheme-tweaks.nvim' }
 	-- use { 'vim-scripts/vim-lamdify' }
 	-- use { 'nvim-plugnplay/plugnplay.nvim' }
-	-- use { 'rlane/pounce.nvim' }
 	-- use { 'ehamberg/vim-cute-python' }
 
 	-->  Might use in future
+	-- use { 'rlane/pounce.nvim' }
 	-- use { 'edluffy/specs.nvim', config=function() require("plugins.others").specs() end }
 	-- use { 'j-hui/fidget.nvim', config=function() require"fidget".setup { window={blend = 0} } end }
 	-- use { 'rmagatti/goto-preview', config=function() require("plugins.others").goto_preview() end }
@@ -30,10 +29,10 @@ require("packer").startup { function(use)
 	-- use { 'simrat39/rust-tools.nvim', ft={'rust', 'rs'}, config=[[require("rust-tools").setup({})]] }
 	-- use { 'abecodes/tabout.nvim', config=function() require('tabout').setup {} end }
 	-- use { "blackCauldron7/surround.nvim", config = function() require"surround".setup {mappings_style = "sandwich"} end }
-	-- use { 'folke/todo-comments.nvim', event='BufReadPost' , config=function() require'todo-comments'.setup{} end }
 
 	-->  THEMES AND UI
-	use { 'tamton-aquib/duck.nvim', config=function() require("duck").setup({winblend=0}) end }
+	-- use { 'tamton-aquib/duck.nvim', config=function() require("duck").setup({winblend=0}) end }
+	use { 'tamton-aquib/duck.nvim' }
 	use { 'kyazdani42/nvim-web-devicons' }
 	use { 'norcalli/nvim-colorizer.lua', cmd="ColorizerToggle", config=function() require"colorizer".setup() end }
 	use { 'lewis6991/gitsigns.nvim', config=function() require'gitsigns'.setup{} end , event='BufRead' }
