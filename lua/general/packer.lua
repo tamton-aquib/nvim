@@ -13,8 +13,8 @@ require("packer").startup { function(use)
 	-- use { 'ehamberg/vim-cute-python' }
 
 	-->  Might use in future
+	-- use { 'edluffy/specs.nvim', config=function() require("specs").setup{} end }
 	-- use { 'rlane/pounce.nvim' }
-	-- use { 'edluffy/specs.nvim', config=function() require("plugins.others").specs() end }
 	-- use { 'j-hui/fidget.nvim', config=function() require"fidget".setup { window={blend = 0} } end }
 	-- use { 'rmagatti/goto-preview', config=function() require("plugins.others").goto_preview() end }
 	-- use { 'wiliamks/nice-reference.nvim', config=[[require 'nice-reference'.setup({})]], cmd="NiceReference" }
@@ -31,8 +31,7 @@ require("packer").startup { function(use)
 	-- use { "blackCauldron7/surround.nvim", config = function() require"surround".setup {mappings_style = "sandwich"} end }
 
 	-->  THEMES AND UI
-	-- use { 'tamton-aquib/duck.nvim', config=function() require("duck").setup({winblend=0}) end }
-	use { 'tamton-aquib/duck.nvim' }
+	use { 'tamton-aquib/duck.nvim', config=function() require("duck").setup({winblend=0}) end }
 	use { 'kyazdani42/nvim-web-devicons' }
 	use { 'norcalli/nvim-colorizer.lua', cmd="ColorizerToggle", config=function() require"colorizer".setup() end }
 	use { 'lewis6991/gitsigns.nvim', config=function() require'gitsigns'.setup{} end , event='BufRead' }

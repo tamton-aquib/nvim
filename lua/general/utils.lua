@@ -1,5 +1,16 @@
 local Util = {}
 
+--> Bare terminal no toggling
+-- TODO: move to essentials.nvim later
+Util.open_term = function(cmd, direction, close)
+	local dir_cmds = { h = "split | enew!", v = "vsplit | enew!", t = "enew!" }
+	vim.cmd(dir_cmds[direction or 'h'])
+
+	vim.fn.termopen(cmd, {
+		on_exit = function(_) if close then vim.cmd('bd') end end
+	})
+end
+
 --> Centering an array of strings
 function Util.center(dict)
     local new_dict = {}
@@ -35,11 +46,11 @@ function Util.noice_board()
 			vim.fn.matchadd("Function", '[▓█▄▀▐▌]')
 			local buf = vim.api.nvim_create_buf(false, true)
 			local keys = {
-				K=xdg .. 'kitty/kitty.conf',
-				F=xdg .. 'fish/config.fish',
-				I=xdg .. 'nvim/init.lua',
-				A=xdg .. 'alacritty/alacritty.yml',
-				P=xdg .. 'picom/picom.conf'
+				K = xdg .. 'kitty/kitty.conf',
+				F = xdg .. 'fish/config.fish',
+				I = xdg .. 'nvim/init.lua',
+				A = xdg .. 'alacritty/alacritty.yml',
+				P = xdg .. 'picom/picom.conf'
 			}
 			local opts = {noremap = true, silent = true}
 
@@ -92,6 +103,7 @@ Util.telescope_theme = {
 	},
 }
 
+--> Toggling quickfix window with a keybind
 Util.toggle_quickfix = function()
 	vim.cmd(not vim.g.quickfix_toggled and "copen" or "cclose")
 	vim.g.quickfix_toggled = not vim.g.quickfix_toggled
