@@ -1,7 +1,6 @@
 local set = vim.opt
 
 set.cursorline = false
-set.virtualedit = "block"
 
 --> General settings
 set.wrap = false
@@ -27,6 +26,7 @@ set.showmode = false
 set.showtabline = 2
 set.laststatus = 2
 set.completeopt = "menu,menuone,noselect"
+set.virtualedit = "block"
 
 --> Fold Settings
 set.foldenable = true

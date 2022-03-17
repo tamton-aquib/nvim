@@ -12,11 +12,7 @@ end)
 
 require('neorg').setup {
     load = {
-		["core.norg.completion"] = {
-			config = {
-				engine = "nvim-cmp"
-			}
-		},
+		["core.norg.completion"] = { config={ engine="nvim-cmp" } },
 		["core.defaults"] = {},
 		["core.norg.concealer"] = { config = { icon_preset = "diamond" } },
 		["core.integrations.telescope"] = {},
@@ -24,7 +20,6 @@ require('neorg').setup {
 		["core.norg.dirman"] = {
 			config = {
 				workspaces = { my_workspace = "~/neorg" },
-				-- autodetect = true, autochdir = true
 			}
 		}
 	},

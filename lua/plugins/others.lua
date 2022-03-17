@@ -6,7 +6,7 @@ function M.indent_blankline()
 		show_current_context = true,
 		strict_tabs = true,
 		filetype_exclude = {
-			"TelescopePrompt", "help", "terminal", "dashboard", "NvimTree",
+			"terminal", "dashboard", "NvimTree", "help",
 			"packer", "lspinfo", "lsp-installer"
 		},
 		buftype_exclude = { "terminal", "norg" }

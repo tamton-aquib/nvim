@@ -1,25 +1,27 @@
+local au = function(events, ptn, cb) vim.api.nvim_create_autocmd(events, {pattern=ptn, callback=cb}) end
+local command = function(name, fn, desc) vim.api.nvim_add_user_command(name, fn, {desc=desc}) end
 
---> NEW
-vim.cmd [[au BufEnter * set fo-=cro]]
-vim.cmd [[au BufEnter *.json set cole=0]]
-vim.cmd [[au BufEnter *.md setlocal spell]]
-vim.cmd [[au BufEnter packer.lua,init.lua call matchadd("Keyword", "--> \\zs.*\\ze$")]]
--- vim.cmd [[au VimEnter * lua require("duck").hatch()]]
+-->  NEW
+au("BufEnter", "packer.lua,init.lua", function() vim.fn.matchadd("Keyword", "--> \\zs.*\\ze$") end)
+au("BufEnter", "*", function() vim.opt_local.fo:remove{'c', 'r', 'o'} end)
+au("FileType", "markdown", function() vim.opt_local.spell=true end)
+au("FileType", "json", function() vim.opt_local.cole=0 end)
+-- au("VimEnter", "*", require("duck").hatch)
 
---> LSP related
-vim.cmd [[au BufWritePre *.js,*.jsx lua vim.lsp.buf.formatting_sync(nil, 200)]]
-vim.cmd [[au BufWritePre *.rs,*.svelte lua vim.lsp.buf.formatting_sync(nil, 1000)]]
-vim.cmd [[au CursorHold  * lua vim.diagnostic.open_float()]]
+--> LSP Related
+au("BufWritePre", "*.js,*.jsx", function() vim.lsp.buf.formatting_sync(nil, 200) end)
+au("BufWritePre", "*.rs,*.svelte", function() vim.lsp.buf.formatting_sync(nil, 1000) end)
+au("CursorHold", "*", function() vim.diagnostic.open_float() end)
 
 --> OLD
-vim.cmd [[au BufReadPost     *   lua require"essentials".last_place()]]
-vim.cmd [[au FileType      help  nnoremap <buffer> <CR> <C-]>]]
-vim.cmd [[au TextYankPost    *   silent! lua vim.highlight.on_yank{higroup="Folded", timeout=200} ]]
-vim.cmd [[au BufEnter        *.toml   set ft=dosini]]
-vim.cmd [[au TermOpen       term://*  setlocal nonu nornu | startinsert]]
-vim.cmd [[au BufWritePost packer.lua  so % | PackerCompile<CR>]]
+au("BufEnter", "*", function() require("essentials").last_place() end)
+au("TextYankPost", "*", function() vim.highlight.on_yank({higroup="Folded", timeout=200}) end)
+au("BufEnter", "*.toml", function() vim.opt_local.ft="dosini" end)
+au("FileType", "help", function() vim.cmd[[nn <buffer> <CR> <C-]>]] end)
+au("BufWritePost", "packer.lua", function() vim.cmd"so | PackerCompile<CR>" end)
+au("TermOpen", "term://*", function() vim.cmd "setl nonu nornu | star" end)
 
---> Stuff for later
-vim.cmd [[command Format :lua vim.lsp.buf.formatting()]]
--- vim.cmd [[command X :!xset r rate 170 69]]
--- vim.cmd [[syntax keyword Keyword lambda conceal cchar=λ]] // TODO: populate
+--> Commands
+command("Format", vim.lsp.buf.formatting, "Formats the current buffer.")
+command("X", "!xset r rate 169 69", "Keyboards press-release rate.")
+-- vim.cmd [[syntax keyword Keyword lambda conceal cchar=λ]] -- TODO: populate

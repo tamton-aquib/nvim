@@ -4,8 +4,6 @@ local function mep(mode, key, func) vim.keymap.set(mode, key, func, {silent=true
 --> TEMP and TEST maps
 mep('n', '<leader>l', function() require("general.utils").open_term("lazygit", 't', true) end)
 mep('n', '<leader>t', function() require("general.utils").open_term("fish", 'h', true) end)
--- mep('n', "c", '"_c')
--- mep('n', "C", '"_C')
 
 --> General Mappings
 mep('n', '<M-h>'       , ':exe ":h ".expand("<cword>")<CR>')

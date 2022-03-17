@@ -20,7 +20,7 @@ vim.diagnostic.config({
 	underline = {Error=true},
 	float = {
 		border = border,
-		header = { "律 Diagnostics", "String" },
+		header = { "  Diagnostics", "String" },
 		focusable = false,
 		prefix = function(_, _, _)
 			return " " , "String" -- icons:        ﬌  

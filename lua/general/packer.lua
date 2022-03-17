@@ -61,13 +61,13 @@ require("packer").startup { function(use)
 	-->  GENERAL PURPOSE
 	use { 'folke/lua-dev.nvim' }
 	use { 'beauwilliams/focus.nvim', config=function() require("focus").setup{cursorline=false} end, event="WinNew" }
+	use { 'tamton-aquib/essentials.nvim' }
+	use { 'ZhiyuanLck/smart-pairs', event = 'InsertEnter', config = function() require('pairs'):setup() end }
 	use { 'nathom/filetype.nvim' }
 	use { 'nanotee/luv-vimdocs' }
 	use { 'rcarriga/nvim-notify', config=function() require("notify").setup {background_colour = "Visual"} end }
-	use { 'tamton-aquib/essentials.nvim' }
 	use { 'lewis6991/impatient.nvim' }
 	use { 'rktjmp/paperplanes.nvim', config=function() require("paperplanes").setup{} end, cmd="PP" }
-	use { 'steelsojka/pears.nvim', config=function() require"pears".setup() end}
 	use { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=function() require('crates').setup() end }
 	use { 'kyazdani42/nvim-tree.lua', config=[[ require 'plugins.nvim_tree' ]], cmd='NvimTreeToggle'}
 	use { 'iamcco/markdown-preview.nvim', ft={'markdown'}, config=function() require"plugins.others".markdown_preview() end }

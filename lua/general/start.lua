@@ -16,19 +16,12 @@ if ok then impatient.enable_profile() end
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
+	print("Installing packer...")
 	fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 	vim.cmd 'packadd packer.nvim'
 end
 
 require("packer").init {
-	git = { depth = 1 },
 	profile = { enable = true },
-	display = {
-		working_sym = "",
-		open_fn = function()
-			return require('packer.util').float{
-				border = require"general.utils".border
-			}
-		end
-	}
+	display = { working_sym = "" }
 }
