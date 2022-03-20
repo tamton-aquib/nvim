@@ -24,7 +24,7 @@ set.pumheight = 10
 set.incsearch = true
 set.showmode = false
 set.showtabline = 2
-set.laststatus = 2
+set.laststatus = 3
 set.completeopt = "menu,menuone,noselect"
 set.virtualedit = "block"
 

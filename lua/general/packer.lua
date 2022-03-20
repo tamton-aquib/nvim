@@ -4,6 +4,8 @@ require("packer").startup { function(use)
 	use { 'tamton-aquib/staline.nvim', config=function() require"ui.staline" end }
 	use { 'ahmedkhalf/project.nvim', config=function() require("project_nvim").setup{} end }
 	use { 'themercorp/themer.lua' }
+	use { '~/STUFF/NVIM/essentials.nvim' }
+	-- use { 'tamton-aquib/essentials.nvim' }
 	-- use { 'shift-d/scratch.nvim' }
 	-- use { 'p00f/clangd_extensions.nvim' }
 	-- use { 'dundargoc/stalker.nvim' }
@@ -61,7 +63,6 @@ require("packer").startup { function(use)
 	-->  GENERAL PURPOSE
 	use { 'folke/lua-dev.nvim' }
 	use { 'beauwilliams/focus.nvim', config=function() require("focus").setup{cursorline=false} end, event="WinNew" }
-	use { 'tamton-aquib/essentials.nvim' }
 	use { 'ZhiyuanLck/smart-pairs', event = 'InsertEnter', config = function() require('pairs'):setup() end }
 	use { 'nathom/filetype.nvim' }
 	use { 'nanotee/luv-vimdocs' }
