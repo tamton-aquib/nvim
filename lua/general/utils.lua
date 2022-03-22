@@ -1,16 +1,5 @@
 local Util = {}
 
---> Bare terminal no toggling
--- TODO: move to essentials.nvim later
-Util.open_term = function(cmd, direction, close)
-	local dir_cmds = { h = "split | enew!", v = "vsplit | enew!", t = "enew!" }
-	vim.cmd(dir_cmds[direction or 'h'])
-
-	vim.fn.termopen(cmd, {
-		on_exit = function(_) if close then vim.cmd('bd') end end
-	})
-end
-
 --> Centering an array of strings
 function Util.center(dict)
     local new_dict = {}

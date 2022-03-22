@@ -14,7 +14,7 @@ au("BufWritePre", "*.rs,*.svelte", function() vim.lsp.buf.formatting_sync(nil, 1
 au("CursorHold", "*", function() vim.diagnostic.open_float() end)
 
 --> OLD
-au("BufEnter", "*", function() require("essentials").last_place() end)
+au("BufReadPost", "*", function() require("essentials").last_place() end)
 au("TextYankPost", "*", function() vim.highlight.on_yank({higroup="Folded", timeout=200}) end)
 au("BufEnter", "*.toml", function() vim.opt_local.ft="dosini" end)
 au("FileType", "help", function() vim.cmd[[nn <buffer> <CR> <C-]>]] end)

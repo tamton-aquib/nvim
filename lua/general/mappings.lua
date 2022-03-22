@@ -2,8 +2,8 @@ vim.g.mapleader = " "
 local function mep(mode, key, func) vim.keymap.set(mode, key, func, {silent=true}) end
 
 --> TEMP and TEST maps
-mep('n', '<leader>l', function() require("general.utils").open_term("lazygit", 't', true) end)
-mep('n', '<leader>t', function() require("general.utils").open_term("fish", 'h', true) end)
+mep('n', '<leader>l', function() require("essentials").open_term("lazygit", 't', true) end)
+mep('n', '<leader>t', function() require("essentials").open_term("fish", 'h', true) end)
 
 --> General Mappings
 mep('n', '<M-h>'       , ':exe ":h ".expand("<cword>")<CR>')
@@ -30,7 +30,7 @@ mep('n', '<leader>s' , require("essentials").swap_bool)
 mep('n', '<leader>w' , require("general.utils").close_command)
 mep('n', 'gx'        , require("essentials").go_to_url)
 mep('n', '<leader>cs', require("essentials").cheat_sh)
-mep('v', 'gl'        , require("essentials").get_git_url)
+-- mep('v', 'gl'        , require("essentials").get_git_url)
 
 --> LSP mappings
 mep('n', 'gd',    vim.lsp.buf.definition)

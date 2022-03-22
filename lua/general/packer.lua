@@ -1,11 +1,8 @@
 require("packer").startup { function(use)
 
 	-->  Testing and temporary
-	use { 'tamton-aquib/staline.nvim', config=function() require"ui.staline" end }
 	use { 'ahmedkhalf/project.nvim', config=function() require("project_nvim").setup{} end }
-	use { 'themercorp/themer.lua' }
-	use { '~/STUFF/NVIM/essentials.nvim' }
-	-- use { 'tamton-aquib/essentials.nvim' }
+	-- use { 'kyazdani42/nvim-tree.lua', config=[[ require 'plugins.nvim_tree' ]], cmd='NvimTreeToggle'}
 	-- use { 'shift-d/scratch.nvim' }
 	-- use { 'p00f/clangd_extensions.nvim' }
 	-- use { 'dundargoc/stalker.nvim' }
@@ -33,10 +30,12 @@ require("packer").startup { function(use)
 	-- use { "blackCauldron7/surround.nvim", config = function() require"surround".setup {mappings_style = "sandwich"} end }
 
 	-->  THEMES AND UI
+	use { 'themercorp/themer.lua' }
 	use { 'tamton-aquib/duck.nvim', config=function() require("duck").setup({winblend=0}) end }
 	use { 'kyazdani42/nvim-web-devicons' }
 	use { 'norcalli/nvim-colorizer.lua', cmd="ColorizerToggle", config=function() require"colorizer".setup() end }
 	use { 'lewis6991/gitsigns.nvim', config=function() require'gitsigns'.setup{} end , event='BufRead' }
+	use { 'tamton-aquib/staline.nvim', config=function() require"ui.staline" end }
 
 	-->  LSP and COMPLETION
 	use { 'neovim/nvim-lspconfig' }
@@ -66,11 +65,11 @@ require("packer").startup { function(use)
 	use { 'ZhiyuanLck/smart-pairs', event = 'InsertEnter', config = function() require('pairs'):setup() end }
 	use { 'nathom/filetype.nvim' }
 	use { 'nanotee/luv-vimdocs' }
+	use { 'tamton-aquib/essentials.nvim', branch='dev' }
 	use { 'rcarriga/nvim-notify', config=function() require("notify").setup {background_colour = "Visual"} end }
 	use { 'lewis6991/impatient.nvim' }
 	use { 'rktjmp/paperplanes.nvim', config=function() require("paperplanes").setup{} end, cmd="PP" }
 	use { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=function() require('crates').setup() end }
-	use { 'kyazdani42/nvim-tree.lua', config=[[ require 'plugins.nvim_tree' ]], cmd='NvimTreeToggle'}
 	use { 'iamcco/markdown-preview.nvim', ft={'markdown'}, config=function() require"plugins.others".markdown_preview() end }
 	use { 'lukas-reineke/indent-blankline.nvim', event="BufReadPost", config=function() require"plugins.others".indent_blankline() end }
 
