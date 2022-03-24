@@ -82,7 +82,9 @@ Util.border = borders[1]
 Util.telescope_theme = {
 	results_title = false,
 	layout_strategy = "center",
+	sorting_strategy = "ascending",
 	previewer = false,
+	prompt_prefix = "      ",
 	winblend = 0,
 	layout_config = { width = 0.6, height = 0.6 },
 	borderchars = {

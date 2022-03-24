@@ -3,12 +3,12 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 require("nvim-lsp-installer").on_server_ready(function(server)
 	local opts = {capabilities = capabilities}
 
-	if server.name == "rust_analyzer" then
-		opts = {
-			flags = { exit_timeout = false },
-			capabilities = capabilities
-		}
-	elseif server.name == "sumneko_lua" then
+	if server.name == "rust_analyzer" then return end
+		-- opts = {
+			-- flags = { exit_timeout = false },
+			-- capabilities = capabilities
+		-- }
+	if server.name == "sumneko_lua" then
 		opts = require("lua-dev").setup {
 			library = {
 				vimruntime = true,
@@ -21,3 +21,4 @@ require("nvim-lsp-installer").on_server_ready(function(server)
 	server:setup(opts)
 end)
 
+require("lspconfig").rust_analyzer.setup{}

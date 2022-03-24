@@ -2,7 +2,6 @@ require("packer").startup { function(use)
 
 	-->  Testing and temporary
 	use { 'ahmedkhalf/project.nvim', config=function() require("project_nvim").setup{} end }
-	-- use { 'kyazdani42/nvim-tree.lua', config=[[ require 'plugins.nvim_tree' ]], cmd='NvimTreeToggle'}
 	-- use { 'shift-d/scratch.nvim' }
 	-- use { 'p00f/clangd_extensions.nvim' }
 	-- use { 'dundargoc/stalker.nvim' }
@@ -67,6 +66,7 @@ require("packer").startup { function(use)
 	use { 'nanotee/luv-vimdocs' }
 	use { 'tamton-aquib/essentials.nvim', branch='dev' }
 	use { 'rcarriga/nvim-notify', config=function() require("notify").setup {background_colour = "Visual"} end }
+	use { 'kyazdani42/nvim-tree.lua', config=[[ require 'plugins.nvim_tree' ]], cmd='NvimTreeToggle'}
 	use { 'lewis6991/impatient.nvim' }
 	use { 'rktjmp/paperplanes.nvim', config=function() require("paperplanes").setup{} end, cmd="PP" }
 	use { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=function() require('crates').setup() end }

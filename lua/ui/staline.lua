@@ -21,7 +21,8 @@ Styles.simple_line = {
 		left = { '  ', 'mode', ' ', 'branch', '  ⌬  ', 'lsp' },
 		mid = { 'file_name', '%<', },
 		right = {
-			'%l/%L  :%c  ',
+			function() return vim.b.bookmark_toggled or "" end,
+			'    %l/%L  :%c  ',
 			'  ',
 			function()
 				local chars = { "_", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" }
