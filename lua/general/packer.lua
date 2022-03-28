@@ -1,9 +1,11 @@
 require("packer").startup { function(use)
 
 	-->  Testing and temporary
-	use { 'ahmedkhalf/project.nvim', config=function() require("project_nvim").setup{} end }
+	use { 'ahmedkhalf/project.nvim', config=function() require("project_nvim").setup() end }
+	-- use { '~/STUFF/NVIM/trending' }
 	-- use { 'shift-d/scratch.nvim' }
-	-- use { 'p00f/clangd_extensions.nvim' }
+	-- use { 'p00f/clangd_extensions.nvim', config=function() require("clangd_extensions").setup() end }
+	-- use { 'nvim-treesitter/nvim-treesitter-textobjects' }
 	-- use { 'dundargoc/stalker.nvim' }
 	-- use { 'nlsickler/colorscheme-tweaks.nvim' }
 	-- use { 'vim-scripts/vim-lamdify' }

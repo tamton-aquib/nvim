@@ -1,6 +1,3 @@
-local ls = require'luasnip'
-local parse = ls.parser.parse_snippet
-
 local prints = {
 	rust = [[println!("{${0}}");]],
 	python = [[print(${0})]],
@@ -11,11 +8,14 @@ local prints = {
 	cpp = [[std::cout << ${0} << std::endl;]]
 }
 
-vim.schedule(function()
-	ls.snippets = {
+vim.defer_fn(function()
+	local ls = require'luasnip'
+	local parse = ls.parser.parse_snippet
+
+	ls.add_snippets(nil, {
 		all = {
 			parse({trig="#!", wordTrig=true}, "#!/usr/bin/env ${0}"),
-			parse({trig="pp", wordTrig=true}, prints[vim.bo.ft] or ""),
-		},
-	}
-end)
+			parse({trig="pp", wordTrig=true}, prints[vim.bo.ft] or "oh shiet"),
+		}
+	})
+end, 150)

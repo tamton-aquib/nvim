@@ -21,6 +21,9 @@ Styles.simple_line = {
 		left = { '  ', 'mode', ' ', 'branch', '  ⌬  ', 'lsp' },
 		mid = { 'file_name', '%<', },
 		right = {
+			function()
+				return vim.b.gitsigns_status or ""
+			end,
 			function() return vim.b.bookmark_toggled or "" end,
 			'    %l/%L  :%c  ',
 			'  ',
