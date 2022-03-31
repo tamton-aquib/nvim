@@ -1,3 +1,5 @@
 plugin
 ftplugin
 queries
+
+lua/noice.lua

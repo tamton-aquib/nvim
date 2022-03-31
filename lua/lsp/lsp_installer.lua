@@ -5,17 +5,9 @@ require("nvim-lsp-installer").on_server_ready(function(server)
 
 	if server.name ~= "rust_analyzer" then
 		if server.name == "sumneko_lua" then
-			opts = require("lua-dev").setup {
-				library = {
-					vimruntime = true,
-					types = true,
-					plugins = true,
-				}
-			}
+			opts = require("lua-dev").setup {}
 		end
 	end
 
 	server:setup(opts)
 end)
-
-require("lspconfig").rust_analyzer.setup{}

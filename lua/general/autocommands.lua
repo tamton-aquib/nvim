@@ -23,5 +23,8 @@ au("TermOpen", "term://*", function() vim.cmd "setl nonu nornu | star" end)
 
 --> Commands
 command("Format", vim.lsp.buf.formatting, "Formats the current buffer.")
-command("X", "!xset r rate 169 69", "Keyboards press-release rate.")
+command("X", ":silent !xset r rate 169 69", "Keyboards press-release rate.")
+command("Luv", ":pa luv-vimdocs | h luv" , "Open up libuv docs.")
+-- vim.cmd [[command Luv :packadd luv-vimdocs | help luv]]
+
 -- vim.cmd [[syntax keyword Keyword lambda conceal cchar=λ]] -- TODO: populate
