@@ -24,7 +24,7 @@ require("packer").startup { function(use)
 	use { 'norcalli/nvim-colorizer.lua', cmd="ColorizerToggle", config=function() require"colorizer".setup() end }
 	use { 'lewis6991/gitsigns.nvim', config=function() require'gitsigns'.setup{} end , event='BufRead' }
 	use { 'j-hui/fidget.nvim', config=function() require"fidget".setup { window={blend = 0} } end }
-	use { 'tamton-aquib/staline.nvim', branch='dev', config=function() require("ui.staline") end }
+	use { 'tamton-aquib/staline.nvim', config=function() require("plugins").staline() end }
 
 	-->  LSP and COMPLETION
 	use { 'neovim/nvim-lspconfig' }
@@ -45,7 +45,6 @@ require("packer").startup { function(use)
 	use { 'nvim-telescope/telescope.nvim', cmd='Telescope' , config=function() require"plugins".telescope() end, module="telescope"}
 	use { 'nvim-treesitter/nvim-treesitter', event='BufRead', config=function() require("plugins").treesitter() end }
 	use { 'nvim-neorg/neorg', ft={"norg"}, after={"nvim-treesitter", "telescope.nvim"}, config = function() require("plugins").neorg() end }
-	-- use { 'nvim-neorg/neorg-telescope' }
 	use { 'danymat/neogen', config=function() require("neogen").setup{} end }
 
 	-->  GENERAL PURPOSE
@@ -60,7 +59,7 @@ require("packer").startup { function(use)
 	use { 'lewis6991/impatient.nvim' }
 	use { 'rktjmp/paperplanes.nvim', config=function() require("paperplanes").setup{} end, cmd="PP" }
 	use { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=function() require('crates').setup() end }
-	use { 'iamcco/markdown-preview.nvim', ft={'markdown'}, config=function() require("plugins").markdown_preview() end }
+	use { 'iamcco/markdown-preview.nvim', ft={'markdown'}, config=function() vim.g.mkdp_auto_close = 0 end }
 	use { 'lukas-reineke/indent-blankline.nvim', event="BufReadPost", config=function() require("plugins").indent_blankline() end }
 
 	use { 'wbthomason/packer.nvim' }
