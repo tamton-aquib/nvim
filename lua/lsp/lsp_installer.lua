@@ -5,8 +5,8 @@ local on_attatch = function()
 	vim.keymap.set('n', 'gr',    vim.lsp.buf.references, {})
 	vim.keymap.set('n', 'gi',    vim.lsp.buf.implementation, {})
 	vim.keymap.set('n', 'gh',    vim.lsp.buf.hover, {})
-	vim.keymap.set('n', '<C-n>', vim.diagnostic.goto_next, {})
-	vim.keymap.set('n', '<C-p>', vim.diagnostic.goto_prev, {})
+	vim.keymap.set('n', '<M-n>', vim.diagnostic.goto_next, {})
+	vim.keymap.set('n', '<M-p>', vim.diagnostic.goto_prev, {})
 end
 
 require("nvim-lsp-installer").on_server_ready(function(server)
@@ -14,7 +14,7 @@ require("nvim-lsp-installer").on_server_ready(function(server)
 
 	if server.name ~= "rust_analyzer" then
 		if server.name == "sumneko_lua" then
-			opts = require("lua-dev").setup {}
+			opts = vim.g.devmode and require("lua-dev").setup{} or {}
 		end
 	end
 

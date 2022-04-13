@@ -1,15 +1,9 @@
 local border = require("general.utils").border
-local signs = {
-	{ name = "Error", icon = " " },
-	{ name = "Warn" , icon = " " },
-	{ name = "Hint" , icon = ""  },
-	{ name = "Info" , icon = ""  },
-	{ name = "other", icon = "﫠" }
-}
+local signs = { Error = "", Warn  = "", Hint  = "", Info  = "", other = "﫠" }
 
-for _, sign in ipairs(signs) do
-	local hl = "DiagnosticSign" .. sign.name
-	vim.fn.sign_define(hl, { text = sign.icon, texthl = hl, numhl = '' })
+for name, icon in pairs(signs) do
+	local hl = "DiagnosticSign" .. name
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
 end
 
 vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with( vim.lsp.handlers.hover, {border = border})

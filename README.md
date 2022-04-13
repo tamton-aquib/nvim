@@ -37,15 +37,7 @@ My neovim config
    │  ├──  cmp.lua
    │  ├──  lsp_defaults.lua
    │  └──  lsp_installer.lua
-   ├──   plugins
-   │  ├──  nvim_tree.lua
-   │  ├──  neorg.lua
-   │  ├──  snippets.lua
-   │  ├──  telescope.lua
-   │  ├──  others.lua
-   │  └──  treesittter.lua
-   └──   ui
-      ├──  colorschemes.lua
-      └──  staline.lua
+   └──   plugins
+      └──  init.lua
 ```
 

@@ -1,14 +1,4 @@
 local cmp = require('cmp')
-local luasnip = require('luasnip')
-
-local check_back_space = function()
-	local col = vim.fn.col '.' - 1
-	return col == 0 or vim.fn.getline('.'):sub(col, col):match '%s' ~= nil
-end
-
-local t = function(str)
-    return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
 
 local source_names = {
 	nvim_lsp = "[LSP]",
@@ -33,8 +23,7 @@ local kind_icons = {
 	Value = ' ',
 	Enum = ' ',
 	Keyword = ' ',
-	-- Snippet = ' ',
-	Snippet = ' ',
+	Snippet = ' ',
 	Color = ' ',
 	File = ' ',
 	Reference = ' ',
@@ -56,50 +45,19 @@ cmp.setup {
 			return item
 		end
 	},
-    documentation = {
-		border = require"general.utils".border,
-		winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
-    },
+	window = { documentation = { border = require("general.utils").border } },
 
 	snippet = {
-		expand = function(args)
-			require("luasnip").lsp_expand(args.body)
-		end,
+		expand = function(args) require("luasnip").lsp_expand(args.body) end,
 	},
 
 	mapping = {
 		['<C-n>'] = cmp.mapping.select_next_item(),
 		['<C-p>'] = cmp.mapping.select_prev_item(),
-		['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(-2), { 'i', 'c' }),
-		['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(2), { 'i', 'c' }),
+		['<C-b>'] = cmp.mapping.scroll_docs(-1),
+		['<C-f>'] = cmp.mapping.scroll_docs(1),
 		['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-		['<C-e>'] = cmp.mapping.close(),
-		['<CR>'] = cmp.mapping.confirm({
-			behavior = cmp.ConfirmBehavior.Replace,
-			select = true,
-		}),
-
-		["<Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			elseif luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
-			elseif check_back_space() then
-				vim.fn.feedkeys(t("<Tab>"), "n")
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
-
-		["<S-Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
-				luasnip.jump(-1)
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
+		['<CR>'] = cmp.mapping.confirm({ select = true }),
 	},
 
 	sources = {
@@ -115,8 +73,7 @@ cmp.setup {
 		{ name = 'crates'},
 	},
 
-	experimental = {
-		ghost_text = true,
-		custom_menu = true
-	}
+	experimental = { ghost_text = true }
 }
+
+cmp.setup.cmdline(':', { sources = {{name="cmdline", keyword_length=3}} })

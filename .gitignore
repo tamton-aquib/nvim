@@ -2,4 +2,4 @@ plugin
 ftplugin
 queries
 
-lua/noice.lua
+.luarc.json

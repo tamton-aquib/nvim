@@ -5,13 +5,14 @@ require("packer").startup { function(use)
 	-- use { 'toppair/reach.nvim', config=function() require("reach").setup() end }
 	-- use { 'simrat39/rust-tools.nvim', ft='rust', config=function() require("rust-tools").setup() end }
 	-- use { 'nvim-treesitter/nvim-treesitter-textobjects' }
+	-- use { 'ZhiyuanLck/smart-pairs', event = 'InsertEnter', config = function() require('pairs'):setup() end }
 
 	-->  Might use in future
+	-- use { 'elihunter173/dirbuf.nvim' }
 	-- use { 'nlsickler/colorscheme-tweaks.nvim' }
 	-- use { 'edluffy/specs.nvim', config=function() require("specs").setup{} end }
 	-- use { 'rmagatti/goto-preview', config=function() require("plugins").goto_preview() end }
 	-- use { 'kevinhwang91/nvim-bqf', config=function() require("bqf").setup{} end}
-	-- use { 'elihunter173/dirbuf.nvim' }
 	-- use { 'rlch/github-notifications.nvim' }
 	-- use { 'ggandor/lightspeed.nvim' }
 	-- use { 'abecodes/tabout.nvim', config=function() require('tabout').setup {} end }
@@ -25,6 +26,8 @@ require("packer").startup { function(use)
 	use { 'lewis6991/gitsigns.nvim', config=function() require'gitsigns'.setup{} end , event='BufRead' }
 	use { 'j-hui/fidget.nvim', config=function() require"fidget".setup { window={blend = 0} } end }
 	use { 'tamton-aquib/staline.nvim', config=function() require("plugins").staline() end }
+	use { 'hrsh7th/cmp-cmdline', event="CmdlineEnter"}
+	use { 'kyazdani42/nvim-tree.lua', config=function() require('plugins').nvim_tree() end, cmd='NvimTreeToggle'}
 
 	-->  LSP and COMPLETION
 	use { 'neovim/nvim-lspconfig' }
@@ -48,14 +51,12 @@ require("packer").startup { function(use)
 	use { 'danymat/neogen', config=function() require("neogen").setup{} end }
 
 	-->  GENERAL PURPOSE
-	use { 'folke/lua-dev.nvim' }
+	use { 'folke/lua-dev.nvim', module="lua-dev"}
 	use { 'beauwilliams/focus.nvim', config=function() require("focus").setup{cursorline=false} end, event="WinNew" }
-	use { 'ZhiyuanLck/smart-pairs', event = 'InsertEnter', config = function() require('pairs'):setup() end }
 	use { 'nathom/filetype.nvim' }
-	use { 'nanotee/luv-vimdocs', cmd="Luv" }
+	use { 'nanotee/luv-vimdocs' }
 	use { 'tamton-aquib/essentials.nvim', branch='dev' }
 	use { 'rcarriga/nvim-notify', config=function() require("notify").setup {background_colour = "Visual"} end }
-	use { 'kyazdani42/nvim-tree.lua', config=function() require('plugins').nvim_tree() end, cmd='NvimTreeToggle'}
 	use { 'lewis6991/impatient.nvim' }
 	use { 'rktjmp/paperplanes.nvim', config=function() require("paperplanes").setup{} end, cmd="PP" }
 	use { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=function() require('crates').setup() end }
