@@ -49,14 +49,14 @@ set.relativenumber = true
 set.shiftwidth = 4
 set.tabstop = 4
 set.softtabstop = 0
-set.expandtab = false
+set.expandtab = true
 set.smartindent = true
 set.breakindent = true
 
 --> Misc settings
 set.signcolumn = "yes:1"
 set.guifont = "Operator Mono Medium"
-set.wildignore = { '*.pyc,__pycache__' }
+set.wildignore = { '*.pyc,__pycache__,node_modules' }
 set.fillchars:append({eob=' ', fold=' ', foldopen="", foldsep=" ", foldclose=""})
 set.shortmess:append({c=true, s=true, A=true, W=true})
 set.iskeyword:append('-')
@@ -71,6 +71,6 @@ if ok then vim.notify = notify end
 -- set.list = true
 -- set.listchars = 'tab:▏ '
 -- set.listchars = 'tab: '
--- set.lazyredraw = true
+-- set.lazyredraw = false
 -- vim.cmd [[let &colorcolumn=join(range(81,999),",")]]
 -- vim.cmd [[packadd cfilter]]

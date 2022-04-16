@@ -1,5 +1,5 @@
 local au = function(events, ptn, cb) vim.api.nvim_create_autocmd(events, {pattern=ptn, callback=cb}) end
-local command = function(name, fn, desc) vim.api.nvim_add_user_command(name, fn, {desc=desc}) end
+local command = function(name, fn, desc) vim.api.nvim_create_user_command(name, fn, {desc=desc}) end
 
 -->  NEW
 au("BufEnter", "packer.lua,init.lua", function() vim.fn.matchadd("Keyword", "--> \\zs.*\\ze$") end)
@@ -24,7 +24,4 @@ au("TermOpen", "term://*", function() vim.cmd "setl nonu nornu | star" end)
 --> Commands
 command("Format", vim.lsp.buf.formatting, "Formats the current buffer.")
 command("X", ":silent !xset r rate 169 69", "Keyboards press-release rate.")
-command("Luv", ":pa luv-vimdocs | h luv" , "Open up libuv docs.")
--- vim.cmd [[command Luv :packadd luv-vimdocs | help luv]]
-
--- vim.cmd [[syntax keyword Keyword lambda conceal cchar=λ]] -- TODO: populate
+-- vim.cmd [[syntax keyword Keyword lambda conceal cchar=λ]] -- TODO: (maybe with ts queries?)

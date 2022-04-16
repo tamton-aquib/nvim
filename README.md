@@ -6,7 +6,7 @@ My neovim config
 ![image](https://user-images.githubusercontent.com/77913442/146633549-c098e7ca-6f6d-4740-8ab6-531d8a030555.png)
 ![image](https://user-images.githubusercontent.com/77913442/146633580-3fa0430e-228e-4010-97ca-46ea58cffc14.png)
 ---
-<!-- GARBAGE COLLECTOR
+<!-- Previous screenshots
 ![image](https://user-images.githubusercontent.com/77913442/136957780-0459199a-c79d-43d2-9f13-7a9c8011cd71.png)
 * Colorscheme: [custom](https://github.com/tamton-aquib/nvim/blob/main/lua/custom/noice_dark.lua)
 -->

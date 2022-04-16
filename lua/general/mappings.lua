@@ -38,6 +38,7 @@ map('n', '<leader>fg', '<cmd>Telescope live_grep<CR>')
 map('n', '<leader>fa', '<cmd>Telescope lsp_code_actions theme=cursor<cr>')
 map('n', '<leader>fh', '<cmd>Telescope help_tags<CR>')
 map('n', '<leader>fc', '<cmd>Telescope commands theme=ivy<CR>')
+map('n', '/', '<cmd>Telescope current_buffer_fuzzy_find previewer=false<CR>')
 
 --> WINDOW Control
 map('n', '<C-h>'    , '<C-w>h')
