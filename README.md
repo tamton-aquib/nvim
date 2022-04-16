@@ -6,20 +6,19 @@ My neovim config
 ![image](https://user-images.githubusercontent.com/77913442/146633549-c098e7ca-6f6d-4740-8ab6-531d8a030555.png)
 ![image](https://user-images.githubusercontent.com/77913442/146633580-3fa0430e-228e-4010-97ca-46ea58cffc14.png)
 ---
-<!-- GARBAGE COLLECTOR
+<!-- Previous screenshots
 ![image](https://user-images.githubusercontent.com/77913442/136957780-0459199a-c79d-43d2-9f13-7a9c8011cd71.png)
 * Colorscheme: [custom](https://github.com/tamton-aquib/nvim/blob/main/lua/custom/noice_dark.lua)
 -->
 
 ### Summary
 
-> ❗For current 0.7 stuff, checkout dev branch
-
-* neovim version : 0.6
-* Colorscheme: [tokyodark.nvim](https://github.com/tiagovla/tokyodark.nvim) with [Themer](https://github.com/ThemerCorp/themer.lua)
+* neovim version : 0.7
+* optional deps: rg
+* Colorscheme: [tokyodark.nvim](https://github.com/tiagovla/tokyodark.nvim)
 * Statusline and bufferline : [staline and stabline](https://github.com/tamton-aquib/staline.nvim)
-* LSP: builtin (config @[here](https://github.com/tamton-aquib/nvim/blob/dev/lua/lsp/lsp_defaults.lua))
-* Completion engine: [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) (config @[here](https://github.com/tamton-aquib/nvim/blob/dev/lua/lsp/cmp.lua))
+* LSP: builtin with lspconfig.
+* Completion engine: [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
 
 ### Structure:
 
@@ -27,26 +26,11 @@ My neovim config
   nvim
 ├──  init.lua
 └──   lua
-   ├──   general
-   │  ├──  autocommands.lua
-   │  ├──  mappings.lua
-   │  ├──  packer.lua
-   │  ├──  start.lua
-   │  ├──  utils.lua
-   │  └──  settings.lua
-   ├──   lsp
-   │  ├──  cmp.lua
-   │  ├──  lsp_defaults.lua
-   │  └──  lsp_installer.lua
-   ├──   plugins
-   │  ├──  nvim_tree.lua
-   │  ├──  neorg.lua
-   │  ├──  snippets.lua
-   │  ├──  telescope.lua
-   │  ├──  others.lua
-   │  └──  treesittter.lua
-   └──   ui
-      ├──  colorschemes.lua
-      └──  staline.lua
+   ├──  _autocmds.lua
+   ├──  _mappings.lua
+   ├──  _packer.lua
+   ├──  _utils.lua
+   ├──  _settings.lua
+   ├──  _conf.lua
+   └──  _lsp.lua
 ```
-
