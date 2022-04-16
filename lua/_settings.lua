@@ -86,8 +86,8 @@ set.fillchars:append({eob=' ', fold=' ', foldopen="", foldsep=" ", foldclose=
 set.shortmess:append({c=true, s=true, A=true, W=true})
 set.iskeyword:append('-')
 
--- local notify_status, notify = pcall(require, "notify")
--- if notify_status then vim.notify = notify end
+local notify_status, notify = pcall(require, "notify")
+if notify_status then vim.notify = notify end
 
 --> Test settings
 -- set.copyindent = true

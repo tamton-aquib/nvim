@@ -2,11 +2,10 @@ require("packer").startup { function(use)
 
     -->  Testing and temporary
     use { 'ahmedkhalf/project.nvim', config=function() require("project_nvim").setup() end }
-    -- use { 'toppair/reach.nvim', config=function() require("reach").setup() end }
+    use { 'karb94/neoscroll.nvim', config=function() require("neoscroll").setup() end, event='WinScrolled' }
+    -- use { 'declancm/cinnamon.nvim', config=function() require("cinnamon").setup{extra_keymaps=true} end, event='WinScrolled' }
     -- use { 'simrat39/rust-tools.nvim', ft='rust', config=function() require("rust-tools").setup() end }
     -- use { 'nvim-treesitter/nvim-treesitter-textobjects' }
-    -- use { 'is0n/fm-nvim', config=function() require("fm-nvim").setup { ui={ default="split" } } end }
-    -- use { 'sainnhe/gruvbox-material' }
 
     -->  Might use in future
     -- use { 'elihunter173/dirbuf.nvim' }
@@ -24,7 +23,7 @@ require("packer").startup { function(use)
     use { 'lewis6991/gitsigns.nvim', config=function() require'gitsigns'.setup{} end , event='BufRead' }
     use { 'j-hui/fidget.nvim', config=function() require"fidget".setup { window={blend = 0} } end }
     use { 'kyazdani42/nvim-tree.lua', config=function() require('_config').nvim_tree() end, cmd='NvimTreeToggle'}
-    use { 'tamton-aquib/staline.nvim', config=function() require("_config").staline_cfg() end }
+    use { 'tamton-aquib/staline.nvim', config=function() require("_config").staline() end }
 
     -->  LSP and COMPLETION
     use { 'neovim/nvim-lspconfig' }
@@ -32,10 +31,10 @@ require("packer").startup { function(use)
     use { 'hrsh7th/nvim-cmp' , after="LuaSnip", config=function() require("_lsp").cmp() end }
     use { 'hrsh7th/cmp-buffer', after={"nvim-cmp"} }
     use { 'hrsh7th/cmp-nvim-lsp', after={"nvim-cmp"} }
-    use { 'hrsh7th/cmp-path', after={"nvim-cmp"}  }
-    use { 'hrsh7th/cmp-emoji', after={"nvim-cmp"}  }
-    use { 'hrsh7th/cmp-nvim-lua', after={"nvim-cmp"}  }
-    use { 'saadparwaiz1/cmp_luasnip', after={"nvim-cmp"}  }
+    use { 'hrsh7th/cmp-path', after={"nvim-cmp"} }
+    use { 'hrsh7th/cmp-emoji', after={"nvim-cmp"} }
+    use { 'hrsh7th/cmp-nvim-lua', after={"nvim-cmp"} }
+    use { 'saadparwaiz1/cmp_luasnip', after={"nvim-cmp"} }
     use { 'hrsh7th/cmp-nvim-lsp-signature-help', after={"nvim-cmp"}}
     use { 'hrsh7th/cmp-cmdline', event="CmdlineEnter"}
     use { 'williamboman/nvim-lsp-installer', config=function() require("_lsp").lsp_installer() end }
@@ -52,7 +51,7 @@ require("packer").startup { function(use)
     use { 'folke/lua-dev.nvim', module="lua-dev"}
     use { 'beauwilliams/focus.nvim', config=function() require("focus").setup{cursorline=false} end, event="WinNew" }
     use { 'nathom/filetype.nvim' }
-    use { 'windwp/nvim-autopairs', config=function() require("nvim-autopairs").setup() end }
+    use { 'windwp/nvim-autopairs', config=function() require("nvim-autopairs").setup() end, event='InsertEnter' }
     use { 'nanotee/luv-vimdocs' }
     use { 'rcarriga/nvim-notify', config=function() require("notify").setup {background_colour = "Visual"} end }
     use { 'lewis6991/impatient.nvim' }

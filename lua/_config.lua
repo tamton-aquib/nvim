@@ -1,6 +1,6 @@
 local M = {}
 
-M.staline_cfg = function()
+M.staline = function()
     -->             ⌬  | left   :           | right  :            | toggle:  
     require('stabline').setup {
         style = "bar",
@@ -46,9 +46,8 @@ M.tokyodark = function(transparent)
     vim.g.tokyodark_transparent_background = transparent and true or false
     vim.g.tokyodark_enable_italic = true
 
-    require("tokyodark").colorscheme()
+    vim.cmd [[color tokyodark]]
     vim.cmd [[hi! link IndentBlanklineChar Comment]]
-    -- vim.cmd [[hi link FloatBorder TSFunction]]
 end
 
 M.luasnip = function()
