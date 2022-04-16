@@ -1,0 +1,109 @@
+local Lsp = {}
+local border = require("_utils").border
+
+Lsp.cmp = function()
+    local cmp = require('cmp')
+
+    local source_names = { nvim_lsp = "[LSP]", emoji = "[Emoji]", path = "[Path]", luasnip = "[Snippet]", buffer = "[Buffer]", nvim_lsp_signature_help = "[sig_help]" }
+    local kind_icons = {
+        Text = ' ', Method = ' ', Function = ' ', Constructor = ' ', Field = ' ', Variable = ' ', Class = ' ', Interface = ' ',
+        Module = ' ', Property = ' ', Unit = ' ', Value = ' ', Enum = ' ', Keyword = ' ', Snippet = ' ', Color = ' ', File = ' ',
+        Reference = ' ', Folder = ' ', EnumMember = ' ', Constant = ' ', Struct = ' ', Event = ' ', Operator = ' ', TypeParameter = ' ',
+    }
+
+    cmp.setup {
+        formatting = {
+            fields = { 'kind', 'abbr', 'menu' },
+            format = function(entry, item)
+                item.kind = kind_icons[item.kind] or " "
+                item.menu = source_names[entry.source.name] or " "
+                return item
+            end
+        },
+        window = { documentation = { border = border } },
+
+        snippet = {
+            expand = function(args) require("luasnip").lsp_expand(args.body) end,
+        },
+
+        mapping = {
+            ['<C-n>'] = cmp.mapping.select_next_item(),
+            ['<C-p>'] = cmp.mapping.select_prev_item(),
+            ['<C-b>'] = cmp.mapping.scroll_docs(-1),
+            ['<C-f>'] = cmp.mapping.scroll_docs(1),
+            ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+            ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        },
+
+        sources = {
+            { name = 'path' },
+            { name = 'nvim_lsp' },
+            { name = 'nvim_diagnostic' },
+            { name = 'buffer'},
+            { name = 'nvim_lsp_signature_help' },
+            { name = 'nvim_lua' },
+            { name = 'luasnip' },
+            { name = 'emoji'},
+            { name = 'neorg'},
+            { name = 'crates'},
+        },
+
+        experimental = { ghost_text = true }
+    }
+
+    cmp.setup.cmdline(':', { sources = {{name="cmdline", keyword_length=3}} })
+end
+
+Lsp.init = function()
+    local signs = { Error = "", Warn  = "", Hint  = "", Info  = "", other = "﫠" }
+
+    for name, icon in pairs(signs) do
+        local hl = "DiagnosticSign" .. name
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
+    end
+
+    vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with( vim.lsp.handlers.hover, {border = border})
+    vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with( vim.lsp.handlers.signature_help, {border = border})
+
+    vim.diagnostic.config({
+        virtual_text = false,
+        underline = {Error=true},
+        float = {
+            border = border,
+            header = { "  Diagnostics", "String" },
+            focusable = false,
+            prefix = function(_, _, _)
+                return " " , "String" -- icons:        ﬌  
+            end
+        }
+    })
+end
+
+--> LSP-Installer
+Lsp.lsp_installer = function()
+    local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    local on_attatch = function()
+        vim.keymap.set('n', 'gd',    vim.lsp.buf.definition, {})
+        vim.keymap.set('n', 'gD',    vim.lsp.buf.declaration, {})
+        vim.keymap.set('n', 'gr',    vim.lsp.buf.references, {})
+        vim.keymap.set('n', 'gi',    vim.lsp.buf.implementation, {})
+        vim.keymap.set('n', 'gh',    vim.lsp.buf.hover, {})
+        vim.keymap.set('n', '<M-n>', vim.diagnostic.goto_next, {})
+        vim.keymap.set('n', '<M-p>', vim.diagnostic.goto_prev, {})
+    end
+    require("nvim-lsp-installer").on_server_ready(function(server)
+        local opts = { capabilities=capabilities, on_attatch=on_attatch }
+
+        if server.name ~= "rust_analyzer" then
+            if server.name == "sumneko_lua" then
+                opts = vim.g.devmode and require("lua-dev").setup{} or {
+                    settings = {Lua={diagnostics={globals={"vim"}}}}
+                }
+            end
+        end
+
+        server:setup(opts)
+    end)
+end
+
+return Lsp

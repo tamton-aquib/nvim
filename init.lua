@@ -1,12 +1,11 @@
 
 -->  General stuff
-require 'general.start'
-require 'general.packer'
-require 'general.autocommands'
-require 'general.mappings'
-require 'general.settings'
+require '_settings'
+require '_packer'
+require '_autocmds'
+require '_mappings'
 
 -->  UI and LSP
-require('general.utils').noice_board()
-require('lsp.lsp_defaults')
-require('plugins').tokyodark(false)
+require('_utils').noice_board()
+require('_config').tokyodark(false)
+require('_lsp').init()

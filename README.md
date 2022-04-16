@@ -15,10 +15,10 @@ My neovim config
 
 * neovim version : 0.7
 * optional deps: rg
-* Colorscheme: [tokyodark.nvim](https://github.com/tiagovla/tokyodark.nvim) with [Themer](https://github.com/ThemerCorp/themer.lua)
+* Colorscheme: [tokyodark.nvim](https://github.com/tiagovla/tokyodark.nvim)
 * Statusline and bufferline : [staline and stabline](https://github.com/tamton-aquib/staline.nvim)
-* LSP: builtin (config @[here](https://github.com/tamton-aquib/nvim/blob/dev/lua/lsp/lsp_defaults.lua))
-* Completion engine: [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) (config @[here](https://github.com/tamton-aquib/nvim/blob/dev/lua/lsp/cmp.lua))
+* LSP: builtin with lspconfig.
+* Completion engine: [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
 
 ### Structure:
 
@@ -26,18 +26,11 @@ My neovim config
   nvim
 ├──  init.lua
 └──   lua
-   ├──   general
-   │  ├──  autocommands.lua
-   │  ├──  mappings.lua
-   │  ├──  packer.lua
-   │  ├──  start.lua
-   │  ├──  utils.lua
-   │  └──  settings.lua
-   ├──   lsp
-   │  ├──  cmp.lua
-   │  ├──  lsp_defaults.lua
-   │  └──  lsp_installer.lua
-   └──   plugins
-      └──  init.lua
+   ├──  _autocmds.lua
+   ├──  _mappings.lua
+   ├──  _packer.lua
+   ├──  _utils.lua
+   ├──  _settings.lua
+   ├──  _conf.lua
+   └──  _lsp.lua
 ```
-

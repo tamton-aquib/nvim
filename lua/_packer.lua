@@ -12,7 +12,7 @@ require("packer").startup { function(use)
     -- use { 'elihunter173/dirbuf.nvim' }
     -- use { 'nlsickler/colorscheme-tweaks.nvim' }
     -- use { 'edluffy/specs.nvim', config=function() require("specs").setup{} end }
-    -- use { 'rmagatti/goto-preview', config=function() require("plugins").goto_preview() end }
+    -- use { 'rmagatti/goto-preview', config=function() require("_config").goto_preview() end }
     -- use { 'kevinhwang91/nvim-bqf', config=function() require("bqf").setup{} end}
     -- use { "blackCauldron7/surround.nvim", config = function() require"surround".setup {mappings_style = "sandwich"} end }
 
@@ -23,13 +23,13 @@ require("packer").startup { function(use)
     use { 'norcalli/nvim-colorizer.lua', cmd="ColorizerToggle", config=function() require"colorizer".setup() end }
     use { 'lewis6991/gitsigns.nvim', config=function() require'gitsigns'.setup{} end , event='BufRead' }
     use { 'j-hui/fidget.nvim', config=function() require"fidget".setup { window={blend = 0} } end }
-    use { 'kyazdani42/nvim-tree.lua', config=function() require('plugins').nvim_tree() end, cmd='NvimTreeToggle'}
-    use { 'tamton-aquib/staline.nvim', config=function() require("plugins").staline() end }
+    use { 'kyazdani42/nvim-tree.lua', config=function() require('_config').nvim_tree() end, cmd='NvimTreeToggle'}
+    use { 'tamton-aquib/staline.nvim', config=function() require("_config").staline_cfg() end }
 
     -->  LSP and COMPLETION
     use { 'neovim/nvim-lspconfig' }
-    use { 'L3MON4D3/LuaSnip', config=function() require("plugins").luasnip() end , event="InsertEnter" }
-    use { 'hrsh7th/nvim-cmp' , after="LuaSnip", config=function() require("lsp.cmp") end }
+    use { 'L3MON4D3/LuaSnip', config=function() require("_config").luasnip() end , event="InsertEnter" }
+    use { 'hrsh7th/nvim-cmp' , after="LuaSnip", config=function() require("_lsp").cmp() end }
     use { 'hrsh7th/cmp-buffer', after={"nvim-cmp"} }
     use { 'hrsh7th/cmp-nvim-lsp', after={"nvim-cmp"} }
     use { 'hrsh7th/cmp-path', after={"nvim-cmp"}  }
@@ -38,14 +38,14 @@ require("packer").startup { function(use)
     use { 'saadparwaiz1/cmp_luasnip', after={"nvim-cmp"}  }
     use { 'hrsh7th/cmp-nvim-lsp-signature-help', after={"nvim-cmp"}}
     use { 'hrsh7th/cmp-cmdline', event="CmdlineEnter"}
-    use { 'williamboman/nvim-lsp-installer', config=function() require("lsp.lsp_installer") end }
+    use { 'williamboman/nvim-lsp-installer', config=function() require("_lsp").lsp_installer() end }
 
     -->  TELESCOPE, TREESITTER, NEORG
     use { 'nvim-lua/plenary.nvim' }
     use { 'nvim-treesitter/playground' , cmd="TSHighlightCapturesUnderCursor" }
-    use { 'nvim-telescope/telescope.nvim', cmd='Telescope' , config=function() require"plugins".telescope() end, module="telescope"}
-    use { 'nvim-treesitter/nvim-treesitter', event='BufRead', config=function() require("plugins").treesitter() end }
-    use { 'nvim-neorg/neorg', ft={"norg"}, after={"nvim-treesitter", "telescope.nvim"}, config = function() require("plugins").neorg() end }
+    use { 'nvim-telescope/telescope.nvim', cmd='Telescope' , config=function() require"_config".telescope() end, module="telescope"}
+    use { 'nvim-treesitter/nvim-treesitter', event='BufRead', config=function() require("_config").treesitter() end }
+    use { 'nvim-neorg/neorg', ft={"norg"}, after={"nvim-treesitter", "telescope.nvim"}, config = function() require("_config").neorg() end }
     use { 'danymat/neogen', config=function() require("neogen").setup{} end }
 
     -->  GENERAL PURPOSE
@@ -59,7 +59,7 @@ require("packer").startup { function(use)
     use { 'rktjmp/paperplanes.nvim', config=function() require("paperplanes").setup{} end, cmd="PP" }
     use { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=function() require('crates').setup() end }
     use { 'iamcco/markdown-preview.nvim', ft={'markdown'}, config=function() vim.g.mkdp_auto_close = 0 end }
-    use { 'lukas-reineke/indent-blankline.nvim', event="BufReadPost", config=function() require("plugins").indent_blankline() end }
+    use { 'lukas-reineke/indent-blankline.nvim', event="BufReadPost", config=function() require("_config").indent_blankline() end }
     use { 'tamton-aquib/essentials.nvim' }
 
     use { 'wbthomason/packer.nvim' }

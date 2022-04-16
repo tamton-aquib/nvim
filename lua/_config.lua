@@ -1,6 +1,6 @@
 local M = {}
 
-M.staline = function()
+M.staline_cfg = function()
     -->             ⌬  | left   :           | right  :            | toggle:  
     require('stabline').setup {
         style = "bar",
@@ -101,7 +101,8 @@ function M.indent_blankline()
         show_current_context = true,
         strict_tabs = true,
         filetype_exclude = {
-            "terminal", "dashboard", "lsp-installer", "packer", "TelescopePrompt"
+            "terminal", "dashboard", "lsp-installer",
+            "packer", "TelescopePrompt", "help"
         },
     }
 end

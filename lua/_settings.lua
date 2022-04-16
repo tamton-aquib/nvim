@@ -1,8 +1,32 @@
 local set = vim.opt
 
-set.cursorline = false
+vim.g.loaded_gzip = false
+vim.g.loaded_matchit = false
+vim.g.loaded_netrwPlugin = false
+vim.g.loaded_tarPlugin = false
+vim.g.loaded_zipPlugin = false
+vim.g.loaded_man = false
+vim.g.loaded_2html_plugin = false
+vim.g.loaded_remote_plugins = false
+
+local ok, impatient = pcall(require, 'impatient')
+if ok then impatient.enable_profile() end
+
+local fn = vim.fn
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+    print("Installing packer...")
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd 'packadd packer.nvim'
+end
+
+require("packer").init {
+    profile = { enable = true },
+    display = { working_sym = "" }
+}
 
 --> General settings
+set.spell = false
 set.wrap = false
 set.ruler = false
 set.conceallevel = 2
@@ -27,6 +51,7 @@ set.showtabline = 2
 set.laststatus = 3
 set.completeopt = "menu,menuone,noselect"
 set.virtualedit = "block"
+set.cursorline = true
 
 --> Fold Settings
 set.foldenable = true
@@ -36,7 +61,7 @@ set.foldlevelstart = 10
 vim.opt.foldtext = 'v:lua.require("essentials").simple_fold()'
 
 --> Visual settings?
-set.pumblend = 30
+set.pumblend = 5
 set.inccommand = "split"
 set.termguicolors = true
 set.background = "dark"
@@ -61,8 +86,8 @@ set.fillchars:append({eob=' ', fold=' ', foldopen="", foldsep=" ", foldclose=
 set.shortmess:append({c=true, s=true, A=true, W=true})
 set.iskeyword:append('-')
 
-local ok, notify = pcall(require, "notify")
-if ok then vim.notify = notify end
+-- local notify_status, notify = pcall(require, "notify")
+-- if notify_status then vim.notify = notify end
 
 --> Test settings
 -- set.copyindent = true
