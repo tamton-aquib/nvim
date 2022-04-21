@@ -20,7 +20,7 @@ Lsp.cmp = function()
                 return item
             end
         },
-        window = { documentation = { border = border } },
+        window = { documentation = { border = "shadow" } },
 
         snippet = {
             expand = function(args) require("luasnip").lsp_expand(args.body) end,
@@ -82,17 +82,8 @@ end
 --> LSP-Installer
 Lsp.lsp_installer = function()
     local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-    local on_attatch = function()
-        vim.keymap.set('n', 'gd',    vim.lsp.buf.definition, {})
-        vim.keymap.set('n', 'gD',    vim.lsp.buf.declaration, {})
-        vim.keymap.set('n', 'gr',    vim.lsp.buf.references, {})
-        vim.keymap.set('n', 'gi',    vim.lsp.buf.implementation, {})
-        vim.keymap.set('n', 'gh',    vim.lsp.buf.hover, {})
-        vim.keymap.set('n', '<M-n>', vim.diagnostic.goto_next, {})
-        vim.keymap.set('n', '<M-p>', vim.diagnostic.goto_prev, {})
-    end
     require("nvim-lsp-installer").on_server_ready(function(server)
-        local opts = { capabilities=capabilities, on_attatch=on_attatch }
+        local opts = { capabilities=capabilities }
 
         if server.name ~= "rust_analyzer" then
             if server.name == "sumneko_lua" then
@@ -100,6 +91,13 @@ Lsp.lsp_installer = function()
                     settings = {Lua={diagnostics={globals={"vim"}}}}
                 }
             end
+        else
+            opts = {
+                flags = {
+                    exit_timeout = false,
+                    debounce_text_changes = 150
+                }
+            }
         end
 
         server:setup(opts)

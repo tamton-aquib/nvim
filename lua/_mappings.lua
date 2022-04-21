@@ -4,6 +4,7 @@ local function map(mode, key, func) vim.keymap.set(mode, key, func, {silent=true
 --> TEMP and TEST maps
 map('n', '<leader>l', function() require("essentials").open_term("lazygit", 't', true) end)
 map('n', '<leader>t', function() require("essentials").open_term("fish", 'h', true) end)
+map('n', '<leader>k', function() require("_utils").close_command("notify") end)
 
 --> General Mappings
 map('n', '<M-h>'       , ':exe ":h ".expand("<cword>")<CR>')
@@ -20,6 +21,15 @@ map('n', '<LeftMouse>' , '<LeftMouse>:lua vim.lsp.buf.signature_help()<CR>')
 map('n', '<leader>ps', '<cmd>w<CR>:so %<CR>:PackerSync<CR>')
 map('n', '<leader>pp', '<cmd>PackerProfile<CR>')
 map('n', '<leader>pc', '<cmd>PackerCompile<CR>')
+
+--> Lsp mappings
+vim.keymap.set('n', 'gd',    vim.lsp.buf.definition, {})
+vim.keymap.set('n', 'gD',    vim.lsp.buf.declaration, {})
+vim.keymap.set('n', 'gr',    vim.lsp.buf.references, {})
+vim.keymap.set('n', 'gi',    vim.lsp.buf.implementation, {})
+vim.keymap.set('n', 'gh',    vim.lsp.buf.hover, {})
+vim.keymap.set('n', '<M-n>', vim.diagnostic.goto_next, {})
+vim.keymap.set('n', '<M-p>', vim.diagnostic.goto_prev, {})
 
 --> essentials.nvim mappings ( https://github.com/tamton-aquib/essentials.nvim )
 map('v', '<leader>/' , ':lua require("essentials").toggle_comment(true)<CR>')

@@ -1,13 +1,13 @@
 local set = vim.opt
+vim.g.do_filetype_lua = 1
 
-vim.g.loaded_gzip = false
-vim.g.loaded_matchit = false
-vim.g.loaded_netrwPlugin = false
-vim.g.loaded_tarPlugin = false
-vim.g.loaded_zipPlugin = false
-vim.g.loaded_man = false
-vim.g.loaded_2html_plugin = false
-vim.g.loaded_remote_plugins = false
+--> Be careful whats in this list:
+for _, plugin in ipairs({ "python3_provider", "node_provider", "2html_plugin", "getscript", "getscriptPlugin",
+    "gzip", "matchit", "tar", "tarPlugin", "rrhelper", "spellfile_plugin", "vimball",
+    "vimballPlugin", "zip", "zipPlugin", "tutor", "rplugin", "spellfile", "tarPlugin",
+    "man", "logiPat", "netrwSettings", "netrwFileHandlers", "remote_plugins" }) do
+    vim.g["loaded_"..plugin] = 1
+end
 
 local ok, impatient = pcall(require, 'impatient')
 if ok then impatient.enable_profile() end
@@ -15,9 +15,9 @@ if ok then impatient.enable_profile() end
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-    print("Installing packer...")
+    vim.notify("Installing packer...")
     fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.cmd 'packadd packer.nvim'
+    vim.cmd('packadd packer.nvim')
 end
 
 require("packer").init {
@@ -33,7 +33,7 @@ set.conceallevel = 2
 set.mouse = "a"
 set.encoding = "UTF-8"
 set.fileencoding = "UTF-8"
-set.scrolloff = 8
+set.scrolloff = 5
 set.timeoutlen = 300
 set.updatetime = 500
 set.hlsearch = false
@@ -52,6 +52,7 @@ set.laststatus = 3
 set.completeopt = "menu,menuone,noselect"
 set.virtualedit = "block"
 set.cursorline = true
+set.ignorecase = true
 
 --> Fold Settings
 set.foldenable = true
