@@ -88,7 +88,8 @@ Lsp.lsp_installer = function()
         if server.name ~= "rust_analyzer" then
             if server.name == "sumneko_lua" then
                 opts = vim.g.devmode and require("lua-dev").setup{} or {
-                    settings = {Lua={diagnostics={globals={"vim"}}}}
+                library = {vimruntime=true, types=true, plugins=true},
+                settings = {Lua={diagnostics={globals={"vim"}}}}
                 }
             end
         else

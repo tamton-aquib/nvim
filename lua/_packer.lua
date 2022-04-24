@@ -6,7 +6,9 @@ packer.startup { function(use)
 
     -->  Testing and temporary
     use { 'ahmedkhalf/project.nvim', config=_setup("project_nvim") }
-    use { 'kevinhwang91/nvim-fFHighlight', config=_setup("fFHighlight"), keys='f'}
+    use { 'kevinhwang91/nvim-fFHighlight', config=_setup("fFHighlight"), keys='f' }
+    use { 'sindrets/diffview.nvim', config=_setup("diffview"), cmd="DiffviewOpen" }
+    use { 'kwakzalver/duckytype.nvim' }
     -- use { 'simrat39/rust-tools.nvim', ft='rust', config=function() require("rust-tools").setup() end }
     -- use { 'nvim-treesitter/nvim-treesitter-textobjects' }
     -- use { 'gantoreno/vim-gabriel' }
@@ -54,7 +56,6 @@ packer.startup { function(use)
     -->  GENERAL PURPOSE
     use { 'folke/lua-dev.nvim', module="lua-dev"}
     use { 'beauwilliams/focus.nvim', config=_setup("focus"), event="WinNew" }
-    use { 'nathom/filetype.nvim' }
     use { 'windwp/nvim-autopairs', config=_setup("nvim-autopairs"), event='InsertEnter' }
     use { 'nanotee/luv-vimdocs' }
     use { 'rcarriga/nvim-notify', config=function() require("notify").setup {background_colour = "Visual"} end }

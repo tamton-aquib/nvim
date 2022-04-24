@@ -5,6 +5,8 @@ local function map(mode, key, func) vim.keymap.set(mode, key, func, {silent=true
 map('n', '<leader>l', function() require("essentials").open_term("lazygit", 't', true) end)
 map('n', '<leader>t', function() require("essentials").open_term("fish", 'h', true) end)
 map('n', '<leader>k', function() require("_utils").close_command("notify") end)
+map('n', '>', '>>')
+map('n', '<', '<<')
 
 --> General Mappings
 map('n', '<M-h>'       , ':exe ":h ".expand("<cword>")<CR>')

@@ -5,14 +5,13 @@ M.staline = function()
     require('stabline').setup {
         style = "bar",
         stab_left = "",
-        fg = "#986fec",
-        bg = "none",
+        fg = "#95c561",
         inactive_bg = "none",
+        font_active = "italic",
         padding = 2
     }
 
     require("staline").setup {
-
         sections = {
             left = { '  ', 'mode', ' ', 'branch', '  ⌬  ', 'lsp' },
             mid = { 'file_name', '%<', },
@@ -25,8 +24,6 @@ M.staline = function()
                 end, ' '
             },
         },
-        mode_colors = { n = "#94c461" },
-
         defaults = {
             true_colors = true,
             line_column = " [%l/%L] :%c  ",
@@ -73,7 +70,7 @@ M.luasnip = function()
 end
 
 M.nvim_tree = function()
-    require "nvim-tree".setup {
+    require('nvim-tree').setup {
         actions = { open_file = { quit_on_open = true } },
         filters = { custom = { '.git', 'node_modules', '.cache', '__pycache__' } },
         renderer = { indent_markers = { enable = true } },
