@@ -81,28 +81,19 @@ end
 
 --> LSP-Installer
 Lsp.lsp_installer = function()
+    require("nvim-lsp-installer").setup{}
     local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-    require("nvim-lsp-installer").on_server_ready(function(server)
-        local opts = { capabilities=capabilities }
+    local s = {
+        rust_analyzer = {flags={exit_timeout=false}, capabilities=capabilities},
+        sumneko_lua = vim.g.devmode and require("lua-dev").setup{}  or {
+            settings = {Lua={diagnostics={globals={"vim"}}}}
+        }
+    }
 
-        if server.name ~= "rust_analyzer" then
-            if server.name == "sumneko_lua" then
-                opts = vim.g.devmode and require("lua-dev").setup{} or {
-                library = {vimruntime=true, types=true, plugins=true},
-                settings = {Lua={diagnostics={globals={"vim"}}}}
-                }
-            end
-        else
-            opts = {
-                flags = {
-                    exit_timeout = false,
-                    debounce_text_changes = 150
-                }
-            }
-        end
-
-        server:setup(opts)
-    end)
+    local lspconfig = require("lspconfig")
+    for server, opt in pairs(s) do
+        lspconfig[server].setup(opt)
+    end
 end
 
 return Lsp

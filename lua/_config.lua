@@ -3,12 +3,8 @@ local M = {}
 M.staline = function()
     -->             ⌬  | left   :           | right  :            | toggle:  
     require('stabline').setup {
-        style = "bar",
-        stab_left = "",
-        fg = "#95c561",
-        inactive_bg = "none",
-        font_active = "italic",
-        padding = 2
+        fg = "#986fec",
+        bg = "#11121d"
     }
 
     require("staline").setup {

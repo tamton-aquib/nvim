@@ -5,21 +5,18 @@ local conf = function(name) return ("require('_config').%s()"):format(name) end
 packer.startup { function(use)
 
     -->  Testing and temporary
-    use { 'ahmedkhalf/project.nvim', config=_setup("project_nvim") }
-    use { 'kevinhwang91/nvim-fFHighlight', config=_setup("fFHighlight"), keys='f' }
     use { 'sindrets/diffview.nvim', config=_setup("diffview"), cmd="DiffviewOpen" }
-    use { 'kwakzalver/duckytype.nvim' }
+    -- use { 'ahmedkhalf/project.nvim', config=_setup("project_nvim") }
+    -- use { 'kevinhwang91/nvim-fFHighlight', config=_setup("fFHighlight"), keys='f' }
+    -- use { 'kwakzalver/duckytype.nvim' }
     -- use { 'simrat39/rust-tools.nvim', ft='rust', config=function() require("rust-tools").setup() end }
     -- use { 'nvim-treesitter/nvim-treesitter-textobjects' }
-    -- use { 'gantoreno/vim-gabriel' }
 
     -->  Might use in future
     -- use { 'elihunter173/dirbuf.nvim' }
     -- use { 'nlsickler/colorscheme-tweaks.nvim' }
-    -- use { 'edluffy/specs.nvim', config=function() require("specs").setup{} end }
     -- use { 'rmagatti/goto-preview', config=function() require("_config").goto_preview() end }
     -- use { 'kevinhwang91/nvim-bqf', config=function() require("bqf").setup{} end}
-    -- use { "blackCauldron7/surround.nvim", config = function() require"surround".setup {mappings_style = "sandwich"} end }
 
     -->  THEMES AND UI
     use { 'tiagovla/tokyodark.nvim' }
@@ -58,7 +55,7 @@ packer.startup { function(use)
     use { 'beauwilliams/focus.nvim', config=_setup("focus"), event="WinNew" }
     use { 'windwp/nvim-autopairs', config=_setup("nvim-autopairs"), event='InsertEnter' }
     use { 'nanotee/luv-vimdocs' }
-    use { 'rcarriga/nvim-notify', config=function() require("notify").setup {background_colour = "Visual"} end }
+    use { 'rcarriga/nvim-notify', config=function() require("notify").setup{render='minimal'} end }
     use { 'lewis6991/impatient.nvim' }
     use { 'rktjmp/paperplanes.nvim', config=_setup("paperplanes"), cmd="PP" }
     use { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=_setup('crates') }
