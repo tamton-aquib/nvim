@@ -49,20 +49,22 @@ M.luasnip = function()
         python = [[print(${0})]],
         javascript = [[console.log(${0});]],
         svelte = [[console.log(${0});]],
-        lua = [[print(${0})]],
+        lua = [[print(vim.inspect(${0}))]],
         c = [[printf("${0}");]],
         cpp = [[std::cout << ${0} << std::endl;]]
     }
 
-    local ls = require('luasnip')
-    local parse = ls.parser.parse_snippet
+    vim.defer_fn(function()
+        local ls = require('luasnip')
+        local parse = ls.parser.parse_snippet
 
-    ls.add_snippets(nil, {
-        all = {
-            parse({trig="#!", wordTrig=true}, "#!/usr/bin/env ${0}"),
-            parse({trig="pp", wordTrig=true}, prints[vim.bo.ft] or "🍣"),
-        }
-    })
+        ls.add_snippets(nil, {
+            all = {
+                parse({trig="#!", wordTrig=true}, "#!/usr/bin/env ${0}"),
+                parse({trig="pp", wordTrig=true}, prints[vim.bo.ft] or "🍣"),
+            }
+        })
+    end, 500)
 end
 
 M.nvim_tree = function()
@@ -74,15 +76,14 @@ M.nvim_tree = function()
 end
 
 M.telescope = function()
+    -- require("telescope").load_extension("project")
     require('telescope').setup{
         defaults = {
-            prompt_prefix = "   ",
-            selection_caret = " ",
+            prompt_prefix = "   ", selection_caret = " ",
             sorting_strategy = "ascending",
             layout_config = { prompt_position = "top" },
             file_ignore_patterns = {'__pycache__/', 'node_modules/'},
-            path_display = {},
-            -- set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
+            extensions = { projects = {} }
         }
     }
 end
@@ -114,6 +115,13 @@ M.treesitter = function()
         ensure_installed = { "norg" ,"lua" },
         highlight = { enable = true },
         indent = { enable = true },
+        textobjects = {select={
+            enable=true,
+            keymaps = {
+                ["af"] = "@function.outer",
+                ["if"] = "@function.inner",
+            }
+        }}
     }
 end
 

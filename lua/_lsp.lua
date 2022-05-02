@@ -26,7 +26,7 @@ Lsp.cmp = function()
             expand = function(args) require("luasnip").lsp_expand(args.body) end,
         },
 
-        mapping = {
+        mapping = cmp.mapping.preset.insert {
             ['<C-n>'] = cmp.mapping.select_next_item(),
             ['<C-p>'] = cmp.mapping.select_prev_item(),
             ['<C-b>'] = cmp.mapping.scroll_docs(-1),
@@ -35,7 +35,7 @@ Lsp.cmp = function()
             ['<CR>'] = cmp.mapping.confirm({ select = true }),
         },
 
-        sources = {
+        sources = cmp.config.sources {
             { name = 'path' },
             { name = 'nvim_lsp' },
             { name = 'nvim_diagnostic' },

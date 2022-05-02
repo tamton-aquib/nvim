@@ -6,21 +6,19 @@ packer.startup { function(use)
 
     -->  Testing and temporary
     use { 'sindrets/diffview.nvim', config=_setup("diffview"), cmd="DiffviewOpen" }
-    -- use { 'ahmedkhalf/project.nvim', config=_setup("project_nvim") }
-    -- use { 'kevinhwang91/nvim-fFHighlight', config=_setup("fFHighlight"), keys='f' }
-    -- use { 'kwakzalver/duckytype.nvim' }
-    -- use { 'simrat39/rust-tools.nvim', ft='rust', config=function() require("rust-tools").setup() end }
-    -- use { 'nvim-treesitter/nvim-treesitter-textobjects' }
+    use { 'nvim-treesitter/nvim-treesitter-textobjects' }
 
     -->  Might use in future
+    -- use { 'simrat39/rust-tools.nvim', ft='rust', config=_setup("rust-tools") }
+    -- use { 'nvim-telescope/telescope-project.nvim' }
+    -- use { 'ahmedkhalf/project.nvim', config=_setup("project_nvim") }
     -- use { 'elihunter173/dirbuf.nvim' }
     -- use { 'nlsickler/colorscheme-tweaks.nvim' }
-    -- use { 'rmagatti/goto-preview', config=function() require("_config").goto_preview() end }
-    -- use { 'kevinhwang91/nvim-bqf', config=function() require("bqf").setup{} end}
+    -- use { 'rmagatti/goto-preview', config= conf("goto_preview") }
+    -- use { 'kevinhwang91/nvim-bqf', config=_setup("bqf") }
 
     -->  THEMES AND UI
     use { 'tiagovla/tokyodark.nvim' }
-    use { 'tamton-aquib/duck.nvim', config=_setup("duck") }
     use { 'kyazdani42/nvim-web-devicons' }
     use { 'norcalli/nvim-colorizer.lua', cmd="ColorizerToggle", config=_setup("colorizer") }
     use { 'lewis6991/gitsigns.nvim', config=_setup("gitsigns"), event='BufRead' }
@@ -30,7 +28,7 @@ packer.startup { function(use)
 
     -->  LSP and COMPLETION
     use { 'neovim/nvim-lspconfig' }
-    use { 'L3MON4D3/LuaSnip', config=conf("luasnip") , event="InsertEnter" }
+    use { 'L3MON4D3/LuaSnip', config=conf("luasnip"), event="InsertEnter" }
     use { 'hrsh7th/nvim-cmp' , after="LuaSnip", config=function() require("_lsp").cmp() end }
     use { 'hrsh7th/cmp-buffer', after={"nvim-cmp"} }
     use { 'hrsh7th/cmp-nvim-lsp', after={"nvim-cmp"} }
@@ -51,10 +49,11 @@ packer.startup { function(use)
     use { 'danymat/neogen', config=_setup("neogen"), cmd="Neogen"}
 
     -->  GENERAL PURPOSE
+    use { 'tamton-aquib/duck.nvim', config=_setup("duck") }
     use { 'folke/lua-dev.nvim', module="lua-dev"}
     use { 'beauwilliams/focus.nvim', config=_setup("focus"), event="WinNew" }
     use { 'windwp/nvim-autopairs', config=_setup("nvim-autopairs"), event='InsertEnter' }
-    use { 'nanotee/luv-vimdocs' }
+    use { 'nanotee/luv-vimdocs', ft={"lua"} }
     use { 'rcarriga/nvim-notify', config=function() require("notify").setup{render='minimal'} end }
     use { 'lewis6991/impatient.nvim' }
     use { 'rktjmp/paperplanes.nvim', config=_setup("paperplanes"), cmd="PP" }

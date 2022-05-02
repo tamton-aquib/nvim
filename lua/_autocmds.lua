@@ -18,7 +18,6 @@ au("CursorHold", "*", function() vim.diagnostic.open_float() end)
 au("BufReadPost", "*", function() require("essentials").last_place() end)
 au("TextYankPost", "*", function() vim.highlight.on_yank({higroup="Folded", timeout=200}) end)
 au("BufEnter", "*.toml", function() vim.opt_local.ft="dosini" end)
-au("FileType", "help", function() vim.cmd[[nn <buffer> <CR> <C-]>]] end)
 au("BufWritePost", "_packer.lua", function() vim.cmd"so | PackerCompile<CR>" end)
 au("TermOpen", "term://*", function() vim.cmd "setl nonu nornu | star" end)
 

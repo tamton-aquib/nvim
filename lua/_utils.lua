@@ -1,5 +1,16 @@
 local Util = {}
 
+--> Using `K` for docs related popups
+Util.docs = function()
+    if vim.tbl_contains({"lua", "help"}, vim.bo.ft) then
+        vim.cmd(":h "..vim.fn.expand('<cword>'))
+    elseif vim.api.nvim_buf_get_name(0):match("Cargo.toml$") then
+        require("crates").show_popup()
+    else
+        vim.lsp.buf.hover()
+    end
+end
+
 --> Centering an array of strings
 function Util.center(dict)
     local new_dict = {}
@@ -12,7 +23,7 @@ function Util.center(dict)
 end
 
 --> Noice simple dashboard (prolly temporary)
-function Util.noice_board()
+Util.noice_board = function()
     local xdg = vim.fn.fnamemodify(vim.fn.stdpath("config"), ":h").."/"
     local header = {
         "","", "", "", "", "", "",

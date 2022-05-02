@@ -51,7 +51,7 @@ set.showtabline = 2
 set.laststatus = 3
 set.completeopt = "menu,menuone,noselect"
 set.virtualedit = "block"
-set.cursorline = true
+set.cursorline = false
 set.ignorecase = true
 
 --> Fold Settings
