@@ -1,18 +1,13 @@
 local M = {}
 
-M.staline_cfg = function()
+M.staline = function()
     -->             ⌬  | left   :           | right  :            | toggle:  
     require('stabline').setup {
-        style = "bar",
-        stab_left = "",
         fg = "#986fec",
-        bg = "none",
-        inactive_bg = "none",
-        padding = 2
+        bg = "#11121d"
     }
 
     require("staline").setup {
-
         sections = {
             left = { '  ', 'mode', ' ', 'branch', '  ⌬  ', 'lsp' },
             mid = { 'file_name', '%<', },
@@ -25,8 +20,6 @@ M.staline_cfg = function()
                 end, ' '
             },
         },
-        mode_colors = { n = "#94c461" },
-
         defaults = {
             true_colors = true,
             line_column = " [%l/%L] :%c  ",
@@ -46,9 +39,8 @@ M.tokyodark = function(transparent)
     vim.g.tokyodark_transparent_background = transparent and true or false
     vim.g.tokyodark_enable_italic = true
 
-    require("tokyodark").colorscheme()
+    vim.cmd [[color tokyodark]]
     vim.cmd [[hi! link IndentBlanklineChar Comment]]
-    -- vim.cmd [[hi link FloatBorder TSFunction]]
 end
 
 M.luasnip = function()
@@ -57,24 +49,26 @@ M.luasnip = function()
         python = [[print(${0})]],
         javascript = [[console.log(${0});]],
         svelte = [[console.log(${0});]],
-        lua = [[print(${0})]],
+        lua = [[print(vim.inspect(${0}))]],
         c = [[printf("${0}");]],
         cpp = [[std::cout << ${0} << std::endl;]]
     }
 
-    local ls = require('luasnip')
-    local parse = ls.parser.parse_snippet
+    vim.defer_fn(function()
+        local ls = require('luasnip')
+        local parse = ls.parser.parse_snippet
 
-    ls.add_snippets(nil, {
-        all = {
-            parse({trig="#!", wordTrig=true}, "#!/usr/bin/env ${0}"),
-            parse({trig="pp", wordTrig=true}, prints[vim.bo.ft] or "🍣"),
-        }
-    })
+        ls.add_snippets(nil, {
+            all = {
+                parse({trig="#!", wordTrig=true}, "#!/usr/bin/env ${0}"),
+                parse({trig="pp", wordTrig=true}, prints[vim.bo.ft] or "🍣"),
+            }
+        })
+    end, 500)
 end
 
 M.nvim_tree = function()
-    require "nvim-tree".setup {
+    require('nvim-tree').setup {
         actions = { open_file = { quit_on_open = true } },
         filters = { custom = { '.git', 'node_modules', '.cache', '__pycache__' } },
         renderer = { indent_markers = { enable = true } },
@@ -82,15 +76,14 @@ M.nvim_tree = function()
 end
 
 M.telescope = function()
+    -- require("telescope").load_extension("project")
     require('telescope').setup{
         defaults = {
-            prompt_prefix = "   ",
-            selection_caret = " ",
+            prompt_prefix = "   ", selection_caret = " ",
             sorting_strategy = "ascending",
             layout_config = { prompt_position = "top" },
             file_ignore_patterns = {'__pycache__/', 'node_modules/'},
-            path_display = {},
-            -- set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
+            extensions = { projects = {} }
         }
     }
 end
@@ -122,6 +115,13 @@ M.treesitter = function()
         ensure_installed = { "norg" ,"lua" },
         highlight = { enable = true },
         indent = { enable = true },
+        textobjects = {select={
+            enable=true,
+            keymaps = {
+                ["af"] = "@function.outer",
+                ["if"] = "@function.inner",
+            }
+        }}
     }
 end
 

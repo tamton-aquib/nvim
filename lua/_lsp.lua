@@ -20,13 +20,13 @@ Lsp.cmp = function()
                 return item
             end
         },
-        window = { documentation = { border = border } },
+        window = { documentation = { border = "shadow" } },
 
         snippet = {
             expand = function(args) require("luasnip").lsp_expand(args.body) end,
         },
 
-        mapping = {
+        mapping = cmp.mapping.preset.insert {
             ['<C-n>'] = cmp.mapping.select_next_item(),
             ['<C-p>'] = cmp.mapping.select_prev_item(),
             ['<C-b>'] = cmp.mapping.scroll_docs(-1),
@@ -35,7 +35,7 @@ Lsp.cmp = function()
             ['<CR>'] = cmp.mapping.confirm({ select = true }),
         },
 
-        sources = {
+        sources = cmp.config.sources {
             { name = 'path' },
             { name = 'nvim_lsp' },
             { name = 'nvim_diagnostic' },
@@ -81,29 +81,19 @@ end
 
 --> LSP-Installer
 Lsp.lsp_installer = function()
+    require("nvim-lsp-installer").setup{}
     local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-    local on_attatch = function()
-        vim.keymap.set('n', 'gd',    vim.lsp.buf.definition, {})
-        vim.keymap.set('n', 'gD',    vim.lsp.buf.declaration, {})
-        vim.keymap.set('n', 'gr',    vim.lsp.buf.references, {})
-        vim.keymap.set('n', 'gi',    vim.lsp.buf.implementation, {})
-        vim.keymap.set('n', 'gh',    vim.lsp.buf.hover, {})
-        vim.keymap.set('n', '<M-n>', vim.diagnostic.goto_next, {})
-        vim.keymap.set('n', '<M-p>', vim.diagnostic.goto_prev, {})
+    local s = {
+        rust_analyzer = {flags={exit_timeout=false}, capabilities=capabilities},
+        sumneko_lua = vim.g.devmode and require("lua-dev").setup{}  or {
+            settings = {Lua={diagnostics={globals={"vim"}}}}
+        }
+    }
+
+    local lspconfig = require("lspconfig")
+    for server, opt in pairs(s) do
+        lspconfig[server].setup(opt)
     end
-    require("nvim-lsp-installer").on_server_ready(function(server)
-        local opts = { capabilities=capabilities, on_attatch=on_attatch }
-
-        if server.name ~= "rust_analyzer" then
-            if server.name == "sumneko_lua" then
-                opts = vim.g.devmode and require("lua-dev").setup{} or {
-                    settings = {Lua={diagnostics={globals={"vim"}}}}
-                }
-            end
-        end
-
-        server:setup(opts)
-    end)
 end
 
 return Lsp

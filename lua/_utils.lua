@@ -1,5 +1,16 @@
 local Util = {}
 
+--> Using `K` for docs related popups
+Util.docs = function()
+    if vim.tbl_contains({"lua", "help"}, vim.bo.ft) then
+        vim.cmd(":h "..vim.fn.expand('<cword>'))
+    elseif vim.api.nvim_buf_get_name(0):match("Cargo.toml$") then
+        require("crates").show_popup()
+    else
+        vim.lsp.buf.hover()
+    end
+end
+
 --> Centering an array of strings
 function Util.center(dict)
     local new_dict = {}
@@ -12,10 +23,10 @@ function Util.center(dict)
 end
 
 --> Noice simple dashboard (prolly temporary)
-function Util.noice_board()
+Util.noice_board = function()
     local xdg = vim.fn.fnamemodify(vim.fn.stdpath("config"), ":h").."/"
     local header = {
-        "","", "", "", "", "", "", "",
+        "","", "", "", "", "", "",
         [[ ███▄    █     ▒█████      ██▓    ▄████▄     ▓█████   ]],
         [[ ██ ▀█   █    ▒██▒  ██▒   ▓██▒   ▒██▀ ▀█     ▓█   ▀   ]],
         [[▓██  ▀█ ██▒   ▒██░  ██▒   ▒██▒   ▒▓█    ▄    ▒███     ]],
@@ -57,7 +68,16 @@ function Util.noice_board()
 end
 
 --> Closing Windows and buffers
-Util.close_command = function()
+Util.close_command = function(bt)
+    if bt then
+        for _, b in ipairs(vim.api.nvim_list_bufs()) do
+            if vim.bo[b].ft == bt then
+                vim.api.nvim_buf_delete(b, {force=true})
+                return
+            end
+        end
+    end
+
     local total = 0
     for _, buf in ipairs(vim.api.nvim_list_bufs()) do
         if vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_is_valid(buf) and vim.api.nvim_buf_get_name(buf) ~= "" then
@@ -85,7 +105,7 @@ Util.telescope_theme = {
     sorting_strategy = "ascending",
     previewer = false,
     prompt_prefix = "      ",
-    winblend = 0,
+    winblend = 10,
     layout_config = { width = 0.6, height = 0.6 },
     borderchars = {
         preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
