@@ -5,8 +5,8 @@ local conf = function(name) return ("require('_config').%s()"):format(name) end
 packer.startup { function(use)
 
     -->  Testing and temporary
-    use { 'sindrets/diffview.nvim', config=_setup("diffview"), cmd="DiffviewOpen" }
     use { 'nvim-treesitter/nvim-treesitter-textobjects' }
+    -- use { 'sindrets/diffview.nvim', config=_setup("diffview"), cmd="DiffviewOpen" }
 
     -->  Might use in future
     -- use { 'simrat39/rust-tools.nvim', ft='rust', config=_setup("rust-tools") }

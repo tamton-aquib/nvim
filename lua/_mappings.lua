@@ -5,7 +5,7 @@ local function map(mode, key, func) vim.keymap.set(mode, key, func, {silent=true
 map('n', '<leader>l', function() require("essentials").open_term("lazygit", 't', true) end)
 map('n', '<leader>t', function() require("essentials").open_term("fish", 'h', true) end)
 map('n', '<leader>k', function() require("_utils").close_command("notify") end)
-map('n', '<leader>p', '<cmd>w<CR>:so<CR>:PackerSync<CR>')
+map('n', '<leader>ps', '<cmd>w<CR>:so<CR>:PackerSync<CR>')
 map('n', '<leader>ca', vim.lsp.buf.code_action)
 map('n', 'K'        , require("_utils").docs)
 
@@ -41,7 +41,7 @@ map('n', '<leader>cs', require("essentials").cheat_sh)
 --> Telescope mappings
 map('n', '<leader>ff', function() require("telescope.builtin").find_files(require("_utils").telescope_theme) end)
 map('n', '<leader>fg', '<cmd>Telescope live_grep<CR>')
-map('n', '<leader>fp', '<cmd>Telescope project<CR>')
+-- map('n', '<leader>fp', '<cmd>Telescope project<CR>')
 map('n', '<leader>fh', '<cmd>Telescope help_tags<CR>')
 map('n', '<leader>fc', '<cmd>Telescope commands theme=ivy<CR>')
 -- map('n', '/', '<cmd>Telescope current_buffer_fuzzy_find previewer=false<CR>')
