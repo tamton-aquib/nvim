@@ -16,7 +16,7 @@ map('n', '<leader>e'   , '<cmd>NvimTreeToggle<CR>')
 map('n', '<leader>n'   , '<cmd>Neogen<CR>')
 map('n', '<leader>q'   , require("_utils").toggle_quickfix)
 map('n', '<leader>z'   , '<cmd>FocusMaximise<CR>')
-map('n', '<leader>mp'  , '<Plug>MarkdownPreviewToggle<CR>')
+map('n', '<leader>m'  , '<Plug>MarkdownPreviewToggle<CR>')
 -- map('n', '<RightMouse>', '<RightMouse>:lua vim.lsp.buf.hover()<CR>')
 -- map('n', '<LeftMouse>' , '<LeftMouse>:lua vim.lsp.buf.signature_help()<CR>')
 

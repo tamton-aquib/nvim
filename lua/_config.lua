@@ -3,13 +3,25 @@ local M = {}
 M.staline = function()
     -->             ⌬  | left   :           | right  :            | toggle:  
     require('stabline').setup {
-        fg = "#986fec",
-        bg = "#11121d"
+        stab_left = " ",
+        font_inactive = "italic",
+
+        bg = "#1d2021",
+        inactive_bg = "#1d2021",
+        stab_bg = "#1d2021"
+        -- fg = "#986fec",
+        -- bg = "#11121d"
     }
 
     require("staline").setup {
         sections = {
-            left = { '  ', 'mode', ' ', 'branch', '  ⌬  ', 'lsp' },
+            left = {
+                '  ', 'mode', ' ', 'branch', '  ⌬  ', 'lsp',
+                function()
+                    local nice = require("keys").current_keys(true)
+                    return nice
+                end
+            },
             mid = { 'file_name', '%<', },
             right = { '    %l/%L  :%c    ',
                 function()
@@ -21,14 +33,21 @@ M.staline = function()
             },
         },
         defaults = {
-            true_colors = true,
+            false_colors = false,
             line_column = " [%l/%L] :%c  ",
             branch_symbol = " ",
         }
     }
 end
 
-M.tokyodark = function(transparent)
+M.gruvbox = function(t)
+    vim.g.gruvbox_material_background = 'hard'
+    vim.g.gruvbox_material_better_performance = 1
+    vim.g.gruvbox_material_transparent_background = t and 1 or 0
+    vim.g.gruvbox_material_sign_column_background = 'none'
+    vim.cmd [[colo gruvbox-material]]
+end
+M.tokyodark = function(t)
     -- TODO: NOICE COLOR PALETTE (might port in future)
     -- "#c678dd", "#986fec", "#c882e7", "#5af78e", "#98c379", "#7eca9c",
     -- "#56b6c2", "#61afef", "#8485ce", "#ebcb8b", "#fff94c", "#ffcc00",
@@ -36,7 +55,7 @@ M.tokyodark = function(transparent)
     -- "#ffffff", "#dddddd", "#999999", "#5c6370",
     -- "#282c34", "#24283b", "#11121d", "#1f1f1f",
 
-    vim.g.tokyodark_transparent_background = transparent and true or false
+    vim.g.tokyodark_transparent_background = t and true or false
     vim.g.tokyodark_enable_italic = true
 
     vim.cmd [[color tokyodark]]

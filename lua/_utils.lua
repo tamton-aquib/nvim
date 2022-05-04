@@ -26,7 +26,7 @@ end
 Util.noice_board = function()
     local xdg = vim.fn.fnamemodify(vim.fn.stdpath("config"), ":h").."/"
     local header = {
-        "","", "", "", "", "", "",
+        "","", "", "", "", "",
         [[ ███▄    █     ▒█████      ██▓    ▄████▄     ▓█████   ]],
         [[ ██ ▀█   █    ▒██▒  ██▒   ▓██▒   ▒██▀ ▀█     ▓█   ▀   ]],
         [[▓██  ▀█ ██▒   ▒██░  ██▒   ▒██▒   ▒▓█    ▄    ▒███     ]],

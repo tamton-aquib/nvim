@@ -5,7 +5,10 @@ local conf = function(name) return ("require('_config').%s()"):format(name) end
 packer.startup { function(use)
 
     -->  Testing and temporary
-    use { 'nvim-treesitter/nvim-treesitter-textobjects' }
+    -- use { 'nvim-treesitter/nvim-treesitter-textobjects' }
+    use { '~/CODES/LUA/zone.nvim', config=function() require("zone").setup() end }
+    use { 'sainnhe/gruvbox-material' }
+    use { 'tamton-aquib/keys.nvim', config=function() require("keys").setup() end }
     -- use { 'sindrets/diffview.nvim', config=_setup("diffview"), cmd="DiffviewOpen" }
 
     -->  Might use in future
@@ -42,7 +45,7 @@ packer.startup { function(use)
 
     -->  TELESCOPE, TREESITTER, NEORG
     use { 'nvim-lua/plenary.nvim' }
-    use { 'nvim-treesitter/playground' , cmd="TSHighlightCapturesUnderCursor" }
+    use { 'nvim-treesitter/playground' , cmd="TSCaptureUnderCursor" }
     use { 'nvim-telescope/telescope.nvim', cmd='Telescope' , config=conf("telescope"), module="telescope"}
     use { 'nvim-treesitter/nvim-treesitter', event='BufRead', config=conf("treesitter") }
     use { 'nvim-neorg/neorg', ft={"norg"}, after={"nvim-treesitter", "telescope.nvim"}, config=conf("neorg") }
