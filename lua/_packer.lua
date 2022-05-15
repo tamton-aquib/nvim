@@ -6,9 +6,11 @@ packer.startup { function(use)
 
     -->  Testing and temporary
     -- use { 'nvim-treesitter/nvim-treesitter-textobjects' }
-    use { '~/CODES/LUA/zone.nvim', config=function() require("zone").setup() end }
+    use { 'tamton-aquib/zone.nvim', config=function() require("zone").setup({after=100}) end }
     use { 'sainnhe/gruvbox-material' }
     use { 'tamton-aquib/keys.nvim', config=function() require("keys").setup() end }
+    -- use { 'vim-denops/denops.vim' }
+    -- use { 'ryoppippi/bad-apple.vim' }
     -- use { 'sindrets/diffview.nvim', config=_setup("diffview"), cmd="DiffviewOpen" }
 
     -->  Might use in future

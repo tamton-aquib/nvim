@@ -1,3 +1,4 @@
+--> Wrapper funcs
 local command = function(name, fn, desc) vim.api.nvim_create_user_command(name, fn, {desc=desc}) end
 local au = function(events, ptn, cb, once) vim.api.nvim_create_autocmd(events, {pattern=ptn, callback=cb, once=once}) end
 
@@ -6,13 +7,13 @@ au("BufEnter", "_packer.lua,init.lua", function() vim.fn.matchadd("Keyword", "--
 au("BufEnter", "*", function() vim.opt_local.fo:remove{'c', 'r', 'o'} end)
 au("FileType", "markdown", function() vim.opt_local.spell=true end)
 au("FileType", "json", function() vim.opt_local.cole=0 end)
-au("DiagnosticChanged", "*", function() vim.notify("Lsp Started!") end, true)
--- au("VimEnter", "*", require("duck").hatch)
+au("DiagnosticChanged", "*", function() vim.notify("  Lsp Started!") end, true)
+-- au("VimEnter", "*", function() require("duck").hatch() end)
 
 --> LSP Related
 au("BufWritePre", "*.js,*.jsx", function() vim.lsp.buf.formatting_sync(nil, 200) end)
 au("BufWritePre", "*.rs,*.svelte", function() vim.lsp.buf.formatting_sync(nil, 1000) end)
-au("CursorHold", "*", function() vim.diagnostic.open_float() end)
+au("CursorHold", "*", vim.diagnostic.open_float)
 
 --> OLD
 au("BufReadPost", "*", function() require("essentials").last_place() end)

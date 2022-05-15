@@ -17,10 +17,7 @@ M.staline = function()
         sections = {
             left = {
                 '  ', 'mode', ' ', 'branch', '  ⌬  ', 'lsp',
-                function()
-                    local nice = require("keys").current_keys(true)
-                    return nice
-                end
+                function() return require("keys").current_keys(true) end
             },
             mid = { 'file_name', '%<', },
             right = { '    %l/%L  :%c    ',

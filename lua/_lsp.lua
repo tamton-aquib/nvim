@@ -73,7 +73,7 @@ Lsp.init = function()
             header = { "  Diagnostics", "String" },
             focusable = false,
             prefix = function(_, _, _)
-                return " " , "String" -- icons:        ﬌  
+                return "  " , "String" -- icons:        ﬌  
             end
         }
     })
@@ -86,7 +86,7 @@ Lsp.lsp_installer = function()
     local s = {
         rust_analyzer = {flags={exit_timeout=false}, capabilities=capabilities},
         sumneko_lua = vim.g.devmode and require("lua-dev").setup{}  or {},
-        pyright = {}
+        pyright={}, tsserver={}, svelte={}, cssls={}, clangd={}
     }
 
     local lspconfig = require("lspconfig")
