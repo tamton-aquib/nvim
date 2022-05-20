@@ -1,5 +1,16 @@
 local Util = {}
 
+-- TODO: later
+-- Util.load_proj_config = function()
+    -- TODO: add check for security?
+    -- local file = vim.b.project_root .. "/noice.json"
+    -- if vim.fn.filereadable(file) ~= 0 then
+        -- local data = vim.json.decode(table.concat(vim.fn.readfile(file)))
+        -- for key,map in pairs(data.keymaps) do vim.keymap.set('n', key, '<cmd>'..map..'<CR>', {silent=true}) end
+        -- for name, work in pairs(data.commands) do vim.api.nvim_create_user_command(name, work, {}) end
+    -- end
+-- end
+
 --> Using `K` for docs related popups
 Util.docs = function()
     if vim.tbl_contains({"lua", "help"}, vim.bo.ft) then
@@ -12,7 +23,7 @@ Util.docs = function()
 end
 
 --> Centering an array of strings
-function Util.center(dict)
+Util.center = function(dict)
     local new_dict = {}
     for _, v in pairs(dict) do
         local padding = vim.fn.max(vim.fn.map(dict, 'strwidth(v:val)'))
@@ -22,7 +33,7 @@ function Util.center(dict)
     return new_dict
 end
 
---> Noice simple dashboard (prolly temporary)
+--> Simple dashboard
 Util.noice_board = function()
     local xdg = vim.fn.fnamemodify(vim.fn.stdpath("config"), ":h").."/"
     local header = {
@@ -52,17 +63,15 @@ Util.noice_board = function()
                 A = xdg .. 'alacritty/alacritty.yml',
                 P = xdg .. 'picom/picom.conf'
             }
-            local opts = {noremap = true, silent = true}
-
             vim.api.nvim_win_set_buf(0, buf)
             vim.api.nvim_put(Util.center(header), "l", true, true)
             vim.cmd [[silent! setlocal nonu nornu autochdir ft=dashboard]]
 
             for k,f in pairs(keys) do
-                vim.api.nvim_buf_set_keymap(0,'n',k,':e '..f..' | setlocal noautochdir<CR>',opts)
+                vim.keymap.set('n', k,':e '..f..' | setlocal noautochdir<CR>', {buffer=0, silent=true})
             end
-            vim.api.nvim_buf_set_keymap(0, 'n', 'P', '<cmd>Telescope oldfiles<CR>', opts)
-            vim.api.nvim_buf_set_keymap(0, 'n', 'q', '<cmd>q<CR>', opts)
+            vim.keymap.set('n', 'P', '<cmd>Telescope oldfiles<CR>', {buffer=0})
+            vim.keymap.set('n', 'q', '<cmd>q<CR>', {buffer=0})
         end)
     end
 end
