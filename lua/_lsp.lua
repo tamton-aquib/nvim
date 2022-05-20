@@ -73,7 +73,7 @@ Lsp.init = function()
             header = { "  Diagnostics", "String" },
             focusable = false,
             prefix = function(_, _, _)
-                return " " , "String" -- icons:        ﬌  
+                return "  " , "String" -- icons:        ﬌  
             end
         }
     })
@@ -85,15 +85,11 @@ Lsp.lsp_installer = function()
     local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
     local s = {
         rust_analyzer = {flags={exit_timeout=false}, capabilities=capabilities},
-        sumneko_lua = vim.g.devmode and require("lua-dev").setup{}  or {
-            settings = {Lua={diagnostics={globals={"vim"}}}}
-        }
+        sumneko_lua = vim.g.devmode and require("lua-dev").setup{}  or {settings={Lua={diagnostics={globals={'vim'}}}}},
+        pyright={}, tsserver={}, svelte={}, cssls={}, clangd={}
     }
 
-    local lspconfig = require("lspconfig")
-    for server, opt in pairs(s) do
-        lspconfig[server].setup(opt)
-    end
+    for server, opt in pairs(s) do require("lspconfig")[server].setup(opt) end
 end
 
 return Lsp

@@ -14,7 +14,7 @@ My neovim config
 ### Summary
 
 * neovim version : 0.7
-* optional deps: rg
+* optional deps: rg, lazygit
 * Colorscheme: [tokyodark.nvim](https://github.com/tiagovla/tokyodark.nvim)
 * Statusline and bufferline : [staline and stabline](https://github.com/tamton-aquib/staline.nvim)
 * LSP: builtin with lspconfig.

@@ -5,13 +5,15 @@ local conf = function(name) return ("require('_config').%s()"):format(name) end
 packer.startup { function(use)
 
     -->  Testing and temporary
-    use { 'nvim-treesitter/nvim-treesitter-textobjects' }
-    -- use { 'sindrets/diffview.nvim', config=_setup("diffview"), cmd="DiffviewOpen" }
+    -- use { 'ahmedkhalf/project.nvim', config=_setup("project_nvim") }
+    -- use { 'tamton-aquib/zone.nvim', config=function() require("zone").setup({after=100}) end }
+    -- use { 'tamton-aquib/keys.nvim', config=function() require("keys").setup() end, cmd="KeysToggle"}
+    -- use {'vim-denops/denops.vim', 'ryoppippi/bad-apple.vim' }
+    use { 'sindrets/diffview.nvim', config=_setup("diffview"), cmd="DiffviewOpen" }
 
     -->  Might use in future
     -- use { 'simrat39/rust-tools.nvim', ft='rust', config=_setup("rust-tools") }
     -- use { 'nvim-telescope/telescope-project.nvim' }
-    -- use { 'ahmedkhalf/project.nvim', config=_setup("project_nvim") }
     -- use { 'elihunter173/dirbuf.nvim' }
     -- use { 'nlsickler/colorscheme-tweaks.nvim' }
     -- use { 'rmagatti/goto-preview', config= conf("goto_preview") }
@@ -23,7 +25,7 @@ packer.startup { function(use)
     use { 'norcalli/nvim-colorizer.lua', cmd="ColorizerToggle", config=_setup("colorizer") }
     use { 'lewis6991/gitsigns.nvim', config=_setup("gitsigns"), event='BufRead' }
     use { 'kyazdani42/nvim-tree.lua', config=conf('nvim_tree'), cmd='NvimTreeToggle'}
-    use { 'tamton-aquib/staline.nvim', config=conf("staline") }
+    use { 'tamton-aquib/staline.nvim', config=conf("staline"), branch='dev' }
     use { 'karb94/neoscroll.nvim', config=_setup("neoscroll"), event='WinScrolled' }
 
     -->  LSP and COMPLETION
@@ -42,7 +44,7 @@ packer.startup { function(use)
 
     -->  TELESCOPE, TREESITTER, NEORG
     use { 'nvim-lua/plenary.nvim' }
-    use { 'nvim-treesitter/playground' , cmd="TSHighlightCapturesUnderCursor" }
+    use { 'nvim-treesitter/playground' , cmd="TSCaptureUnderCursor" }
     use { 'nvim-telescope/telescope.nvim', cmd='Telescope' , config=conf("telescope"), module="telescope"}
     use { 'nvim-treesitter/nvim-treesitter', event='BufRead', config=conf("treesitter") }
     use { 'nvim-neorg/neorg', ft={"norg"}, after={"nvim-treesitter", "telescope.nvim"}, config=conf("neorg") }
@@ -64,4 +66,3 @@ packer.startup { function(use)
 
     use { 'wbthomason/packer.nvim' }
 end }
-

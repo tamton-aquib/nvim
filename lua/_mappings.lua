@@ -6,6 +6,7 @@ map('n', '<leader>l', function() require("essentials").open_term("lazygit", 't',
 map('n', '<leader>t', function() require("essentials").open_term("fish", 'h', true) end)
 map('n', '<leader>k', function() require("_utils").close_command("notify") end)
 map('n', '<leader>ps', '<cmd>w<CR>:so<CR>:PackerSync<CR>')
+map('n', '<leader>pp', '<cmd>PackerProfile<CR>')
 map('n', '<leader>ca', vim.lsp.buf.code_action)
 map('n', 'K'        , require("_utils").docs)
 
@@ -16,7 +17,7 @@ map('n', '<leader>e'   , '<cmd>NvimTreeToggle<CR>')
 map('n', '<leader>n'   , '<cmd>Neogen<CR>')
 map('n', '<leader>q'   , require("_utils").toggle_quickfix)
 map('n', '<leader>z'   , '<cmd>FocusMaximise<CR>')
-map('n', '<leader>mp'  , '<Plug>MarkdownPreviewToggle<CR>')
+map('n', '<leader>m'  , '<Plug>MarkdownPreviewToggle<CR>')
 -- map('n', '<RightMouse>', '<RightMouse>:lua vim.lsp.buf.hover()<CR>')
 -- map('n', '<LeftMouse>' , '<LeftMouse>:lua vim.lsp.buf.signature_help()<CR>')
 

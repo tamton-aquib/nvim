@@ -1,10 +1,13 @@
 local M = {}
 
 M.staline = function()
-    -->             ⌬  | left   :           | right  :            | toggle:  
+    -->              ⌬  ☣ | left   :           | right  :            | toggle:  
     require('stabline').setup {
-        fg = "#986fec",
-        bg = "#11121d"
+        style='bar',
+        font_active='bold,italic',
+        stab_start = "  %#TSFunction#  ", stab_left = " ",
+        bg = "#11121d", fg = "#986fec",
+        inactive_bg = "#11121d"
     }
 
     require("staline").setup {
@@ -28,7 +31,7 @@ M.staline = function()
     }
 end
 
-M.tokyodark = function(transparent)
+M.tokyodark = function(t)
     -- TODO: NOICE COLOR PALETTE (might port in future)
     -- "#c678dd", "#986fec", "#c882e7", "#5af78e", "#98c379", "#7eca9c",
     -- "#56b6c2", "#61afef", "#8485ce", "#ebcb8b", "#fff94c", "#ffcc00",
@@ -36,7 +39,7 @@ M.tokyodark = function(transparent)
     -- "#ffffff", "#dddddd", "#999999", "#5c6370",
     -- "#282c34", "#24283b", "#11121d", "#1f1f1f",
 
-    vim.g.tokyodark_transparent_background = transparent and true or false
+    vim.g.tokyodark_transparent_background = t and true or false
     vim.g.tokyodark_enable_italic = true
 
     vim.cmd [[color tokyodark]]
@@ -64,7 +67,7 @@ M.luasnip = function()
                 parse({trig="pp", wordTrig=true}, prints[vim.bo.ft] or "🍣"),
             }
         })
-    end, 500)
+    end, 1000)
 end
 
 M.nvim_tree = function()
@@ -76,16 +79,17 @@ M.nvim_tree = function()
 end
 
 M.telescope = function()
-    -- require("telescope").load_extension("project")
-    require('telescope').setup{
+    local telescope = require("telescope")
+    telescope.setup {
         defaults = {
             prompt_prefix = "   ", selection_caret = " ",
             sorting_strategy = "ascending",
             layout_config = { prompt_position = "top" },
             file_ignore_patterns = {'__pycache__/', 'node_modules/'},
-            extensions = { projects = {} }
         }
     }
+    -- telescope.load_extension("ui-select")
+    -- telescope.load_extension("project")
 end
 
 function M.indent_blankline()
@@ -114,14 +118,7 @@ M.treesitter = function()
     require('nvim-treesitter.configs').setup {
         ensure_installed = { "norg" ,"lua" },
         highlight = { enable = true },
-        indent = { enable = true },
-        textobjects = {select={
-            enable=true,
-            keymaps = {
-                ["af"] = "@function.outer",
-                ["if"] = "@function.inner",
-            }
-        }}
+        indent = { enable = true }, -- TODO: try text objects somewhen
     }
 end
 
