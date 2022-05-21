@@ -8,6 +8,7 @@ au("BufEnter", "*", function() vim.opt_local.fo:remove{'c', 'r', 'o'} end)
 au("FileType", "markdown", function() vim.opt_local.spell=true end)
 au("FileType", "json", function() vim.opt_local.cole=0 end)
 au("DiagnosticChanged", "*", function() vim.notify("  Lsp Started!") end, true)
+-- au("BufEnter", "*", function() require("_utils").load_proj_config() end)
 -- au("VimEnter", "*", function() require("duck").hatch() end)
 
 --> LSP Related

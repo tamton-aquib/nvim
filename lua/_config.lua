@@ -7,7 +7,7 @@ M.staline = function()
         font_active='bold,italic',
         stab_start = "  %#TSFunction#  ", stab_left = " ",
         bg = "#11121d", fg = "#986fec",
-        inactive_bg = "#11121d"
+        inactive_bg = "#11121d",
     }
 
     require("staline").setup {
@@ -123,7 +123,7 @@ end
 
 M.treesitter = function()
     require('nvim-treesitter.configs').setup {
-        ensure_installed = { "norg" ,"lua" },
+        ensure_installed = { "norg" ,"lua", "comment" },
         highlight = { enable = true },
         indent = { enable = true }, -- TODO: try text objects somewhen
     }
