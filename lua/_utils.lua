@@ -78,23 +78,12 @@ end
 
 --> Closing Windows and buffers
 Util.close_command = function(bt)
-    if bt then
-        for _, b in ipairs(vim.api.nvim_list_bufs()) do
-            if vim.bo[b].ft == bt then
-                vim.api.nvim_buf_delete(b, {force=true})
-                return
-            end
-        end
-    end
-
-    local total = 0
-    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-        if vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_is_valid(buf) and vim.api.nvim_buf_get_name(buf) ~= "" then
-            total = total + 1
-        end
-    end
-
     if vim.bo.modified then print("buf not saved!")  return end
+    local total = vim.api.nvim_list_bufs()
+    total = #vim.tbl_filter(function(buf)
+        -- if vim.bo.ft == bt then vim.api. end
+        return vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_get_name(buf) ~= ""
+    end, total)
     vim.cmd(total == 1 and ":q!" or ":bd!")
 end
 

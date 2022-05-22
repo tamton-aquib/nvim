@@ -4,7 +4,7 @@ local function map(mode, key, func) vim.keymap.set(mode, key, func, {silent=true
 --> TEMP and TEST maps
 map('n', '<leader>l', function() require("essentials").open_term("lazygit", 't', true) end)
 map('n', '<leader>t', function() require("essentials").open_term("fish", 'h', true) end)
-map('n', '<leader>k', function() require("_utils").close_command("notify") end)
+-- map('n', '<leader>k', function() require("_utils").close_command("notify") end)
 map('n', '<leader>ps', '<cmd>w<CR>:so<CR>:PackerSync<CR>')
 map('n', '<leader>pp', '<cmd>PackerProfile<CR>')
 map('n', '<leader>ca', vim.lsp.buf.code_action)

@@ -12,8 +12,8 @@ au("DiagnosticChanged", "*", function() vim.notify("  Lsp Started!") end, tru
 -- au("VimEnter", "*", function() require("duck").hatch() end)
 
 --> LSP Related
-au("BufWritePre", "*.js,*.jsx", function() vim.lsp.buf.formatting_sync(nil, 200) end)
-au("BufWritePre", "*.rs,*.svelte", function() vim.lsp.buf.formatting_sync(nil, 1000) end)
+au("BufWritePre", "*.js,*.jsx", function() vim.lsp.buf.format({async=true}) end)
+au("BufWritePre", "*.rs,*.svelte", function() vim.lsp.buf.format({async=true}) end)
 au("CursorHold", "*", vim.diagnostic.open_float)
 
 --> OLD

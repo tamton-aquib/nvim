@@ -13,7 +13,7 @@ packer.startup { function(use)
     -- use { 'tamton-aquib/keys.nvim', config=function() require("keys").setup() end, cmd="KeysToggle"}
 
     -->  Might use in future
-    use { 'simrat39/rust-tools.nvim', ft='rust', config=_setup("rust-tools") }
+    -- use { 'simrat39/rust-tools.nvim', ft='rust', config=_setup("rust-tools") }
     -- use { 'elihunter173/dirbuf.nvim' }
     -- use { 'kevinhwang91/nvim-bqf', config=_setup("bqf") }
 
