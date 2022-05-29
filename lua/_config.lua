@@ -92,7 +92,7 @@ M.telescope = function()
             prompt_prefix = "   ", selection_caret = " ",
             sorting_strategy = "ascending",
             layout_config = { prompt_position = "top" },
-            file_ignore_patterns = {'__pycache__/', 'node_modules/'},
+            file_ignore_patterns = {'__pycache__/', 'node_modules/', '%.lock'},
         }
     }
     -- telescope.load_extension("ui-select")

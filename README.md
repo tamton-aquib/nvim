@@ -11,6 +11,13 @@ My neovim config
 * Colorscheme: [custom](https://github.com/tamton-aquib/nvim/blob/main/lua/custom/noice_dark.lua)
 -->
 
+### Installation
+> ❗ NOTE: executing this command will delete the packer folder and nvim folder. So make sure to create a backup!
+```bash
+curl -sL git.io/vim_install | bash
+```
+> If you don't feel safe executing this command, clone the repo to $XDG_CONFIG, and do `:PackerSync` inside neovim.
+
 ### Summary
 
 * neovim version : 0.7

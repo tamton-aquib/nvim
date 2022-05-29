@@ -7,15 +7,16 @@ packer.startup { function(use)
 
     -->  Testing and temporary
     use { 'sindrets/diffview.nvim', config=_setup("diffview"), cmd="DiffviewOpen" }
-    use { 'tamton-aquib/essentials.nvim', branch='dev' }
+    use { 'samjwill/nvim-unception', event='TermEnter' }
     -- use { 'ahmedkhalf/project.nvim', config=_setup("project_nvim") }
-    -- use { 'tamton-aquib/zone.nvim', config=function() require("zone").setup({after=100}) end }
-    -- use { 'tamton-aquib/keys.nvim', config=function() require("keys").setup() end, cmd="KeysToggle"}
 
     -->  Might use in future
     -- use { 'simrat39/rust-tools.nvim', ft='rust', config=_setup("rust-tools") }
     -- use { 'elihunter173/dirbuf.nvim' }
     -- use { 'kevinhwang91/nvim-bqf', config=_setup("bqf") }
+    -- use { 'tamton-aquib/zone.nvim', config=function() require("zone").setup({after=100}) end }
+    -- use { 'tamton-aquib/keys.nvim', config=function() require("keys").setup() end, cmd="KeysToggle"}
+
 
     -->  THEMES AND UI
     use { 'tiagovla/tokyodark.nvim' }
@@ -60,6 +61,7 @@ packer.startup { function(use)
     use { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=_setup('crates') }
     use { 'iamcco/markdown-preview.nvim', ft={'markdown'}, config=function() vim.g.mkdp_auto_close = 0 end }
     use { 'lukas-reineke/indent-blankline.nvim', event="BufReadPost", config=conf("indent_blankline") }
+    use { 'tamton-aquib/essentials.nvim', branch='dev' }
 
     use { 'wbthomason/packer.nvim' }
 end }

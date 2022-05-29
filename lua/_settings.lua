@@ -46,7 +46,7 @@ set.showtabline = 2
 set.laststatus = 3
 set.completeopt = "menu,menuone,noselect"
 set.virtualedit = "block"
-set.cursorline = false
+set.cursorline = true
 set.ignorecase = true
 
 --> Fold Settings
@@ -77,7 +77,7 @@ set.breakindent = true
 --> Misc settings
 set.signcolumn = "yes:1"
 set.guifont = "Operator Mono Medium"
-set.wildignore = { '*.pyc,__pycache__,node_modules' }
+set.wildignore = { '*.pyc,__pycache__,node_modules,*.lock' }
 set.fillchars:append({eob=' ', fold=' ', foldopen="", foldsep=" ", foldclose=""})
 set.shortmess:append({c=true, s=true, A=true, W=true})
 set.iskeyword:append('-')

@@ -8,7 +8,7 @@ Util.load_proj_config = function()
         print("Loaded local config!")
         local data = vim.json.decode(table.concat(vim.fn.readfile(file)))
         for key,map in pairs(data.keymaps or {}) do vim.keymap.set('n', key, '<cmd>'..map..'<CR>', {silent=true}) end
-        for name, work in pairs(data.commands or {}) do vim.api.nvim_create_user_command(name, work, {}) end
+        for name,work in pairs(data.commands or {}) do vim.api.nvim_create_user_command(name, work, {}) end
     end
 end
 
