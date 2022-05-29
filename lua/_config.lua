@@ -5,14 +5,14 @@ M.staline = function()
     require('stabline').setup {
         style='bar',
         font_active='bold,italic',
-        stab_start = "  %#TSFunction#  ", stab_left = " ",
+        stab_start = "  %#TSFunction#  ", stab_left = " ",
         bg = "#11121d", fg = "#986fec",
         inactive_bg = "#11121d",
     }
 
     require("staline").setup {
         sections = {
-            left = { '  ', 'mode', ' ', 'branch', '  ⌬  ', 'lsp' },
+            left = { '  ', 'mode', ' ', 'branch', '     ', 'lsp' },
             mid = { 'file_name', '%<', },
             right = { '    %l/%L  :%c    ',
                 function()
