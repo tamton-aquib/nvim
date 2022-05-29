@@ -7,7 +7,7 @@ M.staline = function()
         font_active='bold,italic',
         stab_start = "  %#TSFunction#  ", stab_left = " ",
         bg = "#11121d", fg = "#986fec",
-        inactive_bg = "#11121d"
+        inactive_bg = "#11121d",
     }
 
     require("staline").setup {
@@ -31,6 +31,13 @@ M.staline = function()
     }
 end
 
+M.gruvbox = function(t)
+    vim.g.gruvbox_material_background = 'hard'
+    vim.g.gruvbox_material_better_performance = 1
+    vim.g.gruvbox_material_transparent_background = t and 1 or 0
+    vim.g.gruvbox_material_sign_column_background = 'none'
+    vim.cmd [[colo gruvbox-material]]
+end
 M.tokyodark = function(t)
     -- TODO: NOICE COLOR PALETTE (might port in future)
     -- "#c678dd", "#986fec", "#c882e7", "#5af78e", "#98c379", "#7eca9c",
@@ -85,7 +92,7 @@ M.telescope = function()
             prompt_prefix = "   ", selection_caret = " ",
             sorting_strategy = "ascending",
             layout_config = { prompt_position = "top" },
-            file_ignore_patterns = {'__pycache__/', 'node_modules/'},
+            file_ignore_patterns = {'__pycache__/', 'node_modules/', '%.lock'},
         }
     }
     -- telescope.load_extension("ui-select")
@@ -116,7 +123,7 @@ end
 
 M.treesitter = function()
     require('nvim-treesitter.configs').setup {
-        ensure_installed = { "norg" ,"lua" },
+        ensure_installed = { "norg" ,"lua", "comment" },
         highlight = { enable = true },
         indent = { enable = true }, -- TODO: try text objects somewhen
     }

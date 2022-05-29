@@ -20,11 +20,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
     vim.cmd('packadd packer.nvim')
 end
 
-require("packer").init {
-    profile = { enable = true },
-    display = { working_sym = "" }
-}
-
 --> General settings
 set.spell = false
 set.wrap = false
@@ -51,7 +46,7 @@ set.showtabline = 2
 set.laststatus = 3
 set.completeopt = "menu,menuone,noselect"
 set.virtualedit = "block"
-set.cursorline = false
+set.cursorline = true
 set.ignorecase = true
 
 --> Fold Settings
@@ -82,13 +77,20 @@ set.breakindent = true
 --> Misc settings
 set.signcolumn = "yes:1"
 set.guifont = "Operator Mono Medium"
-set.wildignore = { '*.pyc,__pycache__,node_modules' }
+set.wildignore = { '*.pyc,__pycache__,node_modules,*.lock' }
 set.fillchars:append({eob=' ', fold=' ', foldopen="", foldsep=" ", foldclose=""})
 set.shortmess:append({c=true, s=true, A=true, W=true})
 set.iskeyword:append('-')
 
+--> OVERRIDING Default vim globals
 local notify_status, notify = pcall(require, "notify")
 if notify_status then vim.notify = notify end
+
+local ess_status, essentials = pcall(require, "essentials")
+if ess_status then
+    vim.ui.input = essentials.ui_input
+    vim.ui.select = essentials.ui_select
+end
 
 --> Test settings
 -- set.copyindent = true
@@ -100,3 +102,4 @@ if notify_status then vim.notify = notify end
 -- set.lazyredraw = false
 -- vim.cmd [[let &colorcolumn=join(range(81,999),",")]]
 -- vim.cmd [[packadd cfilter]]
+-- vim.g.markdown_fenced_languages = {'vim'}

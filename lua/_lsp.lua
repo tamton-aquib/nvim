@@ -82,9 +82,9 @@ end
 --> LSP-Installer
 Lsp.lsp_installer = function()
     require("nvim-lsp-installer").setup{}
-    local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    -- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
     local s = {
-        rust_analyzer = {flags={exit_timeout=false}, capabilities=capabilities},
+        rust_analyzer = { flags={exit_timeout=false} },
         sumneko_lua = vim.g.devmode and require("lua-dev").setup{}  or {settings={Lua={diagnostics={globals={'vim'}}}}},
         pyright={}, tsserver={}, svelte={}, cssls={}, clangd={}
     }

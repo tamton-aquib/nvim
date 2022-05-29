@@ -1,15 +1,16 @@
 local Util = {}
 
 -- TODO: later
--- Util.load_proj_config = function()
+Util.load_proj_config = function()
     -- TODO: add check for security?
-    -- local file = vim.b.project_root .. "/noice.json"
-    -- if vim.fn.filereadable(file) ~= 0 then
-        -- local data = vim.json.decode(table.concat(vim.fn.readfile(file)))
-        -- for key,map in pairs(data.keymaps) do vim.keymap.set('n', key, '<cmd>'..map..'<CR>', {silent=true}) end
-        -- for name, work in pairs(data.commands) do vim.api.nvim_create_user_command(name, work, {}) end
-    -- end
--- end
+    local file = vim.fn.getcwd() .. "/noice.json"
+    if vim.fn.filereadable(file) ~= 0 then
+        print("Loaded local config!")
+        local data = vim.json.decode(table.concat(vim.fn.readfile(file)))
+        for key,map in pairs(data.keymaps or {}) do vim.keymap.set('n', key, '<cmd>'..map..'<CR>', {silent=true}) end
+        for name,work in pairs(data.commands or {}) do vim.api.nvim_create_user_command(name, work, {}) end
+    end
+end
 
 --> Using `K` for docs related popups
 Util.docs = function()
@@ -78,23 +79,12 @@ end
 
 --> Closing Windows and buffers
 Util.close_command = function(bt)
-    if bt then
-        for _, b in ipairs(vim.api.nvim_list_bufs()) do
-            if vim.bo[b].ft == bt then
-                vim.api.nvim_buf_delete(b, {force=true})
-                return
-            end
-        end
-    end
-
-    local total = 0
-    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-        if vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_is_valid(buf) and vim.api.nvim_buf_get_name(buf) ~= "" then
-            total = total + 1
-        end
-    end
-
     if vim.bo.modified then print("buf not saved!")  return end
+    local total = vim.api.nvim_list_bufs()
+    total = #vim.tbl_filter(function(buf)
+        -- if vim.bo.ft == bt then vim.api. end
+        return vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_get_name(buf) ~= ""
+    end, total)
     vim.cmd(total == 1 and ":q!" or ":bd!")
 end
 
