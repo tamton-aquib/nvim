@@ -1,20 +1,23 @@
 local M = {}
 
 M.staline = function()
-    -->              ⌬  ☣ | left   :           | right  :            | toggle:  
+    -->              ⌬  | left   :           | right  :            | toggle:  
     require('stabline').setup {
-        style='bar',
+        style = 'bar',
         font_active='bold,italic',
-        stab_start = "  %#TSFunction#  ", stab_left = " ",
-        bg = "#11121d", fg = "#986fec",
+        stab_start = "  %#Function#  ", stab_left = " ",
+        -- bg = "#11121d",
+        fg = "#986fec",
         inactive_bg = "#11121d",
     }
 
     require("staline").setup {
         sections = {
-            left = { '  ', 'mode', ' ', 'branch', '     ', 'lsp' },
-            mid = { 'file_name', '%<', },
-            right = { '    %l/%L  :%c    ',
+            left = { '  ', 'mode', ' ', 'branch', '  ⌬   ', 'lsp_name' },
+            mid = { 'file_name', '%<' },
+            right = { function()
+                return vim.b.bookmark or ''
+            end, '    %l/%L  :%c    ',
                 function()
                     local chars = { "_", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" }
                     local line_ratio = vim.fn.line(".") / vim.fn.line("$")
@@ -24,6 +27,8 @@ M.staline = function()
             },
         },
         defaults = {
+            expand_null_ls = true,
+            null_ls_symbol = "|",
             true_colors = true,
             line_column = " [%l/%L] :%c  ",
             branch_symbol = " ",
@@ -55,13 +60,13 @@ end
 
 M.luasnip = function()
     local prints = {
-        rust = [[println!("{${0}}");]],
-        python = [[print(${0})]],
-        javascript = [[console.log(${0});]],
-        svelte = [[console.log(${0});]],
-        lua = [[print(vim.inspect(${0}))]],
-        c = [[printf("${0}");]],
-        cpp = [[std::cout << ${0} << std::endl;]]
+        rust       = 'println!("{${0}}");',
+        python     = 'print(${0})',
+        javascript = 'console.log(${0});',
+        svelte     = 'console.log(${0});',
+        lua        = 'print(vim.inspect(${0}))',
+        c          = 'printf("${0}");',
+        cpp        = 'std::cout << ${0} << std::endl;'
     }
 
     vim.defer_fn(function()
@@ -126,6 +131,9 @@ M.treesitter = function()
         ensure_installed = { "norg" ,"lua", "comment" },
         highlight = { enable = true },
         indent = { enable = true }, -- TODO: try text objects somewhen
+          autotag = {
+            enable = true,
+          }
     }
 end
 

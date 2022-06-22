@@ -6,10 +6,13 @@ local conf = function(name) return ("require('_config').%s()"):format(name) end
 packer.startup { function(use)
 
     -->  Testing and temporary
+    -- use { 'kevinhwang91/nvim-ufo' }
     use { 'sindrets/diffview.nvim', config=_setup("diffview"), cmd="DiffviewOpen" }
-    use { 'samjwill/nvim-unception', event='TermEnter' }
+    -- use { 'samjwill/nvim-unception', event='TermOpen' }
+    use { 'windwp/nvim-ts-autotag' }
+    use { 'tamton-aquib/staline.nvim', config=conf("staline") }
     -- use { 'ahmedkhalf/project.nvim', config=_setup("project_nvim") }
-
+    -- use { 'tamton-aquib/staline.nvim', config=conf("staline") }
     -->  Might use in future
     -- use { 'simrat39/rust-tools.nvim', ft='rust', config=_setup("rust-tools") }
     -- use { 'elihunter173/dirbuf.nvim' }
@@ -17,14 +20,12 @@ packer.startup { function(use)
     -- use { 'tamton-aquib/zone.nvim', config=function() require("zone").setup({after=100}) end }
     -- use { 'tamton-aquib/keys.nvim', config=function() require("keys").setup() end, cmd="KeysToggle"}
 
-
     -->  THEMES AND UI
     use { 'tiagovla/tokyodark.nvim' }
     use { 'kyazdani42/nvim-web-devicons' }
     use { 'norcalli/nvim-colorizer.lua', cmd="ColorizerToggle", config=_setup("colorizer") }
     use { 'lewis6991/gitsigns.nvim', config=_setup("gitsigns"), event='BufRead' }
     use { 'kyazdani42/nvim-tree.lua', config=conf('nvim_tree'), cmd='NvimTreeToggle'}
-    use { 'tamton-aquib/staline.nvim', config=conf("staline"), branch='dev' }
     use { 'karb94/neoscroll.nvim', config=_setup("neoscroll"), event='WinScrolled' }
 
     -->  LSP and COMPLETION
@@ -61,7 +62,7 @@ packer.startup { function(use)
     use { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=_setup('crates') }
     use { 'iamcco/markdown-preview.nvim', ft={'markdown'}, config=function() vim.g.mkdp_auto_close = 0 end }
     use { 'lukas-reineke/indent-blankline.nvim', event="BufReadPost", config=conf("indent_blankline") }
-    use { 'tamton-aquib/essentials.nvim', branch='dev' }
+    use { 'tamton-aquib/essentials.nvim' }
 
     use { 'wbthomason/packer.nvim' }
 end }

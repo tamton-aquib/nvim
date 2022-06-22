@@ -12,7 +12,7 @@ au("VimEnter", "*", function() require("_utils").load_proj_config() end)
 -- au("VimEnter", "*", function() require("duck").hatch() end)
 
 --> LSP Related
-au("BufWritePre", "*.js,*.jsx", function() vim.lsp.buf.format() end)
+au("BufWritePre", "*.js,*.jsx,*.ts,*.tsx", function() vim.lsp.buf.format() end)
 au("BufWritePre", "*.rs,*.svelte", function() vim.lsp.buf.format() end)
 au("CursorHold", "*", vim.diagnostic.open_float)
 

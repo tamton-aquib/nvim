@@ -57,19 +57,13 @@ Util.noice_board = function()
             vim.fn.matchadd("Error", '[░▒]')
             vim.fn.matchadd("Function", '[▓█▄▀▐▌]')
             local buf = vim.api.nvim_create_buf(false, true)
-            local keys = {
-                K = xdg .. 'kitty/kitty.conf',
-                F = xdg .. 'fish/config.fish',
-                I = xdg .. 'nvim/init.lua',
-                A = xdg .. 'alacritty/alacritty.yml',
-                P = xdg .. 'picom/picom.conf'
-            }
+            local keys = {K='kitty/kitty.conf', F='fish/config.fish', I='nvim/init.lua', A='alacritty/alacritty.yml', P='picom/picom.conf'}
             vim.api.nvim_win_set_buf(0, buf)
             vim.api.nvim_put(Util.center(header), "l", true, true)
-            vim.cmd [[silent! setlocal nonu nornu autochdir ft=dashboard]]
+            vim.cmd [[silent! setl nonu nornu acd ft=dashboard]]
 
             for k,f in pairs(keys) do
-                vim.keymap.set('n', k,':e '..f..' | setlocal noautochdir<CR>', {buffer=0, silent=true})
+                vim.keymap.set('n', k,':e '..xdg..f..' | setl noacd<CR>', {buffer=0, silent=true})
             end
             vim.keymap.set('n', 'P', '<cmd>Telescope oldfiles<CR>', {buffer=0})
             vim.keymap.set('n', 'q', '<cmd>q<CR>', {buffer=0})
@@ -78,16 +72,16 @@ Util.noice_board = function()
 end
 
 --> Closing Windows and buffers
-Util.close_command = function(bt)
+Util.close_command = function()
     if vim.bo.modified then print("buf not saved!")  return end
-    local total = vim.api.nvim_list_bufs()
-    total = #vim.tbl_filter(function(buf)
-        -- if vim.bo.ft == bt then vim.api. end
+    local buf_list = vim.api.nvim_list_bufs()
+
+    for _, b in ipairs(buf_list) do if vim.bo[b].ft == "notify" then vim.notify.dismiss({}) return end end
+    local total = #vim.tbl_filter(function(buf)
         return vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_get_name(buf) ~= ""
-    end, total)
+    end, buf_list)
     vim.cmd(total == 1 and ":q!" or ":bd!")
 end
-
 
 --> Different Kinds of Borders
 local borders = {
