@@ -41,7 +41,7 @@ map('n', '<leader>cs', require("essentials").cheat_sh)
 --> Telescope mappings
 map('n', '<leader>ff', function() require("telescope.builtin").find_files(require("_utils").telescope_theme) end)
 map('n', '<leader>fg', '<cmd>Telescope live_grep<CR>')
--- map('n', '<leader>fp', '<cmd>Telescope project<CR>')
+map('n', '<leader>fp', '<cmd>Telescope projects<CR>')
 map('n', '<leader>fh', '<cmd>Telescope help_tags<CR>')
 map('n', '<leader>fc', '<cmd>Telescope commands theme=ivy<CR>')
 -- map('n', '/', '<cmd>Telescope current_buffer_fuzzy_find previewer=false<CR>')

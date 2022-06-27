@@ -36,7 +36,7 @@ set.clipboard:prepend({"unnamedplus"})
 set.smarttab = true
 set.backup = false
 set.writebackup = false
-set.cmdheight = 1
+set.cmdheight = 0
 set.splitright = true
 set.splitbelow = true
 set.pumheight = 10
@@ -76,7 +76,8 @@ set.breakindent = true
 
 --> Misc settings
 set.signcolumn = "yes:1"
-set.guifont = "Operator Mono Medium"
+-- set.guifont = "Operator Mono Lig:h11"
+set.guifont = "OperatorMonoLig Nerd Font Mono:h11"
 set.wildignore = { '*.pyc,__pycache__,node_modules,*.lock' }
 set.fillchars:append({eob=' ', fold=' ', foldopen="", foldsep=" ", foldclose=""})
 set.shortmess:append({c=true, s=true, A=true, W=true})
@@ -99,7 +100,7 @@ end
 -- set.list = true
 -- set.listchars = 'tab:▏ '
 -- set.listchars = 'tab: '
--- set.lazyredraw = false
+set.lazyredraw = true
 -- vim.cmd [[let &colorcolumn=join(range(81,999),",")]]
 -- vim.cmd [[packadd cfilter]]
 -- vim.g.markdown_fenced_languages = {'vim'}

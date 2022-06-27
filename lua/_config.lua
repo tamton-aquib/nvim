@@ -13,7 +13,7 @@ M.staline = function()
 
     require("staline").setup {
         sections = {
-            left = { '  ', 'mode', ' ', 'branch', '  ⌬   ', 'lsp_name' },
+            left = { '  ', 'mode', ' ', 'branch', '  ⌬   ', 'lsp' },
             mid = { 'file_name', '%<' },
             right = { function()
                 return vim.b.bookmark or ''
@@ -36,12 +36,10 @@ M.staline = function()
     }
 end
 
-M.gruvbox = function(t)
-    vim.g.gruvbox_material_background = 'hard'
-    vim.g.gruvbox_material_better_performance = 1
-    vim.g.gruvbox_material_transparent_background = t and 1 or 0
-    vim.g.gruvbox_material_sign_column_background = 'none'
-    vim.cmd [[colo gruvbox-material]]
+M.devicons = function()
+    require("nvim-web-devicons").setup { override={
+        norg={icon="", color="#4878BE", name="neorg"}
+    }}
 end
 M.tokyodark = function(t)
     -- TODO: NOICE COLOR PALETTE (might port in future)
@@ -59,27 +57,20 @@ M.tokyodark = function(t)
 end
 
 M.luasnip = function()
-    local prints = {
-        rust       = 'println!("{${0}}");',
-        python     = 'print(${0})',
-        javascript = 'console.log(${0});',
-        svelte     = 'console.log(${0});',
-        lua        = 'print(vim.inspect(${0}))',
-        c          = 'printf("${0}");',
-        cpp        = 'std::cout << ${0} << std::endl;'
-    }
+    local ls = require('luasnip')
+    local parse = ls.parser.parse_snippet
 
-    vim.defer_fn(function()
-        local ls = require('luasnip')
-        local parse = ls.parser.parse_snippet
-
-        ls.add_snippets(nil, {
-            all = {
-                parse({trig="#!", wordTrig=true}, "#!/usr/bin/env ${0}"),
-                parse({trig="pp", wordTrig=true}, prints[vim.bo.ft] or "🍣"),
-            }
-        })
-    end, 1000)
+    ls.add_snippets(nil, {
+        all = { parse({trig="#!", wordTrig=true}, "#!/usr/bin/env ${0}") },
+        lua = {parse({trig="pp", wordTrig=true}, 'print("${0}")')},
+        python = {parse({trig="pp", wordTrig=true}, 'print("${0}")')},
+        rust = {parse({trig="pp", wordTrig=true}, 'println!("${0}");')},
+        c = {parse({trig="pp", wordTrig=true}, 'printf("${0}");')},
+        cpp = {parse({trig="pp", wordTrig=true}, 'cout << "${0}" << std::endl;')},
+        javascript = {parse({trig="pp", wordTrig=true}, 'console.log("${0}");')},
+        typescript = {parse({trig="pp", wordTrig=true}, 'console.log("${0}");')},
+        svelte = {parse({trig="pp", wordTrig=true}, 'console.log("${0}");')},
+    })
 end
 
 M.nvim_tree = function()
@@ -101,7 +92,7 @@ M.telescope = function()
         }
     }
     -- telescope.load_extension("ui-select")
-    -- telescope.load_extension("project")
+    telescope.load_extension("projects")
 end
 
 function M.indent_blankline()
@@ -121,7 +112,8 @@ M.neorg = function()
         load = {
             ["core.norg.completion"] = { config={ engine="nvim-cmp" } },
             ["core.defaults"] = {},
-            ["core.norg.concealer"] = { config = { icon_preset = "diamond" } },
+            ["core.norg.concealer"] = { config={ icon_preset = "diamond" } },
+            ["core.presenter"] = { config={ zen_mode = "zen-mode" } }
         }
     }
 end

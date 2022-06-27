@@ -8,10 +8,12 @@ packer.startup { function(use)
     -->  Testing and temporary
     -- use { 'kevinhwang91/nvim-ufo' }
     use { 'sindrets/diffview.nvim', config=_setup("diffview"), cmd="DiffviewOpen" }
-    -- use { 'samjwill/nvim-unception', event='TermOpen' }
+    -- use { 'Pocco81/TrueZen.nvim', config=_setup("true-zen") }
+    use { 'folke/zen-mode.nvim', config=_setup("zen-mode"), cmd="TZAtaraxis" }
+    -- use { 'jbyuki/instant.nvim' }
+    -- use { 'samjwill/nvim-unception' }
     use { 'windwp/nvim-ts-autotag' }
-    use { 'tamton-aquib/staline.nvim', config=conf("staline") }
-    -- use { 'ahmedkhalf/project.nvim', config=_setup("project_nvim") }
+    use { 'ahmedkhalf/project.nvim', config=_setup("project_nvim") }
     -- use { 'tamton-aquib/staline.nvim', config=conf("staline") }
     -->  Might use in future
     -- use { 'simrat39/rust-tools.nvim', ft='rust', config=_setup("rust-tools") }
@@ -22,11 +24,12 @@ packer.startup { function(use)
 
     -->  THEMES AND UI
     use { 'tiagovla/tokyodark.nvim' }
-    use { 'kyazdani42/nvim-web-devicons' }
+    use { 'kyazdani42/nvim-web-devicons', config=conf("devicons") }
     use { 'norcalli/nvim-colorizer.lua', cmd="ColorizerToggle", config=_setup("colorizer") }
     use { 'lewis6991/gitsigns.nvim', config=_setup("gitsigns"), event='BufRead' }
     use { 'kyazdani42/nvim-tree.lua', config=conf('nvim_tree'), cmd='NvimTreeToggle'}
     use { 'karb94/neoscroll.nvim', config=_setup("neoscroll"), event='WinScrolled' }
+    use { 'tamton-aquib/staline.nvim', config=conf("staline") }
 
     -->  LSP and COMPLETION
     use { 'neovim/nvim-lspconfig' }
