@@ -8,15 +8,12 @@ packer.startup { function(use)
     -->  Testing and temporary
     -- use { 'kevinhwang91/nvim-ufo' }
     use { 'sindrets/diffview.nvim', config=_setup("diffview"), cmd="DiffviewOpen" }
-    -- use { 'Pocco81/TrueZen.nvim', config=_setup("true-zen") }
     use { 'folke/zen-mode.nvim', config=_setup("zen-mode"), cmd="TZAtaraxis" }
-    -- use { 'jbyuki/instant.nvim' }
-    -- use { 'samjwill/nvim-unception' }
-    use { 'windwp/nvim-ts-autotag' }
+    use { 'samjwill/nvim-unception' }
     use { 'ahmedkhalf/project.nvim', config=_setup("project_nvim") }
-    -- use { 'tamton-aquib/staline.nvim', config=conf("staline") }
+
     -->  Might use in future
-    -- use { 'simrat39/rust-tools.nvim', ft='rust', config=_setup("rust-tools") }
+    use { 'simrat39/rust-tools.nvim', ft='rust', config=_setup("rust-tools") }
     -- use { 'elihunter173/dirbuf.nvim' }
     -- use { 'kevinhwang91/nvim-bqf', config=_setup("bqf") }
     -- use { 'tamton-aquib/zone.nvim', config=function() require("zone").setup({after=100}) end }
