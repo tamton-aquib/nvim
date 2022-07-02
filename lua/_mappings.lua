@@ -8,6 +8,7 @@ map('n', '<leader>ps', '<cmd>w<CR>:so<CR>:PackerSync<CR>')
 map('n', '<leader>pp', '<cmd>PackerProfile<CR>')
 map('n', '<leader>ca', vim.lsp.buf.code_action)
 map('n', 'K'        , require("_utils").docs)
+map('n', 'ge', "<cmd>TroubleToggle<CR>")
 
 --> General Mappings
 map('n', '<leader>dd'  , require("duck").hatch)
@@ -21,12 +22,12 @@ map('n', '<leader>m'  , '<Plug>MarkdownPreviewToggle<CR>')
 -- map('n', '<LeftMouse>' , '<LeftMouse>:lua vim.lsp.buf.signature_help()<CR>')
 
 --> Lsp mappings
-vim.keymap.set('n', 'gd',    vim.lsp.buf.definition, {})
-vim.keymap.set('n', 'gD',    vim.lsp.buf.declaration, {})
-vim.keymap.set('n', 'gr',    vim.lsp.buf.references, {})
-vim.keymap.set('n', 'gi',    vim.lsp.buf.implementation, {})
-vim.keymap.set('n', '<M-n>', vim.diagnostic.goto_next, {})
-vim.keymap.set('n', '<M-p>', vim.diagnostic.goto_prev, {})
+map('n', 'gd',    vim.lsp.buf.definition)
+map('n', 'gD',    vim.lsp.buf.declaration)
+map('n', 'gr',    vim.lsp.buf.references)
+map('n', 'gi',    vim.lsp.buf.implementation)
+map('n', '<M-n>', vim.diagnostic.goto_next)
+map('n', '<M-p>', vim.diagnostic.goto_prev)
 
 --> essentials.nvim mappings ( https://github.com/tamton-aquib/essentials.nvim )
 map('v', '<leader>/' , ':lua require("essentials").toggle_comment(true)<CR>')
@@ -43,6 +44,7 @@ map('n', '<leader>ff', function() require("telescope.builtin").find_files(requir
 map('n', '<leader>fg', '<cmd>Telescope live_grep<CR>')
 map('n', '<leader>fp', '<cmd>Telescope projects<CR>')
 map('n', '<leader>fh', '<cmd>Telescope help_tags<CR>')
+map('n', '<leader>fo', '<cmd>Telescope oldfiles<CR>')
 map('n', '<leader>fc', '<cmd>Telescope commands theme=ivy<CR>')
 -- map('n', '/', '<cmd>Telescope current_buffer_fuzzy_find previewer=false<CR>')
 

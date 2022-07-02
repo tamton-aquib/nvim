@@ -3,12 +3,12 @@ local M = {}
 M.staline = function()
     -->              ⌬  | left   :           | right  :            | toggle:  
     require('stabline').setup {
-        style = 'bar',
+        style='bar',
         font_active='bold,italic',
-        stab_start = "  %#Function#  ", stab_left = " ",
+        stab_start="  %#Function#  ", stab_left = " ",
         -- bg = "#11121d",
-        fg = "#986fec",
-        inactive_bg = "#11121d",
+        fg="#986fec",
+        inactive_bg="#11121d",
     }
 
     require("staline").setup {
@@ -41,6 +41,7 @@ M.devicons = function()
         norg={icon="", color="#4878BE", name="neorg"}
     }}
 end
+
 M.tokyodark = function(t)
     -- TODO: NOICE COLOR PALETTE (might port in future)
     -- "#c678dd", "#986fec", "#c882e7", "#5af78e", "#98c379", "#7eca9c",
@@ -61,7 +62,7 @@ M.luasnip = function()
     local parse = ls.parser.parse_snippet
 
     ls.add_snippets(nil, {
-        all = { parse({trig="#!", wordTrig=true}, "#!/usr/bin/env ${0}") },
+        all = {parse({trig="#!", wordTrig=true}, "#!/usr/bin/env ${0}")},
         lua = {parse({trig="pp", wordTrig=true}, 'print("${0}")')},
         python = {parse({trig="pp", wordTrig=true}, 'print("${0}")')},
         rust = {parse({trig="pp", wordTrig=true}, 'println!("${0}");')},

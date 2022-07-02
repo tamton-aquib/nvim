@@ -6,14 +6,15 @@ local conf = function(name) return ("require('_config').%s()"):format(name) end
 packer.startup { function(use)
 
     -->  Testing and temporary
-    -- use { 'kevinhwang91/nvim-ufo' }
     use { 'sindrets/diffview.nvim', config=_setup("diffview"), cmd="DiffviewOpen" }
+    use { 'folke/trouble.nvim', config=_setup("trouble"), cmd="TroubleToggle" }
     use { 'folke/zen-mode.nvim', config=_setup("zen-mode"), cmd="TZAtaraxis" }
     use { 'samjwill/nvim-unception' }
     use { 'ahmedkhalf/project.nvim', config=_setup("project_nvim") }
 
     -->  Might use in future
-    use { 'simrat39/rust-tools.nvim', ft='rust', config=_setup("rust-tools") }
+    -- use { 'kevinhwang91/nvim-ufo' }
+    -- use { 'simrat39/rust-tools.nvim', ft='rust', config=_setup("rust-tools") }
     -- use { 'elihunter173/dirbuf.nvim' }
     -- use { 'kevinhwang91/nvim-bqf', config=_setup("bqf") }
     -- use { 'tamton-aquib/zone.nvim', config=function() require("zone").setup({after=100}) end }
