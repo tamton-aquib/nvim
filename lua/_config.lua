@@ -8,7 +8,12 @@ M.staline = function()
         stab_start="  %#Function#  ", stab_left = " ",
         -- bg = "#11121d",
         fg="#986fec",
-        inactive_bg="#11121d",
+        bg = "none",
+        stab_bg = "none",
+        -- inactive_bg="#11121d",
+        inactive_bg="none",
+        -- stab_end = "%#Function#%@Click@ %X  "
+        -- stab_end = "%#Function#%@Click@ %X  "
     }
 
     require("staline").setup {
@@ -63,7 +68,7 @@ M.luasnip = function()
 
     ls.add_snippets(nil, {
         all = {parse({trig="#!", wordTrig=true}, "#!/usr/bin/env ${0}")},
-        lua = {parse({trig="pp", wordTrig=true}, 'print("${0}")')},
+        lua = {parse({trig="pp", wordTrig=true}, 'print(vim.inspect(${0}))')},
         python = {parse({trig="pp", wordTrig=true}, 'print("${0}")')},
         rust = {parse({trig="pp", wordTrig=true}, 'println!("${0}");')},
         c = {parse({trig="pp", wordTrig=true}, 'printf("${0}");')},
@@ -121,7 +126,9 @@ end
 
 M.treesitter = function()
     require('nvim-treesitter.configs').setup {
-        ensure_installed = { "norg" ,"lua", "comment" },
+        ensure_installed = {
+            "norg" ,"lua", "comment", "rust", "python", "svelte", "css", "tsx"
+        },
         highlight = { enable = true },
         indent = { enable = true }, -- TODO: try text objects somewhen
           autotag = {

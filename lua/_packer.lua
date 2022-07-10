@@ -7,16 +7,14 @@ packer.startup { function(use)
 
     -->  Testing and temporary
     use { 'sindrets/diffview.nvim', config=_setup("diffview"), cmd="DiffviewOpen" }
+    use { 'JASONews/glow-hover', config=_setup("glow-hover") }
     use { 'folke/trouble.nvim', config=_setup("trouble"), cmd="TroubleToggle" }
-    use { 'folke/zen-mode.nvim', config=_setup("zen-mode"), cmd="TZAtaraxis" }
     use { 'samjwill/nvim-unception' }
-    use { 'ahmedkhalf/project.nvim', config=_setup("project_nvim") }
+    -- use { 'folke/zen-mode.nvim', config=_setup("zen-mode"), cmd="TZAtaraxis" }
 
     -->  Might use in future
-    -- use { 'kevinhwang91/nvim-ufo' }
     -- use { 'simrat39/rust-tools.nvim', ft='rust', config=_setup("rust-tools") }
     -- use { 'elihunter173/dirbuf.nvim' }
-    -- use { 'kevinhwang91/nvim-bqf', config=_setup("bqf") }
     -- use { 'tamton-aquib/zone.nvim', config=function() require("zone").setup({after=100}) end }
     -- use { 'tamton-aquib/keys.nvim', config=function() require("keys").setup() end, cmd="KeysToggle"}
 
@@ -52,6 +50,7 @@ packer.startup { function(use)
     use { 'danymat/neogen', config=_setup("neogen"), cmd="Neogen"}
 
     -->  GENERAL PURPOSE
+    use { 'ahmedkhalf/project.nvim', config=_setup("project_nvim") }
     use { 'tamton-aquib/duck.nvim', config=_setup("duck") }
     use { 'folke/lua-dev.nvim', module="lua-dev"}
     use { 'beauwilliams/focus.nvim', config=_setup("focus"), event="WinNew" }

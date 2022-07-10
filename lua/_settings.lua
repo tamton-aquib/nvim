@@ -1,5 +1,5 @@
 local set = vim.opt
-vim.g.do_filetype_lua = 1
+-- vim.g.do_filetype_lua = 1
 
 --> Be careful whats in this list:
 for _, plugin in ipairs({ "python3_provider", "node_provider", "2html_plugin", "getscript", "getscriptPlugin",
@@ -36,7 +36,7 @@ set.clipboard:prepend({"unnamedplus"})
 set.smarttab = true
 set.backup = false
 set.writebackup = false
-set.cmdheight = 0
+set.cmdheight = 1
 set.splitright = true
 set.splitbelow = true
 set.pumheight = 10

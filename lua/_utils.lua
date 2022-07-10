@@ -108,7 +108,7 @@ Util.telescope_theme = {
 
 --> Toggling quickfix window with a keybind
 Util.toggle_quickfix = function()
-    vim.cmd(not vim.g.quickfix_toggled and "copen" or "cclose")
+    vim.cmd(not vim.g.quickfix_toggled and "cclose" or "copen")
     vim.g.quickfix_toggled = not vim.g.quickfix_toggled
 end
 

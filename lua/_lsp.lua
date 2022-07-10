@@ -51,7 +51,7 @@ Lsp.cmp = function()
         experimental = { ghost_text = true }
     }
 
-    cmp.setup.cmdline(':', { sources = {{name="cmdline", keyword_length=3}} })
+    cmp.setup.cmdline(':', { mapping=cmp.mapping.preset.cmdline(), sources = {{name="cmdline", keyword_length=3}} })
 end
 
 Lsp.init = function()
