@@ -47,6 +47,13 @@ M.devicons = function()
     }}
 end
 
+M.notify = function()
+    require("notify").setup{
+        render='minimal',
+        background_colour = "#000000"
+    }
+end
+
 M.tokyodark = function(t)
     -- TODO: NOICE COLOR PALETTE (might port in future)
     -- "#c678dd", "#986fec", "#c882e7", "#5af78e", "#98c379", "#7eca9c",
@@ -72,7 +79,7 @@ M.luasnip = function()
         python = {parse({trig="pp", wordTrig=true}, 'print("${0}")')},
         rust = {parse({trig="pp", wordTrig=true}, 'println!("${0}");')},
         c = {parse({trig="pp", wordTrig=true}, 'printf("${0}");')},
-        cpp = {parse({trig="pp", wordTrig=true}, 'cout << "${0}" << std::endl;')},
+        cpp = {parse({trig="pp", wordTrig=true}, 'std::cout << "${0}" << std::endl;')},
         javascript = {parse({trig="pp", wordTrig=true}, 'console.log("${0}");')},
         typescript = {parse({trig="pp", wordTrig=true}, 'console.log("${0}");')},
         svelte = {parse({trig="pp", wordTrig=true}, 'console.log("${0}");')},

@@ -10,6 +10,7 @@ packer.startup { function(use)
     use { 'JASONews/glow-hover', config=_setup("glow-hover") }
     use { 'folke/trouble.nvim', config=_setup("trouble"), cmd="TroubleToggle" }
     use { 'samjwill/nvim-unception' }
+    use { 'jinh0/eyeliner.nvim', config=_setup("eyeliner") }
     -- use { 'folke/zen-mode.nvim', config=_setup("zen-mode"), cmd="TZAtaraxis" }
 
     -->  Might use in future
@@ -56,7 +57,7 @@ packer.startup { function(use)
     use { 'beauwilliams/focus.nvim', config=_setup("focus"), event="WinNew" }
     use { 'windwp/nvim-autopairs', config=_setup("nvim-autopairs"), event='InsertEnter' }
     use { 'nanotee/luv-vimdocs', ft={"lua"} }
-    use { 'rcarriga/nvim-notify', config=function() require("notify").setup{render='minimal'} end }
+    use { 'rcarriga/nvim-notify', config=conf("notify")}
     use { 'lewis6991/impatient.nvim' }
     use { 'rktjmp/paperplanes.nvim', config=_setup("paperplanes"), cmd="PP" }
     use { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=_setup('crates') }
