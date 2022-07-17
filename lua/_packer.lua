@@ -1,6 +1,6 @@
 local packer = require("packer")
 packer.init { profile = { enable = true } }
-local _setup = function(name) return ("require('%s').setup()"):format(name) end
+local _setup = function(name) return ("require('%s').setup{}"):format(name) end
 local conf = function(name) return ("require('_config').%s()"):format(name) end
 
 packer.startup { function(use)
