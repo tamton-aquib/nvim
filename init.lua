@@ -7,5 +7,5 @@ require '_mappings'
 
 -->  UI and LSP
 require('_utils').noice_board()
-require('_config').tokyodark(false)
+require('_config').tokyodark(true)
 require('_lsp').init()

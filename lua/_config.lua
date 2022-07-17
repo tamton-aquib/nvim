@@ -1,20 +1,28 @@
 local M = {}
 
 M.staline = function()
-    -->              ⌬  ☣ | left   :           | right  :            | toggle:  
+    -->              ⌬  | left   :           | right  :            | toggle:  
     require('stabline').setup {
         style='bar',
         font_active='bold,italic',
-        stab_start = "  %#TSFunction#  ", stab_left = " ",
-        bg = "#11121d", fg = "#986fec",
-        inactive_bg = "#11121d",
+        stab_start="  %#Function#  ", stab_left = " ",
+        -- bg = "#11121d",
+        fg="#986fec",
+        bg = "none",
+        stab_bg = "none",
+        -- inactive_bg="#11121d",
+        inactive_bg="none",
+        -- stab_end = "%#Function#%@Click@ %X  "
+        -- stab_end = "%#Function#%@Click@ %X  "
     }
 
     require("staline").setup {
         sections = {
-            left = { '  ', 'mode', ' ', 'branch', '     ', 'lsp' },
-            mid = { 'file_name', '%<', },
-            right = { '    %l/%L  :%c    ',
+            left = { '  ', 'mode', ' ', 'branch', '  ⌬   ', 'lsp' },
+            mid = { 'file_name', '%<' },
+            right = { function()
+                return vim.b.bookmark or ''
+            end, '    %l/%L  :%c    ',
                 function()
                     local chars = { "_", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" }
                     local line_ratio = vim.fn.line(".") / vim.fn.line("$")
@@ -31,13 +39,19 @@ M.staline = function()
     }
 end
 
-M.gruvbox = function(t)
-    vim.g.gruvbox_material_background = 'hard'
-    vim.g.gruvbox_material_better_performance = 1
-    vim.g.gruvbox_material_transparent_background = t and 1 or 0
-    vim.g.gruvbox_material_sign_column_background = 'none'
-    vim.cmd [[colo gruvbox-material]]
+M.devicons = function()
+    require("nvim-web-devicons").setup { override={
+        norg={icon="", color="#4878BE", name="neorg"}
+    }}
 end
+
+M.notify = function()
+    require("notify").setup{
+        render='minimal',
+        background_colour = "#000000"
+    }
+end
+
 M.tokyodark = function(t)
     -- TODO: NOICE COLOR PALETTE (might port in future)
     -- "#c678dd", "#986fec", "#c882e7", "#5af78e", "#98c379", "#7eca9c",
@@ -53,28 +67,22 @@ M.tokyodark = function(t)
     vim.cmd [[hi! link IndentBlanklineChar Comment]]
 end
 
+-- TODO: clean this up somewhen
 M.luasnip = function()
-    local prints = {
-        rust = [[println!("{${0}}");]],
-        python = [[print(${0})]],
-        javascript = [[console.log(${0});]],
-        svelte = [[console.log(${0});]],
-        lua = [[print(vim.inspect(${0}))]],
-        c = [[printf("${0}");]],
-        cpp = [[std::cout << ${0} << std::endl;]]
-    }
+    local ls = require('luasnip')
+    local parse = ls.parser.parse_snippet
 
-    vim.defer_fn(function()
-        local ls = require('luasnip')
-        local parse = ls.parser.parse_snippet
-
-        ls.add_snippets(nil, {
-            all = {
-                parse({trig="#!", wordTrig=true}, "#!/usr/bin/env ${0}"),
-                parse({trig="pp", wordTrig=true}, prints[vim.bo.ft] or "🍣"),
-            }
-        })
-    end, 1000)
+    ls.add_snippets(nil, {
+        all = {parse({trig="#!", wordTrig=true}, "#!/usr/bin/env ${0}")},
+        lua = {parse({trig="pp", wordTrig=true}, 'print(vim.inspect(${0}))')},
+        python = {parse({trig="pp", wordTrig=true}, 'print("${0}")')},
+        rust = {parse({trig="pp", wordTrig=true}, 'println!("${0}");')},
+        c = {parse({trig="pp", wordTrig=true}, 'printf("${0}");')},
+        cpp = {parse({trig="pp", wordTrig=true}, 'std::cout << "${0}" << std::endl;')},
+        javascript = {parse({trig="pp", wordTrig=true}, 'console.log("${0}");')},
+        typescript = {parse({trig="pp", wordTrig=true}, 'console.log("${0}");')},
+        svelte = {parse({trig="pp", wordTrig=true}, 'console.log("${0}");')},
+    })
 end
 
 M.nvim_tree = function()
@@ -96,7 +104,7 @@ M.telescope = function()
         }
     }
     -- telescope.load_extension("ui-select")
-    -- telescope.load_extension("project")
+    telescope.load_extension("projects")
 end
 
 function M.indent_blankline()
@@ -116,14 +124,17 @@ M.neorg = function()
         load = {
             ["core.norg.completion"] = { config={ engine="nvim-cmp" } },
             ["core.defaults"] = {},
-            ["core.norg.concealer"] = { config = { icon_preset = "diamond" } },
+            ["core.norg.concealer"] = { config={ icon_preset = "diamond" } },
+            ["core.presenter"] = { config={ zen_mode = "zen-mode" } }
         }
     }
 end
 
 M.treesitter = function()
     require('nvim-treesitter.configs').setup {
-        ensure_installed = { "norg" ,"lua", "comment" },
+        ensure_installed = {
+            "norg" ,"lua", "comment", "rust", "python", "svelte", "css", "tsx"
+        },
         highlight = { enable = true },
         indent = { enable = true }, -- TODO: try text objects somewhen
     }

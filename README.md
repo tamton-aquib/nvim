@@ -20,7 +20,7 @@ curl -sL git.io/vim_install | bash
 
 ### Summary
 
-* neovim version : 0.7
+* neovim version : 0.8
 * optional deps: rg, lazygit
 * Colorscheme: [tokyodark.nvim](https://github.com/tiagovla/tokyodark.nvim)
 * Statusline and bufferline : [staline and stabline](https://github.com/tamton-aquib/staline.nvim)

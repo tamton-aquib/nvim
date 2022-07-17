@@ -1,31 +1,32 @@
 local packer = require("packer")
 packer.init { profile = { enable = true } }
-local _setup = function(name) return ("require('%s').setup()"):format(name) end
+local _setup = function(name) return ("require('%s').setup{}"):format(name) end
 local conf = function(name) return ("require('_config').%s()"):format(name) end
 
 packer.startup { function(use)
 
     -->  Testing and temporary
     use { 'sindrets/diffview.nvim', config=_setup("diffview"), cmd="DiffviewOpen" }
-    use { 'samjwill/nvim-unception', event='TermEnter' }
-    -- use { 'ahmedkhalf/project.nvim', config=_setup("project_nvim") }
+    use { 'JASONews/glow-hover', config=_setup("glow-hover") }
+    use { 'folke/trouble.nvim', config=_setup("trouble"), cmd="TroubleToggle" }
+    use { 'samjwill/nvim-unception' }
+    use { 'jinh0/eyeliner.nvim', config=_setup("eyeliner") }
+    -- use { 'folke/zen-mode.nvim', config=_setup("zen-mode"), cmd="TZAtaraxis" }
 
     -->  Might use in future
     -- use { 'simrat39/rust-tools.nvim', ft='rust', config=_setup("rust-tools") }
     -- use { 'elihunter173/dirbuf.nvim' }
-    -- use { 'kevinhwang91/nvim-bqf', config=_setup("bqf") }
     -- use { 'tamton-aquib/zone.nvim', config=function() require("zone").setup({after=100}) end }
     -- use { 'tamton-aquib/keys.nvim', config=function() require("keys").setup() end, cmd="KeysToggle"}
 
-
     -->  THEMES AND UI
     use { 'tiagovla/tokyodark.nvim' }
-    use { 'kyazdani42/nvim-web-devicons' }
+    use { 'kyazdani42/nvim-web-devicons', config=conf("devicons") }
     use { 'norcalli/nvim-colorizer.lua', cmd="ColorizerToggle", config=_setup("colorizer") }
     use { 'lewis6991/gitsigns.nvim', config=_setup("gitsigns"), event='BufRead' }
     use { 'kyazdani42/nvim-tree.lua', config=conf('nvim_tree'), cmd='NvimTreeToggle'}
-    use { 'tamton-aquib/staline.nvim', config=conf("staline"), branch='dev' }
     use { 'karb94/neoscroll.nvim', config=_setup("neoscroll"), event='WinScrolled' }
+    use { 'tamton-aquib/staline.nvim', config=conf("staline") }
 
     -->  LSP and COMPLETION
     use { 'neovim/nvim-lspconfig' }
@@ -50,18 +51,19 @@ packer.startup { function(use)
     use { 'danymat/neogen', config=_setup("neogen"), cmd="Neogen"}
 
     -->  GENERAL PURPOSE
+    use { 'ahmedkhalf/project.nvim', config=_setup("project_nvim") }
     use { 'tamton-aquib/duck.nvim', config=_setup("duck") }
     use { 'folke/lua-dev.nvim', module="lua-dev"}
     use { 'beauwilliams/focus.nvim', config=_setup("focus"), event="WinNew" }
     use { 'windwp/nvim-autopairs', config=_setup("nvim-autopairs"), event='InsertEnter' }
     use { 'nanotee/luv-vimdocs', ft={"lua"} }
-    use { 'rcarriga/nvim-notify', config=function() require("notify").setup{render='minimal'} end }
+    use { 'rcarriga/nvim-notify', config=conf("notify")}
     use { 'lewis6991/impatient.nvim' }
     use { 'rktjmp/paperplanes.nvim', config=_setup("paperplanes"), cmd="PP" }
     use { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=_setup('crates') }
     use { 'iamcco/markdown-preview.nvim', ft={'markdown'}, config=function() vim.g.mkdp_auto_close = 0 end }
     use { 'lukas-reineke/indent-blankline.nvim', event="BufReadPost", config=conf("indent_blankline") }
-    use { 'tamton-aquib/essentials.nvim', branch='dev' }
+    use { 'tamton-aquib/essentials.nvim' }
 
     use { 'wbthomason/packer.nvim' }
 end }

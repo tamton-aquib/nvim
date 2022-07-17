@@ -1,5 +1,4 @@
 local set = vim.opt
-vim.g.do_filetype_lua = 1
 
 --> Be careful whats in this list:
 for _, plugin in ipairs({ "python3_provider", "node_provider", "2html_plugin", "getscript", "getscriptPlugin",
@@ -76,7 +75,7 @@ set.breakindent = true
 
 --> Misc settings
 set.signcolumn = "yes:1"
-set.guifont = "Operator Mono Medium"
+set.guifont = "OperatorMonoLig Nerd Font Mono:h11"
 set.wildignore = { '*.pyc,__pycache__,node_modules,*.lock' }
 set.fillchars:append({eob=' ', fold=' ', foldopen="", foldsep=" ", foldclose=""})
 set.shortmess:append({c=true, s=true, A=true, W=true})
@@ -99,7 +98,6 @@ end
 -- set.list = true
 -- set.listchars = 'tab:▏ '
 -- set.listchars = 'tab: '
--- set.lazyredraw = false
 -- vim.cmd [[let &colorcolumn=join(range(81,999),",")]]
 -- vim.cmd [[packadd cfilter]]
 -- vim.g.markdown_fenced_languages = {'vim'}
