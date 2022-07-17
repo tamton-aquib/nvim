@@ -69,6 +69,7 @@ M.tokyodark = function(t)
     vim.cmd [[hi! link IndentBlanklineChar Comment]]
 end
 
+-- TODO: clean this up somewhen
 M.luasnip = function()
     local ls = require('luasnip')
     local parse = ls.parser.parse_snippet
