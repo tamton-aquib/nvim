@@ -1,6 +1,5 @@
 local Util = {}
 
--- TODO: later
 Util.load_proj_config = function()
     -- TODO: add check for security?
     local file = vim.fn.getcwd() .. "/noice.json"

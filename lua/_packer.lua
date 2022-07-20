@@ -6,11 +6,12 @@ local conf = function(name) return ("require('_config').%s()"):format(name) end
 packer.startup { function(use)
 
     -->  Testing and temporary
+    use { 'Maan2003/lsp_lines.nvim', config=function() require("lsp_lines").register_lsp_virtual_lines() end }
     use { 'sindrets/diffview.nvim', config=_setup("diffview"), cmd="DiffviewOpen" }
     use { 'JASONews/glow-hover', config=_setup("glow-hover") }
     use { 'folke/trouble.nvim', config=_setup("trouble"), cmd="TroubleToggle" }
     use { 'samjwill/nvim-unception' }
-    use { 'jinh0/eyeliner.nvim', config=_setup("eyeliner") }
+    -- use { 'jinh0/eyeliner.nvim', config=_setup("eyeliner") }
     -- use { 'folke/zen-mode.nvim', config=_setup("zen-mode"), cmd="TZAtaraxis" }
 
     -->  Might use in future
@@ -44,7 +45,7 @@ packer.startup { function(use)
 
     -->  TELESCOPE, TREESITTER, NEORG
     use { 'nvim-lua/plenary.nvim' }
-    use { 'nvim-treesitter/playground' , cmd="TSCaptureUnderCursor" }
+    use { 'nvim-treesitter/playground' , cmd="TSHi" }
     use { 'nvim-telescope/telescope.nvim', cmd='Telescope' , config=conf("telescope"), module="telescope"}
     use { 'nvim-treesitter/nvim-treesitter', event='BufRead', config=conf("treesitter") }
     use { 'nvim-neorg/neorg', ft={"norg"}, after={"nvim-treesitter", "telescope.nvim"}, config=conf("neorg") }
@@ -61,7 +62,7 @@ packer.startup { function(use)
     use { 'lewis6991/impatient.nvim' }
     use { 'rktjmp/paperplanes.nvim', config=_setup("paperplanes"), cmd="PP" }
     use { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=_setup('crates') }
-    use { 'iamcco/markdown-preview.nvim', ft={'markdown'}, config=function() vim.g.mkdp_auto_close = 0 end }
+    use { 'iamcco/markdown-preview.nvim', ft={'markdown'}, config=conf("mkdp") }
     use { 'lukas-reineke/indent-blankline.nvim', event="BufReadPost", config=conf("indent_blankline") }
     use { 'tamton-aquib/essentials.nvim' }
 

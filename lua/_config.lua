@@ -1,5 +1,9 @@
 local M = {}
 
+M.mkdp = function()
+    vim.g.mkdp_auto_close = 0
+end
+
 M.staline = function()
     -->              ⌬  | left   :           | right  :            | toggle:  
     require('stabline').setup {
@@ -124,8 +128,8 @@ end
 M.neorg = function()
     require('neorg').setup {
         load = {
-            ["core.norg.completion"] = { config={ engine="nvim-cmp" } },
             ["core.defaults"] = {},
+            ["core.norg.completion"] = { config={ engine="nvim-cmp" } },
             ["core.norg.concealer"] = { config={ icon_preset = "diamond" } },
             ["core.presenter"] = { config={ zen_mode = "zen-mode" } }
         }
@@ -139,9 +143,6 @@ M.treesitter = function()
         },
         highlight = { enable = true },
         indent = { enable = true }, -- TODO: try text objects somewhen
-          autotag = {
-            enable = true,
-          }
     }
 end
 
