@@ -6,15 +6,15 @@ local conf = function(name) return ("require('_config').%s()"):format(name) end
 packer.startup { function(use)
 
     -->  Testing and temporary
-    use { 'Maan2003/lsp_lines.nvim', config=function() require("lsp_lines").register_lsp_virtual_lines() end }
+    -- use { 'gbprod/stay-in-place.nvim', config=_setup("stay-in-place") }
     use { 'sindrets/diffview.nvim', config=_setup("diffview"), cmd="DiffviewOpen" }
-    use { 'JASONews/glow-hover', config=_setup("glow-hover") }
-    use { 'folke/trouble.nvim', config=_setup("trouble"), cmd="TroubleToggle" }
     use { 'samjwill/nvim-unception' }
-    -- use { 'jinh0/eyeliner.nvim', config=_setup("eyeliner") }
-    -- use { 'folke/zen-mode.nvim', config=_setup("zen-mode"), cmd="TZAtaraxis" }
+    -- use { "williamboman/mason-lspconfig.nvim", config=_setup("mason-lspconfig") }
 
     -->  Might use in future
+    -- use { 'jinh0/eyeliner.nvim', config=_setup("eyeliner") }
+    -- use { 'folke/zen-mode.nvim', config=_setup("zen-mode"), cmd="TZAtaraxis" }
+    -- use { 'Maan2003/lsp_lines.nvim', config=function() require("lsp_lines").register_lsp_virtual_lines() end }
     -- use { 'simrat39/rust-tools.nvim', ft='rust', config=_setup("rust-tools") }
     -- use { 'elihunter173/dirbuf.nvim' }
     -- use { 'tamton-aquib/zone.nvim', config=function() require("zone").setup({after=100}) end }
@@ -29,8 +29,14 @@ packer.startup { function(use)
     use { 'karb94/neoscroll.nvim', config=_setup("neoscroll"), event='WinScrolled' }
     use { 'tamton-aquib/staline.nvim', config=conf("staline") }
 
-    -->  LSP and COMPLETION
+    -->  LSP
     use { 'neovim/nvim-lspconfig' }
+    use { "williamboman/mason.nvim", config=function() require("_lsp").lsp_installer() end }
+    use { 'folke/trouble.nvim', config=_setup("trouble"), cmd="TroubleToggle" }
+    use { 'JASONews/glow-hover', config=_setup("glow-hover") }
+    use { 'folke/lua-dev.nvim', module="lua-dev"}
+
+    -->  COMPLETION
     use { 'L3MON4D3/LuaSnip', config=conf("luasnip"), event={"InsertEnter", "CmdlineEnter"} }
     use { 'hrsh7th/nvim-cmp' , after="LuaSnip", config=function() require("_lsp").cmp() end }
     use { 'hrsh7th/cmp-buffer', after={"nvim-cmp"} }
@@ -41,7 +47,6 @@ packer.startup { function(use)
     use { 'saadparwaiz1/cmp_luasnip', after={"nvim-cmp"} }
     use { 'hrsh7th/cmp-nvim-lsp-signature-help', after={"nvim-cmp"}}
     use { 'hrsh7th/cmp-cmdline', event="CmdlineEnter", after={"nvim-cmp"}}
-    use { 'williamboman/nvim-lsp-installer', config=function() require("_lsp").lsp_installer() end }
 
     -->  TELESCOPE, TREESITTER, NEORG
     use { 'nvim-lua/plenary.nvim' }
@@ -54,7 +59,6 @@ packer.startup { function(use)
     -->  GENERAL PURPOSE
     use { 'ahmedkhalf/project.nvim', config=_setup("project_nvim") }
     use { 'tamton-aquib/duck.nvim', config=_setup("duck") }
-    use { 'folke/lua-dev.nvim', module="lua-dev"}
     use { 'beauwilliams/focus.nvim', config=_setup("focus"), event="WinNew" }
     use { 'windwp/nvim-autopairs', config=_setup("nvim-autopairs"), event='InsertEnter' }
     use { 'nanotee/luv-vimdocs', ft={"lua"} }

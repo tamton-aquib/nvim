@@ -81,7 +81,8 @@ end
 
 --> LSP-Installer
 Lsp.lsp_installer = function()
-    require("nvim-lsp-installer").setup{}
+    -- require("nvim-lsp-installer").setup{}
+    require("mason").setup{}
     -- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
     local s = {
         rust_analyzer = { flags={exit_timeout=false} },
@@ -91,6 +92,7 @@ Lsp.lsp_installer = function()
         pyright={}, tsserver={}, svelte={}, cssls={}, clangd={}
     }
 
+    -- require("mason-lspconfig").setup{}
     for server, opt in pairs(s) do require("lspconfig")[server].setup(opt) end
 end
 

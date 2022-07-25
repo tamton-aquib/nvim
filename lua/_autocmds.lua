@@ -24,6 +24,6 @@ au("BufWritePost", "_packer.lua", function() vim.cmd"so | PackerCompile<CR>" end
 au("TermOpen", "term://*", function() vim.cmd "setl nonu nornu | star" end)
 
 --> Commands
-command("Format", vim.lsp.buf.formatting, "Formats the current buffer.")
+command("Format", vim.lsp.buf.format, "Formats the current buffer.")
 command("X", ":silent !xset r rate 169 69", "Keyboards press-release rate.")
 -- vim.cmd [[syntax keyword Keyword lambda conceal cchar=λ]] -- TODO: (maybe with ts queries?)

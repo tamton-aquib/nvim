@@ -60,9 +60,7 @@ Util.noice_board = function()
             vim.api.nvim_put(Util.center(header), "l", true, true)
             vim.cmd [[silent! setl nonu nornu acd ft=dashboard]]
 
-            for k,f in pairs(keys) do
-                vim.keymap.set('n', k,':e '..xdg..f..' | setl noacd<CR>', {buffer=0, silent=true})
-            end
+            for k,f in pairs(keys) do vim.keymap.set('n', k,':e '..xdg..f..' | setl noacd<CR>', {buffer=0, silent=true}) end
             vim.keymap.set('n', 'P', '<cmd>Telescope oldfiles<CR>', {buffer=0})
             vim.keymap.set('n', 'q', '<cmd>q<CR>', {buffer=0})
         end)
