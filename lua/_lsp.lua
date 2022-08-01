@@ -85,11 +85,11 @@ Lsp.lsp_installer = function()
     require("mason").setup{}
     -- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
     local s = {
-        rust_analyzer = { flags={exit_timeout=false} },
+        -- rust_analyzer = { flags={exit_timeout=false} },
         sumneko_lua = vim.g.devmode and require("lua-dev").setup{}  or {settings={Lua={
             diagnostics={globals={'vim'}}, runtime = {version="LuaJIT"}
         }}},
-        pyright={}, tsserver={}, svelte={}, cssls={}, clangd={}
+        pyright={}, tsserver={}, svelte={}, cssls={}, clangd={}, zls={}
     }
 
     -- require("mason-lspconfig").setup{}

@@ -1,8 +1,6 @@
 local M = {}
 
-M.mkdp = function()
-    vim.g.mkdp_auto_close = 0
-end
+M.mkdp = function() vim.g.mkdp_auto_close = 0 end
 
 M.staline = function()
     -->              ⌬  | left   :           | right  :            | toggle:  
@@ -140,7 +138,7 @@ end
 M.treesitter = function()
     require('nvim-treesitter.configs').setup {
         ensure_installed = {
-            "norg" ,"lua", "comment", "rust", "python", "svelte", "css", "tsx"
+            "norg" ,"lua", "comment", "rust", "python"
         },
         highlight = { enable = true },
         indent = { enable = true }, -- TODO: try text objects somewhen

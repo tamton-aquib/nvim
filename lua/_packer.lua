@@ -6,6 +6,10 @@ local conf = function(name) return ("require('_config').%s()"):format(name) end
 packer.startup { function(use)
 
     -->  Testing and temporary
+    -- use { 'jadnw/gemstones.nvim' }
+    -- use { 'katawful/kat.nvim', branch="aniseed-fix" }
+    -- use { 'LunarVim/synthwave84.nvim' }
+
     -- use { 'gbprod/stay-in-place.nvim', config=_setup("stay-in-place") }
     use { 'sindrets/diffview.nvim', config=_setup("diffview"), cmd="DiffviewOpen" }
     use { 'samjwill/nvim-unception' }
@@ -15,7 +19,7 @@ packer.startup { function(use)
     -- use { 'jinh0/eyeliner.nvim', config=_setup("eyeliner") }
     -- use { 'folke/zen-mode.nvim', config=_setup("zen-mode"), cmd="TZAtaraxis" }
     -- use { 'Maan2003/lsp_lines.nvim', config=function() require("lsp_lines").register_lsp_virtual_lines() end }
-    -- use { 'simrat39/rust-tools.nvim', ft='rust', config=_setup("rust-tools") }
+    use { 'simrat39/rust-tools.nvim', ft='rust', config=_setup("rust-tools") }
     -- use { 'elihunter173/dirbuf.nvim' }
     -- use { 'tamton-aquib/zone.nvim', config=function() require("zone").setup({after=100}) end }
     -- use { 'tamton-aquib/keys.nvim', config=function() require("keys").setup() end, cmd="KeysToggle"}

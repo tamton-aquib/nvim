@@ -41,3 +41,6 @@ curl -sL git.io/vim_install | bash
    ├──  _conf.lua
    └──  _lsp.lua
 ```
+
+### TODO:
+- implement reloading headache.

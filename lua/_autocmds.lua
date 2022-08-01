@@ -8,13 +8,13 @@ au("BufEnter", "*", function() vim.cmd'setlocal fo-=cro' end)
 au("FileType", "markdown", function() vim.opt_local.spell=true end)
 au("FileType", "json", function() vim.opt_local.cole=0 end)
 au("DiagnosticChanged", "*", function() vim.notify("  Lsp Started!") end, true)
-au("DirChanged", "*", function() require("_utils").load_proj_config() end)
+au("VimEnter", "*", function() require("_utils").load_proj_config() end)
 -- au("VimEnter", "*", function() require("duck").hatch() end)
 
 --> LSP Related
 au("BufWritePre", "*.js,*.jsx,*.ts,*.tsx", function() vim.lsp.buf.format() end)
 au("BufWritePre", "*.rs,*.svelte", function() vim.lsp.buf.format() end)
--- au("CursorHold", "*", vim.diagnostic.open_float)
+au("CursorHold", "*", vim.diagnostic.open_float)
 
 --> OLD
 au("BufReadPost", "*", function() require("essentials").last_place() end)
