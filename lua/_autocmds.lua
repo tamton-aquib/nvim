@@ -7,7 +7,6 @@ au("BufEnter", "_packer.lua,init.lua", function() vim.fn.matchadd("Keyword", "--
 au("BufEnter", "*", function() vim.cmd'setlocal fo-=cro' end)
 au("FileType", "markdown", function() vim.opt_local.spell=true end)
 au("FileType", "json", function() vim.opt_local.cole=0 end)
-au("DiagnosticChanged", "*", function() vim.notify("  Lsp Started!") end, true)
 au("VimEnter", "*", function() require("_utils").load_proj_config() end)
 -- au("VimEnter", "*", function() require("duck").hatch() end)
 

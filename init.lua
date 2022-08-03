@@ -9,3 +9,4 @@ require '_mappings'
 require('_utils').noice_board()
 require('_config').tokyodark(false)
 require('_lsp').init()
+require('_lsp').setup_servers()

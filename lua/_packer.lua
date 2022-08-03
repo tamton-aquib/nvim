@@ -6,14 +6,13 @@ local conf = function(name) return ("require('_config').%s()"):format(name) end
 packer.startup { function(use)
 
     -->  Testing and temporary
+    -- use { 'rebelot/kanagawa.nvim' }
     -- use { 'jadnw/gemstones.nvim' }
     -- use { 'katawful/kat.nvim', branch="aniseed-fix" }
-    -- use { 'LunarVim/synthwave84.nvim' }
 
-    -- use { 'gbprod/stay-in-place.nvim', config=_setup("stay-in-place") }
+    use { 'JASONews/glow-hover', config=_setup("glow-hover") }
     use { 'sindrets/diffview.nvim', config=_setup("diffview"), cmd="DiffviewOpen" }
     use { 'samjwill/nvim-unception' }
-    -- use { "williamboman/mason-lspconfig.nvim", config=_setup("mason-lspconfig") }
 
     -->  Might use in future
     -- use { 'jinh0/eyeliner.nvim', config=_setup("eyeliner") }
@@ -35,9 +34,7 @@ packer.startup { function(use)
 
     -->  LSP
     use { 'neovim/nvim-lspconfig' }
-    use { "williamboman/mason.nvim", config=function() require("_lsp").lsp_installer() end }
     use { 'folke/trouble.nvim', config=_setup("trouble"), cmd="TroubleToggle" }
-    use { 'JASONews/glow-hover', config=_setup("glow-hover") }
     use { 'folke/lua-dev.nvim', module="lua-dev"}
 
     -->  COMPLETION
