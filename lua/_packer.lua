@@ -6,22 +6,23 @@ local conf = function(name) return ("require('_config').%s()"):format(name) end
 packer.startup { function(use)
 
     -->  Testing and temporary
-    -- use { 'rebelot/kanagawa.nvim' }
-    -- use { 'jadnw/gemstones.nvim' }
-    -- use { 'katawful/kat.nvim', branch="aniseed-fix" }
+    use { 'Shadorain/shadotheme' }
+    -- use { 'katawful/kat.nvim' }
+    use { 'tamton-aquib/stuff.nvim' }
 
     use { 'JASONews/glow-hover', config=_setup("glow-hover") }
-    use { 'sindrets/diffview.nvim', config=_setup("diffview"), cmd="DiffviewOpen" }
     use { 'samjwill/nvim-unception' }
 
     -->  Might use in future
+    -- use { 'sindrets/diffview.nvim', config=_setup("diffview"), cmd="DiffviewOpen" }
     -- use { 'jinh0/eyeliner.nvim', config=_setup("eyeliner") }
     -- use { 'folke/zen-mode.nvim', config=_setup("zen-mode"), cmd="TZAtaraxis" }
     -- use { 'Maan2003/lsp_lines.nvim', config=function() require("lsp_lines").register_lsp_virtual_lines() end }
-    use { 'simrat39/rust-tools.nvim', ft='rust', config=_setup("rust-tools") }
+    -- use { 'simrat39/rust-tools.nvim', ft='rust', config=_setup("rust-tools") }
     -- use { 'elihunter173/dirbuf.nvim' }
     -- use { 'tamton-aquib/zone.nvim', config=function() require("zone").setup({after=100}) end }
     -- use { 'tamton-aquib/keys.nvim', config=function() require("keys").setup() end, cmd="KeysToggle"}
+    use { 'tamton-aquib/duck.nvim', config=_setup("duck"), module="duck" }
 
     -->  THEMES AND UI
     use { 'tiagovla/tokyodark.nvim' }
@@ -59,7 +60,6 @@ packer.startup { function(use)
 
     -->  GENERAL PURPOSE
     use { 'ahmedkhalf/project.nvim', config=_setup("project_nvim") }
-    use { 'tamton-aquib/duck.nvim', config=_setup("duck") }
     use { 'beauwilliams/focus.nvim', config=_setup("focus"), event="WinNew" }
     use { 'windwp/nvim-autopairs', config=_setup("nvim-autopairs"), event='InsertEnter' }
     use { 'nanotee/luv-vimdocs', ft={"lua"} }

@@ -7,6 +7,6 @@ require '_mappings'
 
 -->  UI and LSP
 require('_utils').noice_board()
-require('_config').tokyodark(false)
+require('_config').tokyodark(false, "xshado")
 require('_lsp').init()
 require('_lsp').setup_servers()

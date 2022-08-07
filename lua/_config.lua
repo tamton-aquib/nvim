@@ -7,14 +7,16 @@ M.staline = function()
     require('stabline').setup {
         font_active='bold,italic',
         stab_start="  %#Function#  ", stab_left = " ",
-        fg="#986fec",
+        -- fg="#986fec",
+        stab_bg = "none",
         inactive_bg="none",
+        bg = "none"
     }
 
     require("staline").setup {
         sections = {
             left = { '  ', 'mode', ' ', 'branch', '  ⌬   ', 'lsp' },
-            mid = { '%<', 'filename' },
+            mid = { '%<', 'file_name' },
             right = {
                 function() return vim.b.bookmark or '' end,
                 '    %l/%L  :%c    ',
@@ -30,14 +32,15 @@ M.staline = function()
             true_colors = true,
             line_column = " [%l/%L] :%c  ",
             branch_symbol = " ",
-        }
+        },
+        mode_colors = { n = "#a7235e" }
     }
 end
 
 M.devicons = function()
     require("nvim-web-devicons").setup { override={
         norg={icon="", color="#4878BE", name="neorg"},
-        rs={icon="🦀",name="ferris"}
+        rs={icon="🦀",name="Rss"}
     }}
 end
 
@@ -48,7 +51,7 @@ M.notify = function()
     }
 end
 
-M.tokyodark = function(t)
+M.tokyodark = function(t, override)
     -- TODO: NOICE COLOR PALETTE (might port in future)
     -- "#c678dd", "#986fec", "#c882e7", "#5af78e", "#98c379", "#7eca9c",
     -- "#56b6c2", "#61afef", "#8485ce", "#ebcb8b", "#fff94c", "#ffcc00",
@@ -59,8 +62,7 @@ M.tokyodark = function(t)
     vim.g.tokyodark_transparent_background = t and true or false
     vim.g.tokyodark_enable_italic = true
 
-    vim.cmd "colo tokyodark"
-    vim.cmd [[hi! link IndentBlanklineChar Comment]]
+    vim.cmd.colorscheme(override or "tokyodark")
 end
 
 -- TODO: clean this up somewhen

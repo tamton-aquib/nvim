@@ -1,6 +1,10 @@
 vim.g.mapleader = " "
 local function map(mode, key, func) vim.keymap.set(mode, key, func, {silent=true}) end
 
+--> stuff.nvim maps
+map('n', 'gC', function() require("calc").toggle() end)
+map('n', 'gS', function() require("stalk").stalk() end)
+
 --> TEMP and TEST maps
 map('n', '<leader>l', function() require("essentials").open_term("lazygit", 't', true) end)
 map('n', '<leader>t', function() require("essentials").open_term("fish", 'h', true) end)
@@ -11,8 +15,8 @@ map('n', 'K'        , require("_utils").docs)
 map('n', 'ge', "<cmd>TroubleToggle<CR>")
 
 --> General Mappings
-map('n', '<leader>dd'  , require("duck").hatch)
-map('n', '<leader>dk'  , require("duck").cook)
+map('n', '<leader>dd'  , function() require("duck").hatch() end)
+map('n', '<leader>dk'  , function() require("duck").cook() end)
 map('n', '<leader>e'   , '<cmd>NvimTreeToggle<CR>')
 map('n', '<leader>n'   , '<cmd>Neogen<CR>')
 map('n', '<leader>q'   , require("_utils").toggle_quickfix)
