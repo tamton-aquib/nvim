@@ -13,7 +13,7 @@ if ok then impatient.enable_profile() end
 
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
+if vim.fn.isdirectory(install_path) == 0 then
     vim.notify("Installing packer...")
     fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
     vim.cmd('packadd packer.nvim')
@@ -75,7 +75,8 @@ set.breakindent = true
 
 --> Misc settings
 set.signcolumn = "yes:1"
-set.guifont = "JetBrainsMonoNerdFontComplete Nerd Font Mono:h10"
+-- set.guifont = "JetBrainsMonoNerdFontComplete Nerd Font Mono:h10"
+set.guifont = "Operator Mono Lig Book:h11"
 set.wildignore = { '*.pyc,__pycache__,node_modules,*.lock' }
 set.fillchars:append({eob=' ', fold=' ', foldopen="", foldsep=" ", foldclose=""})
 set.shortmess:append({c=true, s=true, A=true, W=true})

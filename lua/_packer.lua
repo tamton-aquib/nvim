@@ -5,24 +5,27 @@ local conf = function(name) return ("require('_config').%s()"):format(name) end
 
 packer.startup { function(use)
 
+    -- themes: kat.nvim, shadotheme, articblush
     -->  Testing and temporary
-    use { 'Shadorain/shadotheme' }
-    -- use { 'katawful/kat.nvim' }
-    use { 'tamton-aquib/stuff.nvim' }
-
-    use { 'JASONews/glow-hover', config=_setup("glow-hover") }
+    -- widget_guides={enabled=true}, closing_tags = {prefix="-> "}  for flutter tools
+    -- use { 'akinsho/flutter-tools.nvim', config=function() require("flutter-tools").setup{} end}
+    use { 'ggandor/leap.nvim', config=function() require("leap").set_default_keymaps() end }
+    use { 'kylechui/nvim-surround', config=_setup("nvim-surround") }
     use { 'samjwill/nvim-unception' }
+    use { 'Maan2003/lsp_lines.nvim', config=_setup("lsp_lines"), event='DiagnosticChanged' }
+    use { 'simrat39/rust-tools.nvim', ft='rust', config=_setup("rust-tools") }
 
     -->  Might use in future
-    -- use { 'sindrets/diffview.nvim', config=_setup("diffview"), cmd="DiffviewOpen" }
-    -- use { 'jinh0/eyeliner.nvim', config=_setup("eyeliner") }
+    -- use { 'JASONews/glow-hover', config=_setup("glow-hover") } TODO: pr for cmp docs too
+    -- use { 'antonk52/bad-practices.nvim', config=_setup("bad_practices") }
     -- use { 'folke/zen-mode.nvim', config=_setup("zen-mode"), cmd="TZAtaraxis" }
-    -- use { 'Maan2003/lsp_lines.nvim', config=function() require("lsp_lines").register_lsp_virtual_lines() end }
-    -- use { 'simrat39/rust-tools.nvim', ft='rust', config=_setup("rust-tools") }
     -- use { 'elihunter173/dirbuf.nvim' }
+
+    --> My Useless lil plugins
     -- use { 'tamton-aquib/zone.nvim', config=function() require("zone").setup({after=100}) end }
     -- use { 'tamton-aquib/keys.nvim', config=function() require("keys").setup() end, cmd="KeysToggle"}
-    use { 'tamton-aquib/duck.nvim', config=_setup("duck"), module="duck" }
+    -- use { 'tamton-aquib/duck.nvim', config=_setup("duck"), module="duck" }
+    -- use { 'tamton-aquib/stuff.nvim' }
 
     -->  THEMES AND UI
     use { 'tiagovla/tokyodark.nvim' }

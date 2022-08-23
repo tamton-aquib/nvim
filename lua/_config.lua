@@ -7,7 +7,7 @@ M.staline = function()
     require('stabline').setup {
         font_active='bold,italic',
         stab_start="  %#Function#  ", stab_left = " ",
-        -- fg="#986fec",
+        fg="#986fec",
         stab_bg = "none",
         inactive_bg="none",
         bg = "none"
@@ -15,17 +15,17 @@ M.staline = function()
 
     require("staline").setup {
         sections = {
-            left = { '  ', 'mode', ' ', 'branch', '  ⌬   ', 'lsp' },
+            left = { '  ', 'mode', ' ', 'branch', '      ', 'lsp' },
             mid = { '%<', 'file_name' },
             right = {
                 function() return vim.b.bookmark or '' end,
                 '    %l/%L  :%c    ',
-                function()
+                { 'Staline', function()
                     local chars = { "_", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" }
                     local line_ratio = vim.fn.line(".") / vim.fn.line("$")
                     local index = math.ceil(line_ratio * #chars)
                     return chars[index]
-                end, ' '
+                end }, ' '
             },
         },
         defaults = {
@@ -33,7 +33,6 @@ M.staline = function()
             line_column = " [%l/%L] :%c  ",
             branch_symbol = " ",
         },
-        mode_colors = { n = "#a7235e" }
     }
 end
 
@@ -101,8 +100,7 @@ M.telescope = function()
             file_ignore_patterns = {'__pycache__/', 'node_modules/', '%.lock', 'target/'},
         }
     }
-    -- telescope.load_extension("ui-select")
-    telescope.load_extension("projects")
+    telescope.load_extension("projects") -- LATER: ui-select/medi-files
 end
 
 function M.indent_blankline()
@@ -121,9 +119,11 @@ M.neorg = function()
     require('neorg').setup {
         load = {
             ["core.defaults"] = {},
+            ["core.export"] = {},
+            ["core.export.markdown"] = {},
             ["core.norg.completion"] = { config={ engine="nvim-cmp" } },
             ["core.norg.concealer"] = { config={ icon_preset = "diamond" } },
-            ["core.presenter"] = { config={ zen_mode = "zen-mode" } }
+            ["core.presenter"] = { config={ zen_mode = "zen-mode" } },
         }
     }
 end

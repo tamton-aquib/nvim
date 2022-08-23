@@ -1,10 +1,14 @@
 --> Wrapper funcs
 local command = function(name, fn, desc) vim.api.nvim_create_user_command(name, fn, {desc=desc}) end
-local au = function(events, ptn, cb, once) vim.api.nvim_create_autocmd(events, {pattern=ptn, callback=cb, once=once}) end
+local au = function(events, ptn, cb)
+    local opts = {pattern=ptn}
+    opts[type(cb) == "function" and 'callback' or 'command'] = cb
+    vim.api.nvim_create_autocmd(events, opts)
+end
 
 -->  NEW
-au("BufEnter", "_packer.lua,init.lua", function() vim.fn.matchadd("Keyword", "--> \\zs.*\\ze$") end)
-au("BufEnter", "*", function() vim.cmd'setlocal fo-=cro' end)
+au("BufEnter", "_packer.lua,init.lua", [[call matchadd("Keyword", "--> \\zs.*\\ze$")]] )
+au("BufEnter", "*", 'setlocal fo-=cro')
 au("FileType", "markdown", function() vim.opt_local.spell=true end)
 au("FileType", "json", function() vim.opt_local.cole=0 end)
 au("VimEnter", "*", function() require("_utils").load_proj_config() end)
@@ -18,9 +22,9 @@ au("CursorHold", "*", vim.diagnostic.open_float)
 --> OLD
 au("BufReadPost", "*", function() require("essentials").last_place() end)
 au("TextYankPost", "*", function() vim.highlight.on_yank({higroup="Folded", timeout=200}) end)
-au("BufEnter", "*.toml", function() vim.opt_local.ft="dosini" end)
-au("BufWritePost", "_packer.lua", function() vim.cmd"so | PackerCompile<CR>" end)
-au("TermOpen", "term://*", function() vim.cmd "setl nonu nornu | star" end)
+au("BufEnter", "*.toml", "set ft=dosini")
+au("BufWritePost", "_packer.lua", "so | PackerCompile<CR>")
+au("TermOpen", "term://*", "setl nonu nornu | star")
 
 --> Commands
 command("Format", vim.lsp.buf.format, "Formats the current buffer.")

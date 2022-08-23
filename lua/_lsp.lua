@@ -82,6 +82,7 @@ end
 --> LSP-Installer
 Lsp.setup_servers = function()
     -- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    local lspconfig = require("lspconfig")
     local s = {
         -- rust_analyzer = { flags={exit_timeout=false} },
         sumneko_lua = vim.g.devmode and require("lua-dev").setup{}  or {settings={Lua={
@@ -90,7 +91,7 @@ Lsp.setup_servers = function()
         pyright={}, tsserver={}, svelte={}, cssls={}, clangd={}, zls={}
     }
 
-    for server, opt in pairs(s) do require("lspconfig")[server].setup(opt) end
+    for server, opt in pairs(s) do lspconfig[server].setup(opt) end
 end
 
 return Lsp

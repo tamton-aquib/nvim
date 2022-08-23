@@ -13,6 +13,7 @@ map('n', '<leader>pp', '<cmd>PackerProfile<CR>')
 map('n', '<leader>ca', vim.lsp.buf.code_action)
 map('n', 'K'        , require("_utils").docs)
 map('n', 'ge', "<cmd>TroubleToggle<CR>")
+map('n', '<leader>v', function() require("lsp_lines").toggle() end)
 
 --> General Mappings
 map('n', '<leader>dd'  , function() require("duck").hatch() end)
