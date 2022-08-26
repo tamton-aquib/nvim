@@ -29,7 +29,7 @@ set.encoding = "UTF-8"
 set.fileencoding = "UTF-8"
 set.scrolloff = 5
 set.timeoutlen = 300
-set.updatetime = 500
+set.updatetime = 300
 set.hlsearch = false
 set.clipboard:prepend({"unnamedplus"})
 set.smarttab = true

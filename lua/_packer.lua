@@ -9,11 +9,14 @@ packer.startup { function(use)
     -->  Testing and temporary
     -- widget_guides={enabled=true}, closing_tags = {prefix="-> "}  for flutter tools
     -- use { 'akinsho/flutter-tools.nvim', config=function() require("flutter-tools").setup{} end}
+    use { 'tiagovla/scope.nvim', config=_setup("scope") }
+    use { 'Danielhp95/tmpclone-nvim', config=_setup("tmpclone"), cmd="TmpcloneClone" }
     use { 'ggandor/leap.nvim', config=function() require("leap").set_default_keymaps() end }
     use { 'kylechui/nvim-surround', config=_setup("nvim-surround") }
     use { 'samjwill/nvim-unception' }
     use { 'Maan2003/lsp_lines.nvim', config=_setup("lsp_lines"), event='DiagnosticChanged' }
     use { 'simrat39/rust-tools.nvim', ft='rust', config=_setup("rust-tools") }
+    use { 'antoinemadec/FixCursorHold.nvim' }
 
     -->  Might use in future
     -- use { 'JASONews/glow-hover', config=_setup("glow-hover") } TODO: pr for cmp docs too

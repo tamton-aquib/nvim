@@ -6,8 +6,8 @@ map('n', 'gC', function() require("calc").toggle() end)
 map('n', 'gS', function() require("stalk").stalk() end)
 
 --> TEMP and TEST maps
-map('n', '<leader>l', function() require("essentials").open_term("lazygit", 't', true) end)
-map('n', '<leader>t', function() require("essentials").open_term("fish", 'h', true) end)
+map('n', '<leader>l', function() require("essentials").toggle_term("lazygit", 't', true) end)
+map('n', '<leader>t', function() require("essentials").toggle_term("fish", 'h', true) end)
 map('n', '<leader>ps', '<cmd>w<CR>:so<CR>:PackerSync<CR>')
 map('n', '<leader>pp', '<cmd>PackerProfile<CR>')
 map('n', '<leader>ca', vim.lsp.buf.code_action)
