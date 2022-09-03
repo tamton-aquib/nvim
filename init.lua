@@ -8,6 +8,6 @@ require '_mappings'
 
 -->  UI and LSP
 require('_utils').splash_screen()
-require('_config').tokyodark(false, "gruvbox-material")
+require('_config').gruvbox()
 require('_lsp').init()
 require('_lsp').setup_servers()
