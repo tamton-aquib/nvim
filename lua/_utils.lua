@@ -35,7 +35,7 @@ Util.center = function(dict)
 end
 
 --> Simple dashboard
-Util.noice_board = function()
+Util.splash_screen = function()
     local xdg = vim.fn.fnamemodify(vim.fn.stdpath("config"), ":h").."/"
     local header = {
         "","", "", "", "", "",
@@ -95,7 +95,7 @@ Util.telescope_theme = {
     sorting_strategy = "ascending",
     previewer = false,
     prompt_prefix = "      ",
-    winblend = 10,
+    winblend = 15,
     layout_config = { width = 0.6, height = 0.6 },
     borderchars = {
         preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },

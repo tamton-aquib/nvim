@@ -7,7 +7,7 @@ M.staline = function()
     require('stabline').setup {
         font_active='bold,italic',
         stab_start="  %#Function#  ", stab_left = " ",
-        fg="#986fec",
+        -- fg="#986fec",
         stab_bg = "none",
         inactive_bg="none",
         bg = "none"
@@ -50,7 +50,7 @@ M.notify = function()
     }
 end
 
-M.tokyodark = function(t, override)
+M.tokyodark = function(t)
     -- TODO: NOICE COLOR PALETTE (might port in future)
     -- "#c678dd", "#986fec", "#c882e7", "#5af78e", "#98c379", "#7eca9c",
     -- "#56b6c2", "#61afef", "#8485ce", "#ebcb8b", "#fff94c", "#ffcc00",
@@ -61,7 +61,13 @@ M.tokyodark = function(t, override)
     vim.g.tokyodark_transparent_background = t and true or false
     vim.g.tokyodark_enable_italic = true
 
-    vim.cmd.colorscheme(override or "tokyodark")
+    vim.cmd.colorscheme "tokyodark"
+end
+M.gruvbox = function()
+    vim.g.gruvbox_material_background = 'medium'
+    vim.g.gruvbox_material_better_performance = 1
+    vim.g.gruvbox_material_enable_italic = 1
+    vim.cmd.colorscheme "gruvbox-material"
 end
 
 -- TODO: clean this up somewhen

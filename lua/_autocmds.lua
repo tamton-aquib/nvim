@@ -8,7 +8,7 @@ end
 
 -->  NEW
 au("BufEnter", "_packer.lua,init.lua", [[call matchadd("Keyword", "--> \\zs.*\\ze$")]] )
-au("BufEnter", "*", 'setlocal fo-=cro')
+au("BufEnter", "*", 'set fo-=cro')
 au("FileType", "markdown", function() vim.opt_local.spell=true end)
 au("FileType", "json", function() vim.opt_local.cole=0 end)
 au("VimEnter", "*", function() require("_utils").load_proj_config() end)

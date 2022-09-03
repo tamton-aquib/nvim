@@ -9,7 +9,9 @@ packer.startup { function(use)
     -->  Testing and temporary
     -- widget_guides={enabled=true}, closing_tags = {prefix="-> "}  for flutter tools
     -- use { 'akinsho/flutter-tools.nvim', config=function() require("flutter-tools").setup{} end}
+    use { 'sainnhe/gruvbox-material' }
     use { 'tiagovla/scope.nvim', config=_setup("scope") }
+    use { 'tamton-aquib/stuff.nvim' }
     use { 'Danielhp95/tmpclone-nvim', config=_setup("tmpclone"), cmd="TmpcloneClone" }
     use { 'ggandor/leap.nvim', config=function() require("leap").set_default_keymaps() end }
     use { 'kylechui/nvim-surround', config=_setup("nvim-surround") }

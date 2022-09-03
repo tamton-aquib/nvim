@@ -4,6 +4,7 @@ local function map(mode, key, func) vim.keymap.set(mode, key, func, {silent=true
 --> stuff.nvim maps
 map('n', 'gC', function() require("calc").toggle() end)
 map('n', 'gS', function() require("stalk").stalk() end)
+map('n', '<leader>b', function() require("bt").toggle() end)
 
 --> TEMP and TEST maps
 map('n', '<leader>l', function() require("essentials").toggle_term("lazygit", 't', true) end)
