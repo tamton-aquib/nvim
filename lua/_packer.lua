@@ -5,22 +5,22 @@ local conf = function(name) return ("require('_config').%s()"):format(name) end
 
 packer.startup { function(use)
 
-    -- themes: kat.nvim, shadotheme, articblush
+    -- themes: kat.nvim, shadotheme, articblush, ungabunga?
     -->  Testing and temporary
-    -- widget_guides={enabled=true}, closing_tags = {prefix="-> "}  for flutter tools
     -- use { 'akinsho/flutter-tools.nvim', config=function() require("flutter-tools").setup{} end}
     use { 'sainnhe/gruvbox-material' }
-    use { 'tiagovla/scope.nvim', config=_setup("scope") }
     use { 'tamton-aquib/stuff.nvim' }
-    use { 'Danielhp95/tmpclone-nvim', config=_setup("tmpclone"), cmd="TmpcloneClone" }
-    use { 'ggandor/leap.nvim', config=function() require("leap").set_default_keymaps() end }
-    use { 'kylechui/nvim-surround', config=_setup("nvim-surround") }
     use { 'samjwill/nvim-unception' }
     use { 'Maan2003/lsp_lines.nvim', config=_setup("lsp_lines"), event='DiagnosticChanged' }
     use { 'simrat39/rust-tools.nvim', ft='rust', config=_setup("rust-tools") }
     use { 'antoinemadec/FixCursorHold.nvim' }
+    use { 'tiagovla/scope.nvim', config=_setup("scope") }
+    use { 'jinh0/eyeliner.nvim', config=_setup("eyeliner") }
 
     -->  Might use in future
+    -- use { 'Danielhp95/tmpclone-nvim', config=_setup("tmpclone"), cmd="TmpcloneClone" }
+    -- use { 'ggandor/leap.nvim', config=function() require("leap").set_default_keymaps() end }
+    -- use { 'kylechui/nvim-surround', config=_setup("nvim-surround") }
     -- use { 'JASONews/glow-hover', config=_setup("glow-hover") } TODO: pr for cmp docs too
     -- use { 'antonk52/bad-practices.nvim', config=_setup("bad_practices") }
     -- use { 'folke/zen-mode.nvim', config=_setup("zen-mode"), cmd="TZAtaraxis" }

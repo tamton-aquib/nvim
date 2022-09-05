@@ -5,7 +5,6 @@ require '_packer'
 require '_autocmds'
 require '_mappings'
 
-
 -->  UI and LSP
 require('_utils').splash_screen()
 require('_config').gruvbox()

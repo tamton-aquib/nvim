@@ -15,7 +15,7 @@ M.staline = function()
 
     require("staline").setup {
         sections = {
-            left = { '  ', 'mode', ' ', 'branch', '      ', 'lsp' },
+            left = { '  ', 'mode', ' ', 'branch', '    ', 'lsp' },
             mid = { '%<', 'file_name' },
             right = {
                 function() return vim.b.bookmark or '' end,

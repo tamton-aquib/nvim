@@ -3,6 +3,7 @@ local border = require("_utils").border
 
 Lsp.cmp = function()
     local cmp = require('cmp')
+    local luasnip = require("luasnip")
 
     local source_names = { nvim_lsp = "[LSP]", emoji = "[Emoji]", path = "[Path]", luasnip = "[Snippet]", buffer = "[Buffer]", nvim_lsp_signature_help = "[sig_help]" }
     local kind_icons = {
@@ -23,7 +24,7 @@ Lsp.cmp = function()
         window = { documentation = { border = "shadow" } },
 
         snippet = {
-            expand = function(args) require("luasnip").lsp_expand(args.body) end,
+            expand = function(args) luasnip.lsp_expand(args.body) end,
         },
 
         mapping = cmp.mapping.preset.insert {
@@ -33,6 +34,9 @@ Lsp.cmp = function()
             ['<C-f>'] = cmp.mapping.scroll_docs(1),
             ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
             ['<CR>'] = cmp.mapping.confirm({ select = true }),
+            ['<Tab>'] = function(fallback)
+                if luasnip.jumpable() then luasnip.jump(1) else fallback() end
+            end
         },
 
         sources = cmp.config.sources {
@@ -81,7 +85,7 @@ end
 
 --> LSP-Installer
 Lsp.setup_servers = function()
-    -- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
     local lspconfig = require("lspconfig")
     local s = {
         -- rust_analyzer = { flags={exit_timeout=false} },
@@ -91,7 +95,10 @@ Lsp.setup_servers = function()
         pyright={}, tsserver={}, svelte={}, cssls={}, clangd={}, zls={}
     }
 
-    for server, opt in pairs(s) do lspconfig[server].setup(opt) end
+    for server, opt in pairs(s) do
+        opt.capabilities = capabilities
+        lspconfig[server].setup(opt)
+    end
 end
 
 return Lsp
