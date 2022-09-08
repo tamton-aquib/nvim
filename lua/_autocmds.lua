@@ -9,7 +9,7 @@ end
 -->  NEW
 au("BufEnter", "_packer.lua,init.lua", [[call matchadd("Keyword", "--> \\zs.*\\ze$")]] )
 au("BufEnter", "*", 'set fo-=cro')
-au("FileType", "markdown", function() vim.opt_local.spell=true end)
+au("FileType", "markdown,norg", function() vim.opt_local.spell=true end)
 au("FileType", "json", function() vim.opt_local.cole=0 end)
 au("VimEnter", "*", function() require("_utils").load_proj_config() end)
 -- au("VimEnter", "*", function() require("duck").hatch() end)
@@ -22,7 +22,7 @@ au("CursorHold", "*", vim.diagnostic.open_float)
 --> OLD
 au("BufReadPost", "*", function() require("essentials").last_place() end)
 au("TextYankPost", "*", function() vim.highlight.on_yank({higroup="Folded", timeout=200}) end)
-au("BufEnter", "*.toml", "set ft=dosini")
+-- au("BufEnter", "*.toml", "set ft=dosini")
 au("BufWritePost", "_packer.lua", "so | PackerCompile<CR>")
 au("TermOpen", "term://*", "setl nonu nornu | star")
 

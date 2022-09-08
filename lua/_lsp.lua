@@ -88,7 +88,6 @@ Lsp.setup_servers = function()
     local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
     local lspconfig = require("lspconfig")
     local s = {
-        -- rust_analyzer = { flags={exit_timeout=false} },
         sumneko_lua = vim.g.devmode and require("lua-dev").setup{}  or {settings={Lua={
             diagnostics={globals={'vim'}}, runtime = {version="LuaJIT"}
         }}},

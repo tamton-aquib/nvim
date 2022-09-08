@@ -62,7 +62,7 @@ Util.splash_screen = function()
             vim.api.nvim_put(Util.center(header), "l", true, true)
             vim.cmd [[silent! setl nonu nornu acd ft=dashboard]]
 
-            for k,f in pairs(keys) do vim.keymap.set('n', k,':e '..xdg..f..' | setl noacd<CR>', {buffer=0, silent=true}) end
+            for k,f in pairs(keys) do vim.keymap.set('n', k,'<cmd>e '..xdg..f..' | setl noacd<CR>', {buffer=0, silent=true}) end
             vim.keymap.set('n', 'P', '<cmd>Telescope oldfiles<CR>', {buffer=0})
             vim.keymap.set('n', 'q', '<cmd>q<CR>', {buffer=0})
         end)
@@ -78,7 +78,8 @@ Util.close_command = function()
     local total = #vim.tbl_filter(function(buf)
         return vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_get_name(buf) ~= ""
     end, buf_list)
-    vim.cmd(total == 1 and ":q!" or ":bd!")
+    -- vim.cmd(total == 1 and ":q!" or ":bd!")
+    vim.cmd(total == 1 and ':q!' or 'lua require("animate").setup()')
 end
 
 --> Different Kinds of Borders

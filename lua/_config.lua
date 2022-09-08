@@ -106,7 +106,7 @@ M.telescope = function()
             file_ignore_patterns = {'__pycache__/', 'node_modules/', '%.lock', 'target/'},
         }
     }
-    telescope.load_extension("projects") -- LATER: ui-select/medi-files
+    telescope.load_extension("projects") -- LATER: ui-select/media-files
 end
 
 function M.indent_blankline()
@@ -137,7 +137,7 @@ end
 M.treesitter = function()
     require('nvim-treesitter.configs').setup {
         ensure_installed = {
-            "norg" ,"lua", "comment", "rust", "python"
+            "norg" , "comment", "rust", "python"
         },
         highlight = { enable = true },
         indent = { enable = true }, -- TODO: try text objects somewhen

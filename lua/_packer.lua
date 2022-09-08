@@ -5,19 +5,19 @@ local conf = function(name) return ("require('_config').%s()"):format(name) end
 
 packer.startup { function(use)
 
-    -- themes: kat.nvim, shadotheme, articblush, ungabunga?
+    -- themes: kat.nvim, articblush
     -->  Testing and temporary
     -- use { 'akinsho/flutter-tools.nvim', config=function() require("flutter-tools").setup{} end}
     use { 'sainnhe/gruvbox-material' }
     use { 'tamton-aquib/stuff.nvim' }
     use { 'samjwill/nvim-unception' }
-    use { 'Maan2003/lsp_lines.nvim', config=_setup("lsp_lines"), event='DiagnosticChanged' }
     use { 'simrat39/rust-tools.nvim', ft='rust', config=_setup("rust-tools") }
     use { 'antoinemadec/FixCursorHold.nvim' }
-    use { 'tiagovla/scope.nvim', config=_setup("scope") }
     use { 'jinh0/eyeliner.nvim', config=_setup("eyeliner") }
 
     -->  Might use in future
+    -- use { 'tiagovla/scope.nvim', config=_setup("scope") }
+    -- use { 'Maan2003/lsp_lines.nvim', config=_setup("lsp_lines"), event='DiagnosticChanged' }
     -- use { 'Danielhp95/tmpclone-nvim', config=_setup("tmpclone"), cmd="TmpcloneClone" }
     -- use { 'ggandor/leap.nvim', config=function() require("leap").set_default_keymaps() end }
     -- use { 'kylechui/nvim-surround', config=_setup("nvim-surround") }
@@ -28,16 +28,15 @@ packer.startup { function(use)
 
     --> My Useless lil plugins
     -- use { 'tamton-aquib/zone.nvim', config=function() require("zone").setup({after=100}) end }
-    -- use { 'tamton-aquib/keys.nvim', config=function() require("keys").setup() end, cmd="KeysToggle"}
+    -- use { 'tamton-aquib/keys.nvim', config=_setup("keys"), cmd="KeysToggle"}
     -- use { 'tamton-aquib/duck.nvim', config=_setup("duck"), module="duck" }
-    -- use { 'tamton-aquib/stuff.nvim' }
 
     -->  THEMES AND UI
     use { 'tiagovla/tokyodark.nvim' }
     use { 'kyazdani42/nvim-web-devicons', config=conf("devicons") }
     use { 'norcalli/nvim-colorizer.lua', cmd="ColorizerToggle", config=_setup("colorizer") }
     use { 'lewis6991/gitsigns.nvim', config=_setup("gitsigns"), event='BufRead' }
-    use { 'kyazdani42/nvim-tree.lua', config=conf('nvim_tree'), cmd='NvimTreeToggle'}
+    use { 'kyazdani42/nvim-tree.lua', config=conf('nvim_tree'), module='nvim-tree' }
     use { 'karb94/neoscroll.nvim', config=_setup("neoscroll"), event='WinScrolled' }
     use { 'tamton-aquib/staline.nvim', config=conf("staline") }
 
@@ -75,7 +74,7 @@ packer.startup { function(use)
     use { 'lewis6991/impatient.nvim' }
     use { 'rktjmp/paperplanes.nvim', config=_setup("paperplanes"), cmd="PP" }
     use { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=_setup('crates') }
-    use { 'iamcco/markdown-preview.nvim', ft={'markdown'}, config=conf("mkdp") }
+    use { 'iamcco/markdown-preview.nvim', ft={'markdown'}, config=conf("mkdp"), run = "cd app && npm install" }
     use { 'lukas-reineke/indent-blankline.nvim', event="BufReadPost", config=conf("indent_blankline") }
     use { 'tamton-aquib/essentials.nvim' }
 

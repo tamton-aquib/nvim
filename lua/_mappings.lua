@@ -1,21 +1,23 @@
 vim.g.mapleader = " "
 local function map(mode, key, func) vim.keymap.set(mode, key, func, {silent=true}) end
 
---> stuff.nvim maps
+--> stuff.nvim maps (https://github.com/tamton-aquib/stuff.nvim)
 map('n', 'gC', function() require("calc").toggle() end)
 map('n', 'gS', function() require("stalk").stalk() end)
-map('n', '<leader>b', function() require("bt").toggle() end)
+map('n', 'gB', function() require("bt").toggle() end)
+map('n', 'gO', function() require("tmpclone").clone() end)
 
 --> TEMP and TEST maps
 map('n', '<leader>l', function() require("essentials").toggle_term("lazygit", 't', true) end)
 map('n', '<leader>t', function() require("essentials").toggle_term("fish", 'h', true) end)
-map('n', '<leader>ps', '<cmd>w<CR>:so<CR>:PackerSync --preview<CR>')
+map('n', '<leader>ps', '<cmd>w<CR>:so<CR>:PackerSync<CR>')
 map('n', '<leader>pp', '<cmd>PackerProfile<CR>')
 map('n', '<leader>ca', vim.lsp.buf.code_action)
-map('n', 'K'        , require("_utils").docs)
+map('n', 'K', require("_utils").docs)
 map('n', 'ge', "<cmd>TroubleToggle<CR>")
 map('n', '<leader>v', function() require("lsp_lines").toggle() end)
 map('t', 'N', [[<C-\><C-n>]])
+map('n', 'Q', '@q')
 
 --> General Mappings
 map('n', '<leader>dd'  , function() require("duck").hatch() end)
