@@ -9,14 +9,13 @@ map('n', 'gO', function() require("tmpclone").clone() end)
 
 --> TEMP and TEST maps
 map('n', '<leader>l', function() require("essentials").toggle_term("lazygit", 't', true) end)
-map('n', '<leader>t', function() require("essentials").toggle_term("fish", 'h', true) end)
+map('n', '<leader>t', function() require("essentials").toggle_term("fish", 'v', true) end)
 map('n', '<leader>ps', '<cmd>w<CR>:so<CR>:PackerSync<CR>')
 map('n', '<leader>pp', '<cmd>PackerProfile<CR>')
 map('n', '<leader>ca', vim.lsp.buf.code_action)
 map('n', 'K', require("_utils").docs)
 map('n', 'ge', "<cmd>TroubleToggle<CR>")
-map('n', '<leader>v', function() require("lsp_lines").toggle() end)
-map('t', 'N', [[<C-\><C-n>]])
+map('t', '<C-n>', [[<C-\><C-n>]])
 map('n', 'Q', '@q')
 
 --> General Mappings

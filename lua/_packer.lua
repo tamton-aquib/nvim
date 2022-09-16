@@ -5,7 +5,7 @@ local conf = function(name) return ("require('_config').%s()"):format(name) end
 
 packer.startup { function(use)
 
-    -- themes: kat.nvim, articblush
+    -- themes: kat.nvim, articblush, tundra
     -->  Testing and temporary
     -- use { 'akinsho/flutter-tools.nvim', config=function() require("flutter-tools").setup{} end}
     use { 'sainnhe/gruvbox-material' }
@@ -18,13 +18,13 @@ packer.startup { function(use)
     -->  Might use in future
     -- use { 'tiagovla/scope.nvim', config=_setup("scope") }
     -- use { 'Maan2003/lsp_lines.nvim', config=_setup("lsp_lines"), event='DiagnosticChanged' }
-    -- use { 'Danielhp95/tmpclone-nvim', config=_setup("tmpclone"), cmd="TmpcloneClone" }
     -- use { 'ggandor/leap.nvim', config=function() require("leap").set_default_keymaps() end }
     -- use { 'kylechui/nvim-surround', config=_setup("nvim-surround") }
     -- use { 'JASONews/glow-hover', config=_setup("glow-hover") } TODO: pr for cmp docs too
     -- use { 'antonk52/bad-practices.nvim', config=_setup("bad_practices") }
     -- use { 'folke/zen-mode.nvim', config=_setup("zen-mode"), cmd="TZAtaraxis" }
     -- use { 'elihunter173/dirbuf.nvim' }
+
 
     --> My Useless lil plugins
     -- use { 'tamton-aquib/zone.nvim', config=function() require("zone").setup({after=100}) end }
