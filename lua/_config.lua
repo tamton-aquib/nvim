@@ -114,10 +114,7 @@ function M.indent_blankline()
         char = "▏", -- 
         show_current_context = true,
         strict_tabs = true,
-        filetype_exclude = {
-            "terminal", "dashboard", "lsp-installer",
-            "packer", "TelescopePrompt", "help"
-        },
+        filetype_exclude = { "help" },
     }
 end
 
@@ -137,7 +134,7 @@ end
 M.treesitter = function()
     require('nvim-treesitter.configs').setup {
         ensure_installed = {
-            "norg" , "comment", "rust", "python"
+            "norg" , "comment", "rust"
         },
         highlight = { enable = true },
         indent = { enable = true }, -- TODO: try text objects somewhen

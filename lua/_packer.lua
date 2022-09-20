@@ -7,11 +7,10 @@ packer.startup { function(use)
 
     -- themes: kat.nvim, articblush, tundra
     -->  Testing and temporary
-    -- use { 'akinsho/flutter-tools.nvim', config=function() require("flutter-tools").setup{} end}
-    use { 'sainnhe/gruvbox-material' }
-    use { 'tamton-aquib/stuff.nvim' }
+    -- use { 'akinsho/flutter-tools.nvim', ft='dart', config=function() require("flutter-tools").setup{} end}
+    -- use { 'sainnhe/gruvbox-material' }
     use { 'samjwill/nvim-unception' }
-    use { 'simrat39/rust-tools.nvim', ft='rust', config=_setup("rust-tools") }
+    -- use { 'simrat39/rust-tools.nvim', ft='rust', config=_setup("rust-tools") }
     use { 'antoinemadec/FixCursorHold.nvim' }
     use { 'jinh0/eyeliner.nvim', config=_setup("eyeliner") }
 
@@ -27,6 +26,7 @@ packer.startup { function(use)
 
 
     --> My Useless lil plugins
+    use { 'tamton-aquib/stuff.nvim' }
     -- use { 'tamton-aquib/zone.nvim', config=function() require("zone").setup({after=100}) end }
     -- use { 'tamton-aquib/keys.nvim', config=_setup("keys"), cmd="KeysToggle"}
     -- use { 'tamton-aquib/duck.nvim', config=_setup("duck"), module="duck" }
