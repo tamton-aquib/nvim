@@ -69,17 +69,19 @@ Util.splash_screen = function()
     end
 end
 
+-- TODO: needs to be fixed.
 --> Closing Windows and buffers
 Util.close_command = function()
     local buf_list = vim.api.nvim_list_bufs()
     for _, b in ipairs(buf_list) do if vim.bo[b].ft == "notify" then vim.notify.dismiss({}) return end end
 
-    if vim.bo.modified then print("buf not saved!")  return end
+    if vim.bo.modified then print("buf not saved!") return end
     local total = #vim.tbl_filter(function(buf)
         return vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_get_name(buf) ~= ""
     end, buf_list)
-    -- vim.cmd(total == 1 and ":q!" or ":bd!")
-    vim.cmd(total == 1 and ':q!' or 'lua require("animate").setup()')
+
+    local quit_cmd = #vim.api.nvim_list_wins() > 1 and ':lua require("animate").setup()' or ':q!'
+    vim.cmd(total == 1 and quit_cmd or 'bd')
 end
 
 --> Different Kinds of Borders

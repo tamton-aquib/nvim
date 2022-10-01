@@ -133,9 +133,7 @@ end
 
 M.treesitter = function()
     require('nvim-treesitter.configs').setup {
-        ensure_installed = {
-            "norg" , "comment", "rust"
-        },
+        ensure_installed = { "norg" , "comment" },
         highlight = { enable = true },
         indent = { enable = true }, -- TODO: try text objects somewhen
     }
