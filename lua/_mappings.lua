@@ -13,7 +13,7 @@ map('n', '<leader>t', function() require("essentials").toggle_term("fish", 'v', 
 map('n', '<leader>ps', '<cmd>w<CR>:so<CR>:PackerSync<CR>')
 map('n', '<leader>pp', '<cmd>PackerProfile<CR>')
 map('n', '<leader>ca', vim.lsp.buf.code_action)
-map('n', 'K', require("_utils").docs)
+map('n', 'K', function() require("_utils").docs() end)
 map('n', 'ge', "<cmd>TroubleToggle<CR>")
 map('t', '<C-n>', [[<C-\><C-n>]])
 map('n', 'Q', '@q')
@@ -67,10 +67,10 @@ map('n', '<M-Up>'   , '<cmd>resize +2<CR>')
 map('n', '<M-Right>', '<cmd>vertical resize -2<CR>')
 
 --> Move selected line / block of text in visual mode
-map("x", "<M-k>", "<cmd>move '<-2<CR>gv-gv")
-map("x", "<M-j>", "<cmd>move '>+1<CR>gv-gv")
-map("n", "<M-j>", "<cmd>m .+1<CR>==")
-map("n", "<M-k>", "<cmd>m .-2<CR>==")
+map("x", "<A-k>", ":move '<-2<CR>gv-gv")
+map("x", "<A-j>", ":move '>+1<CR>gv-gv")
+map("n", "<A-j>", ":move .+1<CR>==")
+map("n", "<A-k>", ":move .-2<CR>==")
 
 --> OLD
 map('n', '<Space>'  , '<Nop>')

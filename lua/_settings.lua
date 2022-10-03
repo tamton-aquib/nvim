@@ -101,4 +101,4 @@ end
 -- set.listchars = 'tab: '
 -- vim.cmd [[let &colorcolumn=join(range(81,999),",")]]
 -- vim.cmd [[packadd cfilter]]
--- vim.g.markdown_fenced_languages = {'vim'}
+-- vim.g.markdown_fenced_languages = {'rust'}

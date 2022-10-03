@@ -7,7 +7,7 @@ packer.startup { function(use)
 
     -- themes: kat.nvim, articblush, tundra
     -->  Testing and temporary
-    -- use { 'akinsho/flutter-tools.nvim', ft='dart', config=function() require("flutter-tools").setup{} end}
+    -- use { 'akinsho/flutter-tools.nvim', ft='dart', config=_setup("flutter-tools")}
     -- use { 'sainnhe/gruvbox-material' }
     -- use { 'samjwill/nvim-unception' } FIX: broke
     use { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=_setup('crates') }
@@ -15,7 +15,7 @@ packer.startup { function(use)
     use { 'antoinemadec/FixCursorHold.nvim' }
     -- use { 'ja-ford/delaytrain.nvim', config=_setup("delaytrain") }
     -- use { 'antonk52/bad-practices.nvim', config=_setup("bad_practices") }
-    use { 'jinh0/eyeliner.nvim', config=_setup("eyeliner") }
+    -- use { 'jinh0/eyeliner.nvim', config=_setup("eyeliner") }
     -- use { 'folke/trouble.nvim', config=_setup("trouble"), cmd="TroubleToggle" }
     use { 'tamton-aquib/stuff.nvim' }
 

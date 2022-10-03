@@ -4,7 +4,6 @@ Util.load_proj_config = function()
     -- TODO: add check for security?
     local file = vim.fn.getcwd() .. "/noice.json"
     -- local stuff = require("lspconfig").util.root_pattern('.git/')(vim.api.nvim_buf_get_name(0))
-    -- print(vim.inspect(stuff))
     if vim.fn.filereadable(file) ~= 0 then
         local data = vim.json.decode(table.concat(vim.fn.readfile(file)))
         for key,map in pairs(data.keymaps or {}) do vim.keymap.set('n', key, '<cmd>silent w | '..map..'<CR>', {silent=true}) end
