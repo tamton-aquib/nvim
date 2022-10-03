@@ -56,14 +56,16 @@ Util.splash_screen = function()
             vim.fn.matchadd("Error", '[░▒]')
             vim.fn.matchadd("Function", '[▓█▄▀▐▌]')
             local buf = vim.api.nvim_create_buf(false, true)
+            local map = function(lhs, rhs) vim.keymap.set('n', lhs, rhs, {silent=true, buffer=0}) end
             local keys = {K='kitty/kitty.conf', F='fish/config.fish', I='nvim/init.lua', A='alacritty/alacritty.yml', P='picom/picom.conf'}
             vim.api.nvim_win_set_buf(0, buf)
             vim.api.nvim_put(Util.center(header), "l", true, true)
             vim.cmd [[silent! setl nonu nornu acd ft=dashboard]]
 
-            for k,f in pairs(keys) do vim.keymap.set('n', k,'<cmd>e '..xdg..f..' | setl noacd<CR>', {buffer=0, silent=true}) end
-            vim.keymap.set('n', 'P', '<cmd>Telescope oldfiles<CR>', {buffer=0})
-            vim.keymap.set('n', 'q', '<cmd>q<CR>', {buffer=0})
+            for k,f in pairs(keys) do map(k,'<cmd>e '..xdg..f..' | setl noacd<CR>') end
+            map('P', '<cmd>Telescope oldfiles<CR>')
+            map('q', '<cmd>q<CR>')
+            map('o', '<cmd>e #<1<CR>')
         end)
     end
 end
