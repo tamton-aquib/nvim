@@ -13,9 +13,9 @@ end
 
 --> Using `K` for docs related popups
 Util.docs = function()
-    if vim.tbl_contains({"lua", "help"}, vim.bo.ft) then
-        vim.cmd(":h "..vim.fn.expand('<cword>'))
-    elseif vim.api.nvim_buf_get_name(0):match("Cargo.toml$") then
+    -- if vim.tbl_contains({"lua", "help"}, vim.bo.ft) then
+        -- vim.cmd(":h "..vim.fn.expand('<cword>'))
+    if vim.api.nvim_buf_get_name(0):match("Cargo.toml$") then
         require("crates").show_popup()
     else
         vim.lsp.buf.hover()
@@ -81,7 +81,9 @@ Util.close_command = function()
         return vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_get_name(buf) ~= ""
     end, buf_list)
 
-    local quit_cmd = #vim.api.nvim_list_wins() > 1 and ':lua require("animate").setup()' or ':q!'
+    -- TODO: buggy.
+    -- local quit_cmd = #vim.api.nvim_list_wins() > 1 and ':lua require("animate").setup()' or ':q!'
+    local quit_cmd = #vim.api.nvim_list_wins() > 1 and 'Q' or ':q!'
     vim.cmd(total == 1 and quit_cmd or 'bd')
 end
 
@@ -90,7 +92,7 @@ local borders = {
     { "╒", "═", "╕", "│", "╛", "═", "╘", "│" },
     { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }
 }
-Util.border = borders[1]
+Util.border = borders[2]
 
 --> Custom telescope theme
 Util.telescope_theme = {

@@ -20,7 +20,7 @@ curl -sL git.io/vim_install | bash
 
 ### Summary
 
-* neovim version : 0.8
+* neovim version : 0.9
 * optional deps: rg, lazygit
 * Colorscheme: [tokyodark.nvim](https://github.com/tiagovla/tokyodark.nvim)
 * Statusline and bufferline : [staline and stabline](https://github.com/tamton-aquib/staline.nvim)
@@ -41,6 +41,3 @@ curl -sL git.io/vim_install | bash
    ├──  _conf.lua
    └──  _lsp.lua
 ```
-
-### TODO:
-- implement reloading headache.

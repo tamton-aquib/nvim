@@ -5,7 +5,7 @@ local function map(mode, key, func) vim.keymap.set(mode, key, func, {silent=true
 map('n', 'gC', function() require("calc").toggle() end)
 -- map('n', 'gS', function() require("scratch").toggle() end)
 map('n', 'gB', function() require("bt").toggle() end)
-map('n', 'gO', function() require("tmpclone").clone() end)
+map('n', 'gT', function() require("tmpclone").clone() end)
 
 --> TEMP and TEST maps
 map('n', '<leader>l', function() require("essentials").toggle_term("lazygit", 't', true) end)
@@ -17,6 +17,7 @@ map('n', 'K', function() require("_utils").docs() end)
 map('n', 'ge', "<cmd>TroubleToggle<CR>")
 map('t', '<C-n>', [[<C-\><C-n>]])
 map('n', 'Q', '@q')
+map('n', 'gh', function() vim.cmd(":h "..vim.fn.expand('<cword>')) end)
 
 --> General Mappings
 map('n', '<leader>dd'  , function() require("duck").hatch() end)
@@ -61,10 +62,10 @@ map('n', '<C-h>'    , '<C-w>h')
 map('n', '<C-j>'    , '<C-w>j')
 map('n', '<C-k>'    , '<C-w>k')
 map('n', '<C-l>'    , '<C-w>l')
-map('n', '<M-Left>' , '<cmd>vertical resize +2<CR>')
-map('n', '<M-Down>' , '<cmd>resize -2<CR>')
-map('n', '<M-Up>'   , '<cmd>resize +2<CR>')
-map('n', '<M-Right>', '<cmd>vertical resize -2<CR>')
+-- map('n', '<M-Left>' , '<cmd>vertical resize +2<CR>')
+-- map('n', '<M-Down>' , '<cmd>resize -2<CR>')
+-- map('n', '<M-Up>'   , '<cmd>resize +2<CR>')
+-- map('n', '<M-Right>', '<cmd>vertical resize -2<CR>')
 
 --> Move selected line / block of text in visual mode
 map("x", "<A-k>", ":move '<-2<CR>gv-gv")

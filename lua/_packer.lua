@@ -5,10 +5,13 @@ local conf = function(name) return ("require('_config').%s()"):format(name) end
 
 packer.startup { function(use)
 
-    -- themes: kat.nvim, articblush, tundra
+    -- themes: kat.nvim, articblush, tundra, gruvbox-material
     -->  Testing and temporary
     -- use { 'akinsho/flutter-tools.nvim', ft='dart', config=_setup("flutter-tools")}
-    -- use { 'sainnhe/gruvbox-material' }
+    use { 'tamton-aquib/flirt.nvim', config=_setup("flirt") }
+    -- use { 'jubnzv/mdeval.nvim' }
+    -- use { 'max397574/neorg-contexts' }
+    -- use { 'kwakzalver/duckytype.nvim', config=_setup("duckytype") }
     -- use { 'samjwill/nvim-unception' } FIX: broke
     use { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=_setup('crates') }
     use { 'simrat39/rust-tools.nvim', ft='rust', config=_setup("rust-tools") }
@@ -63,6 +66,7 @@ packer.startup { function(use)
     use { 'nvim-treesitter/nvim-treesitter', event='BufRead', config=conf("treesitter") }
     use { 'nvim-neorg/neorg', ft={"norg"}, after={"nvim-treesitter", "telescope.nvim"}, config=conf("neorg") }
     use { 'danymat/neogen', config=_setup("neogen"), cmd="Neogen"}
+    use { 'nvim-treesitter/nvim-treesitter-textobjects', after="nvim-treesitter" }
 
     -->  GENERAL PURPOSE
     use { 'ahmedkhalf/project.nvim', config=_setup("project_nvim") }
