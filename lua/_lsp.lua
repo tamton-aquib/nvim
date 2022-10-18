@@ -76,20 +76,25 @@ Lsp.init = function()
             border = border,
             header = { "  Diagnostics", "String" },
             focusable = false,
-            prefix = function(_, _, _)
-                return "  " , "String" -- icons:        ﬌  
-            end
+            prefix = function(_, _, _) return "  " , "String" end -- icons:        ﬌  
         }
     })
 end
 
 --> LSP-Installer
 Lsp.setup_servers = function()
-    local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    -- local runtime_path = vim.split(package.path, ';')
+    -- table.insert(runtime_path, 'lua/?.lua')
+    -- table.insert(runtime_path, 'lua/?/init.lua')
+
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
     local lspconfig = require("lspconfig")
     local s = {
-        sumneko_lua = vim.g.devmode and require("lua-dev").setup{}  or {settings={Lua={
-            diagnostics={globals={'vim'}}, runtime = {version="LuaJIT"}
+        sumneko_lua = { settings={Lua={
+            diagnostics={globals={'vim'}},
+            runtime = {version="LuaJIT"}, -- , path=runtime_path},
+            -- workspace = { library = vim.api.nvim_get_runtime_file('', true) },
         }}},
         pyright={}, tsserver={}, svelte={}, cssls={}, clangd={}, zls={}
     }

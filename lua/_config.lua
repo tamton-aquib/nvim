@@ -6,11 +6,8 @@ M.staline = function()
     -->              ⌬  | left   :           | right  :            | toggle:  
     require('stabline').setup {
         font_active='bold,italic',
-        stab_start="  %#Function#  ", stab_left = " ",
-        -- fg="#986fec",
-        stab_bg = "none",
-        inactive_bg="none",
-        bg = "none"
+        stab_start="  %#Function#  ",
+        stab_left = " ", inactive_bg = "none",
     }
 
     require("staline").setup {
@@ -63,29 +60,22 @@ M.tokyodark = function(t)
 
     vim.cmd.colorscheme "tokyodark"
 end
-M.gruvbox = function()
-    vim.g.gruvbox_material_background = 'medium'
-    vim.g.gruvbox_material_better_performance = 1
-    vim.g.gruvbox_material_enable_italic = 1
-    vim.cmd.colorscheme "gruvbox-material"
-end
 
--- TODO: clean this up somewhen
 M.luasnip = function()
     local ls = require('luasnip')
     local parse = ls.parser.parse_snippet
 
-    ls.add_snippets(nil, {
-        all = {parse({trig="#!", wordTrig=true}, "#!/usr/bin/env ${0}")},
-        lua = {parse({trig="pp", wordTrig=true}, 'print(vim.inspect(${0}))')},
-        python = {parse({trig="pp", wordTrig=true}, 'print("${0}")')},
-        rust = {parse({trig="pp", wordTrig=true}, 'println!("${0}");')},
-        c = {parse({trig="pp", wordTrig=true}, 'printf("${0}");')},
-        cpp = {parse({trig="pp", wordTrig=true}, 'std::cout << "${0}" << std::endl;')},
-        javascript = {parse({trig="pp", wordTrig=true}, 'console.log("${0}");')},
-        typescript = {parse({trig="pp", wordTrig=true}, 'console.log("${0}");')},
-        svelte = {parse({trig="pp", wordTrig=true}, 'console.log("${0}");')},
-    })
+	local snips = {
+		lua = 'vim.pretty_print(${0})',
+		python = 'print("${0}")',
+		rust = 'println!("${0}");',
+		c = 'printf("${0}");', cpp = 'std::cout << "${0}" << std::endl;',
+		javascript = 'console.log("${0}");', typescript = 'console.log("${0}");',
+	}
+
+    local t = {}
+    for lang, snip in pairs(snips) do t[lang] = {parse({trig="pp", wordTrig=true}, snip)} end
+    ls.add_snippets(nil, t)
 end
 
 M.nvim_tree = function()
@@ -111,10 +101,8 @@ end
 
 function M.indent_blankline()
     require("indent_blankline").setup{
-        char = "▏", -- 
-        show_current_context = true,
-        strict_tabs = true,
-        filetype_exclude = { "help" },
+        show_current_context = true, char = "▏", -- 
+        strict_tabs = true, filetype_exclude = { "help" },
     }
 end
 
@@ -125,8 +113,9 @@ M.neorg = function()
             ["core.export"] = {},
             ["core.export.markdown"] = {},
             ["core.norg.completion"] = { config={ engine="nvim-cmp" } },
-            ["core.norg.concealer"] = { config={ icon_preset = "diamond" } },
+            ["core.norg.concealer"] = { config={ icon_preset = "diamond", dim_code_blocks={conceal=false} } },
             ["core.presenter"] = { config={ zen_mode = "zen-mode" } },
+            ["core.execute"] = {}
         }
     }
 end

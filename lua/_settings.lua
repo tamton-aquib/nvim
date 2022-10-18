@@ -45,7 +45,6 @@ set.showtabline = 2
 set.laststatus = 3
 set.completeopt = "menu,menuone,noselect"
 set.virtualedit = "block"
-set.cursorline = true
 set.ignorecase = true
 
 --> Fold Settings
@@ -97,8 +96,7 @@ end
 -- set.preserveindent = true
 
 -- set.list = true
--- set.listchars = 'tab:▏ '
--- set.listchars = 'tab: '
+-- set.listchars = 'tab:▏ ' -- ''
 -- vim.cmd [[let &colorcolumn=join(range(81,999),",")]]
 -- vim.cmd [[packadd cfilter]]
 -- vim.g.markdown_fenced_languages = {'rust'}
