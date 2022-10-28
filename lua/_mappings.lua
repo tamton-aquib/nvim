@@ -3,7 +3,7 @@ local function map(mode, key, func) vim.keymap.set(mode, key, func, {silent=true
 
 --> stuff.nvim maps (https://github.com/tamton-aquib/stuff.nvim)
 map('n', 'gC', function() require("calc").toggle() end)
--- map('n', 'gS', function() require("scratch").toggle() end)
+map('n', 'gS', function() require("stalk").stalk() end)
 map('n', 'gB', function() require("bt").toggle() end)
 map('n', 'gT', function() require("tmpclone").clone() end)
 
