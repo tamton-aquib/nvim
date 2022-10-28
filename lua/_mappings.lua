@@ -8,10 +8,12 @@ map('n', 'gB', function() require("bt").toggle() end)
 map('n', 'gT', function() require("tmpclone").clone() end)
 
 --> TEMP and TEST maps
+vim.keymap.set({'n', 'i'}, '"', ':')
 map('n', '<leader>l', function() require("essentials").toggle_term("lazygit", 't', true) end)
 map('n', '<leader>t', function() require("essentials").toggle_term("fish", 'v', true) end)
 map('n', '<leader>ps', '<cmd>w<CR>:so<CR>:PackerSync<CR>')
 map('n', '<leader>pp', '<cmd>PackerProfile<CR>')
+map('n', '<leader>pc', '<cmd>PackerCompile<CR>')
 map('n', '<leader>ca', vim.lsp.buf.code_action)
 map('n', 'K', function() require("_utils").docs() end)
 map('n', 'ge', "<cmd>TroubleToggle<CR>")
@@ -20,7 +22,7 @@ map('n', 'Q', '@q')
 map('n', 'gh', function() vim.cmd(":h "..vim.fn.expand('<cword>')) end)
 
 --> General Mappings
-map('n', '<leader>dd'  , function() require("duck").hatch() end)
+map('n', '<leader>dd'  , function() require("duck").hatch("👻") end)
 map('n', '<leader>dk'  , function() require("duck").cook() end)
 map('n', '<leader>e'   , '<cmd>NvimTreeToggle<CR>')
 map('n', '<leader>n'   , '<cmd>Neogen<CR>')

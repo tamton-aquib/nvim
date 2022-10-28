@@ -75,7 +75,12 @@ end
 --> Closing Windows and buffers
 Util.close_command = function()
     local buf_list = vim.api.nvim_list_bufs()
-    for _, b in ipairs(buf_list) do if vim.bo[b].ft == "notify" then vim.notify.dismiss({}) return end end
+    for _, b in ipairs(buf_list) do
+        if vim.bo[b].ft == "notify" then
+            vim.api.nvim_buf_delete(b, {force=true})
+            return
+        end
+    end
 
     if vim.bo.modified then print("buf not saved!") return end
     local total = #vim.tbl_filter(function(buf)

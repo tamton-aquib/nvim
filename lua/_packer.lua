@@ -5,14 +5,19 @@ local conf = function(name) return ("require('_config').%s()"):format(name) end
 
 packer.startup { function(use)
 
-    -- themes: kat.nvim, articblush, tundra, gruvbox-material
+    -- themes: kat.nvim, articblush, tundra, gruvbox-material, tokyodark
     -->  Testing and temporary
+    -- use { 'articblush/nvim' }
+    -- use { 'NarutoXY/graphene.lua', config=_setup("silicon") }
+    -- use { 'jubnzv/mdeval.nvim' }
     -- use { 'gorbit99/codewindow.nvim', config=_setup("codewindow")}
+    -- use { 'sainnhe/gruvbox-material' }
     -- use { 'akinsho/flutter-tools.nvim', ft='dart', config=_setup("flutter-tools")}
     -- use { 'samjwill/nvim-unception' } FIX: broke
     use { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=_setup('crates') }
     use { 'simrat39/rust-tools.nvim', ft='rust', config=_setup("rust-tools") }
     use { 'jinh0/eyeliner.nvim', config=_setup("eyeliner") }
+    use { 'antoinemadec/FixCursorHold.nvim' }
     -- use { 'folke/trouble.nvim', config=_setup("trouble"), cmd="TroubleToggle" }
 
     -->  Might use in future
@@ -34,9 +39,9 @@ packer.startup { function(use)
     -->  My Useless lil plugins
     -- use { 'tamton-aquib/zone.nvim' }
     -- use { 'tamton-aquib/keys.nvim', config=_setup("keys"), cmd="KeysToggle"}
-    use { 'tamton-aquib/duck.nvim' }
     use { 'tamton-aquib/flirt.nvim', config=_setup("flirt") }
     use { 'tamton-aquib/stuff.nvim' }
+    use { 'tamton-aquib/duck.nvim' }
 
     -->  THEMES AND UI
     use { 'tiagovla/tokyodark.nvim' }
