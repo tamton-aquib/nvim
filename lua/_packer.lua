@@ -13,7 +13,7 @@ packer.startup { function(use)
     -- use { 'gorbit99/codewindow.nvim', config=_setup("codewindow")}
     -- use { 'sainnhe/gruvbox-material' }
     -- use { 'akinsho/flutter-tools.nvim', ft='dart', config=_setup("flutter-tools")}
-    -- use { 'samjwill/nvim-unception' } FIX: broke
+    use { 'samjwill/nvim-unception' } -- FIX: broke
     use { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=_setup('crates') }
     use { 'simrat39/rust-tools.nvim', ft='rust', config=_setup("rust-tools") }
     use { 'jinh0/eyeliner.nvim', config=_setup("eyeliner") }
@@ -41,7 +41,7 @@ packer.startup { function(use)
     -- use { 'tamton-aquib/keys.nvim', config=_setup("keys"), cmd="KeysToggle"}
     use { 'tamton-aquib/flirt.nvim', config=_setup("flirt") }
     use { 'tamton-aquib/stuff.nvim' }
-    use { 'tamton-aquib/duck.nvim' }
+    -- use { 'tamton-aquib/duck.nvim' }
 
     -->  THEMES AND UI
     use { 'tiagovla/tokyodark.nvim' }
