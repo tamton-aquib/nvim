@@ -96,7 +96,7 @@ Lsp.setup_servers = function()
             runtime = {version="LuaJIT"}, -- , path=runtime_path},
             -- workspace = { library = vim.api.nvim_get_runtime_file('', true) },
         }}},
-        pyright={}, tsserver={}, svelte={}, cssls={}, clangd={}, zls={}
+        pyright={}, tsserver={}, svelte={}, clangd={}, zls={}
     }
 
     for server, opt in pairs(s) do

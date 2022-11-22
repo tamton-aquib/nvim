@@ -13,11 +13,10 @@ packer.startup { function(use)
     -- use { 'gorbit99/codewindow.nvim', config=_setup("codewindow")}
     -- use { 'sainnhe/gruvbox-material' }
     -- use { 'akinsho/flutter-tools.nvim', ft='dart', config=_setup("flutter-tools")}
-    use { 'samjwill/nvim-unception' } -- FIX: broke
     use { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=_setup('crates') }
     use { 'simrat39/rust-tools.nvim', ft='rust', config=_setup("rust-tools") }
-    use { 'jinh0/eyeliner.nvim', config=_setup("eyeliner") }
-    use { 'antoinemadec/FixCursorHold.nvim' }
+    -- use { 'jinh0/eyeliner.nvim', config=_setup("eyeliner") }
+    -- use { 'antoinemadec/FixCursorHold.nvim' }
     -- use { 'folke/trouble.nvim', config=_setup("trouble"), cmd="TroubleToggle" }
 
     -->  Might use in future
@@ -32,7 +31,6 @@ packer.startup { function(use)
     -- use { 'JASONews/glow-hover', config=_setup("glow-hover") } TODO: pr for cmp docs too
     -- use { 'folke/zen-mode.nvim', config=_setup("zen-mode"), cmd="ZenMode" }
     -- use { 'folke/neodev.nvim', module="neodev"}
-    -- use { 'nvim-treesitter/playground' , cmd="TSHi" }
     -- use { 'danymat/neogen', config=_setup("neogen"), cmd="Neogen"}
     -- use { 'rktjmp/paperplanes.nvim', config=_setup("paperplanes"), cmd="PP" }
 
@@ -65,11 +63,12 @@ packer.startup { function(use)
     use { 'hrsh7th/cmp-cmdline', event="CmdlineEnter", after={"nvim-cmp"}}
 
     -->  TELESCOPE, TREESITTER, NEORG
+    use { 'nvim-treesitter/playground' , cmd={"TSHi", "TSPlaygroundToggle"} }
     use { 'nvim-lua/plenary.nvim' }
     use { 'nvim-telescope/telescope.nvim', cmd='Telescope' , config=conf("telescope"), module="telescope"}
     use { 'nvim-treesitter/nvim-treesitter', event='BufRead', config=conf("treesitter") }
     use { 'nvim-treesitter/nvim-treesitter-textobjects', after="nvim-treesitter" }
-    use { 'tamton-aquib/neorg', ft={"norg"}, after={"nvim-treesitter", "telescope.nvim"}, config=conf("neorg"), branch="code-execution" }
+    use { 'nvim-neorg/neorg', ft={"norg"}, after={"nvim-treesitter", "telescope.nvim"}, config=conf("neorg") }
 
     -->  GENERAL PURPOSE
     use { 'ahmedkhalf/project.nvim', config=_setup("project_nvim") }
@@ -77,6 +76,7 @@ packer.startup { function(use)
     use { 'windwp/nvim-autopairs', config=_setup("nvim-autopairs"), event='InsertEnter' }
     use { 'rcarriga/nvim-notify', config=conf("notify")}
     use { 'lewis6991/impatient.nvim' }
+    use { 'samjwill/nvim-unception' }
     use { 'iamcco/markdown-preview.nvim', ft={'markdown'}, config=conf("mkdp"), run = "cd app && npm install" }
     use { 'lukas-reineke/indent-blankline.nvim', event="BufReadPost", config=conf("indent_blankline") }
     use { 'tamton-aquib/essentials.nvim' }
