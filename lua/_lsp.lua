@@ -76,7 +76,8 @@ Lsp.init = function()
             border = border,
             header = { "  Diagnostics", "String" },
             focusable = false,
-            prefix = function(_, _, _) return "  " , "String" end -- icons:        ﬌  
+            prefix = function(_, _, _) return "  " , "String" end, -- icons:        ﬌  
+            suffix = ''
         }
     })
 end

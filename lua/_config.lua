@@ -113,7 +113,8 @@ M.neorg = function()
             ["core.export"] = {},
             ["core.export.markdown"] = {},
             ["core.norg.completion"] = { config={ engine="nvim-cmp" } },
-            ["core.norg.concealer"] = { config={ icon_preset = "diamond", dim_code_blocks={conceal=false} } },
+            -- ["core.norg.concealer"] = { config={ icon_preset = "diamond", dim_code_blocks={conceal=false} } },
+            ["core.norg.concealer"] = { config={ icon_preset = "diamond" }},
             ["core.presenter"] = { config={ zen_mode = "zen-mode" } },
             -- ["core.execute"] = {},
             -- ["core.bruh"] = {}

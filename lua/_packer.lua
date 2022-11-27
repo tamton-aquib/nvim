@@ -28,9 +28,9 @@ packer.startup { function(use)
     -- use { 'Maan2003/lsp_lines.nvim', config=_setup("lsp_lines"), event='DiagnosticChanged' }
     -- use { 'ggandor/leap.nvim', config=function() require("leap").set_default_keymaps() end }
     -- use { 'kylechui/nvim-surround', config=_setup("nvim-surround") }
-    -- use { 'JASONews/glow-hover', config=_setup("glow-hover") } TODO: pr for cmp docs too
+    -- use { 'JASONews/glow-hover', config=_setup("glow-hover"), module="vim.lsp.buf" } -- TODO: pr for cmp docs too
     -- use { 'folke/zen-mode.nvim', config=_setup("zen-mode"), cmd="ZenMode" }
-    -- use { 'folke/neodev.nvim', module="neodev"}
+    -- use { 'folke/neodev.nvim', ft="lua" }
     -- use { 'danymat/neogen', config=_setup("neogen"), cmd="Neogen"}
     -- use { 'rktjmp/paperplanes.nvim', config=_setup("paperplanes"), cmd="PP" }
 
@@ -74,7 +74,8 @@ packer.startup { function(use)
     use { 'ahmedkhalf/project.nvim', config=_setup("project_nvim") }
     use { 'beauwilliams/focus.nvim', config=_setup("focus"), event="WinNew" }
     use { 'windwp/nvim-autopairs', config=_setup("nvim-autopairs"), event='InsertEnter' }
-    use { 'rcarriga/nvim-notify', config=conf("notify")}
+    -- use { 'rcarriga/nvim-notify', config=conf("notify")}
+    use { 'rcarriga/nvim-notify', config=conf("notify") }
     use { 'lewis6991/impatient.nvim' }
     use { 'samjwill/nvim-unception' }
     use { 'iamcco/markdown-preview.nvim', ft={'markdown'}, config=conf("mkdp"), run = "cd app && npm install" }
