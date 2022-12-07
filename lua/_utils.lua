@@ -12,6 +12,14 @@ Util.load_proj_config = function()
     end
 end
 
+Util.mess = function()
+    local contents = vim.api.nvim_exec("mess", true)
+    if contents == "" then return end
+    vim.cmd("vnew | setl bt=nofile bh=wipe")
+
+    vim.api.nvim_put(vim.split(contents, '\n'), "", true, true)
+end
+
 --> Using `K` for docs related popups
 Util.docs = function()
     -- if vim.tbl_contains({"lua", "help"}, vim.bo.ft) then

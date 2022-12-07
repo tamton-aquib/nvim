@@ -11,12 +11,11 @@ packer.startup { function(use)
     -- use { 'NarutoXY/graphene.lua', config=_setup("silicon") }
     -- use { 'jubnzv/mdeval.nvim' }
     -- use { 'gorbit99/codewindow.nvim', config=_setup("codewindow")}
-    -- use { 'sainnhe/gruvbox-material' }
     -- use { 'akinsho/flutter-tools.nvim', ft='dart', config=_setup("flutter-tools")}
     use { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=_setup('crates') }
     use { 'simrat39/rust-tools.nvim', ft='rust', config=_setup("rust-tools") }
     -- use { 'jinh0/eyeliner.nvim', config=_setup("eyeliner") }
-    -- use { 'antoinemadec/FixCursorHold.nvim' }
+    use { 'antoinemadec/FixCursorHold.nvim' }
     -- use { 'folke/trouble.nvim', config=_setup("trouble"), cmd="TroubleToggle" }
 
     -->  Might use in future
@@ -31,8 +30,7 @@ packer.startup { function(use)
     -- use { 'JASONews/glow-hover', config=_setup("glow-hover"), module="vim.lsp.buf" } -- TODO: pr for cmp docs too
     -- use { 'folke/zen-mode.nvim', config=_setup("zen-mode"), cmd="ZenMode" }
     -- use { 'folke/neodev.nvim', ft="lua" }
-    -- use { 'danymat/neogen', config=_setup("neogen"), cmd="Neogen"}
-    -- use { 'rktjmp/paperplanes.nvim', config=_setup("paperplanes"), cmd="PP" }
+    use { 'danymat/neogen', config=_setup("neogen"), cmd="Neogen"}
 
     -->  My Useless lil plugins
     -- use { 'tamton-aquib/zone.nvim' }
@@ -74,7 +72,6 @@ packer.startup { function(use)
     use { 'ahmedkhalf/project.nvim', config=_setup("project_nvim") }
     use { 'beauwilliams/focus.nvim', config=_setup("focus"), event="WinNew" }
     use { 'windwp/nvim-autopairs', config=_setup("nvim-autopairs"), event='InsertEnter' }
-    -- use { 'rcarriga/nvim-notify', config=conf("notify")}
     use { 'rcarriga/nvim-notify', config=conf("notify") }
     use { 'lewis6991/impatient.nvim' }
     use { 'samjwill/nvim-unception' }

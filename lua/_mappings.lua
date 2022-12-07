@@ -22,7 +22,7 @@ map('n', 'Q', '@q')
 map('n', 'gh', function() vim.cmd(":h "..vim.fn.expand('<cword>')) end)
 
 --> General Mappings
-map('n', '<leader>dd'  , function() require("duck").hatch("👻") end)
+map('n', '<leader>dd'  , function() require("duck").hatch() end)
 map('n', '<leader>dk'  , function() require("duck").cook() end)
 map('n', '<leader>e'   , '<cmd>NvimTreeToggle<CR>')
 map('n', '<leader>n'   , '<cmd>Neogen<CR>')

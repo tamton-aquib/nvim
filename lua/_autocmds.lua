@@ -8,7 +8,6 @@ au("BufEnter", "*", 'setl fo-=cro')
 au("FileType", "markdown", function() vim.opt_local.spell=true end)
 au("FileType", "json", function() vim.opt_local.cole=0 end)
 au("VimEnter", "*", function() require("_utils").load_proj_config() end)
--- au("VimEnter", "*", function() require("duck").hatch() end)
 
 -->  LSP Related
 au("BufWritePre", "*.js,*.jsx,*.ts,*.tsx", function() vim.lsp.buf.format() end)
@@ -24,4 +23,6 @@ au("TermOpen", "term://*", "setl nonu nornu | star")
 -->  Commands
 command("Format", vim.lsp.buf.format, "Formats the current buffer.")
 command("X", ":silent !xset r rate 169 69", "Keyboards press-release rate.")
+command("PP", require("essentials").null_pointer, {range='%'})
+command("Mess", require("_utils").mess, "Message to temp output buf.")
 -- vim.cmd [[syntax keyword Keyword lambda conceal cchar=λ]] -- TODO: (maybe with ts queries?)

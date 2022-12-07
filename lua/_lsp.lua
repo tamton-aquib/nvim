@@ -88,7 +88,7 @@ Lsp.setup_servers = function()
     -- table.insert(runtime_path, 'lua/?.lua')
     -- table.insert(runtime_path, 'lua/?/init.lua')
 
-    -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
     local lspconfig = require("lspconfig")
     local s = {

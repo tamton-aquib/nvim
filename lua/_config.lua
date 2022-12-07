@@ -7,7 +7,7 @@ M.staline = function()
     require('stabline').setup {
         font_active='bold,italic',
         stab_start="  %#Function#  ",
-        stab_left = " ", inactive_bg = "none",
+        stab_left = " ", inactive_bg="none"
     }
 
     require("staline").setup {
