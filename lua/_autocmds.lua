@@ -7,7 +7,6 @@ au("BufReadPost", "_packer.lua,init.lua", [[call matchadd("Keyword", "--> \\zsïœ
 au("BufEnter", "*", 'setl fo-=cro')
 au("FileType", "markdown", function() vim.opt_local.spell=true end)
 au("FileType", "json", function() vim.opt_local.cole=0 end)
-au("VimEnter", "*", function() require("_utils").load_proj_config() end)
 
 --> ïœ» LSP Related
 au("BufWritePre", "*.js,*.jsx,*.ts,*.tsx", function() vim.lsp.buf.format() end)

@@ -19,6 +19,7 @@ if vim.fn.isdirectory(install_path) == 0 then
 end
 
 --> General settings
+set.exrc = true
 set.spell = false
 set.wrap = false
 set.ruler = false
@@ -45,6 +46,7 @@ set.laststatus = 3
 set.completeopt = "menu,menuone,noselect"
 set.virtualedit = "block"
 set.ignorecase = true
+set.equalalways = false
 
 --> Fold Settings
 set.foldenable = true
@@ -74,20 +76,21 @@ set.breakindent = true
 --> Misc settings
 set.signcolumn = "yes:1"
 -- set.guifont = "JetBrainsMonoNerdFontComplete Nerd Font Mono:h10"
-set.guifont = "Operator Mono Lig Book:h11"
+set.guifont = "Operator Mono Lig Book:h10"
 set.wildignore = { '*.pyc,__pycache__,node_modules,*.lock' }
 set.fillchars:append({eob=' ', fold=' ', foldopen="", foldsep=" ", foldclose=""})
 set.shortmess:append({c=true, s=true, A=true, W=true})
 set.iskeyword:append('-')
 
 --> OVERRIDING Default vim globals
-local notify_status, notify = pcall(require, "notify")
-if notify_status then vim.notify = notify end
+-- local notify_status, notify = pcall(require, "notify")
+-- if notify_status then vim.notify = notify end
 
 local ess_status, essentials = pcall(require, "essentials")
 if ess_status then
     vim.ui.input = essentials.ui_input
     vim.ui.select = essentials.ui_select
+    vim.notify = essentials.ui_notify
 end
 
 --> Test settings

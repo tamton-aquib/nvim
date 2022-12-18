@@ -7,30 +7,21 @@ packer.startup { function(use)
 
     -- themes: kat.nvim, articblush, tundra, gruvbox-material, tokyodark
     -->  Testing and temporary
-    -- use { 'articblush/nvim' }
-    -- use { 'NarutoXY/graphene.lua', config=_setup("silicon") }
-    -- use { 'jubnzv/mdeval.nvim' }
-    -- use { 'gorbit99/codewindow.nvim', config=_setup("codewindow")}
-    -- use { 'akinsho/flutter-tools.nvim', ft='dart', config=_setup("flutter-tools")}
     use { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=_setup('crates') }
     use { 'simrat39/rust-tools.nvim', ft='rust', config=_setup("rust-tools") }
-    -- use { 'jinh0/eyeliner.nvim', config=_setup("eyeliner") }
     use { 'antoinemadec/FixCursorHold.nvim' }
-    -- use { 'folke/trouble.nvim', config=_setup("trouble"), cmd="TroubleToggle" }
+    use { 'karb94/neoscroll.nvim', config=_setup("neoscroll"), event='WinScrolled' }
+    use { 'danymat/neogen', config=_setup("neogen"), cmd="Neogen"}
 
     -->  Might use in future
     -- use { 'ja-ford/delaytrain.nvim', config=_setup("delaytrain") }
     -- use { 'antonk52/bad-practices.nvim', config=_setup("bad_practices") }
     -- use { 'kwakzalver/duckytype.nvim', config=_setup("duckytype") }
-    -- use { 'karb94/neoscroll.nvim', config=_setup("neoscroll"), event='WinScrolled' }
-    -- use { 'tiagovla/scope.nvim', config=_setup("scope") }
     -- use { 'Maan2003/lsp_lines.nvim', config=_setup("lsp_lines"), event='DiagnosticChanged' }
-    -- use { 'ggandor/leap.nvim', config=function() require("leap").set_default_keymaps() end }
     -- use { 'kylechui/nvim-surround', config=_setup("nvim-surround") }
     -- use { 'JASONews/glow-hover', config=_setup("glow-hover"), module="vim.lsp.buf" } -- TODO: pr for cmp docs too
     -- use { 'folke/zen-mode.nvim', config=_setup("zen-mode"), cmd="ZenMode" }
     -- use { 'folke/neodev.nvim', ft="lua" }
-    use { 'danymat/neogen', config=_setup("neogen"), cmd="Neogen"}
 
     -->  My Useless lil plugins
     -- use { 'tamton-aquib/zone.nvim' }
@@ -38,6 +29,8 @@ packer.startup { function(use)
     use { 'tamton-aquib/flirt.nvim', config=_setup("flirt") }
     use { 'tamton-aquib/stuff.nvim' }
     -- use { 'tamton-aquib/duck.nvim' }
+    use { 'tamton-aquib/staline.nvim', config=conf("staline") }
+    use { 'tamton-aquib/essentials.nvim' }
 
     -->  THEMES AND UI
     use { 'tiagovla/tokyodark.nvim' }
@@ -45,7 +38,6 @@ packer.startup { function(use)
     use { 'norcalli/nvim-colorizer.lua', cmd="ColorizerToggle", config=_setup("colorizer") }
     use { 'lewis6991/gitsigns.nvim', config=_setup("gitsigns"), event='BufRead' }
     use { 'kyazdani42/nvim-tree.lua', config=conf('nvim_tree'), module='nvim-tree' }
-    use { 'tamton-aquib/staline.nvim', config=conf("staline") }
 
     -->  LSP and COMPLETION
     use { 'neovim/nvim-lspconfig' }
@@ -66,18 +58,16 @@ packer.startup { function(use)
     use { 'nvim-telescope/telescope.nvim', cmd='Telescope' , config=conf("telescope"), module="telescope"}
     use { 'nvim-treesitter/nvim-treesitter', event='BufRead', config=conf("treesitter") }
     use { 'nvim-treesitter/nvim-treesitter-textobjects', after="nvim-treesitter" }
-    use { 'nvim-neorg/neorg', ft={"norg"}, after={"nvim-treesitter", "telescope.nvim"}, config=conf("neorg") }
+    use { 'tamton-aquib/neorg', ft={"norg"}, after={"nvim-treesitter", "telescope.nvim"}, config=conf("neorg"), branch="code-execution" }
 
     -->  GENERAL PURPOSE
     use { 'ahmedkhalf/project.nvim', config=_setup("project_nvim") }
     use { 'beauwilliams/focus.nvim', config=_setup("focus"), event="WinNew" }
     use { 'windwp/nvim-autopairs', config=_setup("nvim-autopairs"), event='InsertEnter' }
-    use { 'rcarriga/nvim-notify', config=conf("notify") }
     use { 'lewis6991/impatient.nvim' }
     use { 'samjwill/nvim-unception' }
     use { 'iamcco/markdown-preview.nvim', ft={'markdown'}, config=conf("mkdp"), run = "cd app && npm install" }
     use { 'lukas-reineke/indent-blankline.nvim', event="BufReadPost", config=conf("indent_blankline") }
-    use { 'tamton-aquib/essentials.nvim' }
 
     use { 'wbthomason/packer.nvim' }
 end }

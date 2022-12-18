@@ -1,17 +1,5 @@
 local Util = {}
 
-Util.load_proj_config = function()
-    -- TODO: add check for security?
-    local file = vim.fn.getcwd() .. "/noice.json"
-    -- local stuff = require("lspconfig").util.root_pattern('.git/')(vim.api.nvim_buf_get_name(0))
-    if vim.fn.filereadable(file) ~= 0 then
-        local data = vim.json.decode(table.concat(vim.fn.readfile(file)))
-        for key,map in pairs(data.keymaps or {}) do vim.keymap.set('n', key, '<cmd>silent w | '..map..'<CR>', {silent=true}) end
-        for name,work in pairs(data.commands or {}) do vim.api.nvim_create_user_command(name, work, {}) end
-        for opt,value in pairs(data.opts or {}) do vim.opt[opt] = value end
-    end
-end
-
 Util.mess = function()
     local contents = vim.api.nvim_exec("mess", true)
     if contents == "" then return end
@@ -22,8 +10,6 @@ end
 
 --> Using `K` for docs related popups
 Util.docs = function()
-    -- if vim.tbl_contains({"lua", "help"}, vim.bo.ft) then
-        -- vim.cmd(":h "..vim.fn.expand('<cword>'))
     if vim.api.nvim_buf_get_name(0):match("Cargo.toml$") then
         require("crates").show_popup()
     else
@@ -66,7 +52,7 @@ Util.splash_screen = function()
             vim.fn.matchadd("Function", '[▓█▄▀▐▌]')
             local buf = vim.api.nvim_create_buf(false, true)
             local map = function(lhs, rhs) vim.keymap.set('n', lhs, rhs, {silent=true, buffer=0}) end
-            local keys = {K='kitty/kitty.conf', F='fish/config.fish', I='nvim/init.lua', A='alacritty/alacritty.yml', P='picom/picom.conf'}
+            local keys = {K='kitty/kitty.conf', W='wezterm/wezterm.lua', I='nvim/init.lua', A='alacritty/alacritty.yml'}
             vim.api.nvim_win_set_buf(0, buf)
             vim.api.nvim_put(Util.center(header), "l", true, true)
             vim.cmd [[silent! setl nonu nornu acd ft=dashboard]]
@@ -105,7 +91,7 @@ local borders = {
     { "╒", "═", "╕", "│", "╛", "═", "╘", "│" },
     { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }
 }
-Util.border = borders[2]
+Util.border = borders[1]
 
 --> Custom telescope theme
 Util.telescope_theme = {

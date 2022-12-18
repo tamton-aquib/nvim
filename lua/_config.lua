@@ -4,11 +4,7 @@ M.mkdp = function() vim.g.mkdp_auto_close = 0 end
 
 M.staline = function()
     -->              ⌬  | left   :           | right  :            | toggle:  
-    require('stabline').setup {
-        font_active='bold,italic',
-        stab_start="  %#Function#  ",
-        stab_left = " ", inactive_bg="none"
-    }
+    require('stabline').setup { style='slant' }
 
     require("staline").setup {
         sections = {
@@ -35,7 +31,7 @@ end
 
 M.devicons = function()
     require("nvim-web-devicons").setup { override={
-        norg={icon="", color="#4878BE", name="neorg"},
+        norg={icon="", color="#4878BE", name="neorg"},
         rs={icon="🦀",name="Rss"}
     }}
 end
@@ -90,7 +86,7 @@ M.telescope = function()
     local telescope = require("telescope")
     telescope.setup {
         defaults = {
-            prompt_prefix = "   ", selection_caret = " ",
+            prompt_prefix = "   ", selection_caret = " ",
             sorting_strategy = "ascending",
             layout_config = { prompt_position = "top" },
             file_ignore_patterns = {'__pycache__/', 'node_modules/', '%.lock', 'target/'},
@@ -113,10 +109,11 @@ M.neorg = function()
             ["core.export"] = {},
             ["core.export.markdown"] = {},
             ["core.norg.completion"] = { config={ engine="nvim-cmp" } },
-            -- ["core.norg.concealer"] = { config={ icon_preset = "diamond", dim_code_blocks={conceal=false} } },
-            ["core.norg.concealer"] = { config={ icon_preset = "diamond" }},
+            ["core.norg.concealer"] = { config={ icon_preset = "diamond", dim_code_blocks={conceal=false} } },
+            -- ["core.norg.concealer"] = { config={ icon_preset = "diamond" }},
             ["core.presenter"] = { config={ zen_mode = "zen-mode" } },
-            -- ["core.execute"] = {},
+            ["core.execute"] = {},
+            ["core.itero"] = {},
             -- ["core.bruh"] = {}
         }
     }

@@ -1,14 +1,24 @@
 vim.g.mapleader = " "
 local function map(mode, key, func) vim.keymap.set(mode, key, func, {silent=true}) end
 
+-- TODO: later maybe (by duck from primes server)
+-- vim.cmd [[
+-- nn + :vs<CR>:term ipython<CR><C-\><C-n><C-w><C-w>
+-- vn = "ay<C-w><C-w>"apa<CR><C-\><C-n><C-w><C-w>
+-- ]]
+
 --> stuff.nvim maps (https://github.com/tamton-aquib/stuff.nvim)
 map('n', 'gC', function() require("calc").toggle() end)
 map('n', 'gS', function() require("stalk").stalk() end)
 map('n', 'gB', function() require("bt").toggle() end)
 map('n', 'gT', function() require("tmpclone").clone() end)
+map('n', 'gp', function() require("player").toggle_player() end)
+
+map('n', '<C-n>', "<cmd>cnext<CR>")
+map('n', '<C-p>', "<cmd>cprev<CR>")
 
 --> TEMP and TEST maps
-vim.keymap.set({'n', 'i'}, '"', ':')
+-- vim.keymap.set({'n', 'i'}, '"', ':')
 map('n', '<leader>l', function() require("essentials").toggle_term("lazygit", 't', true) end)
 map('n', '<leader>t', function() require("essentials").toggle_term("fish", 'v', true) end)
 map('n', '<leader>ps', '<cmd>w<CR>:so<CR>:PackerSync<CR>')
