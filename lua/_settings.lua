@@ -11,12 +11,23 @@ end
 local ok, impatient = pcall(require, 'impatient')
 if ok then impatient.enable_profile() end
 
-local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-if vim.fn.isdirectory(install_path) == 0 then
-    vim.notify("Installing packer...")
-    vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.cmd('packadd packer.nvim')
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    print("Installing lazy.nvim...")
+    vim.fn.system({
+        "git", "clone", "--filter=blob:none", "--single-branch",
+        "https://github.com/folke/lazy.nvim.git",
+        lazypath,
+    })
 end
+vim.opt.runtimepath:prepend(lazypath)
+
+-- local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+-- if vim.fn.isdirectory(install_path) == 0 then
+    -- vim.notify("Installing packer...")
+    -- vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    -- vim.cmd('packadd packer.nvim')
+-- end
 
 --> General settings
 set.exrc = true
