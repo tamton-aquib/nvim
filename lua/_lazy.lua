@@ -4,11 +4,11 @@
 require("lazy").setup({
 
     -->  Testing and temporary
-    { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=function() require('crates').setup() end },
-    { 'simrat39/rust-tools.nvim', ft='rust', config=function() require("rust-tools").setup() end },
+    { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=true },
+    { 'simrat39/rust-tools.nvim', ft='rust', config=true },
     { 'antoinemadec/FixCursorHold.nvim' },
-    { 'karb94/neoscroll.nvim', config=function() require("neoscroll").setup() end, event='WinScrolled' },
-    { 'danymat/neogen', config=function() require("neogen").setup() end, cmd="Neogen" },
+    { 'karb94/neoscroll.nvim', config=true, event='WinScrolled' },
+    { 'danymat/neogen', config=true, cmd="Neogen" },
 
     -->  Might use in future
     -- use { 'ja-ford/delaytrain.nvim', config=_setup("delaytrain") }
@@ -23,17 +23,19 @@ require("lazy").setup({
     -->  My Useless lil plugins
     -- { 'tamton-aquib/zone.nvim' }
     -- { 'tamton-aquib/keys.nvim', config=_setup("keys"), cmd="KeysToggle"}
-    { 'tamton-aquib/flirt.nvim', config=function() require("flirt").setup() end },
+    { 'tamton-aquib/flirt.nvim', config=true },
     { 'tamton-aquib/stuff.nvim', },
     -- { 'tamton-aquib/duck.nvim' }
-    { 'tamton-aquib/staline.nvim', config=function() require("_config").staline() end },
-    { 'tamton-aquib/essentials.nvim', },
+    -- { 'tamton-aquib/staline.nvim', config=function() require("_config").staline() end },
+    { dir='~/STUFF/IDK/staline.nvim', config=function() require("_config").staline() end },
+    { 'tamton-aquib/essentials.nvim' },
 
     -->  THEMES AND UI
-    { 'tiagovla/tokyodark.nvim', },
+    -- { 'tiagovla/tokyodark.nvim', config=function() require('tokyodark').colorscheme() end, lazy=false },
+    { 'tiagovla/tokyodark.nvim', config=function() vim.cmd.colorscheme("tokyodark") end },
     { 'kyazdani42/nvim-web-devicons', config=function() require("_config").devicons() end },
     { 'norcalli/nvim-colorizer.lua', cmd="ColorizerToggle" },
-    { 'lewis6991/gitsigns.nvim', config=function() require("gitsigns").setup() end },
+    { 'lewis6991/gitsigns.nvim', config=true },
     { 'kyazdani42/nvim-tree.lua', config=function() require("_config").nvim_tree() end},
 
     -->  LSP and COMPLETION
@@ -54,14 +56,14 @@ require("lazy").setup({
     -- 'nvim-treesitter/playground',
     { 'nvim-lua/plenary.nvim' },
     { 'nvim-telescope/telescope.nvim', config=function() require("_config").telescope() end, cmd="Telescope" },
-    { 'nvim-treesitter/nvim-treesitter', config=function() require("_config").treesitter() end, event="BufRead" },
+    { 'nvim-treesitter/nvim-treesitter', config=function() require("_config").treesitter() end }, --, event="BufRead" },
     -- 'nvim-treesitter/nvim-treesitter-textobjects', after="nvim-treesitter" }
     { 'tamton-aquib/neorg', ft="norg", branch="code-execution", config=function() require("_config").neorg() end },
 
     -->  GENERAL PURPOSE
     { 'ahmedkhalf/project.nvim', config=function() require("project_nvim").setup() end },
-    { 'beauwilliams/focus.nvim', config=function() require("focus").setup() end},
-    { 'windwp/nvim-autopairs', config=function() require("nvim-autopairs").setup() end },
+    { 'beauwilliams/focus.nvim', config=true },
+    { 'windwp/nvim-autopairs', config=true, event="InsertEnter" },
     { 'lewis6991/impatient.nvim', },
     { 'samjwill/nvim-unception', },
     { 'iamcco/markdown-preview.nvim', ft='markdown', config=function() require("_config").mkdp() end, build = "cd app && npm install" },

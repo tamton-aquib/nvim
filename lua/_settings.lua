@@ -20,7 +20,7 @@ if not vim.loop.fs_stat(lazypath) then
         lazypath,
     })
 end
-vim.opt.runtimepath:prepend(lazypath)
+vim.opt.rtp:prepend(lazypath)
 
 -- local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 -- if vim.fn.isdirectory(install_path) == 0 then
@@ -97,12 +97,14 @@ set.iskeyword:append('-')
 -- local notify_status, notify = pcall(require, "notify")
 -- if notify_status then vim.notify = notify end
 
-local ess_status, essentials = pcall(require, "essentials")
-if ess_status then
-    vim.ui.input = essentials.ui_input
-    vim.ui.select = essentials.ui_select
-    vim.notify = essentials.ui_notify
-end
+vim.defer_fn(function()
+    local ess_status, essentials = pcall(require, "essentials")
+    if ess_status then
+        vim.ui.input = essentials.ui_input
+        vim.ui.select = essentials.ui_select
+        vim.notify = essentials.ui_notify
+    end
+end, 1000)
 
 --> Test settings
 -- set.copyindent = true

@@ -26,6 +26,9 @@ M.staline = function()
             line_column = " [%l/%L] :%c  ",
             branch_symbol = " ",
         },
+        special_table = {
+            lazy = { 'Lazy', '🐼' }
+        }
     }
 end
 
@@ -54,7 +57,8 @@ M.tokyodark = function(t)
     vim.g.tokyodark_transparent_background = t and true or false
     vim.g.tokyodark_enable_italic = true
 
-    vim.cmd.colorscheme "tokyodark"
+    -- vim.cmd.colorscheme "tokyodark"
+    require("tokyodark").colorscheme()
 end
 
 M.luasnip = function()
@@ -97,8 +101,8 @@ end
 
 function M.indent_blankline()
     require("indent_blankline").setup{
-        show_current_context = true, char = "▏", -- 
-        strict_tabs = true, filetype_exclude = { "help" },
+        -- show_current_context = true,
+        char = "▏", -- 
     }
 end
 
