@@ -101,7 +101,7 @@ vim.defer_fn(function()
     local ess_status, essentials = pcall(require, "essentials")
     if ess_status then
         vim.ui.input = essentials.ui_input
-        vim.ui.select = essentials.ui_select
+        -- vim.ui.select = essentials.ui_select
         vim.notify = essentials.ui_notify
     end
 end, 1000)

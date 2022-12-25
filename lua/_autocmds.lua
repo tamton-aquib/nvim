@@ -3,7 +3,7 @@ local command = function(name, fn, desc) vim.api.nvim_create_user_command(name, 
 local au = function(events, ptn, cb) vim.api.nvim_create_autocmd(events, {pattern=ptn, [type(cb)=="function" and 'callback' or 'command']=cb}) end
 
 -->  NEW
-au("BufReadPost", "_packer.lua,init.lua", [[call matchadd("Keyword", "--> \\zs.*\\ze$")]])
+au("BufReadPost", "_lazy.lua,init.lua", [[call matchadd("Keyword", "--> \\zs.*\\ze$")]])
 au("BufEnter", "*", 'setl fo-=cro')
 au("FileType", "markdown", function() vim.opt_local.spell=true end)
 au("FileType", "json", function() vim.opt_local.cole=0 end)
@@ -16,7 +16,6 @@ au("CursorHold", "*", vim.diagnostic.open_float)
 -->  OLD
 au("BufReadPost", "*", function() require("essentials").last_place() end)
 au("TextYankPost", "*", function() vim.highlight.on_yank({higroup="Folded", timeout=200}) end)
-au("BufWritePost", "_packer.lua", "so | PackerCompile<CR>")
 au("TermOpen", "term://*", "setl nonu nornu | star")
 
 -->  Commands

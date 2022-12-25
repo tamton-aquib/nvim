@@ -1,6 +1,3 @@
--- local _setup = function(name) return ("require('%s').setup{}"):format(name) end
--- local conf = function(name) return ("require('_config').%s()"):format(name) end
-
 require("lazy").setup({
 
     -->  Testing and temporary
@@ -23,11 +20,10 @@ require("lazy").setup({
     -->  My Useless lil plugins
     -- { 'tamton-aquib/zone.nvim' }
     -- { 'tamton-aquib/keys.nvim', config=_setup("keys"), cmd="KeysToggle"}
+    -- { 'tamton-aquib/duck.nvim' }
     { 'tamton-aquib/flirt.nvim', config=true },
     { 'tamton-aquib/stuff.nvim', lazy=true },
-    -- { 'tamton-aquib/duck.nvim' }
-    -- { 'tamton-aquib/staline.nvim', config=function() require("_config").staline() end },
-    { dir='~/STUFF/IDK/staline.nvim', config=function() require("_config").staline() end, event='ColorScheme' },
+    { 'tamton-aquib/staline.nvim', config=function() require("_config").staline() end, event="ColorScheme" },
     { 'tamton-aquib/essentials.nvim', lazy=true },
 
     -->  THEMES AND UI
@@ -59,11 +55,11 @@ require("lazy").setup({
 
     -->  GENERAL PURPOSE
     { 'ahmedkhalf/project.nvim', config=function() require("project_nvim").setup() end, lazy=true },
-    { 'beauwilliams/focus.nvim', config=true, lazy=true },
+    { 'beauwilliams/focus.nvim', config=true, event="WinNew" },
     { 'windwp/nvim-autopairs', config=true, event="InsertEnter" },
     { 'lewis6991/impatient.nvim', },
     { 'samjwill/nvim-unception', },
     { 'toppair/peek.nvim', ft="markdown", build='deno task --quiet build:fast', config=true, lazy=true},
     { 'lukas-reineke/indent-blankline.nvim', config=function() require("_config").indent_blankline() end, event='BufReadPost'  },
 })
-    -- 'iamcco/markdown-preview.nvim', ft={'markdown'}, config=conf("mkdp"), run = "cd app && npm install" }
+-- 'iamcco/markdown-preview.nvim', ft={'markdown'}, config=conf("mkdp"), run = "cd app && npm install" }
