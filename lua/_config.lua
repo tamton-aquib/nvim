@@ -57,8 +57,7 @@ M.tokyodark = function(t)
     vim.g.tokyodark_transparent_background = t and true or false
     vim.g.tokyodark_enable_italic = true
 
-    -- vim.cmd.colorscheme "tokyodark"
-    require("tokyodark").colorscheme()
+    vim.cmd.colorscheme "tokyodark"
 end
 
 M.luasnip = function()

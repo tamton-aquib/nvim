@@ -12,7 +12,7 @@ My neovim config
 -->
 
 ### Installation
-> ❗ NOTE: executing this command will delete the packer folder and nvim folder. So make sure to create a backup!
+> **Note**: executing this command will delete the packer folder and nvim folder. So make sure to create a backup!
 ```bash
 curl -sL git.io/vim_install | bash
 ```
