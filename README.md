@@ -35,7 +35,7 @@ curl -sL git.io/vim_install | bash
 └──   lua
    ├──  _autocmds.lua
    ├──  _mappings.lua
-   ├──  _packer.lua
+   ├──  _lazy.lua
    ├──  _utils.lua
    ├──  _settings.lua
    ├──  _conf.lua

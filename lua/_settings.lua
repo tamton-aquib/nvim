@@ -22,13 +22,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
--- if vim.fn.isdirectory(install_path) == 0 then
-    -- vim.notify("Installing packer...")
-    -- vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    -- vim.cmd('packadd packer.nvim')
--- end
-
 --> General settings
 set.exrc = true
 set.spell = false
