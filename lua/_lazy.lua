@@ -22,7 +22,7 @@ require("lazy").setup({
     -- { 'tamton-aquib/keys.nvim', config=_setup("keys"), cmd="KeysToggle"}
     -- { 'tamton-aquib/duck.nvim' }
     { 'tamton-aquib/flirt.nvim', config=true },
-    { 'tamton-aquib/stuff.nvim', lazy=true },
+    { 'tamton-aquib/stuff.nvim' },
     { 'tamton-aquib/staline.nvim', config=function() require("_config").staline() end, event="ColorScheme" },
     { 'tamton-aquib/essentials.nvim', lazy=true },
 

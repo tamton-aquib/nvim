@@ -4,7 +4,23 @@ M.mkdp = function() vim.g.mkdp_auto_close = 0 end
 
 M.staline = function()
     -->              ⌬  | left   :           | right  :            | toggle:  
-    require('stabline').setup { style='slant' }
+    vim.cmd [[
+        fu! Bruh(a, b, c, d)
+        exec ':lua Bruh('. a:a . ')'
+        endfu
+    ]]
+    local play = function() require("essentials").run_file() end
+    local music = function() require("player").toggle_player() end
+    local nicemaps = {["3"]={icon=" ", func=play}, ["4"]={icon=" ", func=music}}
+
+    function Bruh(id)
+        nicemaps[tostring(id)].func()
+    end
+
+    require('stabline').setup {
+        style='slant',
+        stab_end="%#Function#%3@Bruh@  run %X   %4@Bruh@  play %X      "
+    }
 
     require("staline").setup {
         sections = {
@@ -115,9 +131,8 @@ M.neorg = function()
             ["core.norg.concealer"] = { config={ icon_preset = "diamond", dim_code_blocks={conceal=false} } },
             -- ["core.norg.concealer"] = { config={ icon_preset = "diamond" }},
             ["core.presenter"] = { config={ zen_mode = "zen-mode" } },
-            ["core.execute"] = {},
-            ["core.itero"] = {},
-            -- ["core.bruh"] = {}
+            -- ["core.execute"] = {},
+            -- ["core.itero"] = {},
         }
     }
 end
