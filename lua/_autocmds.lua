@@ -25,6 +25,7 @@ command("PP", require("essentials").null_pointer, {range='%'})
 command("Mess", require("_utils").mess, "Message to temp output buf.")
 -- vim.cmd [[syntax keyword Keyword lambda conceal cchar=λ]] -- TODO: (maybe with ts queries?)
 
+-- TODO: cleanify
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
         local client = vim.lsp.get_client_by_id(args.data.client_id)

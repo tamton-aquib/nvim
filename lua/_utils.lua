@@ -3,7 +3,7 @@ local Util = {}
 Util.mess = function()
     local contents = vim.api.nvim_exec("mess", true)
     if contents == "" then return end
-    vim.cmd("vnew | setl bt=nofile bh=wipe")
+    vim.cmd("vnew | setl bt=nofile bh=wipe nonu nornu")
 
     vim.api.nvim_put(vim.split(contents, '\n'), "", true, true)
 end
@@ -81,7 +81,6 @@ Util.close_command = function()
     end, vim.api.nvim_list_bufs())
 
     -- TODO: buggy.
-    -- local quit_cmd = #vim.api.nvim_list_wins() > 1 and ':lua require("animate").setup()' or ':q!'
     local quit_cmd = #vim.api.nvim_list_wins() > 1 and 'Q' or 'q'
     vim.cmd(total == 1 and quit_cmd or 'bd')
 end
@@ -111,8 +110,11 @@ Util.telescope_theme = {
 
 --> Toggling quickfix window with a keybind
 Util.toggle_quickfix = function()
-    vim.cmd(not vim.g.quickfix_toggled and "cclose" or "copen")
-    vim.g.quickfix_toggled = not vim.g.quickfix_toggled
+    vim.cmd(
+        #vim.tbl_filter(function(w)
+            return vim.bo[vim.api.nvim_win_get_buf(w)].ft == "qf"
+        end, vim.api.nvim_list_wins()) > 0
+    and "cclose" or "copen")
 end
 
 return Util

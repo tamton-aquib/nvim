@@ -4,22 +4,21 @@ M.mkdp = function() vim.g.mkdp_auto_close = 0 end
 
 M.staline = function()
     -->              ⌬  | left   :           | right  :            | toggle:  
-    vim.cmd [[
-        fu! Bruh(a, b, c, d)
-        exec ':lua Bruh('. a:a . ')'
-        endfu
-    ]]
     local play = function() require("essentials").run_file() end
-    local music = function() require("player").toggle_player() end
-    local nicemaps = {["3"]={icon=" ", func=play}, ["4"]={icon=" ", func=music}}
+    local music = function() require("mpv").toggle_player() end
+    local nicemaps = {{icon=" ", func=play}, {icon=" ", func=music}}
+    function Bruh(id) nicemaps[id].func() end
 
-    function Bruh(id)
-        nicemaps[tostring(id)].func()
-    end
-
+    vim.g.mpv_visualizer = "play"
+    vim.cmd [[fu! Bruh(a,b,c,d)
+        execute 'lua Bruh('. a:a .')'
+    endfu]]
     require('stabline').setup {
         style='slant',
-        stab_end="%#Function#%3@Bruh@  run %X   %4@Bruh@  play %X      "
+        -- stab_end="%#Function#%1@Bruh@  run %X   %2@Bruh@  %{g:mpv_visualizer} %X      ",
+        stab_end="%#Function#%1@Bruh@  run %X     ",
+        stab_start = "%#Function#   ",
+        -- stab_end="%#Function#% %1@Bruh@ %{g:mpv_title}%X     ",
     }
 
     require("staline").setup {
@@ -28,7 +27,7 @@ M.staline = function()
             mid = { '%<', 'file_name' },
             right = {
                 function() return vim.b.bookmark or '' end,
-                '    %l/%L  :%c    ',
+                '%2@Bruh@  %{g:mpv_visualizer} %X    ', '    %l/%L  :%c    ',
                 { 'Staline', function()
                     local chars = { "_", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" }
                     local line_ratio = vim.fn.line(".") / vim.fn.line("$")
@@ -55,24 +54,8 @@ M.devicons = function()
     }}
 end
 
-M.notify = function()
-    require("notify").setup{
-        render='minimal',
-        background_colour = "#000000"
-    }
-end
-
 M.tokyodark = function(t)
-    -- TODO: NOICE COLOR PALETTE (might port in future)
-    -- "#c678dd", "#986fec", "#c882e7", "#5af78e", "#98c379", "#7eca9c",
-    -- "#56b6c2", "#61afef", "#8485ce", "#ebcb8b", "#fff94c", "#ffcc00",
-    -- "#fca2aa", "#e27d60", "#e86671", "#f7768e",
-    -- "#ffffff", "#dddddd", "#999999", "#5c6370",
-    -- "#282c34", "#24283b", "#11121d", "#1f1f1f",
-
     vim.g.tokyodark_transparent_background = t and true or false
-    vim.g.tokyodark_enable_italic = true
-
     vim.cmd.colorscheme "tokyodark"
 end
 
@@ -106,12 +89,11 @@ M.telescope = function()
     telescope.setup {
         defaults = {
             prompt_prefix = "   ", selection_caret = " ",
-            sorting_strategy = "ascending",
-            layout_config = { prompt_position = "top" },
+            sorting_strategy = "ascending", layout_config = { prompt_position = "top" },
             file_ignore_patterns = {'__pycache__/', 'node_modules/', '%.lock', 'target/'},
         }
     }
-    telescope.load_extension("projects") -- LATER: ui-select/media-files
+    -- telescope.load_extension("projects") -- LATER: ui-select/media-files
 end
 
 function M.indent_blankline()
@@ -128,7 +110,7 @@ M.neorg = function()
             ["core.export"] = {},
             ["core.export.markdown"] = {},
             ["core.norg.completion"] = { config={ engine="nvim-cmp" } },
-            ["core.norg.concealer"] = { config={ icon_preset = "diamond", dim_code_blocks={conceal=false} } },
+            ["core.norg.concealer"] = { config={ dim_code_blocks={conceal=false} } },
             -- ["core.norg.concealer"] = { config={ icon_preset = "diamond" }},
             ["core.presenter"] = { config={ zen_mode = "zen-mode" } },
             -- ["core.execute"] = {},
@@ -139,7 +121,7 @@ end
 
 M.treesitter = function()
     require('nvim-treesitter.configs').setup {
-        ensure_installed = { "norg" , "comment", "lua" },
+        ensure_installed = { "norg" , "comment", "lua", "python" },
         highlight = { enable = true },
         indent = { enable = true }, -- TODO: try text objects somewhen
     }

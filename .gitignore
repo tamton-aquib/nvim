@@ -1,5 +1,4 @@
 plugin
 ftplugin
 queries
-
-.luarc.json
+lazy-lock.json

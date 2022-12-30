@@ -89,14 +89,10 @@ Lsp.setup_servers = function()
     -- table.insert(runtime_path, 'lua/?/init.lua')
 
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
     local lspconfig = require("lspconfig")
+
     local s = {
-        sumneko_lua = { settings={Lua={
-            diagnostics={globals={'vim'}},
-            runtime = {version="LuaJIT"}, -- , path=runtime_path},
-            -- workspace = { library = vim.api.nvim_get_runtime_file('', true) },
-        }}},
+        sumneko_lua = { settings={ Lua={ diagnostics={globals={'vim'}}, runtime={version="LuaJIT"}, } } }, -- , path=runtime_path}, workspace = { library = vim.api.nvim_get_runtime_file('', true) },
         pyright={}, tsserver={}, svelte={}, clangd={}, zls={}
     }
 

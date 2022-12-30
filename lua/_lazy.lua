@@ -23,6 +23,7 @@ require("lazy").setup({
     -- { 'tamton-aquib/duck.nvim' }
     { 'tamton-aquib/flirt.nvim', config=true },
     { 'tamton-aquib/stuff.nvim' },
+    { "tamton-aquib/mpv.nvim", config={setup_widgets=true} },
     { 'tamton-aquib/staline.nvim', config=function() require("_config").staline() end, event="ColorScheme" },
     { 'tamton-aquib/essentials.nvim', lazy=true },
 
@@ -31,20 +32,22 @@ require("lazy").setup({
     { 'kyazdani42/nvim-web-devicons', config=function() require("_config").devicons() end, lazy=true },
     { 'norcalli/nvim-colorizer.lua', cmd="ColorizerToggle" },
     { 'lewis6991/gitsigns.nvim', config=true, event='BufReadPost' },
-    { 'kyazdani42/nvim-tree.lua', config=function() require("_config").nvim_tree() end, cmd="NvimTreeToggle" },
+    { 'kyazdani42/nvim-tree.lua', config=function() require("_config").nvim_tree() end, lazy=true},
 
     -->  LSP and COMPLETION
     { 'neovim/nvim-lspconfig' },
-    { 'L3MON4D3/LuaSnip', config=function() require("_config").luasnip() end, event={"InsertEnter", "CmdlineEnter"} },
-    { 'hrsh7th/nvim-cmp', config=function() require("_lsp").cmp() end },
-    { 'hrsh7th/cmp-buffer' },
-    { 'hrsh7th/cmp-nvim-lsp' },
-    { 'hrsh7th/cmp-path' },
-    { 'hrsh7th/cmp-emoji' },
-    { 'hrsh7th/cmp-nvim-lua' },
-    { 'saadparwaiz1/cmp_luasnip' },
-    { 'hrsh7th/cmp-nvim-lsp-signature-help' },
-    { 'hrsh7th/cmp-cmdline' },
+    { 'L3MON4D3/LuaSnip', config=function() require("_config").luasnip() end, event="VeryLazy" },
+    { 'hrsh7th/nvim-cmp', config=function() require("_lsp").cmp() end, event={'InsertEnter', 'CmdlineEnter'},
+        dependencies={
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-emoji',
+            'hrsh7th/cmp-nvim-lua',
+            'saadparwaiz1/cmp_luasnip',
+            'hrsh7th/cmp-nvim-lsp-signature-help',
+            'hrsh7th/cmp-cmdline' }
+    },
 
     -->  TELESCOPE, TREESITTER, NEORG
     { 'nvim-lua/plenary.nvim', lazy=true },
@@ -54,12 +57,11 @@ require("lazy").setup({
     { 'nvim-neorg/neorg', ft="norg", config=function() require("_config").neorg() end },
 
     -->  GENERAL PURPOSE
-    { 'ahmedkhalf/project.nvim', config=function() require("project_nvim").setup() end, lazy=true },
+    { 'notjedi/nvim-rooter.lua', config=true },
     { 'beauwilliams/focus.nvim', config=true, event="WinNew" },
     { 'windwp/nvim-autopairs', config=true, event="InsertEnter" },
-    { 'lewis6991/impatient.nvim', },
-    { 'samjwill/nvim-unception', },
-    { 'toppair/peek.nvim', ft="markdown", build='deno task --quiet build:fast', config=true, lazy=true},
+    { 'lewis6991/impatient.nvim' },
+    -- { 'samjwill/nvim-unception', },
+    { 'toppair/peek.nvim', ft="markdown", build='deno task --quiet build:fast', config=true },
     { 'lukas-reineke/indent-blankline.nvim', config=function() require("_config").indent_blankline() end, event='BufReadPost'  },
 })
--- 'iamcco/markdown-preview.nvim', ft={'markdown'}, config=conf("mkdp"), run = "cd app && npm install" }
