@@ -4,6 +4,7 @@ local opts = { performance = { rtp = { disabled_plugins = {
     "vimballPlugin", "zip", "zipPlugin", "tutor", "rplugin", "spellfile", "tarPlugin",
     "man", "logiPat", "netrwSettings", "netrwFileHandlers", "remote_plugins"
 }}}}
+local c = require("_config")
 
 require("lazy").setup({
 
@@ -30,21 +31,21 @@ require("lazy").setup({
     { 'tamton-aquib/flirt.nvim', config=true, module=false },
     { 'tamton-aquib/stuff.nvim' },
     { "tamton-aquib/mpv.nvim", config={setup_widgets=true, timer={throttle=100}}, lazy=true },
-    { 'tamton-aquib/staline.nvim', config=function() require("_config").staline() end, event="ColorScheme" },
+    { 'tamton-aquib/staline.nvim', config=c.staline, event="ColorScheme" },
     { 'tamton-aquib/essentials.nvim', lazy=true },
 
     -->  THEMES AND UI
     { 'tiagovla/tokyodark.nvim' },
-    { 'kyazdani42/nvim-web-devicons', config=function() require("_config").devicons() end, lazy=true },
+    { 'kyazdani42/nvim-web-devicons', config=c.devicons, lazy=true },
     { 'norcalli/nvim-colorizer.lua', cmd="ColorizerToggle" },
     { 'lewis6991/gitsigns.nvim', config=true, event='BufReadPost' },
-    { 'kyazdani42/nvim-tree.lua', config=function() require("_config").nvim_tree() end },
+    { 'kyazdani42/nvim-tree.lua', config=c.nvim_tree, lazy=true },
     { 'declancm/cinnamon.nvim', config=true, keys={'<C-u>', '<C-d>'} },
 
     -->  LSP and COMPLETION
     { 'neovim/nvim-lspconfig' },
-    { 'L3MON4D3/LuaSnip', config=function() require("_config").luasnip() end, event="VeryLazy" },
-    { 'hrsh7th/nvim-cmp', config=function() require("_lsp").cmp() end, event="VeryLazy",
+    { 'L3MON4D3/LuaSnip', config=c.luasnip, event="InsertEnter" },
+    { 'hrsh7th/nvim-cmp', config=function() require("_lsp").cmp() end, event={"InsertEnter", "CmdlineEnter"},
         dependencies = {
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-nvim-lsp',
@@ -59,9 +60,9 @@ require("lazy").setup({
 
     -->  TELESCOPE, TREESITTER, NEORG
     { 'nvim-lua/plenary.nvim', lazy=true },
-    { 'nvim-telescope/telescope.nvim', config=function() require("_config").telescope() end, lazy=true },
-    { 'nvim-treesitter/nvim-treesitter', config=function() require("_config").treesitter() end, lazy=true }, --, event="BufRead" },
-    { 'nvim-neorg/neorg', ft="norg", config=function() require("_config").neorg() end },
+    { 'nvim-telescope/telescope.nvim', config=c.telescope, lazy=true },
+    { 'nvim-treesitter/nvim-treesitter', config=c.treesitter, lazy=true }, --, event="BufRead" },
+    { 'nvim-neorg/neorg', ft="norg", config=c.neorg},
 
     -->  GENERAL PURPOSE
     { 'notjedi/nvim-rooter.lua', config=true },
