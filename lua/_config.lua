@@ -1,36 +1,33 @@
 local M = {}
+function M.stl(id) ({require("essentials").run_file, require("mpv").toggle_player})[id]() end
 
 M.mkdp = function() vim.g.mkdp_auto_close = 0 end
 
 M.staline = function()
     -->              ⌬  | left   :           | right  :            | toggle:  
-    local play = function() require("essentials").run_file() end
-    local music = function() require("mpv").toggle_player() end
-    local nicemaps = {{icon=" ", func=play}, {icon=" ", func=music}}
-    function Bruh(id) nicemaps[id].func() end
 
     vim.g.mpv_visualizer = "play"
     vim.cmd [[fu! Bruh(a,b,c,d)
-        execute 'lua Bruh('. a:a .')'
+        execute 'lua require"_config".stl('. a:a .')'
     endfu]]
+
     require('stabline').setup {
         style='slant',
         -- stab_end="%#Function#%1@Bruh@  run %X   %2@Bruh@  %{g:mpv_visualizer} %X      ",
         stab_end="%#Function#%1@Bruh@  run %X     ",
         stab_start = "%#Function#   ",
-        -- stab_end="%#Function#% %1@Bruh@ %{g:mpv_title}%X     ",
     }
 
     require("staline").setup {
         sections = {
-            left = { '  ', 'mode', ' ', 'branch', '    ', 'lsp' },
+            left = { '  ', 'mode', ' ', 'branch', '  ⌬  ', 'lsp' },
             mid = { '%<', 'file_name' },
             right = {
                 function() return vim.b.bookmark or '' end,
                 '%2@Bruh@  %{g:mpv_visualizer} %X    ', '    %l/%L  :%c    ',
                 { 'Staline', function()
                     local chars = { "_", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" }
-                    local line_ratio = vim.fn.line(".") / vim.fn.line("$")
+                    local line_ratio = vim.fn.line(".") / vim.api.nvim_buf_line_count(0)
                     local index = math.ceil(line_ratio * #chars)
                     return chars[index]
                 end }, ' '
@@ -42,7 +39,7 @@ M.staline = function()
             branch_symbol = " ",
         },
         special_table = {
-            lazy = { 'Lazy', '🐼' }
+            lazy = { 'Lazy', '💤' }
         }
     }
 end
@@ -93,14 +90,6 @@ M.telescope = function()
             file_ignore_patterns = {'__pycache__/', 'node_modules/', '%.lock', 'target/'},
         }
     }
-    -- telescope.load_extension("projects") -- LATER: ui-select/media-files
-end
-
-function M.indent_blankline()
-    require("indent_blankline").setup{
-        -- show_current_context = true,
-        char = "▏", -- 
-    }
 end
 
 M.neorg = function()
@@ -111,7 +100,6 @@ M.neorg = function()
             ["core.export.markdown"] = {},
             ["core.norg.completion"] = { config={ engine="nvim-cmp" } },
             ["core.norg.concealer"] = { config={ dim_code_blocks={conceal=false} } },
-            -- ["core.norg.concealer"] = { config={ icon_preset = "diamond" }},
             ["core.presenter"] = { config={ zen_mode = "zen-mode" } },
             -- ["core.execute"] = {},
             -- ["core.itero"] = {},
@@ -121,7 +109,7 @@ end
 
 M.treesitter = function()
     require('nvim-treesitter.configs').setup {
-        ensure_installed = { "norg" , "comment", "lua", "python" },
+        ensure_installed = { "comment", "lua", "python" },
         highlight = { enable = true },
         indent = { enable = true }, -- TODO: try text objects somewhen
     }

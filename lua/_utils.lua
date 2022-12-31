@@ -60,7 +60,7 @@ Util.splash_screen = function()
             for k,f in pairs(keys) do map(k,'<cmd>e '..xdg..f..' | setl noacd<CR>') end
             map('P', '<cmd>Telescope oldfiles<CR>')
             map('q', '<cmd>q<CR>')
-            map('o', '<cmd>e #<1<CR>')
+            map('o', '<cmd>e #<1<CR>') -- edit the last edited file
         end)
     end
 end

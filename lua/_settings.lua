@@ -1,13 +1,4 @@
 local set = vim.opt
-
---> Be careful whats in this list:
-for _, plugin in ipairs({ "python3_provider", "node_provider", "2html_plugin", "getscript", "getscriptPlugin",
-    "gzip", "matchit", "tar", "tarPlugin", "rrhelper", "spellfile_plugin", "vimball",
-    "vimballPlugin", "zip", "zipPlugin", "tutor", "rplugin", "spellfile", "tarPlugin",
-    "man", "logiPat", "netrwSettings", "netrwFileHandlers", "remote_plugins" }) do
-    vim.g["loaded_"..plugin] = 1
-end
-
 local ok, impatient = pcall(require, 'impatient')
 if ok then impatient.enable_profile() end
 
@@ -79,25 +70,21 @@ set.breakindent = true
 
 --> Misc settings
 set.signcolumn = "yes:1"
--- set.guifont = "JetBrainsMonoNerdFontComplete Nerd Font Mono:h10"
-set.guifont = "Operator Mono Lig Book:h10"
+set.guifont = "JetBrainsMonoNerdFontComplete Nerd Font:h9"
+-- set.guifont = "Operator Mono Lig Book:h10"
 set.wildignore = { '*.pyc,__pycache__,node_modules,*.lock' }
 set.fillchars:append({eob=' ', fold=' ', foldopen="", foldsep=" ", foldclose=""})
 set.shortmess:append({c=true, s=true, A=true, W=true})
 set.iskeyword:append('-')
 
---> OVERRIDING Default vim globals
--- local notify_status, notify = pcall(require, "notify")
--- if notify_status then vim.notify = notify end
-
-vim.defer_fn(function()
+vim.schedule(function()
     local ess_status, essentials = pcall(require, "essentials")
     if ess_status then
         vim.ui.input = essentials.ui_input
-        -- vim.ui.select = essentials.ui_select
+        vim.ui.select = essentials.ui_select
         vim.notify = essentials.ui_notify
     end
-end, 1000)
+end)
 
 --> Test settings
 -- set.copyindent = true
@@ -105,6 +92,4 @@ end, 1000)
 
 -- set.list = true
 -- set.listchars = 'tab:▏ ' -- ''
--- vim.cmd [[let &colorcolumn=join(range(81,999),",")]]
--- vim.cmd [[packadd cfilter]]
 -- vim.g.markdown_fenced_languages = {'rust'}

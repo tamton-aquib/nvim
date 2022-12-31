@@ -5,7 +5,7 @@ Lsp.cmp = function()
     local cmp = require('cmp')
     local luasnip = require("luasnip")
 
-    local source_names = { nvim_lsp = "[LSP]", emoji = "[Emoji]", path = "[Path]", luasnip = "[Snippet]", buffer = "[Buffer]", nvim_lsp_signature_help = "[sig_help]" }
+    -- local source_names = { nvim_lsp = "[LSP]", emoji = "[Emoji]", path = "[Path]", luasnip = "[Snippet]", buffer = "[Buffer]", nvim_lsp_signature_help = "[sig_help]" }
     local kind_icons = {
         Text = ' ', Method = ' ', Function = ' ', Constructor = ' ', Field = ' ', Variable = ' ', Class = ' ', Interface = ' ',
         Module = ' ', Property = ' ', Unit = ' ', Value = ' ', Enum = ' ', Keyword = ' ', Snippet = ' ', Color = ' ', File = ' ',
@@ -15,17 +15,15 @@ Lsp.cmp = function()
     cmp.setup {
         formatting = {
             fields = { 'kind', 'abbr', 'menu' },
-            format = function(entry, item)
+            format = function(_, item)
                 item.kind = kind_icons[item.kind] or " "
-                item.menu = source_names[entry.source.name] or " "
+                -- item.menu = source_names[entry.source.name] or " "
+                item.menu = "  "
                 return item
             end
         },
         window = { documentation = { border = "shadow" } },
-
-        snippet = {
-            expand = function(args) luasnip.lsp_expand(args.body) end,
-        },
+        snippet = { expand=function(o) luasnip.lsp_expand(o.body) end },
 
         mapping = cmp.mapping.preset.insert {
             ['<C-n>'] = cmp.mapping.select_next_item(),
@@ -55,7 +53,7 @@ Lsp.cmp = function()
         experimental = { ghost_text = true }
     }
 
-    cmp.setup.cmdline(':', { mapping=cmp.mapping.preset.cmdline(), sources = {{name="cmdline", keyword_length=3}} })
+    cmp.setup.cmdline(':', { mapping=cmp.mapping.preset.cmdline(), sources={{name="cmdline", keyword_length=3}} })
 end
 
 Lsp.init = function()
@@ -73,11 +71,9 @@ Lsp.init = function()
         virtual_text = false,
         underline = {Error=true},
         float = {
-            border = border,
+            border = border, focusable = false, suffix = '',
             header = { "  Diagnostics", "String" },
-            focusable = false,
             prefix = function(_, _, _) return "  " , "String" end, -- icons:        ﬌  
-            suffix = ''
         }
     })
 end
@@ -87,12 +83,12 @@ Lsp.setup_servers = function()
     -- local runtime_path = vim.split(package.path, ';')
     -- table.insert(runtime_path, 'lua/?.lua')
     -- table.insert(runtime_path, 'lua/?/init.lua')
-
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
     local lspconfig = require("lspconfig")
 
     local s = {
-        sumneko_lua = { settings={ Lua={ diagnostics={globals={'vim'}}, runtime={version="LuaJIT"}, } } }, -- , path=runtime_path}, workspace = { library = vim.api.nvim_get_runtime_file('', true) },
+        sumneko_lua={ settings={ Lua={ diagnostics={globals={'vim'}}, runtime={version="LuaJIT"}, } } },
+        -- , path=runtime_path}, workspace = { library = vim.api.nvim_get_runtime_file('', true) },
         pyright={}, tsserver={}, svelte={}, clangd={}, zls={}
     }
 
