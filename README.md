@@ -7,13 +7,6 @@ My neovim config
 ![image](https://user-images.githubusercontent.com/77913442/146633580-3fa0430e-228e-4010-97ca-46ea58cffc14.png)
 ---
 
-### Installation
-> **Note**: executing this command will delete the packer folder and nvim folder. So make sure to create a backup!
-```bash
-curl -sL git.io/vim_install | bash
-```
-> If you don't feel safe executing this command, jut clone the repo to $XDG_CONFIG.
-
 ### Summary
 
 * neovim version : 0.9

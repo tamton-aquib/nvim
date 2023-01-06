@@ -6,6 +6,7 @@ Util.mess = function()
     vim.cmd("vnew | setl bt=nofile bh=wipe nonu nornu")
 
     vim.api.nvim_put(vim.split(contents, '\n'), "", true, true)
+    require("essentials.utils").set_quit_maps()
 end
 
 --> Using `K` for docs related popups

@@ -10,24 +10,26 @@ require("lazy").setup({
 
     -->  Testing and temporary
     { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=true },
-    { 'simrat39/rust-tools.nvim', ft='rust', config=true },
     { 'danymat/neogen', config=true, cmd="Neogen" },
 
     -->  Might use in future
+    -- { 'ja-ford/delaytrain.nvim', config={delay_ms=1000, grace_period=5} },
+    -- { 'akinsho/flutter-tools.nvim', config=true },
+    -- { 'sindrets/diffview.nvim' },
+    -- { 'simrat39/rust-tools.nvim', ft='rust', config=true },
     -- { 'antoinemadec/FixCursorHold.nvim' },
-    -- { 'ja-ford/delaytrain.nvim', config=_setup("delaytrain") }
     -- { 'antonk52/bad-practices.nvim', config=_setup("bad_practices") }
-    -- { 'kwakzalver/duckytype.nvim', config=_setup("duckytype") }
-    -- { 'Maan2003/lsp_lines.nvim', config=_setup("lsp_lines"), event='DiagnosticChanged' }
+    -- { 'kwakzalver/duckytype.nvim', config=true },
+    -- { 'Maan2003/lsp_lines.nvim', config=true, event='LspAttach' },
     -- { 'kylechui/nvim-surround', config=_setup("nvim-surround") }
     -- { 'JASONews/glow-hover', config=_setup("glow-hover"), module="vim.lsp.buf" } -- TODO: pr for cmp docs too
     -- { 'folke/zen-mode.nvim', config=_setup("zen-mode"), cmd="ZenMode" }
     -- { 'folke/neodev.nvim', ft="lua" }
 
     -->  My Useless lil plugins
-    -- { 'tamton-aquib/zone.nvim' }
-    -- { 'tamton-aquib/keys.nvim', config=_setup("keys"), cmd="KeysToggle"}
-    -- { 'tamton-aquib/duck.nvim' }
+    -- { 'tamton-aquib/zone.nvim' },
+    -- { 'tamton-aquib/keys.nvim', config=_setup("keys"), cmd="KeysToggle"},
+    -- { 'tamton-aquib/duck.nvim' },
     { 'tamton-aquib/flirt.nvim', config=true, module=false },
     { 'tamton-aquib/stuff.nvim' },
     { "tamton-aquib/mpv.nvim", config={setup_widgets=true, timer={throttle=100}}, lazy=true },
@@ -39,13 +41,13 @@ require("lazy").setup({
     { 'kyazdani42/nvim-web-devicons', config=c.devicons, lazy=true },
     { 'norcalli/nvim-colorizer.lua', cmd="ColorizerToggle" },
     { 'lewis6991/gitsigns.nvim', config=true, event='BufReadPost' },
-    { 'kyazdani42/nvim-tree.lua', config=c.nvim_tree, lazy=true },
+    { 'kyazdani42/nvim-tree.lua', config=c.nvim_tree },
     { 'declancm/cinnamon.nvim', config=true, keys={'<C-u>', '<C-d>'} },
 
     -->  LSP and COMPLETION
     { 'neovim/nvim-lspconfig' },
-    { 'L3MON4D3/LuaSnip', config=c.luasnip, event="InsertEnter" },
-    { 'hrsh7th/nvim-cmp', config=function() require("_lsp").cmp() end, event={"InsertEnter", "CmdlineEnter"},
+    { 'L3MON4D3/LuaSnip', config=c.luasnip, event="InsertEnter", lazy=true },
+    { 'hrsh7th/nvim-cmp', config=function() require("_lsp").cmp() end, event={"InsertEnter", "CmdlineEnter", lazy=true},
         dependencies = {
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-nvim-lsp',
@@ -60,9 +62,12 @@ require("lazy").setup({
 
     -->  TELESCOPE, TREESITTER, NEORG
     { 'nvim-lua/plenary.nvim', lazy=true },
-    { 'nvim-telescope/telescope.nvim', config=c.telescope, lazy=true },
-    { 'nvim-treesitter/nvim-treesitter', config=c.treesitter, lazy=true }, --, event="BufRead" },
-    { 'nvim-neorg/neorg', ft="norg", config=c.neorg},
+    { 'nvim-telescope/telescope.nvim', config=c.telescope, lazy=true, cmd="Telescope" },
+    -- { 'nvim-treesitter/nvim-treesitter', config=c.treesitter, lazy=true }, --, event="BufRead" },
+    { 'nvim-treesitter/nvim-treesitter', config=c.treesitter, lazy=true },--  event="BufRead" },
+    -- { 'nvim-treesitter/nvim-treesitter', config=c.treesitter }, --, event="BufRead" },
+    -- { 'nvim-neorg/neorg', ft="norg", config=c.neorg },
+    { dir='~/STUFF/NEOVIM/neorg', ft="norg", config=c.neorg },
 
     -->  GENERAL PURPOSE
     { 'notjedi/nvim-rooter.lua', config=true },

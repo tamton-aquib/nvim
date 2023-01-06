@@ -101,7 +101,8 @@ M.neorg = function()
             ["core.norg.completion"] = { config={ engine="nvim-cmp" } },
             ["core.norg.concealer"] = { config={ dim_code_blocks={conceal=false} } },
             ["core.presenter"] = { config={ zen_mode = "zen-mode" } },
-            -- ["core.execute"] = {},
+            ["core.execute"] = {},
+            ["core.jupyter"] = {},
             -- ["core.itero"] = {},
         }
     }
