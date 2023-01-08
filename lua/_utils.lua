@@ -45,7 +45,7 @@ Util.splash_screen = function()
         [[         ░        ░ ░      ░     ░ ░            ░  ░  ]],
         [[                                 ░                    ]]
     }
-    if vim.api.nvim_buf_get_name(0) == "" then
+    if vim.api.nvim_buf_get_name(0) == "" or #vim.v.argv <= 2 then
         vim.api.nvim_buf_set_option(0, 'bufhidden', 'wipe')
 
         vim.schedule(function()
