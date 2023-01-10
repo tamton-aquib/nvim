@@ -8,10 +8,6 @@ local c = require("_config")
 
 require("lazy").setup({
 
-    -->  Testing and temporary
-    { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=true },
-    { 'danymat/neogen', config=true, cmd="Neogen" },
-
     -->  Might use in future
     -- { 'ja-ford/delaytrain.nvim', config={delay_ms=1000, grace_period=5} },
     -- { 'akinsho/flutter-tools.nvim', config=true },
@@ -43,6 +39,7 @@ require("lazy").setup({
     { 'lewis6991/gitsigns.nvim', config=true, event='BufReadPost' },
     { 'kyazdani42/nvim-tree.lua', config=c.nvim_tree },
     { 'declancm/cinnamon.nvim', config=true, keys={'<C-u>', '<C-d>'} },
+    { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=true },
 
     -->  LSP and COMPLETION
     { 'neovim/nvim-lspconfig' },
@@ -63,13 +60,11 @@ require("lazy").setup({
     -->  TELESCOPE, TREESITTER, NEORG
     { 'nvim-lua/plenary.nvim', lazy=true },
     { 'nvim-telescope/telescope.nvim', config=c.telescope, lazy=true, cmd="Telescope" },
-    -- { 'nvim-treesitter/nvim-treesitter', config=c.treesitter, lazy=true }, --, event="BufRead" },
-    { 'nvim-treesitter/nvim-treesitter', config=c.treesitter, lazy=true },--  event="BufRead" },
-    -- { 'nvim-treesitter/nvim-treesitter', config=c.treesitter }, --, event="BufRead" },
-    -- { 'nvim-neorg/neorg', ft="norg", config=c.neorg },
+    { 'nvim-treesitter/nvim-treesitter', config=c.treesitter, lazy=true },
     { 'nvim-neorg/neorg', ft="norg", config=c.neorg },
 
     -->  GENERAL PURPOSE
+    { 'danymat/neogen', config=true, cmd="Neogen" },
     { 'notjedi/nvim-rooter.lua', config=true },
     { 'beauwilliams/focus.nvim', config=true, event="WinNew" },
     { 'windwp/nvim-autopairs', config=true, event="InsertEnter" },
