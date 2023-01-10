@@ -1,30 +1,22 @@
 local M = {}
-function M.stl(id) ({require("essentials").run_file, require("mpv").toggle_player})[id]() end
 
-M.mkdp = function() vim.g.mkdp_auto_close = 0 end
-
+function Bruh(id) ({require("essentials").run_file, require("mpv").toggle_player})[id]() end
 M.staline = function()
     -->              ⌬  | left   :           | right  :            | toggle:  
 
     vim.g.mpv_visualizer = "play"
-    vim.cmd [[fu! Bruh(a,b,c,d)
-        execute 'lua require"_config".stl('. a:a .')'
-    endfu]]
-
     require('stabline').setup {
         style='slant',
-        -- stab_end="%#Function#%1@Bruh@  run %X   %2@Bruh@  %{g:mpv_visualizer} %X      ",
-        stab_end="%#Function#%1@Bruh@  run %X     ",
+        stab_end="%#Function#%1@v:lua.Bruh@  run %X     ",
         stab_start = "%#Function#   ",
     }
 
     require("staline").setup {
         sections = {
             left = { '  ', 'mode', ' ', 'branch', '  ⌬  ', 'lsp' },
-            mid = { '%<', 'file_name' },
             right = {
                 function() return vim.b.bookmark or '' end,
-                '%2@Bruh@  %{g:mpv_visualizer} %X    ', '    %l/%L  :%c    ',
+                '%2@v:lua.Bruh@  %{g:mpv_visualizer} %X    ', '    %l/%L  :%c    ',
                 { 'Staline', function()
                     local chars = { "_", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" }
                     local line_ratio = vim.fn.line(".") / vim.api.nvim_buf_line_count(0)
@@ -38,16 +30,14 @@ M.staline = function()
             line_column = " [%l/%L] :%c  ",
             branch_symbol = " ",
         },
-        special_table = {
-            lazy = { 'Lazy', '💤' }
-        }
+        special_table = { lazy = { 'Lazy', '💤' } } -- not working for some reason
     }
 end
 
 M.devicons = function()
     require("nvim-web-devicons").setup { override={
         norg={icon="", color="#4878BE", name="neorg"},
-        rs={icon="🦀",name="Rss"}
+        rs={icon="🦀", name="rust"}
     }}
 end
 

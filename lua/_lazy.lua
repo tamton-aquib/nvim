@@ -28,9 +28,9 @@ require("lazy").setup({
 
     -->  My Useless lil plugins
     -- { 'tamton-aquib/zone.nvim' },
-    -- { 'tamton-aquib/keys.nvim', config=_setup("keys"), cmd="KeysToggle"},
+    -- { 'tamton-aquib/keys.nvim', config=true, cmd="KeysToggle"},
     -- { 'tamton-aquib/duck.nvim' },
-    { 'tamton-aquib/flirt.nvim', config=true, module=false },
+    { 'tamton-aquib/flirt.nvim', config=true },
     { 'tamton-aquib/stuff.nvim' },
     { "tamton-aquib/mpv.nvim", config={setup_widgets=true, timer={throttle=100}}, lazy=true },
     { 'tamton-aquib/staline.nvim', config=c.staline, event="ColorScheme" },
@@ -67,7 +67,7 @@ require("lazy").setup({
     { 'nvim-treesitter/nvim-treesitter', config=c.treesitter, lazy=true },--  event="BufRead" },
     -- { 'nvim-treesitter/nvim-treesitter', config=c.treesitter }, --, event="BufRead" },
     -- { 'nvim-neorg/neorg', ft="norg", config=c.neorg },
-    { dir='~/STUFF/NEOVIM/neorg', ft="norg", config=c.neorg },
+    { 'nvim-neorg/neorg', ft="norg", config=c.neorg },
 
     -->  GENERAL PURPOSE
     { 'notjedi/nvim-rooter.lua', config=true },

@@ -2,10 +2,8 @@ vim.g.mapleader = " "
 local function map(mode, key, func) vim.keymap.set(mode, key, func, {silent=true}) end
 
 -- TODO: later maybe (by duck from primes server)
--- vim.cmd [[
 -- nn + :vs<CR>:term ipython<CR><C-\><C-n><C-w><C-w>
 -- vn = "ay<C-w><C-w>"apa<CR><C-\><C-n><C-w><C-w>
--- ]]
 
 --> stuff.nvim maps (https://github.com/tamton-aquib/stuff.nvim)
 map('n', 'gC', function() require("calc").toggle() end)
@@ -20,7 +18,7 @@ map('n', '<C-p>', "<cmd>cprev<CR>")
 --> TEMP and TEST maps
 map('n', '<leader>l', function() require("essentials").toggle_term("lazygit", 't', true) end)
 map('n', '<leader>t', function() require("essentials").toggle_term("fish", 'v', true) end)
-map('n', '<leader>p', '<cmd>Lazy show<CR>')
+map('n', '<leader>p', '<cmd>Lazy<CR>')
 map('n', '<leader>ca', vim.lsp.buf.code_action)
 map('n', 'K', require("_utils").docs)
 map('t', '<C-n>', [[<C-\><C-n>]]) -- :sadkek:
@@ -52,7 +50,7 @@ map('n', '<leader>/' , ':lua require("essentials").toggle_comment()<CR>')
 map('n', '<F2>'      , function() require("essentials").rename() end)
 map('n', '<leader>r' , function() require("essentials").run_file() end)
 map('n', '<leader>s' , function() require("essentials").swap_bool() end)
-map('n', '<leader>w' , function() require("_utils").close_command() end)
+map('n', '<leader>w' , require("_utils").close_command)
 map('n', 'gx'        , function() require("essentials").go_to_url() end)
 map('n', '<leader>cs', function() require("essentials").cheat_sh() end)
 
