@@ -53,6 +53,7 @@ end
 
 M.tokyodark = function(t)
     vim.g.tokyodark_transparent_background = t and true or false
+    vim.g.tokyodark_enable_italic = false
     vim.cmd.colorscheme "tokyodark"
 end
 
@@ -87,7 +88,7 @@ M.telescope = function()
         defaults = {
             prompt_prefix = "   ", selection_caret = " ",
             sorting_strategy = "ascending", layout_config = { prompt_position = "top" },
-            file_ignore_patterns = {'__pycache__/', 'node_modules/', '%.lock', 'target/'},
+            file_ignore_patterns = {'__pycache__/', 'node_modules/', '%.lock', 'target/', '__pypackages__/'},
         }
     }
 end

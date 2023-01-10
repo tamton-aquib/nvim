@@ -11,7 +11,6 @@ require("lazy").setup({
     -->  Testing and temporary
     { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=true },
     { 'danymat/neogen', config=true, cmd="Neogen" },
-    { 'edluffy/hologram.nvim/', config=true },
 
     -->  Might use in future
     -- { 'ja-ford/delaytrain.nvim', config={delay_ms=1000, grace_period=5} },

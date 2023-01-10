@@ -1,5 +1,4 @@
-﻿
--->  General stuff
+﻿-->  General stuff
 require '_settings'
 require '_lazy'
 require '_autocmds'
