@@ -7,10 +7,12 @@ local opts = { performance = { rtp = { disabled_plugins = {
 local c = require("_config")
 
 require("lazy").setup({
+    -->  Temporary and testing
+    -- { 'sam4llis/nvim-tundra' },
+    -- { 'akinsho/flutter-tools.nvim', config=true },
 
     -->  Might use in future
     -- { 'ja-ford/delaytrain.nvim', config={delay_ms=1000, grace_period=5} },
-    -- { 'akinsho/flutter-tools.nvim', config=true },
     -- { 'sindrets/diffview.nvim' },
     -- { 'simrat39/rust-tools.nvim', ft='rust', config=true },
     -- { 'antoinemadec/FixCursorHold.nvim' },
@@ -37,7 +39,7 @@ require("lazy").setup({
     { 'kyazdani42/nvim-web-devicons', config=c.devicons, lazy=true },
     { 'norcalli/nvim-colorizer.lua', cmd="ColorizerToggle" },
     { 'lewis6991/gitsigns.nvim', config=true, event='BufReadPost' },
-    { 'kyazdani42/nvim-tree.lua', config=c.nvim_tree },
+    { 'kyazdani42/nvim-tree.lua', config=c.nvim_tree, lazy=true },
     { 'declancm/cinnamon.nvim', config=true, keys={'<C-u>', '<C-d>'} },
     { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=true },
 

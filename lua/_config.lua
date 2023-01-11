@@ -1,14 +1,15 @@
 local M = {}
 
 function Bruh(id) ({require("essentials").run_file, require("mpv").toggle_player})[id]() end
+local lvar = 1
 M.staline = function()
     -->              ⌬  | left   :           | right  :            | toggle:  
 
     vim.g.mpv_visualizer = "play"
     require('stabline').setup {
-        style='slant',
-        stab_end="%#Function#%1@v:lua.Bruh@  run %X     ",
-        stab_start = "%#Function#   ",
+        style='bar',
+        stab_end="%#Function#%1@v:lua.Bruh@   run %X     ",
+        stab_start = "%#Function#    ",
     }
 
     require("staline").setup {
@@ -16,7 +17,16 @@ M.staline = function()
             left = { '  ', 'mode', ' ', 'branch', '  ⌬  ', 'lsp' },
             right = {
                 function() return vim.b.bookmark or '' end,
-                '%2@v:lua.Bruh@  %{g:mpv_visualizer} %X    ', '    %l/%L  :%c    ',
+                '%2@v:lua.Bruh@  %{g:mpv_visualizer} %X    ',
+                function()
+                    local chars = { "∙∙∙", "●∙∙", "∙●∙", "∙∙●", "∙∙∙" }
+                    local p = vim.lsp.util.get_progress_messages()[1]
+                    if not p then return '' end
+
+                    lvar = (lvar + 1) % #chars
+                    return ("%#Function#" .. chars[lvar+1]) or ""
+                end,
+                '    %l/%L  :%c    ',
                 { 'Staline', function()
                     local chars = { "_", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" }
                     local line_ratio = vim.fn.line(".") / vim.api.nvim_buf_line_count(0)
@@ -37,7 +47,7 @@ end
 M.devicons = function()
     require("nvim-web-devicons").setup { override={
         norg={icon="", color="#4878BE", name="neorg"},
-        rs={icon="🦀", name="rust"}
+        rs={icon="🦀", name="Rss"}
     }}
 end
 
@@ -92,9 +102,8 @@ M.neorg = function()
             ["core.norg.completion"] = { config={ engine="nvim-cmp" } },
             ["core.norg.concealer"] = { config={ dim_code_blocks={conceal=false} } },
             ["core.presenter"] = { config={ zen_mode = "zen-mode" } },
-            ["core.execute"] = {},
-            ["core.jupyter"] = {},
-            -- ["core.itero"] = {},
+            -- ["core.execute"] = {}, ["core.jupyter"] = {},
+            ["core.itero"] = {},
         }
     }
 end

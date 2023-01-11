@@ -20,8 +20,8 @@ set.wrap = false
 set.ruler = false
 set.conceallevel = 2
 set.mouse = "a"
-set.encoding = "UTF-8"
-set.fileencoding = "UTF-8"
+-- set.encoding = "UTF-8"
+-- set.fileencoding = "UTF-8"
 set.scrolloff = 5
 set.timeoutlen = 300
 set.updatetime = 300
@@ -74,7 +74,7 @@ set.guifont = "JetBrainsMonoNerdFontComplete Nerd Font:h9"
 -- set.guifont = "Operator Mono Lig Book:h10"
 set.wildignore = { '*.pyc,__pycache__,node_modules,*.lock' }
 set.fillchars:append({eob=' ', fold=' ', foldopen="", foldsep=" ", foldclose=""})
-set.shortmess:append({c=true, s=true, A=true, W=true})
+set.shortmess:append({c=true, s=true, A=true, W=true, I=true})
 set.iskeyword:append('-')
 
 vim.schedule(function()

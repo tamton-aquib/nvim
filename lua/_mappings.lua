@@ -8,6 +8,7 @@ local function map(mode, key, func) vim.keymap.set(mode, key, func, {silent=true
 --> stuff.nvim maps (https://github.com/tamton-aquib/stuff.nvim)
 map('n', 'gC', function() require("calc").toggle() end)
 map('n', 'gS', function() require("stalk").stalk() end)
+map('n', 'gs', function() require("scratch").toggle() end)
 map('n', 'gB', function() require("bt").toggle() end)
 map('n', 'gT', function() require("tmpclone").clone() end)
 map('n', 'gp', function() require("mpv").toggle_player() end)
@@ -22,7 +23,6 @@ map('n', '<leader>p', '<cmd>Lazy<CR>')
 map('n', '<leader>ca', vim.lsp.buf.code_action)
 map('n', 'K', require("_utils").docs)
 map('t', '<C-n>', [[<C-\><C-n>]]) -- :sadkek:
-map('n', 'Q', '@q')
 map('n', 'gh', function() vim.cmd(":h "..vim.fn.expand('<cword>')) end)
 
 --> General Mappings
