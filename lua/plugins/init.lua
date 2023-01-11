@@ -1,12 +1,13 @@
-local opts = { performance = { rtp = { disabled_plugins = {
-    "python3_provider", "node_provider", "2html_plugin", "getscript", "getscriptPlugin",
-    "gzip", "matchit", "tar", "tarPlugin", "rrhelper", "spellfile_plugin", "vimball",
-    "vimballPlugin", "zip", "zipPlugin", "tutor", "rplugin", "spellfile", "tarPlugin",
-    "man", "logiPat", "netrwSettings", "netrwFileHandlers", "remote_plugins"
-}}}}
+-- local opts = { performance = { rtp = { disabled_plugins = {
+    -- "python3_provider", "node_provider", "2html_plugin", "getscript", "getscriptPlugin",
+    -- "gzip", "matchit", "tar", "tarPlugin", "rrhelper", "spellfile_plugin", "vimball",
+    -- "vimballPlugin", "zip", "zipPlugin", "tutor", "rplugin", "spellfile", "tarPlugin",
+    -- "man", "logiPat", "netrwSettings", "netrwFileHandlers", "remote_plugins"
+-- }}}}
 local c = require("_config")
 
-require("lazy").setup({
+-- require("lazy").setup({
+return {
     -->  Temporary and testing
     -- { 'sam4llis/nvim-tundra' },
     -- { 'akinsho/flutter-tools.nvim', config=true },
@@ -72,5 +73,5 @@ require("lazy").setup({
     { 'windwp/nvim-autopairs', config=true, event="InsertEnter" },
     { 'lewis6991/impatient.nvim' },
     { 'toppair/peek.nvim', ft="markdown", build='deno task --quiet build:fast', config=true },
-    { 'lukas-reineke/indent-blankline.nvim', config={show_current_context=true, char='▏'}, event='BufReadPost'  },
-}, opts)
+    { 'lukas-reineke/indent-blankline.nvim', config={show_current_context=true, char='▏'}, event='BufReadPost'  },}
+-- }, opts)

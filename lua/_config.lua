@@ -7,7 +7,7 @@ M.staline = function()
 
     vim.g.mpv_visualizer = "play"
     require('stabline').setup {
-        style='bar',
+        style='slant',
         stab_end="%#Function#%1@v:lua.Bruh@   run %X     ",
         stab_start = "%#Function#    ",
     }
