@@ -1,4 +1,3 @@
-vim.g.mapleader = " "
 local gline, buf
 local plugin_list = {}
 local curl = require("plenary.curl")
