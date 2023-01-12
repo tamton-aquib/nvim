@@ -26,7 +26,7 @@ return {
     -- { 'folke/neodev.nvim', ft="lua" }
 
     -->  My Useless lil plugins
-    -- { 'tamton-aquib/zone.nvim' },
+    -- { 'tamton-aquib/zone.nvim', config=true },
     -- { 'tamton-aquib/keys.nvim', config=true, cmd="KeysToggle"},
     -- { 'tamton-aquib/duck.nvim' },
     { 'tamton-aquib/flirt.nvim', config=true },

@@ -10,7 +10,6 @@
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
   "cmp_luasnip": { "branch": "master", "commit": "18095520391186d634a0045dacaa346291096566" },
   "crates.nvim": { "branch": "main", "commit": "d8657ee78e0c5cb47d4ed87aae11047af03491b9" },
-  "duck.nvim": { "branch": "main", "commit": "b1a3b4e52eec886bf4ce5ed692a2162d504d9632" },
   "essentials.nvim": { "branch": "main", "commit": "97d5c32df4336725c281977fb1798edf4f94623e" },
   "flirt.nvim": { "branch": "main", "commit": "6761f1b198b1c8c246bbafeb0d380a72d34dbc95" },
   "focus.nvim": { "branch": "master", "commit": "3d9df42aa4f9b572348418207b752f81adea09a5" },
