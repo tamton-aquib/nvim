@@ -1,12 +1,15 @@
--- local opts = { performance = { rtp = { disabled_plugins = {
-    -- "python3_provider", "node_provider", "2html_plugin", "getscript", "getscriptPlugin",
-    -- "gzip", "matchit", "tar", "tarPlugin", "rrhelper", "spellfile_plugin", "vimball",
-    -- "vimballPlugin", "zip", "zipPlugin", "tutor", "rplugin", "spellfile", "tarPlugin",
-    -- "man", "logiPat", "netrwSettings", "netrwFileHandlers", "remote_plugins"
--- }}}}
+local path = vim.fn.stdpath("config") .. "/plugins.json"
 local c = require("_config")
 
-return {
+local installer_plugins
+local fi = io.open(path, "r")
+if fi ~= nil then
+    local local_content = fi:read("*a")
+    installer_plugins = vim.json.decode(local_content)
+    fi:close()
+end
+
+local real_plugins = {
     -->  Temporary and testing
     -- { 'ray-x/aurora' },
     -- { 'sam4llis/nvim-tundra' },
@@ -79,5 +82,12 @@ return {
     { 'windwp/nvim-autopairs', config=true, event="InsertEnter" },
     { 'lewis6991/impatient.nvim' },
     { 'toppair/peek.nvim', ft="markdown", build='deno task --quiet build:fast', config=true },
-    { 'lukas-reineke/indent-blankline.nvim', config={show_current_context=true, char='▏'}, event='BufReadPost'  },}
--- }, opts)
+    { 'lukas-reineke/indent-blankline.nvim', config={show_current_context=true, char='▏'}, event='BufReadPost'  },
+}
+
+require("lazy").setup(vim.tbl_deep_extend("keep", real_plugins, installer_plugins), { performance = { rtp = { disabled_plugins = {
+    "python3_provider", "node_provider", "2html_plugin", "getscript", "getscriptPlugin",
+    "gzip", "matchit", "tar", "tarPlugin", "rrhelper", "spellfile_plugin", "vimball",
+    "vimballPlugin", "zip", "zipPlugin", "tutor", "rplugin", "spellfile", "tarPlugin",
+    "man", "logiPat", "netrwSettings", "netrwFileHandlers", "remote_plugins"
+}}}})

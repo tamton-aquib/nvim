@@ -15,7 +15,6 @@
   "flirt.nvim": { "branch": "main", "commit": "93eefd618963335242046e3336e6003082f2971c" },
   "focus.nvim": { "branch": "master", "commit": "3d9df42aa4f9b572348418207b752f81adea09a5" },
   "gitsigns.nvim": { "branch": "main", "commit": "7b37bd5c2dd4d7abc86f2af096af79120608eeca" },
-  "hologram.nvim": { "branch": "main", "commit": "f5194f71ec1578d91b2e3119ff08e574e2eab542" },
   "impatient.nvim": { "branch": "main", "commit": "c90e273f7b8c50a02f956c24ce4804a47f18162e" },
   "indent-blankline.nvim": { "branch": "master", "commit": "c4c203c3e8a595bc333abaf168fcb10c13ed5fb7" },
   "lazy.nvim": { "branch": "main", "commit": "96d759d1cbd8b0bd0ea0a0c2987f99410272f348" },
@@ -35,5 +34,6 @@
   "staline.nvim": { "branch": "main", "commit": "b23465ca5f1d91617b36a78fd736cf193ab4804c" },
   "stuff.nvim": { "branch": "main", "commit": "eb80328939b6acdb841a510441efd50cec02fe63" },
   "telescope.nvim": { "branch": "master", "commit": "2f32775405f6706348b71d0bb8a15a22852a61e4" },
-  "tokyodark.nvim": { "branch": "master", "commit": "9e940a11935b61da2fc2a170adca7b67eebcdc45" }
+  "tokyodark.nvim": { "branch": "master", "commit": "9e940a11935b61da2fc2a170adca7b67eebcdc45" },
+  "zone.nvim": { "branch": "main", "commit": "0a0e13bfe24c02cd058fe837d5650ffce68365bf" }
 }

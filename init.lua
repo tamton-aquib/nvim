@@ -3,7 +3,7 @@
 require '_settings'
 require '_autocmds'
 require '_mappings'
-require 'lazy' .setup("plugins")
+require '_lazy'
 
 -->  UI and LSP
 require '_nice'
