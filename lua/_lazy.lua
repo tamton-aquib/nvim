@@ -11,18 +11,14 @@ end
 
 local real_plugins = {
     -->  Temporary and testing
-    -- { 'ray-x/aurora' },
-    -- { 'sam4llis/nvim-tundra' },
-    -- { 'sainnhe/gruvbox-material' },
-    -- { 'akinsho/flutter-tools.nvim', config=true },
     { 'edluffy/hologram.nvim', config=true },
-    -- { 'tamton-aquib/zone.nvim', config=true },
+    { 'antoinemadec/FixCursorHold.nvim' },
 
     -->  Might use in future
+    -- { 'akinsho/flutter-tools.nvim', config=true },
     -- { 'ja-ford/delaytrain.nvim', config={delay_ms=1000, grace_period=5} },
     -- { 'sindrets/diffview.nvim' },
     -- { 'simrat39/rust-tools.nvim', ft='rust', config=true },
-    { 'antoinemadec/FixCursorHold.nvim' },
     -- { 'antonk52/bad-practices.nvim', config=_setup("bad_practices") }
     -- { 'kwakzalver/duckytype.nvim', config=true },
     -- { 'Maan2003/lsp_lines.nvim', config=true, event='LspAttach' },
@@ -70,8 +66,8 @@ local real_plugins = {
     { 'nvim-lua/plenary.nvim', lazy=true },
     { 'nvim-telescope/telescope.nvim', config=c.telescope, lazy=true, cmd="Telescope" },
     { 'nvim-treesitter/nvim-treesitter', config=c.treesitter, lazy=true },
-    -- { dir='~/STUFF/NEOVIM/neorg', ft="norg", config=c.neorg },
     { 'nvim-neorg/neorg', ft="norg", config=c.neorg },
+    -- { dir='~/STUFF/NEOVIM/neorg', ft="norg", config=c.neorg },
     -- { dir='~/STUFF/NEOVIM/neorg-jupyter' },
     -- { dir='~/STUFF/NEOVIM/neorg-image' },
 

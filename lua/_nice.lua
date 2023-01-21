@@ -1,3 +1,4 @@
+-- TODO: too ugly, cant change rn
 local gline, buf
 local plugin_list = {}
 local curl = require("plenary.curl")
