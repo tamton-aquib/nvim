@@ -7,7 +7,7 @@ Util.norging_time = function()
     local f, hl = require("nvim-web-devicons").get_icon(file, "norg", {})
     vim.opt.tabline = ("%%#Normal#%%=%%#%s#%s%%#Normal# %s%%="):format(hl, f, file)
     vim.opt.winbar = "%="..("▔"):rep(vim.o.columns - (2*18)).."%="
-    vim.loop.new_timer():start(1000, 10000, vim.schedule_wrap(function() vim.cmd[[silent! w]] end))
+    -- vim.loop.new_timer():start(1000, 10000, vim.schedule_wrap(function() vim.cmd[[silent! w]] end))
 end
 
 Util.mess = function()

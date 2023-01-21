@@ -20,6 +20,7 @@ set.wrap = false
 set.ruler = false
 set.conceallevel = 2
 set.mouse = "a"
+set.showcmd = false
 -- set.encoding = "UTF-8"
 -- set.fileencoding = "UTF-8"
 set.scrolloff = 5

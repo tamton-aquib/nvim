@@ -4,6 +4,7 @@ local au = function(events, ptn, cb) vim.api.nvim_create_autocmd(events, {patter
 
 -->  NEW
 au("LspAttach", "*", function(a) vim.lsp.get_client_by_id(a.data.client_id).server_capabilities.semanticTokensProvider=nil end)
+au("FileType", "norg", "setl nonu nornu signcolumn=yes:4")
 
 -->  LSP Related
 au("BufWritePre", "*.js,*.jsx,*.ts,*.tsx", function() vim.lsp.buf.format() end)
@@ -12,8 +13,8 @@ au("CursorHold", "*", vim.diagnostic.open_float)
 
 -->  OLD
 au("FileType", "json", function() vim.opt_local.cole=0 end)
-au("BufReadPost", "_lazy.lua,init.lua", [[call matchadd("Keyword", "--> \\zs.*\\ze$")]])
-au("FileType", "markdown,norg", function() vim.opt_local.spell=true end)
+au("BufReadPost", "lazy.lua,init.lua", [[call matchadd("Keyword", "--> \\zs.*\\ze$")]])
+au("FileType", "markdown", function() vim.opt_local.spell=true end)
 au("BufEnter", "*", 'setl fo-=cro')
 au("BufReadPost", "*", function() require("essentials").last_place() end)
 au("TextYankPost", "*", function() vim.highlight.on_yank({higroup="Visual", timeout=200}) end)

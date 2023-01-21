@@ -10,6 +10,8 @@ M.staline = function()
         style='slant',
         stab_end="%#Function#%1@v:lua.Bruh@   run %X     ",
         stab_start = "%#Function#    ",
+        inactive_fg = "#a0a7ca",
+        fg = "#986fec"
     }
 
     require("staline").setup {
@@ -102,8 +104,10 @@ M.neorg = function()
             ["core.norg.completion"] = { config={ engine="nvim-cmp" } },
             ["core.norg.concealer"] = { config={ dim_code_blocks={conceal=false} } },
             ["core.presenter"] = { config={ zen_mode = "zen-mode" } },
-            -- ["core.execute"] = {}, ["core.jupyter"] = {},
             ["core.itero"] = {},
+            -- ["external.jupyter"] = {},
+            -- ["external.image"] = {},
+            -- ["core.execute"] = {},
         }
     }
 end
