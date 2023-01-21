@@ -104,5 +104,9 @@ local remove_picker = function()
     vim.keymap.set({"i", "n"}, "<CR>", remove_selected_plugin, { buffer=buf })
 end
 
-vim.keymap.set('n', '<leader>k', install_picker, {})
-vim.keymap.set('n', '<leader>o', remove_picker, {})
+local init_installer = function()
+    vim.keymap.set('n', '<leader>k', install_picker, {})
+    vim.keymap.set('n', '<leader>o', remove_picker, {})
+end
+
+return {init=init_installer}

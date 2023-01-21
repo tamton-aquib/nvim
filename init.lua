@@ -6,8 +6,8 @@ require '_mappings'
 require '_lazy'
 
 -->  UI and LSP
-require '_nice'
-require('_utils').splash_screen()
-require('_config').tokyodark(false)
-require('_lsp').init()
-require('_lsp').setup_servers()
+require '_utils'  .splash_screen()
+require '_config' .tokyodark(false)
+require '_lsp'    .init()
+require '_lsp'    .setup_servers()
+require '_nice'   .init()

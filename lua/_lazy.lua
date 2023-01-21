@@ -1,20 +1,12 @@
 local path = vim.fn.stdpath("config") .. "/plugins.json"
 local c = require("_config")
 
-local installer_plugins
-local fi = io.open(path, "r")
-if fi ~= nil then
-    local local_content = fi:read("*a")
-    installer_plugins = vim.json.decode(local_content)
-    fi:close()
-end
-
 local real_plugins = {
     -->  Temporary and testing
-    { 'edluffy/hologram.nvim', config=true },
     { 'antoinemadec/FixCursorHold.nvim' },
 
     -->  Might use in future
+    -- { 'edluffy/hologram.nvim', config=true },
     -- { 'akinsho/flutter-tools.nvim', config=true },
     -- { 'ja-ford/delaytrain.nvim', config={delay_ms=1000, grace_period=5} },
     -- { 'sindrets/diffview.nvim' },
@@ -80,6 +72,14 @@ local real_plugins = {
     { 'toppair/peek.nvim', ft="markdown", build='deno task --quiet build:fast', config=true },
     { 'lukas-reineke/indent-blankline.nvim', config={show_current_context=true, char='▏'}, event='BufReadPost'  },
 }
+
+local installer_plugins
+local fi = io.open(path, "r")
+if fi ~= nil then
+    local local_content = fi:read("*a")
+    installer_plugins = vim.json.decode(local_content)
+    fi:close()
+end
 
 require("lazy").setup(vim.tbl_deep_extend("keep", real_plugins, installer_plugins), { performance = { rtp = { disabled_plugins = {
     "python3_provider", "node_provider", "2html_plugin", "getscript", "getscriptPlugin",
