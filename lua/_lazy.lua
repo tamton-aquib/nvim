@@ -61,9 +61,9 @@ local real_plugins = {
     { 'nvim-telescope/telescope.nvim', config=c.telescope, lazy=true, cmd="Telescope" },
     { 'nvim-treesitter/nvim-treesitter', config=c.treesitter, lazy=true },
     -- { 'nvim-neorg/neorg', ft="norg", config=c.neorg },
-    { '~/STUFF/NEOVIM/neorg', ft="norg", config=c.neorg },
-    { '~/STUFF/NEOVIM/neorg-jupyter' },
-    { '~/STUFF/NEOVIM/neorg-image' },
+    { dir='~/STUFF/NEOVIM/neorg', ft="norg", config=c.neorg },
+    { dir='~/STUFF/NEOVIM/neorg-jupyter' },
+    { dir='~/STUFF/NEOVIM/neorg-image' },
 
     -->  GENERAL PURPOSE
     { 'danymat/neogen', config={snippet_engine="luasnip"}, cmd="Neogen" },
