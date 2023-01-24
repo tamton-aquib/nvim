@@ -3,9 +3,11 @@ local c = require("_config")
 
 local real_plugins = {
     -->  Temporary and testing
+    { 'edluffy/hologram.nvim' },
     { 'antoinemadec/FixCursorHold.nvim' },
 
     -->  Might use in future
+    -- { 'nvim-treesitter/playground' },
     -- { 'edluffy/hologram.nvim', config=true },
     -- { 'akinsho/flutter-tools.nvim', config=true },
     -- { 'ja-ford/delaytrain.nvim', config={delay_ms=1000, grace_period=5} },
@@ -20,9 +22,9 @@ local real_plugins = {
     -- { 'folke/neodev.nvim', ft="lua" }
 
     -->  My Useless lil plugins
-    -- { dir='~/STUFF/IDK/zone.nvim' },
     -- { 'tamton-aquib/keys.nvim', config=true, cmd="KeysToggle"},
     -- { 'tamton-aquib/duck.nvim' },
+    -- { 'tamton-aquib/zone.nvim', config={style='epilepsy'} },
     { 'tamton-aquib/flirt.nvim', config=true },
     { 'tamton-aquib/stuff.nvim' },
     { "tamton-aquib/mpv.nvim", config={setup_widgets=true, timer={throttle=100}}, lazy=true },
@@ -34,7 +36,7 @@ local real_plugins = {
     { 'nvim-tree/nvim-web-devicons', config=c.devicons, lazy=true },
     { 'norcalli/nvim-colorizer.lua', cmd="ColorizerToggle" },
     { 'lewis6991/gitsigns.nvim', config=true, event='BufReadPost' },
-    { 'kyazdani42/nvim-tree.lua', config=c.nvim_tree, lazy=true },
+    { 'nvim-tree/nvim-tree.lua', config=c.nvim_tree, lazy=true },
     { 'declancm/cinnamon.nvim', config=true, keys={'<C-u>', '<C-d>'} },
     { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=true },
 
@@ -58,13 +60,13 @@ local real_plugins = {
     { 'nvim-lua/plenary.nvim', lazy=true },
     { 'nvim-telescope/telescope.nvim', config=c.telescope, lazy=true, cmd="Telescope" },
     { 'nvim-treesitter/nvim-treesitter', config=c.treesitter, lazy=true },
-    { 'nvim-neorg/neorg', ft="norg", config=c.neorg },
-    -- { dir='~/STUFF/NEOVIM/neorg', ft="norg", config=c.neorg },
-    -- { dir='~/STUFF/NEOVIM/neorg-jupyter' },
-    -- { dir='~/STUFF/NEOVIM/neorg-image' },
+    -- { 'nvim-neorg/neorg', ft="norg", config=c.neorg },
+    { '~/STUFF/NEOVIM/neorg', ft="norg", config=c.neorg },
+    { '~/STUFF/NEOVIM/neorg-jupyter' },
+    { '~/STUFF/NEOVIM/neorg-image' },
 
     -->  GENERAL PURPOSE
-    { 'danymat/neogen', config=true, cmd="Neogen" },
+    { 'danymat/neogen', config={snippet_engine="luasnip"}, cmd="Neogen" },
     { 'notjedi/nvim-rooter.lua', config=true },
     { 'beauwilliams/focus.nvim', config=true, event="WinNew" },
     { 'windwp/nvim-autopairs', config=true, event="InsertEnter" },
@@ -81,7 +83,8 @@ if fi ~= nil then
     fi:close()
 end
 
-require("lazy").setup(vim.tbl_deep_extend("keep", real_plugins, installer_plugins), { performance = { rtp = { disabled_plugins = {
+local bruh = vim.tbl_deep_extend("force", real_plugins, installer_plugins)
+require("lazy").setup(bruh, { performance = { rtp = { disabled_plugins = {
     "python3_provider", "node_provider", "2html_plugin", "getscript", "getscriptPlugin",
     "gzip", "matchit", "tar", "tarPlugin", "rrhelper", "spellfile_plugin", "vimball",
     "vimballPlugin", "zip", "zipPlugin", "tutor", "rplugin", "spellfile", "tarPlugin",

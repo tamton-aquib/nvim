@@ -4,6 +4,7 @@ local function map(mode, key, func) vim.keymap.set(mode, key, func, {silent=true
 -- TODO: later maybe (by duck from primes server)
 -- nn + :vs<CR>:term ipython<CR><C-\><C-n><C-w><C-w>
 -- vn = "ay<C-w><C-w>"apa<CR><C-\><C-n><C-w><C-w>
+map('c', 'jk', '<C-f><cmd>resize -20<cr>')
 
 --> stuff.nvim maps (https://github.com/tamton-aquib/stuff.nvim)
 map('n', 'gC', function() require("calc").toggle() end)
