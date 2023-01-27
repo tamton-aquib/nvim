@@ -52,7 +52,7 @@ set.foldlevelstart = 10
 vim.opt.foldtext = 'v:lua.require("essentials").simple_fold()'
 
 --> Visual settings?
-set.pumblend = 5
+set.pumblend = 20
 set.inccommand = "split"
 set.termguicolors = true
 set.background = "dark"
@@ -71,7 +71,8 @@ set.breakindent = true
 
 --> Misc settings
 set.signcolumn = "yes:1"
-set.guifont = "JetBrainsMonoNerdFontComplete Nerd Font:h9"
+-- set.guifont = "JetBrainsMonoNerdFontComplete Nerd Font:h9"
+set.guifont = "Source Code Pro Medium:h10"
 -- set.guifont = "Operator Mono Lig Book:h10"
 set.wildignore = { '*.pyc,__pycache__,node_modules,*.lock' }
 set.fillchars:append({eob=' ', fold=' ', foldopen="", foldsep=" ", foldclose=""})

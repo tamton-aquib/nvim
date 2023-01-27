@@ -12,12 +12,14 @@ M.staline = function()
         stab_start = "%#Function#    ",
         inactive_fg = "#a0a7ca",
         fg = "#986fec",
+        exclude_filetypes = {'oil'}
     }
 
     require("staline").setup {
         sections = {
-            left = { '  ', 'mode', ' ', 'branch', '  ⌬  ', 'lsp' },
+            left = { '  ', 'mode', ' ', 'branch', '     ', 'lsp' },
             right = {
+                function() return vim.g.jupyter_norgbook and '%#Identifier# %#Staline#   ' or '' end,
                 function() return vim.b.bookmark or '' end,
                 '%2@v:lua.Bruh@  %{g:mpv_visualizer} %X    ',
                 function()
@@ -106,7 +108,6 @@ M.neorg = function()
             ["core.presenter"] = { config={ zen_mode = "zen-mode" } },
             ["core.itero"] = {},
             ["external.jupyter"] = {},
-            ["external.image"] = {},
             ["core.execute"] = {},
         }
     }

@@ -99,11 +99,10 @@ Util.close_command = function()
 end
 
 --> Different Kinds of Borders
-local borders = {
+Util.border = ({
     { "╒", "═", "╕", "│", "╛", "═", "╘", "│" },
     { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }
-}
-Util.border = borders[1]
+})[1]
 
 --> Custom telescope theme
 Util.telescope_theme = {
@@ -112,7 +111,7 @@ Util.telescope_theme = {
     sorting_strategy = "ascending",
     previewer = false,
     prompt_prefix = "      ",
-    winblend = 15,
+    winblend = 30,
     layout_config = { width = 0.6, height = 0.6 },
     borderchars = {
         preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },

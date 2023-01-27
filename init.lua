@@ -3,7 +3,7 @@
 require '_settings'
 require '_autocmds'
 require '_mappings'
-require '_lazy'
+require '_lazyness'
 
 -->  UI and LSP
 require '_utils'  .splash_screen()

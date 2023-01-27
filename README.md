@@ -24,9 +24,9 @@ My neovim config
 └──   lua
    ├──  _autocmds.lua
    ├──  _mappings.lua
-   ├──  _lazy.lua
-   ├──  _utils.lua
    ├──  _settings.lua
+   ├──  _lazyness.lua
+   ├──  _utils.lua
    ├──  _config.lua
    └──  _lsp.lua
 ```

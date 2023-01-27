@@ -4,29 +4,13 @@ local plugin_list = {}
 local curl = require("plenary.curl")
 local path = vim.fn.stdpath("config") .. "/plugins.json"
 
+-- NOTE: Kinda inefficient. Too lazy to do the normal way :(
 local actions = {
-    get = function()
-        local f = io.open(path, "r")
-        local obj
-        if f ~= nil then
-            local contents = f:read("*a")
-            obj = vim.json.decode(contents)
-            f:close()
-        else
-            vim.notify("Error reading the file!")
-            return
-        end
+    get = function() return vim.json.decode(table.concat(vim.fn.readfile(path))) end,
 
-        return obj
-    end,
     set = function(p)
-        local f = io.open(path, "w")
-        if f ~= nil then
-            local new_content = vim.fn.json_encode(p)
-            f:write(new_content)
-            vim.notify("Wrote changes to plugins.json!")
-            f:close()
-        end
+        vim.fn.writefile({vim.fn.json_encode(p)}, path)
+        vim.notify("Wrote changes to plugins.json!")
     end
 }
 
@@ -105,8 +89,8 @@ local remove_picker = function()
 end
 
 local init_installer = function()
-    vim.keymap.set('n', '<leader>k', install_picker, {})
-    vim.keymap.set('n', '<leader>o', remove_picker, {})
+    vim.keymap.set('n', '<leader>ii', install_picker, {})
+    vim.keymap.set('n', '<leader>iu', remove_picker, {})
 end
 
 return {init=init_installer}
