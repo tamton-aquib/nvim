@@ -7,17 +7,17 @@ M.staline = function()
 
     vim.g.mpv_visualizer = "play"
     require('stabline').setup {
-        style='slant',
-        stab_end="%#Function#%1@v:lua.Bruh@   run %X     ",
+        style='bar',
         stab_start = "%#Function#    ",
-        inactive_fg = "#a0a7ca",
-        fg = "#986fec",
-        exclude_filetypes = {'oil'}
+        stab_end="%#Function#%1@v:lua.Bruh@   run %X     ",
+        inactive_fg = "#a0a7ca", fg = "#986fec",
+        stab_left = '',
     }
 
     require("staline").setup {
         sections = {
-            left = { '  ', 'mode', ' ', 'branch', '     ', 'lsp' },
+            -- left = { '  ', 'mode', ' ', 'branch', '     ', 'lsp' },
+            left = { '  ', 'mode', ' ', 'branch', 'lsp' },
             right = {
                 function() return vim.g.jupyter_norgbook and '%#Identifier# %#Staline#   ' or '' end,
                 function() return vim.b.bookmark or '' end,
@@ -44,7 +44,7 @@ M.staline = function()
             line_column = " [%l/%L] :%c  ",
             branch_symbol = " ",
         },
-        special_table = { lazy = { 'Lazy', '💤' } } -- not working for some reason
+        -- special_table = { lazy = { 'Lazy', '💤' } } -- not working for some reason
     }
 end
 
@@ -107,8 +107,8 @@ M.neorg = function()
             ["core.norg.concealer"] = { config={ dim_code_blocks={conceal=false} } },
             ["core.presenter"] = { config={ zen_mode = "zen-mode" } },
             ["core.itero"] = {},
-            ["external.jupyter"] = {},
-            ["core.execute"] = {},
+            -- ["external.jupyter"] = {},
+            -- ["core.execute"] = {},
         }
     }
 end

@@ -38,7 +38,7 @@ local real_plugins = {
     -->  LSP and COMPLETION
     { 'neovim/nvim-lspconfig' },
     { 'L3MON4D3/LuaSnip', config=c.luasnip, event="InsertEnter", lazy=true },
-    { 'hrsh7th/nvim-cmp', config=function() require("_lsp").cmp() end, event={"InsertEnter", "CmdlineEnter", lazy=true},
+    { 'hrsh7th/nvim-cmp', config=function() require("_lsp").cmp() end, event={"InsertEnter", "CmdlineEnter"}, lazy=true,
         dependencies = {
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-nvim-lsp',
@@ -55,9 +55,9 @@ local real_plugins = {
     { 'nvim-lua/plenary.nvim', lazy=true },
     { 'nvim-telescope/telescope.nvim', config=c.telescope, lazy=true, cmd="Telescope" },
     { 'nvim-treesitter/nvim-treesitter', config=c.treesitter, lazy=true },
-    -- { 'nvim-neorg/neorg', ft="norg", config=c.neorg },
-    { dir='~/STUFF/NEOVIM/neorg', ft="norg", config=c.neorg },
-    { dir='~/STUFF/NEOVIM/neorg-jupyter' },
+    { 'nvim-neorg/neorg', ft="norg", config=c.neorg },
+    -- { dir='~/STUFF/NEOVIM/neorg', ft="norg", config=c.neorg },
+    -- { dir='~/STUFF/NEOVIM/neorg-jupyter' },
 
     -->  GENERAL PURPOSE
     { 'danymat/neogen', opts={snippet_engine="luasnip"}, cmd="Neogen" },

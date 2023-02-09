@@ -11,14 +11,14 @@ Lsp.cmp = function()
         Module = ' ', Property = ' ', Unit = ' ', Value = ' ', Enum = ' ', Keyword = ' ', Snippet = ' ', Color = ' ', File = ' ',
         Reference = ' ', Folder = ' ', EnumMember = ' ', Constant = ' ', Struct = ' ', Event = ' ', Operator = ' ', TypeParameter = ' ',
     }
+    for _, k in ipairs(vim.tbl_keys(kind_icons)) do vim.cmd("hi CmpItemKind"..k.." gui=reverse") end
 
     cmp.setup {
         formatting = {
             fields = { 'kind', 'abbr', 'menu' },
             format = function(_, item)
-                item.kind = kind_icons[item.kind] or " "
+                item.kind = (' '..kind_icons[item.kind]) or " "
                 -- item.menu = source_names[entry.source.name] or " "
-                item.menu = "  "
                 return item
             end
         },
@@ -64,8 +64,8 @@ Lsp.init = function()
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
     end
 
-    vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with( vim.lsp.handlers.hover, {border = border})
-    vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with( vim.lsp.handlers.signature_help, {border = border})
+    vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = border})
+    vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = border})
 
     vim.diagnostic.config({
         virtual_text = false,
@@ -89,7 +89,7 @@ Lsp.setup_servers = function()
     local s = {
         sumneko_lua={ settings={ Lua={ diagnostics={globals={'vim'}}, runtime={version="LuaJIT"}, } } },
         -- , path=runtime_path}, workspace = { library = vim.api.nvim_get_runtime_file('', true) },
-        pyright={}, tsserver={}, svelte={}, clangd={}, zls={}, rust_analyzer={}
+        pyright={}, tsserver={}, svelte={}, clangd={}, zls={}, rust_analyzer={}, jdtls={}
     }
 
     for server, opt in pairs(s) do
