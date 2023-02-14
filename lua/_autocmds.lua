@@ -13,7 +13,7 @@ au("CursorHold", "*", vim.diagnostic.open_float)
 
 -->  OLD
 au("FileType", "json", function() vim.opt_local.cole=0 end)
-au("BufReadPost", "lazy.lua,init.lua", [[call matchadd("Keyword", "--> \\zs.*\\ze$")]])
+au("BufReadPost", "*.lua", [[call matchadd("Keyword", "--> \\zs.*\\ze$")]])
 au("FileType", "markdown", function() vim.opt_local.spell=true end)
 au("BufEnter", "*", 'setl fo-=cro')
 au("BufReadPost", "*", function() require("essentials").last_place() end)

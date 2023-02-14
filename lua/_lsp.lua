@@ -22,7 +22,7 @@ Lsp.cmp = function()
                 return item
             end
         },
-        window = { documentation = { border = "shadow" } },
+        window = { documentation = { border = "shadow" }, completion={side_padding=0} },
         snippet = { expand=function(o) luasnip.lsp_expand(o.body) end },
 
         mapping = cmp.mapping.preset.insert {
@@ -87,9 +87,9 @@ Lsp.setup_servers = function()
     local lspconfig = require("lspconfig")
 
     local s = {
-        sumneko_lua={ settings={ Lua={ diagnostics={globals={'vim'}}, runtime={version="LuaJIT"}, } } },
-        -- , path=runtime_path}, workspace = { library = vim.api.nvim_get_runtime_file('', true) },
+        lua_ls={ settings={ Lua={ diagnostics={globals={'vim'}}, runtime={version="LuaJIT"}, } } },
         pyright={}, tsserver={}, svelte={}, clangd={}, zls={}, rust_analyzer={}, jdtls={}
+        -- path=runtime_path}, workspace = { library = vim.api.nvim_get_runtime_file('', true) },
     }
 
     for server, opt in pairs(s) do

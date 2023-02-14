@@ -65,9 +65,8 @@ local picker_base = function()
     buf = vim.api.nvim_create_buf(false, true)
     vim.cmd [[leftabove vsplit | vert resize 30]]
     vim.api.nvim_set_current_buf(buf)
-    vim.cmd [[set nonu nornu]]
+    vim.cmd [[set nonu nornu ft=lazy_search]]
     require("essentials.utils").set_quit_maps()
-    vim.bo[buf].ft = "lazy_search"
 end
 local install_picker = function()
     picker_base()

@@ -6,6 +6,7 @@ local real_plugins = {
     -- { 'antoinemadec/FixCursorHold.nvim' },
     -- { 'stevearc/oil.nvim', config=true },
     -- { 'toppair/reach.nvim', config=true },
+    -- {'edluffy/hologram.nvim'},
 
     -->  Might use in future
     -- { 'akinsho/flutter-tools.nvim', config=true },
@@ -55,7 +56,8 @@ local real_plugins = {
     { 'nvim-lua/plenary.nvim', lazy=true },
     { 'nvim-telescope/telescope.nvim', config=c.telescope, lazy=true, cmd="Telescope" },
     { 'nvim-treesitter/nvim-treesitter', config=c.treesitter, lazy=true },
-    { 'nvim-neorg/neorg', ft="norg", config=c.neorg },
+    -- { 'nvim-neorg/neorg', ft="norg", config=c.neorg },
+    { 'tamton-aquib/neorg', branch='code-execution', ft="norg", config=c.neorg },
     -- { dir='~/STUFF/NEOVIM/neorg', ft="norg", config=c.neorg },
     -- { dir='~/STUFF/NEOVIM/neorg-jupyter' },
 

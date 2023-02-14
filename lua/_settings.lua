@@ -2,6 +2,10 @@ local set = vim.opt
 local ok, impatient = pcall(require, 'impatient')
 if ok then impatient.enable_profile() end
 
+vim.g.neovide_confirm_quit = true
+vim.g.neovide_transparency = 0.7
+vim.g.neovide_remember_window_size = true
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
     print("Installing lazy.nvim...")
@@ -71,7 +75,8 @@ set.breakindent = true
 
 --> Misc settings
 set.signcolumn = "yes:1"
-set.guifont = "JetBrainsMono Nerd Font"
+-- set.guifont = "JetBrainsMono Nerd Font"
+set.guifont = "JetBrainsMonoNerdFontComplete Nerd Font"
 set.wildignore = { '*.pyc,__pycache__,node_modules,*.lock' }
 set.fillchars:append({eob=' ', fold=' ', foldopen="", foldsep=" ", foldclose=""})
 set.shortmess:append({c=true, s=true, A=true, W=true, I=true})

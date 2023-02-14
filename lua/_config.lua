@@ -11,7 +11,7 @@ M.staline = function()
         stab_start = "%#Function#    ",
         stab_end="%#Function#%1@v:lua.Bruh@   run %X     ",
         inactive_fg = "#a0a7ca", fg = "#986fec",
-        stab_left = '',
+        stab_left = '', exclude_fts = { 'terminal' }
     }
 
     require("staline").setup {
@@ -108,7 +108,7 @@ M.neorg = function()
             ["core.presenter"] = { config={ zen_mode = "zen-mode" } },
             ["core.itero"] = {},
             -- ["external.jupyter"] = {},
-            -- ["core.execute"] = {},
+            ["core.execute"] = {},
         }
     }
 end
