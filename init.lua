@@ -13,6 +13,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+
 local opts = {
     General = {
         exrc = true, spell = false, wrap = false, linebreak = true, ruler = false, conceallevel = 2,
@@ -49,6 +50,7 @@ local opts = {
 
 --> Apply the options
 for _, section in pairs(opts) do for k,v in pairs(section) do vim.opt[k] = v end end
+-- vim.opt.statuscolumn = "%s %{foldlevel(v:lnum) <= foldlevel(v:lnum-1) ? ' ' : (foldclosed(v:lnum) == -1 ? '' : '')} %{v:relnum ? v:relnum : v:lnum} "
 
 vim.schedule(function()
     local ess_status, essentials = pcall(require, "essentials")
@@ -72,16 +74,16 @@ function Tabline()
         local ext = vim.fn.fnamemodify(filename, ":p:e")
         local name = vim.fn.fnamemodify(filename, ":p:t")
         local icon, hl = require("nvim-web-devicons").get_icon(name, ext, {default=true})
-        return (vim.api.nvim_buf_is_loaded(buf) and not vim.tbl_contains({"TelescopePrompt"}, vim.bo[buf].ft) and filename ~= "") and
+        return (vim.api.nvim_buf_is_loaded(buf) and not vim.tbl_contains({"TelescopePrompt"}, vim.bo[buf].ft) and filename ~= "" and vim.bo[buf].buflisted) and
             "%#Normal#  " ..
             "%#".. hl .. "#"..
             icon .. " " ..
             (vim.api.nvim_get_current_buf() == buf and "%#Function#" or "%#Normal#")..
-            vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ":p:t")..
+            " "..vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ":p:t").." "..(vim.bo[buf].modified and "" or " ")..
             "%#Normal# "
         or ""
     end)
-    return "%#Normal# " .. table.concat(res:totable())
+    return "%#Normal#   " .. table.concat(res:totable())
 end
 Util.tab_line = function() vim.opt.tabline = '%!v:lua.Tabline()' end
 
@@ -94,7 +96,7 @@ Util.status_line = function()
         vim.g.mode_text = ({ n="", i="", c=" ", t=" ", v="", r="﯒", V="", [""]="" })[mode] or "nil?"
         vim.cmd("hi link NiceHighlight "..color)
     end })
-    vim.opt.statusline = "%#Normal#   %#NiceHighlight#%{g:mode_text}     %{g:gitsigns_head} %= %f %= [%l/%L] :%c       "
+    vim.opt.statusline = "%#Normal#   %#NiceHighlight#%{g:mode_text}     %{g:gitsigns_head} %= %t %= [%l/%L] :%c       "
 end
 
 Util.chatgpt = function()
@@ -207,8 +209,8 @@ Util.close_command = function()
         return vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_get_name(buf) ~= ""
     end, vim.api.nvim_list_bufs())
 
-    local quit_cmd = #vim.api.nvim_list_wins() > 1 and 'Q' or 'q'
-    vim.cmd(total == 1 and quit_cmd or 'bd')
+    -- local quit_cmd = #vim.api.nvim_list_wins() > 1 and 'Q' or 'q'
+    vim.cmd(total == 1 and 'q' or 'bd')
 end
 
 --> Different Kinds of Borders
@@ -244,12 +246,12 @@ end
 -- {{{ -- Autocmds
 
 --> Wrapper funcs
-local command = function(name, fn, desc) vim.api.nvim_create_user_command(name, fn, {desc=desc}) end
+local command = function(name, func, desc) vim.api.nvim_create_user_command(name, func, {desc=desc}) end
 local au = function(events, ptn, cb) vim.api.nvim_create_autocmd(events, {pattern=ptn, [type(cb)=="function" and 'callback' or 'command']=cb}) end
 
 -->  NEW
 au("LspAttach", "*", function(a) vim.lsp.get_client_by_id(a.data.client_id).server_capabilities.semanticTokensProvider=nil end)
-au("FileType", "norg", "setl nonu nornu signcolumn=yes:4")
+-- au("FileType", "norg", "setl nonu nornu signcolumn=yes:4")
 au({"BufReadPost", "FileType"}, "javascript", "setl ts=2 sw=2")
 
 -->  LSP Related
@@ -260,7 +262,7 @@ au("CursorHold", "*", vim.diagnostic.open_float)
 -->  OLD
 au("FileType", "json", function() vim.opt_local.cole=0 end)
 au("BufReadPost", "*.lua", [[call matchadd("Keyword", "--> \\zs.*\\ze$")]])
-au("FileType", "markdown", function() vim.opt_local.spell=true end)
+-- au("FileType", "markdown", function() vim.opt_local.spell=true end)
 au("BufEnter", "*", 'setl fo-=cro')
 au("BufReadPost", "*", function() require("essentials").last_place() end)
 au("TextYankPost", "*", function() vim.highlight.on_yank({higroup="Visual", timeout=200}) end)
@@ -272,6 +274,15 @@ command("X", ":silent !xset r rate 169 69", "Keyboards press-release rate.")
 command("PP", function() require("essentials").null_pointer() end, {range='%'})
 command("Mess", Util.mess, "Message to temp output buf.")
 command("Zen", Util.norging_time, "Norg zen-like mode.")
+command("PTC", function()
+    local w = math.floor(vim.o.columns/2)+1
+    local h = math.floor(vim.o.lines/2)+1
+    local buf = vim.api.nvim_create_buf(false, true)
+    vim.api.nvim_open_win(buf, true, {
+        style='minimal', relative='editor', width=w, height=h, row=(vim.o.lines-h)/2-1, col=(vim.o.columns-w)/2-1
+    })
+    vim.cmd.edit("~/neorg/IBM/PTC.norg")
+end, "Open PTC Todos in a float")
 -- vim.cmd [[syntax keyword Keyword lambda conceal cchar=λ]] -- TODO: (maybe with ts queries?)
 
 -- }}}
@@ -370,8 +381,9 @@ map('n', '<'        , '<<')
 
 -- {{{ -- Plug configs
 local cfg_retrobox = function(_)
+    -- vim.cmd(os.date("%H") >= 18 and 'retrobox' or 'peachpuff')
+    vim.cmd.colorscheme("retrobox")
     vim.cmd [[
-        colorscheme retrobox
         hi link GitSignsAdd String
         hi link GitSignsChange Identifier
         hi link GitSignsDelete Keyword
@@ -466,10 +478,9 @@ local cfg_telescope = {
 local cfg_neorg = {
     load = {
         ["core.defaults"] = {},
-        ["core.export"] = {},
-        ["core.export.markdown"] = {},
         ["core.completion"] = { config={ engine="nvim-cmp" } },
-        ["core.concealer"] = { config={ dim_code_blocks={conceal=false} } },
+        -- ["core.concealer"] = { config={ dim_code_blocks={conceal=false} } },
+        ["core.concealer"] = { config = { icon_preset = "diamond" }},
         ["core.presenter"] = { config={ zen_mode = "zen-mode" } },
         ["core.itero"] = {},
         ["external.exec"] = {},
@@ -497,12 +508,12 @@ local real_plugins = {
     -- { 'EdenEast/nightfox.nvim' },
     -- { 'gorbit99/codewindow.nvim', config=true },
     -- { 'Saecki/crates.nvim', event={'BufRead Cargo.toml'}, config=true },
-    -- { 'simrat39/rust-tools.nvim', ft='rust', config=true },
+    { 'simrat39/rust-tools.nvim', config=true },
     -- { 'Maan2003/lsp_lines.nvim', config=true, event='LspAttach' },
     -- { 'kylechui/nvim-surround', config=true }
 
     -->  My Useless lil plugins
-    { 'tamton-aquib/flirt.nvim', config=true },
+    -- { 'tamton-aquib/flirt.nvim', config=true },
     { 'tamton-aquib/stuff.nvim' },
     { 'tamton-aquib/essentials.nvim', lazy=true },
 
@@ -510,7 +521,7 @@ local real_plugins = {
     { 'nvim-tree/nvim-web-devicons', config=true, lazy=true },
     { 'norcalli/nvim-colorizer.lua', cmd="ColorizerToggle" },
     { 'lewis6991/gitsigns.nvim', config=true, event='BufReadPost' },
-    { 'nvim-tree/nvim-tree.lua', config={ renderer={ indent_markers={ enable=true } } }, lazy=true },
+    { 'nvim-tree/nvim-tree.lua', opts={ renderer={ indent_markers={ enable=true } } }, lazy=true },
     { 'declancm/cinnamon.nvim', config=true, keys={'<C-u>', '<C-d>'} },
 
     -->  LSP and COMPLETION
@@ -532,7 +543,7 @@ local real_plugins = {
     { 'nvim-lua/plenary.nvim', lazy=true },
     { 'nvim-telescope/telescope.nvim', config=cfg_telescope, lazy=true, cmd="Telescope" },
     { 'nvim-treesitter/nvim-treesitter', config=cfg_treesitter, lazy=true },
-    { 'nvim-neorg/neorg', ft="norg", config=cfg_neorg, dependencies={"laher/neorg-exec"} },
+    { 'nvim-neorg/neorg', ft="norg", opts=cfg_neorg, dependencies={"laher/neorg-exec"} },
 
     -->  GENERAL PURPOSE
     { 'danymat/neogen', opts={snippet_engine="luasnip"}, cmd="Neogen" },
@@ -562,7 +573,6 @@ require("lazy").setup(bruh, {
 
 local border = Util.border
 
--- local lsp_init = function()
 local signs = { Error = "", Warn  = "", Hint  = "", Info  = "", other = "﫠" }
 
 for name, icon in pairs(signs) do
@@ -575,16 +585,14 @@ vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.
 
 vim.diagnostic.config({
     virtual_text = false,
-    underline = {Error=true},
+    underline = { Error=true },
     float = {
         border = border, focusable = false, suffix = '',
         header = { "  Diagnostics", "String" },
-        prefix = function(_, _, _) return "  " , "String" end, -- icons:        ﬌  
+        prefix = function(_, _, _) return "  " , "String" end, -- icons:        ﬌  
     }
 })
--- end
 
--- local lsp_setup = function()
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
@@ -630,7 +638,6 @@ for server, opt in pairs(s) do
     opt.capabilities = capabilities
     lspconfig[server].setup(opt)
 end
--- end
 -- }}}
 
 -- {{{ -- MISC
@@ -649,7 +656,7 @@ end
 vim.api.nvim_create_autocmd("BufReadPost", {
     pattern = "init.lua",
     callback = function()
-        vim.cmd [[setl fdm=marker fdls=-1 fdl=0]]
+        vim.cmd [[setl fdm=marker fdls=-1 fdl=0 nonu nornu signcolumn=yes:2]]
         vim.opt.foldtext = 'v:lua.UnusualFolds()'
         local main_text = "-- [[ Noice ]] --"
         vim.api.nvim_buf_set_extmark(0, vim.api.nvim_create_namespace("taj0023"), 0, 0, {
