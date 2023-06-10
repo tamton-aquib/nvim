@@ -2,9 +2,6 @@
 
 
 -- {{{ -- Settings
-vim.g.neovide_confirm_quit = true
-vim.g.neovide_transparency = 0.7
-vim.g.neovide_remember_window_size = true
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -12,7 +9,6 @@ if not vim.loop.fs_stat(lazypath) then
     vim.fn.system({"git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim", lazypath})
 end
 vim.opt.rtp:prepend(lazypath)
-
 
 local opts = {
     General = {
@@ -138,17 +134,6 @@ Util.mess = function()
     require("essentials.utils").set_quit_maps()
 end
 
---> Centering an array of strings
-Util.center = function(dict)
-    local new_dict = {}
-    for _, v in pairs(dict) do
-        local padding = vim.fn.max(vim.fn.map(dict, 'strwidth(v:val)'))
-        local spacing = (" "):rep(math.floor((vim.o.columns - padding) / 2)) .. v
-        table.insert(new_dict, spacing)
-    end
-    return new_dict
-end
-
 --> Simple dashboard
 Util.splash_screen = function()
     local xdg = vim.fn.fnamemodify(vim.fn.stdpath("config"), ":h").."/"
@@ -158,8 +143,6 @@ Util.splash_screen = function()
 
         local GUICURSOR = vim.opt.guicursor:get()
         vim.schedule(function()
-            -- vim.fn.matchadd("Error", '[░▒]')
-            -- vim.fn.matchadd("Function", '[▓█▄▀▐▌]')
             local buf = vim.api.nvim_create_buf(false, true)
             local map = function(lhs, rhs) vim.keymap.set('n', lhs, rhs, {silent=true, buffer=0}) end
             local keys = {K='kitty/kitty.conf', W='wezterm/wezterm.lua', I='nvim/init.lua', A='alacritty/alacritty.yml', F='fish/config.fish'}
@@ -175,49 +158,31 @@ Util.splash_screen = function()
 
             -- local image = require('hologram.image'):new("/Users/tamtonaquib/Downloads/crown.png", {})
             local image = require('hologram.image'):new("/Users/tamtonaquib/Downloads/crown_colorized.png", {})
-            image:display(
-                math.floor(vim.o.lines/2)+7,
-                math.floor(vim.o.columns/2 - 18),
-                vim.api.nvim_get_current_buf(),
-                {}
-            )
+            image:display( math.floor(vim.o.lines/2)+7, math.floor(vim.o.columns/2 - 18), vim.api.nvim_get_current_buf(), {})
             vim.api.nvim_create_autocmd({"BufEnter"}, {
+                once=true,
                 callback=function()
                     vim.opt.guicursor=GUICURSOR
                     image:delete(0, {free=true})
-                end,
-                once=true
+                end
             })
         end)
     end
 end
 
--- TODO: needs to be fixed.
 --> Closing Windows and buffers
 Util.close_command = function()
-    -- for _, w in ipairs(vim.api.nvim_list_wins()) do
-        -- if vim.api.nvim_win_get_config(w)['relative'] ~= "" then
-            -- -- vim.api.nvim_win_close(w, {force=true})
-            -- -- vim.cmd [[wincmd Q]]
-            -- require("flirt").close()
-            -- return
-        -- end
-    -- end
-
     if vim.bo.modified then print("buf not saved!") return end
     local total = #vim.tbl_filter(function(buf)
         return vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_get_name(buf) ~= ""
     end, vim.api.nvim_list_bufs())
 
-    -- local quit_cmd = #vim.api.nvim_list_wins() > 1 and 'Q' or 'q'
-    vim.cmd(total == 1 and 'q' or 'bd')
+    local quit_cmd = #vim.api.nvim_list_wins() > 1 and 'Q' or 'q'
+    vim.cmd(total == 1 and quit_cmd or 'bd')
 end
 
 --> Different Kinds of Borders
-Util.border = ({
-    { "╒", "═", "╕", "│", "╛", "═", "╘", "│" },
-    { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" },
-})[1]
+Util.border = ({{ "╒", "═", "╕", "│", "╛", "═", "╘", "│" }, { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }})[2]
 
 --> Custom telescope theme
 Util.telescope_theme = {
@@ -298,6 +263,7 @@ map('c', 'jk', '<C-f><cmd>resize -20<cr>')
 map('n', '<leader>cc', Util.chatgpt)
 map('n', '<leader>hn', cmd "Gitsigns next_hunk")
 map('n', '<leader>hp', cmd "Gitsigns prev_hunk")
+map('n', 'gpd', function() require("goto-preview").goto_preview_definition({}) end)
 
 map('n', '<C-n>', cmd "cnext")
 map('n', '<C-p>', cmd "cprev")
@@ -358,6 +324,8 @@ map('n', '<C-h>'    , '<C-w>h')
 map('n', '<C-j>'    , '<C-w>j')
 map('n', '<C-k>'    , '<C-w>k')
 map('n', '<C-l>'    , '<C-w>l')
+map('n', '<A-Down>', '<C-w>-')
+map('n', '<A-Up>', '<C-w>+')
 
 --> Move selected line / block of text in visual mode
 map("x", "<A-k>", ":move '<-2<CR>gv-gv")
@@ -504,6 +472,8 @@ local path = vim.fn.stdpath("config") .. "/plugins.json"
 local real_plugins = {
     -->  Temporary and testing
     { 'edluffy/hologram.nvim', config=true, lazy=true },
+    { 'wilmanbarrios/palenight.nvim' },
+    { 'folke/edgy.nvim', config=true },
     -- { 'maxmx03/fluoromachine.nvim', config={ glow = true, transparent="full" } },
     -- { 'EdenEast/nightfox.nvim' },
     -- { 'gorbit99/codewindow.nvim', config=true },
