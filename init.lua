@@ -95,36 +95,6 @@ Util.status_line = function()
     vim.opt.statusline = "%#Normal#   %#NiceHighlight#%{g:mode_text}     %{g:gitsigns_head} %= %t %= [%l/%L] :%c       "
 end
 
-Util.chatgpt = function()
-    vim.ui.input({ prompt="Prompt:", width=40 }, function(inp)
-        vim.cmd("split | new | setlocal nonu nornu bufhidden=wipe wrap")
-        require("essentials.utils").set_quit_maps()
-        require("plenary.curl").post("https://api.openai.com/v1/chat/completions", {
-            body = vim.json.encode({ max_tokens=150, model="gpt-3.5-turbo", messages={{role="user", content=inp}} }),
-            auth = {vim.env.OPENAI_API_KEY or "No Token Provided!"},
-            headers = { content_type = "application/json" },
-            callback = function(response) vim.schedule(function()
-                local body = vim.json.decode(response.body)
-
-                vim.api.nvim_put(vim.split(
-                    body.choices and vim.trim(body.choices[1].message.content)
-                    or ("Something went wrong!\n%s"):format(vim.inspect(body.error.message))
-                , '\n') , "", false, false)
-            end) end
-        })
-    end)
-end
-
-Util.norging_time = function()
-    vim.cmd [[setl nonu nornu scl=yes:9 stl=%#Normal# ch=0 so=99]]
-    vim.cmd [[Gitsigns toggle_signs]]
-    local file = vim.fn.expand('%:t')
-    local f, hl = require("nvim-web-devicons").get_icon(file, "norg", {})
-    vim.opt.tabline = ("%%#Normal#%%=%%#%s#%s%%#Normal# %s%%="):format(hl, f, file)
-    vim.opt.winbar = "%="..("▔"):rep(vim.o.columns - (2*18)).."%="
-    -- vim.loop.new_timer():start(1000, 10000, vim.schedule_wrap(function() vim.cmd[[silent! w]] end))
-end
-
 Util.mess = function()
     local contents = vim.api.nvim_exec("mess", true)
     if contents == "" then return end
@@ -156,7 +126,6 @@ Util.splash_screen = function()
             map('q', '<cmd>q<CR>')
             map('o', '<cmd>e #<1<CR>') -- last edited file
 
-            -- local image = require('hologram.image'):new("/Users/tamtonaquib/Downloads/crown.png", {})
             local image = require('hologram.image'):new("/Users/tamtonaquib/Downloads/crown_colorized.png", {})
             image:display( math.floor(vim.o.lines/2)+7, math.floor(vim.o.columns/2 - 18), vim.api.nvim_get_current_buf(), {})
             vim.api.nvim_create_autocmd({"BufEnter"}, {
@@ -238,16 +207,6 @@ command("Format", vim.lsp.buf.format, "Formats the current buffer.")
 command("X", ":silent !xset r rate 169 69", "Keyboards press-release rate.")
 command("PP", function() require("essentials").null_pointer() end, {range='%'})
 command("Mess", Util.mess, "Message to temp output buf.")
-command("Zen", Util.norging_time, "Norg zen-like mode.")
-command("PTC", function()
-    local w = math.floor(vim.o.columns/2)+1
-    local h = math.floor(vim.o.lines/2)+1
-    local buf = vim.api.nvim_create_buf(false, true)
-    vim.api.nvim_open_win(buf, true, {
-        style='minimal', relative='editor', width=w, height=h, row=(vim.o.lines-h)/2-1, col=(vim.o.columns-w)/2-1
-    })
-    vim.cmd.edit("~/neorg/IBM/PTC.norg")
-end, "Open PTC Todos in a float")
 -- vim.cmd [[syntax keyword Keyword lambda conceal cchar=λ]] -- TODO: (maybe with ts queries?)
 
 -- }}}
@@ -260,13 +219,9 @@ local function map(mode, key, func) vim.keymap.set(mode, key, func, {silent=true
 local function cmd(s) return "<CMD>"..s.."<CR>" end
 
 map('c', 'jk', '<C-f><cmd>resize -20<cr>')
-map('n', '<leader>cc', Util.chatgpt)
 map('n', '<leader>hn', cmd "Gitsigns next_hunk")
 map('n', '<leader>hp', cmd "Gitsigns prev_hunk")
 map('n', 'gpd', function() require("goto-preview").goto_preview_definition({}) end)
-map('n', '<leader>ii', function() require("lazyn").install_picker() end)
-map('n', '<leader>iu', function() require("lazyn").remove_picker() end)
-
 
 map('n', '<C-n>', cmd "cnext")
 map('n', '<C-p>', cmd "cprev")
@@ -288,6 +243,9 @@ map('n', '<leader>q'   , Util.toggle_quickfix)
 map('n', '<leader>z'   , cmd 'FocusMaximise')
 
 --> stuff.nvim maps (https://github.com/tamton-aquib/stuff.nvim)
+map('n', '<leader>ii', function() require("lazyn").install_picker() end)
+map('n', '<leader>iu', function() require("lazyn").remove_picker() end)
+map('n', '<leader>cc', function() require("chatgpt").chatgpt() end)
 map('n', 'gC', function() require("calc").toggle() end)
 map('n', 'gS', function() require("stalk").stalk() end)
 map('n', 'gs', function() require("scratch").toggle() end)
@@ -392,9 +350,7 @@ local cfg_cmp = function()
             ['<C-f>'] = cmp.mapping.scroll_docs(1),
             ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
             ['<CR>'] = cmp.mapping.confirm({ select = true }),
-            ['<Tab>'] = function(fallback)
-                if luasnip.jumpable() then luasnip.jump(1) else fallback() end
-            end
+            ['<Tab>'] = function(fallback) (luasnip.jumpable() and luasnip.jump or fallback)() end
         },
 
         sources = cmp.config.sources {
@@ -436,11 +392,6 @@ end
 
 local cfg_telescope = {
     defaults = {
-        results_title=false,
-        previewer_title=false,
-        prompt_title=false,
-
-        prompt_prefix = "   ", selection_caret = " ",
         sorting_strategy = "ascending", layout_config = { prompt_position = "top" },
         file_ignore_patterns = {'__pycache__/', 'node_modules/', '%.lock', 'target/', '__pypackages__/'},
     }
@@ -450,8 +401,7 @@ local cfg_neorg = {
     load = {
         ["core.defaults"] = {},
         ["core.completion"] = { config={ engine="nvim-cmp" } },
-        -- ["core.concealer"] = { config={ dim_code_blocks={conceal=false} } },
-        ["core.concealer"] = { config = { icon_preset = "diamond" }},
+        ["core.concealer"] = { config={ dim_code_blocks={conceal=false} } },
         ["core.presenter"] = { config={ zen_mode = "zen-mode" } },
         ["core.itero"] = {},
         ["external.exec"] = {},
@@ -571,23 +521,6 @@ local s = {
     tsserver={},
     cssls={},
     -- rust_analyzer={},
-    jdtls={
-        cmd = {
-            "java",
-            "-Declipse.application=org.eclipse.jdt.ls.core.id1",
-            "-Dosgi.bundles.defaultStartLevel=4",
-            "-Declipse.product=org.eclipse.jdt.ls.core.product",
-            "-Dlog.level=ALL",
-            "-javaagent:".."/Users/tamtonaquib/STUFF/IDK/JDTLS/lombok.jar",
-            "-Xmx1G",
-            "--add-modules=ALL-SYSTEM",
-            "--add-opens", "java.base/java.util=ALL-UNNAMED",
-            "--add-opens", "java.base/java.lang=ALL-UNNAMED",
-            "-jar", "/Users/tamtonaquib/STUFF/IDK/JDTLS/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar",
-            "-configuration", "/Users/tamtonaquib/STUFF/IDK/JDTLS/config_mac/",
-            "-data", "/Users/tamtonaquib/.cache/jdtls/workspace"
-        }
-    },
     -- ruff_lsp={},
     lua_ls = {
         settings = {
