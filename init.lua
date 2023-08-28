@@ -280,8 +280,8 @@ map('n', 'gp', function() require("mpv").toggle_player() end)
 
 --> Lsp mappings
 map('n', 'gD',    vim.lsp.buf.definition)
-map('n', 'gd', function() require("goto-preview").goto_preview_definition({}) end)
--- map('n', 'gD',    vim.lsp.buf.declaration)
+-- map('n', 'gd', function() require("goto-preview").goto_preview_definition({}) end)
+map('n', 'gd',    '<cmd>vs | lua vim.lsp.buf.definition()<CR>')
 map('n', 'gr',    vim.lsp.buf.references)
 map('n', 'gi',    vim.lsp.buf.implementation)
 map('n', '<M-n>', vim.diagnostic.goto_next)
@@ -452,22 +452,7 @@ endfunction
 local pluhs = {
     -->  Temporary and testing
     -- { 'maxmx03/fluoromachine.nvim', opts={glow=true, transparent=true} },
-    {
-        "jackMort/pommodoro-clock.nvim",
-        config=true,
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-        }
-    },
-    -- {
-        -- "anuvyklack/windows.nvim",
-        -- dependencies = {
-            -- "anuvyklack/middleclass",
-            -- "anuvyklack/animation.nvim"
-        -- },
-        -- config=true
-    -- },
-    { 'tamton-aquib/mpv.nvim', config={setup_widgets=true} },
+    { dir='~/STUFF/NEOVIM/mpv.nvim', config={setup_widgets=true} },
     { 'tamton-aquib/staline.nvim', config=function()
         vim.g.mpv_visualizer = ""
         require("staline").setup({
@@ -484,8 +469,8 @@ local pluhs = {
             stab_start="   ", stab_bg='none', stab_left='', fg='#b8bb26', inactive_fg='none'
         })
     end, event="ColorScheme" },
-    -- { dir='~/STUFF/NEOVIM/zone.nvim', config=true },
-    -- { 'tamton-aquib/keys.nvim', config=true },
+    { dir='~/STUFF/NEOVIM/zone.nvim', opts={after=1000} },
+    { dir='~/STUFF/NEOVIM/keys.nvim', config=true },
     { 'fdschmidt93/telescope-egrepify.nvim' },
     { 'willothy/flatten.nvim', lazy=false, config=true },
     { 'akinsho/toggleterm.nvim', opts={direction='float', auto_scroll=false} },
@@ -526,8 +511,7 @@ local pluhs = {
     -->  TELESCOPE, TREESITTER, NEORG
     { 'nvim-lua/plenary.nvim', lazy=true },
     { 'nvim-telescope/telescope.nvim', config=cfg_telescope, lazy=true, cmd="Telescope" },
-    -- { 'nvim-treesitter/nvim-treesitter', config=cfg_treesitter, lazy=true, event="BufEnter" },
-    { 'nvim-treesitter/nvim-treesitter', config=cfg_treesitter },
+    { 'nvim-treesitter/nvim-treesitter', config=cfg_treesitter, lazy=true },
     { 'nvim-neorg/neorg', ft="norg", opts=cfg_neorg, dependencies={"laher/neorg-exec"} },
 
     -->  GENERAL PURPOSE
@@ -646,7 +630,7 @@ function UnusualFolds()
 end
 
 vim.api.nvim_create_autocmd("BufReadPost", {
-    pattern = "init.lua",
+    pattern = "/home/taj/.config/nvim/init.lua",
     callback = function()
         vim.cmd [[setl fdm=marker fdls=-1 fdl=0 nonu nornu signcolumn=yes:2]]
         vim.opt.foldtext = 'v:lua.UnusualFolds()'
