@@ -4,12 +4,11 @@
 -- {{{ -- Settings
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
----@diagnostic disable-next-line: undefined-field
 if not vim.uv.fs_stat(lazypath) then
     print("Installing lazy.nvim...")
     vim.fn.system({"git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim", lazypath})
 end
-vim.opt.rtp = vim.opt.rtp + lazypath
+vim.opt.rtp:append(lazypath)
 
 local opts = {
     General = {
@@ -22,9 +21,7 @@ local opts = {
     },
     Layout = {
         scrolloff = 5, splitright = true, splitbelow = true, pumheight = 10,
-        incsearch = true, showmode = false,
-        --showtabline = 2,
-        laststatus = 3,
+        incsearch = true, showmode = false, showtabline = 2, laststatus = 3,
     },
     Edit = {
         completeopt = "menu,menuone,noselect", virtualedit = "block", ignorecase = true,
@@ -56,36 +53,14 @@ vim.schedule(function()
     if ess_status then
         vim.ui.input = essentials.ui_input
         vim.ui.select = essentials.ui_select
-        vim.notify = essentials.ui_notify
+        -- vim.notify = essentials.ui_notify
     end
 end)
 
 -- }}}
 
 -- {{{ -- Utils
-Util = {}
-local fn = vim.fn
-
--- vim.g.lsp_status = ""
--- vim.api.nvim_create_autocmd("LspProgress", {
-    -- callback = function(nice)
-        -- local sttaus = nice.data.result.value.percentage or ""
-        -- vim.g.lsp_status = type(sttaus) == "number" and sttaus.."%" or ""
-        -- vim.cmd.redrawstatus()
-    -- end
--- })
-
-function Stl_Aesthetic()
-    local oi = vim.iter(vim.api.nvim_list_bufs())
-        :filter(function(b) return vim.bo[b].buflisted end)
-        :map(function(b)
-        return b == vim.api.nvim_get_current_buf() and (vim.bo[b].modified and "󱨇 " or "󱓻 ") or "󱓼 "
-    end)
-    return "%#Normal#%="..table.concat(oi:totable(), " ").."%="
-end
-
-vim.opt.showtabline = 2
--- vim.opt.tabline = '%!v:lua.Tabline()'
+local Util = {}
 
 Util.mess = function()
     local contents = vim.api.nvim_exec2("mess", {output=true})
@@ -143,7 +118,6 @@ Util.splash_screen = function()
         end)
     end
 end
-vim.cmd [[command Splash lua Util.splash_screen()]]
 
 --> Closing Windows and buffers
 Util.close_command = function()
@@ -160,29 +134,9 @@ end
 Util.border = ({{ "╒", "═", "╕", "│", "╛", "═", "╘", "│" }, { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }})[2]
 -- Util.border = "shadow"
 
---> Custom telescope theme
-Util.telescope_theme = {
-    results_title = false,
-    preview_title = false,
-    prompt_title = false,
-    layout_strategy = "center",
-    sorting_strategy = "ascending",
-    prompt_prefix = "      ",
-    winblend = 30,
-    layout_config = { preview_cutoff=1, width = 0.7, height = 0.7 },
-    zindex = 69,
-    borderchars = {
-        -- preview = { "▔", "▕", "▁", "▏", "🭽", "🭾", "🭿", "🭼" },
-        -- prompt = { "▔", "▕", "▁", "▏", "🭽", "🭾", "🭿", "🭼" },
-        -- results = { "▁", " ", " ", " ", "🭼", "🭿", " ", " " },
-        prompt = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-        results = { "─", " ", " ", " ", "╰", "╯", " ", " " },
-    },
-}
-
 --> Toggling quickfix window with a keybind
 Util.toggle_quickfix = function()
-    vim.cmd(#vim.iter(vim.api.nvim_list_wins()):filter(function(w) return fn.win_gettype(w) == "quickfix" end):totable() > 0 and "ccl" or "cope")
+    vim.cmd(#vim.iter(vim.api.nvim_list_wins()):filter(function(w) return vim.fn.win_gettype(w) == "quickfix" end):totable() > 0 and "ccl" or "cope")
 end
 
 Util.konsole = function()
@@ -204,18 +158,15 @@ local au = function(events, ptn, cb) vim.api.nvim_create_autocmd(events, {patter
 
 -->  NEW
 au("LspAttach", "*", function(a) vim.lsp.get_client_by_id(a.data.client_id).server_capabilities.semanticTokensProvider=nil end)
--- au("FileType", "norg", "setl nonu nornu signcolumn=yes:4")
 au({"BufReadPost", "FileType"}, "javascript,css", "setl ts=2 sw=2")
 
 -->  LSP Related
--- au("BufWritePre", "*.js,*.jsx,*.ts,*.tsx", function() vim.lsp.buf.format() end)
 au("BufWritePre", "*.rs,*.svelte", function() vim.lsp.buf.format() end)
 au("CursorHold", "*", vim.diagnostic.open_float)
 
 -->  OLD
 au("FileType", "json", function() vim.opt_local.cole=0 end)
 au("BufReadPost", "*.lua", [[call matchadd("Keyword", "--> \\zs.*\\ze$")]])
--- au("FileType", "markdown", function() vim.opt_local.spell=true end)
 au("BufEnter", "*", 'setl fo-=cro')
 au("BufReadPost", "*", function() require("essentials").last_place() end)
 au("TextYankPost", "*", function() vim.highlight.on_yank({higroup="Visual", timeout=200}) end)
@@ -234,6 +185,7 @@ command("Mess", Util.mess, "Message to temp output buf.")
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
+---> Helper functions
 local function map(mode, key, func) vim.keymap.set(mode, key, func, {silent=true}) end
 local function cmd(s) return "<CMD>"..s.."<CR>" end
 
@@ -248,6 +200,7 @@ map('n', '<leader>gn', cmd "Gitsigns next_hunk")
 map('n', '<leader>gp', cmd "Gitsigns prev_hunk")
 map('n', '<leader>gb', cmd "Gitsigns blame_line")
 map('n', '<leader>gd', cmd "Gitsigns preview_hunk_inline")
+map('n', '<leader>gr', cmd "Gitsigns reset_hunk")
 
 map('n', '<C-n>', cmd "cnext")
 map('n', '<C-p>', cmd "cprev")
@@ -256,13 +209,11 @@ map('n', '<C-p>', cmd "cprev")
 -- map('n', '<leader>l', function() require("essentials").toggle_term("lazygit", 't', true) end)
 -- map('n', '<leader>t', function() require("essentials").toggle_term("fish", 'v', true) end)
 map('n', '<leader>p', cmd 'Lazy')
-map('n', '<leader>ca', vim.lsp.buf.code_action)
 map('t', '<C-n>', [[<C-\><C-n>]]) -- :sadkek:
 map('n', 'gh', function() vim.cmd(":h "..vim.fn.expand('<cword>')) end)
 
 --> General Mappings
 map('n', '<leader>e'   , function() require("nvim-tree.api").tree.toggle({find_file=true}) end)
--- map('n', '<leader>d'   , cmd 'TroubleToggle')
 map('n', '<leader>n'   , cmd 'Neogen')
 map('n', '<leader>q'   , Util.toggle_quickfix)
 map('n', '<leader>z'   , cmd 'FocusMaximise')
@@ -280,12 +231,11 @@ map('n', 'gp', function() require("mpv").toggle_player() end)
 
 --> Lsp mappings
 map('n', 'gD',    vim.lsp.buf.definition)
--- map('n', 'gd', function() require("goto-preview").goto_preview_definition({}) end)
 map('n', 'gd',    '<cmd>vs | lua vim.lsp.buf.definition()<CR>')
 map('n', 'gr',    vim.lsp.buf.references)
-map('n', 'gi',    vim.lsp.buf.implementation)
 map('n', '<M-n>', vim.diagnostic.goto_next)
 map('n', '<M-p>', vim.diagnostic.goto_prev)
+map('n', '<leader>ca', vim.lsp.buf.code_action)
 
 --> essentials.nvim mappings ( https://github.com/tamton-aquib/essentials.nvim )
 map('v', '<leader>/' , ':lua require("essentials").toggle_comment(true)<CR>')
@@ -340,26 +290,24 @@ local cfg_cmp = function()
     local cmp = require('cmp')
     local luasnip = require("luasnip")
 
-    -- local source_names = { nvim_lsp = "[LSP]", emoji = "[Emoji]", path = "[Path]", luasnip = "[Snippet]", buffer = "[Buffer]", nvim_lsp_signature_help = "[sig_help]" }
     local kind_icons = {
         Text = ' ', Method = ' ', Function = ' ', Constructor = ' ', Field = ' ', Variable = ' ', Class = ' ', Interface = ' ',
         Module = ' ', Property = ' ', Unit = ' ', Value = ' ', Enum = ' ', Keyword = ' ', Snippet = ' ', Color = ' ', File = ' ',
         Reference = ' ', Folder = ' ', EnumMember = ' ', Constant = ' ', Struct = ' ', Event = ' ', Operator = ' ', TypeParameter = ' ',
     }
-    for _, k in ipairs(vim.tbl_keys(kind_icons)) do vim.cmd("hi CmpItemKind"..k.." gui=reverse") end
+    -- Great for other themes, not for gruvbox tho
+    -- for _, k in ipairs(vim.tbl_keys(kind_icons)) do vim.cmd("hi CmpItemKind"..k.." gui=reverse") end
 
     cmp.setup {
         formatting = {
             fields = { 'kind', 'abbr', 'menu' },
             format = function(_, item)
                 item.kind = (' '..kind_icons[item.kind]) or " "
-                -- item.menu = source_names[entry.source.name] or " "
                 return item
             end
         },
         window = { documentation = { border = "shadow" }, completion={side_padding=0} },
         snippet = { expand=function(o) luasnip.lsp_expand(o.body) end },
-
         mapping = cmp.mapping.preset.insert {
             ['<C-b>'] = cmp.mapping.scroll_docs(-1),
             ['<C-f>'] = cmp.mapping.scroll_docs(1),
@@ -367,18 +315,14 @@ local cfg_cmp = function()
             ['<CR>'] = cmp.mapping.confirm({ select = true }),
             ['<Tab>'] = function(fallback) (luasnip.jumpable() and luasnip.jump or fallback)() end
         },
-
         sources = cmp.config.sources {
             { name = 'path' },
             { name = 'nvim_lsp' },
-            { name = 'nvim_diagnostic' },
-            { name = 'buffer'},
             { name = 'nvim_lsp_signature_help' },
-            { name = 'nvim_lua' },
             { name = 'luasnip' },
-            { name = 'emoji'},
+            { name = 'buffer'},
+            { name = 'nvim_lua' },
             { name = 'neorg'},
-            { name = 'crates'},
         },
 
         experimental = { ghost_text = true }
@@ -409,9 +353,7 @@ local cfg_telescope = function()
     require("telescope").setup {
     defaults = {
         prompt_prefix = "      ",
-        mappings = {
-            i = {["<C-y>"] = require("telescope.actions.layout").toggle_preview}
-        },
+        mappings = { i = {["<C-y>"] = require("telescope.actions.layout").toggle_preview} },
         sorting_strategy = "ascending",
         layout_config = { prompt_position = "top" },
         file_ignore_patterns = {'__pycache__/', 'node_modules/', '%.lock', 'target/', '__pypackages__/'},
@@ -429,60 +371,59 @@ local cfg_neorg = {
         ["core.presenter"] = { config={ zen_mode = "zen-mode" } },
         ["core.itero"] = {},
         ["external.exec"] = {},
-        ["core.ui.calendar"] = {}
     }
 }
 
 local cfg_treesitter = function()
-    require('nvim-treesitter.configs').setup {
-        ensure_installed = { "comment", "lua", "python" },
-        highlight = { enable = true },
-        indent = { enable = true }, -- TODO: try text objects somewhen
+    require("nvim-treesitter.configs").setup {
+        highlight = {enable=true}, indent = {enable=true}
     }
+end
+
+local cfg_staline = function()
+    vim.cmd [[function Bruh(a,b,c,d)
+        lua require("mpv").toggle_player()
+    endfunction]]
+    vim.g.lsp_status = ""
+    vim.api.nvim_create_autocmd("LspProgress", {
+        callback = function(nice)
+            local sttaus = nice.data.result.value.percentage or ""
+            vim.g.lsp_status = type(sttaus) == "number" and sttaus.."%" or ""
+            vim.cmd.redrawstatus()
+        end
+    })
+
+    vim.g.mpv_visualizer = ""
+    require("staline").setup({
+        defaults = { true_colors=true },
+        sections={
+            left = { '  ', 'mode', '  ', 'git_branch', '   ', 'lsp', '   %{g:lsp_status}' },
+            right = { '  %10@Bruh@󰎆 %X %{g:mpv_visualizer}', 'line_column', '  ' }
+        }
+    })
+    require("stabline").setup({
+        stab_start="   ", stab_bg='none', stab_left='', fg='#b8bb26', inactive_fg='none'
+    })
 end
 
 -- }}}
 
 -- {{{ -- Lazy
-vim.cmd [[
-function Bruh(a,b,c,d)
-    lua require("mpv").toggle_player()
-endfunction
-]]
 local pluhs = {
     -->  Temporary and testing
-    -- { 'maxmx03/fluoromachine.nvim', opts={glow=true, transparent=true} },
-    { dir='~/STUFF/NEOVIM/mpv.nvim', config={setup_widgets=true} },
-    { 'tamton-aquib/staline.nvim', config=function()
-        vim.g.mpv_visualizer = ""
-        require("staline").setup({
-            defaults = {
-                true_colors=true,
-                special_table = { lazy = { "Lazy", "󰒲 " } },
-            },
-            sections={
-                left = { '  ', 'mode', '  ', 'git_branch', '   ', 'lsp' },
-                right = { '  %10@Bruh@󰎆 %X %{g:mpv_visualizer}', 'line_column', '  ' }
-            }
-        })
-        require("stabline").setup({
-            stab_start="   ", stab_bg='none', stab_left='', fg='#b8bb26', inactive_fg='none'
-        })
-    end, event="ColorScheme" },
-    { dir='~/STUFF/NEOVIM/zone.nvim', opts={after=1000} },
-    { dir='~/STUFF/NEOVIM/keys.nvim', config=true },
-    { 'fdschmidt93/telescope-egrepify.nvim' },
     { 'willothy/flatten.nvim', lazy=false, config=true },
     { 'akinsho/toggleterm.nvim', opts={direction='float', auto_scroll=false} },
-    -- { 'ahmedkhalf/project.nvim', config=function() require("project_nvim").setup() end },
     { 'edluffy/hologram.nvim', config=true, lazy=true },
-    { 'rmagatti/goto-preview', opts={border=Util.border} },
-    -- { 'kylechui/nvim-surround', config=true }
+    { 'kylechui/nvim-surround', config=true },
 
     -->  My Useless lil plugins
-    { dir='~/STUFF/NEOVIM/flirt.nvim', config=true },
-    { 'tamton-aquib/stuff.nvim' },
-    { dir='~/STUFF/NEOVIM/nvim-market', import="nvim-market.plugins", config=true },
+    -- { 'tamton-aquib/zone.nvim', opts={after=1000} },
+    -- { 'tamton-aquib/keys.nvim', config=true },
+    -- { 'tamton-aquib/mpv.nvim', config={setup_widgets=true} },
+    { 'tamton-aquib/staline.nvim', config=cfg_staline, event="ColorScheme" },
+    { 'tamton-aquib/flirt.nvim', config=true },
+    { 'tamton-aquib/stuff.nvim', lazy=true },
+    { 'tamton-aquib/nvim-market', import="nvim-market.plugins", config=true },
     { 'tamton-aquib/essentials.nvim', lazy=true },
 
     -->  THEMES AND UI
@@ -510,7 +451,7 @@ local pluhs = {
 
     -->  TELESCOPE, TREESITTER, NEORG
     { 'nvim-lua/plenary.nvim', lazy=true },
-    { 'nvim-telescope/telescope.nvim', config=cfg_telescope, lazy=true, cmd="Telescope" },
+    { 'nvim-telescope/telescope.nvim', config=cfg_telescope, cmd="Telescope", dependencies={'fdschmidt93/telescope-egrepify.nvim'} },
     { 'nvim-treesitter/nvim-treesitter', config=cfg_treesitter, lazy=true },
     { 'nvim-neorg/neorg', ft="norg", opts=cfg_neorg, dependencies={"laher/neorg-exec"} },
 
@@ -522,9 +463,8 @@ local pluhs = {
     { 'lukas-reineke/indent-blankline.nvim', opts={show_current_context=true, char='▏' } },
 }
 
--- local bruh = vim.list_extend(real_plugins, installer_plugins)
 require("lazy").setup(pluhs, {
-    ui = { pills = false, noautocmd=false },
+    ui = { pills=false, noautocmd=false },
     install={colorscheme={"retrobox"}},
     performance = { rtp = { disabled_plugins = {
         "python3_provider", "node_provider", "2html_plugin", "getscript", "getscriptPlugin",
@@ -536,9 +476,6 @@ require("lazy").setup(pluhs, {
 -- }}}
 
 -- {{{ -- LSP
-
-local border = Util.border
-
 local signs = { Error = "", Warn = "", Hint = "", Info = "", other = "﫠" }
 
 for name, icon in pairs(signs) do
@@ -546,16 +483,16 @@ for name, icon in pairs(signs) do
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
 end
 
-vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = border})
-vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = border})
+vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = Util.border})
+vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = Util.border})
 
 vim.diagnostic.config({
     virtual_text = false,
     underline = { Error=true },
     float = {
-        border = border, focusable = false, suffix = '',
+        border = Util.border, focusable = false, suffix = '',
         header = { "  Diagnostics", "String" },
-        prefix = function(_, _, _) return "  " , "String" end, -- icons:        ﬌  
+        prefix = function(_, _, _) return "  " , "String" end, -- icons:        ﬌  
     }
 })
 
@@ -569,25 +506,9 @@ local s = {
     pyright={},
     tsserver={},
     cssls={},
-    gopls = {},
+    -- gopls={},
     rust_analyzer={},
-    jdtls={
-        cmd = {
-            "java",
-            "-Declipse.application=org.eclipse.jdt.ls.core.id1",
-            "-Dosgi.bundles.defaultStartLevel=4",
-            "-Declipse.product=org.eclipse.jdt.ls.core.product",
-            "-Dlog.level=ALL",
-            "-javaagent:".."/Users/tamtonaquib/STUFF/IDK/JDTLS/lombok.jar",
-            "-Xmx1G",
-            "--add-modules=ALL-SYSTEM",
-            "--add-opens", "java.base/java.util=ALL-UNNAMED",
-            "--add-opens", "java.base/java.lang=ALL-UNNAMED",
-            "-jar", "/Users/tamtonaquib/STUFF/IDK/JDTLS/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar",
-            "-configuration", "/Users/tamtonaquib/STUFF/IDK/JDTLS/config_mac/",
-            "-data", "/Users/tamtonaquib/.cache/jdtls/workspace"
-        }
-    },
+    -- jdtls={},
     -- ruff_lsp={},
     lua_ls = {
         settings = {
@@ -609,9 +530,7 @@ end
 
 -- {{{ -- MISC
 Util.splash_screen()
--- vim.cmd(os.date("%H") >= 18 and 'retrobox' or 'peachpuff')
 vim.cmd.colorscheme("retrobox")
-    -- hi Normal guibg=none
 vim.cmd [[
     hi link GitSignsAdd String
     hi link GitSignsChange Identifier
@@ -620,7 +539,6 @@ vim.cmd [[
     hi link FloatBorder NormalFloat
     hi SignColumn guibg=none
 ]]
--- Util.tab_line()
 
 function UnusualFolds()
     local title = tostring(vim.fn.getline(vim.v.foldstart)):gsub([[%-%- %{%{%{ %-%- ]], "")
@@ -646,13 +564,10 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
 -- {{{ -- IDK
 local Terminal  = require('toggleterm.terminal').Terminal
--- local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
 local fish = Terminal:new({ cmd = "fish", hidden = true })
--- vim.opt.cmdheight = 0
 
 vim.keymap.set({"n", "t"}, "<leader>l", "<CMD>term lazygit<CR>")
 vim.keymap.set({"n", "t"}, "<leader>t", function() fish:toggle() end)
--- }}}
 
 local yanks = {}
 local cursor = 0
@@ -683,3 +598,4 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 vim.keymap.set('n', '"', ':')
+-- }}}
