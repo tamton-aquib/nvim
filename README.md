@@ -21,8 +21,22 @@ My neovim config
 | <img height=400 src="https://github.com/tamton-aquib/nvim/assets/77913442/11c2f3db-6323-41ba-861f-91d3d800b4ca" /> | <img width=600 src="https://github.com/tamton-aquib/nvim/assets/77913442/a5873e97-12a8-4474-a964-205f3c1b35ae" /> |
 
 
-PS: This might be the most useless config you might come across. Peace ☮️
-
+Some notes regarding the config:
+- This might be the most useless config you might come across. Peace ☮️
+- Approximately around 500 LOC.
+- Some of the other functionalities that are not mentioned:
+  - Calculator (A real one with a UI)
+  - Stalk (provide a gh username and check their activities)
+  - TmpClone (temporarily clone a project from gh for quick inspection)
+  - Quicknote (Project agnostic notes that does not pollute the root directory)
+  - Scratch buffer (filetype default set to lua and <leader>r evaluates it)
+  - Bookmark in the signcolumn with mini alphabets (toggleable)
+  - Chatgpt (custom)
+  - Cheat.sh (custom detects language automagically)
+  - Close command (:bd and :q detect automagically)
+  - Neorg (with code execution and presenter modules)
+  - Screensavers (DVD logo running around)
+  - No mason/null-ls though. I already have lsp and diags working.
 
 > <details>
 > <summary>Old Screenshots</summary>
