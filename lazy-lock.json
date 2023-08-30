@@ -34,7 +34,7 @@
   "staline.nvim": { "branch": "main", "commit": "b042beccd78d9d1ba588f3d16a907e87d30bdb8d" },
   "stuff.nvim": { "branch": "main", "commit": "c9ee0b8af7ed8e767a0ba8c505f0b687db02d0c7" },
   "telescope-egrepify.nvim": { "branch": "master", "commit": "19c80793cf24c8ae01864e150f0694ad8b308f3a" },
-  "telescope.nvim": { "branch": "master", "commit": "1dfa66b845673effc8771f9ebe511bb36a09f560" },
+  "telescope.nvim": { "branch": "master", "commit": "32e6792f865221dfaf2a3751fd3cfeac96557433" },
   "toggleterm.nvim": { "branch": "main", "commit": "12cba0a1967b4f3f31903484dec72a6100dcf515" },
   "tokyodark.nvim": { "branch": "master", "commit": "4bfb42924274abc5de9f5f4779075b77c6112c85" }
 }
