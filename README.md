@@ -2,7 +2,7 @@
 My neovim config
 
 ## Screenshots
-> ❕ NOTE: All configs show treesitter, lsp diagnostics, nvim-cmp, etc. So they are not shown in the below screenshots.
+> ❕ NOTE: Usually all configs show treesitter, lsp diagnostics, nvim-cmp, etc. So they are not shown in the below screenshots.
 
 | Dashboard | Init file |
 |---|---|

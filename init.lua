@@ -53,7 +53,7 @@ vim.schedule(function()
     if ess_status then
         vim.ui.input = essentials.ui_input
         vim.ui.select = essentials.ui_select
-        -- vim.notify = essentials.ui_notify
+        vim.notify = essentials.ui_notify
     end
 end)
 
@@ -206,8 +206,8 @@ map('n', '<C-n>', cmd "cnext")
 map('n', '<C-p>', cmd "cprev")
 
 --> TEMP and TEST maps
--- map('n', '<leader>l', function() require("essentials").toggle_term("lazygit", 't', true) end)
--- map('n', '<leader>t', function() require("essentials").toggle_term("fish", 'v', true) end)
+map('n', '<leader>l', function() require("essentials").toggle_term("lazygit", 't', true) end)
+map('n', '<leader>t', function() require("essentials").toggle_term("fish", 'v', true) end)
 map('n', '<leader>p', cmd 'Lazy')
 map('t', '<C-n>', [[<C-\><C-n>]]) -- :sadkek:
 map('n', 'gh', function() vim.cmd(":h "..vim.fn.expand('<cword>')) end)
@@ -419,10 +419,10 @@ local pluhs = {
     -->  My Useless lil plugins
     -- { 'tamton-aquib/zone.nvim', opts={after=1000} },
     -- { 'tamton-aquib/keys.nvim', config=true },
-    -- { 'tamton-aquib/mpv.nvim', config={setup_widgets=true} },
+    { 'tamton-aquib/mpv.nvim', config={setup_widgets=true} },
     { 'tamton-aquib/staline.nvim', config=cfg_staline, event="ColorScheme" },
-    { 'tamton-aquib/flirt.nvim', config=true },
-    { 'tamton-aquib/stuff.nvim', lazy=true },
+    { dir='~/STUFF/NEOVIM/flirt.nvim', config=true },
+    { dir='~/STUFF/NEOVIM/stuff.nvim', lazy=true },
     { 'tamton-aquib/nvim-market', import="nvim-market.plugins", config=true },
     { 'tamton-aquib/essentials.nvim', lazy=true },
 
@@ -503,13 +503,7 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local lspconfig = require("lspconfig")
 
 local s = {
-    pyright={},
-    tsserver={},
-    cssls={},
-    -- gopls={},
-    rust_analyzer={},
-    -- jdtls={},
-    -- ruff_lsp={},
+    pyright={}, tsserver={}, cssls={}, rust_analyzer={},
     lua_ls = {
         settings = {
             Lua = {
@@ -560,42 +554,4 @@ vim.api.nvim_create_autocmd("BufReadPost", {
         })
     end
 })
--- }}}
-
--- {{{ -- IDK
-local Terminal  = require('toggleterm.terminal').Terminal
-local fish = Terminal:new({ cmd = "fish", hidden = true })
-
-vim.keymap.set({"n", "t"}, "<leader>l", "<CMD>term lazygit<CR>")
-vim.keymap.set({"n", "t"}, "<leader>t", function() fish:toggle() end)
-
-local yanks = {}
-local cursor = 0
-
-vim.keymap.set('n', '<leader>o', function()
-    local last_item = yanks[#yanks - cursor]
-    vim.cmd.undo()
-
-    if not last_item then
-        vim.notify("End of yank register!")
-        return
-    end
-
-    if last_item.mode == "V" then
-        vim.cmd[[norm o]]
-    end
-    vim.paste(last_item.content, 1)
-    cursor = cursor + 1
-end, {})
-
-vim.api.nvim_create_autocmd("TextYankPost", {
-    callback = function()
-        local info = vim.fn.getreginfo('"')
-        table.insert(yanks, {content=info.regcontents, mode=info.regtype})
-
-        vim.api.nvim_create_autocmd("CursorMoved", { once = true, callback = function() cursor = 0 end })
-    end
-})
-
-vim.keymap.set('n', '"', ':')
 -- }}}
