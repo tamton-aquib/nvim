@@ -24,19 +24,24 @@ My neovim config
 Some notes regarding the config:
 - This might be the most useless config you might come across. Peace ☮️
 - Approximately around 500 LOC.
+- The gifs above might feel choppy, but theyre super smooth in real.
 - Some of the other functionalities that are not mentioned:
   - Calculator (A real one with a UI)
   - Stalk (provide a gh username and check their activities)
   - TmpClone (temporarily clone a project from gh for quick inspection)
   - Quicknote (Project agnostic notes that does not pollute the root directory)
-  - Scratch buffer (filetype default set to lua and <leader>r evaluates it)
+  - Scratch buffer (filetype default set to lua and \<leader\>r evaluates it)
   - Bookmark in the signcolumn with mini alphabets (toggleable)
   - Chatgpt (custom)
   - Cheat.sh (custom detects language automagically)
   - Close command (:bd and :q detect automagically)
   - Neorg (with code execution and presenter modules)
   - Screensavers (DVD logo running around)
+  - Snake game (not fully working)
+  - Thunder client alternative with tab like clickable winbar.
   - No mason/null-ls though. I already have lsp and diags working.
+  - Custom vim.ui.input, vim.ui.select and vim.notify.
+  - NullPointer (share files via :PP using 0x0.st)
 
 > <details>
 > <summary>Old Screenshots</summary>
