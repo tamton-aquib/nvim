@@ -34,8 +34,8 @@ local opts = {
         foldtext = 'v:lua.require("essentials").simple_fold()'
     },
     Ui = {
-        pumblend = 20, inccommand = "split", termguicolors = true, number = true, signcolumn = "yes:1",
-        rnu = true, guifont = "Rec Mono Casual", shortmess = "tF".."TIcC".."as".."WoO",
+        pumblend = 20, inccommand = "split", termguicolors = true, number = true, signcolumn = "yes:2",
+        rnu = true, guifont = "Rec Mono Casual:h7", shortmess = "tF".."TIcC".."as".."WoO",
         fillchars = { eob=' ', fold=' ', foldopen="", foldsep=" ", foldclose="" }
     },
     Tabspace = {
@@ -131,7 +131,7 @@ Util.close_command = function()
 end
 
 --> Different Kinds of Borders
-Util.border = ({{ "╒", "═", "╕", "│", "╛", "═", "╘", "│" }, { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }})[2]
+Util.border = ({{ "╒", "═", "╕", "│", "╛", "═", "╘", "│" }, { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }})[1]
 -- Util.border = "shadow"
 
 --> Toggling quickfix window with a keybind
@@ -158,7 +158,7 @@ local au = function(events, ptn, cb) vim.api.nvim_create_autocmd(events, {patter
 
 -->  NEW
 au("LspAttach", "*", function(a) vim.lsp.get_client_by_id(a.data.client_id).server_capabilities.semanticTokensProvider=nil end)
-au({"BufReadPost", "FileType"}, "javascript,css", "setl ts=2 sw=2")
+-- au({"BufReadPost", "FileType"}, "javascript,css", "setl ts=2 sw=2")
 
 -->  LSP Related
 au("BufWritePre", "*.rs,*.svelte", function() vim.lsp.buf.format() end)
@@ -207,7 +207,7 @@ map('n', '<C-p>', cmd "cprev")
 
 --> TEMP and TEST maps
 map('n', '<leader>l', function() require("essentials").toggle_term("lazygit", 't', true) end)
-map('n', '<leader>t', function() require("essentials").toggle_term("fish", 'v', true) end)
+map({'n', 't'}, '<leader>t', function() require("essentials").toggle_term("fish", 'v', true) end)
 map('n', '<leader>p', cmd 'Lazy')
 map('t', '<C-n>', [[<C-\><C-n>]]) -- :sadkek:
 map('n', 'gh', function() vim.cmd(":h "..vim.fn.expand('<cword>')) end)
@@ -420,8 +420,8 @@ local pluhs = {
     -- { 'tamton-aquib/zone.nvim', opts={after=1000} },
     -- { 'tamton-aquib/keys.nvim', config=true },
     { 'tamton-aquib/mpv.nvim', config={setup_widgets=true} },
-    { 'tamton-aquib/staline.nvim', config=cfg_staline, event="ColorScheme" },
-    { dir='~/STUFF/NEOVIM/flirt.nvim', config=true },
+    { dir='~/STUFF/NEOVIM/staline.nvim', config=cfg_staline, event="ColorScheme" },
+    -- { dir='~/STUFF/NEOVIM/flirt.nvim', config=true },
     { dir='~/STUFF/NEOVIM/stuff.nvim', lazy=true },
     { 'tamton-aquib/nvim-market', import="nvim-market.plugins", config=true },
     { 'tamton-aquib/essentials.nvim', lazy=true },
@@ -458,7 +458,7 @@ local pluhs = {
     -->  GENERAL PURPOSE
     { 'danymat/neogen', opts={snippet_engine="luasnip"}, cmd="Neogen" },
     { 'notjedi/nvim-rooter.lua', config=true },
-    { 'nvim-focus/focus.nvim', opts={ui = {cursorline=false}}, },
+    { 'nvim-focus/focus.nvim', opts={ui = {cursorline=false, signcolumn=false}}, },
     { 'windwp/nvim-autopairs', config=true, event="InsertEnter" },
     { 'lukas-reineke/indent-blankline.nvim', opts={show_current_context=true, char='▏' } },
 }
@@ -554,4 +554,19 @@ vim.api.nvim_create_autocmd("BufReadPost", {
         })
     end
 })
+vim.keymap.set('n', '"', ':', {})
+
+
+vim.g.neovide_scale_factor = 1.0
+vim.g.neovide_transparency = 0.7
+vim.g.transparency = 0.7
+
+vim.g.neovide_floating_blur_amount_x = 2.0
+vim.g.neovide_floating_blur_amount_y = 2.0
+vim.g.neovide_underline_automatic_scaling = true
+
+vim.g.neovide_confirm_quit = true
+vim.g.neovide_remember_window_size = true
+
+vim.opt.cmdheight = 0
 -- }}}
