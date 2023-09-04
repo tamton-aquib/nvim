@@ -16,9 +16,7 @@ local opts = {
         hlsearch = false, timeoutlen = 300, updatetime = 500, swapfile = false,
         wildignore = { '*.pyc,__pycache__,node_modules,*.lock' },
     },
-    Backup = {
-        backup = false, writebackup = false
-    },
+    Backup = { backup = false, writebackup = false },
     Layout = {
         scrolloff = 5, splitright = true, splitbelow = true, pumheight = 10,
         incsearch = true, showmode = false, showtabline = 2, laststatus = 3,
@@ -79,7 +77,6 @@ Util.open_quick_note = function()
         vim.fn.mkdir(datapath)
     end
 
-    ---@diagnostic disable-next-line: undefined-field
     local project_name = vim.fn.fnamemodify(vim.uv.cwd(), ":t"):gsub("[\\.\\-]", "")
     vim.cmd.edit(datapath..project_name..'.norg')
 end
@@ -111,7 +108,7 @@ Util.splash_screen = function()
             vim.api.nvim_create_autocmd({"BufEnter"}, {
                 once=true,
                 callback=function()
-                    vim.opt.guicursor=GUICURSOR
+                    vim.opt.guicursor = GUICURSOR
                     image:delete(0, {free=true})
                 end
             })
@@ -126,8 +123,11 @@ Util.close_command = function()
         return vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_get_name(buf) ~= ""
     end, vim.api.nvim_list_bufs())
 
+    local samebuf = vim.iter(vim.api.nvim_list_wins()):filter(function(w)
+        return vim.api.nvim_win_get_buf(w) == vim.api.nvim_get_current_buf()
+    end) > 1
     local quit_cmd = #vim.api.nvim_list_wins() > 1 and 'Q' or 'q'
-    vim.cmd(total == 1 and quit_cmd or 'bd')
+    vim.cmd((total == 1 or samebuf > 1) and quit_cmd or 'bd')
 end
 
 --> Different Kinds of Borders
@@ -158,6 +158,7 @@ local au = function(events, ptn, cb) vim.api.nvim_create_autocmd(events, {patter
 
 -->  NEW
 au("LspAttach", "*", function(a) vim.lsp.get_client_by_id(a.data.client_id).server_capabilities.semanticTokensProvider=nil end)
+au("VimEnter", "*", Util.splash_screen)
 -- au({"BufReadPost", "FileType"}, "javascript,css", "setl ts=2 sw=2")
 
 -->  LSP Related
@@ -523,7 +524,6 @@ end
 -- }}}
 
 -- {{{ -- MISC
-Util.splash_screen()
 vim.cmd.colorscheme("retrobox")
 vim.cmd [[
     hi link GitSignsAdd String
