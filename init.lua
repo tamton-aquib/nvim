@@ -426,7 +426,7 @@ local pluhs = {
 
     -->  THEMES AND UI
     -- { 'nvim-tree/nvim-web-devicons', opts={override={norg={icon=" ", color="#4878be", name="neorg"}} }, lazy=true },
-    { 'DaikyXendo/nvim-web-devicons', opts={override={norg={icon=" ", color="#4878be", name="neorg"}} }, lazy=true },
+    { 'DaikyXendo/nvim-web-devicons', opts={override={norg={icon=" ", color="#4878be", name="neorg"}} }, lazy=true },
     { 'norcalli/nvim-colorizer.lua', cmd="ColorizerToggle" },
     { 'lewis6991/gitsigns.nvim', config=true },
     { 'nvim-tree/nvim-tree.lua', opts={ renderer={ indent_markers={ enable=true } } }, lazy=true },
@@ -557,10 +557,3 @@ vim.g.neovide_underline_automatic_scaling = true
 vim.g.neovide_confirm_quit = true
 vim.g.neovide_remember_window_size = true
 -- }}}
-
-vim.api.nvim_create_autocmd("CmdLineChanged", {
-    callback = function()
-        local args = vim.split(vim.fn.getcmdline(), " ")
-        if vim.startswith(args[1], "colo") then pcall(vim.cmd.colorscheme, args[2]) end
-    end
-})
