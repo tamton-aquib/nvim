@@ -123,11 +123,8 @@ Util.close_command = function()
         return vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_get_name(buf) ~= ""
     end, vim.api.nvim_list_bufs())
 
-    local samebuf = vim.iter(vim.api.nvim_list_wins()):filter(function(w)
-        return vim.api.nvim_win_get_buf(w) == vim.api.nvim_get_current_buf()
-    end) > 1
     local quit_cmd = #vim.api.nvim_list_wins() > 1 and 'Q' or 'q'
-    vim.cmd((total == 1 or samebuf > 1) and quit_cmd or 'bd')
+    vim.cmd(total == 1  and quit_cmd or 'bd')
 end
 
 --> Different Kinds of Borders
@@ -403,7 +400,7 @@ local cfg_staline = function()
         }
     })
     require("stabline").setup({
-        stab_start="   ", stab_bg='none', stab_left='', fg='#b8bb26', inactive_fg='none'
+        stab_start="  %#Identifier#  ", stab_bg='none', stab_left='', inactive_fg='none', fg="#95c561"
     })
 end
 
@@ -413,16 +410,16 @@ end
 local pluhs = {
     -->  Temporary and testing
     { 'willothy/flatten.nvim', lazy=false, config=true },
-    { 'akinsho/toggleterm.nvim', opts={direction='float', auto_scroll=false} },
+    -- { 'akinsho/toggleterm.nvim', opts={direction='float', auto_scroll=false}, lazy=true },
     { 'edluffy/hologram.nvim', config=true, lazy=true },
     { 'kylechui/nvim-surround', config=true },
 
     -->  My Useless lil plugins
     -- { 'tamton-aquib/zone.nvim', opts={after=1000} },
     -- { 'tamton-aquib/keys.nvim', config=true },
-    { 'tamton-aquib/mpv.nvim', config={setup_widgets=true} },
+    -- { 'tamton-aquib/mpv.nvim', config={setup_widgets=true} },
     { dir='~/STUFF/NEOVIM/staline.nvim', config=cfg_staline, event="ColorScheme" },
-    -- { dir='~/STUFF/NEOVIM/flirt.nvim', config=true },
+    { dir='~/STUFF/NEOVIM/flirt.nvim', config=true },
     { dir='~/STUFF/NEOVIM/stuff.nvim', lazy=true },
     { 'tamton-aquib/nvim-market', import="nvim-market.plugins", config=true },
     { 'tamton-aquib/essentials.nvim', lazy=true },
@@ -453,20 +450,20 @@ local pluhs = {
     -->  TELESCOPE, TREESITTER, NEORG
     { 'nvim-lua/plenary.nvim', lazy=true },
     { 'nvim-telescope/telescope.nvim', config=cfg_telescope, cmd="Telescope", dependencies={'fdschmidt93/telescope-egrepify.nvim'} },
-    { 'nvim-treesitter/nvim-treesitter', config=cfg_treesitter, lazy=true },
+    { 'nvim-treesitter/nvim-treesitter', config=cfg_treesitter },
     { 'nvim-neorg/neorg', ft="norg", opts=cfg_neorg, dependencies={"laher/neorg-exec"} },
 
     -->  GENERAL PURPOSE
     { 'danymat/neogen', opts={snippet_engine="luasnip"}, cmd="Neogen" },
     { 'notjedi/nvim-rooter.lua', config=true },
-    { 'nvim-focus/focus.nvim', opts={ui = {cursorline=false, signcolumn=false}}, },
+    { 'nvim-focus/focus.nvim', opts={ui = {cursorline=false, signcolumn=false}}, event="WinEnter" },
     { 'windwp/nvim-autopairs', config=true, event="InsertEnter" },
-    { 'lukas-reineke/indent-blankline.nvim', opts={show_current_context=true, char='▏' } },
+    { 'lukas-reineke/indent-blankline.nvim', opts={scope={enabled=false}}, main="ibl" },
 }
 
 require("lazy").setup(pluhs, {
     ui = { pills=false, noautocmd=false },
-    install={colorscheme={"retrobox"}},
+    install = { colorscheme = {"retrobox"} },
     performance = { rtp = { disabled_plugins = {
         "python3_provider", "node_provider", "2html_plugin", "getscript", "getscriptPlugin",
         "gzip", "matchit", "tar", "tarPlugin", "rrhelper", "spellfile_plugin", "vimball",
@@ -524,15 +521,7 @@ end
 -- }}}
 
 -- {{{ -- MISC
-vim.cmd.colorscheme("retrobox")
-vim.cmd [[
-    hi link GitSignsAdd String
-    hi link GitSignsChange Identifier
-    hi link GitSignsDelete Keyword
-    hi Function gui=italic
-    hi link FloatBorder NormalFloat
-    hi SignColumn guibg=none
-]]
+vim.cmd.colorscheme("tokyodark")
 
 function UnusualFolds()
     local title = tostring(vim.fn.getline(vim.v.foldstart)):gsub([[%-%- %{%{%{ %-%- ]], "")
@@ -544,7 +533,7 @@ end
 vim.api.nvim_create_autocmd("BufReadPost", {
     pattern = "/home/taj/.config/nvim/init.lua",
     callback = function()
-        vim.cmd [[setl fdm=marker fdls=-1 fdl=0 nonu nornu signcolumn=yes:2]]
+        vim.cmd [[setl fdm=marker fdls=-1 fdl=0 nonu nornu signcolumn=no]]
         vim.opt.foldtext = 'v:lua.UnusualFolds()'
         local main_text = "-- [[ Noice ]] --"
         vim.api.nvim_buf_set_extmark(0, vim.api.nvim_create_namespace("taj0023"), 0, 0, {
@@ -567,6 +556,11 @@ vim.g.neovide_underline_automatic_scaling = true
 
 vim.g.neovide_confirm_quit = true
 vim.g.neovide_remember_window_size = true
-
-vim.opt.cmdheight = 0
 -- }}}
+
+vim.api.nvim_create_autocmd("CmdLineChanged", {
+    callback = function()
+        local args = vim.split(vim.fn.getcmdline(), " ")
+        if vim.startswith(args[1], "colo") then pcall(vim.cmd.colorscheme, args[2]) end
+    end
+})
