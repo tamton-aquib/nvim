@@ -349,13 +349,13 @@ end
 
 local cfg_telescope = function()
     require("telescope").setup {
-    defaults = {
-        prompt_prefix = "      ",
-        mappings = { i = {["<C-y>"] = require("telescope.actions.layout").toggle_preview} },
-        sorting_strategy = "ascending",
-        layout_config = { prompt_position = "top" },
-        file_ignore_patterns = {'__pycache__/', 'node_modules/', '%.lock', 'target/', '__pypackages__/'},
-    } }
+        defaults = {
+            prompt_prefix = "      ",
+            mappings = { i = {["<C-y>"] = require("telescope.actions.layout").toggle_preview} },
+            sorting_strategy = "ascending",
+            layout_config = { prompt_position = "top" },
+            file_ignore_patterns = {'__pycache__/', 'node_modules/', '%.lock', 'target/', '__pypackages__/'},
+        } }
     -- require('telescope').load_extension('projects')
     require "telescope".load_extension('egrepify')
 end
