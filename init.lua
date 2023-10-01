@@ -1,6 +1,5 @@
 
 
-
 -- {{{ -- Settings
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -217,8 +216,8 @@ map('n', '<leader>q'   , Util.toggle_quickfix)
 map('n', '<leader>z'   , cmd 'FocusMaximise')
 
 --> stuff.nvim maps (https://github.com/tamton-aquib/stuff.nvim)
-map('n', '<leader>ii', function() require("nvim-market").install_picker() end)
-map('n', '<leader>iu', function() require("nvim-market").remove_picker() end)
+-- map('n', '<leader>ii', function() require("nvim-market").install_picker() end)
+-- map('n', '<leader>iu', function() require("nvim-market").remove_picker() end)
 map('n', '<leader>cc', function() require("chatgpt").chatgpt() end)
 map('n', 'gC', function() require("calc").toggle() end)
 map('n', 'gS', function() require("stalk").stalk() end)
@@ -421,7 +420,7 @@ local pluhs = {
     { dir='~/STUFF/NEOVIM/staline.nvim', config=cfg_staline, event="ColorScheme" },
     { dir='~/STUFF/NEOVIM/flirt.nvim', config=true },
     { dir='~/STUFF/NEOVIM/stuff.nvim', lazy=true },
-    { 'tamton-aquib/nvim-market', import="nvim-market.plugins", config=true },
+    -- { 'tamton-aquib/nvim-market', import="nvim-market.plugins", config=true },
     { 'tamton-aquib/essentials.nvim', lazy=true },
 
     -->  THEMES AND UI
@@ -521,7 +520,7 @@ end
 -- }}}
 
 -- {{{ -- MISC
-vim.cmd.colorscheme("tokyodark")
+vim.cmd.colorscheme("retrobox")
 
 function UnusualFolds()
     local title = tostring(vim.fn.getline(vim.v.foldstart)):gsub([[%-%- %{%{%{ %-%- ]], "")
