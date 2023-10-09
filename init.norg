@@ -1,3 +1,9 @@
+@document.meta
+tangle: init.lua
+@end
+
+#tangle init.lua
+@code lua
 
 
 -- {{{ -- Settings
@@ -8,8 +14,6 @@ if not vim.uv.fs_stat(lazypath) then
     vim.fn.system({"git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim", lazypath})
 end
 vim.opt.rtp:append(lazypath)
-package.path = package.path .. ";/home/taj/.luarocks/share/lua/5.1/?.lua;/home/taj/.luarocks/share/lua/5.1/?/init.lua"
-package.cpath = package.cpath .. ";" .. "/home/taj/.luarocks/lib/lua/5.1/?.so"
 
 local opts = {
     General = {
@@ -188,7 +192,6 @@ vim.g.maplocalleader = ","
 local function map(mode, key, func) vim.keymap.set(mode, key, func, {silent=true}) end
 local function cmd(s) return "<CMD>"..s.."<CR>" end
 
-map('n', 'gP', function() require("ppp").setup() end)
 map('n', '<leader>dd', function() require("duck").hatch() end)
 map('n', '<leader>k', Util.konsole)
 map('n', 'K', vim.lsp.buf.hover)
@@ -219,6 +222,8 @@ map('n', '<leader>q'   , Util.toggle_quickfix)
 map('n', '<leader>z'   , cmd 'FocusMaximise')
 
 --> stuff.nvim maps (https://github.com/tamton-aquib/stuff.nvim)
+-- map('n', '<leader>ii', function() require("nvim-market").install_picker() end)
+-- map('n', '<leader>iu', function() require("nvim-market").remove_picker() end)
 map('n', '<leader>cc', function() require("chatgpt").chatgpt() end)
 map('n', 'gC', function() require("calc").toggle() end)
 map('n', 'gS', function() require("stalk").stalk() end)
@@ -354,7 +359,7 @@ local cfg_telescope = function()
             mappings = { i = {["<C-y>"] = require("telescope.actions.layout").toggle_preview} },
             sorting_strategy = "ascending",
             layout_config = { prompt_position = "top" },
-            file_ignore_patterns = {'__pycache__/', 'node_modules/', '%.lock', [[package-lock.json]], 'target/', '__pypackages__/'},
+            file_ignore_patterns = {'__pycache__/', 'node_modules/', '%.lock', 'target/', '__pypackages__/'},
         } }
     -- require('telescope').load_extension('projects')
     require "telescope".load_extension('egrepify')
@@ -393,7 +398,7 @@ local cfg_staline = function()
 
     vim.g.mpv_visualizer = ""
     require("staline").setup({
-        defaults = { true_colors=true, file_icons_enabled=false },
+        defaults = { true_colors=true },
         sections={
             left = { '  ', 'mode', '  ', 'git_branch', '   ', 'lsp', '   %{g:lsp_status}' },
             right = { '  %10@Bruh@󰎆 %X %{g:mpv_visualizer}', 'line_column', '  ' }
@@ -409,11 +414,7 @@ end
 -- {{{ -- Lazy
 local pluhs = {
     -->  Temporary and testing
-    { dir='~/STUFF/NEOVIM/ppp' },
-    { 'tiagovla/tokyodark.nvim' },
-    { '3rd/image.nvim', opts={ backend="ueberzug", integrations={ neorg = { enabled=true } } } },
     { 'willothy/flatten.nvim', lazy=false, config=true },
-    { 'folke/zen-mode.nvim', config=true },
     -- { 'akinsho/toggleterm.nvim', opts={direction='float', auto_scroll=false}, lazy=true },
     { 'edluffy/hologram.nvim', config=true, lazy=true },
     { 'kylechui/nvim-surround', config=true },
@@ -422,10 +423,10 @@ local pluhs = {
     -- { 'tamton-aquib/zone.nvim', opts={after=1000} },
     -- { 'tamton-aquib/keys.nvim', config=true },
     -- { 'tamton-aquib/mpv.nvim', config={setup_widgets=true} },
-    -- { dir='~/STUFF/NEOVIM/staline.nvim', config=cfg_staline, event="ColorScheme" },
-    { 'harryvince/staline.nvim', config=cfg_staline, event="ColorScheme" },
+    { dir='~/STUFF/NEOVIM/staline.nvim', config=cfg_staline, event="ColorScheme" },
     { dir='~/STUFF/NEOVIM/flirt.nvim', config=true },
     { dir='~/STUFF/NEOVIM/stuff.nvim', lazy=true },
+    -- { 'tamton-aquib/nvim-market', import="nvim-market.plugins", config=true },
     { 'tamton-aquib/essentials.nvim', lazy=true },
 
     -->  THEMES AND UI
@@ -560,5 +561,6 @@ vim.g.neovide_underline_automatic_scaling = true
 
 vim.g.neovide_confirm_quit = true
 vim.g.neovide_remember_window_size = true
-
 -- }}}
+
+@end
