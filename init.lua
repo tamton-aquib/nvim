@@ -8,8 +8,8 @@ if not vim.uv.fs_stat(lazypath) then
     vim.fn.system({"git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim", lazypath})
 end
 vim.opt.rtp:append(lazypath)
-package.path = package.path .. ";/home/taj/.luarocks/share/lua/5.1/?.lua;/home/taj/.luarocks/share/lua/5.1/?/init.lua"
-package.cpath = package.cpath .. ";" .. "/home/taj/.luarocks/lib/lua/5.1/?.so"
+package.path = package.path .. ";"..vim.env.HOME.."/.luarocks/share/lua/5.1/?.lua;/home/taj/.luarocks/share/lua/5.1/?/init.lua"
+package.cpath = package.cpath .. ";" .. vim.env.HOME .. "/.luarocks/lib/lua/5.1/?.so"
 
 local opts = {
     General = {
@@ -34,7 +34,7 @@ local opts = {
     },
     Ui = {
         pumblend = 20, inccommand = "split", termguicolors = true, number = true, signcolumn = "yes:2",
-        rnu = true, guifont = "Rec Mono Casual:h7", shortmess = "tF".."TIcC".."as".."WoO",
+        rnu = true, guifont = "JetBrains Mono:h7", shortmess = "tF".."TIcC".."as".."WoO",
         fillchars = { eob=' ', fold=' ', foldopen="", foldsep=" ", foldclose="" }
     },
     Tabspace = {
@@ -52,7 +52,7 @@ vim.schedule(function()
     if ess_status then
         vim.ui.input = essentials.ui_input
         vim.ui.select = essentials.ui_select
-        vim.notify = essentials.ui_notify
+        -- vim.notify = essentials.ui_notify
     end
 end)
 
@@ -60,27 +60,6 @@ end)
 
 -- {{{ -- Utils
 local Util = {}
-
-Util.mess = function()
-    local contents = vim.api.nvim_exec2("mess", {output=true})
-    if contents.output == "" then return end
-    vim.cmd("vnew | setl bt=nofile ft=yaml bh=wipe nonu nornu")
-
-    vim.api.nvim_put(vim.split(contents.output, '\n'), "", true, true)
-    require("essentials.utils").set_quit_maps()
-end
-
---> Open current project note neorg file.
-Util.open_quick_note = function()
-    local datapath = vim.fn.stdpath("data").."/quicknote/"
-    if not vim.uv.fs_stat(datapath) then
-        vim.notify("Datapath doesnt exist. Creating....")
-        vim.fn.mkdir(datapath)
-    end
-
-    local project_name = vim.fn.fnamemodify(vim.uv.cwd(), ":t"):gsub("[\\.\\-]", "")
-    vim.cmd.edit(datapath..project_name..'.norg')
-end
 
 --> Simple dashboard
 Util.splash_screen = function()
@@ -96,21 +75,22 @@ Util.splash_screen = function()
             local keys = {K='kitty/kitty.conf', W='wezterm/wezterm.lua', I='nvim/init.lua', A='alacritty/alacritty.yml', F='fish/config.fish'}
             vim.api.nvim_win_set_buf(0, buf)
             vim.api.nvim_put(vim.split((" , "):rep(vim.o.lines), ","), "l", true, true)
-            vim.cmd [[set guicursor=n:block-Normal]]
-            vim.cmd [[silent! setl nonu nornu ft=dashboard]]
+            vim.cmd [[silent! setl guicursor=n:block-Normal nonu nornu ft=dashboard]]
 
             for k,f in pairs(keys) do map(k,'<cmd>e '..xdg..f..' | setl noacd<CR>') end
             map('P', '<cmd>Telescope oldfiles<CR>')
             map('q', '<cmd>q<CR>')
             map('o', '<cmd>e #<1<CR>') -- last edited file
 
-            local image = require('hologram.image'):new(vim.fn.expand("~/Downloads/crown_colorized.png"), {})
-            image:display( math.floor(vim.o.lines/2), math.floor(vim.o.columns/4+5), vim.api.nvim_get_current_buf(), {})
+            local geometry = {math.floor(vim.o.lines/2), math.floor(vim.o.columns/4+5), 100, 100}
+            local image = require('image').from_file(vim.fn.expand("~/Downloads/crown_colorized.png"), {})
+            image:render(geometry)
+            -- image:display( math.floor(vim.o.lines/2), math.floor(vim.o.columns/4+5), vim.api.nvim_get_current_buf(), {})
             vim.api.nvim_create_autocmd({"BufEnter"}, {
                 once=true,
                 callback=function()
                     vim.opt.guicursor = GUICURSOR
-                    image:delete(0, {free=true})
+                    image:clear()
                 end
             })
         end)
@@ -128,7 +108,7 @@ Util.close_command = function()
     vim.cmd(total == 1  and quit_cmd or 'bd')
 end
 
---> Different Kinds of Borders
+-- Different Kinds of Borders
 Util.border = ({{ "╒", "═", "╕", "│", "╛", "═", "╘", "│" }, { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }})[1]
 -- Util.border = "shadow"
 
@@ -150,14 +130,12 @@ end
 
 -- {{{ -- Autocmds
 
---> Wrapper funcs
-local command = function(name, func, desc) vim.api.nvim_create_user_command(name, func, {desc=desc}) end
+--> Wrapper function
 local au = function(events, ptn, cb) vim.api.nvim_create_autocmd(events, {pattern=ptn, [type(cb)=="function" and 'callback' or 'command']=cb}) end
 
 -->  NEW
-au("LspAttach", "*", function(a) vim.lsp.get_client_by_id(a.data.client_id).server_capabilities.semanticTokensProvider=nil end)
-au("VimEnter", "*", Util.splash_screen)
--- au({"BufReadPost", "FileType"}, "javascript,css", "setl ts=2 sw=2")
+-- au("LspAttach", "*", function(a) vim.lsp.get_client_by_id(a.data.client_id).server_capabilities.semanticTokensProvider=nil end)
+au("UIEnter", "*", Util.splash_screen)
 
 -->  LSP Related
 au("BufWritePre", "*.rs,*.svelte", function() vim.lsp.buf.format() end)
@@ -172,12 +150,10 @@ au("TextYankPost", "*", function() vim.highlight.on_yank({higroup="Visual", time
 au("TermOpen", "term://*", "setl nonu nornu | star")
 
 -->  Commands
-command("Format", vim.lsp.buf.format, "Formats the current buffer.")
-command("X", ":silent !xset r rate 169 69", "Keyboards press-release rate.")
-command("PP", function() require("essentials").null_pointer() end, {range='%'})
-command("Mess", Util.mess, "Message to temp output buf.")
--- vim.cmd [[syntax keyword Keyword lambda conceal cchar=λ]] -- TODO: (maybe with ts queries?)
-
+vim.api.nvim_create_user_command("Format", vim.lsp.buf.format, {})
+vim.api.nvim_create_user_command("X", ":silent !xset r rate 169 69", {})
+vim.api.nvim_create_user_command("PP", function() require("essentials").null_pointer() end, {range='%'})
+vim.api.nvim_create_user_command("Mess", function() require("essentials").messages() end, {})
 -- }}}
 
 -- {{{ -- Mappings
@@ -188,11 +164,10 @@ vim.g.maplocalleader = ","
 local function map(mode, key, func) vim.keymap.set(mode, key, func, {silent=true}) end
 local function cmd(s) return "<CMD>"..s.."<CR>" end
 
-map('n', 'gP', function() require("ppp").setup() end)
 map('n', '<leader>dd', function() require("duck").hatch() end)
 map('n', '<leader>k', Util.konsole)
 map('n', 'K', vim.lsp.buf.hover)
-map('n', 'gQ', Util.open_quick_note)
+map('n', 'gQ', function() require("essentials").open_quick_note() end)
 
 map('n', '<Esc>', '<CMD>echo<CR>')
 map('c', 'jk', '<C-f><cmd>resize -20<cr>')
@@ -226,6 +201,7 @@ map('n', 'gs', function() require("scratch").toggle() end)
 map('n', 'gB', function() require("bt").toggle() end)
 map('n', 'gT', function() require("tmpclone").clone() end)
 map('n', 'gp', function() require("mpv").toggle_player() end)
+map('n', 'gP', function() require("dep").check() end)
 
 --> Lsp mappings
 map('n', 'gD',    vim.lsp.buf.definition)
@@ -247,7 +223,6 @@ map('n', '<leader>cs', function() require("essentials").cheat_sh() end)
 
 --> Telescope mappings
 map('n', '<leader>ff', function() require("telescope.builtin").find_files() end)
--- map('n', '<leader>fg', function() require("telescope.builtin").live_grep(Util.telescope_theme) end)
 map('n', '<leader>fg', function() require("telescope").extensions.egrepify.egrepify() end)
 map('n', '<leader>fs', function() require("telescope.builtin").grep_string() end)
 map('n', '<leader>fh', function() require("telescope.builtin").help_tags() end)
@@ -286,7 +261,6 @@ map('n', '<'        , '<<')
 -- {{{ -- Plug configs
 local cfg_cmp = function()
     local cmp = require('cmp')
-    local luasnip = require("luasnip")
 
     local kind_icons = {
         Text = ' ', Method = ' ', Function = ' ', Constructor = ' ', Field = ' ', Variable = ' ', Class = ' ', Interface = ' ',
@@ -300,24 +274,21 @@ local cfg_cmp = function()
         formatting = {
             fields = { 'kind', 'abbr', 'menu' },
             format = function(_, item)
-                item.kind = (' '..kind_icons[item.kind]) or " "
+                item.kind = (' ' .. kind_icons[item.kind]) or " "
                 return item
             end
         },
         window = { documentation = { border = "shadow" }, completion={side_padding=0} },
-        snippet = { expand=function(o) luasnip.lsp_expand(o.body) end },
         mapping = cmp.mapping.preset.insert {
             ['<C-b>'] = cmp.mapping.scroll_docs(-1),
             ['<C-f>'] = cmp.mapping.scroll_docs(1),
             ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
             ['<CR>'] = cmp.mapping.confirm({ select = true }),
-            ['<Tab>'] = function(fallback) (luasnip.jumpable() and luasnip.jump or fallback)() end
         },
         sources = cmp.config.sources {
             { name = 'path' },
             { name = 'nvim_lsp' },
             { name = 'nvim_lsp_signature_help' },
-            { name = 'luasnip' },
             { name = 'buffer'},
             { name = 'nvim_lua' },
             { name = 'neorg'},
@@ -329,24 +300,6 @@ local cfg_cmp = function()
     cmp.setup.cmdline(':', { mapping=cmp.mapping.preset.cmdline(), sources={{name="cmdline", keyword_length=3}} })
 end
 
-local cfg_luasnip = function()
-    local ls = require('luasnip')
-    ls.config.set_config({ region_check_events = "InsertEnter", delete_check_events = "InsertLeave" })
-    local parse = ls.parser.parse_snippet
-
-	local snips = {
-		lua = 'vim.print(${0})',
-		python = 'print("${0}")',
-		rust = 'println!("${0}");',
-		c = 'printf("${0}");', cpp = 'std::cout << "${0}" << std::endl;',
-		javascript = 'console.log("${0}");', typescript = 'console.log("${0}");',
-	}
-
-    local t = {}
-    for lang, snip in pairs(snips) do t[lang] = {parse({trig="pp", wordTrig=true}, snip)} end
-    ls.add_snippets(nil, t)
-end
-
 local cfg_telescope = function()
     require("telescope").setup {
         defaults = {
@@ -356,7 +309,6 @@ local cfg_telescope = function()
             layout_config = { prompt_position = "top" },
             file_ignore_patterns = {'__pycache__/', 'node_modules/', '%.lock', [[package-lock.json]], 'target/', '__pypackages__/'},
         } }
-    -- require('telescope').load_extension('projects')
     require "telescope".load_extension('egrepify')
 end
 
@@ -367,15 +319,12 @@ local cfg_neorg = {
         ["core.completion"] = { config={ engine="nvim-cmp" } },
         ["core.concealer"] = { config={ dim_code_blocks={conceal=false} } },
         ["core.presenter"] = { config={ zen_mode = "zen-mode" } },
-        ["core.itero"] = {},
-        ["external.exec"] = {},
+        ["core.itero"] = {}, ["external.exec"] = {},
     }
 }
 
 local cfg_treesitter = function()
-    require("nvim-treesitter.configs").setup {
-        highlight = {enable=true}, indent = {enable=true}
-    }
+    require("nvim-treesitter.configs").setup { highlight = {enable=true}, indent = {enable=true} }
 end
 
 local cfg_staline = function()
@@ -393,7 +342,7 @@ local cfg_staline = function()
 
     vim.g.mpv_visualizer = ""
     require("staline").setup({
-        defaults = { true_colors=true, file_icons_enabled=false },
+        defaults = { true_colors=true },
         sections={
             left = { '  ', 'mode', '  ', 'git_branch', '   ', 'lsp', '   %{g:lsp_status}' },
             right = { '  %10@Bruh@󰎆 %X %{g:mpv_visualizer}', 'line_column', '  ' }
@@ -407,45 +356,34 @@ end
 -- }}}
 
 -- {{{ -- Lazy
-local pluhs = {
+local plugins = {
     -->  Temporary and testing
-    { dir='~/STUFF/NEOVIM/ppp' },
-    { 'tiagovla/tokyodark.nvim' },
-    { '3rd/image.nvim', opts={ backend="ueberzug", integrations={ neorg = { enabled=true } } } },
+    { '3rd/image.nvim', opts={ backend="ueberzug", integrations={ neorg = { enabled=true } } }, ft="norg" },
     { 'willothy/flatten.nvim', lazy=false, config=true },
-    { 'folke/zen-mode.nvim', config=true },
-    -- { 'akinsho/toggleterm.nvim', opts={direction='float', auto_scroll=false}, lazy=true },
-    { 'edluffy/hologram.nvim', config=true, lazy=true },
-    { 'kylechui/nvim-surround', config=true },
+    { 'kylechui/nvim-surround', config=true, lazy=true },
 
     -->  My Useless lil plugins
-    -- { 'tamton-aquib/zone.nvim', opts={after=1000} },
-    -- { 'tamton-aquib/keys.nvim', config=true },
     -- { 'tamton-aquib/mpv.nvim', config={setup_widgets=true} },
-    -- { dir='~/STUFF/NEOVIM/staline.nvim', config=cfg_staline, event="ColorScheme" },
-    { 'harryvince/staline.nvim', config=cfg_staline, event="ColorScheme" },
-    { dir='~/STUFF/NEOVIM/flirt.nvim', config=true },
-    { dir='~/STUFF/NEOVIM/stuff.nvim', lazy=true },
+    { 'tamton-aquib/staline.nvim', config=cfg_staline, event="ColorScheme" },
+    { 'tamton-aquib/flirt.nvim', config=true },
+    { 'tamton-aquib/stuff.nvim', lazy=true },
     { 'tamton-aquib/essentials.nvim', lazy=true },
 
     -->  THEMES AND UI
-    -- { 'nvim-tree/nvim-web-devicons', opts={override={norg={icon=" ", color="#4878be", name="neorg"}} }, lazy=true },
     { 'DaikyXendo/nvim-web-devicons', opts={override={norg={icon=" ", color="#4878be", name="neorg"}} }, lazy=true },
     { 'norcalli/nvim-colorizer.lua', cmd="ColorizerToggle" },
     { 'lewis6991/gitsigns.nvim', config=true },
     { 'nvim-tree/nvim-tree.lua', opts={ renderer={ indent_markers={ enable=true } } }, lazy=true },
-    { 'declancm/cinnamon.nvim', config=true, keys={'<C-u>', '<C-d>'} },
+    { 'declancm/cinnamon.nvim', opts={ extra_keymaps=true }, event="WinScrolled" },
 
     -->  LSP and COMPLETION
     { 'neovim/nvim-lspconfig' },
-    { 'L3MON4D3/LuaSnip', config=cfg_luasnip, event="InsertEnter", lazy=true },
     { 'hrsh7th/nvim-cmp', config=cfg_cmp, event={"InsertEnter", "CmdlineEnter"}, lazy=true,
         dependencies = {
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-path',
             'hrsh7th/cmp-nvim-lua',
-            'saadparwaiz1/cmp_luasnip',
             'hrsh7th/cmp-nvim-lsp-signature-help',
             'hrsh7th/cmp-cmdline'
         }
@@ -453,21 +391,19 @@ local pluhs = {
 
     -->  TELESCOPE, TREESITTER, NEORG
     { 'nvim-lua/plenary.nvim', lazy=true },
-    { 'nvim-telescope/telescope.nvim', config=cfg_telescope, cmd="Telescope", dependencies={'fdschmidt93/telescope-egrepify.nvim'} },
+    { 'nvim-telescope/telescope.nvim', config=cfg_telescope, lazy=true, dependencies={'fdschmidt93/telescope-egrepify.nvim'} },
     { 'nvim-treesitter/nvim-treesitter', config=cfg_treesitter },
     { 'nvim-neorg/neorg', ft="norg", opts=cfg_neorg, dependencies={"laher/neorg-exec"} },
 
     -->  GENERAL PURPOSE
-    { 'danymat/neogen', opts={snippet_engine="luasnip"}, cmd="Neogen" },
     { 'notjedi/nvim-rooter.lua', config=true },
     { 'nvim-focus/focus.nvim', opts={ui = {cursorline=false, signcolumn=false}}, event="WinEnter" },
     { 'windwp/nvim-autopairs', config=true, event="InsertEnter" },
     { 'lukas-reineke/indent-blankline.nvim', opts={scope={enabled=false}}, main="ibl" },
 }
 
-require("lazy").setup(pluhs, {
-    ui = { pills=false, noautocmd=false },
-    install = { colorscheme = {"retrobox"} },
+require("lazy").setup(plugins, {
+    ui = { pills=false }, install = { colorscheme = {"retrobox"} },
     performance = { rtp = { disabled_plugins = {
         "python3_provider", "node_provider", "2html_plugin", "getscript", "getscriptPlugin",
         "gzip", "matchit", "tar", "tarPlugin", "rrhelper", "spellfile_plugin", "vimball",
@@ -490,9 +426,8 @@ vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.
 
 vim.diagnostic.config({
     virtual_text = false,
-    underline = { Error=true },
     float = {
-        border = Util.border, focusable = false, suffix = '',
+        border = Util.border, suffix = '', -- focusable=false
         header = { "  Diagnostics", "String" },
         prefix = function(_, _, _) return "  " , "String" end, -- icons:        ﬌  
     }
@@ -501,7 +436,7 @@ vim.diagnostic.config({
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+-- local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local lspconfig = require("lspconfig")
 
 local s = {
@@ -519,7 +454,7 @@ local s = {
 }
 
 for server, opt in pairs(s) do
-    opt.capabilities = capabilities
+    opt.capabilities = require("cmp_nvim_lsp").default_capabilities()
     lspconfig[server].setup(opt)
 end
 -- }}}
@@ -529,16 +464,14 @@ vim.cmd.colorscheme("retrobox")
 
 function UnusualFolds()
     local title = tostring(vim.fn.getline(vim.v.foldstart)):gsub([[%-%- %{%{%{ %-%- ]], "")
-    local spaces = (" "):rep(math.floor(vim.o.columns - title:len()) / 2)
-
-    return spaces .. title
+    return (" "):rep(math.floor(vim.o.columns - title:len()) / 2) .. title
 end
 
 vim.api.nvim_create_autocmd("BufReadPost", {
-    pattern = "/home/taj/.config/nvim/init.lua",
+    pattern = vim.env.HOME .. "/.config/nvim/init.lua",
     callback = function()
         vim.cmd [[setl fdm=marker fdls=-1 fdl=0 nonu nornu signcolumn=no]]
-        vim.opt.foldtext = 'v:lua.UnusualFolds()'
+        vim.opt_local.foldtext = 'v:lua.UnusualFolds()'
         local main_text = "-- [[ Noice ]] --"
         vim.api.nvim_buf_set_extmark(0, vim.api.nvim_create_namespace("taj0023"), 0, 0, {
             virt_text = {{
@@ -549,16 +482,9 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 })
 vim.keymap.set('n', '"', ':', {})
 
-
 vim.g.neovide_scale_factor = 1.0
 vim.g.neovide_transparency = 0.7
 vim.g.transparency = 0.7
 
-vim.g.neovide_floating_blur_amount_x = 2.0
-vim.g.neovide_floating_blur_amount_y = 2.0
 vim.g.neovide_underline_automatic_scaling = true
-
-vim.g.neovide_confirm_quit = true
-vim.g.neovide_remember_window_size = true
-
 -- }}}
