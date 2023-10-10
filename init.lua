@@ -52,7 +52,7 @@ vim.schedule(function()
     if ess_status then
         vim.ui.input = essentials.ui_input
         vim.ui.select = essentials.ui_select
-        -- vim.notify = essentials.ui_notify
+        vim.notify = essentials.ui_notify
     end
 end)
 
@@ -462,16 +462,16 @@ end
 -- {{{ -- MISC
 vim.cmd.colorscheme("retrobox")
 
-function UnusualFolds()
-    local title = tostring(vim.fn.getline(vim.v.foldstart)):gsub([[%-%- %{%{%{ %-%- ]], "")
+function UF()
+    local title = vim.fn.getline(vim.v.foldstart):gsub([[%-%- %{%{%{ %-%- ]], "")
     return (" "):rep(math.floor(vim.o.columns - title:len()) / 2) .. title
 end
 
 vim.api.nvim_create_autocmd("BufReadPost", {
     pattern = vim.env.HOME .. "/.config/nvim/init.lua",
     callback = function()
-        vim.cmd [[setl fdm=marker fdls=-1 fdl=0 nonu nornu signcolumn=no]]
-        vim.opt_local.foldtext = 'v:lua.UnusualFolds()'
+        vim.cmd [[setl fdm=marker fdls=-1 fdl=0 nonu nornu scl=no]]
+        vim.opt_local.foldtext = 'v:lua.UF()'
         local main_text = "-- [[ Noice ]] --"
         vim.api.nvim_buf_set_extmark(0, vim.api.nvim_create_namespace("taj0023"), 0, 0, {
             virt_text = {{
