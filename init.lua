@@ -8,7 +8,7 @@ if not vim.uv.fs_stat(lazypath) then
     vim.fn.system({"git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim", lazypath})
 end
 vim.opt.rtp:append(lazypath)
-package.path = package.path .. ";"..vim.env.HOME.."/.luarocks/share/lua/5.1/?.lua;/home/taj/.luarocks/share/lua/5.1/?/init.lua"
+package.path = package.path .. ";"..vim.env.HOME.."/.luarocks/share/lua/5.1/?.lua;"..vim.env.HOME.."/.luarocks/share/lua/5.1/?/init.lua"
 package.cpath = package.cpath .. ";" .. vim.env.HOME .. "/.luarocks/lib/lua/5.1/?.so"
 
 local opts = {
@@ -61,41 +61,46 @@ end)
 -- {{{ -- Utils
 local Util = {}
 
---> Simple dashboard
-Util.splash_screen = function()
-    local xdg = vim.fn.fnamemodify(vim.fn.stdpath("config"), ":h").."/"
-    local arg = vim.fn.argv(0)
-    if arg and (vim.fn.isdirectory(arg) ~= 0) or arg == "" and vim.bo.ft ~= "lazy"  then
-        vim.api.nvim_buf_set_option(0, 'bufhidden', 'wipe')
-
-        local GUICURSOR = vim.opt.guicursor:get()
-        vim.schedule(function()
-            local buf = vim.api.nvim_create_buf(false, true)
-            local map = function(lhs, rhs) vim.keymap.set('n', lhs, rhs, {silent=true, buffer=0}) end
-            local keys = {K='kitty/kitty.conf', W='wezterm/wezterm.lua', I='nvim/init.lua', A='alacritty/alacritty.yml', F='fish/config.fish'}
-            vim.api.nvim_win_set_buf(0, buf)
-            vim.api.nvim_put(vim.split((" , "):rep(vim.o.lines), ","), "l", true, true)
-            vim.cmd [[silent! setl guicursor=n:block-Normal nonu nornu ft=dashboard]]
-
-            for k,f in pairs(keys) do map(k,'<cmd>e '..xdg..f..' | setl noacd<CR>') end
-            map('P', '<cmd>Telescope oldfiles<CR>')
-            map('q', '<cmd>q<CR>')
-            map('o', '<cmd>e #<1<CR>') -- last edited file
-
-            local geometry = {math.floor(vim.o.lines/2), math.floor(vim.o.columns/4+5), 100, 100}
-            local image = require('image').from_file(vim.fn.expand("~/Downloads/crown_colorized.png"), {})
-            image:render(geometry)
-            -- image:display( math.floor(vim.o.lines/2), math.floor(vim.o.columns/4+5), vim.api.nvim_get_current_buf(), {})
-            vim.api.nvim_create_autocmd({"BufEnter"}, {
-                once=true,
-                callback=function()
-                    vim.opt.guicursor = GUICURSOR
-                    image:clear()
-                end
-            })
-        end)
+Util.center = function(dict)
+    local new_dict = {}
+    for _, v in pairs(dict) do
+        local padding = vim.fn.max(vim.fn.map(dict, 'strwidth(v:val)'))
+        local spacing = (" "):rep(math.floor((vim.o.columns - padding) / 2)) .. v
+        table.insert(new_dict, spacing)
     end
+    return new_dict
 end
+
+--> Simple dashboard
+Util.splash_screen = vim.schedule_wrap(function()
+    local xdg = vim.fn.fnamemodify(vim.fn.stdpath("config"), ":h").."/"
+    local header = {
+        "","", "", "", "", "",
+        [[ ███▄    █     ▒█████      ██▓    ▄████▄     ▓█████   ]],
+        [[ ██ ▀█   █    ▒██▒  ██▒   ▓██▒   ▒██▀ ▀█     ▓█   ▀   ]],
+        [[▓██  ▀█ ██▒   ▒██░  ██▒   ▒██▒   ▒▓█    ▄    ▒███     ]],
+        [[▓██▒  ▐▌██▒   ▒██   ██░   ░██░   ▒▓▓▄ ▄██▒   ▒▓█  ▄   ]],
+        [[▒██░   ▓██░   ░ ████▓▒░   ░██░   ▒ ▓███▀ ░   ░▒████▒  ]],
+        [[░ ▒░   ▒ ▒    ░ ▒░▒░▒░    ░▓     ░ ░▒ ▒  ░   ░░ ▒░ ░  ]],
+        [[░ ░░   ░ ▒░     ░ ▒ ▒░     ▒ ░     ░  ▒       ░ ░  ░  ]],
+        [[   ░   ░ ░    ░ ░ ░ ▒      ▒ ░   ░              ░     ]],
+        [[         ░        ░ ░      ░     ░ ░            ░  ░  ]],
+        [[                                 ░                    ]]
+    }
+    local arg = vim.fn.argv(0)
+    if arg and (vim.fn.isdirectory(arg) ~= 0) or arg == "" and vim.bo.ft ~= "lazy" then
+
+        vim.fn.matchadd("Error", '[░▒]')
+        vim.fn.matchadd("Function", '[▓█▄▀▐▌]')
+        local map = function(lhs, rhs) vim.keymap.set('n', lhs, rhs, {silent=true, buffer=0}) end
+        local keys = {K='kitty/kitty.conf', W='wezterm/wezterm.lua', I='nvim/init.lua', A='alacritty/alacritty.yml', F='fish/config.fish'}
+        vim.api.nvim_put(Util.center(header), "l", true, true)
+        vim.cmd [[silent! setl nonu nornu nobl acd ft=dashboard bh=wipe bt=nofile]]
+
+        for k,f in pairs(keys) do map(k,'<cmd>e '..xdg..f..' | setl noacd<CR>') end
+        map('P', '<cmd>Telescope oldfiles<CR>'); map('q', '<cmd>q<CR>'); map('o', '<cmd>e #<1<CR>') -- edit the last edited file
+    end
+end)
 
 --> Closing Windows and buffers
 Util.close_command = function()
@@ -134,7 +139,7 @@ end
 local au = function(events, ptn, cb) vim.api.nvim_create_autocmd(events, {pattern=ptn, [type(cb)=="function" and 'callback' or 'command']=cb}) end
 
 -->  NEW
--- au("LspAttach", "*", function(a) vim.lsp.get_client_by_id(a.data.client_id).server_capabilities.semanticTokensProvider=nil end)
+au("LspAttach", "*", function(a) vim.lsp.get_client_by_id(a.data.client_id).server_capabilities.semanticTokensProvider=nil end)
 au("UIEnter", "*", Util.splash_screen)
 
 -->  LSP Related
@@ -261,6 +266,7 @@ map('n', '<'        , '<<')
 -- {{{ -- Plug configs
 local cfg_cmp = function()
     local cmp = require('cmp')
+    local luasnip = require('luasnip')
 
     local kind_icons = {
         Text = ' ', Method = ' ', Function = ' ', Constructor = ' ', Field = ' ', Variable = ' ', Class = ' ', Interface = ' ',
@@ -268,7 +274,7 @@ local cfg_cmp = function()
         Reference = ' ', Folder = ' ', EnumMember = ' ', Constant = ' ', Struct = ' ', Event = ' ', Operator = ' ', TypeParameter = ' ',
     }
     -- Great for other themes, not for gruvbox tho
-    -- for _, k in ipairs(vim.tbl_keys(kind_icons)) do vim.cmd("hi CmpItemKind"..k.." gui=reverse") end
+    for _, k in ipairs(vim.tbl_keys(kind_icons)) do vim.cmd("hi CmpItemKind"..k.." gui=reverse") end
 
     cmp.setup {
         formatting = {
@@ -279,6 +285,7 @@ local cfg_cmp = function()
             end
         },
         window = { documentation = { border = "shadow" }, completion={side_padding=0} },
+        snippet = { expand=function(o) luasnip.lsp_expand(o.body) end },
         mapping = cmp.mapping.preset.insert {
             ['<C-b>'] = cmp.mapping.scroll_docs(-1),
             ['<C-f>'] = cmp.mapping.scroll_docs(1),
@@ -289,6 +296,7 @@ local cfg_cmp = function()
             { name = 'path' },
             { name = 'nvim_lsp' },
             { name = 'nvim_lsp_signature_help' },
+            { name = 'luasnip'},
             { name = 'buffer'},
             { name = 'nvim_lua' },
             { name = 'neorg'},
@@ -298,6 +306,24 @@ local cfg_cmp = function()
     }
 
     cmp.setup.cmdline(':', { mapping=cmp.mapping.preset.cmdline(), sources={{name="cmdline", keyword_length=3}} })
+end
+
+local cfg_luasnip = function()
+    local ls = require('luasnip')
+    ls.config.set_config({ region_check_events = "InsertEnter", delete_check_events = "InsertLeave" })
+    local parse = ls.parser.parse_snippet
+
+	local snips = {
+		lua = 'vim.print(${0})',
+		python = 'print("${0}")',
+		rust = 'println!("${0}");',
+		c = 'printf("${0}");', cpp = 'std::cout << "${0}" << std::endl;',
+		javascript = 'console.log("${0}");', typescript = 'console.log("${0}");',
+	}
+
+    local t = {}
+    for lang, snip in pairs(snips) do t[lang] = {parse({trig="pp", wordTrig=true}, snip)} end
+    ls.add_snippets(nil, t)
 end
 
 local cfg_telescope = function()
@@ -358,12 +384,13 @@ end
 -- {{{ -- Lazy
 local plugins = {
     -->  Temporary and testing
+    { 'tiagovla/tokyodark.nvim' },
     { '3rd/image.nvim', opts={ backend="ueberzug", integrations={ neorg = { enabled=true } } }, ft="norg" },
     { 'willothy/flatten.nvim', lazy=false, config=true },
     { 'kylechui/nvim-surround', config=true, lazy=true },
 
     -->  My Useless lil plugins
-    -- { 'tamton-aquib/mpv.nvim', config={setup_widgets=true} },
+    { 'tamton-aquib/mpv.nvim', config={setup_widgets=true} },
     { 'tamton-aquib/staline.nvim', config=cfg_staline, event="ColorScheme" },
     { 'tamton-aquib/flirt.nvim', config=true },
     { 'tamton-aquib/stuff.nvim', lazy=true },
@@ -378,12 +405,14 @@ local plugins = {
 
     -->  LSP and COMPLETION
     { 'neovim/nvim-lspconfig' },
+    { 'L3MON4D3/LuaSnip', config=cfg_luasnip, event="InsertEnter", lazy=true },
     { 'hrsh7th/nvim-cmp', config=cfg_cmp, event={"InsertEnter", "CmdlineEnter"}, lazy=true,
         dependencies = {
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-path',
             'hrsh7th/cmp-nvim-lua',
+            'saadparwaiz1/cmp_luasnip',
             'hrsh7th/cmp-nvim-lsp-signature-help',
             'hrsh7th/cmp-cmdline'
         }
@@ -460,7 +489,7 @@ end
 -- }}}
 
 -- {{{ -- MISC
-vim.cmd.colorscheme("retrobox")
+vim.cmd.colorscheme("tokyodark")
 
 function UF()
     local title = vim.fn.getline(vim.v.foldstart):gsub([[%-%- %{%{%{ %-%- ]], "")
