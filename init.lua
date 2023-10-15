@@ -401,7 +401,7 @@ local plugins = {
     { 'norcalli/nvim-colorizer.lua', cmd="ColorizerToggle" },
     { 'lewis6991/gitsigns.nvim', config=true },
     { 'nvim-tree/nvim-tree.lua', opts={ renderer={ indent_markers={ enable=true } } }, lazy=true },
-    { 'declancm/cinnamon.nvim', opts={ extra_keymaps=true }, event="WinScrolled" },
+    { 'declancm/cinnamon.nvim', config=true, keys={"<C-d>", "<C-u>"} },
 
     -->  LSP and COMPLETION
     { 'neovim/nvim-lspconfig' },
@@ -454,7 +454,7 @@ vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {
 vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = Util.border})
 
 vim.diagnostic.config({
-    virtual_text = false,
+    virtual_text = false, focusable = false,
     float = {
         border = Util.border, suffix = '', -- focusable=false
         header = { "  Diagnostics", "String" },
