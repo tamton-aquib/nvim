@@ -15,7 +15,7 @@ local opts = {
     General = {
         exrc = true, spell = false, wrap = false, linebreak = true, ruler = false, conceallevel = 2,
         hlsearch = false, timeoutlen = 300, updatetime = 500, swapfile = false,
-        wildignore = { '*.pyc,__pycache__,node_modules,*.lock' },
+        wildignore = { '*.pyc,__pycache__,node_modules,*.lock,package-lock.json' },
     },
     Backup = { backup = false, writebackup = false },
     Layout = {
@@ -126,6 +126,7 @@ Util.konsole = function()
     local word = vim.fn.expand("<cword>")
     local ans = ({
         javascript = 'console.log("'..word..': ", '..word..')',
+        typescript = 'console.log("'..word..': ", '..word..')',
         lua = 'vim.print("'..word..': ", '..word..')',
     })[vim.bo.ft]
     vim.api.nvim_buf_set_lines(0, vim.fn.line('.'), vim.fn.line('.'), false, {vim.api.nvim_get_current_line():match("^%s*")..ans})
@@ -169,7 +170,6 @@ vim.g.maplocalleader = ","
 local function map(mode, key, func) vim.keymap.set(mode, key, func, {silent=true}) end
 local function cmd(s) return "<CMD>"..s.."<CR>" end
 
-map('n', '<leader>dd', function() require("duck").hatch() end)
 map('n', '<leader>k', Util.konsole)
 map('n', 'K', vim.lsp.buf.hover)
 map('n', 'gQ', function() require("essentials").open_quick_note() end)
@@ -190,7 +190,7 @@ map('n', '<leader>l', function() require("essentials").toggle_term("lazygit", 't
 map({'n', 't'}, '<leader>t', function() require("essentials").toggle_term("fish", 'v', true) end)
 map('n', '<leader>p', cmd 'Lazy')
 map('t', '<C-n>', [[<C-\><C-n>]]) -- :sadkek:
-map('n', 'gh', function() vim.cmd(":h "..vim.fn.expand('<cword>')) end)
+map('n', 'gh', function() vim.cmd.help(vim.fn.expand('<cword>')) end)
 
 --> General Mappings
 map('n', '<leader>e'   , function() require("nvim-tree.api").tree.toggle({find_file=true}) end)
@@ -266,7 +266,6 @@ map('n', '<'        , '<<')
 -- {{{ -- Plug configs
 local cfg_cmp = function()
     local cmp = require('cmp')
-    local luasnip = require('luasnip')
 
     local kind_icons = {
         Text = ' ', Method = ' ', Function = ' ', Constructor = ' ', Field = ' ', Variable = ' ', Class = ' ', Interface = ' ',
@@ -285,7 +284,7 @@ local cfg_cmp = function()
             end
         },
         window = { documentation = { border = "shadow" }, completion={side_padding=0} },
-        snippet = { expand=function(o) luasnip.lsp_expand(o.body) end },
+        snippet = { expand=function(o) require("luasnip").lsp_expand(o.body) end },
         mapping = cmp.mapping.preset.insert {
             ['<C-b>'] = cmp.mapping.scroll_docs(-1),
             ['<C-f>'] = cmp.mapping.scroll_docs(1),
@@ -333,7 +332,7 @@ local cfg_telescope = function()
             mappings = { i = {["<C-y>"] = require("telescope.actions.layout").toggle_preview} },
             sorting_strategy = "ascending",
             layout_config = { prompt_position = "top" },
-            file_ignore_patterns = {'__pycache__/', 'node_modules/', '%.lock', [[package-lock.json]], 'target/', '__pypackages__/'},
+            file_ignore_patterns = {'package%-lock%.json', '__pycache__/', 'node_modules/', '%.lock', 'target/', '__pypackages__/'},
         } }
     require "telescope".load_extension('egrepify')
 end
@@ -384,7 +383,7 @@ end
 -- {{{ -- Lazy
 local plugins = {
     -->  Temporary and testing
-    { 'tiagovla/tokyodark.nvim' },
+    { 'sainnhe/gruvbox-material' },
     { '3rd/image.nvim', opts={ backend="ueberzug", integrations={ neorg = { enabled=true } } }, ft="norg" },
     { 'willothy/flatten.nvim', lazy=false, config=true },
     { 'kylechui/nvim-surround', config=true, lazy=true },
@@ -489,7 +488,7 @@ end
 -- }}}
 
 -- {{{ -- MISC
-vim.cmd.colorscheme("tokyodark")
+vim.cmd.colorscheme("gruvbox-material")
 
 function UF()
     local title = vim.fn.getline(vim.v.foldstart):gsub([[%-%- %{%{%{ %-%- ]], "")
@@ -500,20 +499,14 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     pattern = vim.env.HOME .. "/.config/nvim/init.lua",
     callback = function()
         vim.cmd [[setl fdm=marker fdls=-1 fdl=0 nonu nornu scl=no]]
+        vim.keymap.set('n', '<CR>', 'za', {buffer=0})
         vim.opt_local.foldtext = 'v:lua.UF()'
         local main_text = "-- [[ Noice ]] --"
         vim.api.nvim_buf_set_extmark(0, vim.api.nvim_create_namespace("taj0023"), 0, 0, {
-            virt_text = {{
-                (" "):rep(math.floor(vim.o.columns - main_text:len()) / 2 - 1) .. main_text
-            , "Function"}}
+            virt_text = {{ Util.center({main_text})[1] , "Function"}}
         })
     end
 })
 vim.keymap.set('n', '"', ':', {})
-
-vim.g.neovide_scale_factor = 1.0
-vim.g.neovide_transparency = 0.7
-vim.g.transparency = 0.7
-
 vim.g.neovide_underline_automatic_scaling = true
 -- }}}
