@@ -1,5 +1,5 @@
 # Neovim config
-My neovim config
+My neovim config. Might require nightly.
 
 ## Screenshots
 > ❕ NOTE: Usually all configs show treesitter, lsp diagnostics, nvim-cmp, etc. So they are not shown in the below screenshots.

@@ -98,7 +98,7 @@ Util.splash_screen = vim.schedule_wrap(function()
         vim.cmd [[silent! setl nonu nornu nobl acd ft=dashboard bh=wipe bt=nofile]]
 
         for k,f in pairs(keys) do map(k,'<cmd>e '..xdg..f..' | setl noacd<CR>') end
-        map('P', '<cmd>Telescope oldfiles<CR>'); map('q', '<cmd>q<CR>'); map('o', '<cmd>e #<1<CR>') -- edit the last edited file
+        map('P', '<cmd>FzfLua oldfiles<CR>'); map('q', '<cmd>q<CR>'); map('o', '<cmd>e #<1<CR>') -- edit the last edited file
     end
 end)
 
@@ -115,7 +115,6 @@ end
 
 -- Different Kinds of Borders
 Util.border = ({{ "╒", "═", "╕", "│", "╛", "═", "╘", "│" }, { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }})[1]
--- Util.border = "shadow"
 
 --> Toggling quickfix window with a keybind
 Util.toggle_quickfix = function()
@@ -129,7 +128,7 @@ Util.konsole = function()
         typescript = 'console.log("'..word..': ", '..word..')',
         lua = 'vim.print("'..word..': ", '..word..')',
     })[vim.bo.ft]
-    vim.api.nvim_buf_set_lines(0, vim.fn.line('.'), vim.fn.line('.'), false, {vim.api.nvim_get_current_line():match("^%s*")..ans})
+    vim.snippet.expand(ans) -- setlines(0, vim.fn.line('.'), vim.fn.line('.'), false, {vim.fn.getline('.'):match("^%s*")..ans})
 end
 
 -- }}}
@@ -189,7 +188,7 @@ map('n', '<C-p>', cmd "cprev")
 map('n', '<leader>l', function() require("essentials").toggle_term("lazygit", 't', true) end)
 map({'n', 't'}, '<leader>t', function() require("essentials").toggle_term("fish", 'v', true) end)
 map('n', '<leader>p', cmd 'Lazy')
-map('t', '<C-n>', [[<C-\><C-n>]]) -- :sadkek:
+map('t', '<C-q>', [[<C-\><C-n>]])
 map('n', 'gh', function() vim.cmd.help(vim.fn.expand('<cword>')) end)
 
 --> General Mappings
@@ -227,13 +226,10 @@ map('n', 'gx'        , function() require("essentials").go_to_url() end)
 map('n', '<leader>cs', function() require("essentials").cheat_sh() end)
 
 --> Telescope mappings
-map('n', '<leader>ff', function() require("telescope.builtin").find_files() end)
-map('n', '<leader>fg', function() require("telescope").extensions.egrepify.egrepify() end)
-map('n', '<leader>fs', function() require("telescope.builtin").grep_string() end)
-map('n', '<leader>fh', function() require("telescope.builtin").help_tags() end)
-map('n', '<leader>fo', function() require("telescope.builtin").oldfiles() end)
-map('n', '<leader>fc', '<cmd>Telescope commands theme=ivy<CR>')
--- map('n', '<leader>fp', '<cmd>Telescope projects theme=dropdown<CR>')
+map('n', '<leader>ff', cmd "FzfLua files")
+map('n', '<leader>fg', cmd "FzfLua grep")
+map('n', '<leader>fs', cmd "FzfLua grep_cword")
+map('n', '<leader>fo', cmd "FzfLua oldfiles")
 
 --> WINDOW Control
 map('n', '<C-h>'    , '<C-w>h')
@@ -273,7 +269,7 @@ local cfg_cmp = function()
         Reference = ' ', Folder = ' ', EnumMember = ' ', Constant = ' ', Struct = ' ', Event = ' ', Operator = ' ', TypeParameter = ' ',
     }
     -- Great for other themes, not for gruvbox tho
-    for _, k in ipairs(vim.tbl_keys(kind_icons)) do vim.cmd("hi CmpItemKind"..k.." gui=reverse") end
+    -- for _, k in ipairs(vim.tbl_keys(kind_icons)) do vim.cmd("hi CmpItemKind"..k.." gui=reverse") end
 
     cmp.setup {
         formatting = {
@@ -284,59 +280,27 @@ local cfg_cmp = function()
             end
         },
         window = { documentation = { border = "shadow" }, completion={side_padding=0} },
-        snippet = { expand=function(o) require("luasnip").lsp_expand(o.body) end },
+        snippet = { expand=function(o) vim.snippet.expand(o.body) end },
         mapping = cmp.mapping.preset.insert {
             ['<C-b>'] = cmp.mapping.scroll_docs(-1),
             ['<C-f>'] = cmp.mapping.scroll_docs(1),
             ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
             ['<CR>'] = cmp.mapping.confirm({ select = true }),
+            ['<Tab>'] = cmp.mapping(function(fb) (vim.snippet.active() and vim.snippet.jump or fb)(1) end, { "i", "s" })
         },
         sources = cmp.config.sources {
             { name = 'path' },
             { name = 'nvim_lsp' },
             { name = 'nvim_lsp_signature_help' },
-            { name = 'luasnip'},
             { name = 'buffer'},
             { name = 'nvim_lua' },
             { name = 'neorg'},
         },
-
-        experimental = { ghost_text = true }
+        -- experimental = { ghost_text = true }
     }
 
     cmp.setup.cmdline(':', { mapping=cmp.mapping.preset.cmdline(), sources={{name="cmdline", keyword_length=3}} })
 end
-
-local cfg_luasnip = function()
-    local ls = require('luasnip')
-    ls.config.set_config({ region_check_events = "InsertEnter", delete_check_events = "InsertLeave" })
-    local parse = ls.parser.parse_snippet
-
-	local snips = {
-		lua = 'vim.print(${0})',
-		python = 'print("${0}")',
-		rust = 'println!("${0}");',
-		c = 'printf("${0}");', cpp = 'std::cout << "${0}" << std::endl;',
-		javascript = 'console.log("${0}");', typescript = 'console.log("${0}");',
-	}
-
-    local t = {}
-    for lang, snip in pairs(snips) do t[lang] = {parse({trig="pp", wordTrig=true}, snip)} end
-    ls.add_snippets(nil, t)
-end
-
-local cfg_telescope = function()
-    require("telescope").setup {
-        defaults = {
-            prompt_prefix = "      ",
-            mappings = { i = {["<C-y>"] = require("telescope.actions.layout").toggle_preview} },
-            sorting_strategy = "ascending",
-            layout_config = { prompt_position = "top" },
-            file_ignore_patterns = {'package%-lock%.json', '__pycache__/', 'node_modules/', '%.lock', 'target/', '__pypackages__/'},
-        } }
-    require "telescope".load_extension('egrepify')
-end
-
 
 local cfg_neorg = {
     load = {
@@ -348,19 +312,14 @@ local cfg_neorg = {
     }
 }
 
-local cfg_treesitter = function()
-    require("nvim-treesitter.configs").setup { highlight = {enable=true}, indent = {enable=true} }
-end
-
 local cfg_staline = function()
-    vim.cmd [[function Bruh(a,b,c,d)
-        lua require("mpv").toggle_player()
-    endfunction]]
+    Bruh = function() require("mpv").toggle_player() end
     vim.g.lsp_status = ""
+
     vim.api.nvim_create_autocmd("LspProgress", {
         callback = function(nice)
-            local sttaus = nice.data.result.value.percentage or ""
-            vim.g.lsp_status = type(sttaus) == "number" and sttaus.."%" or ""
+            local status = nice.data.result.value.percentage or ""
+            vim.g.lsp_status = type(status) == "number" and status.."%" or ""
             vim.cmd.redrawstatus()
         end
     })
@@ -370,12 +329,10 @@ local cfg_staline = function()
         defaults = { true_colors=true },
         sections={
             left = { '  ', 'mode', '  ', 'git_branch', '   ', 'lsp', '   %{g:lsp_status}' },
-            right = { '  %10@Bruh@󰎆 %X %{g:mpv_visualizer}', 'line_column', '  ' }
+            right = { '  %10@v:lua.Bruh@󰎆 %X %{g:mpv_visualizer}', 'line_column', '  ' }
         }
     })
-    require("stabline").setup({
-        stab_start="  %#Identifier#  ", stab_bg='none', stab_left='', inactive_fg='none', fg="#95c561"
-    })
+    require("stabline").setup({ stab_start="  %#Identifier#  ", stab_bg='none', stab_left='', inactive_fg='none', fg="#95c561" })
 end
 
 -- }}}
@@ -404,23 +361,21 @@ local plugins = {
 
     -->  LSP and COMPLETION
     { 'neovim/nvim-lspconfig' },
-    { 'L3MON4D3/LuaSnip', config=cfg_luasnip, event="InsertEnter", lazy=true },
     { 'hrsh7th/nvim-cmp', config=cfg_cmp, event={"InsertEnter", "CmdlineEnter"}, lazy=true,
         dependencies = {
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-path',
             'hrsh7th/cmp-nvim-lua',
-            'saadparwaiz1/cmp_luasnip',
             'hrsh7th/cmp-nvim-lsp-signature-help',
             'hrsh7th/cmp-cmdline'
         }
     },
 
-    -->  TELESCOPE, TREESITTER, NEORG
+    -->  FZF, TREESITTER, NEORG
     { 'nvim-lua/plenary.nvim', lazy=true },
-    { 'nvim-telescope/telescope.nvim', config=cfg_telescope, lazy=true, dependencies={'fdschmidt93/telescope-egrepify.nvim'} },
-    { 'nvim-treesitter/nvim-treesitter', config=cfg_treesitter },
+    { 'ibhagwan/fzf-lua', config=true },
+    { 'nvim-treesitter/nvim-treesitter', config=function() require("nvim-treesitter.configs").setup { highlight = {enable=true}, indent = {enable=true} } end },
     { 'nvim-neorg/neorg', ft="norg", opts=cfg_neorg, dependencies={"laher/neorg-exec"} },
 
     -->  GENERAL PURPOSE
@@ -464,7 +419,6 @@ vim.diagnostic.config({
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
--- local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local lspconfig = require("lspconfig")
 
 local s = {
