@@ -15,7 +15,7 @@ local opts = {
     General = {
         exrc = true, spell = false, wrap = false, linebreak = true, ruler = false, conceallevel = 2,
         hlsearch = false, timeoutlen = 300, updatetime = 500, swapfile = false,
-        wildignore = { '*.pyc,__pycache__,node_modules,*.lock,package-lock.json' },
+        wildignore = { '*.pyc,__pycache__,node_modules,*.lock,package%-lock%.json,target' },
     },
     Backup = { backup = false, writebackup = false },
     Layout = {
@@ -98,7 +98,7 @@ Util.splash_screen = vim.schedule_wrap(function()
         vim.cmd [[silent! setl nonu nornu nobl acd ft=dashboard bh=wipe bt=nofile]]
 
         for k,f in pairs(keys) do map(k,'<cmd>e '..xdg..f..' | setl noacd<CR>') end
-        map('P', '<cmd>FzfLua oldfiles<CR>'); map('q', '<cmd>q<CR>'); map('o', '<cmd>e #<1<CR>') -- edit the last edited file
+        map('P', '<cmd>Telescope oldfiles<CR>'); map('q', '<cmd>q<CR>'); map('o', '<cmd>e #<1<CR>') -- edit the last edited file
     end
 end)
 
@@ -114,7 +114,8 @@ Util.close_command = function()
 end
 
 -- Different Kinds of Borders
-Util.border = ({{ "╒", "═", "╕", "│", "╛", "═", "╘", "│" }, { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }})[1]
+-- Util.border = ({{ "╒", "═", "╕", "│", "╛", "═", "╘", "│" }, { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }})[1]
+Util.border = { "", "", "", " ", "", "", "", " " }
 
 --> Toggling quickfix window with a keybind
 Util.toggle_quickfix = function()
@@ -226,10 +227,10 @@ map('n', 'gx'        , function() require("essentials").go_to_url() end)
 map('n', '<leader>cs', function() require("essentials").cheat_sh() end)
 
 --> Telescope mappings
-map('n', '<leader>ff', cmd "FzfLua files")
-map('n', '<leader>fg', cmd "FzfLua grep")
-map('n', '<leader>fs', cmd "FzfLua grep_cword")
-map('n', '<leader>fo', cmd "FzfLua oldfiles")
+map('n', '<leader>ff', cmd "Telescope find_files")
+map('n', '<leader>fg', cmd "Telescope live_grep")
+map('n', '<leader>fs', cmd "Telescope grep_string")
+map('n', '<leader>fo', cmd "Telescope oldfiles")
 
 --> WINDOW Control
 map('n', '<C-h>'    , '<C-w>h')
@@ -269,7 +270,7 @@ local cfg_cmp = function()
         Reference = ' ', Folder = ' ', EnumMember = ' ', Constant = ' ', Struct = ' ', Event = ' ', Operator = ' ', TypeParameter = ' ',
     }
     -- Great for other themes, not for gruvbox tho
-    -- for _, k in ipairs(vim.tbl_keys(kind_icons)) do vim.cmd("hi CmpItemKind"..k.." gui=reverse") end
+    for _, k in ipairs(vim.tbl_keys(kind_icons)) do vim.cmd("hi CmpItemKind"..k.." gui=reverse") end
 
     cmp.setup {
         formatting = {
@@ -301,6 +302,14 @@ local cfg_cmp = function()
 
     cmp.setup.cmdline(':', { mapping=cmp.mapping.preset.cmdline(), sources={{name="cmdline", keyword_length=3}} })
 end
+
+local cfg_telescope = {
+    defaults = {
+        sorting_strategy = "ascending",
+        layout_config = { prompt_position="top" },
+        file_ignore_patterns = vim.opt.wildignore:get()
+    }
+}
 
 local cfg_neorg = {
     load = {
@@ -339,6 +348,7 @@ end
 
 -- {{{ -- Lazy
 local plugins = {
+
     -->  Temporary and testing
     { 'sainnhe/gruvbox-material' },
     { '3rd/image.nvim', opts={ backend="ueberzug", integrations={ neorg = { enabled=true } } }, ft="norg" },
@@ -346,7 +356,7 @@ local plugins = {
     { 'kylechui/nvim-surround', config=true, lazy=true },
 
     -->  My Useless lil plugins
-    { 'tamton-aquib/mpv.nvim', config={setup_widgets=true} },
+    -- { 'tamton-aquib/mpv.nvim', config={setup_widgets=true}, lazy=true },
     { 'tamton-aquib/staline.nvim', config=cfg_staline, event="ColorScheme" },
     { 'tamton-aquib/flirt.nvim', config=true },
     { 'tamton-aquib/stuff.nvim', lazy=true },
@@ -356,7 +366,7 @@ local plugins = {
     { 'DaikyXendo/nvim-web-devicons', opts={override={norg={icon=" ", color="#4878be", name="neorg"}} }, lazy=true },
     { 'norcalli/nvim-colorizer.lua', cmd="ColorizerToggle" },
     { 'lewis6991/gitsigns.nvim', config=true },
-    { 'nvim-tree/nvim-tree.lua', opts={ renderer={ indent_markers={ enable=true } } }, lazy=true },
+    { 'nvim-tree/nvim-tree.lua', opts={ renderer={ indent_markers={ enable=true } } } },
     { 'declancm/cinnamon.nvim', config=true, keys={"<C-d>", "<C-u>"} },
 
     -->  LSP and COMPLETION
@@ -372,10 +382,10 @@ local plugins = {
         }
     },
 
-    -->  FZF, TREESITTER, NEORG
+    -->  Telescope, TREESITTER, NEORG
     { 'nvim-lua/plenary.nvim', lazy=true },
-    { 'ibhagwan/fzf-lua', config=true },
-    { 'nvim-treesitter/nvim-treesitter', config=function() require("nvim-treesitter.configs").setup { highlight = {enable=true}, indent = {enable=true} } end },
+    { 'nvim-telescope/telescope.nvim', opts=cfg_telescope, cmd="Telescope" },
+    { 'nvim-treesitter/nvim-treesitter', main="nvim-treesitter.configs", opts={ highlight = {enable=true}, indent = {enable=true} } },
     { 'nvim-neorg/neorg', ft="norg", opts=cfg_neorg, dependencies={"laher/neorg-exec"} },
 
     -->  GENERAL PURPOSE
@@ -416,9 +426,9 @@ vim.diagnostic.config({
     }
 })
 
-local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, 'lua/?.lua')
-table.insert(runtime_path, 'lua/?/init.lua')
+-- local runtime_path = vim.split(package.path, ';')
+-- table.insert(runtime_path, 'lua/?.lua')
+-- table.insert(runtime_path, 'lua/?/init.lua')
 local lspconfig = require("lspconfig")
 
 local s = {
@@ -427,9 +437,9 @@ local s = {
         settings = {
             Lua = {
                 diagnostics={globals={'vim'}},
-                runtime={version="LuaJIT"},
-                path=runtime_path,
-                workspace = { library = vim.api.nvim_get_runtime_file('', true), checkThirdParty=false },
+                -- runtime={version="LuaJIT"},
+                -- path=runtime_path,
+                -- workspace = { library = vim.api.nvim_get_runtime_file('', true), checkThirdParty=false },
             }
         }
     }
@@ -450,7 +460,7 @@ function UF()
 end
 
 vim.api.nvim_create_autocmd("BufReadPost", {
-    pattern = vim.env.HOME .. "/.config/nvim/init.lua",
+    pattern = vim.fn.stdpath("config") .. "/init.lua",
     callback = function()
         vim.cmd [[setl fdm=marker fdls=-1 fdl=0 nonu nornu scl=no]]
         vim.keymap.set('n', '<CR>', 'za', {buffer=0})
@@ -461,6 +471,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
         })
     end
 })
+
 vim.keymap.set('n', '"', ':', {})
 vim.g.neovide_underline_automatic_scaling = true
 -- }}}
