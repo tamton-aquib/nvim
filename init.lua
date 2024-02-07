@@ -2,11 +2,13 @@
 
 -- {{{ -- Settings
 
+vim.loader.enable()
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
     print("Installing lazy.nvim...")
-    vim.fn.system({"git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim", lazypath})
+    vim.fn.system({"git", "clone", "--branch=stable", "--filter=blob:none", "https://github.com/folke/lazy.nvim", lazypath})
 end
+
 vim.opt.rtp:append(lazypath)
 package.path = package.path .. ";"..vim.env.HOME.."/.luarocks/share/lua/5.1/?.lua;"..vim.env.HOME.."/.luarocks/share/lua/5.1/?/init.lua"
 package.cpath = package.cpath .. ";" .. vim.env.HOME .. "/.luarocks/lib/lua/5.1/?.so"
@@ -34,7 +36,7 @@ local opts = {
     },
     Ui = {
         pumblend = 20, inccommand = "split", termguicolors = true, number = true, signcolumn = "yes:2",
-        rnu = true, guifont = "JetBrainsMono Nerd Font:h9", shortmess = "tF".."TIcC".."as".."WoO",
+        rnu = true, guifont = "JetBrainsMono Nerd Font:h11", shortmess = "tF".."TIcC".."as".."WoO",
         fillchars = { eob=' ', fold=' ', foldopen="", foldsep=" ", foldclose="" }
     },
     Tabspace = {
@@ -43,7 +45,6 @@ local opts = {
     }
 }
 
---> Apply the options
 for _, section in pairs(opts) do for k,v in pairs(section) do vim.opt[k] = v end end
 -- vim.opt.statuscolumn = "%s %{foldlevel(v:lnum) <= foldlevel(v:lnum-1) ? ' ' : (foldclosed(v:lnum) == -1 ? '' : '')} %{v:relnum ? v:relnum : v:lnum} "
 
@@ -73,7 +74,7 @@ end
 
 --> Simple dashboard
 Util.splash_screen = vim.schedule_wrap(function()
-    local xdg = vim.fn.fnamemodify(vim.fn.stdpath("config"), ":h").."/"
+    local xdg = vim.fn.fnamemodify(vim.fn.stdpath("config") --[[@as string]], ":h").."/"
     local header = {
         "","", "", "", "", "",
         [[ ███▄    █     ▒█████      ██▓    ▄████▄     ▓█████   ]],
@@ -113,9 +114,13 @@ Util.close_command = function()
     vim.cmd(total == 1  and quit_cmd or 'bd')
 end
 
--- Different Kinds of Borders
-Util.border = ({{ "╒", "═", "╕", "│", "╛", "═", "╘", "│" }, { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }})[2]
--- Util.border = { "", "", "", " ", "", "", "", " " }
+--> Different kinds of Borders
+Util.border = ({
+    { "╒", "═", "╕", "│", "╛", "═", "╘", "│" },
+    { "▁", "▁", "▁", "▕", "▔", "▔", "▔", "▏" },
+    { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" },
+    { "", "", "", " ", "", "", "", " " }
+})[2]
 -- }}}
 
 -- {{{ -- Autocmds
@@ -124,12 +129,12 @@ Util.border = ({{ "╒", "═", "╕", "│", "╛", "═", "╘", "│" }, { "�
 local au = function(events, ptn, cb) vim.api.nvim_create_autocmd(events, {pattern=ptn, [type(cb)=="function" and 'callback' or 'command']=cb}) end
 
 -->  LSP Related
-au("BufWritePre", "*.rs,*.svelte", vim.lsp.buf.format)
+au("BufWritePre", "*.rs,*.svelte", function() vim.lsp.buf.format() end)
 au("CursorHold", "*", vim.diagnostic.open_float)
+au("FileType", "json,http,markdown", "set cole=0")
 
 -->  OLD
--- au("FileType", "json", function() vim.opt_local.cole=0 end)
-au("BufReadPost", "*.lua", [[call matchadd("Keyword", "--> \\zs.*\\ze$")]])
+au("BufReadPost", "*.lua", [[call matchadd("Keyword", "--> \\zs󰈻.*\\ze$")]])
 au("BufEnter", "*", 'setl fo-=cro')
 au("BufReadPost", "*", function() require("essentials").last_place() end)
 au("TextYankPost", "*", function() vim.highlight.on_yank({higroup="Visual", timeout=200}) end)
@@ -151,8 +156,9 @@ vim.g.maplocalleader = ","
 local function map(mode, key, func) vim.keymap.set(mode, key, func, {silent=true}) end
 local function cmd(s) return "<CMD>"..s.."<CR>" end
 
+--> Harpoon
+map('n', '<leader>u', function() require("thunder").run() end)
 map('n', '<leader>k', function() require("essentials").konsole() end)
-map('n', 'K', vim.lsp.buf.hover)
 map('n', 'gQ', function() require("essentials").open_quick_note() end)
 map('n', '<leader>ii', function() require("nvim-market").install_picker() end)
 map('n', '<leader>iu', function() require("nvim-market").remove_picker() end)
@@ -172,7 +178,7 @@ map('n', '<C-p>', cmd "cprev")
 map('n', '<leader>l', function() require("essentials").toggle_term("lazygit", 't', true) end)
 map({'n', 't'}, '<leader>t', function() require("essentials").toggle_term("fish", 'v', true) end)
 map('n', '<leader>p', cmd 'Lazy')
-map('t', '<C-q>', [[<C-\><C-n>]])
+map('t', '<Esc><Esc>', [[<C-\><C-n>]])
 map('n', 'gh', function() vim.cmd.help(vim.fn.expand('<cword>')) end)
 
 --> General Mappings
@@ -253,8 +259,7 @@ local cfg_cmp = function()
         Reference = ' ', Folder = ' ', EnumMember = ' ', Constant = ' ', Struct = ' ', Event = ' ', Operator = ' ', TypeParameter = ' ',
     }
     -- Great for other themes, not for gruvbox tho
-    for _, k in ipairs(vim.tbl_keys(kind_icons)) do vim.cmd("hi CmpItemKind"..k.." gui=reverse") end
-
+    -- for _, k in ipairs(vim.tbl_keys(kind_icons)) do vim.cmd("hi CmpItemKind"..k.." gui=reverse") end
     cmp.setup {
         formatting = {
             fields = { 'kind', 'abbr', 'menu' },
@@ -276,11 +281,11 @@ local cfg_cmp = function()
             { name = 'path' },
             { name = 'nvim_lsp' },
             { name = 'nvim_lsp_signature_help' },
-            { name = 'buffer'},
             { name = 'nvim_lua' },
             { name = 'neorg'},
+            { name = 'buffer' },
         },
-        -- experimental = { ghost_text = true }
+        experimental = { ghost_text = true }
     }
 
     cmp.setup.cmdline(':', { mapping=cmp.mapping.preset.cmdline(), sources={{name="cmdline", keyword_length=3}} })
@@ -293,7 +298,7 @@ local cfg_telescope = {
             results = { " ", "│", "─", "│", "│", "│", "┴", "╰" },
             preview = { "─", "│", "─", " ", "─", "╮", "╯", "─" },
         },
-        sorting_strategy = "ascending",
+        results_title = false, sorting_strategy = "ascending",
         layout_config = { prompt_position="top" },
         file_ignore_patterns = vim.opt.wildignore:get()
     }
@@ -337,59 +342,64 @@ end
 -- {{{ -- Lazy
 local plugins = {
 
-    -->  Temporary and testing
-    -- { 'rest-nvim/rest.nvim', config=true, keys = { {"<leader>ui", "<Plug>RestNvim"}, {"<leader>up", "<Plug>RestNvimLast"}, }, lazy=true },
-    -- { '3rd/image.nvim', opts={ backend="ueberzug", integrations={ neorg = { enabled=true } } }, ft="norg" },
-    { 'tamton-aquib/nvim-market', import="nvim-market.plugins", config=true, lazy=true },
+    --> Temporary and testing
+    { 'sindrets/diffview.nvim', config=true },
+    -- { 'tiagovla/scope.nvim', config=true },
+    -- { 'olimorris/onedarkpro.nvim' },
+    -- { 'linux-cultist/venv-selector.nvim', config=true, ft="python" },
+    { '3rd/image.nvim', opts={ backend="kitty", integrations={ neorg = { enabled=true } } }, ft="norg" },
+    -- { 'rest-nvim/rest.nvim', config=true },
     { 'sainnhe/gruvbox-material' },
-    { 'willothy/flatten.nvim', lazy=false, config=true },
+    -- { 'willothy/flatten.nvim', lazy=false, config=true },
 
-    -->  My Useless lil plugins
+    --> My Useless lil plugins
     -- { 'tamton-aquib/mpv.nvim', config={setup_widgets=true}, lazy=true },
+    { 'tamton-aquib/nvim-market', import="nvim-market.plugins", config=true },
     { 'tamton-aquib/staline.nvim', config=cfg_staline, event="ColorScheme" },
-    { 'tamton-aquib/flirt.nvim', config=true },
-    { dir='~/STUFF/NEOVIM/stuff.nvim' }, -- , lazy=true },
+    { 'tamton-aquib/flirt.nvim', config=true, cond=not vim.g.neovide },
+    { 'tamton-aquib/stuff.nvim' },
     { 'tamton-aquib/essentials.nvim', lazy=true },
 
-    -->  THEMES AND UI
+    --> THEMES AND UI
     { 'DaikyXendo/nvim-web-devicons', opts={override={norg={icon=" ", color="#4878be", name="neorg"}} }, lazy=true },
     { 'norcalli/nvim-colorizer.lua', cmd="ColorizerToggle" },
     { 'lewis6991/gitsigns.nvim', config=true },
     { 'nvim-tree/nvim-tree.lua', opts={ renderer={ indent_markers={ enable=true } } } },
-    { 'declancm/cinnamon.nvim', config=true, keys={"<C-d>", "<C-u>"} },
+    { 'declancm/cinnamon.nvim', config=true, keys={"<C-d>", "<C-u>"}, cond=not vim.g.neovide },
 
-    -->  LSP and COMPLETION
+    --> LSP and COMPLETION
     { 'neovim/nvim-lspconfig', lazy=true },
     { 'hrsh7th/nvim-cmp', config=cfg_cmp, event={"InsertEnter", "CmdlineEnter"}, lazy=true,
         dependencies = {
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-path',
             'hrsh7th/cmp-nvim-lsp-signature-help',
-            'hrsh7th/cmp-cmdline'
+            'hrsh7th/cmp-cmdline',
+            'hrsh7th/cmp-buffer'
         }
     },
 
-    -->  Telescope, TREESITTER, NEORG
+    --> Telescope, TREESITTER, NEORG
     { 'nvim-lua/plenary.nvim', lazy=true },
     { 'nvim-telescope/telescope.nvim', opts=cfg_telescope, cmd="Telescope" },
-    { 'nvim-treesitter/nvim-treesitter', main="nvim-treesitter.configs", opts={ highlight = {enable=true}, indent = {enable=true} } },
-    { 'nvim-neorg/neorg', ft="norg", lazy=true, opts=cfg_neorg, dependencies={"laher/neorg-exec", "tamton-aquib/neorg-jupyter"}, },
+    { 'nvim-treesitter/nvim-treesitter', config={highlight = {enable=true}, indent = {enable=true}}  },
+    { 'nvim-neorg/neorg', ft="norg", lazy=true, opts=cfg_neorg, dependencies={"tamton-aquib/neorg-jupyter"} },
 
-    -->  GENERAL PURPOSE
+    --> GENERAL PURPOSE
     { 'notjedi/nvim-rooter.lua', config=true },
     { 'nvim-focus/focus.nvim', lazy=true, opts={ui = {cursorline=false, signcolumn=false}}, event="WinEnter" },
     { 'windwp/nvim-autopairs', config=true, event="InsertEnter" },
-    { 'lukas-reineke/indent-blankline.nvim', opts={scope={enabled=false}}, main="ibl" },
+    { 'shellRaining/hlchunk.nvim', opts={ blank={enable=false}, chunk={chars={right_arrow="─"} }} },
 }
 
-require("lazy").setup(plugins, {
+require("lazy").setup({plugins}, {
     ui = { pills=false }, install = { colorscheme = {"retrobox"} },
     performance = { rtp = { disabled_plugins = {
         "python3_provider", "node_provider", "2html_plugin", "getscript", "getscriptPlugin",
         "gzip", "matchit", "tar", "tarPlugin", "rrhelper", "spellfile_plugin", "vimball",
         "vimballPlugin", "zip", "zipPlugin", "tutor", "rplugin", "spellfile", "tarPlugin",
-        "man", "logiPat", "netrwSettings", "netrwFileHandlers", "remote_plugins", "netrw",
-        "editorconfig", "netrwPlugin", "tohtml"
+        "man", "logiPat", "netrwSettings", "netrwFileHandlers", "remote_plugins",
+        "netrw", "editorconfig", "netrwPlugin", "tohtml"
     }}
 }})
 -- }}}
@@ -414,7 +424,7 @@ table.insert(runtime_path, 'lua/?/init.lua')
 local lspconfig = require("lspconfig")
 
 local s = {
-    pyright={}, tsserver={}, cssls={}, rust_analyzer={},
+    pyright={}, tsserver={}, biome = {}, cssls={}, rust_analyzer={}, svelte = {},
     lua_ls = {
         settings = {
             Lua = {
@@ -436,9 +446,10 @@ end
 -- {{{ -- MISC
 vim.cmd.colorscheme("gruvbox-material")
 vim.cmd [[hi link @punctuation.bracket Red]]
+vim.cmd [[hi link @constructor.lua Red]]
 
 function UF()
-    local title = vim.fn.getline(vim.v.foldstart):gsub([[%-%- %{%{%{ %-%- ]], "")
+    local title = vim.fn.getline(vim.v.foldstart)--[[@as string]]:gsub([[%-%- %{%{%{ %-%- ]], "")
     return (" "):rep(math.floor(vim.o.columns - title:len()) / 2) .. title
 end
 
@@ -455,8 +466,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end
 })
 
-
-vim.keymap.set('n', '"', ':', {})
 vim.g.neovide_underline_automatic_scaling = true
 vim.g.neovide_scale_factor = 1.0
 vim.g.neovide_floating_blur_amount_x = 2.0
@@ -464,4 +473,5 @@ vim.g.neovide_floating_blur_amount_y = 2.0
 vim.g.neovide_floating_shadow = 'v:true'
 vim.g.neovide_floating_z_height = 10
 vim.g.neovide_confirm_quit = true
+
 -- }}}
