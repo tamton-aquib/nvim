@@ -1,0 +1,35 @@
+[plugins]
+"rocks.nvim" = "2.7.4"
+"rocks-git.nvim" = "1.2.1"
+"rocks-config.nvim" = "1.2.1"
+"nvim-treesitter" = "0.9.2"
+"telescope.nvim" = "scm"
+"neorg" = "7.0.0"
+"nvim-web-devicons" = "0.99"
+"nvim-cmp" = "0.0.1"
+"nvim-lspconfig" = "0.1.7"
+
+gruvbox = { git='sainnhe/gruvbox-material' }
+diffview = { git='sindrets/diffview.nvim' }
+scope = { git='tiagovla/scope.nvim' }
+essentials = { git='tamton-aquib/essentials.nvim' }
+
+# nvim-market = { git='tamton-aquib/nvim-market' }# , import="nvim-market.plugins", config=true },
+staline = { git='tamton-aquib/staline.nvim' }# , config=cfg_staline, event="ColorScheme" },
+flirt = { git='tamton-aquib/flirt.nvim' }# , config=true, cond=not vim.g.neovide },
+stuff = { git='tamton-aquib/stuff.nvim' }
+
+colorizer = { git='norcalli/nvim-colorizer.lua' } # , cmd="ColorizerToggle" },
+nvimtree = { git='nvim-tree/nvim-tree.lua' } # , opts={ renderer={ indent_markers={ enable=true } } } },
+cinnamon = { git='declancm/cinnamon.nvim' } # , config=true, keys={"<C-d>", "<C-u>"}, cond=not vim.g.neovide },
+
+cmp-nvim-lsp = { git='hrsh7th/cmp-nvim-lsp' }
+cmp-path = { git='hrsh7th/cmp-path' }
+cmo-nvim-lsp-signature = { git='hrsh7th/cmp-nvim-lsp-signature-help' }
+cmp-cmdline = { git='hrsh7th/cmp-cmdline'}
+cmp-buffer = { git='hrsh7th/cmp-buffer' }
+
+rooter = { git='notjedi/nvim-rooter.lua' }# , config=true },
+focus = { git='nvim-focus/focus.nvim' }# , lazy=true, opts={ui = {cursorline=false, signcolumn=false}}, event="WinEnter" },
+autopairs = { git='windwp/nvim-autopairs' }# , config=true, event="InsertEnter" },
+hlchunk = { git='shellRaining/hlchunk.nvim' }# , opts={ blank={enable=false}, chunk={chars={right_arrow="─"} }} },

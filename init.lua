@@ -1,17 +1,15 @@
 
+local rocks_config = { rocks_path = "/home/taj/.local/share/nvim/rocks", luarocks_binary = "/home/taj/.local/share/nvim/rocks/bin/luarocks" }
+vim.g.rocks_nvim = rocks_config
+package.path = package.path .. ";" .. rocks_config.rocks_path.."/share/lua/5.1/?.lua"..";".. rocks_config.rocks_path.."/share/lua/5.1/?/init.lua"
+package.cpath = package.cpath .. ";" .. rocks_config.rocks_path.."/lib/lua/5.1/?.so"..";".. rocks_config.rocks_path.."/lib64/lua/5.1/?.so"
+
+vim.opt.runtimepath:append(vim.fs.joinpath(rocks_config.rocks_path, "lib", "luarocks", "rocks-5.1", "rocks.nvim", "*"))
+
 
 -- {{{ -- Settings
 
 vim.loader.enable()
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.uv.fs_stat(lazypath) then
-    print("Installing lazy.nvim...")
-    vim.fn.system({"git", "clone", "--branch=stable", "--filter=blob:none", "https://github.com/folke/lazy.nvim", lazypath})
-end
-
-vim.opt.rtp:append(lazypath)
-package.path = package.path .. ";"..vim.env.HOME.."/.luarocks/share/lua/5.1/?.lua;"..vim.env.HOME.."/.luarocks/share/lua/5.1/?/init.lua"
-package.cpath = package.cpath .. ";" .. vim.env.HOME .. "/.luarocks/lib/lua/5.1/?.so"
 
 local opts = {
     General = {
@@ -46,17 +44,6 @@ local opts = {
 }
 
 for _, section in pairs(opts) do for k,v in pairs(section) do vim.opt[k] = v end end
--- vim.opt.statuscolumn = "%s %{foldlevel(v:lnum) <= foldlevel(v:lnum-1) ? ' ' : (foldclosed(v:lnum) == -1 ? '' : '')} %{v:relnum ? v:relnum : v:lnum} "
-
-vim.schedule(function()
-    local ess_status, essentials = pcall(require, "essentials")
-    if ess_status then
-        vim.ui.input = essentials.ui_input
-        -- vim.ui.select = essentials.ui_select
-        vim.notify = essentials.ui_notify
-    end
-end)
-
 -- }}}
 
 -- {{{ -- Utils
@@ -249,161 +236,6 @@ map('n', '<'        , '<<')
 
 -- }}}
 
--- {{{ -- Plug configs
-local cfg_cmp = function()
-    local cmp = require('cmp')
-
-    local kind_icons = {
-        Text = ' ', Method = ' ', Function = ' ', Constructor = ' ', Field = ' ', Variable = ' ', Class = ' ', Interface = ' ',
-        Module = ' ', Property = ' ', Unit = ' ', Value = ' ', Enum = ' ', Keyword = ' ', Snippet = ' ', Color = ' ', File = ' ',
-        Reference = ' ', Folder = ' ', EnumMember = ' ', Constant = ' ', Struct = ' ', Event = ' ', Operator = ' ', TypeParameter = ' ',
-    }
-    -- Great for other themes, not for gruvbox tho
-    -- for _, k in ipairs(vim.tbl_keys(kind_icons)) do vim.cmd("hi CmpItemKind"..k.." gui=reverse") end
-    cmp.setup {
-        formatting = {
-            fields = { 'kind', 'abbr', 'menu' },
-            format = function(_, item)
-                item.kind = (' ' .. kind_icons[item.kind]) or " "
-                return item
-            end
-        },
-        window = { documentation = { border = "shadow" }, completion={side_padding=0} },
-        snippet = { expand=function(o) vim.snippet.expand(o.body) end },
-        mapping = cmp.mapping.preset.insert {
-            ['<C-b>'] = cmp.mapping.scroll_docs(-1),
-            ['<C-f>'] = cmp.mapping.scroll_docs(1),
-            ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-            ['<CR>'] = cmp.mapping.confirm({ select = true }),
-            ['<Tab>'] = cmp.mapping(function(fb) (vim.snippet.active() and vim.snippet.jump or fb)(1) end, { "i", "s" })
-        },
-        sources = cmp.config.sources {
-            { name = 'path' },
-            { name = 'nvim_lsp' },
-            { name = 'nvim_lsp_signature_help' },
-            { name = 'nvim_lua' },
-            { name = 'neorg'},
-            { name = 'buffer' },
-        },
-        experimental = { ghost_text = true }
-    }
-
-    cmp.setup.cmdline(':', { mapping=cmp.mapping.preset.cmdline(), sources={{name="cmdline", keyword_length=3}} })
-end
-
-local cfg_telescope = {
-    defaults = {
-        borderchars = {
-            prompt = { "─", "│", "─", "│", "╭", "┬", "┤", "├" },
-            results = { " ", "│", "─", "│", "│", "│", "┴", "╰" },
-            preview = { "─", "│", "─", " ", "─", "╮", "╯", "─" },
-        },
-        results_title = false, sorting_strategy = "ascending",
-        layout_config = { prompt_position="top" },
-        file_ignore_patterns = vim.opt.wildignore:get()
-    }
-}
-
-local cfg_neorg = {
-    load = {
-        ["core.defaults"] = {}, ["external.jupyter"] = {}, ["core.concealer"] = {},
-        ["core.completion"] = { config={ engine="nvim-cmp" } },
-        ["core.presenter"] = { config={ zen_mode = "zen-mode" } },
-        ["core.itero"] = {}, ["core.ui.calendar"] = {},
-        ["core.summary"] = { config = { strategy = "default" } },
-    }
-}
-
-local cfg_staline = function()
-    Bruh = function() require("mpv").toggle_player() end
-    vim.g.lsp_status = ""
-
-    vim.api.nvim_create_autocmd("LspProgress", {
-        callback = function(nice)
-            local status = nice.data.result.value.percentage or ""
-            vim.g.lsp_status = type(status) == "number" and status.."%" or ""
-            vim.cmd.redrawstatus()
-        end
-    })
-
-    vim.g.mpv_visualizer = ""
-    require("staline").setup({
-        defaults = { true_colors=true },
-        sections={
-            left = { '  ', 'mode', '  ', 'git_branch', '   ', 'lsp', '   %{g:lsp_status}' },
-            right = { '  %10@v:lua.Bruh@󰎆 %X %{g:mpv_visualizer}', 'line_column', '  ' }-- , vim.env.VIRTUAL_ENV }
-        }
-    })
-    require("stabline").setup({ font_active="none", stab_start="  %#Identifier#  ", stab_bg='none', stab_left='', inactive_fg='none', fg="#95c561" })
-end
-
--- }}}
-
--- {{{ -- Lazy
-local plugins = {
-
-    --> Temporary and testing
-    { 'sindrets/diffview.nvim', config=true },
-    { 'tiagovla/scope.nvim', config=true },
-    -- { 'olimorris/onedarkpro.nvim' },
-    -- { 'linux-cultist/venv-selector.nvim', config=true, ft="python" },
-    { '3rd/image.nvim', opts={ backend="kitty", integrations={ neorg = { enabled=true } } }, ft="norg" },
-    { 'rest-nvim/rest.nvim', opts={}, branch="dev" },
-    { 'sainnhe/gruvbox-material' },
-    -- { 'willothy/flatten.nvim', lazy=false, config=true },
-
-    --> My Useless lil plugins
-    -- { 'tamton-aquib/mpv.nvim', config={setup_widgets=true}, lazy=true },
-    { 'tamton-aquib/nvim-market', import="nvim-market.plugins", config=true },
-    { 'tamton-aquib/staline.nvim', config=cfg_staline, event="ColorScheme" },
-    { 'tamton-aquib/flirt.nvim', config=true, cond=not vim.g.neovide },
-    { 'tamton-aquib/stuff.nvim' },
-    { 'tamton-aquib/essentials.nvim', lazy=true },
-
-    --> THEMES AND UI
-    { 'DaikyXendo/nvim-web-devicons', opts={override={norg={icon=" ", color="#4878be", name="neorg"}} }, lazy=true },
-    { 'norcalli/nvim-colorizer.lua', cmd="ColorizerToggle" },
-    { 'lewis6991/gitsigns.nvim', config=true },
-    { 'nvim-tree/nvim-tree.lua', opts={ renderer={ indent_markers={ enable=true } } } },
-    { 'declancm/cinnamon.nvim', config=true, keys={"<C-d>", "<C-u>"}, cond=not vim.g.neovide },
-
-    --> LSP and COMPLETION
-    { 'neovim/nvim-lspconfig', lazy=true },
-    { 'hrsh7th/nvim-cmp', config=cfg_cmp, event={"InsertEnter", "CmdlineEnter"}, lazy=true,
-        dependencies = {
-            'hrsh7th/cmp-nvim-lsp',
-            'hrsh7th/cmp-path',
-            'hrsh7th/cmp-nvim-lsp-signature-help',
-            'hrsh7th/cmp-cmdline',
-            'hrsh7th/cmp-buffer'
-        }
-    },
-
-    --> Telescope, TREESITTER, NEORG
-    { 'nvim-lua/plenary.nvim', lazy=true },
-    { 'nvim-telescope/telescope.nvim', opts=cfg_telescope, cmd="Telescope" },
-    { 'nvim-treesitter/nvim-treesitter', lazy=false, config=true, main='nvim-treesitter.configs' },
-    { 'nvim-neorg/neorg', ft="norg", lazy=true, opts=cfg_neorg, dependencies={"tamton-aquib/neorg-jupyter"} },
-
-    --> GENERAL PURPOSE
-    { 'notjedi/nvim-rooter.lua', config=true },
-    { 'nvim-focus/focus.nvim', lazy=true, opts={ui = {cursorline=false, signcolumn=false}}, event="WinEnter" },
-    { 'windwp/nvim-autopairs', config=true, event="InsertEnter" },
-    { 'shellRaining/hlchunk.nvim', opts={ blank={enable=false}, chunk={chars={right_arrow="─"} }} },
-}
-
-require("lazy").setup({plugins}, {
-    ui = { pills=false }, install = { colorscheme = {"retrobox"} },
-    performance = { rtp = { disabled_plugins = {
-        "python3_provider", "node_provider", "2html_plugin", "getscript", "getscriptPlugin",
-        "gzip", "matchit", "tar", "tarPlugin", "rrhelper", "spellfile_plugin", "vimball",
-        "vimballPlugin", "zip", "zipPlugin", "tutor", "rplugin", "spellfile", "tarPlugin",
-        "man", "logiPat", "netrwSettings", "netrwFileHandlers", "remote_plugins",
-        "netrw", "editorconfig", "netrwPlugin", "tohtml"
-    }}
-}})
--- }}}
-
 -- {{{ -- LSP
 vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = Util.border})
 vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = Util.border})
@@ -480,3 +312,100 @@ vim.g.neovide_padding_top = 10
 vim.g.neovide_padding_left = 10
 
 -- }}}
+
+require ("telescope").setup {
+    defaults = {
+        borderchars = {
+            prompt = { "─", "│", "─", "│", "╭", "┬", "┤", "├" },
+            results = { " ", "│", "─", "│", "│", "│", "┴", "╰" },
+            preview = { "─", "│", "─", " ", "─", "╮", "╯", "─" },
+        },
+        results_title = false, sorting_strategy = "ascending",
+        layout_config = { prompt_position="top" },
+        file_ignore_patterns = vim.opt.wildignore:get()
+    }
+}
+
+--> Staline
+Bruh = function() require("mpv").toggle_player() end
+vim.g.lsp_status = ""
+
+vim.api.nvim_create_autocmd("LspProgress", {
+    callback = function(nice)
+        local status = nice.data.result.value.percentage or ""
+        vim.g.lsp_status = type(status) == "number" and status.."%" or ""
+        vim.cmd.redrawstatus()
+    end
+})
+
+vim.g.mpv_visualizer = ""
+require("staline").setup({
+    defaults = { true_colors=true },
+    sections={
+        left = { '  ', 'mode', '  ', 'git_branch', '   ', 'lsp', '   %{g:lsp_status}' },
+        right = { '  %10@v:lua.Bruh@󰎆 %X %{g:mpv_visualizer}', 'line_column', '  ' }-- , vim.env.VIRTUAL_ENV }
+    }
+})
+require("stabline").setup({ font_active="none", stab_start="  %#Identifier#  ", stab_bg='none', stab_left='', inactive_fg='none', fg="#95c561" })
+
+--> Neorg
+require("neorg").setup {
+    load = {
+        ["core.defaults"] = {}, ["core.concealer"] = {}, -- ["external.jupyter"] = {},
+        ["core.completion"] = { config={ engine="nvim-cmp" } },
+        ["core.presenter"] = { config={ zen_mode = "zen-mode" } },
+        ["core.itero"] = {}, ["core.ui.calendar"] = {},
+        ["core.summary"] = { config = { strategy = "default" } },
+    }
+}
+
+--> CMP
+local cmp = require('cmp')
+
+local kind_icons = {
+    Text = ' ', Method = ' ', Function = ' ', Constructor = ' ', Field = ' ', Variable = ' ', Class = ' ', Interface = ' ',
+    Module = ' ', Property = ' ', Unit = ' ', Value = ' ', Enum = ' ', Keyword = ' ', Snippet = ' ', Color = ' ', File = ' ',
+    Reference = ' ', Folder = ' ', EnumMember = ' ', Constant = ' ', Struct = ' ', Event = ' ', Operator = ' ', TypeParameter = ' ',
+}
+-- Great for other themes, not for gruvbox tho
+-- for _, k in ipairs(vim.tbl_keys(kind_icons)) do vim.cmd("hi CmpItemKind"..k.." gui=reverse") end
+cmp.setup {
+    formatting = {
+        fields = { 'kind', 'abbr', 'menu' },
+        format = function(_, item)
+            item.kind = (' ' .. kind_icons[item.kind]) or " "
+            return item
+        end
+    },
+    window = { documentation = { border = "shadow" }, completion={side_padding=0} },
+    snippet = { expand=function(o) vim.snippet.expand(o.body) end },
+    mapping = cmp.mapping.preset.insert {
+        ['<C-b>'] = cmp.mapping.scroll_docs(-1),
+        ['<C-f>'] = cmp.mapping.scroll_docs(1),
+        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ['<Tab>'] = cmp.mapping(function(fb) (vim.snippet.active() and vim.snippet.jump or fb)(1) end, { "i", "s" })
+    },
+    sources = cmp.config.sources {
+        { name = 'path' },
+        { name = 'nvim_lsp' },
+        { name = 'nvim_lsp_signature_help' },
+        { name = 'nvim_lua' },
+        { name = 'neorg'},
+        { name = 'buffer' },
+    },
+    experimental = { ghost_text = true }
+}
+
+cmp.setup.cmdline(':', { mapping=cmp.mapping.preset.cmdline(), sources={{name="cmdline", keyword_length=3}} })
+
+--> General configs
+local mafs = {
+    ["nvim-treesitter.configs"] = { highlight={enable=true}, indent={enable=true} },
+    scope = {}, flirt = {}, colorizer = {},
+    ["nvim-tree"] = {renderer={ indent_markers={ enable=true } } },
+    cinnamon = {}, ["nvim-rooter"] = {}, ["nvim-autopairs"] = {},
+    ["hlchunk"] = { blank={enable=false}, chunk={chars={right_arrow="─"} }}
+}
+
+for plug, conf in pairs(mafs) do require(plug)["setup"](conf) end
