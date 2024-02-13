@@ -36,7 +36,7 @@ local opts = {
     },
     Ui = {
         pumblend = 20, inccommand = "split", termguicolors = true, number = true, signcolumn = "yes:2",
-        rnu = true, guifont = "JetBrainsMono Nerd Font:h11", shortmess = "tF".."TIcC".."as".."WoO",
+        rnu = true, guifont = "MonoLisa:h7", shortmess = "tF".."TIcC".."as".."WoO",
         fillchars = { eob=' ', fold=' ', foldopen="", foldsep=" ", foldclose="" }
     },
     Tabspace = {
@@ -94,7 +94,7 @@ Util.splash_screen = vim.schedule_wrap(function()
         vim.fn.matchadd("Error", '[░▒]')
         vim.fn.matchadd("Function", '[▓█▄▀▐▌]')
         local map = function(lhs, rhs) vim.keymap.set('n', lhs, rhs, {silent=true, buffer=0}) end
-        local keys = {K='kitty/kitty.conf', W='wezterm/wezterm.lua', I='nvim/init.lua', A='alacritty/alacritty.yml', F='fish/config.fish'}
+        local keys = {K='kitty/kitty.conf', W='wezterm/wezterm.lua', I='nvim/init.lua', A='alacritty/alacritty.toml', F='fish/config.fish'}
         vim.api.nvim_put(Util.center(header), "l", true, true)
         vim.cmd [[silent! setl nonu nornu nobl acd ft=dashboard bh=wipe bt=nofile]]
 
@@ -117,10 +117,10 @@ end
 --> Different kinds of Borders
 Util.border = ({
     { "╒", "═", "╕", "│", "╛", "═", "╘", "│" },
-    { "▁", "▁", "▁", "▕", "▔", "▔", "▔", "▏" },
+    { "▁", "▁", "▁", "▕", "▔", "▔", "▔", "▏", },
     { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" },
     { "", "", "", " ", "", "", "", " " }
-})[2]
+})[vim.g.neovide and 1 or 2]
 -- }}}
 
 -- {{{ -- Autocmds
@@ -309,8 +309,8 @@ local cfg_neorg = {
         ["core.defaults"] = {}, ["external.jupyter"] = {}, ["core.concealer"] = {},
         ["core.completion"] = { config={ engine="nvim-cmp" } },
         ["core.presenter"] = { config={ zen_mode = "zen-mode" } },
-        ["core.itero"] = {}, ["external.exec"] = {}, ["core.ui.calendar"] = {},
-        ["core.summary"] = { config = { strategy = "default" } }
+        ["core.itero"] = {}, ["core.ui.calendar"] = {},
+        ["core.summary"] = { config = { strategy = "default" } },
     }
 }
 
@@ -344,11 +344,11 @@ local plugins = {
 
     --> Temporary and testing
     { 'sindrets/diffview.nvim', config=true },
-    -- { 'tiagovla/scope.nvim', config=true },
+    { 'tiagovla/scope.nvim', config=true },
     -- { 'olimorris/onedarkpro.nvim' },
     -- { 'linux-cultist/venv-selector.nvim', config=true, ft="python" },
     { '3rd/image.nvim', opts={ backend="kitty", integrations={ neorg = { enabled=true } } }, ft="norg" },
-    -- { 'rest-nvim/rest.nvim', config=true },
+    { 'rest-nvim/rest.nvim', opts={}, branch="dev" },
     { 'sainnhe/gruvbox-material' },
     -- { 'willothy/flatten.nvim', lazy=false, config=true },
 
@@ -382,7 +382,7 @@ local plugins = {
     --> Telescope, TREESITTER, NEORG
     { 'nvim-lua/plenary.nvim', lazy=true },
     { 'nvim-telescope/telescope.nvim', opts=cfg_telescope, cmd="Telescope" },
-    { 'nvim-treesitter/nvim-treesitter', config={highlight = {enable=true}, indent = {enable=true}}  },
+    { 'nvim-treesitter/nvim-treesitter', lazy=false, config=true, main='nvim-treesitter.configs' },
     { 'nvim-neorg/neorg', ft="norg", lazy=true, opts=cfg_neorg, dependencies={"tamton-aquib/neorg-jupyter"} },
 
     --> GENERAL PURPOSE
@@ -447,6 +447,8 @@ end
 vim.cmd.colorscheme("gruvbox-material")
 vim.cmd [[hi link @punctuation.bracket Red]]
 vim.cmd [[hi link @constructor.lua Red]]
+vim.cmd [[hi NormalFloat guibg=none]]
+vim.cmd [[hi FloatBorder guibg=none]]
 
 function UF()
     local title = vim.fn.getline(vim.v.foldstart)--[[@as string]]:gsub([[%-%- %{%{%{ %-%- ]], "")
@@ -473,5 +475,8 @@ vim.g.neovide_floating_blur_amount_y = 2.0
 vim.g.neovide_floating_shadow = 'v:true'
 vim.g.neovide_floating_z_height = 10
 vim.g.neovide_confirm_quit = true
+
+vim.g.neovide_padding_top = 10
+vim.g.neovide_padding_left = 10
 
 -- }}}
