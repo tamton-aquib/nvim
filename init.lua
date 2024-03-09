@@ -130,7 +130,7 @@ local au = function(events, ptn, cb) vim.api.nvim_create_autocmd(events, {patter
 
 --> LSP Related
 au("BufWritePre", "*.rs,*.svelte", function() vim.lsp.buf.format() end)
-au("CursorHold", "*", vim.diagnostic.open_float) -- :sus:
+au("CursorHold", "*", function() vim.diagnostic.open_float() end)
 au("FileType", "json,http,markdown", "set cole=0")
 
 --> OLD
@@ -349,8 +349,8 @@ local cfg_staline = function()
         end
     })
     local virtual_env = function()
-        local nice = vim.fn.fnamemodify(vim.env.VIRTUAL_ENV, ':t')
-        return nice and '('.. nice ..')'
+        local nice = vim.fn.fnamemodify(vim.env.VIRTUAL_ENV or '', ':t')
+        return nice ~= '' and '('.. nice ..')' or ''
     end
 
     vim.g.mpv_visualizer = ""
