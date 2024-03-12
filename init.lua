@@ -22,7 +22,7 @@ local opts = {
         incsearch = true, showmode = false, showtabline = 2, laststatus = 3,
     },
     Edit = {
-        completeopt = "menu,menuone,noselect",
+        completeopt = "menu,menuone,noselect,popup",
         virtualedit = "block", ignorecase = true,
         clipboard = "unnamedplus", iskeyword = vim.o.iskeyword..",-"
     },
@@ -39,7 +39,7 @@ local opts = {
         fillchars = { eob=' ', fold=' ', foldopen="", foldsep=" ", foldclose="" }
     },
     Tabspace = {
-        shiftwidth = 4, tabstop = 4, softtabstop = 0, expandtab = true,
+        shiftwidth = 4, tabstop = 4, softtabstop = 0, -- expandtab = true,
         smartindent = true, breakindent = true, smarttab = true
     }
 }
@@ -94,7 +94,7 @@ Util.splash_screen = vim.schedule_wrap(function()
         vim.fn.matchadd("Error", '[░▒]')
         vim.fn.matchadd("Function", '[▓█▄▀▐▌]')
         local map = function(lhs, rhs) vim.keymap.set('n', lhs, rhs, {silent=true, buffer=0}) end
-        local keys = {K='kitty/kitty.conf', W='wezterm/wezterm.lua', I='nvim/init.lua', A='alacritty/alacritty.toml', F='fish/config.fish'}
+        local keys = {K='kitty/kitty.conf', W='wezterm/wezterm.lua', I='nvim/init.lua', A='alacritty/alacritty.toml', G='ghostty/config'}
         vim.api.nvim_put(Util.center(header), "l", true, true)
         vim.cmd [[silent! setl nonu nornu nobl acd ft=dashboard bh=wipe bt=nofile]]
 
@@ -316,8 +316,7 @@ local cfg_neorg = {
         ["core.defaults"] = {}, ["external.jupyter"] = {}, ["core.concealer"] = {},
         ["core.completion"] = { config={ engine="nvim-cmp" } },
         ["core.presenter"] = { config={ zen_mode = "zen-mode" } },
-        ["core.itero"] = {}, ["core.ui.calendar"] = {},
-        ["core.export"] = {}
+        ["core.itero"] = {}, ["core.ui.calendar"] = {}, ["core.export"] = {}
     }
 }
 
@@ -480,7 +479,7 @@ vim.cmd [[hi WarningText gui=underline]]
 vim.cmd [[hi ErrorText gui=underline]]
 
 function UF()
-    local title = vim.fn.getline(vim.v.foldstart)--[[@as string]]:gsub([[%-%- %{%{%{ %-%- ]], "")
+    local title = vim.fn.getline(vim.v.foldstart):gsub([[%-%- %{%{%{ %-%- ]], "")
     return (" "):rep(math.floor(vim.o.columns - title:len()) / 2) .. title
 end
 
