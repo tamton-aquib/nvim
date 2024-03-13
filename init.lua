@@ -89,8 +89,8 @@ Util.splash_screen = vim.schedule_wrap(function()
         [[                                 ░                    ]]
     }
     local arg = vim.fn.argv(0)
-    if arg and (vim.fn.isdirectory(arg) ~= 0) or arg == "" and vim.bo.ft ~= "lazy" then
-
+    if (vim.bo.ft ~= "lazy") and (vim.bo.ft ~= "netrw") and (arg == "") then
+	        -- if (vim.bo.ft ~= "lazy") and (vim.bo.ft ~= "netrw") and (arg == "") and (not arg) then
         vim.fn.matchadd("Error", '[░▒]')
         vim.fn.matchadd("Function", '[▓█▄▀▐▌]')
         local map = function(lhs, rhs) vim.keymap.set('n', lhs, rhs, {silent=true, buffer=0}) end
@@ -313,7 +313,7 @@ local cfg_telescope = {
 
 local cfg_neorg = {
     load = {
-        ["core.defaults"] = {}, ["external.jupyter"] = {}, ["core.concealer"] = {},
+        ["core.defaults"] = {}, ["core.concealer"] = {},
         ["core.completion"] = { config={ engine="nvim-cmp" } },
         ["core.presenter"] = { config={ zen_mode = "zen-mode" } },
         ["core.itero"] = {}, ["core.ui.calendar"] = {}, ["core.export"] = {}
@@ -355,6 +355,7 @@ local cfg_staline = function()
     vim.g.mpv_visualizer = ""
     require("staline").setup({
         defaults = { true_colors=true },
+		special_table = { mpv = { 'MPV', ' ' } },
         sections = {
             left = { '  ', 'mode', '  ', 'git_branch', '   ', 'lsp', '   %{g:lsp_status}' },
             right = { '  %10@v:lua.Bruh@󰎆 %X %{g:mpv_visualizer}', virtual_env, 'line_column', '  ' }
@@ -369,19 +370,21 @@ end
 local plugins = {
 
     --> Temporary and testing
-    -- { 'sindrets/diffview.nvim', config=true },
-    -- { 'tiagovla/scope.nvim', config=true },
-    -- { 'linux-cultist/venv-selector.nvim', config=true, ft="python" },
-    -- { 'willothy/flatten.nvim', lazy=false, config=true },
-    { '3rd/image.nvim', opts={ backend="kitty" }, ft={"norg", "markdown"}, cond=not vim.g.neovide },
+	-- { 'sindrets/diffview.nvim', config=true },
+	-- { 'tiagovla/scope.nvim', config=true },
+	-- { 'willothy/flatten.nvim', lazy=false, config=true },
+	{ "benlubas/molten-nvim", build = ":UpdateRemotePlugins" },
+	{ 'linux-cultist/venv-selector.nvim', config=true, ft="python" },
+	{ '3rd/image.nvim', opts={ backend="kitty" }, ft={"norg", "markdown"}, cond=not vim.g.neovide },
 
     --> My Useless lil plugins
-    -- { 'tamton-aquib/mpv.nvim', opts={setup_widgets=true}, lazy=true },
+    { 'tamton-aquib/mpv.nvim', opts={setup_widgets=true}, lazy=true },
     { 'tamton-aquib/nvim-market', import="nvim-market.plugins", config=true, lazy=true },
     { 'tamton-aquib/staline.nvim', config=cfg_staline, event="ColorScheme" },
     { 'tamton-aquib/flirt.nvim', config=true, cond=not vim.g.neovide },
     { 'tamton-aquib/stuff.nvim', lazy=true },
     { 'tamton-aquib/essentials.nvim', lazy=true },
+    -- { 'tamton-aquib/zone.nvim', opts={after=5, style='dvd'} },
 
     --> THEMES AND UI
     { 'sainnhe/gruvbox-material' },
@@ -403,14 +406,12 @@ local plugins = {
         }
     },
 
-    --> Telescope, TREESITTER, NEORG
+    --> Telescope, TREESITTER, NEORG, REST
     { 'nvim-telescope/telescope.nvim', opts=cfg_telescope, cmd="Telescope", dependencies={"nvim-lua/plenary.nvim"} },
     { 'nvim-treesitter/nvim-treesitter', config=cfg_treesitter },
-
     -- { "rest-nvim/rest.nvim", ft = "http", dependencies = { "luarocks.nvim" }, branch="dev", opts={} },
-    { "vhyrro/luarocks.nvim", branch = "more-fixes", opts = {} },
-    { "nvim-neorg/neorg", branch="luarocks", ft="norg", dependencies={ "luarocks.nvim", "tamton-aquib/neorg-jupyter" }, config=cfg_neorg },
-    -- { 'nvim-neorg/neorg', ft="norg", lazy=true, opts=cfg_neorg, dependencies={"tamton-aquib/neorg-jupyter"} },
+    { "vhyrro/luarocks.nvim", branch="more-fixes", opts={} },
+    { "nvim-neorg/neorg", branch="luarocks", ft="norg", dependencies={ "luarocks.nvim" }, config=cfg_neorg },
 
     --> GENERAL PURPOSE
     { 'notjedi/nvim-rooter.lua', config=true },
@@ -422,11 +423,12 @@ local plugins = {
 require("lazy").setup({plugins}, {
     ui = { pills=false }, install = { colorscheme = {"retrobox"} },
     performance = { rtp = { disabled_plugins = {
-        "python3_provider", "node_provider", "2html_plugin", "getscript", "getscriptPlugin",
+		"node_provider", "2html_plugin", "getscript", "getscriptPlugin",
         "gzip", "matchit", "tar", "tarPlugin", "rrhelper", "spellfile_plugin", "vimball",
         "vimballPlugin", "zip", "zipPlugin", "tutor", "spellfile", "tarPlugin",
         "man", "logiPat", "netrwSettings", "netrwFileHandlers",
-        "netrw", "editorconfig", "netrwPlugin", "tohtml", "remote_plugins", "rplugin",
+        "netrw", "editorconfig", "netrwPlugin", "tohtml",
+		"python3_provider", "remote_plugins", "rplugin",
     }} }
 })
 -- }}}
@@ -436,13 +438,15 @@ vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {
 vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = Util.border})
 
 vim.diagnostic.config({
-    virtual_text = false,
-    signs = { text = { '', '', '', '' } }, -- {"", "", ""}
-    float = {
-        border = Util.border, suffix = '', focusable=false,
-        header = { "  Diagnostics", "String" },
-        prefix = function(_, _, _) return "  " , "String" end, -- icons:       
-    }
+	virtual_text = false,
+	signs = { text = { '', '', '', '' } }, -- {"", "", ""}
+	float = {
+		border = Util.border,
+		suffix = '',
+		focusable=false,
+		header = { "  Diagnostics", "String" },
+		prefix = function(_, _, _) return "  " , "String" end, -- icons:       
+	}
 })
 
 local runtime_path = vim.split(package.path, ';')
@@ -451,8 +455,10 @@ table.insert(runtime_path, 'lua/?/init.lua')
 local lspconfig = require("lspconfig")
 
 local s = {
-    pyright={}, ruff_lsp={}, tsserver={}, biome = {},
-    cssls={}, rust_analyzer={}, svelte = {},
+    pyright={}, ruff_lsp={},
+	tsserver={}, biome = {},
+	rust_analyzer={},
+    -- cssls={}, svelte = {},-- yamlls = {}, eslint = {},
     lua_ls = {
         settings = {
             Lua = {
