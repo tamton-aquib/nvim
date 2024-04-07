@@ -2,7 +2,10 @@
 My neovim config. Might require nightly.
 
 ## Screenshots
-> ❕ NOTE: Usually all configs show treesitter, lsp diagnostics, nvim-cmp, etc. So they are not shown in the below screenshots.
+> [!NOTE]
+>
+> No screenshots or showcase for treesitter, lsp diagnostics, nvim-cmp, etc as they're common in all configs.
+> Here are some unique (useless) things which cant be seen in other normal configs.
 
 | Dashboard | Init file |
 |---|---|

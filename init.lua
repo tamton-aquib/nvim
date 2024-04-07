@@ -6,17 +6,17 @@ vim.loader.enable()
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
     print("Installing lazy.nvim...")
-    vim.fn.system({"git", "clone", "--branch=stable", "--filter=blob:none", "https://github.com/folke/lazy.nvim", lazypath})
+    vim.system({"git", "clone", "--branch=stable", "--filter=blob:none", "https://github.com/folke/lazy.nvim", lazypath}):wait()
 end
 vim.opt.rtp:append(lazypath)
 
 local opts = {
     General = {
         exrc = true, spell = false, wrap = false, linebreak = true, ruler = false, conceallevel = 2,
-        hlsearch = false, timeoutlen = 300, updatetime = 500, swapfile = false,
-        wildignore = { '*.pyc,__pycache__,node_modules,*.lock,package%-lock%.json,target' }, cmdheight=1
+        hlsearch = false, timeoutlen = 300, updatetime = 500,
+        wildignore = { '*.pyc,__pycache__,node_modules,*.lock,package%-lock%.json,target' },
     },
-    Backup = { backup = false, writebackup = false },
+    Backup = { backup = false, writebackup = false, swapfile = false },
     Layout = {
         scrolloff = 5, splitright = true, splitbelow = true, pumheight = 10,
         incsearch = true, showmode = false, showtabline = 2, laststatus = 3,
@@ -34,7 +34,7 @@ local opts = {
     },
     Ui = {
         pumblend = 30, inccommand = "split", termguicolors = true, number = true, signcolumn = "yes:2",
-        rnu = true, guifont = "IosevkaTerm Nerd Font:h8",
+        rnu = true, guifont = "IosevkaTerm Nerd Font:h10",
         shortmess = "tF".."TIcC".."as".."WoO",
         fillchars = { eob=' ', fold=' ', foldopen="", foldsep=" ", foldclose="" }
     },
@@ -61,6 +61,14 @@ end)
 
 -- {{{ -- Utils
 local Util = {}
+
+--> Different kinds of Borders
+Util.border = ({
+    { "╒", "═", "╕", "│", "╛", "═", "╘", "│" },
+    { "▁", "▁", "▁", "▕", "▔", "▔", "▔", "▏", },
+    { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" },
+    { "", "", "", " ", "", "", "", " " },
+})[vim.g.neovide and 1 or 3]
 
 Util.center = function(dict)
     local new_dict = {}
@@ -90,14 +98,12 @@ Util.splash_screen = vim.schedule_wrap(function()
     }
     local arg = vim.fn.argv(0)
     if (vim.bo.ft ~= "lazy") and (vim.bo.ft ~= "netrw") and (arg == "") then
-	        -- if (vim.bo.ft ~= "lazy") and (vim.bo.ft ~= "netrw") and (arg == "") and (not arg) then
         vim.fn.matchadd("Error", '[░▒]')
         vim.fn.matchadd("Function", '[▓█▄▀▐▌]')
         local map = function(lhs, rhs) vim.keymap.set('n', lhs, rhs, {silent=true, buffer=0}) end
-        local keys = {K='kitty/kitty.conf', W='wezterm/wezterm.lua', I='nvim/init.lua', A='alacritty/alacritty.toml', G='ghostty/config'}
+        local keys = {K='kitty/kitty.conf', W='wezterm/wezterm.lua', I='nvim/init.lua', A='alacritty/alacritty.toml', G='ghostty/config', H='hypr/hyprland.conf'}
         vim.api.nvim_put(Util.center(header), "l", true, true)
         vim.cmd [[silent! setl nonu nornu nobl acd ft=dashboard bh=wipe bt=nofile]]
-
         for k,f in pairs(keys) do map(k,'<cmd>e '..xdg..f..' | setl noacd<CR>') end
         map('P', '<cmd>Telescope oldfiles<CR>'); map('q', '<cmd>q<CR>'); map('o', '<cmd>e #<1<CR>') -- edit the last edited file
     end
@@ -114,24 +120,17 @@ Util.close_command = function()
     vim.cmd(total == 1  and quit_cmd or 'bd')
 end
 
---> Different kinds of Borders
-Util.border = ({
-    { "╒", "═", "╕", "│", "╛", "═", "╘", "│" },
-    { "▁", "▁", "▁", "▕", "▔", "▔", "▔", "▏", },
-    { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" },
-    { "", "", "", " ", "", "", "", " " },
-})[vim.g.neovide and 1 or 3]
 -- }}}
 
 -- {{{ -- Autocmds
 
 --> Wrapper function
-local au = function(events, ptn, cb) vim.api.nvim_create_autocmd(events, {pattern=ptn, [type(cb)=="function" and 'callback' or 'command']=cb}) end
+local au = function(events, ptn, cb) vim.api.nvim_create_autocmd(events, {pattern=ptn, [type(cb)=='function' and 'callback' or 'command']=cb}) end
 
 --> LSP Related
 au("BufWritePre", "*.rs,*.svelte", function() vim.lsp.buf.format() end)
 au("CursorHold", "*", function() vim.diagnostic.open_float() end)
-au("FileType", "json,http,markdown", "set cole=0")
+au("FileType", "json,jsonc,http,markdown", "set cole=0")
 
 --> OLD
 au("BufReadPost", "*.lua", [[call matchadd("Keyword", "--> \\zs.*\\ze$")]])
@@ -152,7 +151,6 @@ vim.api.nvim_create_user_command("Mess", function() require("essentials").messag
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
----> Helper functions
 local function map(mode, key, func) vim.keymap.set(mode, key, func, {silent=true}) end
 local function cmd(s) return "<CMD>"..s.."<CR>" end
 
@@ -206,8 +204,6 @@ map('n', '<M-p>', vim.diagnostic.goto_prev)
 map('n', '<leader>ca', vim.lsp.buf.code_action)
 
 --> essentials.nvim mappings ( https://github.com/tamton-aquib/essentials.nvim )
-map('v', '<leader>/' , ':lua require("essentials").toggle_comment(true)<CR>')
-map('n', '<leader>/' , ':lua require("essentials").toggle_comment()<CR>')
 map('n', '<F2>'      , function() require("essentials").rename() end)
 map('n', '<leader>r' , function() require("essentials").run_file() end)
 map('n', '<leader>s' , function() require("essentials").swap_bool() end)
@@ -259,13 +255,14 @@ local cfg_cmp = function()
         Module = ' ', Property = ' ', Unit = ' ', Value = ' ', Enum = ' ', Keyword = ' ', Snippet = ' ', Color = ' ', File = ' ',
         Reference = ' ', Folder = ' ', EnumMember = ' ', Constant = ' ', Struct = ' ', Event = ' ', Operator = ' ', TypeParameter = ' ',
     }
+
     -- Great for other themes, not for gruvbox tho
     -- for _, k in ipairs(vim.tbl_keys(kind_icons)) do vim.cmd("hi CmpItemKind"..k.." gui=reverse") end
     cmp.setup {
         formatting = {
             fields = { 'kind', 'abbr', 'menu' },
             format = function(_, item)
-                item.kind = (' ' .. kind_icons[item.kind]) or " "
+                item.kind = (' ' .. kind_icons[item.kind]) or "󰺕 "
                 return item
             end
         },
@@ -316,25 +313,9 @@ local cfg_neorg = {
         ["core.defaults"] = {}, ["core.concealer"] = {},
         ["core.completion"] = { config={ engine="nvim-cmp" } },
         ["core.presenter"] = { config={ zen_mode = "zen-mode" } },
-        ["core.itero"] = {}, ["core.ui.calendar"] = {}, ["core.export"] = {}
+        ["core.itero"] = {}, ["core.ui.calendar"] = {}, ["core.export"] = {},
     }
 }
-
-local cfg_treesitter = function()
-    local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-
-    parser_config.http = vim.tbl_deep_extend("force", parser_config.http, {
-        install_info = {
-            url = "/home/taj/STUFF/IDK/rest.nvim",
-            branch = "next"
-        },
-    })
-
-    require("nvim-treesitter.configs").setup {
-        highlight={enable=true}, indent={enable=true}
-    }
-end
-
 
 local cfg_staline = function()
     Bruh = function() require("mpv").toggle_player() end
@@ -355,7 +336,7 @@ local cfg_staline = function()
     vim.g.mpv_visualizer = ""
     require("staline").setup({
         defaults = { true_colors=true },
-		special_table = { mpv = { 'MPV', ' ' } },
+		special_table = { mpv = { 'MPV', ' ' }, discord = { 'Discord', ' ' } },
         sections = {
             left = { '  ', 'mode', '  ', 'git_branch', '   ', 'lsp', '   %{g:lsp_status}' },
             right = { '  %10@v:lua.Bruh@󰎆 %X %{g:mpv_visualizer}', virtual_env, 'line_column', '  ' }
@@ -370,28 +351,29 @@ end
 local plugins = {
 
     --> Temporary and testing
+	-- { 'mrcjkb/rustaceanvim' },
 	-- { 'sindrets/diffview.nvim', config=true },
-	-- { 'tiagovla/scope.nvim', config=true },
-	-- { 'willothy/flatten.nvim', lazy=false, config=true },
-	{ "benlubas/molten-nvim", build = ":UpdateRemotePlugins" },
-	{ 'linux-cultist/venv-selector.nvim', config=true, ft="python" },
-	{ '3rd/image.nvim', opts={ backend="kitty" }, ft={"norg", "markdown"}, cond=not vim.g.neovide },
+	-- { 'willothy/flatten.nvim', opts={window = { open="smart" } } },
+	-- { "benlubas/molten-nvim", build = ":UpdateRemotePlugins" },
+	-- { 'linux-cultist/venv-selector.nvim', config=true, ft="python" },
 
     --> My Useless lil plugins
-    { 'tamton-aquib/mpv.nvim', opts={setup_widgets=true}, lazy=true },
-    { 'tamton-aquib/nvim-market', import="nvim-market.plugins", config=true, lazy=true },
-    { 'tamton-aquib/staline.nvim', config=cfg_staline, event="ColorScheme" },
-    { 'tamton-aquib/flirt.nvim', config=true, cond=not vim.g.neovide },
-    { 'tamton-aquib/stuff.nvim', lazy=true },
-    { 'tamton-aquib/essentials.nvim', lazy=true },
-    -- { 'tamton-aquib/zone.nvim', opts={after=5, style='dvd'} },
+    { 'tamton-aquib/nvim-market', import="nvim-market.plugins", config=true, lazy=true, dev=true },
+    { 'tamton-aquib/staline.nvim', config=cfg_staline, event="ColorScheme", dev=true },
+    { 'tamton-aquib/flirt.nvim', config=true, cond=not vim.g.neovide, dev=true },
+    { 'tamton-aquib/stuff.nvim', lazy=true, dev=true },
+    { 'tamton-aquib/essentials.nvim', lazy=true, dev=true },
+    -- { 'tamton-aquib/mpv.nvim', opts={setup_widgets=true}, lazy=true, dev=true },
+    -- { 'tamton-aquib/keys.nvim', opts={} },
+    -- { 'tamton-aquib/zone.nvim', opts={after=5, style='dvd'}, dev=true },
 
     --> THEMES AND UI
-    { 'sainnhe/gruvbox-material' },
-    { 'DaikyXendo/nvim-web-devicons', opts={override={norg={icon=" ", color="#4878be", name="neorg"}} }, lazy=true },
+	{ '3rd/image.nvim', opts={ backend="kitty" }, ft={"norg", "markdown"}, cond=not vim.g.neovide },
+    { 'sainnhe/gruvbox-material', config=function() vim.cmd.colorscheme("gruvbox-material") end },
+    { 'DaikyXendo/nvim-web-devicons', opts={override={norg={icon=" ", color="#4878be", name="neorg"}} }, event="VeryLazy" },
     { 'norcalli/nvim-colorizer.lua', cmd="ColorizerToggle" },
     { 'lewis6991/gitsigns.nvim', config=true },
-    { 'nvim-tree/nvim-tree.lua', opts={ renderer={ indent_markers={ enable=true } } }, lazy=true },
+    { 'nvim-tree/nvim-tree.lua', opts={ renderer={ indent_markers={ enable=true } } } },
     { 'declancm/cinnamon.nvim', config=true, keys={"<C-d>", "<C-u>"}, cond=not vim.g.neovide },
 
     --> LSP and COMPLETION
@@ -408,27 +390,28 @@ local plugins = {
 
     --> Telescope, TREESITTER, NEORG, REST
     { 'nvim-telescope/telescope.nvim', opts=cfg_telescope, cmd="Telescope", dependencies={"nvim-lua/plenary.nvim"} },
-    { 'nvim-treesitter/nvim-treesitter', config=cfg_treesitter },
-    -- { "rest-nvim/rest.nvim", ft = "http", dependencies = { "luarocks.nvim" }, branch="dev", opts={} },
-    { "vhyrro/luarocks.nvim", branch="more-fixes", opts={} },
-    { "nvim-neorg/neorg", branch="luarocks", ft="norg", dependencies={ "luarocks.nvim" }, config=cfg_neorg },
+    { 'nvim-treesitter/nvim-treesitter', opts={highlight={enable=true}, indent={enable=true}}, main="nvim-treesitter.configs" },
+	{ "vhyrro/luarocks.nvim", config=true },
+    -- { dir="~/STUFF/NEOVIM/rest.nvim", ft="http", dependencies={ "luarocks.nvim" }, config=true, main="rest-nvim" },
+    { "nvim-neorg/neorg", ft="norg", dependencies={ "luarocks.nvim" }, opts=cfg_neorg },
 
     --> GENERAL PURPOSE
     { 'notjedi/nvim-rooter.lua', config=true },
     { 'nvim-focus/focus.nvim', lazy=true, opts={ui = {cursorline=false, signcolumn=false}}, event="WinEnter" },
     { 'windwp/nvim-autopairs', config=true, event="InsertEnter" },
-    { 'shellRaining/hlchunk.nvim', opts={ blank={enable=false}, chunk={chars={right_arrow="─"} }, line_num={enable=false}} },
+    { 'shellRaining/hlchunk.nvim', opts={ blank={enable=false}, chunk={notify=false, chars={right_arrow="─"} }, line_num={enable=false}} },
 }
 
 require("lazy").setup({plugins}, {
-    ui = { pills=false }, install = { colorscheme = {"retrobox"} },
+    ui = { pills=false }, install={ colorscheme = { "gruvbox-material", "retrobox"} },
+	-- profiling = { loader = true, require = true },
+	dev = { path="~/STUFF/NEOVIM/", patterns = {"tamton-aquib" }, fallback = true },
     performance = { rtp = { disabled_plugins = {
 		"node_provider", "2html_plugin", "getscript", "getscriptPlugin",
         "gzip", "matchit", "tar", "tarPlugin", "rrhelper", "spellfile_plugin", "vimball",
-        "vimballPlugin", "zip", "zipPlugin", "tutor", "spellfile", "tarPlugin",
-        "man", "logiPat", "netrwSettings", "netrwFileHandlers",
-        "netrw", "editorconfig", "netrwPlugin", "tohtml",
-		"python3_provider", "remote_plugins", "rplugin",
+        "vimballPlugin", "zip", "zipPlugin", "tutor", "spellfile", "tarPlugin", "man", "logiPat",
+		"netrwSettings", "netrwFileHandlers", "netrw", "netrwPlugin",
+		"tohtml", "editorconfig", "python3_provider", "remote_plugins", "rplugin",
     }} }
 })
 -- }}}
@@ -455,10 +438,10 @@ table.insert(runtime_path, 'lua/?/init.lua')
 local lspconfig = require("lspconfig")
 
 local s = {
-    pyright={}, ruff_lsp={},
-	tsserver={}, biome = {},
-	rust_analyzer={},
-    -- cssls={}, svelte = {},-- yamlls = {}, eslint = {},
+    pyright={}, -- ruff_lsp={},
+	tsserver={}, biome = {}, cssls={},
+	-- svelte = {},-- yamlls = {}, eslint = {},
+	-- rust_analyzer={},
     lua_ls = {
         settings = {
             Lua = {
@@ -473,6 +456,9 @@ local s = {
 
 for server, opt in pairs(s) do
     opt.capabilities = require("cmp_nvim_lsp").default_capabilities()
+	opt.on_init = function(client)
+    	client.server_capabilities.semanticTokensProvider = nil
+	end
     lspconfig[server].setup(opt)
 end
 -- }}}
@@ -495,7 +481,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
         vim.cmd [[setl fdm=marker fdls=-1 fdl=0 nonu nornu scl=no foldtext=v:lua.UF()]]
         vim.keymap.set('n', '<CR>', 'za', {buffer=0})
         vim.api.nvim_buf_set_extmark(0, vim.api.nvim_create_namespace("taj0023"), 0, 0, {
-            virt_text = {{ Util.center({"-- [[ Noice ]] --"})[1] , "Function"}}
+            virt_text = {{ Util.center({"-- [[ INIT.LUA ]] --"})[1] , "Function"}}
         })
     end
 })
@@ -509,4 +495,5 @@ vim.g.neovide_floating_z_height = 10
 vim.g.neovide_transparency = 0.9
 vim.g.neovide_padding_top = 10
 vim.g.neovide_padding_left = 10
+
 -- }}}
