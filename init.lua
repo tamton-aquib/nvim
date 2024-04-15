@@ -34,7 +34,7 @@ local opts = {
     },
     Ui = {
         pumblend = 30, inccommand = "split", termguicolors = true, number = true, signcolumn = "yes:2",
-        rnu = true, guifont = "IosevkaTerm Nerd Font:h10",
+        rnu = true, guifont = "JetBrainsMono Nerd Font:h10:b",
         shortmess = "tF".."TIcC".."as".."WoO",
         fillchars = { eob=' ', fold=' ', foldopen="", foldsep=" ", foldclose="" }
     },
@@ -219,10 +219,10 @@ map('n', '<leader>fo', cmd "Telescope oldfiles")
 map('n', '<leader>fh', cmd "Telescope help_tags")
 
 --> WINDOW Control
-map('n', '<C-h>'    , '<C-w>h')
-map('n', '<C-j>'    , '<C-w>j')
-map('n', '<C-k>'    , '<C-w>k')
-map('n', '<C-l>'    , '<C-w>l')
+map({ 'n', 't' }, '<C-h>', cmd 'wincmd h')
+map({ 'n', 't' }, '<C-j>', cmd 'wincmd j')
+map({ 'n', 't' }, '<C-k>', cmd 'wincmd k')
+map({ 'n', 't' }, '<C-l>', cmd 'wincmd l')
 map('n', '<A-Down>', '<C-w>-')
 map('n', '<A-Up>'  , '<C-w>+')
 
@@ -363,7 +363,7 @@ local plugins = {
     { 'tamton-aquib/flirt.nvim', config=true, cond=not vim.g.neovide, dev=true },
     { 'tamton-aquib/stuff.nvim', lazy=true, dev=true },
     { 'tamton-aquib/essentials.nvim', lazy=true, dev=true },
-    -- { 'tamton-aquib/mpv.nvim', opts={setup_widgets=true}, lazy=true, dev=true },
+    { 'tamton-aquib/mpv.nvim', opts={setup_widgets=true}, lazy=true, dev=true },
     -- { 'tamton-aquib/keys.nvim', opts={} },
     -- { 'tamton-aquib/zone.nvim', opts={after=5, style='dvd'}, dev=true },
 
