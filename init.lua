@@ -8,7 +8,7 @@ if not vim.loop.fs_stat(lazypath) then
     print("Installing lazy.nvim...")
     vim.system({"git", "clone", "--branch=stable", "--filter=blob:none", "https://github.com/folke/lazy.nvim", lazypath}):wait()
 end
-vim.opt.rtp:append(lazypath)
+vim.opt.runtimepath:prepend(lazypath)
 
 local opts = {
     General = {
@@ -45,6 +45,7 @@ local opts = {
 }
 
 vim.g.python3_host_prog = '/usr/bin/python'
+vim.g.gruvbox_material_better_performance = 1
 for _, section in pairs(opts) do for k,v in pairs(section) do vim.opt[k] = v end end
 -- vim.opt.statuscolumn = "%s %{foldlevel(v:lnum) <= foldlevel(v:lnum-1) ? ' ' : (foldclosed(v:lnum) == -1 ? '' : '')} %{v:relnum ? v:relnum : v:lnum} "
 
@@ -129,8 +130,9 @@ local au = function(events, ptn, cb) vim.api.nvim_create_autocmd(events, {patter
 
 --> LSP Related
 au("BufWritePre", "*.rs,*.svelte", function() vim.lsp.buf.format() end)
-au("CursorHold", "*", function() vim.diagnostic.open_float() end)
+-- au("CursorHold", "*", function() vim.diagnostic.open_float() end)
 au("FileType", "json,jsonc,http,markdown", "set cole=0")
+au("FileType", "norg", "set scl=yes:4 nonu nornu")
 
 --> OLD
 au("BufReadPost", "*.lua", [[call matchadd("Keyword", "--> \\zs.*\\ze$")]])
@@ -161,6 +163,8 @@ map('n', '<leader>k', function() require("essentials").konsole() end)
 map('n', 'gQ', function() require("essentials").open_quick_note() end)
 map('n', '<leader>ii', function() require("nvim-market").install_picker() end)
 map('n', '<leader>iu', function() require("nvim-market").remove_picker() end)
+map('n', '<leader>v', function() require("lsp_lines").toggle() end)
+map('n', 'gl', function() vim.diagnostic.open_float() end)
 
 map('n', '<Esc>', '<CMD>echo<CR>')
 map('c', 'jk', '<C-f><Cmd>echo | setl nonu nornu scl=no | resize -20<Cr>')
@@ -185,8 +189,7 @@ map('n', '<leader>e'   , function() require("nvim-tree.api").tree.toggle({find_f
 map('n', '<leader>q'   , function() require("essentials").toggle_quickfix() end)
 map('n', '<leader>z'   , cmd 'FocusMaximise')
 
---> stuff.nvim maps (https://github.com/tamton-aquib/stuff.nvim)
-map('n', '<leader>cc', function() require("chatgpt").chatgpt() end)
+--> stuff.nvim keymaps (https://github.com/tamton-aquib/stuff.nvim)
 map('n', 'gC', function() require("calc").toggle() end)
 map('n', 'gS', function() require("stalk").stalk() end)
 map('n', 'gs', function() require("scratch").toggle() end)
@@ -199,8 +202,6 @@ map('n', 'gP', function() require("dep").check() end)
 map('n', 'gD', vim.lsp.buf.definition)
 map('n', 'gd', '<cmd>vs | lua vim.lsp.buf.definition()<CR>')
 map('n', 'gr', vim.lsp.buf.references)
-map('n', '<M-n>', vim.diagnostic.goto_next)
-map('n', '<M-p>', vim.diagnostic.goto_prev)
 map('n', '<leader>ca', vim.lsp.buf.code_action)
 
 --> essentials.nvim mappings ( https://github.com/tamton-aquib/essentials.nvim )
@@ -262,7 +263,7 @@ local cfg_cmp = function()
         formatting = {
             fields = { 'kind', 'abbr', 'menu' },
             format = function(_, item)
-                item.kind = (' ' .. kind_icons[item.kind]) or "󰺕 "
+                item.kind = ' ' .. (kind_icons[item.kind] or "󰺕 ")
                 return item
             end
         },
@@ -275,16 +276,16 @@ local cfg_cmp = function()
             ['<CR>'] = cmp.mapping.confirm({ select = true }),
             ['<Tab>'] = cmp.mapping(function(fb) (vim.snippet.active() and vim.snippet.jump or fb)(1) end, { "i", "s" })
         },
-        sources = cmp.config.sources {
-            { name = 'path' },
-            { name = 'nvim_lsp' },
-            { name = 'nvim_lsp_signature_help' },
-            { name = 'nvim_lua' },
-            { name = 'neorg'},
-            { name = 'buffer' },
-            { name = 'otter' },
-        },
-        experimental = { ghost_text = true }
+		sources = cmp.config.sources {
+			{ name = 'path' },
+			{ name = 'nvim_lsp' },
+			{ name = 'nvim_lsp_signature_help' },
+			{ name = 'nvim_lua' },
+			{ name = 'neorg'},
+			{ name = 'buffer' },
+			{ name = 'vim-dadbod-completion'}
+		},
+        experimental = { ghost_text = true } -- Disable this later?
     }
 
     cmp.setup.cmdline(':', { mapping=cmp.mapping.preset.cmdline(), sources={{name="cmdline", keyword_length=3}} })
@@ -299,7 +300,7 @@ local cfg_telescope = {
             -- prompt = { "─", "│", "─", "│", "╭", "╮", "┤", "├" },
             -- results = { " ", "│", "─", "│", "│", "│", "╯", "╰" },
             prompt = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-            results = { " ", " ", " ", " ", " ", " ", " ", " " },
+            results = { "", "", "", "", "", "", "", "" },
             -- preview = { "─", "│", "─", " ", "─", "╮", "╯", "─" },
         },
         results_title = false, sorting_strategy = "ascending",
@@ -314,20 +315,22 @@ local cfg_neorg = {
         ["core.completion"] = { config={ engine="nvim-cmp" } },
         ["core.presenter"] = { config={ zen_mode = "zen-mode" } },
         ["core.itero"] = {}, ["core.ui.calendar"] = {}, ["core.export"] = {},
+		["core.latex.renderer"] = {}
     }
 }
 
 local cfg_staline = function()
     Bruh = function() require("mpv").toggle_player() end
-    vim.g.lsp_status = ""
+	vim.g.lsp_status = ""
 
     vim.api.nvim_create_autocmd("LspProgress", {
-        callback = function(nice)
-            local status = nice.data.result.value.percentage or ""
+        callback = function(o)
+            local status = o.data.params.value.percentage or ""
             vim.g.lsp_status = type(status) == "number" and status.."%" or ""
             vim.cmd.redrawstatus()
         end
     })
+
     local virtual_env = function()
         local nice = vim.fn.fnamemodify(vim.env.VIRTUAL_ENV or '', ':t')
         return nice ~= '' and '('.. nice ..')' or ''
@@ -336,7 +339,7 @@ local cfg_staline = function()
     vim.g.mpv_visualizer = ""
     require("staline").setup({
         defaults = { true_colors=true },
-		special_table = { mpv = { 'MPV', ' ' }, discord = { 'Discord', ' ' } },
+		special_table = { mpv = { 'MPV', ' ' } },
         sections = {
             left = { '  ', 'mode', '  ', 'git_branch', '   ', 'lsp', '   %{g:lsp_status}' },
             right = { '  %10@v:lua.Bruh@󰎆 %X %{g:mpv_visualizer}', virtual_env, 'line_column', '  ' }
@@ -350,12 +353,41 @@ end
 -- {{{ -- Lazy
 local plugins = {
 
-    --> Temporary and testing
-	-- { 'mrcjkb/rustaceanvim' },
+	--> Temporary and testing
+	{
+		"pmizio/typescript-tools.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		opts = {
+			settings = {
+				tsserver_file_preferences = {
+					includeInlayParameterNameHints = "all",
+					includeCompletionsForModuleExports = true,
+					quotePreference = "auto",
+				},
+				tsserver_format_options = {
+					allowIncompleteCompletions = false,
+					allowRenameOfImportPath = false,
+				}
+			},
+		},
+	},
+
+	{
+		'kristijanhusak/vim-dadbod-ui',
+		dependencies = {
+			{ 'tpope/vim-dadbod', lazy = true },
+			{ 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' }, lazy = true },
+		},
+		cmd = { 'DBUI', 'DBUIToggle', 'DBUIAddConnection', 'DBUIFindBuffer' },
+		init = function() vim.g.db_ui_use_nerd_fonts = 1 end,
+	},
+
 	-- { 'sindrets/diffview.nvim', config=true },
 	-- { 'willothy/flatten.nvim', opts={window = { open="smart" } } },
-	-- { "benlubas/molten-nvim", build = ":UpdateRemotePlugins" },
 	-- { 'linux-cultist/venv-selector.nvim', config=true, ft="python" },
+
+	{ 'windwp/nvim-ts-autotag', opts={} },
+	{ url='https://git.sr.ht/~whynothugo/lsp_lines.nvim', config=true },
 
     --> My Useless lil plugins
     { 'tamton-aquib/nvim-market', import="nvim-market.plugins", config=true, lazy=true, dev=true },
@@ -363,17 +395,21 @@ local plugins = {
     { 'tamton-aquib/flirt.nvim', config=true, cond=not vim.g.neovide, dev=true },
     { 'tamton-aquib/stuff.nvim', lazy=true, dev=true },
     { 'tamton-aquib/essentials.nvim', lazy=true, dev=true },
-    { 'tamton-aquib/mpv.nvim', opts={setup_widgets=true}, lazy=true, dev=true },
+    -- { 'tamton-aquib/mpv.nvim', opts={setup_widgets=true}, lazy=true, dev=true },
     -- { 'tamton-aquib/keys.nvim', opts={} },
     -- { 'tamton-aquib/zone.nvim', opts={after=5, style='dvd'}, dev=true },
 
     --> THEMES AND UI
 	{ '3rd/image.nvim', opts={ backend="kitty" }, ft={"norg", "markdown"}, cond=not vim.g.neovide },
-    { 'sainnhe/gruvbox-material', config=function() vim.cmd.colorscheme("gruvbox-material") end },
-    { 'DaikyXendo/nvim-web-devicons', opts={override={norg={icon=" ", color="#4878be", name="neorg"}} }, event="VeryLazy" },
+    { 'sainnhe/gruvbox-material', config=function()
+		vim.g.gruvbox_material_background = "soft"
+		vim.g.gruvbox_material_transparent_background = true
+		vim.cmd.colorscheme("gruvbox-material")
+	end },
+    { 'nvim-tree/nvim-web-devicons', opts={override={norg={icon=" ", color="#4878be", name="neorg"}, http={icon="󰯊 ", name="http", color="#986fec"}} }, event="VeryLazy" },
     { 'norcalli/nvim-colorizer.lua', cmd="ColorizerToggle" },
     { 'lewis6991/gitsigns.nvim', config=true },
-    { 'nvim-tree/nvim-tree.lua', opts={ renderer={ indent_markers={ enable=true } } } },
+    { 'nvim-tree/nvim-tree.lua', opts={ renderer={ indent_markers={ enable=true } } }, lazy=true },
     { 'declancm/cinnamon.nvim', config=true, keys={"<C-d>", "<C-u>"}, cond=not vim.g.neovide },
 
     --> LSP and COMPLETION
@@ -388,35 +424,65 @@ local plugins = {
         }
     },
 
-    --> Telescope, TREESITTER, NEORG, REST
-    { 'nvim-telescope/telescope.nvim', opts=cfg_telescope, cmd="Telescope", dependencies={"nvim-lua/plenary.nvim"} },
-    { 'nvim-treesitter/nvim-treesitter', opts={highlight={enable=true}, indent={enable=true}}, main="nvim-treesitter.configs" },
-	{ "vhyrro/luarocks.nvim", config=true },
-    -- { dir="~/STUFF/NEOVIM/rest.nvim", ft="http", dependencies={ "luarocks.nvim" }, config=true, main="rest-nvim" },
-    { "nvim-neorg/neorg", ft="norg", dependencies={ "luarocks.nvim" }, opts=cfg_neorg },
+	--> Telescope, TREESITTER, NEORG, REST
+	{ 'nvim-telescope/telescope.nvim', opts=cfg_telescope, cmd="Telescope", dependencies={"nvim-lua/plenary.nvim"} },
+	{ 'nvim-treesitter/nvim-treesitter', opts={highlight={enable=true}, indent={enable=true} }, main="nvim-treesitter.configs" },
+	{ "vhyrro/luarocks.nvim", opts={rocks={"magick"}} },
+	{ "nvim-neorg/neorg", ft="norg", dependencies={ "luarocks.nvim" }, opts=cfg_neorg },
 
     --> GENERAL PURPOSE
     { 'notjedi/nvim-rooter.lua', config=true },
     { 'nvim-focus/focus.nvim', lazy=true, opts={ui = {cursorline=false, signcolumn=false}}, event="WinEnter" },
     { 'windwp/nvim-autopairs', config=true, event="InsertEnter" },
-    { 'shellRaining/hlchunk.nvim', opts={ blank={enable=false}, chunk={notify=false, chars={right_arrow="─"} }, line_num={enable=false}} },
+    { 'shellRaining/hlchunk.nvim', opts={ indent={enable=true, use_treesitter=true}, chunk={enable=true, notify=true, chars={right_arrow="─"}} }},
 }
 
-require("lazy").setup({plugins}, {
+require("lazy").setup({ plugins }, {
     ui = { pills=false }, install={ colorscheme = { "gruvbox-material", "retrobox"} },
 	-- profiling = { loader = true, require = true },
 	dev = { path="~/STUFF/NEOVIM/", patterns = {"tamton-aquib" }, fallback = true },
     performance = { rtp = { disabled_plugins = {
-		"node_provider", "2html_plugin", "getscript", "getscriptPlugin",
-        "gzip", "matchit", "tar", "tarPlugin", "rrhelper", "spellfile_plugin", "vimball",
-        "vimballPlugin", "zip", "zipPlugin", "tutor", "spellfile", "tarPlugin", "man", "logiPat",
-		"netrwSettings", "netrwFileHandlers", "netrw", "netrwPlugin",
+		"node_provider", "2html_plugin", "getscript", "getscriptPlugin", "gzip", "matchit",
+		"tar", "tarPlugin", "rrhelper", "spellfile_plugin", "vimball",
+		"vimballPlugin", "zip", "zipPlugin", "tutor", "spellfile", "tarPlugin",
+		"man", "logiPat", "netrwSettings", "netrwFileHandlers", "netrw", "netrwPlugin",
 		"tohtml", "editorconfig", "python3_provider", "remote_plugins", "rplugin",
     }} }
 })
 -- }}}
 
 -- {{{ -- LSP
+
+local runtime_path = vim.split(package.path, ';')
+local s = {
+
+	-- sqls = {
+	-- 	settings = {
+	-- 		sqls = {
+	-- 			connections = {
+	-- 				{
+	-- 					driver = 'mariadb',
+	-- 					dataSourceName = 'taj:thengakola@localhost:3306/TodoApp',
+	-- 				},
+	-- 			}
+	-- 		},
+	-- 	},
+	-- },
+
+    pyright={},
+	cssls={}, -- biome = {}, tsserver={}, svelte = {},-- yamlls = {}, eslint = {},
+	-- ruff_lsp={}, ruff={}, rust_analyzer={},
+	-- jdtls = {}, clangd = {},
+	lua_ls = {
+        settings = {
+            Lua = {
+                runtime={version="LuaJIT"},
+                path = vim.g.devmode and runtime_path or {},
+				workspace = { checkThirdParty = "Disable", library = { vim.env.VIMRUNTIME } }
+            }
+        }
+    }
+}
 vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = Util.border})
 vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = Util.border})
 
@@ -432,27 +498,9 @@ vim.diagnostic.config({
 	}
 })
 
-local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 local lspconfig = require("lspconfig")
-
-local s = {
-    pyright={}, -- ruff_lsp={},
-	tsserver={}, biome = {}, cssls={},
-	-- svelte = {},-- yamlls = {}, eslint = {},
-	-- rust_analyzer={},
-    lua_ls = {
-        settings = {
-            Lua = {
-                diagnostics={globals={'vim'}},
-                runtime={version="LuaJIT"},
-                path = runtime_path,
-                workspace = { library = vim.api.nvim_get_runtime_file('', true), checkThirdParty=false },
-            }
-        }
-    }
-}
 
 for server, opt in pairs(s) do
     opt.capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -464,11 +512,8 @@ end
 -- }}}
 
 -- {{{ -- MISC
-vim.cmd.colorscheme("gruvbox-material")
-vim.cmd [[hi link @punctuation.bracket Red]]
-vim.cmd [[hi link @constructor.lua Red]]
-vim.cmd [[hi WarningText gui=underline]]
-vim.cmd [[hi ErrorText gui=underline]]
+vim.cmd [[hi link @punctuation.bracket Red | hi link @constructor.lua Red]]
+vim.cmd [[hi WarningText gui=underline | hi ErrorText gui=underline | hi TSDanger gui=reverse]]
 
 function UF()
     local title = vim.fn.getline(vim.v.foldstart):gsub([[%-%- %{%{%{ %-%- ]], "")
@@ -478,7 +523,7 @@ end
 vim.api.nvim_create_autocmd("BufReadPost", {
     pattern = vim.fn.stdpath("config") .. "/init.lua",
     callback = function()
-        vim.cmd [[setl fdm=marker fdls=-1 fdl=0 nonu nornu scl=no foldtext=v:lua.UF()]]
+        vim.cmd [[setl foldtext=v:lua.UF()]]
         vim.keymap.set('n', '<CR>', 'za', {buffer=0})
         vim.api.nvim_buf_set_extmark(0, vim.api.nvim_create_namespace("taj0023"), 0, 0, {
             virt_text = {{ Util.center({"-- [[ INIT.LUA ]] --"})[1] , "Function"}}
@@ -486,14 +531,48 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end
 })
 
-vim.g.neovide_underline_automatic_scaling = true
-vim.g.neovide_scale_factor = 1.0
-vim.g.neovide_floating_blur_amount_x = 2.0
-vim.g.neovide_floating_blur_amount_y = 2.0
-vim.g.neovide_floating_shadow = 'v:true'
-vim.g.neovide_floating_z_height = 10
-vim.g.neovide_transparency = 0.9
-vim.g.neovide_padding_top = 10
-vim.g.neovide_padding_left = 10
+if vim.g.neovide then
+	vim.g.neovide_underline_automatic_scaling = true
+	vim.g.neovide_scale_factor = 1.0
+	vim.g.neovide_floating_blur_amount_x = 2.0
+	vim.g.neovide_floating_blur_amount_y = 2.0
+	vim.g.neovide_floating_shadow = true
+	vim.g.neovide_floating_z_height = 10
+	vim.g.neovide_transparency = 0.9
+	vim.g.neovide_padding_top = 10
+	vim.g.neovide_padding_left = 10
+	vim.g.neovide_remember_window_size = true
+end
 
 -- }}}
+
+-- {{{ -- TEMP
+-- vim.g.dbs = { dev = 'mariadb://localhost:3306/TodoApp', prod = 'mariadb://localhost:3306/ExampleDB' }
+map("n", "<leader>db", cmd 'DBUIToggle')
+
+vim.api.nvim_create_autocmd({'WinEnter', 'FileType'}, {
+    group = vim.api.nvim_create_augroup('FocusDisable', { clear = true }),
+    callback = function() vim.w.focus_disable = vim.tbl_contains({ 'NvimTree', 'dbui', 'dbee' }, vim.bo.ft) end,
+})
+vim.filetype.add({ extension = { http = "http" } })
+
+-- vim.api.nvim_create_autocmd("LspProgress", {
+-- 	callback = function(o)
+-- 		local p = o.data.params.value.percentage
+-- 		vim.wo.winbar = p and ("%#Green#"..("▔"):rep(math.floor((p*vim.o.columns) / 100))) or ""
+-- 	end
+-- })
+
+vim.keymap.set('ia', 'pp', vim.schedule_wrap(function()
+	local pps = { python = [[print("${0}")]], typescriptreact = [[console.log("${0}")]] }
+	local key = vim.api.nvim_replace_termcodes("<BS>", true, false, true)
+	vim.api.nvim_feedkeys(key, 'i', false)
+	vim.defer_fn(function() vim.snippet.expand(pps[vim.bo.ft]) end, 1)
+end), {})
+
+
+-- local session_path = vim.fn.stdpath('config') .. '/session.vim'
+-- map("n", "<leader>ss", 'sil wa! | mks! ' .. session_path .. ' | qa!')
+-- map("n", "<leader>sl", '%bd! | so ' .. session_path .. ' | ec "Session loaded from: ' .. session_path .. '"')
+-- -- vim: fdm=marker fdls=-1 fdl=0 nonu nornu scl=no
+-- -- }}}
