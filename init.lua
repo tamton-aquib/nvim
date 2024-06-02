@@ -4,44 +4,44 @@
 
 vim.loader.enable()
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
     print("Installing lazy.nvim...")
     vim.system({"git", "clone", "--branch=stable", "--filter=blob:none", "https://github.com/folke/lazy.nvim", lazypath}):wait()
 end
 vim.opt.runtimepath:prepend(lazypath)
 
 local opts = {
-    General = {
-        exrc = true, spell = false, wrap = false, linebreak = true, ruler = false, conceallevel = 2,
-        hlsearch = false, timeoutlen = 300, updatetime = 500,
-        wildignore = { '*.pyc,__pycache__,node_modules,*.lock,package%-lock%.json,target' },
-    },
-    Backup = { backup = false, writebackup = false, swapfile = false },
-    Layout = {
-        scrolloff = 5, splitright = true, splitbelow = true, pumheight = 10,
-        incsearch = true, showmode = false, showtabline = 2, laststatus = 3,
-    },
-    Edit = {
-        completeopt = "menu,menuone,noselect,popup",
-        virtualedit = "block", ignorecase = true,
-        clipboard = "unnamedplus", iskeyword = vim.o.iskeyword..",-"
-    },
-    Fold = {
-        foldmethod = "expr",
-        foldlevelstart = 99,
-        foldexpr = 'v:lua.vim.treesitter.foldexpr()',
-        foldtext = 'v:lua.require("essentials").simple_fold()'
-    },
-    Ui = {
-        pumblend = 30, inccommand = "split", termguicolors = true, number = true, signcolumn = "yes:2",
-        rnu = true, guifont = "JetBrainsMono Nerd Font:h10:b",
-        shortmess = "tF".."TIcC".."as".."WoO",
-        fillchars = { eob=' ', fold=' ', foldopen="", foldsep=" ", foldclose="" }
-    },
-    Tabspace = {
-        shiftwidth = 4, tabstop = 4, softtabstop = 0, -- expandtab = true,
-        smartindent = true, breakindent = true, smarttab = true
-    }
+	General = {
+		exrc = true, spell = false, wrap = false, linebreak = true, ruler = false,
+		conceallevel = 2, timeoutlen = 300, updatetime = 500,
+		wildignore = { '*.pyc,__pycache__,node_modules,*.lock,package%-lock%.json,target' },
+	},
+	Backup = { backup = false, writebackup = false, swapfile = false },
+	Layout = {
+		scrolloff = 5, splitright = true, splitbelow = true, pumheight = 10,
+		incsearch = true, showmode = false, showtabline = 2, laststatus = 3,
+	},
+	Edit = {
+		completeopt = "menu,menuone,noselect,popup",
+		virtualedit = "block", ignorecase = true,
+		clipboard = "unnamedplus", iskeyword = vim.o.iskeyword..",-"
+	},
+	Fold = {
+		foldmethod = "expr",
+		foldlevelstart = 99,
+		foldexpr = 'v:lua.vim.treesitter.foldexpr()',
+		foldtext = 'v:lua.require("essentials").simple_fold()'
+	},
+	Ui = {
+		pumblend = 30, inccommand = "split", termguicolors = true, number = true, signcolumn = "yes:2",
+		rnu = true, guifont = "JetBrainsMono Nerd Font:h10:b",
+		shortmess = "tF".."TIcC".."as".."WoO",
+		fillchars = { eob=' ', fold=' ', foldopen="", foldsep=" ", foldclose="" }
+	},
+	Tabspace = {
+		shiftwidth = 4, tabstop = 4, softtabstop = 0, -- expandtab = true,
+		smartindent = true, breakindent = true, smarttab = true
+	}
 }
 
 vim.g.python3_host_prog = '/usr/bin/python'
@@ -237,9 +237,12 @@ map("n", "<A-k>", ":move .-2<CR>==")
 map('n', '<Space>'  , '<Nop>')
 map('n', '<leader>a', 'ggVG')
 map('i', 'jk'       , '<Esc>')
-map('n', 'n'        , 'nzz')
-map('n', '<TAB>'    , '<cmd>bnext<CR>')
-map('n', '<S-TAB>'  , '<cmd>bprevious<CR>')
+
+map('n', 'n'        , cmd 'exe "norm! nzz" | lua vim.defer_fn(vim.cmd.nohl, 3000)')
+map('n', 'N'        , cmd 'exe "norm! Nzz" | lua vim.defer_fn(vim.cmd.nohl, 3000)')
+
+map('n', '<TAB>'    , cmd 'bnext')
+map('n', '<S-TAB>'  , cmd 'bprevious')
 map('v', '<'        , '<gv')
 map('v', '>'        , '>gv')
 map('n', '>'        , '>>')
@@ -293,17 +296,16 @@ end
 
 local cfg_telescope = {
     defaults = {
-        preview = false, prompt_prefix = "    ", selection_caret = " ", winblend = 20,
+		prompt_prefix = "    ", selection_caret = " ", winblend = 20,
         borderchars = {
             -- prompt = { "─", "│", "─", "│", "╭", "┬", "┤", "├" },
             -- results = { " ", "│", "─", "│", "│", "│", "┴", "╰" },
-            -- prompt = { "─", "│", "─", "│", "╭", "╮", "┤", "├" },
-            -- results = { " ", "│", "─", "│", "│", "│", "╯", "╰" },
+            -- preview = { "─", "│", "─", " ", "─", "╮", "╯", "─" }, --false
+
             prompt = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
             results = { "", "", "", "", "", "", "", "" },
-            -- preview = { "─", "│", "─", " ", "─", "╮", "╯", "─" },
         },
-        results_title = false, sorting_strategy = "ascending",
+        preview = false, results_title = false, sorting_strategy = "ascending",
         layout_config = { prompt_position="top", height=0.75, width=0.75 },
         file_ignore_patterns = vim.opt.wildignore:get()
     }
@@ -401,11 +403,7 @@ local plugins = {
 
     --> THEMES AND UI
 	{ '3rd/image.nvim', opts={ backend="kitty" }, ft={"norg", "markdown"}, cond=not vim.g.neovide },
-    { 'sainnhe/gruvbox-material', config=function()
-		vim.g.gruvbox_material_background = "soft"
-		vim.g.gruvbox_material_transparent_background = true
-		vim.cmd.colorscheme("gruvbox-material")
-	end },
+    { 'sainnhe/gruvbox-material', config=function() vim.cmd.colorscheme("gruvbox-material") end },
     { 'nvim-tree/nvim-web-devicons', opts={override={norg={icon=" ", color="#4878be", name="neorg"}, http={icon="󰯊 ", name="http", color="#986fec"}} }, event="VeryLazy" },
     { 'norcalli/nvim-colorizer.lua', cmd="ColorizerToggle" },
     { 'lewis6991/gitsigns.nvim', config=true },
@@ -439,7 +437,6 @@ local plugins = {
 
 require("lazy").setup({ plugins }, {
     ui = { pills=false }, install={ colorscheme = { "gruvbox-material", "retrobox"} },
-	-- profiling = { loader = true, require = true },
 	dev = { path="~/STUFF/NEOVIM/", patterns = {"tamton-aquib" }, fallback = true },
     performance = { rtp = { disabled_plugins = {
 		"node_provider", "2html_plugin", "getscript", "getscriptPlugin", "gzip", "matchit",
@@ -469,6 +466,7 @@ local s = {
 	-- 	},
 	-- },
 
+	tailwindcss = {},
     pyright={},
 	cssls={}, -- biome = {}, tsserver={}, svelte = {},-- yamlls = {}, eslint = {},
 	-- ruff_lsp={}, ruff={}, rust_analyzer={},
@@ -555,6 +553,7 @@ vim.api.nvim_create_autocmd({'WinEnter', 'FileType'}, {
     callback = function() vim.w.focus_disable = vim.tbl_contains({ 'NvimTree', 'dbui', 'dbee' }, vim.bo.ft) end,
 })
 vim.filetype.add({ extension = { http = "http" } })
+-- vim.opt.showtabline = 1
 
 -- vim.api.nvim_create_autocmd("LspProgress", {
 -- 	callback = function(o)
@@ -567,9 +566,28 @@ vim.keymap.set('ia', 'pp', vim.schedule_wrap(function()
 	local pps = { python = [[print("${0}")]], typescriptreact = [[console.log("${0}")]] }
 	local key = vim.api.nvim_replace_termcodes("<BS>", true, false, true)
 	vim.api.nvim_feedkeys(key, 'i', false)
-	vim.defer_fn(function() vim.snippet.expand(pps[vim.bo.ft]) end, 1)
+	vim.defer_fn(function() vim.snippet.expand(pps[vim.bo.ft] or "Error") end, 1)
 end), {})
 
+-- vim.opt.background = "dark"
+-- vim.cmd.colorscheme("retrobox")
+-- vim.opt.statusline = "%#Normal#"..("─"):rep(vim.o.columns)
+
+-- local boffer = vim.api.nvim_create_buf(false, true)
+-- vim.api.nvim_open_win(boffer, true, {
+-- 	relative="editor", style="minimal", border="none",
+-- 	height=1, width=vim.o.columns, row=vim.o.lines-3, col=0
+-- })
+-- vim.cmd.hi("NormalFloat guibg=#fbf1c7")
+-- vim.api.nvim_buf_set_lines(boffer, 0, -1, false, {("▂"):rep(vim.o.columns)})
+-- 
+-- vim.opt.statusline = "%#Normal#%f%=%p  %c:%l   %y"
+-- vim.opt.winbar = "%#Normal#"..("▂"):rep(vim.o.columns)
+-- local half = ("%#Normal# "):rep(math.floor(vim.o.columns/2) - 10)
+-- vim.opt.tabline = half .. "%t" .. half
+
+vim.keymap.set('n', 'f', '/', {})
+vim.keymap.set('n', 't', '?', {})
 
 -- local session_path = vim.fn.stdpath('config') .. '/session.vim'
 -- map("n", "<leader>ss", 'sil wa! | mks! ' .. session_path .. ' | qa!')
