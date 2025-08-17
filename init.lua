@@ -207,10 +207,9 @@ local function cmd(s) return "<CMD>"..s.."<CR>" end
 vim.keymap.set('n', '-', cmd 'Oil')
 
 map('n', '<leader>d', vim.diagnostic.setqflist)
-map('n', '<leader>u', function() require("thunder").run() end)
-map('n', '<leader>k', function() require("essentials").konsole() end)
+map('n', '<leader>c', function() require("essentials").konsole() end)
+-- map('n', '<leader>u', function() require("thunder").run() end)
 -- map('n', 'gQ', function() require("essentials").open_quick_note() end)
--- map('n', 'gQ', cmd 'edit ~/.local/share/nvim/quicknote/ondcadminportal.norg')
 map('n', 'gQ', cmd 'vsp | Oil ~/norg/ONDC/')
 map('n', '<leader>ii', function() require("nvim-market").install_picker() end)
 map('n', '<leader>iu', function() require("nvim-market").remove_picker() end)
@@ -265,7 +264,6 @@ map('n', '<leader>r' , function() require("essentials").run_file() end)
 map('n', '<leader>s' , function() require("essentials").swap_bool() end)
 map('n', '<leader>w', Util.close_command)
 map('n', 'gx', function() require("essentials").go_to_url() end)
-map('n', '<leader>cs', function() require("essentials").cheat_sh() end)
 
 --> WINDOW Control
 map({ 'n', 't' }, '<C-h>', cmd 'wincmd h')
@@ -445,12 +443,8 @@ local plugins = {
     {
         "mistweaverco/kulala.nvim",
         branch = "develop",
-        ft = {"http", "rest"},
-        opts = {
-            global_keymaps = true,
-            global_keymaps_prefix = "<leader>i",
-            kulala_keymaps_prefix = "",
-        },
+        ft = { "http", "rest" },
+        opts = { global_keymaps = true, global_keymaps_prefix = "<leader>k" },
     },
 
     -- { 'nvim-flutter/flutter-tools.nvim', dependencies = { 'nvim-lua/plenary.nvim' }, config = true },
@@ -464,13 +458,13 @@ local plugins = {
     -- { "pysan3/autosession.nvim", opts = { restore_on_setup = false }, event = { "VeryLazy" }, },
     -- { 'sindrets/diffview.nvim', config=true },
     -- { 'willothy/flatten.nvim', opts={window = { open="smart" } } },
+    -- { 'stevearc/quicker.nvim', config=true },
 
     { 'stevearc/overseer.nvim', opts = {} },
     { 'nvim-treesitter/nvim-treesitter-context', config=function() require("treesitter-context").setup {enable=true} end, ft="json" },
     { "youyoumu/pretty-ts-errors.nvim", opts = {} },
     { "supermaven-inc/supermaven-nvim", config = true },
     { "folke/snacks.nvim", priority = 1000, opts = cfg_snacks },
-    { 'stevearc/quicker.nvim', config=true },
 
     { 'stevearc/oil.nvim', opts={ float = { override = function(conf) conf.zindex = 69 return conf end } } },
     { 'danymat/neogen', config=true },
