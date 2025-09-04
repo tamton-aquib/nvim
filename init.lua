@@ -204,6 +204,15 @@ local function cmd(s) return "<CMD>"..s.."<CR>" end
 
 --> Test mappings
 
+-- Java DAP setup
+map('<leader>jt', cmd 'JavaTestDebugCurrentClass')
+map('<leader>jm', cmd 'JavaTestDebugCurrentMethod')
+map('<leader>jr', cmd 'JavaTestViewLastReport')
+map('<Cr>', cmd 'DapToggleBreakpoint')
+map('<Right>', cmd 'DapContinue')
+map('<Down>', cmd 'DapStepOver')
+map('<leader>do', function() require("dapui").toggle() end)
+
 map('-',          cmd 'Oil')
 map('<leader>c',  function() require("essentials").konsole() end)
 map('gQ',         cmd 'vsp | Oil ~/norg/ONDC/')
@@ -477,7 +486,7 @@ local plugins = {
 
     --> GENERAL PURPOSE
     { 'notjedi/nvim-rooter.lua', config = true },
-    { 'nvim-focus/focus.nvim', opts={ excluded_windows = { 'fyler', 'NvimTree', 'dbui', 'dbee', 'no-neck-pain', 'DiffviewFiles' } } },
+    { 'nvim-focus/focus.nvim', opts = { ui = { cursorline = false }, excluded_windows = { 'fyler', 'NvimTree', 'dbui', 'dbee', 'no-neck-pain', 'DiffviewFiles' } } },
     { 'windwp/nvim-autopairs', config = true, event = "InsertEnter" },
     { 'tiagovla/scope.nvim', config = true },
 }
@@ -517,6 +526,9 @@ vim.cmd [[hi link @punctuation.bracket Red | hi link @constructor.lua Red]]
 vim.cmd [[hi WarningText gui=underline | hi ErrorText gui=underline | hi TSDanger gui=reverse]]
 vim.cmd [[hi StatusLine guibg=none | hi TabLineFill guibg=none]]
 vim.defer_fn(function() vim.cmd [[hi! BlinkCmpMenu guibg=none | hi! BlinkCmpMenuBorder guibg=none]] end, 500)
+vim.fn.sign_define('DapBreakpoint', { text='', texthl='Error', linehl='', numhl='' })
+vim.fn.sign_define('DapStopped', { text='󰋇 ', texthl='HealthSuccess', linehl='Visual', numhl='' })
+
 
 function UF()
     local title = vim.fn.getline(vim.v.foldstart):gsub([[%-%- %{%{%{ %-%- ]], "")
