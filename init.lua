@@ -1,4 +1,5 @@
 
+
 -- {{{ -- Settings
 
 vim.loader.enable()
@@ -381,23 +382,9 @@ end
 local plugins = {
 
     --> Temporary and testing
-    -- { 'tamton-aquib/ads.nvim', config = true, dependencies = "3rd/image.nvim" },
-{
-  "ember-theme/nvim",
-  name = "ember",
-  priority = 1000,
-  config = function()
-    require("ember").setup({
-      variant = "ember", -- "ember" | "ember-soft" | "ember-light"
-    })
-    vim.cmd("colorscheme ember")
-  end,
-},
-
     {
         "A7Lavinraj/fyler.nvim",
         config = function()
-            -- vim.cmd [[au FileType fyler vert resize 30 | setl nonu nornu]]
             require("fyler").setup {
                 integrations = { icon = "nvim_web_devicons" },
                 views = {
@@ -416,60 +403,22 @@ local plugins = {
         end
     },
 
-    { 'jedrzejboczar/possession.nvim', requires = { 'nvim-lua/plenary.nvim' }, opts = {} },
-    { 'xzbdmw/colorful-menu.nvim', config = true },
-
-    -- { "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" }, config = true },
     { "igorlfs/nvim-dap-view", opts = { winbar = { controls = { enabled = true } } } },
 
-    -- { 'nvim-java/nvim-java', config = function()
-    --     require("java").setup({
-    --         jdk = { auto_install = false },
-    --         jdtls = { version = "1.43.0" },
-    --         -- java_debug_adapter = { enable = false, },
-    --     })
-    --     -- vim.lsp.config.jdtls = vim.tbl_extend("force", vim.lsp.config.jdtls or {}, {})
-    --     -- vim.lsp.enable("jdtls")
-    --     require("lspconfig").jdtls.setup({})
-    --     -- vim.lsp.enable("jdtls")
-    -- end,
-    --     -- dependencies = { "neovim/nvim-lspconfig", "mason-org/mason.nvim" },
-    -- },
+    {
+        "nvim-java/nvim-java",
+        config = function()
+            require("java").setup({ jdk = { auto_install = false }})
 
-  {
-    "nvim-java/nvim-java",
-    config = function()
-      require("java").setup({ jdk = { auto_install = false }})
-
-            -- vim.lsp.config.jdtls = vim.tbl_extend("force", vim.lsp.config.jdtls or {}, {
-            -- cmd = { "jdtls", "-javaagent:/home/hi10143/Downloads/lombok.jar" },
-            -- cmd_env = {
-            --     JAVA_HOME="/usr/lib/jvm/java-21-openjdk-amd64/",
-            -- }
-            -- })
             vim.lsp.config("jdtls", {
                 name = "jdtls",
-                -- cmd = { "jdtls", "-javaagent:/home/hi10143/Downloads/lombok.jar", "-Xbootclasspath/a:/home/hi10143/Downloads/lombok.jar" },
-                -- cmd = { "jdtls", "-javaagent:/home/hi10143/Downloads/lombok.jar" },
                 cmd = { "jdtls", "--jvm-arg=-javaagent:/home/hi10143/Downloads/lombok.jar" },
-                cmd_env = {
-                    -- JAVA_HOME="/usr/lib/jvm/java-21-openjdk-amd64/",
-                    JAVA_HOME="/usr/lib/jvm/java-21-openjdk-amd64/",
-                    -- JDTLS_JVM_ARGS = "-javaagent:/home/hi10143/Downloads/lombok.jar"
-                }
+                cmd_env = { JAVA_HOME="/usr/lib/jvm/java-21-openjdk-amd64/", }
             })
             vim.lsp.enable("jdtls")
-    end,
-  },
+        end,
+    },
     { 'mason-org/mason.nvim', opts = {} },
-    -- { 'mason-org/mason.nvim', config = function() require("lspconfig").jdtls.setup({}) end },
-    -- {
-    --     "luckasRanarison/tailwind-tools.nvim",
-    --     name = "tailwind-tools",
-    --     build = ":UpdateRemotePlugins",
-    --     opts = { conceal = { enabled = true } }
-    -- },
-
     -- {
     --     'stevearc/conform.nvim',
     --     opts = {
@@ -483,26 +432,13 @@ local plugins = {
     --     },
     -- },
     { "iamkarasik/sonarqube.nvim", config = true },
-    { "jake-stewart/auto-cmdheight.nvim", lazy = false, opts = { max_lines = 5, duration = 2, remove_on_key = true, clear_always = false, } },
-
 
     { "mistweaverco/kulala.nvim", ft = { "http", "rest" }, opts = cfg_kulala },
     -- { 'nvim-flutter/flutter-tools.nvim', dependencies = { 'nvim-lua/plenary.nvim' }, config = true },
-    -- { "r-pletnev/pdfreader.nvim", dependencies = { "nvim-telescope/telescope.nvim" }, config = true },
-    {
-        "kndndrj/nvim-dbee",
-        dependencies = { "MunifTanjim/nui.nvim" },
-        build = function() require("dbee").install("cgo") end,
-        config = function() require("dbee").setup() end,
-    },
+    { "kndndrj/nvim-dbee", dependencies = { "MunifTanjim/nui.nvim" }, build = function() require("dbee").install("cgo") end, config = function() require("dbee").setup() end, },
     -- { "pysan3/autosession.nvim", opts = { restore_on_setup = false }, event = { "VeryLazy" }, },
-    -- { 'sindrets/diffview.nvim', config=true },
-    {
-        "dlyongemallo/diffview.nvim",
-        version = "*",
-    },
+    { "dlyongemallo/diffview.nvim", version = "*" },
     -- { 'willothy/flatten.nvim', opts={window = { open="smart" } } },
-    -- { 'stevearc/quicker.nvim', config=true },
 
     { 'stevearc/overseer.nvim', opts = {} },
     { 'nvim-treesitter/nvim-treesitter-context', config=function() require("treesitter-context").setup {enable=true} end, ft="json" },
@@ -517,49 +453,12 @@ local plugins = {
     { 'windwp/nvim-ts-autotag', opts={} },
 
     --> My Useless lil plugins
-    -- { 'tamton-aquib/staline.nvim', config=cfg_staline, event="ColorScheme", dev=true },
-    { 'tamton-aquib/staline.nvim', config=function() require("staline").setup {
-	sections = {
-		left = {
-			' ', 'right_sep_double', '-mode', 'left_sep_double', ' ',
-			'right_sep', '-file_name', 'left_sep', ' ',
-		},
-		mid  = {'lsp'},
-		right= {
-			-- 'right_sep', '- ', '-lsp_name', '- ', 'left_sep', ' ',
-			'right_sep', '-branch', 'left_sep', ' ',
-			'right_sep_double', '-line_column', 'left_sep_double', ' ',
-		}
-	},
-
-	defaults={
-		fg = "#d4be98",
-		-- cool_symbol = "  ",
-		left_separator = "",
-		right_separator = "",
-		-- line_column = "%l:%c [%L]",
-		true_colors = true,
-		line_column = "[%l:%c] 󰍜 %p%% "
-		-- font_active = "bold"
-	},
-	mode_colors = {
-		n  = "#504945",
-		i  = "#504945",
-		ic = "#504945",
-		c  = "#504945",
-		v  = "#504945"       -- etc
-	},
-        mode_icons = {
-            n  = " ",
-        }
-    }
-
-    require("stabline").setup({ font_active="none", stab_start="  %#Identifier#  ", stab_bg='none', stab_left='', inactive_fg='none', fg="#95c561" })
-    end, event="ColorScheme", dev=true },
+    { 'tamton-aquib/staline.nvim', config=cfg_staline, event="ColorScheme", dev=true },
     { 'tamton-aquib/stuff.nvim', lazy = true },
     { 'tamton-aquib/essentials.nvim', lazy = true },
     -- { 'tamton-aquib/flirt.nvim', opts={ speed=99, exclude_fts={ 'oil_preview', 'blink-cmp-documentation', 'snacks_picker_input' } }, cond=not vim.g.neovide },
-    { 'tamton-aquib/mpv.nvim', opts={setup_widgets=true}, lazy=true }, --, dev=true },
+    -- { 'tamton-aquib/mpv.nvim', opts={setup_widgets=true}, lazy=true }, --, dev=true },
+    -- { 'tamton-aquib/ads.nvim', config = true, dependencies = "3rd/image.nvim" },
     -- { 'tamton-aquib/nvim-market', import="nvim-market.plugins", config=true, lazy=true, dev=true },
     -- { 'tamton-aquib/duck.nvim', config=true },
     -- { 'tamton-aquib/keys.nvim', opts={} },
@@ -578,8 +477,14 @@ local plugins = {
 
     --> Telescope, TREESITTER, NEORG, REST
     { 'nvim-treesitter/nvim-treesitter', opts={highlight={enable=true}, indent={enable=true} }, main="nvim-treesitter.configs" },
-    { "vhyrro/luarocks.nvim", opts={rocks={"magick"}} },
-    { "nvim-neorg/neorg", ft="norg", dependencies={ "luarocks.nvim" }, opts=cfg_neorg },
+    -- { "nvim-neorg/neorg", ft="norg", dependencies={ "luarocks.nvim" }, opts=cfg_neorg },
+    -- { "vhyrro/luarocks.nvim", opts={} },
+{
+    "nvim-neorg/neorg",
+    lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
+    version = "*", -- Pin Neorg to the latest stable release
+    config = true,
+},
 
     --> GENERAL PURPOSE
     { 'notjedi/nvim-rooter.lua', config=true },
@@ -599,11 +504,7 @@ require("lazy").setup({ plugins }, {
 vim.diagnostic.config({
 	virtual_text = false,
 	signs = { text = { '', '', '', '' } }, -- {"", "", ""}
-	float = {
-		border = 'rounded',
-		suffix = '',
-        source = true,
-		focusable = true,
+	float = { border = 'rounded', suffix = '', source = true, focusable = true,
 		header = { "  Diagnostics", "String" },
 		prefix = function(_, _, _) return "  " , "String" end, -- icons:       
 	}
@@ -616,12 +517,6 @@ vim.lsp.config('*', {
 -- }}}
 
 -- {{{ -- MISC
-
-vim.api.nvim_create_autocmd('FileType', {
-    group = vim.api.nvim_create_augroup('disable-focus-autoresize', {}),
-    callback = function(_) if vim.tbl_contains({ 'dapui_scopes', 'fyler' }, vim.bo.ft) then vim.b.focus_disable = true end end,
-})
--- vim.cmd("au TermOpen * set winhl=Normal:TermNormal,NormalNC:TermNormal | hi TermNormal guibg=#151515 guifg=#deddda")
 
 --> Custom Highlights
 vim.cmd [[hi link @punctuation.bracket Red | hi link @constructor.lua Red]]
