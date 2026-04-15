@@ -3,11 +3,12 @@
 -- {{{ -- Settings
 
 vim.loader.enable()
-vim.g.did_install_default_menus = 1
 vim.g.gruvbox_material_background = 'hard'
-vim.g.python3_host_prog = '/usr/bin/python'
 vim.g.gruvbox_material_better_performance = 1
 vim.g.gruvbox_material_float_style = 'blend'
+vim.g.lsp_status = ""
+vim.g.mpv_visualizer = ""
+vim.g.stl_macro_name = ""
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
@@ -42,7 +43,7 @@ local opts = {
 		pumblend = 30, inccommand = "split", termguicolors = true, number = true, signcolumn = "yes:2",
         guifont = "IosevkaTerm NF:h9", -- guifont = "MonoLisa:h8",
 		rnu = true, shortmess = "tF".."TIcC".."as".."WoO",
-		fillchars = { eob=' ', fold=' ', foldopen="", foldsep=" ", foldclose="" }
+		fillchars = { eob=' ', fold=' ', foldopen="", foldsep=" ", foldclose="", diff='╱' }
 	},
 	Tabspace = {
 		shiftwidth = 4, tabstop = 4, softtabstop = 0, expandtab = true,
@@ -106,6 +107,9 @@ end
 local au = function(events, ptn, cb) vim.api.nvim_create_autocmd(events, {pattern=ptn, [type(cb)=='function' and 'callback' or 'command']=cb}) end
 
 au("Filetype", "typescriptreact,javascript,typescript,javascriptreact,dart,jsonc,json", "set ts=2 sw=2")
+au("RecordingEnter", "*", function() vim.g.stl_macro_name = " " .. vim.fn.reg_recording() end)
+au("RecordingLeave", "*", function() vim.g.stl_macro_name = "" end)
+au("LspProgress", "*", function(o) local v = (o.data or {}).params.value; vim.g.lsp_status = v.percentage and (v.percentage .. "%") or ""; vim.cmd.redrawstatus() end)
 
 --> LSP Related
 -- vim.api.nvim_create_autocmd("BufWritePre", {
@@ -135,8 +139,6 @@ command("Jq", "execute '.!jq'")
 command("Format", vim.lsp.buf.format)
 command("Mess", function() require("essentials").messages() end)
 command("Date", function() vim.fn.setreg("+", os.date("%Y%m%d%H%M%S")) vim.notify("Copied timestamp to clipboard!") end)
-command('Calc', function() require("calc").toggle() end)
-command('Stalk', function() require("stalk").stalk() end)
 -- }}}
 
 -- {{{ -- Mappings
@@ -146,29 +148,16 @@ vim.g.maplocalleader = ","
 local function map(mode, key, func) vim.keymap.set(mode, key, func, {silent=true}) end
 local function cmd(s) return "<CMD>"..s.."<CR>" end
 
--- Java DAP setup
-map('n', '<leader>jt', cmd 'JavaTestDebugCurrentClass')
-map('n', '<leader>jm', cmd 'JavaTestDebugCurrentMethod')
-map('n', '<leader>jr', cmd 'JavaTestViewLastReport')
 map('n', '<leader>db', cmd 'Dbee')
 
 map('n', '<M-Enter>', cmd 'DapToggleBreakpoint')
 map('n', '<Right>', cmd 'DapContinue')
 map('n', '<Down>', cmd 'DapStepOver')
--- map('n', '<leader>do', function() require("dapui").toggle() end)
 map('n', '<leader>do', cmd 'DapViewToggle!')
 map('v', '<Cr>', function() require("dap.ui.widgets").hover() end)
--- map('v', '<Cr>', require("dapui").eval())
-
---> Test mappings
-
--- vim.keymap.set('n', '-', cmd 'Oil')
 
 map('n', '<leader>d', vim.diagnostic.setqflist)
 map('n', '<leader>c', function() require("essentials").konsole() end)
--- map('n', '<leader>u', function() require("thunder").run() end)
--- map('n', 'gQ', function() require("essentials").open_quick_note() end)
--- map('n', 'gQ', cmd 'vsp | Oil ~/Notes/')
 map('n', 'gQ', cmd 'Fyler dir=/home/hi10143/Notes/ kind=split_left')
 map('n', '<leader>or', cmd 'OverseerRun')
 map('n', '<leader>ot', cmd 'OverseerToggle')
@@ -182,41 +171,34 @@ map('n', '<leader>gp', cmd "Gitsigns prev_hunk")
 map('n', '<leader>gb', cmd "Gitsigns blame_line")
 map('n', '<leader>gd', cmd "Gitsigns preview_hunk_inline")
 map('n', '<leader>gr', cmd "Gitsigns reset_hunk")
-map('n', '<leader>gt', function() vim.cmd("Diffview".. (next(require('diffview.lib').views) == nil and "Open" or "Close")) end)
+map('n', '<leader>gt', cmd "DiffviewToggle")
 
 map('n', '<C-n>', cmd "cnext")
 map('n', '<C-p>', cmd "cprev")
 
---> Temp and Test maps
--- map('n', '<leader>l', function() require("essentials").toggle_term("lazygit", 't', true) end)
 map('n', '<leader>l', cmd "tabnew | term lazygit")
 map({'n', 't'}, '<C-t>', function() require("essentials").toggle_term("fish", 'v', true) end)
 map('n', '<leader>p', cmd 'Lazy')
 map('t', '<Esc><Esc>', [[<C-\><C-n>]])
 map('n', 'gh', function() vim.cmd.help(vim.fn.expand('<cword>')) end)
 
---> General Mappings
 map('n', '<leader>e', function() require("fyler").toggle({ kind = "split_left" }) end)
 map('n', '<leader>q'   , function() require("essentials").toggle_quickfix() end)
 map('n', '<leader>z'   , cmd 'NoNeckPain')
 
---> stuff.nvim keymaps (https://github.com/tamton-aquib/stuff.nvim)
 map('n', 'gs', function() require("scratch").toggle() end)
 map('n', 'gB', function() require("bt").toggle() end)
 map('n', 'gT', function() require("tmpclone").clone() end)
 map('n', 'gp', function() require("mpv").toggle_player() end)
 
---> Lsp mappings
 map('n', 'gD', vim.lsp.buf.definition)
 map('n', 'gd', '<cmd>vs | lua vim.lsp.buf.definition()<CR>')
 
---> essentials.nvim mappings ( https://github.com/tamton-aquib/essentials.nvim )
 map('n', '<leader>r' , function() require("essentials").run_file() end)
 map('n', '<leader>s' , function() require("essentials").swap_bool() end)
 map('n', '<leader>w', Util.close_command)
 map('n', 'gx', function() require("essentials").go_to_url() end)
 
---> WINDOW Control
 map({ 'n', 't' }, '<C-h>', cmd 'wincmd h')
 map({ 'n', 't' }, '<C-j>', cmd 'wincmd j')
 map({ 'n', 't' }, '<C-k>', cmd 'wincmd k')
@@ -234,14 +216,11 @@ map("n", "<A-k>", ":move .-2<CR>==")
 
 -->  Snacks picker
 map("n", "<leader><space>", function() Snacks.picker.smart() end)
-map("n", "<leader>ff", function() Snacks.picker.files({ exclude=vim.opt.wildignore:get() }) end)
-map("n", "<leader>fp", function() Snacks.picker.projects() end)
+map("n", "<leader>ff", function() Snacks.picker.files({ exclude = vim.opt.wildignore:get() }) end)
 map("n", "<leader>fo", function() Snacks.picker.recent() end)
 map("n", "<leader>fg", function() Snacks.picker.grep() end)
 map("n", "<leader>fs", function() Snacks.picker.grep_word() end)
-map("n", "<leader>fh", function() Snacks.picker.help() end)
 map("n", "<leader>fr", function() Snacks.picker.resume() end)
-map("n", "<leader>fd", function() Snacks.picker.lsp_workspace_symbols() end)
 map("n", "<leader>z",  function() Snacks.zen() end)
 
 --> OLD
@@ -268,7 +247,6 @@ local cfg_kulala = { global_keymaps = true, global_keymaps_prefix = "<leader>k",
 local cfg_blink = {
     enabled = function() return not vim.tbl_contains({ "prompt" }, vim.bo.filetype) end,
     keymap = { preset = 'enter' },
-    appearance = { nerd_font_variant = 'normal' },
     completion = {
         list = {
             selection = {
@@ -311,7 +289,7 @@ local cfg_snacks = {
             layout = { box = "horizontal", width = 0.7, height = 0.7, preview = false }
         }
     },
-    scroll = { animate = { easing = "outQuart" }, filter  = function(buf) return vim.bo[buf].filetype ~= "json" and vim.bo[buf].buftype ~= "terminal" end },
+    -- scroll = { animate = { easing = "outQuart" }, filter  = function(buf) return vim.bo[buf].filetype ~= "json" and vim.bo[buf].buftype ~= "terminal" end },
     -- dim = { enabled = true },
     words = { debounce = 20 },
     indent = { chunk = { enabled = true, char = { arrow = "─" } } }
@@ -329,48 +307,14 @@ local cfg_neorg = {
     }
 }
 
--- local cfg_nvimtree = {
---     view = { preserve_window_proportions = true, adaptive_size = true },
---     update_focused_file = { enable = true, update_root = true },
---     renderer = { indent_markers = { enable = true } }
--- }
 
-
-vim.g.lsp_status = ""
-vim.g.mpv_visualizer = ""
-vim.g.stl_macro_name = ""
 local cfg_staline = function()
-    vim.api.nvim_create_autocmd({"RecordingEnter"}, { callback = function() vim.g.stl_macro_name = " " .. vim.fn.reg_recording() end })
-    vim.api.nvim_create_autocmd({"RecordingLeave"}, { callback = function() vim.g.stl_macro_name = "" end })
-    vim.api.nvim_create_autocmd("LspProgress", {
-        callback = function(o)
-            local status = o.data.params.value.percentage or ""
-            vim.g.lsp_status = type(status) == "number" and status.."%" or ""
-            vim.cmd.redrawstatus()
-        end
-    })
-
-    local virtual_env = function()
-        local nice = vim.fn.fnamemodify(vim.env.VIRTUAL_ENV or '', ':t')
-        return nice ~= '' and '('.. nice ..')' or ''
-    end
-
-    local overseer_status = function()
-        local tasks = require("overseer.task_list").list_tasks({ unique = true })
-        local res = ''
-        vim.iter(tasks):map(function(task)
-            local task_name = task.name
-            if task_name == 'RUNNING' then res = res .. ' ' end
-        end)
-        return res
-    end
-
     require("staline").setup({
         defaults = { true_colors=true, inactive_color="#07080f", inactive_bg="none" },
 		special_table = { mpv = { 'MPV', ' ' } },
         sections = {
-            left = { '  ', 'mode', '  ', 'git_branch', '   ', 'lsp', '   %{g:lsp_status}' },
-            right = { overseer_status, "  %@v:lua.require'mpv'.toggle_player@󰎆 %X %{g:mpv_visualizer}", virtual_env, 'line_column', '  ' }
+            left = { '  ', 'mode', '  ', 'git_branch', '   ', '%#Purple#%{g:stl_macro_name}%#None#', ' ', 'lsp', '   %{g:lsp_status}' },
+            right = { "  %@v:lua.require'mpv'.toggle_player@󰎆 %X %{g:mpv_visualizer}", 'line_column', '  ' }
         }
     })
     require("stabline").setup({ font_active="none", stab_start="  %#Identifier#  ", stab_bg='none', stab_left='', inactive_fg='none', fg="#95c561" })
@@ -385,20 +329,10 @@ local plugins = {
     {
         "A7Lavinraj/fyler.nvim",
         config = function()
+            vim.cmd [[au FileType fyler vert resize 30]]
             require("fyler").setup {
                 integrations = { icon = "nvim_web_devicons" },
-                views = {
-                    finder = {
-                        win = {
-                            kind = "split_left",
-                            kinds = { split_left = { width = "20%" },
-                                win_opts = { signcolumn = "yes:1" }
-                            }
-                        },
-                        default_explorer = true,
-                        icon = { directory_collapsed = "  ", directory_empty = nil, directory_expanded = "  ", },
-                    }
-                }
+                views = { finder = { follow_current_file = true, icon = { directory_collapsed = "  ", directory_expanded = "  ", } } }
             }
         end
     },
@@ -432,13 +366,9 @@ local plugins = {
     --     },
     -- },
     { "iamkarasik/sonarqube.nvim", config = true },
-
     { "mistweaverco/kulala.nvim", ft = { "http", "rest" }, opts = cfg_kulala },
-    -- { 'nvim-flutter/flutter-tools.nvim', dependencies = { 'nvim-lua/plenary.nvim' }, config = true },
     { "kndndrj/nvim-dbee", dependencies = { "MunifTanjim/nui.nvim" }, build = function() require("dbee").install("cgo") end, config = function() require("dbee").setup() end, },
-    -- { "pysan3/autosession.nvim", opts = { restore_on_setup = false }, event = { "VeryLazy" }, },
     { "dlyongemallo/diffview.nvim", version = "*" },
-    -- { 'willothy/flatten.nvim', opts={window = { open="smart" } } },
 
     { 'stevearc/overseer.nvim', opts = {} },
     { 'nvim-treesitter/nvim-treesitter-context', config=function() require("treesitter-context").setup {enable=true} end, ft="json" },
@@ -446,8 +376,6 @@ local plugins = {
     { "supermaven-inc/supermaven-nvim", config = true },
     { "folke/snacks.nvim", priority = 1000, opts = cfg_snacks },
 
-    -- { 'stevearc/oil.nvim', opts={ float = { override = function(conf) conf.zindex = 69 return conf end } } },
-    { 'danymat/neogen', config=true },
     { 'tiagovla/scope.nvim', config=true },
     { 'dmmulroy/tsc.nvim', opts={ enable_progress_notifications = true } },
     { 'windwp/nvim-ts-autotag', opts={} },
@@ -456,40 +384,23 @@ local plugins = {
     { 'tamton-aquib/staline.nvim', config=cfg_staline, event="ColorScheme", dev=true },
     { 'tamton-aquib/stuff.nvim', lazy = true },
     { 'tamton-aquib/essentials.nvim', lazy = true },
-    -- { 'tamton-aquib/flirt.nvim', opts={ speed=99, exclude_fts={ 'oil_preview', 'blink-cmp-documentation', 'snacks_picker_input' } }, cond=not vim.g.neovide },
-    -- { 'tamton-aquib/mpv.nvim', opts={setup_widgets=true}, lazy=true }, --, dev=true },
-    -- { 'tamton-aquib/ads.nvim', config = true, dependencies = "3rd/image.nvim" },
-    -- { 'tamton-aquib/nvim-market', import="nvim-market.plugins", config=true, lazy=true, dev=true },
-    -- { 'tamton-aquib/duck.nvim', config=true },
-    -- { 'tamton-aquib/keys.nvim', opts={} },
-    -- { 'tamton-aquib/zone.nvim', opts={after=5, style='dvd'}, dev=true },
 
     --> THEMES AND UI
     { 'sainnhe/gruvbox-material', config = function() vim.cmd.colorscheme("gruvbox-material") end },
     { 'nvim-tree/nvim-web-devicons', opts={}, event="VeryLazy" },
     { 'norcalli/nvim-colorizer.lua', cmd="ColorizerToggle" },
     { 'lewis6991/gitsigns.nvim', config=true },
-    -- { 'nvim-tree/nvim-tree.lua', opts=cfg_nvimtree, lazy=false },
 
     --> LSP and COMPLETION
     { 'neovim/nvim-lspconfig', config = cfg_lsp },
     { 'saghen/blink.cmp', opts = cfg_blink, opts_extend = { "sources.default" } },
 
-    --> Telescope, TREESITTER, NEORG, REST
+    --> TREESITTER, NEORG
     { 'nvim-treesitter/nvim-treesitter', opts={highlight={enable=true}, indent={enable=true} }, main="nvim-treesitter.configs" },
-    -- { "nvim-neorg/neorg", ft="norg", dependencies={ "luarocks.nvim" }, opts=cfg_neorg },
-    -- { "vhyrro/luarocks.nvim", opts={} },
-{
-    "nvim-neorg/neorg",
-    lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
-    version = "*", -- Pin Neorg to the latest stable release
-    config = true,
-},
+    { "nvim-neorg/neorg", lazy = true, version = "*", config = cfg_neorg, ft="norg", },
 
     --> GENERAL PURPOSE
     { 'notjedi/nvim-rooter.lua', config=true },
-    -- { 'nvim-focus/focus.nvim', opts = { excluded_windows = { 'fyler', 'NvimTree', 'dbui', 'dbee', 'no-neck-pain', 'DiffviewFiles' } } },
-    -- { 'nvim-focus/focus.nvim', opts = { ui = { signcolumn = false }, excluded_windows = { 'Fyler', 'NvimTree', 'dbui', 'dbee', 'no-neck-pain', 'DiffviewFiles' } } },
     { 'windwp/nvim-autopairs', config=true, event="InsertEnter" },
 }
 
@@ -518,78 +429,14 @@ vim.lsp.config('*', {
 
 -- {{{ -- MISC
 
---> Custom Highlights
 vim.cmd [[hi link @punctuation.bracket Red | hi link @constructor.lua Red]]
-vim.cmd [[hi WarningText gui=underline | hi ErrorText gui=underline | hi TSDanger gui=reverse]]
+vim.cmd [[hi DiagnosticUnderlineError gui=underline | hi DiagnosticUnderlineWarn gui=underline | hi DiagnosticUnderlineInfo gui=underline | hi DiffDelete guifg=red]]
 vim.cmd [[hi StatusLine guibg=none | hi TabLineFill guibg=none]]
-vim.cmd [[hi! Normal guibg=none | hi NormalNC guibg=none]]
--- vim.defer_fn(function() vim.cmd [[hi! BlinkCmpMenu guibg=none | hi! BlinkCmpMenuBorder guibg=none]] end, 500)
 vim.fn.sign_define('DapBreakpoint', { text=' ', texthl='Error', linehl='', numhl='' })
 vim.fn.sign_define('DapStopped', { text='󰋇 ', texthl='HealthSuccess', linehl='Visual', numhl='' })
 
-function UF()
-    local title = vim.fn.getline(vim.v.foldstart):gsub([[%-%- %{%{%{ %-%- ]], "")
-    return (" "):rep(math.floor((vim.o.columns - title:len()) / 2)) .. title
-end
-
-vim.api.nvim_create_autocmd("BufReadPost", {
-    pattern = vim.fn.stdpath("config") .. "/init.lua",
-    once = true,
-    callback = function()
-        vim.cmd [[setl foldtext=v:lua.UF()]]
-        vim.keymap.set('n', '<CR>', 'za', {buffer=0})
-        vim.api.nvim_buf_set_extmark(0, vim.api.nvim_create_namespace("wtf"), 0, 0, {
-            virt_text = {{ Util.center({"-- [[ INIT.LUA ]] --"})[1] , "Function"}}
-        })
-    end
-})
-
--- require('vim._core.ui2').enable({
---   enable = true,
---   msg = {
---     targets = {
---       [''] = 'msg',
---       empty = 'cmd',
---       bufwrite = 'msg',
---       confirm = 'cmd',
---       emsg = 'pager',
---       echo = 'msg',
---       echomsg = 'msg',
---       echoerr = 'pager',
---       completion = 'cmd',
---       list_cmd = 'pager',
---       lua_error = 'pager',
---       lua_print = 'msg',
---       progress = 'pager',
---       rpc_error = 'pager',
---       quickfix = 'msg',
---       search_cmd = 'cmd',
---       search_count = 'cmd',
---       shell_cmd = 'pager',
---       shell_err = 'pager',
---       shell_out = 'pager',
---       shell_ret = 'msg',
---       undo = 'msg',
---       verbose = 'pager',
---       wildlist = 'cmd',
---       wmsg = 'msg',
---       typed_cmd = 'cmd',
---     },
---     cmd = {
---       height = 0.5,
---     },
---     dialog = {
---       height = 0.5,
---     },
---     msg = {
---       height = 0.3,
---       timeout = 5000,
---     },
---     pager = {
---       height = 0.5,
---     },
---   },
--- })
-
+centerize = function(str) return (" "):rep(math.floor((vim.o.columns - str:len()) / 2)) .. str end
+UF = function() return centerize(vim.fn.getline(vim.v.foldstart):gsub([[%-%- %{%{%{ %-%- ]], "")) end
+vim.cmd [[au BufReadPost init.lua setl foldtext=v:lua.UF() | lua vim.api.nvim_buf_set_extmark(0, vim.api.nvim_create_namespace("wtf"), 0, 0, { virt_text = {{ centerize("-- [ [   INIT.LUA   ] ] --"), "Function"}} })]]
 
 -- vim: fdm=marker fdls=-1 fdl=0 nonu nornu scl=no
