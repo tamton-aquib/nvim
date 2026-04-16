@@ -298,12 +298,13 @@ local cfg_snacks = {
 local cfg_neorg = {
     load = {
         ["core.defaults"] = {}, ["core.concealer"] = { config={ icons = { code_block = { conceal=true, content_only=true } } } },
-        -- ["core.completion"] = { config={ engine="nvim-cmp" } },
+        ["core.completion"] = { config={ engine={ module_name = "external.lsp-completion" } } },
         ["core.presenter"] = { config={ zen_mode = "zen-mode" } },
         ["core.itero"] = {}, ["core.ui.calendar"] = {}, ["core.export"] = {},
         ["core.todo-introspector"] = {},
         ["core.esupports.metagen"] = { config = {update_date=false} },
         ["core.esupports.indent"] = { config = { indents = { _ = { indent = 2 } } } },
+        ["external.interim-ls"] = { config = { completion_provider = { enable = true, documentation = true } } },
     }
 }
 
@@ -398,6 +399,7 @@ local plugins = {
     --> TREESITTER, NEORG
     { 'nvim-treesitter/nvim-treesitter', opts={highlight={enable=true}, indent={enable=true} }, main="nvim-treesitter.configs" },
     { "nvim-neorg/neorg", lazy = true, version = "*", config = cfg_neorg, ft="norg", },
+    { "benlubas/neorg-interim-ls", lazy = true, ft="norg" },
 
     --> GENERAL PURPOSE
     { 'notjedi/nvim-rooter.lua', config=true },
